@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_config_turnkey" error="0" />
+	<turnkey_config>STANDARD|STATICIP|DUALDOME_PRIMARY|DUALDOME_SECONDARY||LEGACY</turnkey_config>
+	<lan>Y | N</lan>
+	<wifi>Y | N</wifi>
+	<webcache>Y | N</webcache>
+</ipacu_response>

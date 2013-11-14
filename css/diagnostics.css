@@ -1,0 +1,241 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+.diagnostics-page {
+	position: absolute;
+	width: 100%;
+}
+
+.contact,
+.diagnostics-nav-button {
+	border-color: #BDC3C9;
+	border-style: solid;
+	padding: 10px 20px;
+}
+
+.diagnostics-nav-button {
+	background: #E4E6E9;
+	color: #114278;
+	font-size: 18px;
+}
+
+.contact {
+	background: #FFF;
+}
+
+.contact .title {
+	font-size: 18px;
+}
+
+.contact-region {
+	font-size: 15px;
+	margin-top: 15px;
+}
+
+.region-name {
+	color: #114278;
+}
+
+.contact-button {
+	background: #E4E6E9;
+	margin-top: 5px;
+	padding: 12px;
+	text-align: center;
+}
+
+.diagnostics-sections {
+	background: #FFF;
+	z-index: 10000;
+}
+
+/*.diagnostics-section {
+	height: 0;
+	overflow: hidden;
+}
+
+.diagnostics-section.selected {
+	height: auto;
+	overflow: auto;
+}
+*/
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 780px) {
+	html,
+	body {
+		overflow-x: hidden;
+	}
+
+	html {
+		/*background: green;*/
+	}
+
+	body {
+		/*background: red;*/
+	}
+
+	.diagnostics-page {
+		overflow-x: hidden;
+		background: red;
+	}
+
+	.sidebar {
+		/*overflow: visible;*/
+		left: -100%;
+		position: absolute;
+		transition: left 0.5s;
+		-moz-transition: left 0.5s;
+		-webkit-transition: left 0.5s;
+		width: 100%;
+	}
+
+	.sidebar.selected {
+		left: 0;
+		position: relative;
+		transition: left 0.5s;
+		-moz-transition: left 0.5s;
+		-webkit-transition: left 0.5s;
+	}
+
+	.diagnostics-nav-button {
+		border-width: 2px 0 0;
+	}
+
+	.diagnostics-nav-button:active {
+		background: #FFF;
+	}
+
+	.diagnostics-sections {
+		left: 100%;
+		position: absolute;
+		top: 0;
+		transition: left 0.5s;
+		-moz-transition: left 0.5s;
+		-webkit-transition: left 0.5s;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.diagnostics-sections.selected {
+		left: 0;
+		position: relative;
+		transition: left 0.5s;
+		-moz-transition: left 0.5s;
+		-webkit-transition: left 0.5s;
+	}
+
+	.diagnostics-section {
+		height: 0;
+		overflow: hidden;
+		width: 100%;
+		transition: height 0s ease 0.5s;
+	}
+
+	.diagnostics-section.selected {
+		height: 100%;
+		/*overflow: auto;*/
+		transition: height 0s ease 0.5s;
+	}
+
+
+	.back-button {
+		background: #114278;
+		border-bottom: 2px solid #BDC3C9;
+		border-top: 2px solid #FFF;
+		color: #FFF;
+		font-size: 18px;
+		padding: 10px;
+	}
+}
+
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+
+}
+
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 780px) {
+
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 780px) {
+
+	.diagnostics-page {
+		bottom: 0;
+		overflow: hidden;
+		top: 96px; /* MAGIC NUMBER */
+	}
+
+	.sidebar {
+		height: 100%;
+		position: absolute;
+		width: 260px;
+	}
+
+	.diagnostics-nav {
+		padding: 5px 0 0 3px;
+	}
+
+	.diagnostics-nav-button {
+		border-width: 2px 3px 0 1px;
+	}
+
+	.diagnostics-nav-button.selected {
+		background: #FFF;
+		border-right-width: 0;
+	}
+
+	.diagnostics-sections {
+		bottom: 0;
+		left: 260px; /* MAGIC NUMBER */
+		position: absolute;
+		overflow: auto;
+		right: 0;
+		top: 0;
+	}
+
+	.diagnostics-section {
+		display: none;
+		padding: 20px 0 0 20px;
+	}
+
+	.diagnostics-section.selected {
+		display: block;
+	}
+
+	.back-button {
+		display: none;
+	}
+
+	.event {
+		padding-bottom: 10px;
+	}
+
+	.event .date-time-type {
+		font-weight: bold;
+	}
+}

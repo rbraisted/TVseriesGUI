@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_eth" error="0" />
+	<mode>OFF | STATIC | DYNAMIC</mode>
+	<ip>192.168.0.3</ip>
+	<netmask>255.255.255.0</netmask>
+	<gateway>192.168.0.1</gateway>
+	<broadcast>192.168.0.255</broadcast>
+</ipacu_response>

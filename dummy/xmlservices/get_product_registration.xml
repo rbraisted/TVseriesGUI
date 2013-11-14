@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_product_registration"/>
+	<edit_dt>YYYY-MM-DDTHH:MM:SSZ</edit_dt>
+	<reg_dt>YYYY-MM-DDTHH:MM:SSZ</reg_dt>
+	<user>
+		<firstname>Miky</firstname>
+		<lastname>Ma</lastname>
+		<salutation></salutation>
+		<title>Captain</title>
+		<email>miky@vainmedia.com</email>
+		<company>Vain Media</company>
+		<addr1>724 S Spring St</addr1>
+		<addr2>Ste 503</addr2>
+		<city>Los Angeles</city>
+		<state>California</state>
+		<country>United States</country>
+		<zip>90014</zip>
+		<phone>1234567890</phone>
+		<mobile>1234567890</mobile>
+		<fax>1234567890</fax>
+		<website>http://vainmedia.com</website>
+	</user>
+	<dealer>
+		<company/>
+		<state/>
+		<country/>
+		<installer_name/>
+		<installer_email/>
+		<installer_phone/>
+	</dealer>
+	<product>
+		<acu_model>VSAT-IPACU | TVRO-IPACU</acu_model>
+		<acu_sn/>
+		<ant_model>HD7 | HD11 | V7 | V7IP | V3 | V11</ant_model>
+		<ant_sn/>
+		<market/>
+		<sector/>
+		<line/>
+		<platform/>
+		<purch_date>YYYY-MM-DD</purch_date>
+		<vessel_name>SS Vain</vessel_name>
+		<vessel_length/>
+		<vessel_year/>
+	</product>
+</ipacu_response>

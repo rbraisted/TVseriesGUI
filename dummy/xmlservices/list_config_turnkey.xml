@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_request>
+	<message name="list_config_turnkey"/>
+	<turnkey_list>
+		<turnkey>
+			<turnkey_config>STANDARD</turnkey_config>
+			<lan>Y</lan>
+			<wifi>Y</wifi>
+			<webcache>Y</webcache>
+		</turnkey>
+		<turnkey>
+			<turnkey_config>STATICIP</turnkey_config>
+			<lan>Y</lan>
+			<wifi>Y</wifi>
+			<webcache>Y</webcache>
+		</turnkey>
+		<turnkey>
+			<turnkey_config>DUALDOME_PRIMARY</turnkey_config>
+			<lan>Y</lan>
+			<wifi>Y</wifi>
+			<webcache>Y</webcache>
+		</turnkey>
+		<turnkey>
+			<turnkey_config>DUALDOME_SECONDARY</turnkey_config>
+			<lan>N</lan>
+			<wifi>N</wifi>
+			<webcache>N</webcache>
+		</turnkey>
+		<turnkey>
+			<turnkey_config>LEGACY</turnkey_config>
+			<lan>N</lan>
+			<wifi>N</wifi>
+			<webcache>N</webcache>
+		</turnkey>
+	</turnkey_list>
+</ipacu_request>

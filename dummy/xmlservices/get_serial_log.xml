@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_serial_log" error="0" />
+	<start_dt>YYYY-MM-DDTHH:MM:SSZ</start_dt>
+	<content>log content goes here</content>
+</ipacu_response>

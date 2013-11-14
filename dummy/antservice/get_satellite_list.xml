@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_satellite_list"/>
+	<region_filter>North America,Europe</region_filter>
+	<user_choice_filter>enable,favorite</user_choice_filter>
+	<sat_list>
+		<satellite>
+			<listID>21</listID>
+			<antSatID>61W</antSatID>
+			<name>Amazonas-2</name>
+			<region>North America</region>
+			<lon>-61.00</lon>
+			<enable>TRUE</enable>
+			<favorite>TRUE</favorite>
+			<select>TRUE</select>
+			<triSatID>FALSE</triSatID>
+		</satellite>
+		<satellite>
+			<listID>23</listID>
+			<antSatID>119W</antSatID>
+			<name>Echostar VII</name>
+			<region>North America</region>
+			<lon>-119.00</lon>
+			<enable>TRUE</enable>
+			<favorite>TRUE</favorite>
+			<select>TRUE</select>
+			<triSatID>FALSE</triSatID>
+		</satellite>
+	</sat_list>
+</ipacu_response>

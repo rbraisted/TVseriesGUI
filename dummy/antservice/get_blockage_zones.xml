@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_blockage_zones"/>
+	<el_support>TRUE | FALSE</el_support>
+	<total_zones>2</total_zones>
+	<zone_list>
+		<zone>
+			<id>1</id>
+			<state>ON | OFF</state>
+			<az_min>0</az_min>
+			<az_max>360</az_max>
+			<el_min>-5</el_min>
+			<el_max>10</el_max>
+		</zone>
+		<zone>
+			<id>2</id>
+			<state>ON | OFF</state>
+			<az_min>233</az_min>
+			<az_max>243</az_max>
+			<el_min>0</el_min>
+			<el_max>75</el_max>
+		</zone>
+	</zone_list>
+</ipacu_response>

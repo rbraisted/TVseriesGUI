@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_smartswitch_status" error="0" />
+	<available>Y | N</available>
+	<enable>Y | N</enable>
+	<autoselect>Y | N</autoselect>
+	<input>A | B</input>
+	<output>1 | 2 | 3</output>
+</ipacu_response>

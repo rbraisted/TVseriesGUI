@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_recent_event_history" error="0" />
+	<event_list>
+		<event>date time and type::1st event</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::10th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::15th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::20th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::25th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::30th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::35th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::40th event</event>
+
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::the quick brown fox jumps over the lazy dog</event>
+		<event>date time and type::grumpy wizards make toxic brew for the evil queen and jack</event>
+		<event>date time and type::45th event</event>
+	</event_list>
+</ipacu_response>

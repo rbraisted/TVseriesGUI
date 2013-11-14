@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_nmea_heading" error="0" />
+	<status>A | E | M | S | V</status>
+	<true>312.0</true>
+	<mag>329.1</mag>
+	<sensor>329.1</sensor>
+	<dev>0.0E</dev>
+	<var>7.1W</var>
+	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
+	<nmea>$HCHDG,319.1,,,7.1,W*3C</nmea>
+	<preferred_source>HEHDG</preferred_source>
+</ipacu_response>

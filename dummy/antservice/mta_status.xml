@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="mta_status" error="0"/>
+	<state>ONLINE | CONNECTING | UNAVAILABLE | UNKNOWN</state>
+	<ports>
+		<port>
+			<addr>1</addr>
+			<sip>REGISTERED | NOT_REGISTERED</sip>
+			<status>AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN</status>
+			<mail>Y | N</mail>
+		</port>
+		<port>
+			<addr>2</addr>
+			<sip>REGISTERED | NOT_REGISTERED</sip>
+			<status>AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN</status>
+			<mail>Y | N</mail>
+		</port>
+	</ports>
+</ipacu_response>

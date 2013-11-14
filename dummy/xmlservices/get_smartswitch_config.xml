@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_smartswitch_config"/>
+	<inA>
+		<name>Left dome</name>
+		<enable>Y | N</enable>
+	</inA>
+	<inB>
+		<name>Right dome</name>
+		<enable>Y | N</enable>
+	</inB>
+	<out1>
+		<name>DTV</name>
+		<enable>Y | N</enable>
+	</out1>
+	<out2>
+		<name>DISH</name>
+		<enable>Y | N</enable>
+	</out2>
+	<out3>
+		<name>EUTEL</name>
+		<enable>Y | N</enable>
+	</out3>
+</ipacu_response>

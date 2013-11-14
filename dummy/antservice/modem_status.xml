@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="modem_status" error="0"/>
+	<state>UPDATING | INITIALIZING | TRANSMIT DISABLED | WAITING FOR HUB COMM | ATTEMPTING LOGIN | ONLINE | OFFLINE | SWITCH SAT</state>
+	<termid>xxx.xxx.xxx.xxx</termid>
+	<uptime>{DDD:HH:MM:SS}</uptime>
+	<acustate>OFFLINE, TxInhibit active | SIGNAL ACQUISITION, TxInhibit active | ONLINE, TxInhibit active | ONLINE, TxInhibit inactive</acustate>
+	<ebno>{int16 sig strength 0.1db}</ebno>
+	<eirp>{uint16 0.1dbW}</eirp>
+	<attenuator>{uint16}</attenuator>
+	<amplitude>{uint16}</amplitude>
+	<flrstate>UNLOCKED | LOCKED</flrstate>
+	<flrxipcnt>{uint32}</flrxipcnt>
+	<flrxiperr>{uint32}</flrxiperr>
+	<rldatarate>{uint32 bps}</rldatarate>
+	<rltxcnt>{uint32}</rltxcnt>
+	<txdsblpred>{ see note}</txdsblpred>
+	<termstate>INITIAL PHASE | TRANSMIT DISABLED | TRANSMIT ENABLED | CW | ANTENNA POINTING</termstate>
+	<loginstatus>{uint16 enum}</loginstatus>
+	<logincnt>{uint32}</logincnt>
+	<loginlast>{YYYY-MM-DDTHH:MM:SSZ}</loginlast>
+	<loginfailcnt>{uint32}</loginfailcnt>
+	<bbmsgcnt>{uint32}</bbmsgcnt>
+	<lon>-105.00</lon>
+	<downlinkfreq>11960000</downlinkfreq>
+	<uptime></uptime>
+</ipacu_response>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_autoswitch_status" error="0" />
+	<available>Y | N</available>
+	<enable>Y | N</enable>
+	<master>
+		<sn>123456789</sn>
+		<sat>A | B | C | D</sat>
+	</master>
+	<service>1 | 2 | 3</service>
+	<satellites>
+		<A>
+			<listID>64</listID>
+			<antSatID>23E</antSatID>
+			<name>BADR-5</name>
+			<region>North America</region>
+			<lon>23.000</lon>
+			<enable>Y</enable>
+			<favorite>Y</favorite>
+		</A>
+		<B>
+			<listID>65</listID>
+			<antSatID>40E</antSatID>
+			<name>BADR-6</name>
+			<region>North America</region>
+			<lon>40.000</lon>
+			<enable>Y</enable>
+			<favorite>N</favorite>
+		</B>
+		<C>
+			<listID>66</listID>
+			<antSatID>33E</antSatID>
+			<name>BADR-7</name>
+			<region>North America</region>
+			<lon>33.000</lon>
+			<enable>Y</enable>
+			<favorite>N</favorite>
+		</C>
+		<D/>
+	</satellites>
+</ipacu_response>

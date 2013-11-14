@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_mta_config"/>
+	<sw_ver>1234</sw_ver>
+	<mac>00:10:99:11:90:1a</mac>
+	<wan>172.16.30.153</wan>
+	<dns1>192.168.1.23</dns1>
+	<dns2>192.168.1.24</dns2>
+	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
+	<uptime>HH:MM:SS</uptime>
+	<outbound_country>United States</outbound_country>
+	<intl_prefix>011</intl_prefix>
+	<activation>ACTIVATED | NOT_ACTIVATED</activation>
+	<display>Y | N</display>
+	<ports>
+		<port>
+			<addr>1</addr>
+			<name>Bridge</name>
+			<phones>
+				<phone>
+					<number>123-456-7890</number>
+					<country>United States</country>
+					<code>1</code>
+				</phone>
+				<phone>
+					<number>12-12-34-34</number>
+					<country>France</country>
+					<code>3</code>
+				</phone>
+			</phones>
+		</port>
+		<port>
+			<addr>2</addr>
+			<name>Captain's quarters</name>
+			<phones>
+				<phone>
+					<number>45-45-67-67</number>
+					<country>France</country>
+					<code>3</code>
+				</phone>
+			</phones>
+		</port>
+	</ports>
+</ipacu_response>

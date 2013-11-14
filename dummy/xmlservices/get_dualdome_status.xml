@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_dualdome_status" error="0" />
+	<mode>SINGLE | MASTER | SLAVE</mode>
+	<master_ip>123.123.123.123</master_ip>
+	<slave_ip>123.123.123.123</slave_ip>
+	<state>SINGLE | DISCOVER | SYNCH | NO_RF | FOLLOW | ACTIVE</state>
+</ipacu_response>

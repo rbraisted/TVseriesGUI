@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="antenna_versions"/>
+	<system>TVRO | VSAT</system>
+	<part>04-1234</part>
+	<current>102</current>
+	<icm>Y | N</icm>
+	<acu>
+		<model>VSAT-IPACU | TVRO-IPACU</model>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+		<sn>1.00123456789</sn>
+	</acu>
+	<au>
+		<model>HD7 | HD11 | V7 | V7IP | V3 | V11</model>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+		<sn>1.00987654321</sn>
+	</au>
+	<rf>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</rf>
+	<az_el>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</az_el>
+	<skew_xaz>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</skew_xaz>
+	<app>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</app>
+	<os>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</os>
+	<sat_list>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</sat_list>
+	<fpga>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+	</fpga>
+	<lnb>
+		<ver>1.00</ver>
+	</lnb>
+	<sensor>
+		<part>04-1234</part>
+		<rev>A</rev>
+		<ver>1.00</ver>
+		<sn>NNNNNNNN</sn>
+	</sensor>
+	<gprs>
+		<ip>10.221.0.123</ip>
+		<ver>12.34.56</ver>
+	</gprs>
+	<modem>
+		<wan>10.60.123.321</wan>
+		<sn>1234567</sn>
+		<ver>1.0</ver>
+		<sed>acbdef</sed>
+		<sscf>123456</sscf></modem>
+	<mta>
+		<mac>172.31.255.6</mac>
+		<ver>9.15.25</ver>
+	</mta>
+	<commbox>
+		<part>04-1234</part>
+		<ver>100</ver>￼
+		<sn>S0207102202AA-00000</sn>
+	</commbox>
+</ipacu_response>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_commbox_config" error="0"/>
+	<display_button>Y | N</display_button>
+</ipacu_response>

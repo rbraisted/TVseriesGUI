@@ -1,0 +1,216 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+@import 'normalize.css';
+
+html,
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	height: 100%;
+	width: 100%;
+}
+
+.header {
+	background-color: #114278;
+	height: 53px;
+	width: 100%;
+}
+
+/*	this should be an img */
+.kvh-logo {
+	background: transparent url('../images/kvh-logo.png') no-repeat center;
+	float: left;
+	height: 100%;
+	width: 100px;
+}
+
+.status-lights {
+	float: right;
+	height: 18px;
+	margin: -9px 15px 0px 0px;
+	position: relative;
+	top: 50%;
+}
+
+.status-light {
+	display: inline-block;
+	height: 100%;
+	margin: 0px 2px;
+	width: 18px;
+}
+
+.status-light-good {
+	background-color: #A0CD5D;
+}
+
+.status-light-bad {
+	background-color: red;
+}
+
+.nav {
+	background-color: #203A61;
+	width: 100%;
+}
+
+.nav-button {
+	background-color: #1E303B;
+	color: #C9CED3;
+	cursor: pointer;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 780px) {
+	.nav-toggle {
+		color: #C9CED3;
+		cursor: pointer;
+		float: right;
+		font-size: 11px;
+		height: 100%;
+		padding: 0 10px;
+		text-align: center;
+	}
+
+	.nav-toggle .icon {
+		background: transparent url('../images/menu-button.png') no-repeat center bottom;
+		height: 60%;
+		margin-bottom: 1px;
+		width: 32px;
+	}
+
+	.nav-toggle.selected {
+		background-color: #203A61;
+	}
+
+	.nav {
+		height: 0;
+		overflow: hidden;
+		padding-bottom: 0;
+		text-align: center;
+		transition: padding-bottom 0.5s;
+		-moz-transition: padding-bottom 0.5s;
+		-webkit-transition: padding-bottom 0.5s;
+	}
+
+	.nav.toggled {
+		transition: padding-bottom 0.5s;
+		-moz-transition: padding-bottom 0.5s;
+		-webkit-transition: padding-bottom 0.5s;
+	}
+
+	.nav-button {
+		float: left;
+		height: 0;
+		margin: 0 1% 1% 0;
+	}
+
+	.nav-button .icon {	
+		height: 0;
+		padding-bottom: 62%;
+		width: 100%;
+	}
+
+	.nav-button .label {
+		font-size: 15px;
+		margin-top: 5%;
+	}
+}
+
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+	.nav.toggled {
+		padding-bottom: 66.666%;
+	}
+
+	.nav-button {
+		padding-bottom: 32.333%;
+		width: 32.333%;
+	}
+
+	.nav-button .icon {
+		background: transparent url('../images/nav-icon-large.png') no-repeat center bottom;
+	}
+}
+
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 780px) {
+	.nav.toggled {
+		padding-bottom: 16.666%;
+	}
+
+	.nav-button {
+		padding-bottom: 15.666%;
+		width: 15.666%;
+	}
+
+	.nav-button .icon {
+		background: transparent url('../images/nav-icon-medium.png') no-repeat center bottom;
+	}
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 780px) {
+	.nav-toggle {
+		display: none;
+	}
+
+	.menu-button {
+		display: none;
+	}
+
+	.nav-button {
+		display: inline-block;
+		font-size: 16px;
+		height: 38px;
+		line-height: 43px;
+		margin: 5px 5px 0px 0px;
+		padding: 0px 15px 0px 40px;
+		position: relative;
+	}
+
+	.nav-button .icon {
+		background: transparent url('../images/nav-icon-small.png') no-repeat center center;
+		height: 100%;
+		left: 2px;
+		position: absolute;
+		width: 40px;
+	}
+}
+
+/*                  *\
+
+     MOBILE DEBUG
+
+\*                  */
+
+#test {
+	position: fixed;
+	z-index: 9999999999999999;
+	background: white;
+	opacity: 0.6;
+	padding: 10px;
+}

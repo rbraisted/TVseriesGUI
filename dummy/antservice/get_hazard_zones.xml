@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_hazard_zones"/>
+	<el_support>TRUE | FALSE</el_support>
+	<mismatch>YES | NO</mismatch>
+	<total_zones>2</total_zones>
+	<acu_list>
+		<override>ON | OFF</override>
+		<zone>
+			<id>1</id>
+			<state>ON | OFF</state>
+			<az_min>0</az_min>
+			<az_max>360</az_max>
+			<el_min>-5</el_min>
+			<el_max>10</el_max>
+		</zone>
+		<zone>
+			<id>2</id>
+			<state>ON | OFF</state>
+			<az_min>233</az_min>
+			<az_max>243</az_max>
+			<el_min>0</el_min>
+			<el_max>75</el_max>
+		</zone>
+	</acu_list>
+	<ant_list>
+		<override>ON | OFF</override>
+		<zone>
+			<id>1</id>
+			<state>ON | OFF</state>
+			<az_min>0</az_min>
+			<az_max>360</az_max>
+			<el_min>-5</el_min>
+			<el_max>10</el_max>
+		</zone>
+		<zone>
+			<id>2</id>
+			<state>ON | OFF</state>
+			<az_min>233</az_min>
+			<az_max>243</az_max>
+			<el_min>0</el_min>
+			<el_max>75</el_max>
+		</zone>
+	</ant_list>
+</ipacu_response>

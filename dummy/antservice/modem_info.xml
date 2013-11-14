@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="modem_info" error="0"/>
+	<sn>AAAA</sn>
+	<ver>String</ver>
+	<wan>1.2.3.4</wan>
+	<lan>10.10.10.10</lan>
+	<mask>255.255.255.0</mask>
+	<dhcp>DISABLED | ENABLED</dhcp>
+	<sed>1234</sed>
+	<sscf>1234</sscf>
+</ipacu_response>

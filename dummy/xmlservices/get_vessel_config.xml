@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_vessel_config" error="0" />
+	<name>Olympic</name>
+	<feet>321</feet>
+	<antenna_mount>89.7</antenna_mount>
+</ipacu_response>

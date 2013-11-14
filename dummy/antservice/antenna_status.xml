@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="antenna_status" error="0"/>
+	<gps>
+		<state>ACQUIRED | ACQUIRING | ERROR</state>
+		<lat>41.312934</lat>
+		<lon>-71.175168</lon>
+		<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
+	</gps>
+	<acu>
+		<state>OK | FLASHING | CALGYRO | ERROR</state>
+		<line1>Foo</line1>
+		<line2>Bar</line2>
+	</acu>
+	<antenna>
+		<state>INITIALIZING | WAITING FOR MODEM | MODEM SAT SWITCH | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP</state>
+		<rf>
+			<snr>7</snr>
+			<bars>4</bars>
+			<rssi>4.3</rssi>
+			<hazard_zone>NOTSET | ZONE1 | ZONE2 | ZONE1 and ZONE2 | NONE | IGNORED</hazard_zone>
+		</rf>
+		<brst>
+			<hdg>123.6</hdg>
+			<az_bow>10.0</az_bow>
+			<az>190.0</az>
+			<el>89.1</el>
+			<tilt>-87.4</tilt>
+			<azoff>180.0</azoff>
+		</brst>
+		<motor>
+			<az>2.2</az>
+			<cross_az>2.2</cross_az>
+			<el>3.3</el>
+			<skew>3.3</skew>
+		</motor>
+		<ant_err>0,0,0,0</ant_err>
+		<power_err>0</power_err>
+		<comms_err>0</comms_err>
+		<device_err>0</device_err>
+		<sys_err>0</sys_err>
+	</antenna>
+	<satellite>
+		<antSatID>26E</antSatID>
+		<name>BADR-5</name>
+		<beam>CONUS-1</beam>
+		<region>North America</region>
+		<lon>-26.08</lon>
+		<band>Ku</band>
+		<dlfreq>11960000</dlfreq>
+	</satellite>
+	<modem>
+		<state>ONLINE</state>
+		<ebno>5.0</ebno>
+	</modem>
+	<mta>
+		<state>ONLINE | CONNECTING | UNAVAILABLE | UNKNOWN</state>
+		<ports>
+			<port>
+				<addr>1</addr>￼￼￼
+				<sip>REGISTERED | NOT_REGISTERED</sip>
+				<status>AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN</status>
+				<mail>Y | N</mail>
+			</port>
+			<port>
+				<addr>2</addr>
+				<sip>REGISTERED | NOT_REGISTERED</sip>
+				<status>AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN</status>
+				<mail>Y | N</mail>
+			</port>
+		</ports>
+	</mta>
+	<autoswitch>
+		<enable>Y | N</enable>
+		<master>
+			<sn>123456789</sn>
+			<sat>A | B | C | D</sat>
+		</master>
+	</autoswitch>
+	<smartswitch>
+		<available>Y | N</available>
+		<autoselect>Y | N</autoselect>
+		<input>A | B</input>
+		<output>1 | 2 | 3</output>
+	</smartswitch>
+	<dualdome>
+		<mode>SINGLE | MASTER | SLAVE</mode>
+		<state>SINGLE | DISCOVER | SYNCH | NO_RF | FOLLOW | ACTIVE</state>
+	</dualdome>
+</ipacu_response>

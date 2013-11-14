@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_satellite_params"/>
+	<listID>4</listID>
+	<antSatID>99W</antSatID>
+	<name>DTV99</name>
+	<region>North America</region>
+	<lon>-99.00</lon>
+	<skew>0.00</skew>
+	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
+	<enable>FALSE</enable>
+	<favorite>FALSE</favorite>
+	<select>FALSE</select>
+	<triSatID>FALSE</triSatID>
+	<lo1>OFF</lo1>
+	<lo2>10000</lo2>
+	<kumode>N | W</kumode>
+	<xponder>
+		<id>1</id>
+		<pol>V</pol>
+		<band>L</band>
+		<freq>11960</freq>
+		<symRate>20000</symRate>
+		<fec>3/4</fec>
+		<netID>0xFFFE</netID>
+		<modType>QDVB</modType>
+	</xponder>
+	<xponder>
+		<id>4</id>
+		<pol>V</pol>
+		<band>H</band>
+		<freq>11820</freq>
+		<symRate>30000</symRate>
+		<fec>2/3</fec>
+		<netID>0xFFFE</netID>
+		<modType>QDVB</modType>
+	</xponder>
+</ipacu_response>

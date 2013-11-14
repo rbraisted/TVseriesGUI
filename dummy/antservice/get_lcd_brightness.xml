@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_lcd_brightness" error="0" />
+	<brightness>LOW</brightness>
+</ipacu_response>

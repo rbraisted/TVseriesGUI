@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="broadband_status" error="0" />
+	<internet_access>ONLINE | OFFLINE</internet_access>
+	<connection_profile>ViaSat</connection_profile>
+</ipacu_response>

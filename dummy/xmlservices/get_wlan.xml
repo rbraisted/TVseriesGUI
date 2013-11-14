@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_wlan"/>
+	<mode>OFF | ADHOC| AP | IF</mode>
+	<adhoc_mode>
+		<security>
+			<mode>OFF | WEP</mode>
+			<key/>
+		</security>
+		<ip>169.254.100.1</ip>
+	</adhoc_mode>
+	<ap_mode>
+		<mode>BRIDGED</mode>
+		<essid>ipacu</essid>
+		<security>
+			<mode>OFF | WPA_PSK</mode>
+			<algorithm>TKIP</algorithm>(TBD: should this be hidden)
+			<key>passwordtext</key>
+		</security>
+		<ip>192.168.1.3</ip>
+		<netmask>255.255.255.0</netmask>
+		<gateway>192.168.1.1</gateway>
+		<broadcast>192.168.1.255</broadcast>
+	</ap_mode>
+	<if_mode>
+		<mode>STATIC | DYNAMIC</mode>
+		<essid>ipacu</essid>
+		<security>
+			<mode>OFF | WPA_PSK</mode>
+			<algorithm>TKIP</algorithm>
+			<key>passwordtext</key>
+		</security>
+		<ip>192.168.1.3</ip>
+		<netmask>255.255.255.0</netmask>
+		<gateway>192.168.1.1</gateway>
+		<broadcast>192.168.1.255</broadcast>
+	</if_mode>
+	<channel>11</channel>
+	<band>b|g</band>
+</ipacu_response>

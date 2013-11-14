@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_event_history_log" error="0"/>
+	<content>event history content goes here</content>
+</ipacu_response>

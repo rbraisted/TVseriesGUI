@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_message_protocol_version" error="0" />
+	<version>2.0</version>
+	<system>HD11</system>
+</ipacu_response>
