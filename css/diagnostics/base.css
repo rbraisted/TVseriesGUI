@@ -1,0 +1,172 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+nav h1,
+.region h2,
+nav a,
+.back-button {
+	font-size: 18px;
+	letter-spacing: 0.03em;
+	margin: 0;
+}
+
+nav h1,
+nav a,
+.back-button {
+	font-weight: bold;
+	padding: 10px 20px;
+}
+
+menu {
+	margin: 0;
+	padding: 0;
+}
+
+nav a {
+	background: #E4E6E9;
+	border-color: #BDC3C9;
+	border-style: solid;
+	color: #114278;
+	display: block;
+	font-size: 18px;
+	padding: 10px 20px;
+	text-decoration: none;
+}
+
+nav a:last-of-type {
+	border-bottom-width: 2px;
+}
+
+.region h2 {
+	padding: 12px 20px 5px;
+}
+
+.region a {
+	display: block;
+	color: #114278;
+	padding: 0 20px 5px 20px;
+	text-decoration: none;
+}
+
+.region a span {
+	color: #000;
+	font-weight: bold;
+	letter-spacing: 0.03em;
+}
+
+.contact {
+	background: #FFF;
+}
+
+.contact h1 {
+	font-size: 18px;
+}
+
+.region h2 {
+	color: #114278;
+}
+
+.region a {
+	display: block;
+	padding: 0 0 5px 20px;
+	text-decoration: none;
+}
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 780px) {
+	menu {
+		width: 100%;
+	}
+
+	nav h1,
+	.back-button {
+		background: #114278;
+		border-top: 2px solid #fff;
+		color: #fff;
+	}
+
+	.back-button {
+		display: block;
+		text-decoration: none;
+	}
+
+	nav a {
+		border-width: 2px 0 0;
+	}
+
+	.contact h1 {
+		display: none;
+	}
+}
+
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+
+}
+
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 780px) {
+
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 780px) {
+	body {
+		overflow: hidden;
+	}
+
+	menu {
+		width: 260px;
+	}
+
+	menu h1 {
+		display: none;
+	}
+
+	nav a {
+		border-width: 2px 2px 0 0;
+	}
+
+	.diagnostics-section {
+		bottom: 0;
+		left: 260px;
+		overflow: auto;
+		padding: 10px 20px 20px;
+		position: absolute;
+		right: 0;
+		top: 96px;
+	}
+
+	.diagnostics-section h1 {
+		font-size: 18px;
+		margin: 0;
+		padding: 2px 0 0; 
+	}
+
+	.back-button {
+		display: none;
+	}
+}

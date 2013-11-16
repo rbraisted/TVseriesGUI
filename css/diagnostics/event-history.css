@@ -1,0 +1,47 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 780px) {
+	menu {
+		display: none;
+	}
+}
+
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+
+}
+
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 780px) {
+
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 780px) {
+	
+}

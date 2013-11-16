@@ -200,17 +200,3 @@ body {
 		width: 40px;
 	}
 }
-
-/*                  *\
-
-     MOBILE DEBUG
-
-\*                  */
-
-#test {
-	position: fixed;
-	z-index: 9999999999999999;
-	background: white;
-	opacity: 0.6;
-	padding: 10px;
-}
