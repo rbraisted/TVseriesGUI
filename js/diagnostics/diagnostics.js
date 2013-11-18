@@ -3,5 +3,5 @@ var Diagnostics = function() {
 };
 
 $(document).ready(function() {
-	window.Diagnostics = new Diagnostics();
+	window.diagnostics = new Diagnostics();
 });

@@ -1,7 +1,7 @@
-var ProductManuals = function() {
+TVRO.ProductManuals = function() {
 
 };
 
 $(document).ready(function() {
-	window.ProductManuals = new ProductManuals();
+	window.tvro.productManuals = new TVRO.ProductManuals();
 });

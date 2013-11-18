@@ -1,4 +1,6 @@
-var DiagnosticLog = function() {
+TVRO.DiagnosticLog = function() {
+	var diagnosticLog = {},
+		webService = new TVRO.WebService();
 
 	$('#operational-button').click(function() {
 		window.location.href = 'logfile.php?file=IPACU.serial.log';
@@ -14,27 +16,17 @@ var DiagnosticLog = function() {
 			'restart-button' : 'Y'
 		}[this.id];
 		
-		$.ajax({
-			type : 'post',
-			url : '/dummy/xmlservices.php',
-			contentType : 'text/xml',
-			processData : false,
-			dataType : 'xml',
-			data : 	'<ipacu_request>'+
-						'<message name="start_serial_log" />'+
-						'<restart>'+restart+'</restart>'+
-					'</ipacu_request>',
-			success: function(responseXml) {
-				var xml = $(responseXml),
-					error = $(xml).find('message').attr('error');
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-
-			}
+		webService.startSerialLog({
+			'restart' : restart
+		}, function(responseXml) {
+			var xml = $(responseXml),
+				error = $(xml).find('message').attr('error');
 		});
 	});
+
+	return diagnosticLog;
 };
 
 $(document).ready(function() {
-	window.DiagnosticLog = new DiagnosticLog();
+	window.tvro.diagnosticLog = new TVRO.DiagnosticLog();
 });

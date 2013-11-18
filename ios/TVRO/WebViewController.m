@@ -50,41 +50,52 @@
 #pragma mark - UIWebViewDelegate protocol methods
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError*)error {
-	NSLog(@"webView didFailLoadWithError:%@", error);
+//	NSLog(@"webView didFailLoadWithError:%@", error);
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	NSLog(@" ");
 	NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
 
 	//	we should check for:
 	//	1 our hostname, for which we always return yes
 	//	2 software updates (urls which end in the file ext .kvh), for which we always return no & and then take over the downloading process
-	//	3 anything besides those, for which we should always return no and then open in safari app instead
+	//	3 pdfs, which we open with hostname/pdf-frame.php
+	//	4 anything besides those, for which we should always return no and then open in safari app instead
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
 	
 	NSLog(@"_hostName: %@", _hostName);
+	NSLog(@"webView.request: %@", webView.request);
+	NSLog(@"webView.request.URL.lastPathComponent: %@", webView.request.URL.lastPathComponent);
 	
-	if ([hostName isEqualToString:_hostName]) {
-		NSLog(@"hostName isEqualToString:_hostName");
-		return true;
-	} else if ([request.URL.pathExtension isEqualToString:@"kvh"]) {
+	if ([request.URL.pathExtension isEqualToString:@"kvh"]) {
 		NSLog(@"request.URL.pathExtension isEqualToString:@\"kvh\"");
 		[updatesManager startDownloadFromURL:request.URL];
 		return false;
+	} else if ([request.URL.pathExtension isEqualToString:@"pdf"]) {
+		NSLog(@"request.URL.pathExtension isEqualToString:@\"pdf\"");
+		if (![webView.request.URL.lastPathComponent isEqualToString:@"pdf-frame.php"]) {
+			[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/pdf-frame.php?src=%@", hostName, request.URL]]]];
+		}
+		return false;
+	} else if (![hostName isEqualToString:_hostName]) {
+		NSLog(@"![hostName isEqualToString:_hostName]");
+//		[[UIApplication sharedApplication] openURL:request.URL];
+//		return false;
+		return true;
 	} else {
 		NSLog(@"else");
-		[[UIApplication sharedApplication] openURL:request.URL];
-		return false;
+		return true;
 	}
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-	NSLog(@"webViewDidFinishLoad");
+//	NSLog(@"webViewDidFinishLoad");
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
-	NSLog(@"webViewDidStartLoad");
+//	NSLog(@"webViewDidStartLoad");
 }
 
 @end

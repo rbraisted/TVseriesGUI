@@ -13,13 +13,13 @@
 		<h1>Contact KVH</h1>
 		<div class="region">
 			<h2>North America</h2>
-			<a href="mailto://support@kvh.com"><span>Email: </span>support@kvh.com</a>
-			<a href="tel://+1 (401) 847-3327"><span>Call: </span>+1 (401) 847-3327</a>
+			<a href="mailto:support@kvh.com"><span>Email: </span>support@kvh.com</a>
+			<a href="tel:+1 (401) 847-3327"><span>Call: </span>+1 (401) 847-3327</a>
 		</div>
 		<div class="region">
 			<h2>Africa, Asia, Australia, Europe, Middle East</h2>
-			<a href="mailto://support@emea.kvh.com"><span>Email: </span>support@emea.kvh.com</a>
-			<a href="tel://+45 45 160 180"><span>Call: </span>+45 45 160 180</a>
+			<a href="mailto:support@emea.kvh.com"><span>Email: </span>support@emea.kvh.com</a>
+			<a href="tel:+45 45 160 180"><span>Call: </span>+45 45 160 180</a>
 		</div>
 	</div>
 </menu>

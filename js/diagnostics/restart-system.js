@@ -1,4 +1,6 @@
-var RestartSystem = function() {
+TVRO.RestartSystem = function() {
+	var restartSystem = {},
+		webService = new TVRO.WebService();
 
 	$('#system-button, #antenna-button, #all-button').click(function() {
 		var sys = {
@@ -7,27 +9,17 @@ var RestartSystem = function() {
 			'all-button' : 'ALL'
 		}[this.id];
 
-		$.ajax({
-			type : 'post',
-			url : '/dummy/antservice.php',
-			contentType : 'text/xml',
-			processData : false,
-			dataType : 'xml',
-			data : 	'<ipacu_request>'+
-						'<message name="reboot" />'+
-						'<sys>'+sys+'</sys>'+
-					'</ipacu_request>',
-			success: function(responseXml) {
-				var xml = $(responseXml),
-					error = $(xml).find('message').attr('error');
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-
-			}
+		webService.reboot({
+			'sys' : sys
+		}, function(responseXml) {
+			var xml = $(responseXml),
+				error = $(xml).find('message').attr('error');
 		});
 	});	
+
+	return restartSystem;
 };
 
 $(document).ready(function() {
-	window.RestartSystem = new RestartSystem();
+	window.tvro.restartSystem = new TVRO.RestartSystem();
 });

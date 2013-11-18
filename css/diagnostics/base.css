@@ -4,17 +4,17 @@
 
 \*       */
 
-nav h1,
+menu nav h1,
 .region h2,
-nav a,
+menu nav a,
 .back-button {
 	font-size: 18px;
 	letter-spacing: 0.03em;
 	margin: 0;
 }
 
-nav h1,
-nav a,
+menu nav h1,
+menu nav a,
 .back-button {
 	font-weight: bold;
 	padding: 10px 20px;
@@ -25,7 +25,7 @@ menu {
 	padding: 0;
 }
 
-nav a {
+menu nav a {
 	background: #E4E6E9;
 	border-color: #BDC3C9;
 	border-style: solid;
@@ -36,7 +36,7 @@ nav a {
 	text-decoration: none;
 }
 
-nav a:last-of-type {
+menu nav a:last-of-type {
 	border-bottom-width: 2px;
 }
 
@@ -86,7 +86,7 @@ nav a:last-of-type {
 		width: 100%;
 	}
 
-	nav h1,
+	menu nav h1,
 	.back-button {
 		background: #114278;
 		border-top: 2px solid #fff;
@@ -98,7 +98,7 @@ nav a:last-of-type {
 		text-decoration: none;
 	}
 
-	nav a {
+	menu nav a {
 		border-width: 2px 0 0;
 	}
 
@@ -146,7 +146,7 @@ nav a:last-of-type {
 		display: none;
 	}
 
-	nav a {
+	menu nav a {
 		border-width: 2px 2px 0 0;
 	}
 
