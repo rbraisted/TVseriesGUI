@@ -2,6 +2,7 @@
 
 <div id="updates" class="updates-page">
 	<link type="text/css" rel="stylesheet" href="/css/updates/updates.css">
+	<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="/js/updates/updates.js"></script>
 
 	<div id="download-button">

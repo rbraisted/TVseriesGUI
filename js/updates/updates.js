@@ -5,6 +5,8 @@ TVRO.Updates = function() {
 		portalVersion,
 		downloadUrl;
 
+	var antType;
+
 	webService.getPortalVersion(antType, function(responseXml) {
 		var xml = $(responseXml),
 			error = xml.find('latest_software').attr('error');
@@ -26,7 +28,39 @@ TVRO.Updates = function() {
 		window.location = url;
 	});
 
-	
+	$('#install-input').change(function() {
+		$.ajaxFileUpload({
+			// url : '/dummy/xmlservices.php',//upload_software',
+			url : '/xmlservices.php/upload_software',
+			secureuri : false,
+			fileElementId : 'install-input',
+			dataType : 'xml',
+			success : function(responseXml) {
+				var xml = $(xml),
+					error = xml.find('message').attr('error'),
+					fileName = xml.find('file_name').text();
+
+				console.log('success!');
+				console.log('responseXml:' + responseXml);
+				console.log('fileName:' + fileName);
+
+				//	upload success!
+				//	now install -
+				webService.installSoftware({
+					'install' : 'Y',
+					'filename' : fileName
+				}, function() {
+					//	install success!
+				});
+			},
+			error : function(responseXml) {
+				console.log('error!');
+				console.log('responseXml:' + responseXml);
+			}
+		});
+	});
+
+	return updates;
 };
 
 $(document).ready(function() {

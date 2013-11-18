@@ -57,7 +57,7 @@ TVRO.WebService = function() {
 	webService.getPortalVersion = function(antType, successCallback, errorCallback) {
 		//	use anttype to get url
 		var requestUrl = 'http://www.kvh.com/HD11UpdatesDir/mainUpdate/portalMain.php/latest_software';
-		sendRequest(requestUrl, null, null, successCallback, errorCallback);
+		sendRequest(requestUrl, 'latest_software', null, successCallback, errorCallback);
 	} 
 
 	webService.getProductRegistration = function(requestJson, successCallback, errorCallback) {
@@ -66,6 +66,10 @@ TVRO.WebService = function() {
 
 	webService.getRecentEventHistory = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'get_recent_event_history', requestJson, successCallback, errorCallback);
+	};
+
+	webService.installSoftware = function(requestJson, successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
 	};
 
 	webService.setProductRegistration = function(requestJson, successCallback, errorCallback) {
