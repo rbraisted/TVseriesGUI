@@ -13,14 +13,6 @@
 
 @implementation WebViewController
 
-#pragma mark - WebViewController methods
-
-- (id)initWithHostName:(NSString*)_hostName {
-	self = [self init];
-	hostName = _hostName;
-	return self;
-}
-
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad {
@@ -54,7 +46,6 @@
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSLog(@" ");
 	NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
 
 	//	we should check for:
@@ -65,37 +56,77 @@
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
 	
-	NSLog(@"_hostName: %@", _hostName);
-	NSLog(@"webView.request: %@", webView.request);
-	NSLog(@"webView.request.URL.lastPathComponent: %@", webView.request.URL.lastPathComponent);
 	
-	if ([request.URL.pathExtension isEqualToString:@"kvh"]) {
-		NSLog(@"request.URL.pathExtension isEqualToString:@\"kvh\"");
-		[updatesManager startDownloadFromURL:request.URL];
+	//	check if it's a javascript to ios/android command
+	//	being called with a the scheme "tvro"
+	if ([request.URL.scheme isEqualToString:@"tvro"]) {
+		NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
+		NSArray* pathComponents = [request.URL pathComponents];
+		if([request.URL.host isEqualToString:@"updates"]) {
+			if ([pathComponents[1] isEqualToString:@"device-versions"]) {
+				NSString* tv1DeviceVersion = [updatesManager deviceVersionForAntType:@"tv1"];
+				NSString* tv3DeviceVersion = [updatesManager deviceVersionForAntType:@"tv3"];
+				NSString* tv5DeviceVersion = [updatesManager deviceVersionForAntType:@"tv5"];
+				NSString* tv6DeviceVersion = [updatesManager deviceVersionForAntType:@"tv6"];
+				NSLog(@"tv1DeviceVersion: %@", tv1DeviceVersion);
+				NSLog(@"tv3DeviceVersion: %@", tv3DeviceVersion);
+				NSLog(@"tv5DeviceVersion: %@", tv5DeviceVersion);
+				NSLog(@"tv6DeviceVersion: %@", tv6DeviceVersion);
+				NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.tv1.deviceVersion = '%@'; window.tvro.updates.tv3.deviceVersion = '%@'; window.tvro.updates.tv5.deviceVersion = '%@'; window.tvro.updates.tv6.deviceVersion = '%@'; window.tvro.updates.update();", tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion];
+				NSLog(@"javascriptString: %@", javascriptString);
+				[webView stringByEvaluatingJavaScriptFromString:javascriptString];
+			} else if ([pathComponents[1] isEqualToString:@"download"]) {
+				//	tvro://updates/download/antenna-type/portal-version/portal-url
+				NSString* antType = [NSString stringWithString:pathComponents[2]];
+				NSString* portalVersion = [NSString stringWithString:pathComponents[3]];
+				NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(4, [pathComponents count]-4)] componentsJoinedByString:@"/"];
+				[updatesManager startDownloadForAntType:antType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
+			} else if ([pathComponents[1] isEqualToString:@"install"]) {
+//				NSString* antType = [NSString stringWithString:pathComponents[2]];
+			}
+		}
 		return false;
+
+	//	if we're being directed to a .pdf file, we're going to display it
+	//	in some custom view that includes the pdf and a back button
 	} else if ([request.URL.pathExtension isEqualToString:@"pdf"]) {
-		NSLog(@"request.URL.pathExtension isEqualToString:@\"pdf\"");
+		NSLog(@"    request.URL.pathExtension isEqualToString:@\"pdf\"");
 		if (![webView.request.URL.lastPathComponent isEqualToString:@"pdf-frame.php"]) {
 			[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/pdf-frame.php?src=%@", hostName, request.URL]]]];
 		}
 		return false;
+			
+	//	check if it's coming from our bdu hostname
+	//	if not, it's probably an external link and we
+	//	should open it in safari
 	} else if (![hostName isEqualToString:_hostName]) {
-		NSLog(@"![hostName isEqualToString:_hostName]");
-//		[[UIApplication sharedApplication] openURL:request.URL];
-//		return false;
-		return true;
+		NSLog(@"    ![hostName isEqualToString:_hostName]");
+		[[UIApplication sharedApplication] openURL:request.URL];
+		return false;
+		
+	//	at this point it's probably just another path in our app
 	} else {
-		NSLog(@"else");
+		NSLog(@"    else");
 		return true;
 	}
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-//	NSLog(@"webViewDidFinishLoad");
+	NSLog(@"webViewDidFinishLoad");
+	[webView stringByEvaluatingJavaScriptFromString:@"window.tvro.ios();"];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 //	NSLog(@"webViewDidStartLoad");
 }
+
+#pragma mark - WebViewController methods
+
+- (id)initWithHostName:(NSString*)_hostName {
+	self = [self init];
+	hostName = _hostName;
+	return self;
+}
+
 
 @end

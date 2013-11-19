@@ -10,9 +10,13 @@
 	NSURLConnection* connection;
 	NSMutableData* fileData;
 	UIAlertView* alertView;
+	
+	NSString* antType;
+	NSString* portalVersion;
 }
 
-- (void)startDownloadFromURL:(NSURL *)url;
+- (void)startDownloadForAntType:(NSString *)_antType portalVersion:(NSString *)portalVersion portalUrl:(NSURL *)portalUrl;
 - (void)cancelDownload;
+- (NSString*)deviceVersionForAntType:(NSString *)_antType;
 
 @end

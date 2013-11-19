@@ -1,7 +1,9 @@
-var Diagnostics = function() {
+TVRO.Diagnostics = function() {
+	var self = {};
 
+	return self;
 };
 
 $(document).ready(function() {
-	window.diagnostics = new Diagnostics();
+	window.tvro.diagnostics = new TVRO.Diagnostics();
 });

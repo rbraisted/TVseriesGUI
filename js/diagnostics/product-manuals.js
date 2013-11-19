@@ -1,5 +1,7 @@
 TVRO.ProductManuals = function() {
+	var self = {};
 
+	return self;
 };
 
 $(document).ready(function() {

@@ -1,5 +1,5 @@
 TVRO.DiagnosticLog = function() {
-	var diagnosticLog = {},
+	var self = {},
 		webService = new TVRO.WebService();
 
 	$('#operational-button').click(function() {
@@ -24,7 +24,7 @@ TVRO.DiagnosticLog = function() {
 		});
 	});
 
-	return diagnosticLog;
+	return self;
 };
 
 $(document).ready(function() {

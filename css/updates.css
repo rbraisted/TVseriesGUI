@@ -1,0 +1,25 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+.ant-type {
+	border: 1px solid black;
+}
+
+.ant-type .connected-status {
+	display: none;
+}
+
+.ant-type.connected {
+	background: green;
+}
+
+.ant-type.connected .connected-status {
+	display: block;
+}
+
+.ant-type.selected {
+	border: 2px solid red;
+}

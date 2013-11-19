@@ -1,5 +1,5 @@
 TVRO.RestartSystem = function() {
-	var restartSystem = {},
+	var self = {},
 		webService = new TVRO.WebService();
 
 	$('#system-button, #antenna-button, #all-button').click(function() {
@@ -17,7 +17,7 @@ TVRO.RestartSystem = function() {
 		});
 	});	
 
-	return restartSystem;
+	return self;
 };
 
 $(document).ready(function() {

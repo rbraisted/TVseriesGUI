@@ -1,4 +1,6 @@
 TVRO.CommandLine = function() {
+	var self = {};
+
 	$('#send-button').click(function() {
 		var command = $('#input').val();
 		$.ajax({  
@@ -14,6 +16,8 @@ TVRO.CommandLine = function() {
 			}
 		});
 	});
+
+	return self;
 };
 
 $(document).ready(function() {

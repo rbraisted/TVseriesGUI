@@ -41,7 +41,7 @@
 				<div class="icon"></div>
 				<div class="label">Settings</div>
 		 	</a><!--
-		 --><a href="/updates/" class="updates-button nav-button">
+		 --><a href="/updates.php" class="updates-button nav-button">
 				<div class="icon"></div>
 				<div class="label">Updates</div>
 		 	</a><!--

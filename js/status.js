@@ -1,8 +1,8 @@
 TVRO.Status = function() {
-	var status = {},
+	var self = {},
 		webService = new TVRO.WebService();
 
-	status.update = function() {
+	self.update = function() {
 		webService.getAntennaStatus(function(responseXml) {
 			var xml = $(responseXml),
 				error = xml.find('message').attr('error'),
@@ -37,7 +37,7 @@ TVRO.Status = function() {
 		});
 	}
 
-	return status;
+	return self;
 };
 
 $(document).ready(function() {

@@ -1,11 +1,11 @@
 TVRO.EventHistory = function() {
-	var eventHistory = {},
+	var self = {},
 		webservice = new TVRO.WebService(),
 		eventHistoryCount = 0,
 		eventHistoryLog,
 		beginAtEvent = 1;
 
-	eventHistory.load = function(howManyEvents) {
+	self.load = function(howManyEvents) {
 		webservice.getRecentEventHistory({
 			'begin_at_event' : beginAtEvent,
 			'how_many_events' : howManyEvents
@@ -29,7 +29,7 @@ TVRO.EventHistory = function() {
 		});
 	}
 
-	eventHistory.update = function() {
+	self.update = function() {
 		webservice.getEventHistoryCount(function(responseXml) {
 			var xml = $(responseXml),
 				error = xml.find('message').attr('error');			
@@ -44,14 +44,14 @@ TVRO.EventHistory = function() {
 	}
 
 	$('#load-button').click(function() {
-		eventHistory.load(5);
+		self.load(5);
 	});
 
 	$('#email-button').click(function() {
 
 	});
 
-	return eventHistory;
+	return self;
 };
 
 $(document).ready(function() {
