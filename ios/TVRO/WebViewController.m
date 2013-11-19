@@ -22,7 +22,7 @@
 	[webView setDelegate:self];
 	[self.view addSubview:webView];
 	
-	updatesManager = [[UpdatesManager alloc] init];
+	updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
 	
 	[super viewDidLoad];
 }
@@ -68,12 +68,7 @@
 				NSString* tv3DeviceVersion = [updatesManager deviceVersionForAntType:@"tv3"];
 				NSString* tv5DeviceVersion = [updatesManager deviceVersionForAntType:@"tv5"];
 				NSString* tv6DeviceVersion = [updatesManager deviceVersionForAntType:@"tv6"];
-				NSLog(@"tv1DeviceVersion: %@", tv1DeviceVersion);
-				NSLog(@"tv3DeviceVersion: %@", tv3DeviceVersion);
-				NSLog(@"tv5DeviceVersion: %@", tv5DeviceVersion);
-				NSLog(@"tv6DeviceVersion: %@", tv6DeviceVersion);
-				NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.tv1.deviceVersion = '%@'; window.tvro.updates.tv3.deviceVersion = '%@'; window.tvro.updates.tv5.deviceVersion = '%@'; window.tvro.updates.tv6.deviceVersion = '%@'; window.tvro.updates.update();", tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion];
-				NSLog(@"javascriptString: %@", javascriptString);
+				NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.setDeviceVersions({'tv1':'%@','tv3':'%@','tv5':'%@','tv6':'%@'});", tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion];
 				[webView stringByEvaluatingJavaScriptFromString:javascriptString];
 			} else if ([pathComponents[1] isEqualToString:@"download"]) {
 				//	tvro://updates/download/antenna-type/portal-version/portal-url
@@ -82,7 +77,8 @@
 				NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(4, [pathComponents count]-4)] componentsJoinedByString:@"/"];
 				[updatesManager startDownloadForAntType:antType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
 			} else if ([pathComponents[1] isEqualToString:@"install"]) {
-//				NSString* antType = [NSString stringWithString:pathComponents[2]];
+				NSString* antType = [NSString stringWithString:pathComponents[2]];
+				[updatesManager startUploadForAntType:antType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
 			}
 		}
 		return false;
@@ -118,6 +114,19 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 //	NSLog(@"webViewDidStartLoad");
+}
+
+#pragma mark - UpdatesManagerDelgate protocol methods
+
+- (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForAntType:(NSString *)antType {
+	NSString* deviceVersion = [updatesManager deviceVersionForAntType:antType];
+	NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.%@.deviceVersion = '%@'; window.tvro.updates.update();", antType, deviceVersion];
+	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
+}
+
+- (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForAntType:(NSString *)antType {
+	NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.install('%@');", @"some file name"];
+	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
 }
 
 #pragma mark - WebViewController methods

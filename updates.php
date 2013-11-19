@@ -1,9 +1,11 @@
 <? include $_SERVER[DOCUMENT_ROOT] . '/base.php'; ?>
 
-<div id="updates" class="updates-page">
+<div id="updates" class="updates">
 	<link type="text/css" rel="stylesheet" href="/css/updates.css">
 	<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="/js/updates.js"></script>
+
+	<h1>Updates</h1>
 
 	<menu>
 		<div id="tv1" class="ant-type">
@@ -45,8 +47,8 @@
 
 		<br>
 
-		<div id="install-button">
-			CLICK TO INSTALL
+		<div>
+			CLICK TO UPLOAD
 			this button will make a webservice call to upload/install software.
 			it will bring up the file browsers on desktop, but it needs to call some custom ios code to display a list of downloaded files on ios.
 			<input id="install-input" type="file">
@@ -54,10 +56,16 @@
 
 		<br>
 
+		<div id="install-button">
+			CLICK TO INSTALL
+		</div>
+
+		<br>
+
 		<div id="selected-ant-type"></div>
-		
 		<div id="selected-portal-version"></div>
 		<div id="selected-system-version"></div>
 		<div id="selected-device-version"></div>
 	</div>
+
 </div>

@@ -35,6 +35,7 @@
 /* Begin PBXFileReference section */
 		E9212D791831B636008FCDCD /* UpdatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesManager.h; sourceTree = "<group>"; };
 		E9212D7A1831B636008FCDCD /* UpdatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesManager.m; sourceTree = "<group>"; };
+		E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatesManagerDelegate.h; sourceTree = "<group>"; };
 		E9B97C671829A14A007AA4A3 /* TVRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B97C6A1829A14A007AA4A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,6 +115,7 @@
 				E9B97C7A1829A14A007AA4A3 /* AppDelegate.m */,
 				E9B97D211829A922007AA4A3 /* BonjourViewController.h */,
 				E9B97D221829A922007AA4A3 /* BonjourViewController.m */,
+				E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */,
 				E9212D791831B636008FCDCD /* UpdatesManager.h */,
 				E9212D7A1831B636008FCDCD /* UpdatesManager.m */,
 				E9B97D241829AA8D007AA4A3 /* WebViewController.h */,

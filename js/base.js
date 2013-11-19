@@ -1,25 +1,63 @@
 var TVRO = function() {
-	var self = {},
-		ios = [];
+	var self = {};
 
 	$('.nav-toggle').click(function() {
 		$(this).toggleClass('selected');
 		$('.nav').toggleClass('toggled');
 	});
 
-	//	in iOS, after pages are loaded (after document.ready)
-	//	the app shell will call 'tvro.ios()'. if you need something
-	//	to be executed at that time you should add it like this:
-	//	tvro.ios(function() { /* stuff happens here */ });
+	//	all immediate kids of tvro
+	//	will have their 'ios' function
+	//	called if it's available
 	self.ios = function(f) {
-		if (typeof f == 'function') {
-			ios.push(f);
-		} else {
-			for (var i = 0; i < ios.length; i++) {
-				ios[i].call({});
-			};			
+		for (var key in self) {
+			if (typeof self[key]['ios'] == 'function') {
+				self[key].ios();
+			}
 		}
 	}
+
+	return self;
+};
+
+TVRO.Cookies = function() {
+	var self = {};
+
+	self.getCookie = function(key) {
+		return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
+	};
+
+	self.setCookie = function(key, value, end, path, domain, secure) {
+		if (!key || /^(?:expires|max\-age|path|domain|secure)$/i.test(key)) return false;
+
+		var expires = {
+			'string' : '; expires=' + end,
+			'number' : (end === Infinity ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT' : '; max-age=' + end),
+			'date' : '; expires=' + new Date(end).toUTCString(),
+			'undefined' : ''
+		}[typeof end];
+
+		key = encodeURIComponent(key);
+		value = encodeURIComponent(value);
+		domain = domain ? '; domain=' + domain : '';
+		path = path ? '; path=' + path : '';
+		secure = secure ? '; secure' : '';
+		document.cookie = key + '=' + value + expires + domain + path + secure;
+	};
+
+	self.removeCookie = function(key, path, domain) {
+		if (!key || !self.hasCookie(key)) return false;
+
+		key = encodeURIComponent(key);
+		domain = domain ? '; domain=' + domain : '';
+		path = path ? '; path=' + path : '';
+
+		document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + domain + path;
+	};
+
+	self.hasCookie = function (key) {
+		return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+	};
 
 	return self;
 };
