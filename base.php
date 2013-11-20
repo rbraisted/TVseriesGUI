@@ -22,7 +22,7 @@
 				<img src="/images/img.gif">
 				MENU
 			</div>
-			<nav>
+			<nav id="nav">
 				<a href="/dashboard.php" class="dashboard-button">
 					<img src="/images/img.gif">
 					Dashboard

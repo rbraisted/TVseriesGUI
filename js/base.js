@@ -1,9 +1,9 @@
 var TVRO = function() {
 	var self = {};
 
-	$('.nav-toggle').click(function() {
+	$('#nav-button').click(function() {
 		$(this).toggleClass('selected');
-		$('.nav').toggleClass('toggled');
+		$('#nav').toggleClass('toggled');
 	});
 
 	//	all immediate kids of tvro

@@ -21,7 +21,7 @@ menu {
 
 \*                           */
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 880px) {
 
 }
 
@@ -41,7 +41,7 @@ menu {
 
 \*                 */
 
-@media screen and (min-width: 540px) and (max-width: 850px) {
+@media screen and (min-width: 540px) and (max-width: 880px) {
 
 }
 
@@ -51,7 +51,7 @@ menu {
 
 \*                */
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 880px) {
 	.technician-mode menu {
 		width: 260px;
 	}

@@ -4,8 +4,7 @@
 
 \*       */
 
-.dashboard,
-.dashboard-button {
+.dashboard {
 	background: #06102a;
 }
 
@@ -16,60 +15,36 @@ menu {
 	z-index: 1;
 }
 
+menu h3 {
+	padding-bottom: 10px;
+	font-weight: lighter;
+}
+
 menu section {
-	border-bottom: 1px solid #303030;
-	margin: 0 20px;
 	padding: 15px 0;
 	position: relative;
 }
 
-menu section:last-of-type {
-	border-bottom: 0;
-}
-
-menu h3 {
-	padding-bottom: 2px;
-	font-weight: lighter;
-}
-
 menu .label {
-	margin-top: 10px;
+	margin-top: 12px;
 }
 
 menu .button {
 	color: #4388fd;
 	position: absolute;
 	right: 0;
-	margin-top: -18px; /* MAGIC NUMBER */
+	margin-top: -19px; /* MAGIC NUMBER */
 }
 
-.sat-signal {
-	height: 60px;
-	width: 125px;
+menu .on-off-button .on,
+menu .on-off-button .off {
+	display: inline;
+	padding: 8px 8px 3px;
 }
 
-.sat-signal-0 {
-	background: transparent url(/images/sat-signal-0.png) no-repeat center center;
-}
-
-.sat-signal-1 {
-	background: transparent url(/images/sat-signal-1.png) no-repeat center center;
-}
-
-.sat-signal-2 {
-	background: transparent url(/images/sat-signal-2.png) no-repeat center center;
-}
-
-.sat-signal-3 {
-	background: transparent url(/images/sat-signal-3.png) no-repeat center center;
-}
-
-.sat-signal-4 {
-	background: transparent url(/images/sat-signal-4.png) no-repeat center center;
-}
-
-.sat-signal-5 {
-	background: transparent url(/images/sat-signal-5.png) no-repeat center center;
+menu .on-off-button.on .on,
+menu .on-off-button .off {
+	border: 1px solid #4388fd;
 }
 
 .vessel {
@@ -79,16 +54,6 @@ menu .button {
 	background: -o-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Opera 12+ */
 	background: -ms-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* IE10+ */
 	background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
-
-	/*border: 1px solid red;*/
-
-	height: 520px;
-	left: 50%;
-	margin: -400px 0 0 -400px;
-	padding: 90px;
-	position: absolute;
-	top: 50%;
-	width: 520px;
 }
 
 .vessel-heading,
@@ -104,9 +69,10 @@ menu .button {
 	height: 20px;
 }
 
-.vessel-image {
-	background: transparent url(/images/vessel.png) no-repeat center center;
-	height: 480px;
+.demo-mode {
+	background: #9c232d;
+	font-weight: lighter;
+	position: absolute;
 }
 
 /*                           *\
@@ -115,8 +81,91 @@ menu .button {
 
 \*                           */
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 880px) {
+	.dashboard {
+		background: #0c0c0c;
+		overflow-x: hidden;
+		position: relative;
+	}
 
+	body {
+		background: #0c0c0c;
+	}
+
+	menu section {
+		border-right: 1px solid #303030;
+		float: left;
+		height: 150px;
+		margin: 5% 0 0 3%;
+		padding-top: 0;
+		width: 30%;
+	}
+
+	menu section:last-of-type {
+		border-right: 0;
+	}
+
+	menu .autoswitch {
+		border-bottom: 1px solid #303030;
+		border-right: 0;
+		float: none;
+		height: auto;
+		margin: 0 3%;
+		padding-top: 5%;
+		width: 94%;
+	}
+
+	menu .sat .button {
+		left: 0;
+		bottom: 0;
+	}
+
+	.sat-signal {
+		height: 45px;
+		width: 94px;
+	}
+
+	.sat-signal-0 {
+		background: transparent url(/images/sat-signal-0-small.png) no-repeat center center;
+	}
+
+	.sat-signal-1 {
+		background: transparent url(/images/sat-signal-1-small.png) no-repeat center center;
+	}
+
+	.sat-signal-2 {
+		background: transparent url(/images/sat-signal-2-small.png) no-repeat center center;
+	}
+
+	.sat-signal-3 {
+		background: transparent url(/images/sat-signal-3-small.png) no-repeat center center;
+	}
+
+	.sat-signal-4 {
+		background: transparent url(/images/sat-signal-4-small.png) no-repeat center center;
+	}
+
+	.sat-signal-5 {
+		background: transparent url(/images/sat-signal-5-small.png) no-repeat center center;
+	}
+
+	.vessel {
+		height: 320px;
+		padding: 20px 0;
+		width: 100%;
+	}
+
+	.vessel-image {
+		background: transparent url(/images/vessel-small.png) no-repeat center center;
+		height: 280px;
+	}
+
+	.demo-mode {
+		font-size: 10px;
+		padding: 5px 10px;
+		right: 17px;
+		top: 17px;
+	}
 }
 
 /*                *\
@@ -135,7 +184,7 @@ menu .button {
 
 \*                 */
 
-@media screen and (min-width: 540px) and (max-width: 850px) {
+@media screen and (min-width: 540px) and (max-width: 880px) {
 
 }
 
@@ -145,7 +194,10 @@ menu .button {
 
 \*                */
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 880px) {
+	.dashboard-button {
+		background: #06102a;
+	}
 
 	.dashboard {
 		bottom: 0;
@@ -161,5 +213,71 @@ menu .button {
 		position: absolute;
 		top: 5px;
 		width: 255px;
+	}
+
+	menu section {
+		margin: 0 20px;
+		border-bottom: 1px solid #303030;
+	}
+
+	menu section:last-of-type {
+		border-bottom: 0;
+	}
+
+	.sat-signal {
+		height: 60px;
+		width: 125px;
+	}
+
+	.sat-signal-0 {
+		background: transparent url(/images/sat-signal-0-large.png) no-repeat center center;
+	}
+
+	.sat-signal-1 {
+		background: transparent url(/images/sat-signal-1-large.png) no-repeat center center;
+	}
+
+	.sat-signal-2 {
+		background: transparent url(/images/sat-signal-2-large.png) no-repeat center center;
+	}
+
+	.sat-signal-3 {
+		background: transparent url(/images/sat-signal-3-large.png) no-repeat center center;
+	}
+
+	.sat-signal-4 {
+		background: transparent url(/images/sat-signal-4-large.png) no-repeat center center;
+	}
+
+	.sat-signal-5 {
+		background: transparent url(/images/sat-signal-5-large.png) no-repeat center center;
+	}
+
+	.vessel {
+		height: 520px;
+		left: 50%;
+		margin: -400px 0 0 -270px;
+		padding: 90px;
+		position: absolute;
+		top: 50%;
+		width: 520px;
+	}
+
+	.vessel-image {
+		background: transparent url(/images/vessel-large.png) no-repeat center center;
+		height: 480px;
+	}
+
+	.demo-mode {
+		padding: 10px 20px;
+		right: 20px;
+		top: 20px;
+	}
+}
+
+@media screen and (min-width: 880px) and (max-height: 760px) {
+	.vessel {
+		top: 0;
+		margin-top: -70px;
 	}
 }

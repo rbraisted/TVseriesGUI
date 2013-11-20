@@ -29,6 +29,7 @@
 
 html,
 body {
+	background: #06102a;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	color: #fff;
@@ -88,15 +89,16 @@ header .nav-button {
 	top: 0;
 }
 
-header .status-button {
-	left: 0;
-}
-
-header .status-button img {
+header .status-button img,
+header .nav-button img {
 	background: transparent url(/images/status-icon.png) no-repeat center center;
 	display: block;
 	height: 36px;
 	width: 53px;
+}
+
+header .status-button {
+	left: 0;
 }
 
 header .nav-button {
@@ -123,29 +125,8 @@ header nav a {
 
 \*                           */
 
-@media screen and (max-width: 850px) {
-/*	.nav-toggle {
-		color: #C9CED3;
-		cursor: pointer;
-		float: right;
-		font-size: 11px;
-		height: 100%;
-		padding: 0 10px;
-		text-align: center;
-	}
-
-	.nav-toggle .icon {
-		background: transparent url('../images/menu-button.png') no-repeat center bottom;
-		height: 60%;
-		margin-bottom: 1px;
-		width: 32px;
-	}
-
-	.nav-toggle.selected {
-		background-color: #203A61;
-	}
-
-	.nav {
+@media screen and (max-width: 880px) {
+	header nav {
 		height: 0;
 		overflow: hidden;
 		padding-bottom: 0;
@@ -155,28 +136,48 @@ header nav a {
 		-webkit-transition: padding-bottom 0.5s;
 	}
 
-	.nav.toggled {
+	header nav.toggled {
 		transition: padding-bottom 0.5s;
 		-moz-transition: padding-bottom 0.5s;
 		-webkit-transition: padding-bottom 0.5s;
 	}
 
-	.nav-button {
+	header nav a {
 		float: left;
+		font-size: 15px;
 		height: 0;
-		margin: 0 1% 1% 0;
+		margin: 0;/* 1% 1% 0;*/
 	}
 
-	.nav-button .icon {	
+	header nav a img {	
 		height: 0;
-		padding-bottom: 62%;
+		padding-bottom: 60%;
 		width: 100%;
 	}
 
-	.nav-button .label {
-		font-size: 15px;
-		margin-top: 5%;
-	}*/
+	header nav .dashboard-button img {
+		background: transparent url(/images/dashboard-icon-large.png) no-repeat center bottom;
+	}
+
+	header nav .satellites-button img {
+		background: transparent url(/images/satellites-icon-large.png) no-repeat center bottom;
+	}
+
+	header nav .autoswitch-button img {
+		background: transparent url(/images/autoswitch-icon-large.png) no-repeat center bottom;
+	}
+
+	header nav .settings-button img {
+		background: transparent url(/images/settings-icon-large.png) no-repeat center bottom;
+	}
+
+	header nav .updates-button img {
+		background: transparent url(/images/updates-icon-large.png) no-repeat center bottom;
+	}
+
+	header nav .diagnostics-button img {
+		background: transparent url(/images/diagnostics-icon-large.png) no-repeat center bottom;
+	}
 }
 
 /*                *\
@@ -186,18 +187,18 @@ header nav a {
 \*                */
 
 @media screen and (max-width: 540px) {
-/*	.nav.toggled {
+	header nav.toggled {
 		padding-bottom: 66.666%;
 	}
 
-	.nav-button {
-		padding-bottom: 32.333%;
-		width: 32.333%;
+	header nav a {
+		padding-bottom: 33.333%;
+		width: 33.333%;
 	}
 
-	.nav-button .icon {
-		background: transparent url('../images/nav-icon-large.png') no-repeat center bottom;
-	}*/
+	header nav a img {
+		background: transparent url(/images/nav-icon-large.png) no-repeat center bottom;
+	}
 }
 
 /*                 *\
@@ -206,20 +207,19 @@ header nav a {
 
 \*                 */
 
-@media screen and (min-width: 540px) and (max-width: 850px) {
-/*	.nav.toggled {
+@media screen and (min-width: 540px) and (max-width: 880px) {
+	header nav.toggled {
 		padding-bottom: 16.666%;
 	}
 
-	.nav-button {
-		padding-bottom: 15.666%;
-		width: 15.666%;
+	header nav a {
+		padding-bottom: 16.666%;
+		width: 16.666%;
 	}
 
-	.nav-button .icon {
-		background: transparent url('../images/nav-icon-medium.png') no-repeat center bottom;
+	header nav a img {
+		background: transparent url(/images/nav-icon-large.png) no-repeat center bottom;
 	}
-*/
 }
 
 /*                *\
@@ -228,7 +228,7 @@ header nav a {
 
 \*                */
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 880px) {
 	.nav-button {
 		display: none;
 	}
@@ -253,26 +253,26 @@ header nav a {
 	}
 
 	header nav .dashboard-button img {
-		background: transparent url(/images/dashboard-button-small.png) no-repeat center center;
+		background: transparent url(/images/dashboard-icon-small.png) no-repeat center center;
 	}
 
 	header nav .satellites-button img {
-		background: transparent url(/images/satellites-button-small.png) no-repeat center center;
+		background: transparent url(/images/satellites-icon-small.png) no-repeat center center;
 	}
 
 	header nav .autoswitch-button img {
-		background: transparent url(/images/autoswitch-button-small.png) no-repeat center center;
+		background: transparent url(/images/autoswitch-icon-small.png) no-repeat center center;
 	}
 
 	header nav .settings-button img {
-		background: transparent url(/images/settings-button-small.png) no-repeat center center;
+		background: transparent url(/images/settings-icon-small.png) no-repeat center center;
 	}
 
 	header nav .updates-button img {
-		background: transparent url(/images/updates-button-small.png) no-repeat center center;
+		background: transparent url(/images/updates-icon-small.png) no-repeat center center;
 	}
 
 	header nav .diagnostics-button img {
-		background: transparent url(/images/diagnostics-button-small.png) no-repeat center center;
+		background: transparent url(/images/diagnostics-icon-small.png) no-repeat center center;
 	}
 }
