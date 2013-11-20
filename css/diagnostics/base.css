@@ -81,7 +81,7 @@ menu nav a:last-of-type {
 
 \*                           */
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 850px) {
 	menu {
 		width: 100%;
 	}
@@ -123,7 +123,7 @@ menu nav a:last-of-type {
 
 \*                 */
 
-@media screen and (min-width: 540px) and (max-width: 780px) {
+@media screen and (min-width: 540px) and (max-width: 850px) {
 
 }
 
@@ -133,7 +133,7 @@ menu nav a:last-of-type {
 
 \*                */
 
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 850px) {
 	body {
 		overflow: hidden;
 	}

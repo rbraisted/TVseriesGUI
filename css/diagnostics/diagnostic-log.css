@@ -18,7 +18,7 @@
 
 \*                           */
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 850px) {
 	menu {
 		display: none;
 	}
@@ -40,7 +40,7 @@
 
 \*                 */
 
-@media screen and (min-width: 540px) and (max-width: 780px) {
+@media screen and (min-width: 540px) and (max-width: 850px) {
 
 }
 
@@ -50,6 +50,6 @@
 
 \*                */
 
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 850px) {
 
 }

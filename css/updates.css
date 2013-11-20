@@ -4,22 +4,63 @@
 
 \*       */
 
-.ant-type {
-	border: 1px solid black;
+.updates,
+.updates-button,
+.update {
+	background: #06102a;
 }
 
-.ant-type .connected-status {
-	display: none;
+menu {
+	margin: 0;
+	padding: 0;
 }
 
-.ant-type.connected {
-	background: green;
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 850px) {
+
 }
 
-.ant-type.connected .connected-status {
-	display: block;
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+
 }
 
-.ant-type.selected {
-	border: 2px solid red;
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 850px) {
+
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 850px) {
+	.technician-mode menu {
+		width: 260px;
+	}
+
+	.technician-mode .update {
+		bottom: 0;
+		left: 260px;
+		position: absolute;
+		top: 95px;
+		right: 0;
+	}
 }

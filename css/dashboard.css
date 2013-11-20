@@ -1,0 +1,165 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+.dashboard,
+.dashboard-button {
+	background: #06102a;
+}
+
+menu {
+	background: #0c0c0c;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+}
+
+menu section {
+	border-bottom: 1px solid #303030;
+	margin: 0 20px;
+	padding: 15px 0;
+	position: relative;
+}
+
+menu section:last-of-type {
+	border-bottom: 0;
+}
+
+menu h3 {
+	padding-bottom: 2px;
+	font-weight: lighter;
+}
+
+menu .label {
+	margin-top: 10px;
+}
+
+menu .button {
+	color: #4388fd;
+	position: absolute;
+	right: 0;
+	margin-top: -18px; /* MAGIC NUMBER */
+}
+
+.sat-signal {
+	height: 60px;
+	width: 125px;
+}
+
+.sat-signal-0 {
+	background: transparent url(/images/sat-signal-0.png) no-repeat center center;
+}
+
+.sat-signal-1 {
+	background: transparent url(/images/sat-signal-1.png) no-repeat center center;
+}
+
+.sat-signal-2 {
+	background: transparent url(/images/sat-signal-2.png) no-repeat center center;
+}
+
+.sat-signal-3 {
+	background: transparent url(/images/sat-signal-3.png) no-repeat center center;
+}
+
+.sat-signal-4 {
+	background: transparent url(/images/sat-signal-4.png) no-repeat center center;
+}
+
+.sat-signal-5 {
+	background: transparent url(/images/sat-signal-5.png) no-repeat center center;
+}
+
+.vessel {
+	background: -moz-radial-gradient(center, ellipse cover, #0d2764 5%, #06102a 70%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0d2764), color-stop(70%,#06102a)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* IE10+ */
+	background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
+
+	/*border: 1px solid red;*/
+
+	height: 520px;
+	left: 50%;
+	margin: -400px 0 0 -400px;
+	padding: 90px;
+	position: absolute;
+	top: 50%;
+	width: 520px;
+}
+
+.vessel-heading,
+.vessel-image,
+.vessel-name {
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.vessel-heading,
+.vessel-name {
+	height: 20px;
+}
+
+.vessel-image {
+	background: transparent url(/images/vessel.png) no-repeat center center;
+	height: 480px;
+}
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 850px) {
+
+}
+
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+
+}
+
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 850px) {
+
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 850px) {
+
+	.dashboard {
+		bottom: 0;
+		overflow: hidden;
+		position: absolute;
+		top: 95px;
+		width: 100%;
+	}
+
+	menu {
+		bottom: 5px;
+		left: 5px;
+		position: absolute;
+		top: 5px;
+		width: 255px;
+	}
+}

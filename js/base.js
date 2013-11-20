@@ -121,8 +121,8 @@ TVRO.WebService = function() {
 		sendRequest(requestUrl, 'latest_software', null, successCallback, errorCallback);
 	} 
 
-	self.getProductRegistration = function(requestJson, successCallback, errorCallback) {
-		sendRequest(xmlWebServiceUrl, 'set_product_registration', requestJson, successCallback, errorCallback);
+	self.getProductRegistration = function(successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'get_product_registration', null, successCallback, errorCallback);
 	};
 
 	self.getRecentEventHistory = function(requestJson, successCallback, errorCallback) {

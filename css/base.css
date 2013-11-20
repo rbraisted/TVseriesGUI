@@ -6,61 +6,115 @@
 
 @import 'normalize.css';
 
+@font-face {
+	font-family: Helvetica;
+	src: url(/fonts/HelveticaLTStd-Roman.otf);
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Helvetica;
+	src: url(/fonts/HelveticaLTStd-Bold.otf);
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Helvetica;
+	src: url(/fonts/HelveticaLTStd-Light.otf);
+	font-weight: lighter;
+	font-style: normal;
+}
+
 html,
 body {
 	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	color: #fff;
 	height: 100%;
+	letter-spacing: 0.035em;
+	text-rendering: optimizeLegibility;
 	width: 100%;
 }
 
-.header {
-	background-color: #114278;
-	height: 53px;
-	width: 100%;
+h1, h2, h3, h4, h5, h6, img {
+	font-size: 16px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
 }
 
-/*	this should be an img */
-.kvh-logo {
-	background: transparent url('../images/kvh-logo.png') no-repeat center;
-	float: left;
-	height: 100%;
-	width: 100px;
+a {
+	color: inherit;
+	text-decoration: inherit;
 }
 
-.status-lights {
-	float: right;
-	height: 18px;
-	margin: -9px 15px 0px 0px;
+header {
+	background: #002879; /*	#002879 - #001339 */
 	position: relative;
-	top: 50%;
-}
-
-.status-light {
-	display: inline-block;
-	height: 100%;
-	margin: 0px 2px;
-	width: 18px;
-}
-
-.status-light-good {
-	background-color: #A0CD5D;
-}
-
-.status-light-bad {
-	background-color: red;
-}
-
-.nav {
-	background-color: #203A61;
 	width: 100%;
 }
 
+.tracvision-logo,
+.tracvision-logo img,
+.status-button,
 .nav-button {
-	background-color: #1E303B;
-	color: #C9CED3;
-	cursor: pointer;
+	height: 55px;
+}
+
+.tracvision-logo {
+	display: block;
+	margin: auto;
+}
+
+.tracvision-logo img {
+	background: transparent url(/images/tracvision-logo.png) no-repeat center center;
+}
+
+.tracvision-logo,
+.tracvision-logo img {
+	width: 133px;
+}
+
+header .status-button,
+header .nav-button {
+	color: #fff;
+	font-size: 12px;
+	font-weight: lighter;
+	padding: 0 5px;
+	position: absolute;
+	text-align: center;
+	top: 0;
+}
+
+header .status-button {
+	left: 0;
+}
+
+header .status-button img {
+	background: transparent url(/images/status-icon.png) no-repeat center center;
+	display: block;
+	height: 36px;
+	width: 53px;
+}
+
+header .nav-button {
+	right: 0;
+}
+
+header .status {
+	height: 0;
+	overflow: hidden;
+}
+
+header nav {
+	background: #0f344c;
+}
+
+header nav a {
+	background: #020306;
 	text-decoration: none;
-	white-space: nowrap;
 }
 
 /*                           *\
@@ -69,8 +123,8 @@ body {
 
 \*                           */
 
-@media screen and (max-width: 780px) {
-	.nav-toggle {
+@media screen and (max-width: 850px) {
+/*	.nav-toggle {
 		color: #C9CED3;
 		cursor: pointer;
 		float: right;
@@ -122,7 +176,7 @@ body {
 	.nav-button .label {
 		font-size: 15px;
 		margin-top: 5%;
-	}
+	}*/
 }
 
 /*                *\
@@ -132,7 +186,7 @@ body {
 \*                */
 
 @media screen and (max-width: 540px) {
-	.nav.toggled {
+/*	.nav.toggled {
 		padding-bottom: 66.666%;
 	}
 
@@ -143,7 +197,7 @@ body {
 
 	.nav-button .icon {
 		background: transparent url('../images/nav-icon-large.png') no-repeat center bottom;
-	}
+	}*/
 }
 
 /*                 *\
@@ -152,8 +206,8 @@ body {
 
 \*                 */
 
-@media screen and (min-width: 540px) and (max-width: 780px) {
-	.nav.toggled {
+@media screen and (min-width: 540px) and (max-width: 850px) {
+/*	.nav.toggled {
 		padding-bottom: 16.666%;
 	}
 
@@ -165,6 +219,7 @@ body {
 	.nav-button .icon {
 		background: transparent url('../images/nav-icon-medium.png') no-repeat center bottom;
 	}
+*/
 }
 
 /*                *\
@@ -173,30 +228,51 @@ body {
 
 \*                */
 
-@media screen and (min-width: 780px) {
-	.nav-toggle {
-		display: none;
-	}
-
-	.menu-button {
-		display: none;
-	}
-
+@media screen and (min-width: 850px) {
 	.nav-button {
-		display: inline-block;
-		font-size: 16px;
-		height: 38px;
-		line-height: 43px;
-		margin: 5px 5px 0px 0px;
-		padding: 0px 15px 0px 40px;
-		position: relative;
+		display: none;
 	}
 
-	.nav-button .icon {
-		background: transparent url('../images/nav-icon-small.png') no-repeat center center;
+	header nav {
+		height: 40px;
+	}
+
+	header nav a {
+		display: inline-block;
+		height: 35px;
+		padding: 0 20px 0 5px;
+		position: relative;
+		margin: 5px 5px 0 0;
+		line-height: 250%;
+	}
+
+	header nav img {
+		float: left;
 		height: 100%;
-		left: 2px;
-		position: absolute;
 		width: 40px;
+	}
+
+	header nav .dashboard-button img {
+		background: transparent url(/images/dashboard-button-small.png) no-repeat center center;
+	}
+
+	header nav .satellites-button img {
+		background: transparent url(/images/satellites-button-small.png) no-repeat center center;
+	}
+
+	header nav .autoswitch-button img {
+		background: transparent url(/images/autoswitch-button-small.png) no-repeat center center;
+	}
+
+	header nav .settings-button img {
+		background: transparent url(/images/settings-button-small.png) no-repeat center center;
+	}
+
+	header nav .updates-button img {
+		background: transparent url(/images/updates-button-small.png) no-repeat center center;
+	}
+
+	header nav .diagnostics-button img {
+		background: transparent url(/images/diagnostics-button-small.png) no-repeat center center;
 	}
 }

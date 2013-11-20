@@ -43,6 +43,7 @@ TVRO.Updates = function() {
 	};
 
 	self.startUpdating = function() {
+		self.update();
 		updateInterval = setInterval(self.update, 2000);
 	};
 

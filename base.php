@@ -9,44 +9,38 @@
 		<script type="text/javascript" src="/js/base.js"></script>
 	</head>
 	<body>
-		<div class="header">
-			<div class="kvh-logo"></div>
-			<div class="nav-toggle">
-				<div class="icon"></div>
-				<div class="label">MENU</div>
-			</div>
-			<div class="status-lights">
-				<div class="power-status-light status-light status-light-good"></div><!--
-			 --><div class="antenna-status-light status-light status-light-bad"></div><!--
-			 --><div class="system-status-light status-light status-light-good"></div>
-			</div>
-		</div>
-
-		<div class="status"></div>
-
-		<div class="nav">
-			<a href="/status.php" class="status-button nav-button">
-				<div class="icon"></div>
-				<div class="label">Status</div>
-			</a><!--
-		 --><a href="/satellites.php" class="satellites-button nav-button">
-				<div class="icon"></div>
-				<div class="label">Satellites</div>
-		 	</a><!--
-		 --><a href="/autoswitch.php" class="autoswitch-button nav-button">
-				<div class="icon"></div>
-				<div class="label">Autoswitch</div>
-		 	</a><!--
-		 --><a href="/settings.php" class="settings-button nav-button">
-				<div class="icon"></div>
-				<div class="label">Settings</div>
-		 	</a><!--
-		 --><a href="/updates.php" class="updates-button nav-button">
-				<div class="icon"></div>
-				<div class="label">Updates</div>
-		 	</a><!--
-		 --><a href="/diagnostics/" class="diagnostics-button nav-button">
-				<div class="icon"></div>
-				<div class="label">Diagnostics</div>
+		<header>
+			<a href="/" class="tracvision-logo">
+				<img src="/images/img.gif">
 			</a>
-		</div>
+			<div id="status-button" class="status-button">
+				<img src="/images/img.gif">
+				STATUS
+			</div>
+			<div id="status" class="status">Everything is OK!</div>
+			<div id="nav-button" class="nav-button">
+				<img src="/images/img.gif">
+				MENU
+			</div>
+			<nav>
+				<a href="/dashboard.php" class="dashboard-button">
+					<img src="/images/img.gif">
+					Dashboard
+				</a><a href="/satellites.php" class="satellites-button">
+					<img src="/images/img.gif">
+					Satellites
+			 	</a><a href="/autoswitch.php" class="autoswitch-button">
+					<img src="/images/img.gif">
+					Autoswitch
+			 	</a><a href="/settings.php" class="settings-button">
+					<img src="/images/img.gif">
+					Settings
+			 	</a><a href="/updates.php" class="updates-button">
+			 		<img src="/images/img.gif">
+			 		Updates
+			 	</a><a href="/diagnostics/" class="diagnostics-button">
+			 		<img src="/images/img.gif">
+					Diagnostics
+				</a>
+			</nav>
+		</header>

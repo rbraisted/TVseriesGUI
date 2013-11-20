@@ -1,6 +1,6 @@
 <? include $_SERVER[DOCUMENT_ROOT] . '/base.php'; ?>
 
-<div id="updates" class="updates">
+<div id="updates" class="updates technician-mode">
 	<link type="text/css" rel="stylesheet" href="/css/updates.css">
 	<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="/js/updates.js"></script>
@@ -38,7 +38,7 @@
 		</div>
 	</menu>
 
-	<div id="update">
+	<div id="update" class="update">
 		<div id="download-button">
 			CLICK TO DOWNLOAD
 			this button will download the update.
