@@ -4,7 +4,7 @@
 
 \*       */
 
-@import 'normalize.css';
+@import 'reset.css';
 
 @font-face {
 	font-family: Helvetica;
@@ -34,8 +34,8 @@ body {
 	font-size: 16px;
 	color: #fff;
 	height: 100%;
-	letter-spacing: 0.035em;
-	text-rendering: optimizeLegibility;
+	/*letter-spacing: 0.035em;*/
+	/*text-rendering: optimizeLegibility;*/
 	width: 100%;
 }
 

@@ -1,5 +1,5 @@
-<? include $_SERVER[DOCUMENT_ROOT] . '/base.php'; ?>
-<? include $_SERVER[DOCUMENT_ROOT] . '/diagnostics/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/diagnostics/base.php'; ?>
 
 <div id="event-history" class="diagnostics-section">
 	<link type="text/css" rel="stylesheet" href="/css/diagnostics/event-history.css">

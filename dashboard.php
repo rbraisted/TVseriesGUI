@@ -1,4 +1,4 @@
-<? include $_SERVER[DOCUMENT_ROOT] . '/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
 <div id="dashboard" class="dashboard">
 	<link type="text/css" rel="stylesheet" href="/css/dashboard.css">

@@ -1,4 +1,4 @@
-<? include $_SERVER[DOCUMENT_ROOT] . '/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
 <div id="settings" class="settings">
 	<link type="text/css" rel="stylesheet" href="/css/settings.css">
