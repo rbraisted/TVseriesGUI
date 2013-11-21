@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message error="0" name="get_autoswitch_service"/>
-	<available>Y | N</available>
-	<enable>Y | N</enable>
+	<available>Y</available>
+	<enable>Y</enable>
 	<service_list>
 		<out1>
 			<A>

@@ -99,6 +99,10 @@ TVRO.WebService = function() {
 		sendRequest(antWebServiceUrl, 'antenna_status', null, successCallback, errorCallback);
 	};
 
+	self.getAutoswitchService = function(successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'get_autoswitch_service', null, successCallback, errorCallback);
+	};
+
 	self.getEventHistoryCount = function(successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'get_event_history_count', null, successCallback, errorCallback);
 	};
@@ -132,6 +136,11 @@ TVRO.WebService = function() {
 	self.installSoftware = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
 	};
+
+	self.setAutoswitchService = function(requestJson, successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'set_autoswitch_service', requestJson, successCallback, errorCallback);
+	};
+
 
 	self.setProductRegistration = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'set_product_registration', requestJson, successCallback, errorCallback);

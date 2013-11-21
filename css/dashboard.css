@@ -33,7 +33,11 @@ menu .button {
 	color: #4388fd;
 	position: absolute;
 	right: 0;
-	margin-top: -19px; /* MAGIC NUMBER */
+	margin-top: -19px;
+}
+
+menu .on-off-button {
+	cursor: pointer;
 }
 
 menu .on-off-button .on,
@@ -45,6 +49,11 @@ menu .on-off-button .off {
 menu .on-off-button.on .on,
 menu .on-off-button .off {
 	border: 1px solid #4388fd;
+}
+
+menu .on-off-button .on,
+menu .on-off-button.on .off {
+	border: 0;
 }
 
 .vessel {
@@ -75,6 +84,62 @@ menu .on-off-button .off {
 	position: absolute;
 }
 
+.alert-overlay {
+	display: none;
+}
+
+.alert-overlay,
+.alert-overlay-bg {
+	left: 0;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+}
+
+.alert-overlay-bg {
+	background: #000;
+	opacity: 0.3;
+}
+
+.master-list {
+	background: #000;
+	position: absolute;
+	z-index: 100;
+}
+
+.master-list h2,
+.master-list-item {
+	line-height: 2em;
+}
+
+.master-list h2 {
+	border-color: #4388fd;
+	border-style: solid;
+	border-width: 1px 0;
+	color: #4388fd;
+	font-weight: lighter;
+	padding: 5px 0;
+	text-align: center;
+}
+
+.master-list-item {
+	border-bottom: 1px solid #303030;
+	padding: 5px 0 0 40px;
+}
+
+.master-list-item img {
+	height: 25px;
+	left: 0;
+	position: absolute;
+	width: 40px;
+}
+
+.master-list-item.selected img {
+	background: transparent url(/images/check-mark.png) no-repeat center center;
+}
+
 /*                           *\
 
      SMALL & MEDIUM SHARED
@@ -96,7 +161,7 @@ menu .on-off-button .off {
 		border-right: 1px solid #303030;
 		float: left;
 		height: 150px;
-		margin: 5% 0 0 3%;
+		margin: 20px 0 0 3%;
 		padding-top: 0;
 		width: 30%;
 	}
@@ -111,7 +176,7 @@ menu .on-off-button .off {
 		float: none;
 		height: auto;
 		margin: 0 3%;
-		padding-top: 5%;
+		padding-top: 20px;
 		width: 94%;
 	}
 
@@ -160,11 +225,24 @@ menu .on-off-button .off {
 		height: 280px;
 	}
 
+	.vessel-animation {
+		position: absolute;
+		top: 40px;
+		background: transparent url(/images/vessel-animation-small.png) no-repeat center center;
+		height: 280px;
+		width: 100%;
+	}
+
 	.demo-mode {
 		font-size: 10px;
 		padding: 5px 10px;
 		right: 17px;
 		top: 17px;
+	}
+
+	.master-list {
+		bottom: 0;
+		width: 100%;
 	}
 }
 
@@ -268,10 +346,26 @@ menu .on-off-button .off {
 		height: 480px;
 	}
 
+	.vessel-animation {
+		position: absolute;
+		top: 110px;
+		left: 3px;
+		background: transparent url(/images/vessel-animation-large.png) no-repeat center center;
+		height: 480px;
+		width: 100%;
+	}
+
 	.demo-mode {
 		padding: 10px 20px;
 		right: 20px;
 		top: 20px;
+	}
+
+	.master-list {
+		border: 1px solid #888;
+		left: 120px;
+		top: 180px;
+		width: 260px;
 	}
 }
 
