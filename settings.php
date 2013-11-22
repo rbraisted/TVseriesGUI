@@ -4,15 +4,19 @@
 	<link type="text/css" rel="stylesheet" href="/css/settings.css">
 	<script type="text/javascript" src="/js/settings.js"></script>
 
-	<h1>Settings</h1>
+	<div id="settings-menu" class="smc mmc lsb">
+		<a href="#">Button</a><br>
+		<a href="#">Button</a><br>
+		<a href="#">Button</a><br>
+	</div>
 
-	<br>
-	<br>
-	<div>Technician mode</div>
-	<a id="technician-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+	<div id="settings-main" class="smc mmc lmc">
+		<div>Technician mode</div>
+		<a id="technician-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
 
-	<br>
-	<br>
-	<div>Demo mode</div>
-	<a id="demo-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+		<br>
+		<br>
+		<div>Demo mode</div>
+		<a id="demo-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+	</div>
 </div>

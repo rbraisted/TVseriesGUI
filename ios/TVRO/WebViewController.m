@@ -64,6 +64,7 @@
 		NSArray* pathComponents = [request.URL pathComponents];
 		if([request.URL.host isEqualToString:@"updates"]) {
 			if ([pathComponents[1] isEqualToString:@"device-versions"]) {
+				//	tvro://updates/device-versions
 				NSString* tv1DeviceVersion = [updatesManager deviceVersionForAntType:@"tv1"];
 				NSString* tv3DeviceVersion = [updatesManager deviceVersionForAntType:@"tv3"];
 				NSString* tv5DeviceVersion = [updatesManager deviceVersionForAntType:@"tv5"];
@@ -77,6 +78,7 @@
 				NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(4, [pathComponents count]-4)] componentsJoinedByString:@"/"];
 				[updatesManager startDownloadForAntType:antType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
 			} else if ([pathComponents[1] isEqualToString:@"install"]) {
+				//	tvro://updates/install/antenna-type
 				NSString* antType = [NSString stringWithString:pathComponents[2]];
 				[updatesManager startUploadForAntType:antType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
 			}
