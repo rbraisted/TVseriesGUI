@@ -182,13 +182,16 @@
 		width: 100%;
 	}
 
+	.back-btn,
 	.updates-menu,
-	.updates-main {
+	.technician-mode .updates-menu,
+	.technician-mode .updates-main {
 		display: none;
 	}
 
-	.updates-menu.selected,
-	.updates-main.selected {
+	.technician-mode .back-btn,
+	.technician-mode .updates-menu.selected,
+	.technician-mode .updates-main.selected {
 		display: block;
 	}
 }
@@ -243,11 +246,20 @@
 	}
 
 	.lmc {
-		left: 260px;
+		left: 0;
 		right: 0;
 	}
 
+	.technician-mode .lmc {
+		left: 260px;
+	}
+
 	.lsb {
+		display: none;
 		width: 260px;
+	}
+
+	.technician-mode .lsb {
+		display: block;
 	}
 }

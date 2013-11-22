@@ -20,7 +20,7 @@ var TVRO = function() {
 	return self;
 };
 
-TVRO.Cookies = function() {
+TVRO.CookieManager = function() {
 	var self = {};
 
 	self.getCookie = function(key) {

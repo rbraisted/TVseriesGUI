@@ -5,6 +5,8 @@
 	<script type="text/javascript" src="/js/settings.js"></script>
 
 	<h1>Settings</h1>
+	<br>
 	<div id="technician-mode-button">Technician mode</div>
+	<br>
 	<div id="user-mode-button">Non technician mode</div>
 </div>

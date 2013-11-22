@@ -1,6 +1,7 @@
 TVRO.Updates = function() {
 	var self = {},
 		updateInterval,
+		cookieManager = new TVRO.CookieManager(),
 		webService = new TVRO.WebService(),
 		connectedAntType = '',
 		selectedAntType = '',
@@ -58,6 +59,30 @@ TVRO.Updates = function() {
 	};
 
 	self.update = function() {
+		var technicianMode = Boolean(cookieManager.getCookie('technician-mode'));
+		$('#updates-page').toggleClass('technician-mode', technicianMode);
+
+		webService.getAntennaVersions(function(responseXml) {
+			var xml = $(responseXml),
+				error = xml.find('message').attr('error'),
+				antType = xml.find('au model').text().toLowerCase(),
+				systemVersion = xml.find('current').text();
+
+			connectedAntType = antType;
+			$('#tv1, #tv3, #tv5, #tv6').removeClass('connected');
+			$('#'+connectedAntType).toggleClass('connected', true);
+
+			if (!technicianMode) {
+				selectedAntType = connectedAntType;
+				$('#tv1, #tv3, #tv5, #tv6').removeClass('selected');
+				$('#'+connectedAntType).toggleClass('selected', true);
+			}
+
+			ants[antType].systemVersion = systemVersion;
+			$('#'+antType+'-system-version').text(ants[antType].systemVersion);
+			if (selectedAntType == antType) $('#selected-system-version').text(ants[antType].portalVersion);
+		});
+
 		for (var antType in ants) {
 			(function(antType) {
 				webService.getPortalVersion(antType, function(responseXml) {
@@ -71,21 +96,6 @@ TVRO.Updates = function() {
 				});	
 			}(antType));
 		}
-
-		webService.getAntennaVersions(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				antType = xml.find('au model').text().toLowerCase(),
-				systemVersion = xml.find('current').text();
-
-			connectedAntType = antType;
-			$('#tv1, #tv3, #tv5, #tv6').removeClass('connected');
-			$('#'+connectedAntType).toggleClass('connected', true);
-
-			ants[antType].systemVersion = systemVersion;
-			$('#'+antType+'-system-version').text(ants[antType].systemVersion);
-			if (selectedAntType == antType) $('#selected-system-version').text(ants[antType].portalVersion);
-		});
 	};
 
 	self.download = function() {
