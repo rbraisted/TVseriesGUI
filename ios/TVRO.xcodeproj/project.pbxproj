@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E9212D7B1831B636008FCDCD /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9212D7A1831B636008FCDCD /* UpdatesManager.m */; };
+		E9B363A2183EEAE600575839 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E9B363A1183EEAE600575839 /* Settings.bundle */; };
 		E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
 		E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */; };
 		E9B97C6F1829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
@@ -36,6 +37,7 @@
 		E9212D791831B636008FCDCD /* UpdatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesManager.h; sourceTree = "<group>"; };
 		E9212D7A1831B636008FCDCD /* UpdatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesManager.m; sourceTree = "<group>"; };
 		E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatesManagerDelegate.h; sourceTree = "<group>"; };
+		E9B363A1183EEAE600575839 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E9B97C671829A14A007AA4A3 /* TVRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B97C6A1829A14A007AA4A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +122,7 @@
 				E9212D7A1831B636008FCDCD /* UpdatesManager.m */,
 				E9B97D241829AA8D007AA4A3 /* WebViewController.h */,
 				E9B97D251829AA8D007AA4A3 /* WebViewController.m */,
+				E9B363A1183EEAE600575839 /* Settings.bundle */,
 				E9B97C7C1829A14A007AA4A3 /* Images.xcassets */,
 				E9B97C711829A14A007AA4A3 /* Supporting Files */,
 			);
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9B97C751829A14A007AA4A3 /* InfoPlist.strings in Resources */,
+				E9B363A2183EEAE600575839 /* Settings.bundle in Resources */,
 				E9B97C7D1829A14A007AA4A3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

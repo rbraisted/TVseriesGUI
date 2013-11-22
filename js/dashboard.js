@@ -1,4 +1,4 @@
-TVRO.Dashboard = function() {
+TVRO.DashboardPage = function() {
 	var self = {},
 		updateInterval,
 		webService = new TVRO.WebService();
@@ -100,6 +100,6 @@ TVRO.Dashboard = function() {
 };
 
 $(document).ready(function() {
-	window.tvro.dashboard = new TVRO.Dashboard();
-	window.tvro.dashboard.init();
+	window.tvro.dashboardPage = new TVRO.DashboardPage();
+	window.tvro.dashboardPage.init();
 });

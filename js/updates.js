@@ -1,4 +1,4 @@
-TVRO.Updates = function() {
+TVRO.UpdatesPage = function() {
 	var self = {},
 		updateInterval,
 		cookieManager = new TVRO.CookieManager(),
@@ -177,6 +177,6 @@ TVRO.Updates = function() {
 };
 
 $(document).ready(function() {
-	window.tvro.updates = new TVRO.Updates();
-	window.tvro.updates.init();
+	window.tvro.updatesPage = new TVRO.UpdatesPage();
+	window.tvro.updatesPage.init();
 });

@@ -15,7 +15,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-		
+	
+	NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"technician-mode"]);
 	BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
 	self.window.rootViewController = bonjourViewController;
 

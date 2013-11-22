@@ -1,19 +1,17 @@
 var TVRO = function() {
-	var self = {};
+	var self = {},
+		ios = [];
 
 	$('#nav-button').click(function() {
 		$(this).toggleClass('selected');
 		$('#nav').toggleClass('toggled');
 	});
 
-	//	all immediate kids of tvro
-	//	will have their 'ios' function
-	//	called if it's available
 	self.ios = function(f) {
-		for (var key in self) {
-			if (typeof self[key]['ios'] == 'function') {
-				self[key].ios();
-			}
+		if (typeof f == 'function') {
+			ios.push(f);
+		} else {
+			for (var i = 0; i < ios.length; i++) ios[i]();
 		}
 	}
 
@@ -51,7 +49,6 @@ TVRO.CookieManager = function() {
 		key = encodeURIComponent(key);
 		domain = domain ? '; domain=' + domain : '';
 		path = path ? '; path=' + path : '';
-
 		document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + domain + path;
 	};
 
@@ -66,6 +63,15 @@ TVRO.WebService = function() {
 	var self = {},
 		antWebServiceUrl = '/dummy/antservice.php',
 		xmlWebServiceUrl = '/dummy/xmlservices.php';
+
+	(function() {
+		var cookieManager = new TVRO.CookieManager(),
+			demoMode = cookieManager.hasCookie('demo-mode');
+		if (demoMode) {
+			antWebServiceUrl = '/dummy/antservice.php';
+			xmlWebServiceUrl = '/dummy/xmlservices.php';		
+		}
+	}());
 
 	function requestJsonAsXmlString(requestJson) {
 		var responseXml = '';
@@ -140,7 +146,6 @@ TVRO.WebService = function() {
 	self.setAutoswitchService = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'set_autoswitch_service', requestJson, successCallback, errorCallback);
 	};
-
 
 	self.setProductRegistration = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'set_product_registration', requestJson, successCallback, errorCallback);
