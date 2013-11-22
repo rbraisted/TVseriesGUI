@@ -3,27 +3,3 @@
     ^3^
 
 \*       */
-
-.of-btn {
-	color: #4388fd;
-	cursor: pointer;
-	display: inline-block;
-}
-
-.of-btn .on,
-.of-btn .off {
-	border-style: solid;
-	border-width: 1px;
-	display: inline-block;
-	padding: 8px 13px 3px;
-}
-
-.of-btn.on .on,
-.of-btn .off {
-	border-color: #4388fd;
-}
-
-.of-btn .on,
-.of-btn.on .off {
-	border-color: transparent;
-}

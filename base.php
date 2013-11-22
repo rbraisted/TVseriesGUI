@@ -13,32 +13,32 @@
 			<a href="/" class="tracvision-logo">
 				<img src="/images/img.gif">
 			</a>
-			<div id="status-button" class="status-button">
+			<a id="status-btn" href="#" class="status-btn">
 				<img src="/images/img.gif">
 				STATUS
-			</div>
+			</a>
 			<div id="status" class="status">Everything is OK!</div>
-			<div id="nav-button" class="nav-button">
+			<a id="nav-btn" href="#" class="nav-btn">
 				<img src="/images/img.gif">
 				MENU
-			</div>
+			</a>
 			<nav id="nav">
-				<a href="/dashboard.php" class="dashboard-button">
+				<a href="/dashboard.php" class="dashboard-btn">
 					<img src="/images/img.gif">
 					Dashboard
-				</a><a href="/satellites.php" class="satellites-button">
+				</a><a href="/satellites.php" class="satellites-btn">
 					<img src="/images/img.gif">
 					Satellites
-			 	</a><a href="/autoswitch.php" class="autoswitch-button">
+			 	</a><a href="/autoswitch.php" class="autoswitch-btn">
 					<img src="/images/img.gif">
 					Autoswitch
-			 	</a><a href="/settings.php" class="settings-button">
+			 	</a><a href="/settings.php" class="settings-btn">
 					<img src="/images/img.gif">
 					Settings
-			 	</a><a href="/updates.php" class="updates-button">
+			 	</a><a href="/updates.php" class="updates-btn">
 			 		<img src="/images/img.gif">
 			 		Updates
-			 	</a><a href="/diagnostics/" class="diagnostics-button">
+			 	</a><a href="/diagnostics/" class="diagnostics-btn">
 			 		<img src="/images/img.gif">
 					Diagnostics
 				</a>

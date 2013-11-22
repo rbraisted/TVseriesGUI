@@ -6,6 +6,12 @@
 
 @import 'reset.css';
 
+/**\
+
+  
+
+\**/
+
 @font-face {
 	font-family: Helvetica;
 	src: url(/fonts/HelveticaLTStd-Roman.otf);
@@ -27,29 +33,150 @@
 	font-style: normal;
 }
 
+/*               *\
+
+    BASE STYLES
+
+\*               */
+
 html,
 body {
 	background: #06102a;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
+	font-weight: normal;
 	color: #fff;
 	height: 100%;
-	/*letter-spacing: 0.035em;*/
-	/*text-rendering: optimizeLegibility;*/
 	width: 100%;
-}
-
-h1, h2, h3, h4, h5, h6, img {
-	font-size: 16px;
-	font-weight: normal;
-	margin: 0;
-	padding: 0;
 }
 
 a {
 	color: inherit;
 	text-decoration: inherit;
 }
+
+.page,
+.bg,
+.smc,
+.mmc,
+.lmc,
+.lsb,
+.row,
+.back-btn {
+	display: block;
+}
+
+.bg,
+.row,
+.back-btn {
+	width: 100%;
+}
+
+.bg,
+.col {
+	height: 100%;
+}
+
+.bg {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+.back-btn img {
+	display: inline;
+	background: transparent url(/images/back.png) no-repeat center center;
+	height: 40px;
+	width: 40px;
+	vertical-align: middle;
+}
+
+.back-btn {
+	background: #020306;
+}
+
+.of-btn {
+	color: #4388fd;
+	display: inline-block;
+}
+
+.of-btn .on,
+.of-btn .off {
+	border-color: transparent;
+	border-style: solid;
+	border-width: 1px;
+	display: inline-block;
+	padding: 8px 13px 3px;
+}
+
+.of-btn.on .on,
+.of-btn:not(.on) .off {
+	border-color: #4388fd;
+}
+
+@media screen and (max-width: 880px) {
+	.page {
+		position: relative;
+	}
+
+	.smc,
+	.mmc,
+	.lmc {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 880px) {
+	.back-btn {
+		display: none;
+	}
+
+	.page,
+	.lmc,
+	.lsb {
+		bottom: 0;
+		position: absolute;
+	}
+
+	.page {
+		top: 95px;
+	}
+
+	.page,
+	.lsb {
+		left: 0;
+	}
+
+	.lmc,
+	.lsb {
+		top: 0;
+	}
+
+	.page,
+	.lmc {
+		right: 0;
+	}
+
+	.lmc {
+		left: 260px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 header {
 	background: #002879; /*	#002879 - #001339 */
@@ -59,8 +186,8 @@ header {
 
 .tracvision-logo,
 .tracvision-logo img,
-.status-button,
-.nav-button {
+.status-btn,
+.nav-btn {
 	height: 55px;
 }
 
@@ -78,8 +205,8 @@ header {
 	width: 133px;
 }
 
-header .status-button,
-header .nav-button {
+header .status-btn,
+header .nav-btn {
 	color: #fff;
 	font-size: 12px;
 	font-weight: lighter;
@@ -89,19 +216,19 @@ header .nav-button {
 	top: 0;
 }
 
-header .status-button img,
-header .nav-button img {
+header .status-btn img,
+header .nav-btn img {
 	background: transparent url(/images/status-icon.png) no-repeat center center;
 	display: block;
 	height: 36px;
 	width: 53px;
 }
 
-header .status-button {
+header .status-btn {
 	left: 0;
 }
 
-header .nav-button {
+header .nav-btn {
 	right: 0;
 }
 
@@ -155,27 +282,27 @@ header nav a {
 		width: 100%;
 	}
 
-	header nav .dashboard-button img {
+	header nav .dashboard-btn img {
 		background: transparent url(/images/dashboard-icon-large.png) no-repeat center bottom;
 	}
 
-	header nav .satellites-button img {
+	header nav .satellites-btn img {
 		background: transparent url(/images/satellites-icon-large.png) no-repeat center bottom;
 	}
 
-	header nav .autoswitch-button img {
+	header nav .autoswitch-btn img {
 		background: transparent url(/images/autoswitch-icon-large.png) no-repeat center bottom;
 	}
 
-	header nav .settings-button img {
+	header nav .settings-btn img {
 		background: transparent url(/images/settings-icon-large.png) no-repeat center bottom;
 	}
 
-	header nav .updates-button img {
+	header nav .updates-btn img {
 		background: transparent url(/images/updates-icon-large.png) no-repeat center bottom;
 	}
 
-	header nav .diagnostics-button img {
+	header nav .diagnostics-btn img {
 		background: transparent url(/images/diagnostics-icon-large.png) no-repeat center bottom;
 	}
 }
@@ -229,7 +356,7 @@ header nav a {
 \*                */
 
 @media screen and (min-width: 880px) {
-	.nav-button {
+	.nav-btn {
 		display: none;
 	}
 
@@ -252,27 +379,27 @@ header nav a {
 		width: 40px;
 	}
 
-	header nav .dashboard-button img {
+	header nav .dashboard-btn img {
 		background: transparent url(/images/dashboard-icon-small.png) no-repeat center center;
 	}
 
-	header nav .satellites-button img {
+	header nav .satellites-btn img {
 		background: transparent url(/images/satellites-icon-small.png) no-repeat center center;
 	}
 
-	header nav .autoswitch-button img {
+	header nav .autoswitch-btn img {
 		background: transparent url(/images/autoswitch-icon-small.png) no-repeat center center;
 	}
 
-	header nav .settings-button img {
+	header nav .settings-btn img {
 		background: transparent url(/images/settings-icon-small.png) no-repeat center center;
 	}
 
-	header nav .updates-button img {
+	header nav .updates-btn img {
 		background: transparent url(/images/updates-icon-small.png) no-repeat center center;
 	}
 
-	header nav .diagnostics-button img {
+	header nav .diagnostics-btn img {
 		background: transparent url(/images/diagnostics-icon-small.png) no-repeat center center;
 	}
 }

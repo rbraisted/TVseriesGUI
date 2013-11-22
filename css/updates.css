@@ -4,49 +4,6 @@
 
 \*       */
 
-.page,
-.bg,
-.smc,
-.mmc,
-.lmc,
-.lsb,
-.row,
-.back-btn {
-	display: block;
-}
-
-.bg,
-.row,
-.back-btn {
-	width: 100%;
-}
-
-.bg,
-.col {
-	height: 100%;
-}
-
-.bg {
-	left: 0;
-	position: absolute;
-	top: 0;
-}
-
-.back-btn img {
-	display: inline;
-	background: transparent url(/images/back.png) no-repeat center center;
-	height: 40px;
-	width: 40px;
-	vertical-align: middle;
-}
-
-.back-btn {
-	background: #020306;
-}
-
-
-
-
 .ant {
 	background: #1b2846;
 	position: relative;
@@ -179,16 +136,6 @@
 \*                           */
 
 @media screen and (max-width: 880px) {
-	.page {
-		position: relative;
-	}
-
-	.smc,
-	.mmc,
-	.lmc {
-		width: 100%;
-	}
-
 	.back-btn,
 	.updates-menu,
 	.technician-mode .updates-menu,
@@ -230,28 +177,6 @@
 \*                */
 
 @media screen and (min-width: 880px) {
-	.back-btn {
-		display: none;
-	}
-
-	.page,
-	.lmc,
-	.lsb {
-		bottom: 0;
-		position: absolute;
-	}
-
-	.page {
-		left: 0;
-		right: 0;
-		top: 95px;
-	}
-
-	.lmc,
-	.lsb {
-		top: 0;
-	}
-
 	.lmc {
 		left: 0;
 		right: 0;

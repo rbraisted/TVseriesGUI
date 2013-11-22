@@ -2,7 +2,7 @@ var TVRO = function() {
 	var self = {},
 		ios = [];
 
-	$('#nav-button').click(function() {
+	$('#nav-btn').click(function() {
 		$(this).toggleClass('selected');
 		$('#nav').toggleClass('toggled');
 	});

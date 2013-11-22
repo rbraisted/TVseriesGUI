@@ -4,10 +4,6 @@
 
 \*       */
 
-.dashboard {
-	background: #06102a;
-}
-
 menu {
 	background: #0c0c0c;
 	margin: 0;
@@ -35,26 +31,6 @@ menu .button {
 	position: absolute;
 	right: 0;
 	margin-top: -19px;
-}
-
-menu .on-off-button {
-	cursor: pointer;
-}
-
-menu .on-off-button .on,
-menu .on-off-button .off {
-	display: inline;
-	padding: 8px 8px 3px;
-}
-
-menu .on-off-button.on .on,
-menu .on-off-button .off {
-	border: 1px solid #4388fd;
-}
-
-menu .on-off-button .on,
-menu .on-off-button.on .off {
-	border: 0;
 }
 
 .vessel {
@@ -148,7 +124,7 @@ menu .on-off-button.on .off {
 \*                           */
 
 @media screen and (max-width: 880px) {
-	.dashboard {
+	.page {
 		background: #0c0c0c;
 		overflow-x: hidden;
 		position: relative;
@@ -191,30 +167,13 @@ menu .on-off-button.on .off {
 		width: 94px;
 	}
 
-	.sat-signal-0 {
-		background: transparent url(/images/sat-signal-0-small.png) no-repeat center center;
-	}
-
-	.sat-signal-1 {
-		background: transparent url(/images/sat-signal-1-small.png) no-repeat center center;
-	}
-
-	.sat-signal-2 {
-		background: transparent url(/images/sat-signal-2-small.png) no-repeat center center;
-	}
-
-	.sat-signal-3 {
-		background: transparent url(/images/sat-signal-3-small.png) no-repeat center center;
-	}
-
-	.sat-signal-4 {
-		background: transparent url(/images/sat-signal-4-small.png) no-repeat center center;
-	}
-
-	.sat-signal-5 {
-		background: transparent url(/images/sat-signal-5-small.png) no-repeat center center;
-	}
-
+	.sat-signal-0 { background: transparent url(/images/sat-signal-0-small.png) no-repeat center center; }
+	.sat-signal-1 { background: transparent url(/images/sat-signal-1-small.png) no-repeat center center; }
+	.sat-signal-2 { background: transparent url(/images/sat-signal-2-small.png) no-repeat center center; }
+	.sat-signal-3 { background: transparent url(/images/sat-signal-3-small.png) no-repeat center center; }
+	.sat-signal-4 { background: transparent url(/images/sat-signal-4-small.png) no-repeat center center; }
+	.sat-signal-5 { background: transparent url(/images/sat-signal-5-small.png) no-repeat center center; }
+	
 	.vessel {
 		height: 320px;
 		padding: 20px 0;
@@ -278,7 +237,7 @@ menu .on-off-button.on .off {
 		background: #06102a;
 	}
 
-	.dashboard {
+	.page {
 		bottom: 0;
 		overflow: hidden;
 		position: absolute;
@@ -308,29 +267,12 @@ menu .on-off-button.on .off {
 		width: 125px;
 	}
 
-	.sat-signal-0 {
-		background: transparent url(/images/sat-signal-0-large.png) no-repeat center center;
-	}
-
-	.sat-signal-1 {
-		background: transparent url(/images/sat-signal-1-large.png) no-repeat center center;
-	}
-
-	.sat-signal-2 {
-		background: transparent url(/images/sat-signal-2-large.png) no-repeat center center;
-	}
-
-	.sat-signal-3 {
-		background: transparent url(/images/sat-signal-3-large.png) no-repeat center center;
-	}
-
-	.sat-signal-4 {
-		background: transparent url(/images/sat-signal-4-large.png) no-repeat center center;
-	}
-
-	.sat-signal-5 {
-		background: transparent url(/images/sat-signal-5-large.png) no-repeat center center;
-	}
+	.sat-signal-0 { background: transparent url(/images/sat-signal-0-large.png) no-repeat center center; }
+	.sat-signal-1 { background: transparent url(/images/sat-signal-1-large.png) no-repeat center center; }
+	.sat-signal-2 { background: transparent url(/images/sat-signal-2-large.png) no-repeat center center; }
+	.sat-signal-3 { background: transparent url(/images/sat-signal-3-large.png) no-repeat center center; }
+	.sat-signal-4 { background: transparent url(/images/sat-signal-4-large.png) no-repeat center center; }
+	.sat-signal-5 { background: transparent url(/images/sat-signal-5-large.png) no-repeat center center; }
 
 	.vessel {
 		height: 520px;

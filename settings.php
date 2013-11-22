@@ -9,10 +9,10 @@
 	<br>
 	<br>
 	<div>Technician mode</div>
-	<div id="technician-mode-btn" class="of-btn"><div class="on">On</div><div class="off">Off</div></div>
+	<a id="technician-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
 
 	<br>
 	<br>
 	<div>Demo mode</div>
-	<div id="demo-mode-btn" class="of-btn"><div class="on">On</div><div class="off">Off</div></div>
+	<a id="demo-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
 </div>

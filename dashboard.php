@@ -1,6 +1,6 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
-<div id="dashboard" class="dashboard">
+<div id="dashboard-page" class="page">
 	<link type="text/css" rel="stylesheet" href="/css/dashboard.css">
 	<script type="text/javascript" src="/js/dashboard.js"></script>
 
@@ -16,13 +16,11 @@
 			<h3>AUTOSWITCH</h3>
 			<div id="autoswitch">
 				<div id="autoswitch-label" class="label">Autoswitch</div>
-				<div id="autoswitch-button" class="on-off-button button">
-					<div class="on">On</div><div class="off">Off</div>
-				</div>
+				<a id="autoswitch-button" class="of-btn button"><div class="on">On</div><div class="off">Off</div></a>
 			</div>
 			<div id="master">
 				<div id="master-label" class="label">Master Bedroom</div>
-				<div id="master-button" class="button">Switch</div>
+				<a id="master-button" href="#" class="button">Switch</a>
 			</div>
 		</section>
 		<section class="location">
@@ -37,7 +35,7 @@
 		<section class="sat">
 			<h3>SATELLITE</h3>
 			<div id="sat-name" class="label"></div>
-			<div id="sat-button" class="button">Switch</div>
+			<a id="sat-button" href="#" class="button">Switch</a>
 			<div id="sat-id" class="label"></div>
 			<img id="sat-signal" class="sat-signal sat-signal-0" src="/images/img.gif">
 		</section>
