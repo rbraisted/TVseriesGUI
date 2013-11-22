@@ -43,7 +43,12 @@ TVRO.Updates = function() {
 		});
 
 		$('#install-btn').click(function() {
-			self.install();
+			self.upload(function(responseXml) {
+				var xml = $(xml),
+					error = xml.find('message').attr('error'),
+					fileName = xml.find('file_name').text();
+				self.install(fileName);
+			});
 		});
 
 		self.startUpdating();
@@ -102,27 +107,14 @@ TVRO.Updates = function() {
 		window.location = ants[selectedAntType].portalUrl;
 	};
 
-	self.upload = function() {
+	self.upload = function(successCallback, errorCallback) {
 		$.ajaxFileUpload({
 			url : '/xmlservices.php/upload_software',
 			secureuri : false,
-			fileElementId : 'install-input',
+			fileElementId : 'upload',
 			dataType : 'xml',
-			success : function(responseXml) {
-				var xml = $(xml),
-					error = xml.find('message').attr('error'),
-					fileName = xml.find('file_name').text();
-
-				console.log('success!');
-				console.log('responseXml:' + responseXml);
-				console.log('fileName:' + fileName);
-
-				self.install(fileName);
-			},
-			error : function(responseXml) {
-				console.log('error!');
-				console.log('responseXml:' + responseXml);
-			}
+			success : successCallback,
+			error : errorCallback
 		});
 	};
 
@@ -170,6 +162,7 @@ TVRO.Updates = function() {
 		}
 
 		self.upload = function() {
+			console.log("!");
 			window.location = 'tvro://updates/upload/'+selectedAntType;
 		};
 

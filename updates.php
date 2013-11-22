@@ -69,7 +69,7 @@
 				<div class="label">My Computer</div>
 				<div class="ver">Software Version <span id="selected-device-version"></span> ready to install</div>
 				<div class="cta">Install Update</div>
-				<a id="install-btn" href="#" class="btn"></a>
+				<a id="install-btn" href="#" class="btn"><input id="upload" type="file" /></a>
 			</div>
 		</div>
 

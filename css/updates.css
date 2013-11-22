@@ -164,6 +164,13 @@
 	z-index: 1;
 }
 
+.updates-main .btn input {
+	cursor: pointer;
+	height: 100%;
+	opacity: 0.01;
+	width: 100%;
+}
+
 
 /*                           *\
 
