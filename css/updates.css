@@ -10,12 +10,14 @@
 .mmc,
 .lmc,
 .lsb,
-.row {
+.row,
+.back-btn {
 	display: block;
 }
 
 .bg,
-.row {
+.row,
+.back-btn {
 	width: 100%;
 }
 
@@ -30,8 +32,17 @@
 	top: 0;
 }
 
+.back-btn img {
+	display: inline;
+	background: transparent url(/images/back.png) no-repeat center center;
+	height: 40px;
+	width: 40px;
+	vertical-align: middle;
+}
 
-
+.back-btn {
+	background: #020306;
+}
 
 
 
@@ -55,7 +66,7 @@
 }
 
 .ant img {
-	background: transparent url(/images/list-mark.png) no-repeat center center;
+	background: transparent url(/images/forward.png) no-repeat center center;
 	height: 100%;
 	right: 0;
 	width: 30px;
@@ -170,6 +181,16 @@
 	.lmc {
 		width: 100%;
 	}
+
+	.updates-menu,
+	.updates-main {
+		display: none;
+	}
+
+	.updates-menu.selected,
+	.updates-main.selected {
+		display: block;
+	}
 }
 
 /*                *\
@@ -199,6 +220,10 @@
 \*                */
 
 @media screen and (min-width: 880px) {
+	.back-btn {
+		display: none;
+	}
+
 	.page,
 	.lmc,
 	.lsb {

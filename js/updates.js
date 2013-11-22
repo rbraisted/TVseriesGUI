@@ -21,21 +21,27 @@ TVRO.Updates = function() {
 		}());
 
 	self.init = function() {
-		$('#tv1, #tv3, #tv5, #tv6').click(function() {
-			$('#tv1, #tv3, #tv5, #tv6').removeClass('selected');
-			$(this).toggleClass('selected', true);
+		$('#tv1, #tv3, #tv5, #tv6').click(function() {			
 			selectedAntType = this.id;
 			$('#selected-ant-type').text(selectedAntType.toUpperCase());
 			$('#selected-portal-version').text(ants[selectedAntType].portalVersion);
 			$('#selected-system-version').text(ants[selectedAntType].systemVersion);
 			$('#selected-device-version').text(ants[selectedAntType].deviceVersion);
+
+			$('#tv1, #tv3, #tv5, #tv6, #updates-menu').removeClass('selected');
+			$('#'+this.id+', #updates-main').toggleClass('selected', true);
 		});
 
-		$('#download-button').click(function() {
+		$('#back-btn').click(function() {
+			$('#updates-main').removeClass('selected');
+			$('#updates-menu').toggleClass('selected', true);
+		});
+
+		$('#download-btn').click(function() {
 			self.download();
 		});
 
-		$('#install-button').click(function() {
+		$('#install-btn').click(function() {
 			self.install();
 		});
 
@@ -83,7 +89,7 @@ TVRO.Updates = function() {
 	};
 
 	self.download = function() {
-		window.location = self[selectedAntType].portalUrl;
+		window.location = ants[selectedAntType].portalUrl;
 	};
 
 	self.upload = function() {

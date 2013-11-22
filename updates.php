@@ -1,12 +1,11 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
-<div id="updates-page" class="page">
+<div id="updates-page" class="page technician-mode">
 	<link type="text/css" rel="stylesheet" href="/css/updates.css">
 	<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="/js/updates.js"></script>
 
-
-	<div id="updates-menu" class="mmc smc lsb updates-menu">
+	<div id="updates-menu" class="mmc smc lsb updates-menu selected">
 		<a id="tv1" href="#" class="ant row">
 			<div class="type">TV1</div>
 			<div class="conn">connected</div>
@@ -50,6 +49,8 @@
 	</div>
 
 	<div id="updates-main" class="smc mmc lmc updates-main">
+		<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Updates</a>
+
 		<div id="selected-ant-type" class="type">TV5</div>
 
 		<div class="row por">
@@ -58,7 +59,7 @@
 				<div class="label">Latest Software Available</div>
 				<div class="ver">Software Version <span id="selected-portal-version"></span> available to download</div>
 				<div class="cta">Download Update</div>
-				<a id="download-button" href="#" class="btn"></a>
+				<a id="download-btn" href="#" class="btn"></a>
 			</div>
 		</div>
 
@@ -68,7 +69,7 @@
 				<div class="label">My Computer</div>
 				<div class="ver">Software Version <span id="selected-device-version"></span> ready to install</div>
 				<div class="cta">Install Update</div>
-				<a id="install-button" href="#" class="btn"></a>
+				<a id="install-btn" href="#" class="btn"></a>
 			</div>
 		</div>
 
