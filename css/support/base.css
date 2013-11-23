@@ -1,0 +1,114 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+/* base */
+.menu-btn {
+	background: #031b42;
+	display: block;
+	margin-bottom: 2px;
+	padding: 10px 20px;
+	position: relative;
+}
+
+.menu-btn.selected {
+	background: #15438f;
+}
+
+.menu-btn img {
+	background: transparent url(/images/forward.png) no-repeat center center;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40px;
+}
+
+.accordion {
+	height: 36px; /* MAGIC NUMBER - needs to know size of .accordian-btn, which is determined by font-size + padding */
+	overflow: hidden;
+}
+
+.accordion.exp {
+	height: auto;
+}
+
+.accordion-btn {
+	background: transparent;
+	color: #ccc;
+	margin-bottom: 0;
+}
+
+.accordion-btn img {
+	background-image: url(/images/plus.png);
+}
+
+.accordion.exp .accordion-btn img {
+	background-image: url(/images/minus.png);
+}
+
+/* specific to this page */
+.contact-region {
+	padding: 0 20px 20px;
+}
+
+.region-name {
+	line-height: 130%;
+}
+
+.contact-region a {
+	border: 1px solid #298dff;
+	color: #298dff;
+	display: block;
+	margin-top: 6px;
+	padding: 10px;
+	text-align: center;
+}
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 880px) {
+
+}
+
+/*                *\
+
+     SMALL SOLO
+
+\*                */
+
+@media screen and (max-width: 540px) {
+
+}
+
+/*                 *\
+
+     MEDIUM SOLO
+
+\*                 */
+
+@media screen and (min-width: 540px) and (max-width: 880px) {
+
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 880px) {
+	.menu-btn img {
+		display: none;
+	}
+
+	.accordion {
+		height: auto;
+	}	
+}

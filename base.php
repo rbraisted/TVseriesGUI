@@ -38,9 +38,9 @@
 			 	</a><a href="/updates.php" class="updates-btn">
 			 		<img src="/images/img.gif">
 			 		Updates
-			 	</a><a href="/diagnostics/" class="diagnostics-btn">
+			 	</a><a href="/support/" class="support-btn">
 			 		<img src="/images/img.gif">
-					Diagnostics
+					Support
 				</a>
 			</nav>
 		</header>

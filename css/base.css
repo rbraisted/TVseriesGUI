@@ -44,7 +44,7 @@ body {
 	background: #06102a;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: lighter;
 	color: #fff;
 	height: 100%;
 	width: 100%;
@@ -150,6 +150,10 @@ a {
 	.lmc,
 	.lsb {
 		top: 0;
+	}
+
+	.lsb {
+		width: 260px;
 	}
 
 	.page,
@@ -302,8 +306,8 @@ header nav a {
 		background: transparent url(/images/updates-icon-large.png) no-repeat center bottom;
 	}
 
-	header nav .diagnostics-btn img {
-		background: transparent url(/images/diagnostics-icon-large.png) no-repeat center bottom;
+	header nav .support-btn img {
+		background: transparent url(/images/support-icon-large.png) no-repeat center bottom;
 	}
 }
 
@@ -399,7 +403,7 @@ header nav a {
 		background: transparent url(/images/updates-icon-small.png) no-repeat center center;
 	}
 
-	header nav .diagnostics-btn img {
-		background: transparent url(/images/diagnostics-icon-small.png) no-repeat center center;
+	header nav .support-btn img {
+		background: transparent url(/images/support-icon-small.png) no-repeat center center;
 	}
 }
