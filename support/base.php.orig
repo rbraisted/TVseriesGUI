@@ -5,18 +5,18 @@
 	<div id="support-menu" class="smc mmc lsb">
 		<div id="help-accordion" class="accordion">
 			<a id="help-accordion-btn" href="#" class="menu-btn accordion-btn"><img src="/images/img.gif">HELP</a>
-			<a href="/support/about-the-app.php" class="menu-btn"><img src="/images/img.gif">About the App</a>
-			<a href="/support/about-the-satellites.php" class="menu-btn"><img src="/images/img.gif">About the Satellites</a>
-			<a href="/support/technical-definitions.php" class="menu-btn"><img src="/images/img.gif">Technical Definitions</a>
-			<a href="/support/about-blockage.php" class="menu-btn"><img src="/images/img.gif">About Blockage</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">About the App</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">About the Satellites</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">Technical Definitions</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">About Blockage</a>
 		</div>
 
 		<div id="advanced-accordion" class="accordion">
 			<a id="advanced-accordion-btn" href="#" class="menu-btn accordion-btn"><img src="/images/img.gif">ADVANCED</a>
-			<a href="/support/diagnostic-log.php" class="menu-btn"><img src="/images/img.gif">Diagnostic Log</a>
-			<a href="/support/restart-system.php" class="menu-btn"><img src="/images/img.gif">Restart System</a>
-			<a href="/support/event-history.php" class="menu-btn"><img src="/images/img.gif">Event History</a>
-			<a href="/support/command-line.php" class="menu-btn"><img src="/images/img.gif">Command Line</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">Diagnostic Log</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">Restart System</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">Event History</a>
+			<a href="#" class="menu-btn"><img src="/images/img.gif">Command Line</a>
 		</div>
 
 		<div id="contact-accordion" class="accordion exp">

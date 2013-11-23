@@ -1,9 +1,9 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-<? include $_SERVER['DOCUMENT_ROOT'] . '/diagnostics/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/support/base.php'; ?>
 
-<div id="diagnostic-log" class="diagnostics-section">
-	<link type="text/css" rel="stylesheet" href="/css/diagnostics/diagnostic-log.css">
-	<script type="text/javascript" src="/js/diagnostics/diagnostic-log.js"></script>
+<div id="support-main" class="smc mmc lmc">
+	<link type="text/css" rel="stylesheet" href="/css/support/diagnostic-log.css">
+	<script type="text/javascript" src="/js/support/diagnostic-log.js"></script>
 
 	<a href="/diagnostics/" class="back-button">◂ Diagnostic Log</a>
 	

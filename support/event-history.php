@@ -1,9 +1,9 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-<? include $_SERVER['DOCUMENT_ROOT'] . '/diagnostics/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/support/base.php'; ?>
 
-<div id="event-history" class="diagnostics-section">
-	<link type="text/css" rel="stylesheet" href="/css/diagnostics/event-history.css">
-	<script type="text/javascript" src="/js/diagnostics/event-history.js"></script>
+<div id="support-main" class="smc mmc lmc">
+	<link type="text/css" rel="stylesheet" href="/css/support/event-history.css">
+	<script type="text/javascript" src="/js/support/event-history.js"></script>
 
 	<a href="/diagnostics/" class="back-button">◂ Event History</a>
 

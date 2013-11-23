@@ -1,0 +1,15 @@
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/support/base.php'; ?>
+
+<div id="support-main" class="smc mmc lmc">
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet lectus in magna hendrerit, at posuere leo mollis. Aenean nisi urna, sodales sed purus in, aliquet fermentum nisl. Sed in nibh libero. Donec varius purus nibh, et consequat velit commodo nec. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur viverra condimentum accumsan. Mauris dapibus magna vitae porta adipiscing. Pellentesque auctor quis massa id gravida. Nunc rutrum arcu in neque dictum aliquet ac non arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque ultrices gravida mi, ac fringilla nunc fringilla laoreet. Integer iaculis ut sem sit amet elementum. Aliquam lobortis justo eros, ut feugiat mi vestibulum nec. Mauris odio nisi, imperdiet ac nibh id, varius pulvinar augue. Duis condimentum tellus purus, eu venenatis neque porta malesuada.
+	<br><br>
+	Donec cursus dolor neque, sit amet vulputate arcu ornare a. Nulla facilisi. Nulla viverra cursus mauris, et laoreet nunc faucibus ut. Sed vitae adipiscing massa, tincidunt dapibus nulla. Nam ut mi arcu. Quisque dapibus tempus vehicula. Etiam ornare dui eget dui venenatis, id egestas mauris faucibus. Suspendisse ut dapibus metus, a feugiat neque. Fusce eget sapien ut nisi vehicula porta in sit amet nunc. Duis ut risus non purus tempor tempor.
+	<br><br>
+	Mauris vitae sapien sed quam aliquam gravida. Morbi scelerisque lacus dui, id tempor magna pharetra non. Pellentesque porttitor ligula nec ipsum hendrerit, in convallis nisi adipiscing. Morbi at convallis turpis. Maecenas fringilla at felis non consequat. Morbi euismod, metus sed feugiat posuere, nulla magna hendrerit mauris, sit amet fermentum augue felis eu quam. Donec id tellus magna. Sed fermentum, sem ut sagittis laoreet, neque orci ultrices libero, sagittis aliquam metus justo quis magna.
+	<br><br>
+	Ut suscipit ipsum eget velit tincidunt, at eleifend sem interdum. Nulla facilisi. Etiam mollis quis ligula nec ornare. Curabitur porttitor, lectus sit amet porta imperdiet, ipsum nulla ullamcorper libero, eu adipiscing quam massa at tellus. Donec tempus nibh eros, in bibendum enim eleifend nec. Nullam pulvinar consectetur sapien, vitae pharetra massa rhoncus at. In dignissim aliquam mauris quis adipiscing. Etiam dignissim eleifend auctor. Aliquam nec eleifend eros. Morbi congue fringilla nisi, quis lobortis lectus feugiat non.
+	<br><br>
+	Donec sit amet libero vehicula enim elementum malesuada. Proin aliquam, felis eu vulputate euismod, lorem ante sagittis risus, sed congue lectus urna vitae lacus. Nunc eu purus dui. Fusce placerat placerat volutpat. Nulla dapibus dictum felis. Mauris lectus eros, vulputate a orci vitae, vestibulum tempus velit. Aliquam erat volutpat. Curabitur feugiat tincidunt mauris, in lacinia nisl posuere non. In imperdiet euismod luctus.
+	<br><br>
+</div>
