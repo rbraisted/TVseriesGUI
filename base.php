@@ -9,38 +9,30 @@
 		<script type="text/javascript" src="/js/base.js"></script>
 	</head>
 	<body>
-		<header>
-			<a href="/" class="tracvision-logo">
+		<div class="header">
+			<a href="/" class="tracvision-logo"><img src="/images/img.gif"></a>
+			<a id="status-btn" href="#" class="status-btn"><img src="/images/img.gif">STATUS</a>
+			<a id="nav-btn" href="#" class="nav-btn"><img src="/images/img.gif">MENU</a>
+		</div>
+		<div id="status" class="status">Everything is OK!</div>
+		<div id="nav" class="nav">
+			<a id="dashboard-btn" href="/dashboard.php" class="dashboard-btn">
 				<img src="/images/img.gif">
-			</a>
-			<a id="status-btn" href="#" class="status-btn">
+				Dashboard
+			</a><a id="satellites-btn" href="/satellites.php" class="satellites-btn">
 				<img src="/images/img.gif">
-				STATUS
-			</a>
-			<div id="status" class="status">Everything is OK!</div>
-			<a id="nav-btn" href="#" class="nav-btn">
+				Satellites
+		 	</a><a id="autoswitch-btn" href="/autoswitch.php" class="autoswitch-btn">
 				<img src="/images/img.gif">
-				MENU
+				Autoswitch
+		 	</a><a id="settings-btn" href="/settings.php" class="settings-btn">
+				<img src="/images/img.gif">
+				Settings
+		 	</a><a id="updates-btn" href="/updates.php" class="updates-btn">
+		 		<img src="/images/img.gif">
+		 		Updates
+		 	</a><a id="support-btn" href="/support/" class="support-btn">
+		 		<img src="/images/img.gif">
+				Support
 			</a>
-			<nav id="nav">
-				<a href="/dashboard.php" class="dashboard-btn">
-					<img src="/images/img.gif">
-					Dashboard
-				</a><a href="/satellites.php" class="satellites-btn">
-					<img src="/images/img.gif">
-					Satellites
-			 	</a><a href="/autoswitch.php" class="autoswitch-btn">
-					<img src="/images/img.gif">
-					Autoswitch
-			 	</a><a href="/settings.php" class="settings-btn">
-					<img src="/images/img.gif">
-					Settings
-			 	</a><a href="/updates.php" class="updates-btn">
-			 		<img src="/images/img.gif">
-			 		Updates
-			 	</a><a href="/support/" class="support-btn">
-			 		<img src="/images/img.gif">
-					Support
-				</a>
-			</nav>
-		</header>
+		</div>

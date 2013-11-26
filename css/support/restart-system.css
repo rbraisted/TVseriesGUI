@@ -10,8 +10,15 @@
 
 \*                           */
 	
+.restart-system .border-btn {
+	display: block;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 120px;
+}
+
 @media screen and (max-width: 880px) {
-	menu {
+	.sb {
 		display: none;
 	}
 }

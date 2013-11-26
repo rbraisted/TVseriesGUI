@@ -2,24 +2,29 @@ TVRO.RestartSystem = function() {
 	var self = {},
 		webService = new TVRO.WebService();
 
-	$('#system-button, #antenna-button, #all-button').click(function() {
-		var sys = {
-			'system-button' : 'SBC',
-			'antenna-button' : 'ANT',
-			'all-button' : 'ALL'
-		}[this.id];
+	self.init = function() {
+		$('#restart-system-btn').toggleClass('selected', true);
 
-		webService.reboot({
-			'sys' : sys
-		}, function(responseXml) {
-			var xml = $(responseXml),
-				error = $(xml).find('message').attr('error');
+		$('#system-btn, #antenna-btn, #all-btn').click(function() {
+			var sys = {
+				'system-btn' : 'SBC',
+				'antenna-btn' : 'ANT',
+				'all-btn' : 'ALL'
+			}[this.id];
+
+			webService.reboot({
+				'sys' : sys
+			}, function(responseXml) {
+				var xml = $(responseXml),
+					error = $(xml).find('message').attr('error');
+			});
 		});
-	});	
+	};
 
 	return self;
 };
 
 $(document).ready(function() {
-	window.tvro.restartSystem = new TVRO.RestartSystem();
+	window.tvro.supportPage.restartSystem = new TVRO.RestartSystem();
+	window.tvro.supportPage.restartSystem.init();
 });

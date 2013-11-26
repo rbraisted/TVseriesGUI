@@ -5,6 +5,18 @@ TVRO.EventHistory = function() {
 		eventHistoryLog,
 		beginAtEvent = 1;
 
+	self.init = function() {
+		$('#event-history-btn').toggleClass('selected', true);
+
+		$('#load-btn').click(function() {
+			self.load(5);
+		});
+
+		$('#email-btn').click(function() {
+			
+		});
+	};
+
 	self.load = function(howManyEvents) {
 		webservice.getRecentEventHistory({
 			'begin_at_event' : beginAtEvent,
@@ -22,12 +34,8 @@ TVRO.EventHistory = function() {
 				$('#events').append('<div class="event"><div class="date-time-type">'+dateTimeType+'</div><div class="message">'+message+'</div></div>');
 				beginAtEvent++;
 			});
-
-			$('#events').animate({
-				scrollTop: $('#events').height()
-			}, 1000);
 		});
-	}
+	};
 
 	self.update = function() {
 		webservice.getEventHistoryCount(function(responseXml) {
@@ -41,22 +49,14 @@ TVRO.EventHistory = function() {
 				error = xml.find('message').attr('error');
 			eventHistoryLog = xml.find('content').text();
 		});
-	}
-
-	$('#load-button').click(function() {
-		self.load(5);
-	});
-
-	$('#email-button').click(function() {
-
-	});
+	};
 
 	return self;
 };
 
 $(document).ready(function() {
-	window.tvro.eventHistory = new TVRO.EventHistory();
-	window.tvro.eventHistory.update();
-	window.setInterval(window.tvro.eventHistory.update, 2000);
-	window.tvro.eventHistory.load(5);
+	window.tvro.supportPage.eventHistory = new TVRO.EventHistory();
+	window.tvro.supportPage.eventHistory.init();
+	window.setInterval(window.tvro.supportPage.eventHistory.update, 2000);
+	window.tvro.supportPage.eventHistory.load(5);
 });

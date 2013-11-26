@@ -56,32 +56,54 @@ a {
 }
 
 .page,
+.sb,
+.mc,
 .bg,
-.smc,
-.mmc,
-.lmc,
-.lsb,
-.row,
-.back-btn {
+.back-btn,
+.menu-btn,
+.accordion-btn {
 	display: block;
 }
 
-.bg,
-.row,
-.back-btn {
-	width: 100%;
+.sb {
+	background: #020306;
 }
 
-.bg,
-.col {
-	height: 100%;
+.mc {
+	background: #06102a;
 }
 
 .bg {
+	height: 100%;
 	left: 0;
 	position: absolute;
 	top: 0;
+	width: 100%;
 }
+
+.headline {
+	color: #ccc;
+	margin-bottom: 30px;
+}
+
+.text-btn,
+.border-btn,
+.block-btn {
+	background: transparent;
+	display: inline-block;
+	padding: 10px 20px;
+}
+
+.text-btn,
+.border-btn {
+	color: #4388fd;
+}
+
+.border-btn {
+	border: 1px solid #4388fd;
+	padding: 8px 18px;
+}
+
 
 .back-btn img {
 	display: inline;
@@ -95,6 +117,38 @@ a {
 	background: #020306;
 }
 
+.menu-btn,
+.accordion-btn {
+	padding: 10px 20px;
+	position: relative;
+}
+
+.block-btn,
+.menu-btn {
+	background: #031b42;
+}
+
+.menu-btn + .menu-btn {
+	margin-top: 2px;
+}
+
+.menu-btn.selected {
+	background: #15438f;
+}
+
+.menu-btn img,
+.accordion-btn img {
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40px;
+}
+
+.menu-btn img {
+	background: transparent url(/images/forward.png) no-repeat center center;
+}
+
 .of-btn {
 	color: #4388fd;
 	display: inline-block;
@@ -106,7 +160,7 @@ a {
 	border-style: solid;
 	border-width: 1px;
 	display: inline-block;
-	padding: 8px 13px 3px;
+	padding: 5px 10px;
 }
 
 .of-btn.on .on,
@@ -114,16 +168,34 @@ a {
 	border-color: #4388fd;
 }
 
+.accordion-btn {
+	background: #020306;
+	color: #ccc;
+}
+
+.accordion-btn img {
+	background: transparent url(/images/plus.png) no-repeat center center;
+}
+
+.accordion.exp .accordion-btn img {
+	background: transparent url(/images/minus.png) no-repeat center center;
+}
+
 @media screen and (max-width: 880px) {
 	.page {
 		position: relative;
 	}
 
-	.smc,
-	.mmc,
-	.lmc {
+	.sb,
+	.mc {
 		width: 100%;
 	}
+
+	.accordion:not(.exp) {
+		height: 36px; /* MAGIC NUMBER - needs to know size of .accordian-btn, which is determined by font-size + padding */
+		overflow: hidden;
+	}
+
 }
 
 @media screen and (min-width: 880px) {
@@ -132,8 +204,8 @@ a {
 	}
 
 	.page,
-	.lmc,
-	.lsb {
+	.mc,
+	.sb {
 		bottom: 0;
 		position: absolute;
 	}
@@ -143,27 +215,37 @@ a {
 	}
 
 	.page,
-	.lsb {
+	.sb {
 		left: 0;
 	}
 
-	.lmc,
-	.lsb {
+	.mc,
+	.sb {
 		top: 0;
 	}
 
-	.lsb {
+	.sb {
 		width: 260px;
 	}
 
 	.page,
-	.lmc {
+	.mc {
 		right: 0;
 	}
 
-	.lmc {
+	.mc {
 		left: 260px;
 	}
+
+	.menu-btn img,
+	.accordion-btn img {
+		display: none;
+	}
+
+	.accordion {
+		height: auto;
+	}	
+
 }
 
 
@@ -182,7 +264,7 @@ a {
 
 
 
-header {
+.header {
 	background: #002879; /*	#002879 - #001339 */
 	position: relative;
 	width: 100%;
@@ -209,8 +291,8 @@ header {
 	width: 133px;
 }
 
-header .status-btn,
-header .nav-btn {
+.status-btn,
+.nav-btn {
 	color: #fff;
 	font-size: 12px;
 	font-weight: lighter;
@@ -220,32 +302,32 @@ header .nav-btn {
 	top: 0;
 }
 
-header .status-btn img,
-header .nav-btn img {
+.status-btn img,
+.nav-btn img {
 	background: transparent url(/images/status-icon.png) no-repeat center center;
 	display: block;
 	height: 36px;
 	width: 53px;
 }
 
-header .status-btn {
+.status-btn {
 	left: 0;
 }
 
-header .nav-btn {
+.nav-btn {
 	right: 0;
 }
 
-header .status {
+.status {
 	height: 0;
 	overflow: hidden;
 }
 
-header nav {
+.nav {
 	background: #0f344c;
 }
 
-header nav a {
+.nav a {
 	background: #020306;
 	text-decoration: none;
 }
@@ -257,7 +339,7 @@ header nav a {
 \*                           */
 
 @media screen and (max-width: 880px) {
-	header nav {
+	.nav {
 		height: 0;
 		overflow: hidden;
 		padding-bottom: 0;
@@ -267,48 +349,31 @@ header nav a {
 		-webkit-transition: padding-bottom 0.5s;
 	}
 
-	header nav.toggled {
+	.nav.toggled {
 		transition: padding-bottom 0.5s;
 		-moz-transition: padding-bottom 0.5s;
 		-webkit-transition: padding-bottom 0.5s;
 	}
 
-	header nav a {
+	.nav a {
 		float: left;
 		font-size: 15px;
 		height: 0;
 		margin: 0;/* 1% 1% 0;*/
 	}
 
-	header nav a img {	
+	.nav a img {	
 		height: 0;
 		padding-bottom: 60%;
 		width: 100%;
 	}
 
-	header nav .dashboard-btn img {
-		background: transparent url(/images/dashboard-icon-large.png) no-repeat center bottom;
-	}
-
-	header nav .satellites-btn img {
-		background: transparent url(/images/satellites-icon-large.png) no-repeat center bottom;
-	}
-
-	header nav .autoswitch-btn img {
-		background: transparent url(/images/autoswitch-icon-large.png) no-repeat center bottom;
-	}
-
-	header nav .settings-btn img {
-		background: transparent url(/images/settings-icon-large.png) no-repeat center bottom;
-	}
-
-	header nav .updates-btn img {
-		background: transparent url(/images/updates-icon-large.png) no-repeat center bottom;
-	}
-
-	header nav .support-btn img {
-		background: transparent url(/images/support-icon-large.png) no-repeat center bottom;
-	}
+	.dashboard-btn img { background: transparent url(/images/dashboard-icon-large.png) no-repeat center bottom; }
+	.satellites-btn img { background: transparent url(/images/satellites-icon-large.png) no-repeat center bottom; }
+	.autoswitch-btn img { background: transparent url(/images/autoswitch-icon-large.png) no-repeat center bottom; }
+	.settings-btn img { background: transparent url(/images/settings-icon-large.png) no-repeat center bottom; }
+	.updates-btn img { background: transparent url(/images/updates-icon-large.png) no-repeat center bottom; }
+	.support-btn img { background: transparent url(/images/support-icon-large.png) no-repeat center bottom; }
 }
 
 /*                *\
@@ -318,17 +383,13 @@ header nav a {
 \*                */
 
 @media screen and (max-width: 540px) {
-	header nav.toggled {
+	.nav.toggled {
 		padding-bottom: 66.666%;
 	}
 
-	header nav a {
+	.nav a {
 		padding-bottom: 33.333%;
 		width: 33.333%;
-	}
-
-	header nav a img {
-		background: transparent url(/images/nav-icon-large.png) no-repeat center bottom;
 	}
 }
 
@@ -339,17 +400,13 @@ header nav a {
 \*                 */
 
 @media screen and (min-width: 540px) and (max-width: 880px) {
-	header nav.toggled {
+	.nav.toggled {
 		padding-bottom: 16.666%;
 	}
 
-	header nav a {
+	.nav a {
 		padding-bottom: 16.666%;
 		width: 16.666%;
-	}
-
-	header nav a img {
-		background: transparent url(/images/nav-icon-large.png) no-repeat center bottom;
 	}
 }
 
@@ -364,11 +421,11 @@ header nav a {
 		display: none;
 	}
 
-	header nav {
+	.nav {
 		height: 40px;
 	}
 
-	header nav a {
+	.nav a {
 		display: inline-block;
 		height: 35px;
 		padding: 0 20px 0 5px;
@@ -377,33 +434,20 @@ header nav a {
 		line-height: 250%;
 	}
 
-	header nav img {
+	.nav a.selected {
+		background: #06102a;
+	}
+
+	.nav a img {
 		float: left;
 		height: 100%;
 		width: 40px;
 	}
 
-	header nav .dashboard-btn img {
-		background: transparent url(/images/dashboard-icon-small.png) no-repeat center center;
-	}
-
-	header nav .satellites-btn img {
-		background: transparent url(/images/satellites-icon-small.png) no-repeat center center;
-	}
-
-	header nav .autoswitch-btn img {
-		background: transparent url(/images/autoswitch-icon-small.png) no-repeat center center;
-	}
-
-	header nav .settings-btn img {
-		background: transparent url(/images/settings-icon-small.png) no-repeat center center;
-	}
-
-	header nav .updates-btn img {
-		background: transparent url(/images/updates-icon-small.png) no-repeat center center;
-	}
-
-	header nav .support-btn img {
-		background: transparent url(/images/support-icon-small.png) no-repeat center center;
-	}
+	.dashboard-btn img { background: transparent url(/images/dashboard-icon-small.png) no-repeat center center; }
+	.satellites-btn img { background: transparent url(/images/satellites-icon-small.png) no-repeat center center; }
+	.autoswitch-btn img { background: transparent url(/images/autoswitch-icon-small.png) no-repeat center center; }
+	.settings-btn img { background: transparent url(/images/settings-icon-small.png) no-repeat center center; }
+	.updates-btn img { background: transparent url(/images/updates-icon-small.png) no-repeat center center; }
+	.support-btn img { background: transparent url(/images/support-icon-small.png) no-repeat center center; }
 }

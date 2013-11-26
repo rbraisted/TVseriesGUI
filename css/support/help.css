@@ -4,14 +4,23 @@
 
 \*       */
 
+.support-mc p {
+	margin-bottom: 30px;
+}
+
+.support-mc b,
+.support-mc p {
+	line-height: 120%;
+}
+
 /*                           *\
 
      SMALL & MEDIUM SHARED
 
 \*                           */
-
+	
 @media screen and (max-width: 880px) {
-	menu {
+	.sb {
 		display: none;
 	}
 }

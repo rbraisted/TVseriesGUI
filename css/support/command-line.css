@@ -9,12 +9,18 @@
      SMALL & MEDIUM SHARED
 
 \*                           */
-	
+
+.command-line iframe {
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
 @media screen and (max-width: 880px) {
-	menu {
+	.sb {
 		display: none;
 	}
 }
+
 
 /*                *\
 
