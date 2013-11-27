@@ -16,23 +16,10 @@
 		</div>
 		<div id="status" class="status">Everything is OK!</div>
 		<div id="nav" class="nav">
-			<a id="dashboard-btn" href="/dashboard.php" class="dashboard-btn">
-				<img src="/images/img.gif">
-				Dashboard
-			</a><a id="satellites-btn" href="/satellites.php" class="satellites-btn">
-				<img src="/images/img.gif">
-				Satellites
-		 	</a><a id="autoswitch-btn" href="/autoswitch.php" class="autoswitch-btn">
-				<img src="/images/img.gif">
-				Autoswitch
-		 	</a><a id="settings-btn" href="/settings.php" class="settings-btn">
-				<img src="/images/img.gif">
-				Settings
-		 	</a><a id="updates-btn" href="/updates.php" class="updates-btn">
-		 		<img src="/images/img.gif">
-		 		Updates
-		 	</a><a id="support-btn" href="/support/" class="support-btn">
-		 		<img src="/images/img.gif">
-				Support
-			</a>
+			<a id="dashboard-btn" href="/dashboard.php" class="dashboard-btn"><img src="/images/img.gif">Dashboard</a><!--
+		 --><a id="satellites-btn" href="/satellites.php" class="satellites-btn"><img src="/images/img.gif">Satellites</a><!--
+		 --><a id="autoswitch-btn" href="/autoswitch.php" class="autoswitch-btn"><img src="/images/img.gif">Autoswitch</a><!--
+		 --><a id="settings-btn" href="/settings/" class="settings-btn"><img src="/images/img.gif">Settings</a><!--
+		 --><a id="updates-btn" href="/updates.php" class="updates-btn"><img src="/images/img.gif">Updates</a><!--
+		 --><a id="support-btn" href="/support/" class="support-btn"><img src="/images/img.gif">Support</a>
 		</div>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message error="0" name="get_wlan"/>
-	<mode>OFF | ADHOC| AP | IF</mode>
+	<mode>ADHOC</mode><!-- OFF | ADHOC| AP | IF -->
 	<adhoc_mode>
 		<security>
-			<mode>OFF | WEP</mode>
-			<key/>
+			<mode>WEP</mode><!-- OFF | WEP -->
+			<key>passwordtext</key>
 		</security>
 		<ip>169.254.100.1</ip>
 	</adhoc_mode>
@@ -13,8 +13,8 @@
 		<mode>BRIDGED</mode>
 		<essid>ipacu</essid>
 		<security>
-			<mode>OFF | WPA_PSK</mode>
-			<algorithm>TKIP</algorithm>(TBD: should this be hidden)
+			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
+			<algorithm>TKIP</algorithm><!-- (TBD: should this be hidden) -->
 			<key>passwordtext</key>
 		</security>
 		<ip>192.168.1.3</ip>
@@ -23,10 +23,10 @@
 		<broadcast>192.168.1.255</broadcast>
 	</ap_mode>
 	<if_mode>
-		<mode>STATIC | DYNAMIC</mode>
+		<mode>STATIC</mode><!-- STATIC | DYNAMIC -->
 		<essid>ipacu</essid>
 		<security>
-			<mode>OFF | WPA_PSK</mode>
+			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
 			<algorithm>TKIP</algorithm>
 			<key>passwordtext</key>
 		</security>
@@ -36,5 +36,5 @@
 		<broadcast>192.168.1.255</broadcast>
 	</if_mode>
 	<channel>11</channel>
-	<band>b|g</band>
+	<band>b</band><!-- b | g -->
 </ipacu_response>

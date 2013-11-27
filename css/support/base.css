@@ -4,10 +4,6 @@
 
 \*       */
 
-.support-mc {
-	padding: 10px 20px;
-}
-
 .contact-region {
 	padding: 0 20px 20px;
 }
@@ -59,8 +55,5 @@
 \*                */
 
 @media screen and (min-width: 880px) {
-	.support-mc {
-		width: 550px;
-		margin: auto;
-	}
+	
 }

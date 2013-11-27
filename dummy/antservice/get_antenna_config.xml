@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message name="get_antenna_config" error="0" />
-	<sidelobe>ON | OFF</sidelobe>
-	<sleep>ON | OFF</sleep>
+	<sidelobe>ON</sidelobe>
+	<sleep>OFF</sleep>
 </ipacu_response>

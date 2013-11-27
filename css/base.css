@@ -55,9 +55,14 @@ a {
 	text-decoration: inherit;
 }
 
+p {
+	line-height: 120%;
+}
+
 .page,
 .sb,
 .mc,
+.mcg,
 .bg,
 .back-btn,
 .menu-btn,
@@ -73,6 +78,10 @@ a {
 	background: #06102a;
 }
 
+.mcg {
+	padding: 10px 20px;
+}
+
 .bg {
 	height: 100%;
 	left: 0;
@@ -84,6 +93,10 @@ a {
 .headline {
 	color: #ccc;
 	margin-bottom: 30px;
+}
+
+.title {
+	font-weight: bold;
 }
 
 .text-btn,
@@ -208,6 +221,11 @@ a {
 	.sb {
 		bottom: 0;
 		position: absolute;
+	}
+
+	.mcg {
+		width: 550px;
+		margin: auto;
 	}
 
 	.page {

@@ -97,16 +97,44 @@ TVRO.WebService = function() {
 		});
 	};
 
-	self.getAntennaVersions = function(successCallback, errorCallback) {
-		sendRequest(antWebServiceUrl, 'antenna_versions', null, successCallback, errorCallback);
+	/*
+	we could do it like this:
+
+	function sendRequest(requestUrl, requestName, requestJson, successCallback, errorCallback) {
+		if (requestJson) {
+			function get(successCallback, errorCallback) { do magic }
+			return get;
+		} else {
+			function set(requestJson, successCallback, errorCallback) { do magic }
+			return set;	
+		}
+	};
+
+	and then:
+
+	self.getSomeValue = sendRequest(parameters);
+	
+	*/
+
+
+	self.getAntennaConfig = function(successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'get_antenna_config', null, successCallback, errorCallback);
 	};
 
 	self.getAntennaStatus = function(successCallback, errorCallback) {
 		sendRequest(antWebServiceUrl, 'antenna_status', null, successCallback, errorCallback);
 	};
 
+	self.getAntennaVersions = function(successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'antenna_versions', null, successCallback, errorCallback);
+	};
+
 	self.getAutoswitchService = function(successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'get_autoswitch_service', null, successCallback, errorCallback);
+	};
+
+	self.getEthernetSettings = function(successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'get_eth', null, successCallback, errorCallback);
 	};
 
 	self.getEventHistoryCount = function(successCallback, errorCallback) {
@@ -139,16 +167,32 @@ TVRO.WebService = function() {
 		sendRequest(xmlWebServiceUrl, 'get_recent_event_history', requestJson, successCallback, errorCallback);
 	};
 
+	self.getWirelessSettings = function(successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'get_wlan', null, successCallback, errorCallback);
+	};
+
 	self.installSoftware = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
+	};
+
+	self.setAntennaConfig = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'set_antenna_config', requestJson, successCallback, errorCallback);
 	};
 
 	self.setAutoswitchService = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'set_autoswitch_service', requestJson, successCallback, errorCallback);
 	};
 
+	self.setEthernetSettings = function(requestJson, successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'set_eth', requestJson, successCallback, errorCallback);
+	};
+
 	self.setProductRegistration = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'set_product_registration', requestJson, successCallback, errorCallback);
+	};
+
+	self.setWirelessSettings = function(requestJson, successCallback, errorCallback) {
+		sendRequest(xmlWebServiceUrl, 'set_wlan', requestJson, successCallback, errorCallback);
 	};
 
 	self.startSerialLog = function(requestJson, successCallback, errorCallback) {

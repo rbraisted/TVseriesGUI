@@ -1,7 +1,7 @@
-<link type="text/css" rel="stylesheet" href="/css/support/base.css">
-<script type="text/javascript" src="/js/support/support.js"></script>
-
 <div id="page" class="page">
+	<link type="text/css" rel="stylesheet" href="/css/support/base.css">
+	<script type="text/javascript" src="/js/support/support.js"></script>
+
 	<div id="sb" class="sb">
 		<div id="help-accordion" class="accordion">
 			<a id="help-accordion-btn" href="#" class="accordion-btn"><img src="/images/img.gif">HELP</a>

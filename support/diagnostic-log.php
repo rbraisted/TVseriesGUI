@@ -2,12 +2,12 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/support/base.php'; ?>
 
 <div id="mc" class="mc">
-	<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Support</a>
+	<link type="text/css" rel="stylesheet" href="/css/support/diagnostic-log.css">
+	<script type="text/javascript" src="/js/support/diagnostic-log.js"></script>
 
-	<div id="diagnostic-log" class="diagnostic-log support-mc">
-		<link type="text/css" rel="stylesheet" href="/css/support/diagnostic-log.css">
-		<script type="text/javascript" src="/js/support/diagnostic-log.js"></script>
-		
+	<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Support</a>
+	
+	<div id="diagnostic-log" class="diagnostic-log mcg">
 		<div class="headline">Diagnostic Log Options</div>
 
 		<a id="operational-btn" href="#" class="border-btn">View / Save Operational Log</a>

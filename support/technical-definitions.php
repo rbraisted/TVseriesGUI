@@ -4,7 +4,7 @@
 <div id="mc" class="mc">
 	<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Support</a>
 
-	<div id="technical-definitions" class="technical-definitions support-mc">
+	<div id="technical-definitions" class="technical-definitions mcg">
 		<link type="text/css" rel="stylesheet" href="/css/support/help.css">
 		<script type="text/javascript" src="/js/support/technical-definitions.js"></script>
 		

@@ -4,7 +4,7 @@
 <div id="mc" class="mc">
 	<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Support</a>
 
-	<div id="about-blockage" class="about-blockage support-mc">
+	<div id="about-blockage" class="about-blockage mcg">
 		<link type="text/css" rel="stylesheet" href="/css/support/help.css">
 		<script type="text/javascript" src="/js/support/about-blockage.js"></script>
 		

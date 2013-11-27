@@ -1,0 +1,11 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+.wireless-settings,
+.if-mode-settings,
+.adhoc-mode-settings {
+	display: none;
+}
