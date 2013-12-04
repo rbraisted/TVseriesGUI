@@ -1,21 +1,42 @@
-var TVRO = function() {
-	var self = {},
-		ios = [];
+"use strict";
 
+if (typeof TVRO === 'undefined') {
+	var TVRO = {};
+}
+
+TVRO.nativeAppShell = TVRO.nativeAppShell || false;
+TVRO.satFinderAvailable = TVRO.satFinderAvailable || false;
+
+TVRO.init = function() {
 	$('#nav-btn').click(function() {
 		$(this).toggleClass('selected');
 		$('#nav').toggleClass('toggled');
 	});
 
-	self.ios = function(f) {
-		if (typeof f == 'function') {
-			ios.push(f);
-		} else {
-			for (var i = 0; i < ios.length; i++) ios[i]();
-		}
+	$('#sat-finder-btn').toggle(TVRO.satFinderAvailable);
+
+	function updateC() {
+		var cookieManager = new TVRO.CookieManager();
+		$('#c').text(cookieManager.hasCookie('test'));
 	}
 
-	return self;
+	$('#a').click(function() {
+		var cookieManager = new TVRO.CookieManager();
+		cookieManager.setCookie('test');
+		updateC();
+	})
+
+	$('#b').click(function() {
+		var cookieManager = new TVRO.CookieManager();
+		cookieManager.removeCookie('test');
+		updateC();
+	});
+
+	updateC();
+
+	$('#d').click(function() {
+		window.location = 'tvro://sat-finder';
+	});
 };
 
 TVRO.CookieManager = function() {
@@ -69,7 +90,7 @@ TVRO.WebService = function() {
 			demoMode = cookieManager.hasCookie('demo-mode');
 		if (demoMode) {
 			antWebServiceUrl = '/dummy/antservice.php';
-			xmlWebServiceUrl = '/dummy/xmlservices.php';		
+			xmlWebServiceUrl = '/dummy/xmlservices.php';
 		}
 	}());
 
@@ -96,26 +117,6 @@ TVRO.WebService = function() {
 			error : errorCallback
 		});
 	};
-
-	/*
-	we could do it like this:
-
-	function sendRequest(requestUrl, requestName, requestJson, successCallback, errorCallback) {
-		if (requestJson) {
-			function get(successCallback, errorCallback) { do magic }
-			return get;
-		} else {
-			function set(requestJson, successCallback, errorCallback) { do magic }
-			return set;	
-		}
-	};
-
-	and then:
-
-	self.getSomeValue = sendRequest(parameters);
-	
-	*/
-
 
 	self.getAntennaConfig = function(successCallback, errorCallback) {
 		sendRequest(antWebServiceUrl, 'get_antenna_config', null, successCallback, errorCallback);
@@ -171,6 +172,10 @@ TVRO.WebService = function() {
 		sendRequest(xmlWebServiceUrl, 'get_wlan', null, successCallback, errorCallback);
 	};
 
+	self.getSatelliteList = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'get_satellite_list', requestJson, successCallback, errorCallback);
+	};
+
 	self.installSoftware = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
 	};
@@ -203,5 +208,6 @@ TVRO.WebService = function() {
 };
 
 $(document).ready(function() {
-	window.tvro = new TVRO();
+	TVRO.init();
+	window.tvro = TVRO;
 });

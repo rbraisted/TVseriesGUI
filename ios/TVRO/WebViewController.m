@@ -62,7 +62,9 @@
 	if ([request.URL.scheme isEqualToString:@"tvro"]) {
 		NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
 		NSArray* pathComponents = [request.URL pathComponents];
-		if([request.URL.host isEqualToString:@"updates"]) {
+		if([request.URL.host isEqualToString:@"sat-finder"]) {
+			
+		} else if([request.URL.host isEqualToString:@"updates"]) {
 			if ([pathComponents[1] isEqualToString:@"device-versions"]) {
 				//	tvro://updates/device-versions
 				NSString* tv1DeviceVersion = [updatesManager deviceVersionForAntType:@"tv1"];
@@ -98,9 +100,10 @@
 	//	if not, it's probably an external link and we
 	//	should open it in safari
 	} else if (![hostName isEqualToString:_hostName]) {
-		NSLog(@"    ![hostName isEqualToString:_hostName]");
-		[[UIApplication sharedApplication] openURL:request.URL];
-		return false;
+//		NSLog(@"    ![hostName isEqualToString:_hostName]");
+//		[[UIApplication sharedApplication] openURL:request.URL];
+//		return false;
+		return true;
 		
 	//	at this point it's probably just another path in our app
 	} else {
@@ -111,11 +114,13 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidFinishLoad");
-	[webView stringByEvaluatingJavaScriptFromString:@"window.tvro.ios();"];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
-//	NSLog(@"webViewDidStartLoad");
+	NSLog(@"webViewDidStartLoad");
+	NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
+	NSString* javascriptString = [NSString stringWithFormat:@"var TVRO = { nativeAppShell: true, satFinderAvailable: %@ };", satFinderAvailable];
+	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
 }
 
 #pragma mark - UpdatesManagerDelgate protocol methods

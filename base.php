@@ -21,5 +21,6 @@
 		 --><a id="autoswitch-btn" href="/autoswitch.php" class="autoswitch-btn"><img src="/images/img.gif">Autoswitch</a><!--
 		 --><a id="settings-btn" href="/settings/" class="settings-btn"><img src="/images/img.gif">Settings</a><!--
 		 --><a id="updates-btn" href="/updates.php" class="updates-btn"><img src="/images/img.gif">Updates</a><!--
-		 --><a id="support-btn" href="/support/" class="support-btn"><img src="/images/img.gif">Support</a>
+		 --><a id="support-btn" href="/support/" class="support-btn"><img src="/images/img.gif">Support</a><!--
+ 		 --><a id="sat-finder-btn" href="tvro://sat-finder" class="sat-finder-btn"><img src="/images/img.gif">Sat Finder</a>
 		</div>

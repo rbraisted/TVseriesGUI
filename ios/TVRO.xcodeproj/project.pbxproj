@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E916FD91184D653000E06C33 /* SatFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916FD90184D653000E06C33 /* SatFinderViewController.m */; };
+		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
+		E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD94184D670D00E06C33 /* AVFoundation.framework */; };
 		E9212D7B1831B636008FCDCD /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9212D7A1831B636008FCDCD /* UpdatesManager.m */; };
 		E9B363A2183EEAE600575839 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E9B363A1183EEAE600575839 /* Settings.bundle */; };
 		E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
@@ -34,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E916FD8F184D653000E06C33 /* SatFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatFinderViewController.h; sourceTree = "<group>"; };
+		E916FD90184D653000E06C33 /* SatFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatFinderViewController.m; sourceTree = "<group>"; };
+		E916FD92184D666800E06C33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E916FD94184D670D00E06C33 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E9212D791831B636008FCDCD /* UpdatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesManager.h; sourceTree = "<group>"; };
 		E9212D7A1831B636008FCDCD /* UpdatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesManager.m; sourceTree = "<group>"; };
 		E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatesManagerDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */,
+				E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */,
 				E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */,
 				E9B97C6F1829A14A007AA4A3 /* UIKit.framework in Frameworks */,
 				E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */,
@@ -102,6 +111,8 @@
 		E9B97C691829A14A007AA4A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E916FD94184D670D00E06C33 /* AVFoundation.framework */,
+				E916FD92184D666800E06C33 /* CoreLocation.framework */,
 				E9B97C6A1829A14A007AA4A3 /* Foundation.framework */,
 				E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */,
 				E9B97C6E1829A14A007AA4A3 /* UIKit.framework */,
@@ -117,6 +128,8 @@
 				E9B97C7A1829A14A007AA4A3 /* AppDelegate.m */,
 				E9B97D211829A922007AA4A3 /* BonjourViewController.h */,
 				E9B97D221829A922007AA4A3 /* BonjourViewController.m */,
+				E916FD8F184D653000E06C33 /* SatFinderViewController.h */,
+				E916FD90184D653000E06C33 /* SatFinderViewController.m */,
 				E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */,
 				E9212D791831B636008FCDCD /* UpdatesManager.h */,
 				E9212D7A1831B636008FCDCD /* UpdatesManager.m */,
@@ -186,6 +199,9 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					E9B97C661829A14A007AA4A3 = {
+						DevelopmentTeam = 4888S573FE;
+					};
 					E9B97C811829A14A007AA4A3 = {
 						TestTargetID = E9B97C661829A14A007AA4A3;
 					};
@@ -239,6 +255,7 @@
 				E9B97C771829A14A007AA4A3 /* main.m in Sources */,
 				E9212D7B1831B636008FCDCD /* UpdatesManager.m in Sources */,
 				E9B97D261829AA8D007AA4A3 /* WebViewController.m in Sources */,
+				E916FD91184D653000E06C33 /* SatFinderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +305,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -306,6 +324,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -328,7 +347,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -339,6 +359,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -350,10 +371,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRO/TVRO-Prefix.pch";
 				INFOPLIST_FILE = "TVRO/TVRO-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -363,10 +387,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRO/TVRO-Prefix.pch";
 				INFOPLIST_FILE = "TVRO/TVRO-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

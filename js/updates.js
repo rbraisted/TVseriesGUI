@@ -1,3 +1,4 @@
+
 TVRO.UpdatesPage = function() {
 	var self = {},
 		updateInterval,
@@ -158,8 +159,8 @@ TVRO.UpdatesPage = function() {
 					ants[antType].deviceVersion = deviceVersions[antType];
 					$('#'+antType+'-device-version').text(ants[antType].deviceVersion);
 				}
-			};			
-		}
+			};
+		};
 
 		self.upload = function() {
 			console.log("!");

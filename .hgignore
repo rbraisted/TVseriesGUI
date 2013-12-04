@@ -13,6 +13,8 @@ syntax: glob
 *.exe
 *.o
 *.so
+android/bin
+android/gen
 
 # Packages #
 ############

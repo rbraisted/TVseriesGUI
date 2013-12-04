@@ -469,3 +469,26 @@ p {
 	.updates-btn img { background: transparent url(/images/updates-icon-small.png) no-repeat center center; }
 	.support-btn img { background: transparent url(/images/support-icon-small.png) no-repeat center center; }
 }
+
+
+
+
+
+
+
+
+.nav .sat-finder-btn {
+	position: fixed;
+	top: 0;
+	right: 70px;
+	z-index: 9999;
+	display: none;
+}
+
+.sat-finder-btn {
+	display: block;
+}
+
+.sat-finder-btn img {
+	background: white;
+}
