@@ -2,13 +2,17 @@ TVRO.GeneralSettings = function() {
 	var self = {},
 		cookieManager = new TVRO.CookieManager();
 
+	window.c = cookieManager;
+
 	self.init = function() {
 		$('#general-settings-btn').toggleClass('selected', true);
 		
 		$('#technician-mode-btn').click(function() {
+			console.log("1: "+cookieManager.hasCookie('technician-mode'));
 			if (cookieManager.hasCookie('technician-mode')) cookieManager.removeCookie('technician-mode');
 			else cookieManager.setCookie('technician-mode');
 			$('#technician-mode-btn').toggleClass('on', cookieManager.hasCookie('technician-mode'));
+			console.log("2: "+cookieManager.hasCookie('technician-mode'));
 		}).toggleClass('on', cookieManager.hasCookie('technician-mode'));
 
 		$('#demo-mode-btn').click(function() {

@@ -91,16 +91,17 @@
 	double rightBound = [delegate deviceHeading] + (hfov/2.0);
 	
 	double positionAtBoundScale;
-	if(leftBound > rightBound)	{
-		if(satelliteAzimuth <= rightBound) {
+	if (leftBound > rightBound)	{
+		if (satelliteAzimuth <= rightBound) {
             positionAtBoundScale = ((360.0 - leftBound) + satelliteAzimuth)/hfov;
-        } else if(satelliteAzimuth >= leftBound) {
+        } else if (satelliteAzimuth >= leftBound) {
             positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
 		} else return NAN;
 	} else {
-        if((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)) positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
+        if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)) positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
 		else return NAN;
 	}
+	
 	double x = camviewwidth * positionAtBoundScale;
 	return x;
 }
@@ -129,8 +130,10 @@
 	
 	CGContextStrokeEllipseInRect(context, CGRectMake(14.0, 14.0, 14.0, 14.0));
 	
-	double d = -180.0;
-	while (d <= 180.0) {
+//	double d = -180.0;
+//	while (d <= 180.0) {
+	
+	double d = -80.0;
 		NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:d];
 		if (satelliteAzimuthAndElevation) {
 			double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
@@ -139,14 +142,14 @@
 			double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
 			if (satelliteElevation > 0.0) {
 				NSLog(@"satelliteElevation > 0.0 x:%d y:%d : %f", isNaN(x), isNaN(y), d);
-				if (!(isNaN(x) || isNaN(y))) {
+				if (!isNaN(x) && !isNaN(y)) {
 					NSLog(@"drawing at: %f", d);
 					CGContextStrokeEllipseInRect(context, CGRectMake(x, y, 14.0, 14.0));
 				}
 			}
 		}
-		d = d + 2.0;
-	}
+//		d = d + 2.0;
+//	}
 	
 	NSLog(@"drawRect end - %f", d);
 }
@@ -175,11 +178,24 @@
 
 #pragma mark - CLLocationManagerDelegate protocol methods
 
+//2013-12-05 10:52:25.259 KVH TracVision HD-11[268:907] IMMA DRAWING! -80
+//2013-12-05 10:52:25.261 KVH TracVision HD-11[268:907] lat: 34.043918
+//2013-12-05 10:52:25.263 KVH TracVision HD-11[268:907] lon: -118.252480
+//2013-12-05 10:52:25.264 KVH TracVision HD-11[268:907] hdg: 125.611473
+//2013-12-05 10:52:25.266 KVH TracVision HD-11[268:907] tlt: 25.271421
+//2013-12-05 10:52:25.267 KVH TracVision HD-11[268:907] ele: 125.377627
+//2013-12-05 10:52:25.269 KVH TracVision HD-11[268:907] azi: 33.333587
+//2013-12-05 10:52:25.269 KVH TracVision HD-11[268:907]   x: 158.105549
+//2013-12-05 10:52:25.270 KVH TracVision HD-11[268:907]   y: 148.198437
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
 	deviceLat = newLocation.coordinate.latitude;
 	deviceLon = newLocation.coordinate.longitude;
     if (deviceLat == 0.0) deviceLat = 0.000001;
     if (deviceLon == 0.0) deviceLon = 0.000001;
+	
+	deviceLat = 34.043918;
+	deviceLon = -118.252480;
 	[self.view setNeedsDisplay];
 }
 

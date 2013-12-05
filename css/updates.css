@@ -59,8 +59,8 @@
 
 
 
-.updates-menu,
-.updates-main {
+.sb,
+.mc {
 	background: -moz-radial-gradient(center, ellipse cover, #0d2764 5%, #06102a 70%); /* FF3.6+ */
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0d2764), color-stop(70%,#06102a)); /* Chrome,Safari4+ */
 	background: -webkit-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Chrome10+,Safari5.1+ */
@@ -69,38 +69,38 @@
 	background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
 }
 
-.updates-main .type {
+.mc .type {
 	font-size: 30px;
 	padding: 20px;
 	text-align: right;
 }
 
-.updates-main .row {
+.mc .row {
 	height: 100px;
 	margin-bottom: 60px;
 	position: relative;
 }
 
-.updates-main .bg {
+.mc .bg {
 	background: #ccc;
 	opacity: 0.1;
 }
 
-.updates-main .col {
+.mc .col {
 	width: 350px;
 	margin: auto;
 	position: relative;
 }
 
-.updates-main .label {
+.mc .label {
 	padding: 20px 0 10px 0;
 }
 
-.updates-main .sys .label {
+.mc .sys .label {
 	padding-top: 30px;
 }
 
-.updates-main .cta {
+.mc .cta {
 	color: #a1f851;
 	left: 100px;
 	padding-top: 10px;
@@ -108,11 +108,11 @@
 	top: 100%;
 }
 
-.updates-main .ver {
+.mc .ver {
 	color: #cacaca;
 }
 
-.updates-main .btn {
+.mc .btn {
 	position: absolute;
 	background: transparent url(/images/download-button.png) no-repeat center center;
 	bottom: -70px;
@@ -121,7 +121,7 @@
 	z-index: 1;
 }
 
-.updates-main .btn input {
+.mc .btn input {
 	cursor: pointer;
 	height: 100%;
 	opacity: 0.01;
@@ -137,15 +137,15 @@
 
 @media screen and (max-width: 880px) {
 	.back-btn,
-	.updates-menu,
-	.technician-mode .updates-menu,
-	.technician-mode .updates-main {
+	.sb,
+	.technician-mode .sb,
+	.technician-mode .mc {
 		display: none;
 	}
 
 	.technician-mode .back-btn,
-	.technician-mode .updates-menu.selected,
-	.technician-mode .updates-main.selected {
+	.technician-mode .sb.selected,
+	.technician-mode .mc.selected {
 		display: block;
 	}
 }
@@ -177,21 +177,21 @@
 \*                */
 
 @media screen and (min-width: 880px) {
-	.lmc {
+	.mc {
 		left: 0;
 		right: 0;
 	}
 
-	.technician-mode .lmc {
+	.technician-mode .mc {
 		left: 260px;
 	}
 
-	.lsb {
+	.sb {
 		display: none;
 		width: 260px;
 	}
 
-	.technician-mode .lsb {
+	.technician-mode .sb {
 		display: block;
 	}
 }

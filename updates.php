@@ -1,11 +1,11 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
-<div id="updates-page" class="page technician-mode">
+<div id="page" class="page">
 	<link type="text/css" rel="stylesheet" href="/css/updates.css">
 	<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="/js/updates.js"></script>
 
-	<div id="updates-menu" class="mmc smc lsb updates-menu selected">
+	<div id="sb" class="sb">
 		<a id="tv1" href="#" class="ant row">
 			<div class="type">TV1</div>
 			<div class="conn">connected</div>
@@ -48,11 +48,9 @@
 		</a>
 	</div>
 
-	<div id="updates-main" class="smc mmc lmc updates-main">
+	<div id="mc" class="mc">
 		<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Updates</a>
-
 		<div id="selected-ant-type" class="type">TV5</div>
-
 		<div class="row por">
 			<div class="bg"></div>
 			<div class="col">
@@ -62,7 +60,6 @@
 				<a id="download-btn" href="#" class="btn"></a>
 			</div>
 		</div>
-
 		<div class="row dev">
 			<div class="bg"></div>
 			<div class="col">
@@ -72,7 +69,6 @@
 				<a id="install-btn" href="#" class="btn"><input id="upload" type="file" /></a>
 			</div>
 		</div>
-
 		<div class="row sys">
 			<div class="bg"></div>
 			<div class="col">

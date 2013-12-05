@@ -4,6 +4,12 @@ TVRO.Satellites = function() {
 		webService = new TVRO.WebService();
 
 	self.init = function() {
+		$('#sb a').click(function() {
+			$('#sb a').removeClass('selected');
+			$(this).toggleClass('selected', true);
+		});
+		
+
 		self.startUpdating();
 	};
 
@@ -19,6 +25,11 @@ TVRO.Satellites = function() {
 	self.update = function() {
 
 	};
+
+	//	we need -
+	//	sort by selectable
+	//	sort by region
+	//	sort by antenna name
 
 	return self;
 };

@@ -23,7 +23,7 @@ TVRO.CookieManager = function() {
 		return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
 	};
 
-	self.setCookie = function(key, value, end, path, domain, secure) {
+	self.setCookie = function(key, value, end) {
 		if (!key || /^(?:expires|max\-age|path|domain|secure)$/i.test(key)) return false;
 
 		var expires = {
@@ -35,23 +35,18 @@ TVRO.CookieManager = function() {
 
 		key = encodeURIComponent(key);
 		value = encodeURIComponent(value);
-		domain = domain ? '; domain=' + domain : '';
-		path = path ? '; path=' + path : '';
-		secure = secure ? '; secure' : '';
-		document.cookie = key + '=' + value + expires + domain + path + secure;
+		document.cookie = key + '=' + value + expires + '; path=/';
 	};
 
-	self.removeCookie = function(key, path, domain) {
+	self.removeCookie = function(key) {
 		if (!key || !self.hasCookie(key)) return false;
 
 		key = encodeURIComponent(key);
-		domain = domain ? '; domain=' + domain : '';
-		path = path ? '; path=' + path : '';
-		document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + domain + path;
+		document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
 	};
 
-	self.hasCookie = function (key) {
-		return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+	self.hasCookie = function(key) {
+		return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
 	};
 
 	return self;
@@ -153,7 +148,7 @@ TVRO.WebService = function() {
 		sendRequest(antWebServiceUrl, 'get_satellite_list', requestJson, successCallback, errorCallback);
 	};
 
-	self.getSatelliteList2 = function(requestJson) {
+	self.getSatelliteListAsynchronously = function(requestJson) {
 		var	requestUrl = antWebServiceUrl,
 			requestXml = '<ipacu_request><message name="get_satellite_list" />'+requestJsonAsXmlString(requestJson)+'</ipacu_request>',
 			responseXml = '';
@@ -170,8 +165,16 @@ TVRO.WebService = function() {
 		return responseXml;
 	};
 
+	self.getSatelliteParams = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'get_satellite_params', requestJson, successCallback, errorCallback);
+	};
+
 	self.installSoftware = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
+	};
+
+	self.resetSatelliteParams = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'reset_satellite_params', requestJson, successCallback, errorCallback);
 	};
 
 	self.setAntennaConfig = function(requestJson, successCallback, errorCallback) {
@@ -188,6 +191,18 @@ TVRO.WebService = function() {
 
 	self.setProductRegistration = function(requestJson, successCallback, errorCallback) {
 		sendRequest(xmlWebServiceUrl, 'set_product_registration', requestJson, successCallback, errorCallback);
+	};
+
+	self.setSatelliteIdentity = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'set_satellite_identity', requestJson, successCallback, errorCallback);
+	};
+
+	self.setSatelliteParams = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'set_satellite_params', requestJson, successCallback, errorCallback);
+	};
+
+	self.setSelectedSatellite = function(requestJson, successCallback, errorCallback) {
+		sendRequest(antWebServiceUrl, 'select_satellite', requestJson, successCallback, errorCallback);
 	};
 
 	self.setWirelessSettings = function(requestJson, successCallback, errorCallback) {

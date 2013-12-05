@@ -1,4 +1,3 @@
-
 TVRO.UpdatesPage = function() {
 	var self = {},
 		updateInterval,
@@ -35,8 +34,8 @@ TVRO.UpdatesPage = function() {
 		});
 
 		$('#back-btn').click(function() {
-			$('#updates-main').removeClass('selected');
-			$('#updates-menu').toggleClass('selected', true);
+			$('#mc').removeClass('selected');
+			$('#sb').toggleClass('selected', true);
 		});
 
 		$('#download-btn').click(function() {
@@ -65,8 +64,9 @@ TVRO.UpdatesPage = function() {
 	};
 
 	self.update = function() {
-		var technicianMode = Boolean(cookieManager.getCookie('technician-mode'));
-		$('#updates-page').toggleClass('technician-mode', technicianMode);
+		var technicianMode = cookieManager.hasCookie('technician-mode');
+		console.log("technicianMode: "+technicianMode);
+		$('#page').toggleClass('technician-mode', technicianMode);
 
 		webService.getAntennaVersions(function(responseXml) {
 			var xml = $(responseXml),
@@ -163,7 +163,6 @@ TVRO.UpdatesPage = function() {
 		};
 
 		self.upload = function() {
-			console.log("!");
 			window.location = 'tvro://updates/upload/'+selectedAntType;
 		};
 
