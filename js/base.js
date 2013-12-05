@@ -14,29 +14,6 @@ TVRO.init = function() {
 	});
 
 	$('#sat-finder-btn').toggle(TVRO.satFinderAvailable);
-
-	function updateC() {
-		var cookieManager = new TVRO.CookieManager();
-		$('#c').text(cookieManager.hasCookie('test'));
-	}
-
-	$('#a').click(function() {
-		var cookieManager = new TVRO.CookieManager();
-		cookieManager.setCookie('test');
-		updateC();
-	})
-
-	$('#b').click(function() {
-		var cookieManager = new TVRO.CookieManager();
-		cookieManager.removeCookie('test');
-		updateC();
-	});
-
-	updateC();
-
-	$('#d').click(function() {
-		window.location = 'tvro://sat-finder';
-	});
 };
 
 TVRO.CookieManager = function() {
@@ -108,7 +85,7 @@ TVRO.WebService = function() {
 		var requestXml = '<ipacu_request><message name="'+requestName+'" />'+requestJsonAsXmlString(requestJson)+'</ipacu_request>';
 		$.ajax({
 			type: 'post',
-			contentType : "text/xml",
+			contentType : 'text/xml',
 			processData : false,
 			dataType : 'xml',
 			url : requestUrl,
@@ -174,6 +151,23 @@ TVRO.WebService = function() {
 
 	self.getSatelliteList = function(requestJson, successCallback, errorCallback) {
 		sendRequest(antWebServiceUrl, 'get_satellite_list', requestJson, successCallback, errorCallback);
+	};
+
+	self.getSatelliteList2 = function(requestJson) {
+		var	requestUrl = antWebServiceUrl,
+			requestXml = '<ipacu_request><message name="get_satellite_list" />'+requestJsonAsXmlString(requestJson)+'</ipacu_request>',
+			responseXml = '';
+		$.ajax({
+			async: false,
+			type: 'post',
+			contentType : 'text/xml',
+			processData : false,
+			dataType : 'text',
+			url : requestUrl,
+			data : requestXml,
+			success : function(responseText) { responseXml = responseText; }
+		});
+		return responseXml;
 	};
 
 	self.installSoftware = function(requestJson, successCallback, errorCallback) {

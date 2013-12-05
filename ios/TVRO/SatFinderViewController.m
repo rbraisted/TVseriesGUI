@@ -5,73 +5,262 @@
 \*       */
 
 #import "SatFinderViewController.h"
+#import "RXMLElement.h"
 
-@interface SatFinderViewController ()
+@implementation Sat
+
+@synthesize name,
+			region,
+			listId,
+			antSatId,
+			triSatId,
+			degLon,
+			favorite,
+			enabled,
+			selectable;
 
 @end
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+@implementation SatFinderView
+
+- (id)initWithDelegate:(id<SatFinderViewDelegate>)_delegate {
+	self = [super init];
+	delegate = _delegate;
+	return self;
+}
+
+- (NSArray*)azimuthAndElevationOfSatelliteAtLongitude:(double)satelliteLongitude {
+    //	these guys are set whenever our current location is updated
+	double drLatDeg = [delegate deviceLat];
+	double drLongDeg = [delegate deviceLon];
+    
+	double drLongDegSat = satelliteLongitude;
+    double drLongRadSat = degreesToRadians(drLongDegSat);
+    
+	double  drAzimuth,
+    		drElevation,
+    		drDelta,
+    		drLatRad,
+    		drLongRad,
+    		drY;
+    
+    double  drCosDelta,
+    		drCosLat,
+    		drSinLat,
+    		drAbsDelta;
+    
+    double  drA = 0.15127;
+    
+    /* Convert degrees to radians */
+    drLatRad  = degreesToRadians(drLatDeg);
+    drLongRad = degreesToRadians(drLongDeg);
+	
+    drCosLat   = cos(drLatRad);
+    drSinLat   = sin(drLatRad);
+    
+    drDelta = drLongRad - drLongRadSat;
+    drAbsDelta = fabs(drDelta);
+    drCosDelta = cos(drAbsDelta);
+	
+    drY = acos(drCosLat * drCosDelta);
+    /* Compute azimuth */
+    if (drDelta > 0.0)  {
+        drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
+    } else  {
+        drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
+    }
+    drAzimuth = radiansToDegrees(drAzimuth);
+    drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
+    
+    /* Compute elevation */
+	drElevation = atan2(cos(drY) - drA, sin(drY));
+	
+    drElevation = radiansToDegrees(drElevation);
+    
+    // now, rElevation and rAzimuth are correct.  use them to place the satellite.
+    return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
+}
+
+- (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth {
+    satelliteAzimuth += (0.0 > satelliteAzimuth) ? 360.0 : 0.0;
+	
+	//	we could store these values when deviceHeading changes
+	double leftBound = [delegate deviceHeading] - (hfov/2.0);
+	double rightBound = [delegate deviceHeading] + (hfov/2.0);
+	
+	double positionAtBoundScale;
+	if(leftBound > rightBound)	{
+		if(satelliteAzimuth <= rightBound) {
+            positionAtBoundScale = ((360.0 - leftBound) + satelliteAzimuth)/hfov;
+        } else if(satelliteAzimuth >= leftBound) {
+            positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
+		} else return NAN;
+	} else {
+        if((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)) positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
+		else return NAN;
+	}
+	double x = camviewwidth * positionAtBoundScale;
+	return x;
+}
+
+- (double)yPositionForSatelliteWithElevation:(double)satelliteElevation {
+	//	we could store these values when deviceTilt changes
+	//	including boundDiff
+	double topBound = [delegate deviceTilt] + (vfov/2.0);
+	double bottomBound = [delegate deviceTilt] - (vfov/2.0);
+	
+    if((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
+        double boundDiff = topBound - bottomBound;
+        double positionAtBoundScale = (satelliteElevation - bottomBound)/boundDiff;
+        double y = camviewheight - (camviewheight * positionAtBoundScale);
+        return y;
+    } else return NAN;
+}
+
+- (void)drawRect:(CGRect)rect {
+	NSLog(@" ");
+	NSLog(@"drawRect start");
+	[super drawRect:rect];
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextClearRect(context, self.bounds);
+	[[UIColor whiteColor] set];
+	
+	CGContextStrokeEllipseInRect(context, CGRectMake(14.0, 14.0, 14.0, 14.0));
+	
+	double d = -180.0;
+	while (d <= 180.0) {
+		NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:d];
+		if (satelliteAzimuthAndElevation) {
+			double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
+			double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
+			double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
+			double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
+			if (satelliteElevation > 0.0) {
+				NSLog(@"satelliteElevation > 0.0 x:%d y:%d : %f", isNaN(x), isNaN(y), d);
+				if (!(isNaN(x) || isNaN(y))) {
+					NSLog(@"drawing at: %f", d);
+					CGContextStrokeEllipseInRect(context, CGRectMake(x, y, 14.0, 14.0));
+				}
+			}
+		}
+		d = d + 2.0;
+	}
+	
+	NSLog(@"drawRect end - %f", d);
+}
+
+@end
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 @implementation SatFinderViewController
 
 #pragma mark - UIViewController methods
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+	[locationManager startUpdatingLocation];
+    if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+	[locationManager stopUpdatingLocation];
+    if ([CLLocationManager headingAvailable]) [locationManager stopUpdatingHeading];
 }
 
 - (BOOL)prefersStatusBarHidden {
 	return YES;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+#pragma mark - CLLocationManagerDelegate protocol methods
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	deviceLat = newLocation.coordinate.latitude;
+	deviceLon = newLocation.coordinate.longitude;
+    if (deviceLat == 0.0) deviceLat = 0.000001;
+    if (deviceLon == 0.0) deviceLon = 0.000001;
+	[self.view setNeedsDisplay];
+}
+
+- (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
+    if (0 >= newHeading.headingAccuracy) deviceHeading = -999.0;
+	else if (deviceTilt < 45.0) deviceHeading = newHeading.trueHeading;
+	else deviceHeading = fabsf(newHeading.trueHeading - 180.0);
+	[self.view setNeedsDisplay];
+}
+
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
+	[manager dismissHeadingCalibrationDisplay];
+    return NO;
+}
+
+#pragma mark - UIAccelerometerDelegate protocol methods
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    [accelerometerFilter addAcceleration:acceleration];
+    double y = accelerometerFilter.y;
+	double z = accelerometerFilter.z;
+	deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
+	[self.view setNeedsDisplay];
 }
 
 #pragma mark - SatFinderViewController methods
 
 + (BOOL)satFinderAvailable {
-	//	satellite finder should only be available is the device has a camera & can get compass readings
-	//	accelerometer should only be available if the sat finder is
-    if([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
-        if([CLLocationManager headingAvailable]) {
+    if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
+        if ([CLLocationManager headingAvailable]) {
             NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-            if([videoDevices count]) {
+            if ([videoDevices count]) {
 				return true;
-				
-				//	set up satellite finder button
-//				[satelliteFinderButton setFrame:CGRectMake(258.0, 20.0, 62.0, 42.0)];
-//				[self.tabBarController.view addSubview:satelliteFinderButton];
-				//	set up accelerometer... we dont need it if we dont have the sat finder
-//				double accelerometerFrequency = (1.0 / 24.0);
-				//	accelerometer & filter
-//				if(accelerometerFilter == nil) {
-//					accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
-//					[accelerometerFilter setAdaptive:YES];
-//				}
-//				if(accelerometer == nil) {
-//					accelerometer = [UIAccelerometer sharedAccelerometer];
-//					[accelerometer setUpdateInterval:accelerometerFrequency];
-//					[accelerometer setDelegate:self];
-//				}
 			}
         }
     }
 	
-	//	location manager
-//	if(locationManager == nil) {
-//        locationManager = [[CLLocationManager alloc] init];
-//        [locationManager setDelegate:self];
-//        [locationManager setDistanceFilter:kCLDistanceFilterNone];
-//        [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-//        [locationManager setHeadingFilter:kCLHeadingFilterNone];
-////        [locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
-//        [locationManager startUpdatingLocation];
-//        if([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
-//    }
 	return false;
+}
+
+- (id)initWithSatListXmlString:(NSString*)satListXmlString {
+	self = [self init];
+	
+	self.view = [[SatFinderView alloc] init];
+	
+	satList = [[NSMutableArray alloc] init];
+	RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+	[satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
+		Sat* sat = [[Sat alloc] init];
+		[sat setName:[satElement child:@"name"].text];
+		[sat setRegion:[satElement child:@"region"].text];
+		[sat setListId:[satElement child:@"listID"].text];
+		[sat setAntSatId:[satElement child:@"antSatID"].text];
+		[sat setTriSatId:[satElement child:@"triSatID"].text];
+		[sat setDegLon:[[satElement child:@"lon"].text floatValue]];
+		[sat setFavorite:[[satElement child:@"favorite"].text boolValue]];
+		[sat setEnabled:[[satElement child:@"enabled"].text boolValue]];
+		[sat setSelectable:[[satElement child:@"select"].text boolValue]];
+		[satList addObject:sat];
+	}];
+	
+	double accelerometerFrequency = (1.0 / 24.0);
+	accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
+	[accelerometerFilter setAdaptive:YES];
+	
+	accelerometer = [UIAccelerometer sharedAccelerometer];
+	[accelerometer setUpdateInterval:accelerometerFrequency];
+	[accelerometer setDelegate:self];
+	
+	locationManager = [[CLLocationManager alloc] init];
+	[locationManager setDelegate:self];
+	[locationManager setDistanceFilter:kCLDistanceFilterNone];
+	[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+	[locationManager setHeadingFilter:kCLHeadingFilterNone];
+	[locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
+	[locationManager startUpdatingLocation];
+	if ([CLLocationManager headingAvailable]) {
+		[locationManager startUpdatingHeading];
+	}
+	
+	return self;
 }
 
 @end

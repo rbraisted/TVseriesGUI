@@ -63,7 +63,13 @@
 		NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
 		NSArray* pathComponents = [request.URL pathComponents];
 		if([request.URL.host isEqualToString:@"sat-finder"]) {
-			
+			NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
+			NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
+			NSLog(@"satListXmlString:");
+			NSLog(@"%@", satListXmlString);
+			NSLog(@":satListXmlString");
+			satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+			[self presentViewController:satFinderViewController animated:YES completion:nil];
 		} else if([request.URL.host isEqualToString:@"updates"]) {
 			if ([pathComponents[1] isEqualToString:@"device-versions"]) {
 				//	tvro://updates/device-versions
@@ -114,6 +120,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidFinishLoad");
+	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"tvro://sat-finder"]]];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
@@ -127,13 +134,13 @@
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForAntType:(NSString *)antType {
 	NSString* deviceVersion = [updatesManager deviceVersionForAntType:antType];
-	NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.%@.deviceVersion = '%@'; window.tvro.updates.update();", antType, deviceVersion];
-	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
+	NSString* jsString = [NSString stringWithFormat:@"window.tvro.updates.%@.deviceVersion = '%@'; window.tvro.updates.update();", antType, deviceVersion];
+	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForAntType:(NSString *)antType {
-	NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.install('%@');", @"some file name"];
-	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
+	NSString* jsString = [NSString stringWithFormat:@"window.tvro.updates.install('%@');", @"some file name"];
+	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
 #pragma mark - WebViewController methods

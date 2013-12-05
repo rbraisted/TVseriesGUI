@@ -22,8 +22,6 @@
 	
 	NSUserDefaults* standardDefaults = [NSUserDefaults standardUserDefaults];
 	
-	NSLog(@"%@", [standardDefaults stringForKey:@"tv5-device-version"]);
-	
 	if (![standardDefaults stringForKey:@"tv1-device-version"]) [standardDefaults setValue:@"---" forKey:@"tv1-device-version"];
 	if (![standardDefaults stringForKey:@"tv3-device-version"]) [standardDefaults setValue:@"---" forKey:@"tv3-device-version"];
 	if (![standardDefaults stringForKey:@"tv5-device-version"]) [standardDefaults setValue:@"---" forKey:@"tv5-device-version"];

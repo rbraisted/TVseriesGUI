@@ -10,6 +10,10 @@
 		E916FD91184D653000E06C33 /* SatFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916FD90184D653000E06C33 /* SatFinderViewController.m */; };
 		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
 		E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD94184D670D00E06C33 /* AVFoundation.framework */; };
+		E91C2E42184FB38A003618D1 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E91C2E41184FB38A003618D1 /* AccelerometerFilter.m */; };
+		E91C2E45184FD8F7003618D1 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E91C2E44184FD8F7003618D1 /* RXMLElement.m */; };
+		E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E46184FD9A1003618D1 /* libz.dylib */; };
+		E91C2E49184FD9AC003618D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E48184FD9AC003618D1 /* libxml2.dylib */; };
 		E9212D7B1831B636008FCDCD /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9212D7A1831B636008FCDCD /* UpdatesManager.m */; };
 		E9B363A2183EEAE600575839 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E9B363A1183EEAE600575839 /* Settings.bundle */; };
 		E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
@@ -41,6 +45,12 @@
 		E916FD90184D653000E06C33 /* SatFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatFinderViewController.m; sourceTree = "<group>"; };
 		E916FD92184D666800E06C33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E916FD94184D670D00E06C33 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E91C2E40184FB38A003618D1 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
+		E91C2E41184FB38A003618D1 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
+		E91C2E43184FD8F7003618D1 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
+		E91C2E44184FD8F7003618D1 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
+		E91C2E46184FD9A1003618D1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E91C2E48184FD9AC003618D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		E9212D791831B636008FCDCD /* UpdatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesManager.h; sourceTree = "<group>"; };
 		E9212D7A1831B636008FCDCD /* UpdatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesManager.m; sourceTree = "<group>"; };
 		E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatesManagerDelegate.h; sourceTree = "<group>"; };
@@ -69,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E91C2E49184FD9AC003618D1 /* libxml2.dylib in Frameworks */,
+				E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */,
 				E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */,
 				E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */,
 				E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */,
@@ -90,6 +102,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E91C2E3D184FB33A003618D1 /* Bonjour */ = {
+			isa = PBXGroup;
+			children = (
+				E9B97D211829A922007AA4A3 /* BonjourViewController.h */,
+				E9B97D221829A922007AA4A3 /* BonjourViewController.m */,
+			);
+			name = Bonjour;
+			sourceTree = "<group>";
+		};
+		E91C2E3E184FB34A003618D1 /* Sat Finder */ = {
+			isa = PBXGroup;
+			children = (
+				E91C2E40184FB38A003618D1 /* AccelerometerFilter.h */,
+				E91C2E41184FB38A003618D1 /* AccelerometerFilter.m */,
+				E91C2E43184FD8F7003618D1 /* RXMLElement.h */,
+				E91C2E44184FD8F7003618D1 /* RXMLElement.m */,
+				E916FD8F184D653000E06C33 /* SatFinderViewController.h */,
+				E916FD90184D653000E06C33 /* SatFinderViewController.m */,
+			);
+			name = "Sat Finder";
+			sourceTree = "<group>";
+		};
+		E91C2E3F184FB355003618D1 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */,
+				E9212D791831B636008FCDCD /* UpdatesManager.h */,
+				E9212D7A1831B636008FCDCD /* UpdatesManager.m */,
+			);
+			name = Updates;
+			sourceTree = "<group>";
+		};
 		E9B97C5E1829A14A007AA4A3 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +155,8 @@
 		E9B97C691829A14A007AA4A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E91C2E48184FD9AC003618D1 /* libxml2.dylib */,
+				E91C2E46184FD9A1003618D1 /* libz.dylib */,
 				E916FD94184D670D00E06C33 /* AVFoundation.framework */,
 				E916FD92184D666800E06C33 /* CoreLocation.framework */,
 				E9B97C6A1829A14A007AA4A3 /* Foundation.framework */,
@@ -126,15 +172,11 @@
 			children = (
 				E9B97C791829A14A007AA4A3 /* AppDelegate.h */,
 				E9B97C7A1829A14A007AA4A3 /* AppDelegate.m */,
-				E9B97D211829A922007AA4A3 /* BonjourViewController.h */,
-				E9B97D221829A922007AA4A3 /* BonjourViewController.m */,
-				E916FD8F184D653000E06C33 /* SatFinderViewController.h */,
-				E916FD90184D653000E06C33 /* SatFinderViewController.m */,
-				E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */,
-				E9212D791831B636008FCDCD /* UpdatesManager.h */,
-				E9212D7A1831B636008FCDCD /* UpdatesManager.m */,
 				E9B97D241829AA8D007AA4A3 /* WebViewController.h */,
 				E9B97D251829AA8D007AA4A3 /* WebViewController.m */,
+				E91C2E3D184FB33A003618D1 /* Bonjour */,
+				E91C2E3E184FB34A003618D1 /* Sat Finder */,
+				E91C2E3F184FB355003618D1 /* Updates */,
 				E9B363A1183EEAE600575839 /* Settings.bundle */,
 				E9B97C7C1829A14A007AA4A3 /* Images.xcassets */,
 				E9B97C711829A14A007AA4A3 /* Supporting Files */,
@@ -252,8 +294,10 @@
 			files = (
 				E9B97D231829A922007AA4A3 /* BonjourViewController.m in Sources */,
 				E9B97C7B1829A14A007AA4A3 /* AppDelegate.m in Sources */,
+				E91C2E42184FB38A003618D1 /* AccelerometerFilter.m in Sources */,
 				E9B97C771829A14A007AA4A3 /* main.m in Sources */,
 				E9212D7B1831B636008FCDCD /* UpdatesManager.m in Sources */,
+				E91C2E45184FD8F7003618D1 /* RXMLElement.m in Sources */,
 				E9B97D261829AA8D007AA4A3 /* WebViewController.m in Sources */,
 				E916FD91184D653000E06C33 /* SatFinderViewController.m in Sources */,
 			);
@@ -291,7 +335,7 @@
 		E9B97C911829A14A007AA4A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -325,15 +369,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 			};
 			name = Debug;
 		};
 		E9B97C921829A14A007AA4A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -360,8 +405,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -369,6 +415,7 @@
 		E9B97C941829A14A007AA4A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
@@ -378,6 +425,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
+				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -385,6 +433,7 @@
 		E9B97C951829A14A007AA4A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Schkolne (C2XAQ3X4TT)";
@@ -394,6 +443,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
+				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
