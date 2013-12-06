@@ -14,7 +14,7 @@
 			listId,
 			antSatId,
 			triSatId,
-			degLon,
+			lon,
 			favorite,
 			enabled,
 			selectable;
@@ -120,38 +120,159 @@
     } else return NAN;
 }
 
+- (CGPoint)positionWithLon:(double)lon {
+	double drLatDeg = [delegate deviceLat];
+	double drLongDeg = [delegate deviceLon];
+    
+	double drLongDegSat = lon;
+    double drLongRadSat = degreesToRadians(drLongDegSat);
+    
+	double  drAzimuth,
+			drElevation,
+			drDelta,
+			drLatRad,
+			drLongRad,
+			drY;
+    
+    double  drCosDelta,
+			drCosLat,
+			drSinLat,
+			drAbsDelta;
+    
+    double  drA = 0.15127;
+    
+    /* Convert degrees to radians */
+    drLatRad  = degreesToRadians(drLatDeg);
+    drLongRad = degreesToRadians(drLongDeg);
+	
+    drCosLat   = cos(drLatRad);
+    drSinLat   = sin(drLatRad);
+    
+    drDelta = drLongRad - drLongRadSat;
+    drAbsDelta = fabs(drDelta);
+    drCosDelta = cos(drAbsDelta);
+	
+    drY = acos(drCosLat * drCosDelta);
+    /* Compute azimuth */
+    if (drDelta > 0.0)  {
+        drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
+    } else  {
+        drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
+    }
+    drAzimuth = radiansToDegrees(drAzimuth);
+    drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
+    
+    /* Compute elevation */
+	drElevation = atan2(cos(drY) - drA, sin(drY));
+	
+    drElevation = radiansToDegrees(drElevation);
+    
+    // now, rElevation and rAzimuth are correct.  use them to place the satellite.
+//    return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
+	drAzimuth += (0.0 > drAzimuth) ? 360.0 : 0.0;
+	
+	//	get x
+	double leftBound = [delegate deviceHeading] - (hfov/2.0);
+	double rightBound = [delegate deviceHeading] + (hfov/2.0);
+	
+	double positionAtBoundScale;
+	if (leftBound > rightBound)	{
+		if (drAzimuth <= rightBound) {
+            positionAtBoundScale = ((360.0 - leftBound) + drAzimuth)/hfov;
+        } else if (drAzimuth >= leftBound) {
+            positionAtBoundScale = (drAzimuth - leftBound)/hfov;
+		} else {
+			positionAtBoundScale = NAN;
+		}
+	} else {
+        if ((drAzimuth > leftBound) && (drAzimuth < rightBound)) {
+			positionAtBoundScale = (drAzimuth - leftBound)/hfov;
+		} else {
+			positionAtBoundScale = NAN;
+		}
+	}
+	
+	double x = camviewwidth * positionAtBoundScale;
+	
+	double topBound = [delegate deviceTilt] + (vfov/2.0);
+	double bottomBound = [delegate deviceTilt] - (vfov/2.0);
+
+	double y = NAN;
+	
+    if ((drElevation > bottomBound) && (drElevation < topBound)) {
+        double boundDiff = topBound - bottomBound;
+        double positionAtBoundScale = (drElevation - bottomBound)/boundDiff;
+		y = camviewheight - (camviewheight * positionAtBoundScale);
+    }
+	
+	return CGPointMake(x, y);
+}
+
+- (void)drawClarkeBelt:(CGPoint)position withContext:(CGContextRef)context {
+	CGRect rect = CGRectMake(position.x - 2.0, position.y - 2.0, 4.0, 4.0);
+	[[UIColor yellowColor] set];
+	CGContextFillEllipseInRect(context, rect);
+	[[UIColor whiteColor] set];
+	CGContextStrokeEllipseInRect(context, rect);
+}
+
 - (void)drawRect:(CGRect)rect {
-	NSLog(@" ");
-	NSLog(@"drawRect start");
-	[super drawRect:rect];
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextClearRect(context, self.bounds);
-	[[UIColor whiteColor] set];
 	
-	CGContextStrokeEllipseInRect(context, CGRectMake(14.0, 14.0, 14.0, 14.0));
-	
-//	double d = -180.0;
-//	while (d <= 180.0) {
-	
-	double d = -80.0;
-		NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:d];
-		if (satelliteAzimuthAndElevation) {
-			double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
-			double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
-			double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
-			double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
-			if (satelliteElevation > 0.0) {
-				NSLog(@"satelliteElevation > 0.0 x:%d y:%d : %f", isNaN(x), isNaN(y), d);
-				if (!isNaN(x) && !isNaN(y)) {
-					NSLog(@"drawing at: %f", d);
-					CGContextStrokeEllipseInRect(context, CGRectMake(x, y, 14.0, 14.0));
+	//	draw the clarke belt
+	double d = -180.0;
+	while (d <= 180.0) {
+//		CGPoint position = [self positionWithLon:d];
+//		if (!isNaN(position.x) && isNaN(position.y)) {
+//			NSLog(@"!");
+////			[self drawClarkeBelt:position withContext:context];
+//			CGRect rect = CGRectMake(position.x - 2.0, position.y - 2.0, 4.0, 4.0);
+//			[[UIColor yellowColor] set];
+//			CGContextFillEllipseInRect(context, rect);
+//			[[UIColor whiteColor] set];
+//			CGContextStrokeEllipseInRect(context, rect);
+//		}
+		NSArray* azimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:d];
+		if (azimuthAndElevation) {
+			double elevation = [[azimuthAndElevation objectAtIndex:1] doubleValue];
+			if (elevation > 0.0) {
+				double y = [self yPositionForSatelliteWithElevation:elevation];
+				if (!isNaN(y)) {
+					double azimuth = [[azimuthAndElevation objectAtIndex:0] doubleValue];
+					double x = [self xPositionForSatelliteWithAzimuth:azimuth];
+					if (!isNaN(x)) {
+						CGRect rect = CGRectMake(x - 2.0, y - 2.0, 4.0, 4.0);
+						[[UIColor yellowColor] set];
+						CGContextFillEllipseInRect(context, rect);
+						[[UIColor whiteColor] set];
+						CGContextStrokeEllipseInRect(context, rect);
+					}
 				}
 			}
 		}
-//		d = d + 2.0;
-//	}
+		d = d + 2.0;
+	}
 	
-	NSLog(@"drawRect end - %f", d);
+	//	draw the satellites
+//	NSArray* satList = [delegate satList];
+//	for (int i = 0; i < [satList count]; i++) {
+//		Sat* sat = (Sat*)[satList objectAtIndex:i];
+//   		NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:sat.lon];
+//   		if (satelliteAzimuthAndElevation) {
+//			double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
+//			double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
+//			double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
+//			double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
+//			if (satelliteElevation > 0.0 && !isNaN(x) && !isNaN(y)) {
+//				CGRect rect = CGRectMake(x - 5.0, y - 5.0, 10.0, 10.0);
+//				[[UIColor redColor] set];
+//				CGContextFillEllipseInRect(context, rect);
+//				[[UIColor whiteColor] set];
+//				CGContextStrokeEllipseInRect(context, rect);
+//			}
+//		}
+//	}
 }
 
 @end
@@ -159,6 +280,12 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 @implementation SatFinderViewController
+
+@synthesize deviceLat,
+			deviceLon,
+			deviceTilt,
+			deviceHeading,
+			satList;
 
 #pragma mark - UIViewController methods
 
@@ -193,9 +320,6 @@
 	deviceLon = newLocation.coordinate.longitude;
     if (deviceLat == 0.0) deviceLat = 0.000001;
     if (deviceLon == 0.0) deviceLon = 0.000001;
-	
-	deviceLat = 34.043918;
-	deviceLon = -118.252480;
 	[self.view setNeedsDisplay];
 }
 
@@ -239,7 +363,7 @@
 - (id)initWithSatListXmlString:(NSString*)satListXmlString {
 	self = [self init];
 	
-	self.view = [[SatFinderView alloc] init];
+	self.view = [[SatFinderView alloc] initWithDelegate:self];
 	
 	satList = [[NSMutableArray alloc] init];
 	RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
@@ -250,12 +374,14 @@
 		[sat setListId:[satElement child:@"listID"].text];
 		[sat setAntSatId:[satElement child:@"antSatID"].text];
 		[sat setTriSatId:[satElement child:@"triSatID"].text];
-		[sat setDegLon:[[satElement child:@"lon"].text floatValue]];
+		[sat setLon:[[satElement child:@"lon"].text floatValue]];
 		[sat setFavorite:[[satElement child:@"favorite"].text boolValue]];
 		[sat setEnabled:[[satElement child:@"enabled"].text boolValue]];
 		[sat setSelectable:[[satElement child:@"select"].text boolValue]];
 		[satList addObject:sat];
 	}];
+	
+	NSLog(@"satList: %@", satList);
 	
 	double accelerometerFrequency = (1.0 / 24.0);
 	accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
@@ -277,6 +403,10 @@
 	}
 	
 	return self;
+}
+
+- (NSArray*)satList {
+	return satList;
 }
 
 @end

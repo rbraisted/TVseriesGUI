@@ -148,7 +148,7 @@ TVRO.WebService = function() {
 		sendRequest(antWebServiceUrl, 'get_satellite_list', requestJson, successCallback, errorCallback);
 	};
 
-	self.getSatelliteListAsynchronously = function(requestJson) {
+	self.getSatelliteList2 = function(requestJson) {
 		var	requestUrl = antWebServiceUrl,
 			requestXml = '<ipacu_request><message name="get_satellite_list" />'+requestJsonAsXmlString(requestJson)+'</ipacu_request>',
 			responseXml = '';

@@ -16,7 +16,7 @@
 @property (nonatomic) NSString* listId;
 @property (nonatomic) NSString* antSatId;
 @property (nonatomic) NSString* triSatId;
-@property (nonatomic) float degLon;
+@property (nonatomic) float lon;
 @property (nonatomic) BOOL  favorite;
 @property (nonatomic) BOOL  enabled;
 @property (nonatomic) BOOL  selectable;
@@ -33,6 +33,7 @@
 @property (nonatomic) double deviceLon;
 @property (nonatomic) double deviceTilt;
 @property (nonatomic) float  deviceHeading;
+@property (nonatomic) NSArray* satList;
 
 @end
 
@@ -40,6 +41,7 @@
 
 @interface SatFinderView : UIView {
 	id delegate;
+	
 }
 
 - (id)initWithDelegate:(id<SatFinderViewDelegate>)_delegate;
@@ -52,12 +54,7 @@
 	LowpassFilter* 		accelerometerFilter;
 	UIAccelerometer* 	accelerometer;
 	CLLocationManager* 	locationManager;
-	NSMutableArray*		satList;
-	
-	double deviceLat;
-	double deviceLon;
-	double deviceTilt;
-	float  deviceHeading;
+	NSMutableArray*		satList;	
 }
 
 + (BOOL)satFinderAvailable;
