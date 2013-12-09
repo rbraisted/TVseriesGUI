@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.AdvancedSettings = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -33,7 +35,4 @@ TVRO.AdvancedSettings = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.settingsPage.advancedSettings = new TVRO.AdvancedSettings();
-	window.tvro.settingsPage.advancedSettings.init();
-});
+TVRO.page.mc = new TVRO.AdvancedSettings();

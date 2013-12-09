@@ -11,35 +11,7 @@
 \*                           */
 
 @media screen and (max-width: 880px) {
-
-}
-
-/*                *\
-
-     SMALL SOLO
-
-\*                */
-
-@media screen and (max-width: 540px) {
-
-}
-
-/*                 *\
-
-     MEDIUM SOLO
-
-\*                 */
-
-@media screen and (min-width: 540px) and (max-width: 880px) {
-
-}
-
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-
-@media screen and (min-width: 880px) {
-
+	.sb {
+		display: block;
+	}
 }

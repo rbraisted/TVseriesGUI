@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.AboutTheApp = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -9,7 +11,4 @@ TVRO.AboutTheApp = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.aboutTheApp = new TVRO.AboutTheApp();
-	window.tvro.supportPage.aboutTheApp.init();
-});
+TVRO.page.mc = new TVRO.AboutTheApp();

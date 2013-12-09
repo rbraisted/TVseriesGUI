@@ -5,53 +5,45 @@
 	<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="/js/updates.js"></script>
 
-	<div id="sb" class="sb">
-		<a id="tv1" href="#" class="ant row">
-			<div class="type">TV1</div>
-			<div class="conn">connected</div>
+	<div id="sb" class="sb selected">
+		<a id="tv1-btn" href="#" class="menu-btn ant-btn">
+			<div class="ant-type">TV1</div>
+			<div class="ant-connected">connected</div>
 			<img src="/images/img.gif" />
-			<div class="ver row">
-				<div class="sys">Antenna S/W Version: <span id="tv1-system-version"></span>
-				</div><div class="por">Latest S/W Version Available: <span id="tv1-portal-version"></span>
-				</div><div class="dev">Downloaded S/W Version: <span id="tv1-system-version"></span></div>
-			</div>
+			<div class="system-version software-version">Antenna S/W Version: <span id="tv1-system-version">---</span>
+			</div><div class="portal-version software-version">Latest S/W Version Available: <span id="tv1-portal-version">---</span>
+			</div><div class="device-version software-version">Downloaded S/W Version: <span id="tv1-device-version">---</span></div>
 		</a>
-		<a id="tv3" href="#" class="ant row">
-			<div class="type">TV3</div>
-			<div class="conn">connected</div>
+		<a id="tv3-btn" href="#" class="menu-btn ant-btn">
+			<div class="ant-type">TV3</div>
+			<div class="ant-connected">connected</div>
 			<img src="/images/img.gif" />
-			<div class="ver row">
-				<div class="sys">Antenna S/W Version: <span id="tv3-system-version"></span>
-				</div><div class="por">Latest S/W Version Available: <span id="tv3-portal-version"></span>
-				</div><div class="dev">Downloaded S/W Version: <span id="tv3-system-version"></span></div>
-			</div>
+			<div class="system-version software-version">Antenna S/W Version: <span id="tv3-system-version">---</span>
+			</div><div class="portal-version software-version">Latest S/W Version Available: <span id="tv3-portal-version">---</span>
+			</div><div class="device-version software-version">Downloaded S/W Version: <span id="tv3-device-version">---</span></div>
 		</a>
-		<a id="tv5" href="#" class="ant row">
-			<div class="type">TV5</div>
-			<div class="conn">connected</div>
+		<a id="tv5-btn" href="#" class="menu-btn ant-btn">
+			<div class="ant-type">TV5</div>
+			<div class="ant-connected">connected</div>
 			<img src="/images/img.gif" />
-			<div class="ver row">
-				<div class="sys">Antenna S/W Version: <span id="tv5-system-version"></span>
-				</div><div class="por">Latest S/W Version Available: <span id="tv5-portal-version"></span>
-				</div><div class="dev">Downloaded S/W Version: <span id="tv5-system-version"></span></div>
-			</div>
+			<div class="system-version software-version">Antenna S/W Version: <span id="tv5-system-version">---</span>
+			</div><div class="portal-version software-version">Latest S/W Version Available: <span id="tv5-portal-version">---</span>
+			</div><div class="device-version software-version">Downloaded S/W Version: <span id="tv5-device-version">---</span></div>
 		</a>
-		<a id="tv6" href="#" class="ant row">
-			<div class="type">TV6</div>
-			<div class="conn">connected</div>
+		<a id="tv6-btn" href="#" class="menu-btn ant-btn">
+			<div class="ant-type">TV6</div>
+			<div class="ant-connected">connected</div>
 			<img src="/images/img.gif" />
-			<div class="ver row">
-				<div class="sys">Antenna S/W Version: <span id="tv6-system-version"></span>
-				</div><div class="por">Latest S/W Version Available: <span id="tv6-portal-version"></span>
-				</div><div class="dev">Downloaded S/W Version: <span id="tv6-system-version"></span></div>
-			</div>
+			<div class="system-version software-version">Antenna S/W Version: <span id="tv6-system-version">---</span>
+			</div><div class="portal-version software-version">Latest S/W Version Available: <span id="tv6-portal-version">---</span>
+			</div><div class="device-version software-version">Downloaded S/W Version: <span id="tv6-device-version">---</span></div>
 		</a>
 	</div>
 
 	<div id="mc" class="mc">
 		<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Updates</a>
-		<div id="selected-ant-type" class="type">TV5</div>
-		<div class="row por">
+		<div id="selected-ant-type" class="ant-type">TV5</div>
+		<div class="por">
 			<div class="bg"></div>
 			<div class="col">
 				<div class="label">Latest Software Available</div>
@@ -60,7 +52,7 @@
 				<a id="download-btn" href="#" class="btn"></a>
 			</div>
 		</div>
-		<div class="row dev">
+		<div class="dev">
 			<div class="bg"></div>
 			<div class="col">
 				<div class="label">My Computer</div>
@@ -69,7 +61,7 @@
 				<a id="install-btn" href="#" class="btn"><input id="upload" type="file" /></a>
 			</div>
 		</div>
-		<div class="row sys">
+		<div class="sys">
 			<div class="bg"></div>
 			<div class="col">
 				<div class="label">My Antenna Software</div>

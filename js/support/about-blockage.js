@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.AboutBlockage = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -9,7 +11,4 @@ TVRO.AboutBlockage = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.aboutBlockage = new TVRO.AboutBlockage();
-	window.tvro.supportPage.aboutBlockage.init();
-});
+TVRO.page.mc = new TVRO.AboutBlockage();

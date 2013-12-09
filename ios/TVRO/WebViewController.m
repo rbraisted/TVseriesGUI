@@ -126,7 +126,7 @@
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidStartLoad");
 	NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
-	NSString* javascriptString = [NSString stringWithFormat:@"var TVRO = { nativeAppShell: true, satFinderAvailable: %@ };", satFinderAvailable];
+	NSString* javascriptString = [NSString stringWithFormat:@"var TVRO = { MOBILE_APP: true, SAT_FINDER: %@ };", satFinderAvailable];
 	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
 }
 

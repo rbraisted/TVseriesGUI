@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.DiagnosticLog = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -5,6 +7,9 @@ TVRO.DiagnosticLog = function() {
 	self.init = function() {
 		$('#diagnostic-log-btn').toggleClass('selected', true);
 
+		//	TODO:
+		//	operational and entry btns should send us
+		//	to a demo file if we are in demo mode
 		$('#operational-btn').click(function() {
 			window.location.href = 'logfile.php?file=IPACU.serial.log';
 		});
@@ -31,7 +36,4 @@ TVRO.DiagnosticLog = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.diagnosticLog = new TVRO.DiagnosticLog();
-	window.tvro.supportPage.diagnosticLog.init();
-});
+TVRO.page.mc = new TVRO.DiagnosticLog();

@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.TechnicalDefinitions = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -9,7 +11,4 @@ TVRO.TechnicalDefinitions = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.technicalDefinitions = new TVRO.TechnicalDefinitions();
-	window.tvro.supportPage.technicalDefinitions.init();
-});
+TVRO.page.mc = new TVRO.TechnicalDefinitions();

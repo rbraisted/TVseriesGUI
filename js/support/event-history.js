@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.EventHistory = function() {
 	var self = {},
 		webservice = new TVRO.WebService(),
@@ -54,9 +56,4 @@ TVRO.EventHistory = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.eventHistory = new TVRO.EventHistory();
-	window.tvro.supportPage.eventHistory.init();
-	window.setInterval(window.tvro.supportPage.eventHistory.update, 2000);
-	window.tvro.supportPage.eventHistory.load(5);
-});
+TVRO.page.mc = new TVRO.EventHistory();

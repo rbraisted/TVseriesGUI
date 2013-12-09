@@ -4,48 +4,6 @@
 
 \*       */
 
-.support-mc p {
+.mc p {
 	margin-bottom: 30px;
-}
-
-/*                           *\
-
-     SMALL & MEDIUM SHARED
-
-\*                           */
-	
-@media screen and (max-width: 880px) {
-	.sb {
-		display: none;
-	}
-}
-
-/*                *\
-
-     SMALL SOLO
-
-\*                */
-
-@media screen and (max-width: 540px) {
-
-}
-
-/*                 *\
-
-     MEDIUM SOLO
-
-\*                 */
-
-@media screen and (min-width: 540px) and (max-width: 880px) {
-
-}
-
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-
-@media screen and (min-width: 880px) {
-	
 }

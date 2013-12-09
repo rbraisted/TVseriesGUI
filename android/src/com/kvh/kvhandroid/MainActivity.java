@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				//	TODO: determine is device can implement sat finder
 				String satFinderAvailable = true ? "true" : "false";
-				String javascript = "var TVRO = { nativeAppShell: true, satFinderAvailable: " + satFinderAvailable + " };";
+				String javascript = "var TVRO = { MOBILE_APP: true, SAT_FINDER: " + satFinderAvailable + " };";
 				webView.loadUrl("javascript:"+javascript);
 			}
 

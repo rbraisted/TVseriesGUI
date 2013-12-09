@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.RestartSystem = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -24,7 +26,4 @@ TVRO.RestartSystem = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.restartSystem = new TVRO.RestartSystem();
-	window.tvro.supportPage.restartSystem.init();
-});
+TVRO.page.mc = new TVRO.RestartSystem();

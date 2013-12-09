@@ -4,72 +4,35 @@
 
 \*       */
 
-.ant {
-	background: #1b2846;
-	position: relative;
-	margin-bottom: 25px;
-	height: 30px;
+.sb .ant-btn {
+	/*margin-bottom: 25px;*/
 }
 
-.ant .type,
-.ant .conn {
-	padding: 10px;
+.sb .ant-type {
+	display: inline-block;
 }
 
-.ant .conn,
-.ant img {
-	position: absolute;
-	top: 0;
-}
-
-.ant img {
-	background: transparent url(/images/forward.png) no-repeat center center;
-	height: 100%;
-	right: 0;
-	width: 30px;
-}
-
-.ant .conn {
+.sb .ant-connected {
 	color: #a1f851;
 	display: none;
-	right: 30px;
+	margin-left: 5px;
 }
 
-.ant.connected .conn {
-	display: block;
+.sb .connected .ant-connected {
+	display: inline-block;	
 }
 
-.ant .ver {
-	background: #2a2e4e;
-	height: 15px;
-	position: absolute;
-	text-align: right;
-	top: 100%;
+.sb .software-version {
+	color: #ccc;
+	font-size: 75%;
+	line-height: 120%;
 }
 
-.ant .por,
-.ant .sys,
-.ant .dev {
-	display: inline-block;
-	font-size: 10px;
-	text-align: left;
-	width: 70px;
+.sb .device-version {
+	display: none;
 }
 
-
-
-
-.sb,
-.mc {
-	background: -moz-radial-gradient(center, ellipse cover, #0d2764 5%, #06102a 70%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0d2764), color-stop(70%,#06102a)); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* IE10+ */
-	background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
-}
-
-.mc .type {
+.mc .ant-type {
 	font-size: 30px;
 	padding: 20px;
 	text-align: right;
@@ -128,7 +91,6 @@
 	width: 100%;
 }
 
-
 /*                           *\
 
      SMALL & MEDIUM SHARED
@@ -136,38 +98,14 @@
 \*                           */
 
 @media screen and (max-width: 880px) {
-	.back-btn,
-	.sb,
-	.technician-mode .sb,
-	.technician-mode .mc {
-		display: none;
-	}
-
-	.technician-mode .back-btn,
-	.technician-mode .sb.selected,
-	.technician-mode .mc.selected {
+	.technician-mode .sb.selected {
 		display: block;
 	}
-}
 
-/*                *\
-
-     SMALL SOLO
-
-\*                */
-
-@media screen and (max-width: 540px) {
-
-}
-
-/*                 *\
-
-     MEDIUM SOLO
-
-\*                 */
-
-@media screen and (min-width: 540px) and (max-width: 880px) {
-
+	.technician-mode .mc:not(.selected),
+	.page:not(.technician-mode) .back-btn {
+		display: none;
+	}
 }
 
 /*                *\
@@ -177,21 +115,12 @@
 \*                */
 
 @media screen and (min-width: 880px) {
-	.mc {
+	.page:not(.technician-mode) .sb {
+		display: none;
+	}
+
+	.page:not(.technician-mode) .mc {
 		left: 0;
 		right: 0;
-	}
-
-	.technician-mode .mc {
-		left: 260px;
-	}
-
-	.sb {
-		display: none;
-		width: 260px;
-	}
-
-	.technician-mode .sb {
-		display: block;
 	}
 }

@@ -1,31 +1,26 @@
+"use strict";
+
 TVRO.GeneralSettings = function() {
 	var self = {},
 		cookieManager = new TVRO.CookieManager();
-
-	window.c = cookieManager;
 
 	self.init = function() {
 		$('#general-settings-btn').toggleClass('selected', true);
 		
 		$('#technician-mode-btn').click(function() {
-			console.log("1: "+cookieManager.hasCookie('technician-mode'));
-			if (cookieManager.hasCookie('technician-mode')) cookieManager.removeCookie('technician-mode');
-			else cookieManager.setCookie('technician-mode');
-			$('#technician-mode-btn').toggleClass('on', cookieManager.hasCookie('technician-mode'));
-			console.log("2: "+cookieManager.hasCookie('technician-mode'));
-		}).toggleClass('on', cookieManager.hasCookie('technician-mode'));
+			if (cookieManager.hasCookie(TVRO.TECH_MODE)) cookieManager.removeCookie(TVRO.TECH_MODE);
+			else cookieManager.setCookie(TVRO.TECH_MODE);
+			$('#technician-mode-btn').toggleClass('on', cookieManager.hasCookie(TVRO.TECH_MODE));
+		}).toggleClass('on', cookieManager.hasCookie(TVRO.TECH_MODE));
 
 		$('#demo-mode-btn').click(function() {
-			if (cookieManager.hasCookie('demo-mode')) cookieManager.removeCookie('demo-mode');
-			else cookieManager.setCookie('demo-mode');
-			$('#demo-mode-btn').toggleClass('on', cookieManager.hasCookie('demo-mode'));
-		}).toggleClass('on', cookieManager.hasCookie('demo-mode'));
+			if (cookieManager.hasCookie(TVRO.DEMO_MODE)) cookieManager.removeCookie(TVRO.DEMO_MODE);
+			else cookieManager.setCookie(TVRO.DEMO_MODE);
+			$('#demo-mode-btn').toggleClass('on', cookieManager.hasCookie(TVRO.DEMO_MODE));
+		}).toggleClass('on', cookieManager.hasCookie(TVRO.DEMO_MODE));
 	};
 
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.settingsPage.generalSettings = new TVRO.GeneralSettings();
-	window.tvro.settingsPage.generalSettings.init();
-});
+TVRO.page.mc = new TVRO.GeneralSettings();

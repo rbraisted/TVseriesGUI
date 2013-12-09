@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.CommandLine = function() {
 	var self = {};
 
@@ -24,7 +26,4 @@ TVRO.CommandLine = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.supportPage.commandLine = new TVRO.CommandLine();
-	window.tvro.supportPage.commandLine.init();
-});
+TVRO.page.mc = new TVRO.CommandLine();

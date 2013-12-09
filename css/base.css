@@ -89,8 +89,10 @@ p {
 	margin-bottom: 30px;
 }
 
-.title {
-	font-weight: bold;
+.warning {
+	background: #d22;
+	margin-bottom: 30px;
+	padding: 10px;
 }
 
 .text-btn,
@@ -191,6 +193,10 @@ p {
 @media screen and (max-width: 880px) {
 	.page {
 		position: relative;
+	}
+
+	.sb {
+		display: none;
 	}
 
 	.sb,

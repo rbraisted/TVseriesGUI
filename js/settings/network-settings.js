@@ -1,4 +1,6 @@
-TVRO.GeneralSettings = function() {
+"use strict";
+
+TVRO.NetworkSettings = function() {
 	var self = {},
 		webService = new TVRO.WebService();
 
@@ -65,7 +67,4 @@ TVRO.GeneralSettings = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.settingsPage.generalSettings = new TVRO.GeneralSettings();
-	window.tvro.settingsPage.generalSettings.init();
-});
+TVRO.page.mc = new TVRO.NetworkSettings();

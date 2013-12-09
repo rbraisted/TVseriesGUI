@@ -1,3 +1,5 @@
+"use strict";
+
 TVRO.UpdatesPage = function() {
 	var self = {},
 		updateInterval,
@@ -22,19 +24,21 @@ TVRO.UpdatesPage = function() {
 		}());
 
 	self.init = function() {
-		$('#tv1, #tv3, #tv5, #tv6').click(function() {			
-			selectedAntType = this.id;
-			$('#selected-ant-type').text(selectedAntType.toUpperCase());
-			$('#selected-portal-version').text(ants[selectedAntType].portalVersion);
-			$('#selected-system-version').text(ants[selectedAntType].systemVersion);
-			$('#selected-device-version').text(ants[selectedAntType].deviceVersion);
+		$('#updates-btn').toggleClass('selected', true);
 
-			$('#tv1, #tv3, #tv5, #tv6, #updates-menu').removeClass('selected');
-			$('#'+this.id+', #updates-main').toggleClass('selected', true);
+		$('#tv1-btn, #tv3-btn, #tv5-btn, #tv6-btn').click(function() {
+			selectedAntType = this.id;
+			// $('#selected-ant-type').text(selectedAntType.toUpperCase());
+			// $('#selected-portal-version').text(ants[selectedAntType].portalVersion);
+			// $('#selected-system-version').text(ants[selectedAntType].systemVersion);
+			// $('#selected-device-version').text(ants[selectedAntType].deviceVersion);
+
+			$('#tv1-btn, #tv3-btn, #tv5-btn, #tv6-btn, #sb').removeClass('selected');
+			$('#'+this.id+', #mc').toggleClass('selected', true);
 		});
 
 		$('#back-btn').click(function() {
-			$('#mc').removeClass('selected');
+			$('#tv1-btn, #tv3-btn, #tv5-btn, #tv6-btn, #mc').removeClass('selected');
 			$('#sb').toggleClass('selected', true);
 		});
 
@@ -64,9 +68,8 @@ TVRO.UpdatesPage = function() {
 	};
 
 	self.update = function() {
-		var technicianMode = cookieManager.hasCookie('technician-mode');
-		console.log("technicianMode: "+technicianMode);
-		$('#page').toggleClass('technician-mode', technicianMode);
+		var technicianMode = cookieManager.hasCookie(TVRO.TECH_MODE);
+		$('#page').toggleClass(TVRO.TECH_MODE, technicianMode);
 
 		webService.getAntennaVersions(function(responseXml) {
 			var xml = $(responseXml),
@@ -75,8 +78,8 @@ TVRO.UpdatesPage = function() {
 				systemVersion = xml.find('current').text();
 
 			connectedAntType = antType;
-			$('#tv1, #tv3, #tv5, #tv6').removeClass('connected');
-			$('#'+connectedAntType).toggleClass('connected', true);
+			$('#tv1-btn, #tv3-btn, #tv5-btn, #tv6-btn').removeClass('connected');
+			$('#'+connectedAntType+'-btn').toggleClass('connected', true);
 
 			if (!technicianMode) {
 				selectedAntType = connectedAntType;
@@ -176,7 +179,4 @@ TVRO.UpdatesPage = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.updatesPage = new TVRO.UpdatesPage();
-	window.tvro.updatesPage.init();
-});
+TVRO.page = new TVRO.UpdatesPage();

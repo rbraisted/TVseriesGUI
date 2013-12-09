@@ -1,15 +1,18 @@
+"use strict";
+
 TVRO.SettingsPage = function() {
 	var self = {},
 		cookieManager = new TVRO.CookieManager();
 
 	self.init = function() {
 		$('#settings-btn').toggleClass('selected', true);
+
+		if (self.mc && self.mc.init) {
+			self.mc.init();
+		} 
 	};
 
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.settingsPage = new TVRO.SettingsPage();
-	window.tvro.settingsPage.init();
-});
+TVRO.page = new TVRO.SettingsPage();
