@@ -14,11 +14,11 @@ TVRO.NetworkSettings = function() {
 
 			$('#wireless-mode').text(mode);
 
-			if (mode == 'OFF') {
+			if (mode === 'OFF') {
 				$('#wireless-settings, #if-mode-settings, #adhoc-mode-settings').hide();
 			} else {
 				$('#wireless-settings').show();
-				if (mode == 'IF') {
+				if (mode === 'IF') {
 					var ifModeXml = xml.find('if_mode'),
 						mode = ifModeXml.find('> mode').text(),
 						ip = ifModeXml.find('ip').text(),
@@ -34,7 +34,7 @@ TVRO.NetworkSettings = function() {
 					$('#if-mode-ssid').text(ssid);
 					$('#adhoc-mode-settings').hide();
 					$('#if-mode-settings').show();
-				} else if (mode == 'ADHOC') {
+				} else if (mode === 'ADHOC') {
 					var adhocModeXml = xml.find('adhoc_mode'),
 						ip = adhocModeXml.find('ip').text(),
 						security = adhocModeXml.find('security > mode').text(),

@@ -13,11 +13,11 @@
 			<div class="title">Ethernet Settings</div>
 			<div class="setting">
 				<span class="label">Mode: </span>
-				<a id="disabled-btn" href="#">DISABLED</a>
+				<a id="off-btn" href="#">DISABLED</a>
 				<a id="static-btn" href="#">STATIC</a>
-				<a id="dhcp-btn" href="#">DCHP</a>
+				<a id="dynamic-btn" href="#">DCHP</a>
 			</div>
-			<div id="static-settings">
+			<div id="static-settings" class="static-settings">
 				<div class="setting">
 					<span class="label">IP Address: </span>
 					<input id="ip-1" type="text" />

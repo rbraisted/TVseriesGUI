@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message error="0" name="get_wlan"/>
-	<mode>ADHOC</mode><!-- OFF | ADHOC| AP | IF -->
+	<mode>IF</mode><!-- OFF | ADHOC| AP | IF -->
 	<adhoc_mode>
 		<security>
 			<mode>WEP</mode><!-- OFF | WEP -->
-			<key>passwordtext</key>
+			<key>adhoc_password</key>
 		</security>
 		<ip>169.254.100.1</ip>
 	</adhoc_mode>
@@ -15,7 +15,7 @@
 		<security>
 			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
 			<algorithm>TKIP</algorithm><!-- (TBD: should this be hidden) -->
-			<key>passwordtext</key>
+			<key>ap_password</key>
 		</security>
 		<ip>192.168.1.3</ip>
 		<netmask>255.255.255.0</netmask>
@@ -28,7 +28,7 @@
 		<security>
 			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
 			<algorithm>TKIP</algorithm>
-			<key>passwordtext</key>
+			<key>if_password</key>
 		</security>
 		<ip>192.168.1.3</ip>
 		<netmask>255.255.255.0</netmask>

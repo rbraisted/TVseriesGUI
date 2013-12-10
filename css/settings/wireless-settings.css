@@ -1,0 +1,19 @@
+/*       *\
+
+    ^3^
+
+\*       */
+
+.adhoc-settings,
+.adhoc-password-setting,
+.if-settings,
+.static-settings,
+.static-password-setting,
+.dynamic-settings,
+.dynamic-password-setting {
+	display: none;
+}
+
+input {
+	width: 30px;
+}

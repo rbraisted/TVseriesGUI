@@ -3,19 +3,19 @@
 TVRO.EthernetSettings = function() {
 	var self = {},
 		webService = new TVRO.WebService(),
-		mode = 'STATIC';	//	DISABLED, STATIC, DHCP
+		mode = 'STATIC';	//	OFF, STATIC, DYNAMIC
 
 	self.init = function() {
 		$('#network-settings-btn').toggleClass('selected', true);
 
-		$('#disabled-btn, #static-btn, #dhcp-btn').click(function() {
+		$('#off-btn, #static-btn, #dynamic-btn').click(function() {
 			mode = {
-				'disabled-btn' : 'DISABLED',
+				'off-btn' : 'OFF',
 				'static-btn' : 'STATIC',
-				'dhcp-btn' : 'DHCP'
+				'dynamic-btn' : 'DYNAMIC'
 			}[this.id];
 			$('#static-settings').toggle(mode === 'STATIC');
-			$('#disabled-btn, #static-btn, #dhcp-btn').removeClass('selected');
+			$('#off-btn, #static-btn, #dynamic-btn').removeClass('selected');
 			$(this).toggleClass('selected', true);
 		});
 
@@ -33,31 +33,35 @@ TVRO.EthernetSettings = function() {
 
 		webService.getEthernetSettings(function(responseXml) {
 			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				ip = xml.find('ip').text().split('.'),
-				subnet = xml.find('netmask').text().split('.'),
-				gateway = xml.find('gateway').text().split('.'),
-				broadcast = xml.find('broadcast').text().split('.');
-
+				error = xml.find('message').attr('error');
 			mode = xml.find('mode').text();
-			if (mode === 'DISABLED') $('#disabled-btn').click();
-			else if (mode === 'DHCP') $('#dhcp-btn').click();
-			else if (mode === 'STATIC') {
+			if (mode === 'OFF') {
+				$('#off-btn').click();
+			} else if (mode === 'DYNAMIC') {
+				$('#dynamic-btn').click();
+			} else if (mode === 'STATIC') {
 				$('#static-btn').click();
-				(function(arrays, names) {
-					for (var i = 0; i < arrays.length; i++) {
-						var array = arrays[i],
-							name = names[i];
-						for (var k = 0; k < array.length; k++) {
-							$('#'+name+'-'+(k+1)).val(array[k]);
-						}
+				var ip = xml.find('ip').text().split('.'),
+					subnet = xml.find('netmask').text().split('.'),
+					gateway = xml.find('gateway').text().split('.'),
+					broadcast = xml.find('broadcast').text().split('.'),
+					arrays = [ip, subnet, gateway, broadcast],
+					names = ['ip', 'subnet', 'gateway', 'broadcast'];
+				for (var i = 0; i < arrays.length; i++) {
+					var array = arrays[i],
+						name = names[i];
+					for (var k = 0; k < array.length; k++) {
+						$('#'+name+'-'+(k+1)).val(array[k]);
 					}
-				}([ip, subnet, gateway, broadcast], ['ip', 'subnet', 'gateway', 'broadcast']));
+				}
 			}
 		});
 	};
 
 	self.save = function() {
+		//	TODO:
+		//	validate that all fields are filled
+
 		var ethernetSettings = { 'mode' : mode }
 		if (mode === 'STATIC') {
 			ethernetSettings.ip = $('#ip-1').val()+'.'+$('#ip-2').val()+'.'+$('#ip-3').val()+'.'+$('#ip-4').val();
