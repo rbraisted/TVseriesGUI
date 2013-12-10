@@ -5,17 +5,20 @@
 	<script type="text/javascript" src="/js/satellites.js"></script>
 
 	<div id="sb" class="sb">
-		<a id="favorites-btn" href="#" class="menu-btn"><img src="/images/img.gif">Favorites</a>
-		<a id="enabled-btn" href="#" class="menu-btn"><img src="/images/img.gif">Enabled</a>
+		<div class="headline">View satellites by region</div>
 		<a id="africa-btn" href="#" class="menu-btn"><img src="/images/img.gif">Africa</a>
 		<a id="asia-btn" href="#" class="menu-btn"><img src="/images/img.gif">Asia</a>
 		<a id="australia-btn" href="#" class="menu-btn"><img src="/images/img.gif">Australia</a>
 		<a id="central-and-south-america-btn" href="#" class="menu-btn"><img src="/images/img.gif">Central/South America</a>
 		<a id="north-america-btn" href="#" class="menu-btn"><img src="/images/img.gif">North America</a>
-		<a id="all-btn" href="#" class="menu-btn"><img src="/images/img.gif">Entire Library</a>
+		<a id="all-btn" href="#" class="menu-btn"><img src="/images/img.gif">All Regions</a>
 	</div>
 
 	<div id="mc" class="mc">
-		
+		<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Change region</a>
+
+		<div class="mcg">
+			
+		</div>
 	</div>
 </div>

@@ -10,6 +10,7 @@
 
 .sb .ant-type {
 	display: inline-block;
+	padding-bottom: 7px;
 }
 
 .sb .ant-connected {

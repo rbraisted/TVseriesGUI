@@ -87,6 +87,7 @@ TVRO.CookieManager = (function() {
 }());
 
 //	webservice singleton
+//	works kinda like this:
 //	
 //	webService.getSomeValue(function successCallback(response) {
 //		//	do something
@@ -100,7 +101,8 @@ TVRO.CookieManager = (function() {
 //			parameter : value,
 //		}
 //	}, function successCallback(response) {
-//	}, function errorCallback(response) {});
+//	}, function errorCallback(response) {
+//	});
 //
 //	pass request parameters as json
 //	they'll be converted to xml for you
@@ -252,8 +254,16 @@ TVRO.WebService = (function() {
 				sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
 			};
 
+			singleton.resetEthernetSettings = function(successCallback, errorCallback) {
+				sendRequest(xmlWebServiceUrl, 'set_eth_factory', null, successCallback, errorCallback);
+			};
+
 			singleton.resetSatelliteParams = function(requestJson, successCallback, errorCallback) {
 				sendRequest(antWebServiceUrl, 'reset_satellite_params', requestJson, successCallback, errorCallback);
+			};
+
+			singleton.resetWirelessSettings = function(successCallback, errorCallback) {
+				sendRequest(xmlWebServiceUrl, 'set_wlan_factory', null, successCallback, errorCallback);
 			};
 
 			singleton.setAntennaConfig = function(requestJson, successCallback, errorCallback) {

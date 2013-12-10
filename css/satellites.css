@@ -3,3 +3,8 @@
     ^3^
 
 \*       */
+
+.sb .headline {
+	margin-bottom: 0;
+	padding: 10px 20px;
+}
