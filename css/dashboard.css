@@ -28,9 +28,13 @@ menu .label {
 
 menu .button {
 	color: #4388fd;
-	position: absolute;
-	right: 0;
-	margin-top: -19px;
+	float: right;
+	position: relative;
+	top: -17px;
+}
+
+menu .of-btn {
+	top: -22px;
 }
 
 .vessel {
