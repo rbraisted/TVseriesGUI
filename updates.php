@@ -42,30 +42,27 @@
 
 	<div id="mc" class="mc">
 		<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Updates</a>
-		<div id="selected-ant-type" class="ant-type">TV5</div>
-		<div class="por">
-			<div class="bg"></div>
-			<div class="col">
+		<div id="ant-type" class="ant-type">TV5</div>
+		<div class="portal">
+			<div class="mcg">
 				<div class="label">Latest Software Available</div>
-				<div class="ver">S/W Version <span id="selected-portal-version"></span> available to download</div>
+				<div class="software-version">S/W Version <span id="portal-version"></span> available to download</div>
 				<div class="cta">Download Update</div>
 				<a id="download-btn" href="#" class="btn"></a>
 			</div>
 		</div>
-		<div class="dev">
-			<div class="bg"></div>
-			<div class="col">
+		<div class="device">
+			<div class="mcg">
 				<div class="label">My Computer</div>
-				<div class="ver">S/W Version <span id="selected-device-version"></span> ready to install</div>
+				<div class="software-version">S/W Version <span id="device-version"></span> ready to install</div>
 				<div class="cta">Install Update</div>
 				<a id="install-btn" href="#" class="btn"><input id="upload" type="file" /></a>
 			</div>
 		</div>
-		<div class="sys">
-			<div class="bg"></div>
-			<div class="col">
+		<div class="system">
+			<div class="mcg">
 				<div class="label">My Antenna Software</div>
-				<div class="ver">Antenna S/W Version <span id="selected-system-version"></span> installed</div>
+				<div class="software-version">Antenna S/W Version <span id="system-version"></span> installed</div>
 			</div>
 		</div>
 	</div>

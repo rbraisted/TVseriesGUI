@@ -1,9 +1,13 @@
+"use strict";
+
 TVRO.DashboardPage = function() {
 	var self = {},
 		updateInterval,
 		webService = new TVRO.WebService();
 
 	self.init = function() {
+		$('#dashboard-btn').toggleClass('selected', true);
+
 		$('#autoswitch-button').click(function() {
 			var autoswitchEnabled = $('#autoswitch-button').hasClass('on');
 			webService.setAutoswitchService({
@@ -99,7 +103,4 @@ TVRO.DashboardPage = function() {
 	return self;
 };
 
-$(document).ready(function() {
-	window.tvro.dashboardPage = new TVRO.DashboardPage();
-	window.tvro.dashboardPage.init();
-});
+TVRO.page = new TVRO.DashboardPage();

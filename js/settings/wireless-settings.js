@@ -12,6 +12,12 @@ TVRO.WirelessSettings = function() {
 	self.init = function() {
 		$('#network-settings-btn').toggleClass('selected', true);
 
+		//	buttons, values
+		//	somevar = 
+		//	map of buttons to values
+		//	always toggle this + deselect buttons
+		//	+ array of guys to be toggled based on array on samevar === map of values
+
 		//	wireless mode
 		$('#off-btn, #adhoc-btn, #if-btn').click(function() {
 			mode = {

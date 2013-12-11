@@ -39,6 +39,13 @@
 	text-align: right;
 }
 
+.mc .portal,
+.mc .device,
+.mc .system {
+	background: #031b42;
+}
+
+/*
 .mc .row {
 	height: 100px;
 	margin-bottom: 60px;
@@ -90,7 +97,7 @@
 	height: 100%;
 	opacity: 0.01;
 	width: 100%;
-}
+}*/
 
 /*                           *\
 

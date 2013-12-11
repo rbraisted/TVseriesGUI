@@ -7,7 +7,6 @@
 	<div id="about-the-app" class="about-the-app mcg">
 		<link type="text/css" rel="stylesheet" href="/css/support/help.css">
 		<script type="text/javascript" src="/js/support/about-the-app.js"></script>
-		
 		<div class="headline">About the App</div>
 
 		<b>Section title</b>

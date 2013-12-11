@@ -147,7 +147,7 @@
 			<enabled>TRUE</enabled>
 			<select>TRUE</select>
 		</satellite>
-		<satellite>
+		<!-- <satellite>
 			<listID>64</listID>
 			<antSatID>23E</antSatID>
 			<triSatID>FALSE</triSatID>
@@ -960,6 +960,6 @@
 			<favorite>FALSE</favorite>
 			<enabled>TRUE</enabled>
 			<select>TRUE</select>
-		</satellite>
+		</satellite> -->
 	</sat_list>
 </ipacu_response>

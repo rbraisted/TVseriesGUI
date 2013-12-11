@@ -18,7 +18,10 @@
 		<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Change region</a>
 
 		<div class="mcg">
-			
+			<a id="enabled-btn" href="#" class="border-btn">Enabled</a>
+			<a id="favorite-btn" href="#" class="border-btn">Favorite</a>
+			<a id="region-btn" href="#" class="border-btn">Region</a>
+			<a id="name-btn" href="#" class="border-btn">Name</a>
 		</div>
 	</div>
 </div>
