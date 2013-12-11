@@ -33,6 +33,11 @@
 	display: none;
 }
 
+.mc {
+	font-size: 18px;
+	line-height: 120%;
+}
+
 .mc .ant-type {
 	font-size: 30px;
 	padding: 20px;
@@ -42,54 +47,57 @@
 .mc .portal,
 .mc .device,
 .mc .system {
-	background: #031b42;
-}
-
-/*
-.mc .row {
-	height: 100px;
-	margin-bottom: 60px;
 	position: relative;
+	margin-bottom: 60px;
 }
 
 .mc .bg {
-	background: #ccc;
+	background: #fff;
+	height: 100%;
 	opacity: 0.1;
+	width: 100%;
 }
 
-.mc .col {
-	width: 350px;
-	margin: auto;
+.mc .mcg {
+	height: 80px;
 	position: relative;
 }
 
 .mc .label {
-	padding: 20px 0 10px 0;
+	margin: 15px 0 5px;
 }
 
-.mc .sys .label {
-	padding-top: 30px;
+.mc .label.computer {
+	margin-top: 25px;	
+}
+
+.mc .software-version {
+	color: #ccc;
 }
 
 .mc .cta {
 	color: #a1f851;
-	left: 100px;
-	padding-top: 10px;
+	left: 120px;
+	margin-top: 5px;
 	position: absolute;
 	top: 100%;
 }
 
-.mc .ver {
-	color: #cacaca;
-}
-
 .mc .btn {
-	position: absolute;
-	background: transparent url(/images/download-button.png) no-repeat center center;
-	bottom: -70px;
 	height: 95px;
+	margin-top: -20px;
+	position: absolute;
+	top: 100%;
 	width: 95px;
 	z-index: 1;
+}
+
+.mc .portal .btn {
+	background: transparent url(/images/download-button.png) no-repeat center center;
+}
+
+.mc .device .btn {
+	background: transparent url(/images/upload-button.png) no-repeat center center;
 }
 
 .mc .btn input {
@@ -97,7 +105,7 @@
 	height: 100%;
 	opacity: 0.01;
 	width: 100%;
-}*/
+}
 
 /*                           *\
 
@@ -113,6 +121,11 @@
 	.technician-mode .mc:not(.selected),
 	.page:not(.technician-mode) .back-btn {
 		display: none;
+	}
+
+	.mc .mcg {
+		width: 320px;
+		margin: auto;
 	}
 }
 

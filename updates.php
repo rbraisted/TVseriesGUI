@@ -44,6 +44,7 @@
 		<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Updates</a>
 		<div id="ant-type" class="ant-type">TV5</div>
 		<div class="portal">
+			<div class="bg"></div>
 			<div class="mcg">
 				<div class="label">Latest Software Available</div>
 				<div class="software-version">S/W Version <span id="portal-version"></span> available to download</div>
@@ -52,14 +53,19 @@
 			</div>
 		</div>
 		<div class="device">
+			<div class="bg"></div>
 			<div class="mcg">
-				<div class="label">My Computer</div>
-				<div class="software-version">S/W Version <span id="device-version"></span> ready to install</div>
+				<div id="computer" class="label computer">My Computer</div>
+				<div id="device">
+					<div class="label">On Device</div>
+					<div class="software-version">S/W Version <span id="device-version"></span> ready to install</div>
+				</div>
 				<div class="cta">Install Update</div>
 				<a id="install-btn" href="#" class="btn"><input id="upload" type="file" /></a>
 			</div>
 		</div>
 		<div class="system">
+			<div class="bg"></div>
 			<div class="mcg">
 				<div class="label">My Antenna Software</div>
 				<div class="software-version">Antenna S/W Version <span id="system-version"></span> installed</div>

@@ -9,13 +9,28 @@ TVRO.UpdatesPage = function() {
 		selectedAntType = '',
 		antTypesData = {};
 
+	//	i don't like how this class is right now
+	//	i think it would be better if technician mode
+	//	was it's own page
+	//	ie
+	//	updates/
+	//		index.php (non tech mode)
+	//		technician-mode.php
+	//		base.php (mc - shared by both)
+
 	self.init = function() {
 		$('#updates-btn').toggleClass('selected', true);
+
+		$('#computer').toggle(!TVRO.MOBILE_APP);
+		$('#device').toggle(TVRO.MOBILE_APP);
+
+
 
 		var technicianMode = cookieManager.hasCookie(TVRO.TECH_MODE);
 		$('#page').toggleClass('technician-mode', technicianMode);
 
 		$.map(TVRO.ANT_TYPES, function(antType) {
+			$('#'+antType+'-device-version').toggle(TVRO.MOBILE_APP);
 			antTypesData[antType] = {
 				portalUrl : '',
 				portalVersion : '',
