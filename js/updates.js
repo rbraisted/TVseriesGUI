@@ -24,8 +24,6 @@ TVRO.UpdatesPage = function() {
 		$('#computer').toggle(!TVRO.MOBILE_APP);
 		$('#device').toggle(TVRO.MOBILE_APP);
 
-
-
 		var technicianMode = cookieManager.hasCookie(TVRO.TECH_MODE);
 		$('#page').toggleClass('technician-mode', technicianMode);
 
@@ -108,21 +106,33 @@ TVRO.UpdatesPage = function() {
 				});	
 			}(antType));
 		}
+
+		if (TVRO.MOBILE_APP) {
+			window.location = 'tvro://updates/device-versions';
+		}
 	};
 
 	self.download = function() {
-		window.location = antTypesData[selectedAntType].portalUrl;
+		if (TVRO.MOBILE_APP) {
+			window.location = 'tvro://updates/download/'+selectedAntType+'/'+self[selectedAntType].portalVersion+'/'+self[selectedAntType].portalUrl;
+		} else {
+			window.location = antTypesData[selectedAntType].portalUrl;
+		}
 	};
 
 	self.upload = function(successCallback, errorCallback) {
-		$.ajaxFileUpload({
-			url : '/xmlservices.php/upload_software',
-			secureuri : false,
-			fileElementId : 'upload',
-			dataType : 'xml',
-			success : successCallback,
-			error : errorCallback
-		});
+		if (TVRO.MOBILE_APP) {
+			window.location = 'tvro://updates/upload/'+selectedAntType;
+		} else {
+			$.ajaxFileUpload({
+				url : '/xmlservices.php/upload_software',
+				secureuri : false,
+				fileElementId : 'upload',
+				dataType : 'xml',
+				success : successCallback,
+				error : errorCallback
+			});			
+		}
 	};
 
 	self.install = function(fileName) {
@@ -134,50 +144,16 @@ TVRO.UpdatesPage = function() {
 		});
 	};
 
-	// self.ios = function() {
-	// 	//	we're currently using vsat to updates
-	// 	//	you can find the switch in base.js WebService
-	// 	//	however we're getting xss security errors
-	// 	//	eventually kvh will have to update latest_software on their servers to resolve
-	// 	//	but for now, to allow us to debug in ios:
-	// 	antTypesData.tv1.portalUrl = "http://www.kvh.com/VSAT/V3/V3-105.kvh";
-	// 	antTypesData.tv1.portalVersion = "105";
-	// 	$('#tv1-portal-version').text(antTypesData.tv1.portalVersion);
-
-	// 	antTypesData.tv3.portalUrl = "http://www.kvh.com/VSAT/V7/V7-.kvh";
-	// 	antTypesData.tv3.portalVersion = "105";	//	for whatever reason v7 updates are getting a version number right now, so just make it up
-	// 	$('#tv3-portal-version').text(antTypesData.tv3.portalVersion);
-
-	// 	antTypesData.tv5.portalUrl = "http://www.kvh.com/VSAT/V7IP/V7IP-105.kvh";
-	// 	antTypesData.tv5.portalVersion = "105";
-	// 	$('#tv5-portal-version').text(antTypesData.tv5.portalVersion);
-
-	// 	antTypesData.tv6.portalUrl = "http://www.kvh.com/VSAT/V11/V11-105.kvh";
-	// 	antTypesData.tv6.portalVersion = "105";	
-	// 	$('#tv6-portal-version').text(antTypesData.tv6.portalVersion);
-
-	// 	self.setDeviceVersions = function(deviceVersions) {
-	// 		//	expects:
-	// 		//	{ 'antType' : 'version', 'antType' : 'version' }
-	// 		alert(antTypes.length);
-	// 		for (var antType in antTypesData) {
-	// 			if (deviceVersions[antType]) {
-	// 				antTypesData[antType].deviceVersion = deviceVersions[antType];
-	// 				$('#'+antType+'-device-version').text(antTypesData[antType].deviceVersion);
-	// 			}
-	// 		};
-	// 	};
-
-	// 	self.upload = function() {
-	// 		window.location = 'tvro://updates/upload/'+selectedAntType;
-	// 	};
-
-	// 	self.download = function() {
-	// 		window.location = 'tvro://updates/download/'+selectedAntType+'/'+self[selectedAntType].portalVersion+'/'+self[selectedAntType].portalUrl;
-	// 	};
-
-	// 	window.location = 'tvro://updates/device-versions';
-	// };
+	self.setDeviceVersions = function(deviceVersions) {
+		//	expects:
+		//	{ 'antType' : 'version', 'antType' : 'version' }
+		for (var antType in antTypesData) {
+			if (deviceVersions[antType]) {
+				antTypesData[antType].deviceVersion = deviceVersions[antType];
+				$('#'+antType+'-device-version').text(antTypesData[antType].deviceVersion);
+			}
+		};
+	};
 
 	return self;
 };
