@@ -306,6 +306,49 @@ TVRO.WebService = (function() {
 	}
 }());
 
+//	our generic dropdown class
+
+TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
+	var self = {},
+		dropdown = $('#'+dropdownId),
+		buttons = [];
+
+	$('#'+buttonId).click(function() {
+		dropdown.show();
+		dropdown.offset($(this).offset());
+	});
+
+	//	initialize with any options that are already in html
+	//	we expect options to have this format:
+	//	<tag class="dropdown-option" value="Option value"><img src="/images/img.gif">Option text</tag>
+	dropdown.find('.dropdown-option').each(function() {
+		buttons.push(this);
+		$(this).click(optionSelected);
+	});
+
+	//	initialize with options
+	(function() {
+		for (var key in options) {
+			var value = options[key],
+				button = $('<a href="#" value="'+value+'" class="dropdown-option"><img src="/images/img.gif">'+key+'</a>');
+			buttons.push(button);
+			button.click(optionSelected);
+			dropdown.append(button);
+		}
+	}());
+
+	function optionSelected() {
+		dropdown.hide();
+		$(buttons).removeClass('selected');
+		$(this).toggleClass('selected', true);
+		if (typeof callback === 'function') {
+			callback(this.innerText, this.getAttribute('value'));
+		}
+	}
+
+	return self;
+};
+
 //	here's where the magic starts
 //	note: it's not magic
 //	this should be the only document.ready that inits

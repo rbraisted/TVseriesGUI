@@ -13,22 +13,24 @@
 			<div class="title">Wireless Settings</div>
 			<div class="setting">
 				<span class="label">Mode: </span>
-
 				<a id="mode-btn" href="#" class="dropdown-btn">DISABLED</a>
-
 				<div id="mode-dropdown" class="dropdown">
 					<div class="dropdown-header">WIRELESS MODE</div>
 					<a href="#" value="OFF" class="dropdown-option"><img src="/images/img.gif">DISABLED</a>
 					<a href="#" value="ADHOC" class="dropdown-option"><img src="/images/img.gif">ADHOC</a>
-					<!-- <a href="#" value="IF" class="dropdown-option"><img src="/images/img.gif">INFRASTRUCTURE</a> -->
+					<a href="#" value="IF" class="dropdown-option"><img src="/images/img.gif">INFRASTRUCTURE</a>
 				</div>
 			</div>
 			<div id="adhoc-settings" class="adhoc-settings">
 				<div class="setting"><span class="label">IP Address: <span id="adhoc-ip">---</span></div>
 				<div class="setting">
 					<span class="label">Security Mode: </span>
-					<a id="adhoc-security-off-btn" href="#">OFF</a>
-					<a id="adhoc-security-wep-btn" href="#">WEP</a>
+					<a id="adhoc-security-btn" href="#" class="dropdown-btn">OFF</a>
+					<div id="adhoc-security-dropdown" class="dropdown">
+						<div class="dropdown-header">ADHOC SECURITY MODE</div>
+						<a href="#" value="OFF" class="dropdown-option"><img src="/images/img.gif">OFF</a>
+						<a href="#" value="WEP" class="dropdown-option"><img src="/images/img.gif">WEP</a>
+					</div>
 				</div>
 				<div id="adhoc-password-setting" class="adhoc-password-setting setting">
 					<span class="label">Password: </span>
@@ -38,8 +40,12 @@
 			<div id="if-settings" class="if-settings">
 				<div class="setting">
 					<span class="label">Mode: </span>
-					<a id="static-btn" href="#">STATIC</a>
-					<a id="dynamic-btn" href="#">DHCP</a>
+					<a id="if-mode-btn" href="#" class="dropdown-btn">STATIC</a>
+					<div id="if-mode-dropdown" class="dropdown">
+						<div class="dropdown-header">INFRASTRUCTURE MODE</div>
+						<a href="#" value="STATIC" class="dropdown-option"><img src="/images/img.gif">STATIC</a>
+						<a href="#" value="DYNAMIC" class="dropdown-option"><img src="/images/img.gif">DHCP</a>
+					</div>
 				</div>
 				<div id="static-settings" class="static-settings">
 					<div class="setting">
@@ -76,8 +82,12 @@
 					</div>
 					<div class="setting">
 						<span class="label">Security Mode: </span>
-						<a id="static-security-off-btn" href="#">OFF</a>
-						<a id="static-security-wpa-psk-btn" href="#">WPA_PSK</a>
+						<a id="static-security-btn" href="#" class="dropdown-btn">OFF</a>
+						<div id="static-security-dropdown" class="dropdown">
+							<div class="dropdown-header">INFRASTRUCTURE MODE</div>
+							<a href="#" value="OFF" class="dropdown-option"><img src="/images/img.gif">OFF</a>
+							<a href="#" value="WPA_PSK" class="dropdown-option"><img src="/images/img.gif">WPA_PSK</a>
+						</div>
 					</div>
 					<div id="static-password-setting" class="static-password-setting">
 						<div class="setting">
@@ -93,8 +103,12 @@
 					</div>
 					<div class="setting">
 						<span class="label">Security Mode: </span>
-						<a id="dynamic-security-off-btn" href="#">OFF</a>
-						<a id="dynamic-security-wpa-psk-btn" href="#">WPA_PSK</a>
+						<a id="dynamic-security-btn" href="#" class="dropdown-btn">OFF</a>
+						<div id="dynamic-security-dropdown" class="dropdown">
+							<div class="dropdown-header">INFRASTRUCTURE MODE</div>
+							<a href="#" value="OFF" class="dropdown-option"><img src="/images/img.gif">OFF</a>
+							<a href="#" value="WPA_PSK" class="dropdown-option"><img src="/images/img.gif">WPA_PSK</a>
+						</div>
 					</div>
 					<div id="dynamic-password-setting" class="dynamic-password-setting">
 						<div class="setting">

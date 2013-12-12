@@ -1,63 +1,8 @@
 "use strict";
 
-TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
-	var self = {},
-		dropdown = $('#'+dropdownId),
-		buttons = [];
-
-	$('#'+buttonId).click(function() {
-		dropdown.show();
-		dropdown.offset($(this).offset());
-	});
-
-	//	initialize with any options that are already in html
-	//	we expect options to have this format:
-	//	<tag class="dropdown-option" value="Option value"><img src="/images/img.gif">Option text</tag>
-	dropdown.find('.dropdown-option').each(function() {
-		$(this).click(optionSelected);
-	});
-
-	//	initialize with options
-	(function() {
-		for (var key in options) {
-			var value = options[key],
-				button = $('<a href="#" value="'+value+'" class="dropdown-option"><img src="/images/img.gif">'+key+'</a>');
-			buttons.push(button);
-			button.click(optionSelected);
-			dropdown.append(button);
-		}
-	}());
-
-	function optionSelected() {
-		dropdown.hide();
-		$(buttons).removeClass('selected');
-		$(this).toggleClass('selected', true);
-		if (typeof callback === 'function') {
-			callback(this.innerText, this.getAttribute('value'));
-		}
-	}
-
-	return self;
-};
-
 TVRO.WirelessSettings = function() {
 	var self = {},
 		webService = new TVRO.WebService(),
-		//	consts
-		MODE = {
-			OFF : 'OFF',
-			ADHOC : 'ADHOC',
-			IF : 'IF'
-		},
-		IF_MODE = {
-			STATIC : 'STATIC',
-			DYNAMIC : 'DYNAMIC'
-		},
-		SECURITY_MODE = {
-			OFF : 'OFF',
-			WEP : 'WEP',
-			WPA_PSK : 'WPA_PSK'
-		},
 		mode = 'OFF',	//	OFF, ADHOC, IF
 		ifMode = 'STATIC',	//	STATIC, DYNAMIC
 		adhocSecurityMode = 'OFF', //	OFF, WEP
@@ -67,79 +12,36 @@ TVRO.WirelessSettings = function() {
 	self.init = function() {
 		$('#network-settings-btn').toggleClass('selected', true);
 
-		var modeDropdown = new TVRO.Dropdown('mode-dropdown', 'mode-btn',
-			function(optionText, optionValue) {
-				mode = optionValue;
-				$('#adhoc-settings').toggle(mode === 'ADHOC');
-				$('#if-settings').toggle(mode === 'IF');
-				$('#mode-btn').text(optionText);
-			}, {
-				// 'DISABLED' : MODE.OFF,
-				// 'ADHOC' : MODE.ADHOC,
-				'INFRASTRUCTURE' : MODE.IF
-			});
+		TVRO.Dropdown('mode-dropdown', 'mode-btn', function(optionText, optionValue) {
+			mode = optionValue;
+			$('#adhoc-settings').toggle(mode === 'ADHOC');
+			$('#if-settings').toggle(mode === 'IF');
+			$('#mode-btn').text(optionText);
+		});
 
-		//	buttons, values
-		//	somevar = 
-		//	map of buttons to values
-		//	always toggle this + deselect buttons
-		//	+ array of guys to be toggled based on array on samevar === map of values
+		TVRO.Dropdown('adhoc-security-dropdown', 'adhoc-security-btn', function(optionText, optionValue) {
+			adhocSecurityMode = optionValue;
+			$('#adhoc-password-setting').toggle(adhocSecurityMode === 'WEP');
+			$('#adhoc-security-btn').text(optionText);
+		});
 
-		//	wireless mode
-
-		// $('#off-btn, #adhoc-btn, #if-btn').click(function() {
-		// 	mode = {
-		// 		'off-btn' : 'OFF',
-		// 		'adhoc-btn' : 'ADHOC',
-		// 		'if-btn' : 'IF'
-		// 	}[this.id];
-		// 	$('#off-btn, #adhoc-btn, #if-btn').removeClass('selected');
-		// 	$(this).toggleClass('selected', true);
-		// });
-
-		//	if wireless mode is IF, users can select an IF mode
-		$('#static-btn, #dynamic-btn').click(function() {
-			ifMode = {
-				'static-btn' : 'STATIC',
-				'dynamic-btn' : 'DYNAMIC'
-			}[this.id];
+		TVRO.Dropdown('if-mode-dropdown', 'if-mode-btn', function(optionText, optionValue) {
+			ifMode = optionValue;
 			$('#static-settings').toggle(ifMode === 'STATIC');
 			$('#dynamic-settings').toggle(ifMode === 'DYNAMIC');
-			$('#static-btn, #dynamic-btn').removeClass('selected');
-			$(this).toggleClass('selected', true);
+			$('#if-mode-btn').text(optionText);
 		});
 
-		//	adhoc security mode
-		$('#adhoc-security-off-btn, #adhoc-security-wep-btn').click(function() {
-			adhocSecurityMode = {
-				'adhoc-security-off-btn' : 'OFF',
-				'adhoc-security-wep-btn' : 'WEP'
-			}[this.id];
-			$('#adhoc-password-setting').toggle(adhocSecurityMode === 'WEP');
-			$('#adhoc-security-off-btn, #adhoc-security-wep-btn').removeClass('selected');
-			$(this).toggleClass('selected', true);
-		});
-
-		//	IF static security mode
-		$('#static-security-off-btn, #static-security-wpa-psk-btn').click(function() {
-			staticSecurityMode = {
-				'static-security-off-btn' : 'OFF',
-				'static-security-wpa-psk-btn' : 'WPA_PSK'
-			}[this.id];
+		TVRO.Dropdown('static-security-dropdown', 'static-security-btn', function(optionText, optionValue) {
+			staticSecurityMode = optionValue;
 			$('#static-password-setting').toggle(staticSecurityMode === 'WPA_PSK');
-			$('#static-security-off-btn, #static-security-wpa-psk-btn').removeClass('selected');
-			$(this).toggleClass('selected', true);
+			$('#static-security-btn').text(optionText);
 		});
 
-		//	IF dynamic security mode
-		$('#dynamic-security-off-btn, #dynamic-security-wpa-psk-btn').click(function() {
-			dynamicSecurityMode = {
-				'dynamic-security-off-btn' : 'OFF',
-				'dynamic-security-wpa-psk-btn' : 'WPA_PSK'
-			}[this.id];
+		TVRO.Dropdown('dynamic-security-dropdown', 'dynamic-security-btn', function(optionText, optionValue) {
+			dynamicSecurityMode = optionValue;
 			$('#dynamic-password-setting').toggle(dynamicSecurityMode === 'WPA_PSK');
-			$('#dynamic-security-off-btn, #dynamic-security-wpa-psk-btn').removeClass('selected');
-			$(this).toggleClass('selected', true);
+			$('#dynamic-security-btn').text(optionText);
 		});
 
 		$('#save-btn').click(function() {
