@@ -327,6 +327,11 @@ TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
 	});
 
 	//	initialize with options
+	//	options should be in this format:
+	//	{
+	//		'Option 1 Text' : 'option A value',
+	//		'Option B Text' : 'option 2 value'
+	//	}
 	(function() {
 		for (var key in options) {
 			var value = options[key],
@@ -345,6 +350,9 @@ TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
 			callback(this.innerText, this.getAttribute('value'));
 		}
 	}
+
+	//	if you want to set the selected option, you can do it using
+	//	jQuery like so: $('#dropdown .dropdown-option[value='+value+']').click();
 
 	return self;
 };

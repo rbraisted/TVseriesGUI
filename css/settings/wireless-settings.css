@@ -4,19 +4,70 @@
 
 \*       */
 
-.adhoc-settings,
-.adhoc-password-setting,
-.if-settings,
-.static-settings,
-.static-password-setting,
-.dynamic-settings,
-.dynamic-password-setting {
+#adhoc-mode,
+#adhoc-security,
+#if-mode,
+#static-security,
+#dynamic-mode,
+#dynamic-security {
 	display: none;
 }
 
-input {
-	width: 30px;
+.label {
+	color: #ccc;
+	text-align: right;
+	display: inline-block;
+	width: 220px;
+	margin-right: 30px;
 }
+
+.setting {
+	line-height: 250%;
+}
+
+.mc .headline {
+	text-align: center;
+	margin-top: 60px;
+}
+
+.ssid,
+.password {
+	padding: 5px 20px;
+	width: 252px;
+}
+
+.octet {
+	text-align: center;
+	width: 44px;
+}
+
+.octet + .octet {
+	margin-left: 10px;
+}
+
+.buttons {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.buttons .border-btn+.border-btn {
+	margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .dropdown {
 	background: #000;
@@ -38,7 +89,8 @@ input {
 
 .dropdown-option {
 	display: block;
-	padding: 10px 20px;
+	padding: 10px 20px 10px 40px;
+	position: relative;
 }
 
 .dropdown-option+.dropdown-option {
@@ -46,5 +98,15 @@ input {
 }
 
 .dropdown-option img {
-	
+	background: transparent url(/images/check-mark.png) no-repeat center center;
+	display: none;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 40px;
+}
+
+.dropdown-option.selected img {
+	display: block;
 }
