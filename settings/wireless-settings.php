@@ -13,9 +13,15 @@
 			<div class="title">Wireless Settings</div>
 			<div class="setting">
 				<span class="label">Mode: </span>
-				<a id="off-btn" href="#">DISABLED</a>
-				<a id="adhoc-btn" href="#">ADHOC</a>
-				<a id="if-btn" href="#">INFRASTRUCTURE</a>
+
+				<a id="mode-btn" href="#" class="dropdown-btn">DISABLED</a>
+
+				<div id="mode-dropdown" class="dropdown">
+					<div class="dropdown-header">WIRELESS MODE</div>
+					<a href="#" value="OFF" class="dropdown-option"><img src="/images/img.gif">DISABLED</a>
+					<a href="#" value="ADHOC" class="dropdown-option"><img src="/images/img.gif">ADHOC</a>
+					<!-- <a href="#" value="IF" class="dropdown-option"><img src="/images/img.gif">INFRASTRUCTURE</a> -->
+				</div>
 			</div>
 			<div id="adhoc-settings" class="adhoc-settings">
 				<div class="setting"><span class="label">IP Address: <span id="adhoc-ip">---</span></div>

@@ -17,3 +17,34 @@
 input {
 	width: 30px;
 }
+
+.dropdown {
+	background: #000;
+	border: 1px solid #888;
+	display: none;
+	left: 120px;
+	position: fixed;
+	top: 180px;
+	width: 260px;
+	z-index: 100;
+}
+
+.dropdown-header {
+	color: #4388fd;
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #4388fd;
+}
+
+.dropdown-option {
+	display: block;
+	padding: 10px 20px;
+}
+
+.dropdown-option+.dropdown-option {
+	border-top: 1px solid #888;
+}
+
+.dropdown-option img {
+	
+}
