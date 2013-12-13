@@ -44,17 +44,9 @@ TVRO.WirelessSettings = function() {
 			$('#dynamic-security-btn').text(optionText);
 		});
 
-		$('#save-btn').click(function() {
-			self.save();
-		});
-
-		$('#cancel-btn').click(function() {
-			self.cancel();
-		});
-
-		$('#reset-btn').click(function() {
-			self.reset();
-		});	
+		$('#save-btn').click(self.save);
+		$('#cancel-btn').click(self.cancel);
+		$('#reset-btn').click(self.reset);
 
 		webService.getWirelessSettings(function(responseXml) {
 			var xml = $(responseXml),
@@ -74,19 +66,15 @@ TVRO.WirelessSettings = function() {
 					$('#static-security-dropdown .dropdown-option[value='+staticSecurityMode+']').click();
 					$('#static-password').val(xml.find('if_mode > security > key').text());
 					$('#static-ssid').val(xml.find('if_mode > essid').text());
-
 					var ip = xml.find('if_mode > ip').text().split('.'),
 						subnet = xml.find('if_mode > netmask').text().split('.'),
 						gateway = xml.find('if_mode > gateway').text().split('.'),
-						broadcast = xml.find('if_mode > broadcast').text().split('.'),
-						arrays = [ip, subnet, gateway, broadcast],
-						types = ['ip', 'subnet', 'gateway', 'broadcast'];
-
-					for (var i = 0; i < arrays.length; i++) {
-						var array = arrays[i], type = types[i];
-						for (var k = 0; k < array.length; k++) {
-							$('#static-'+type+' input:eq('+k+')').val(array[k]);
-						}
+						broadcast = xml.find('if_mode > broadcast').text().split('.');
+					for (var i = 0; i < 4; i++) {
+						$('#static-ip input:eq('+i+')').val(ip[i]);
+						$('#static-subnet input:eq('+i+')').val(subnet[i]);
+						$('#static-gateway input:eq('+i+')').val(gateway[i]);
+						$('#static-broadcast input:eq('+i+')').val(broadcast[i]);
 					}
 				} else if (ifMode === 'DYNAMIC') {
 					dynamicSecurityMode = xml.find('if_mode > security > mode').text();
@@ -102,38 +90,41 @@ TVRO.WirelessSettings = function() {
 		//	TODO:
 		//	validation, password validation, etc
 
+		//	also note that this whole block is really ugly but
+		//	i'm not sure what to do about it
+
 		var wirelessSettings = {
 			'mode' : mode
 		};
 		
 		if (mode === 'ADHOC') {
 			wirelessSettings.adhoc_mode = {
-				security : {
-					mode : adhocSecurityMode,
-					key : (adhocSecurityMode ? $('#adhoc-security-password').val() : '')
+				'security' : {
+					'mode' : adhocSecurityMode,
+					'key' : (adhocSecurityMode !== 'OFF' ? $('#adhoc-security-password').val() : '')
 				}
 			}
 		} else if (mode === 'IF') {
 			if (ifMode === 'STATIC') {
 				wirelessSettings.if_mode = {
-					mode : ifMode,
-					ip : $('#static-ip input').map(function() { return this.value; }).join('.'),
-					netmask : $('#subnet-ip input').map(function() { return this.value; }).join('.'),
-					gateway : $('#gateway-ip input').map(function() { return this.value; }).join('.'),
-					broadcast : $('#broadcast-ip input').map(function() { return this.value; }).join('.'),
-					essid : $('#static-ssid').val(),
-					security : {
-						mode : staticSecurityMode,
-						key : (staticSecurityMode ? $('#static-password').val() : '')
+					'mode' : ifMode,
+					'ip' : $('#static-ip input').map(function() { return this.value; }).get().join('.'),
+					'netmask' : $('#static-subnet input').map(function() { return this.value; }).get().join('.'),
+					'gateway' : $('#static-gateway input').map(function() { return this.value; }).get().join('.'),
+					'broadcast' : $('#static-broadcast input').map(function() { return this.value; }).get().join('.'),
+					'essid' : $('#static-ssid').val(),
+					'security' : {
+						'mode' : staticSecurityMode,
+						'key' : (staticSecurityMode !== 'OFF' ? $('#static-password').val() : '')
 					}
 				}
 			} else if (ifMode === 'DYNAMIC') {
 				wirelessSettings.if_mode = {
-					mode : ifMode,
-					essid : $('#dynamic-ssid').val(),
-					security : {
-						mode : dynamicSecurityMode,
-						key : (dynamicSecurityMode ? $('#dynamic-password').val() : '')
+					'mode' : ifMode,
+					'essid' : $('#dynamic-ssid').val(),
+					'security' : {
+						'mode' : dynamicSecurityMode,
+						'key' : (dynamicSecurityMode !== 'OFF' ? $('#dynamic-password').val() : '')
 					}					
 				}
 			}

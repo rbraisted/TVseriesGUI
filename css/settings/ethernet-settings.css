@@ -4,10 +4,41 @@
 
 \*       */
 
-.static-settings {
+#static-mode {
 	display: none;
 }
 
-input {
-	width: 30px;
+.label {
+	color: #ccc;
+	text-align: right;
+	display: inline-block;
+	width: 180px;
+	margin-right: 30px;
+}
+
+.setting {
+	line-height: 250%;
+}
+
+.mc .headline {
+	text-align: center;
+	margin-top: 60px;
+}
+
+.octet {
+	text-align: center;
+	width: 44px;
+}
+
+.octet + .octet {
+	margin-left: 10px;
+}
+
+.buttons {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.buttons .border-btn+.border-btn {
+	margin-left: 10px;
 }

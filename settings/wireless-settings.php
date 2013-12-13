@@ -7,7 +7,7 @@
 	<a id="back-btn" href="/settings/" class="back-btn"><img src="/images/img.gif" />Settings</a>
 
 	<div class="mcg">
-		<div class="headline">WIRELESS SETTINGS</div>
+		<div class="headline">Wireless Settings</div>
 
 		<div class="setting">
 			<span class="label">Mode: </span>
@@ -89,32 +89,32 @@
 		</div>
 
 		<div id="mode-dropdown" class="dropdown">
-			<div class="dropdown-header">WIRELESS MODE</div>
+			<div class="dropdown-header">Wireless Mode</div>
 			<a href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">DISABLED</a>
 			<a href="#" value="ADHOC" class="dropdown-option"><img src="/images/img.gif">ADHOC</a>
 			<a href="#" value="IF" class="dropdown-option"><img src="/images/img.gif">INFRASTRUCTURE</a>
 		</div>
 
 		<div id="if-mode-dropdown" class="dropdown">
-			<div class="dropdown-header">INFRASTRUCTURE MODE</div>
+			<div class="dropdown-header">Network Mode</div>
 			<a href="#" value="STATIC" class="dropdown-option selected"><img src="/images/img.gif">STATIC</a>
 			<a href="#" value="DYNAMIC" class="dropdown-option"><img src="/images/img.gif">DHCP</a>
 		</div>
 
 		<div id="adhoc-security-dropdown" class="dropdown">
-			<div class="dropdown-header">ADHOC SECURITY MODE</div>
+			<div class="dropdown-header">Security Mode</div>
 			<a href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">OFF</a>
 			<a href="#" value="WEP" class="dropdown-option"><img src="/images/img.gif">WEP</a>
 		</div>
 
 		<div id="static-security-dropdown" class="dropdown">
-			<div class="dropdown-header">INFRASTRUCTURE MODE</div>
+			<div class="dropdown-header">Security Mode</div>
 			<a href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">OFF</a>
 			<a href="#" value="WPA_PSK" class="dropdown-option"><img src="/images/img.gif">WPA_PSK</a>
 		</div>
 
 		<div id="dynamic-security-dropdown" class="dropdown">
-			<div class="dropdown-header">INFRASTRUCTURE MODE</div>
+			<div class="dropdown-header">Security Mode</div>
 			<a href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">OFF</a>
 			<a href="#" value="WPA_PSK" class="dropdown-option"><img src="/images/img.gif">WPA_PSK</a>
 		</div>

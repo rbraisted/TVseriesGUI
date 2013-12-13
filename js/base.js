@@ -38,16 +38,14 @@ TVRO.init = function() {
 
 	if (TVRO.page && TVRO.page.init) {
 		TVRO.page.init();
-	} else {
-		console.warn('TVRO.page is not defined.');
 	}
 };
 
 //	cookie manager singleton
 //	note that cookies are set across all paths
 //	note that getCookie vs hasCookie is like
-//	getCookie 'cookieValue' vs hasCookie true
-//	getCookie undefined vs hasCookie false
+//	getCookie -> 'cookieValue' vs hasCookie -> true
+//	getCookie -> undefined vs hasCookie -> false
 
 TVRO.CookieManager = (function() {
 	var singleton;

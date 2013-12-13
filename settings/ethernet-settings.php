@@ -7,49 +7,45 @@
 	<a id="back-btn" href="/settings/" class="back-btn"><img src="/images/img.gif" />Settings</a>
 
 	<div class="mcg">
-		<div class="headline">Network Settings</div>
+		<div class="headline">Ethernet Settings</div>
 
-		<div id="ethernet-settings" class="settings">
-			<div class="title">Ethernet Settings</div>
 			<div class="setting">
-				<span class="label">Mode: </span>
-				<a id="off-btn" href="#">DISABLED</a>
-				<a id="static-btn" href="#">STATIC</a>
-				<a id="dynamic-btn" href="#">DCHP</a>
+				<span class="label">Mode:</span>
+				<a id="mode-btn" href="#" class="dropdown-btn">DISABLED</a>
 			</div>
-			<div id="static-settings" class="static-settings">
-				<div class="setting">
-					<span class="label">IP Address: </span>
-					<input id="ip-1" type="text" />
-					<input id="ip-2" type="text" />
-					<input id="ip-3" type="text" />
-					<input id="ip-4" type="text" />
+
+			<div id="static-mode">
+				<div id="static-ip" class="setting">
+					<span class="label">IP Address:</span>
+					<input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" />
 				</div>
-				<div class="setting">
-					<span class="label">Subnet: </span>
-					<input id="subnet-1" type="text" />
-					<input id="subnet-2" type="text" />
-					<input id="subnet-3" type="text" />
-					<input id="subnet-4" type="text" />
+				<div id="static-subnet" class="setting">
+					<span class="label">Subnet:</span>
+					<input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" />
 				</div>
-				<div class="setting">
-					<span class="label">Gateway: </span>
-					<input id="gateway-1" type="text" />
-					<input id="gateway-2" type="text" />
-					<input id="gateway-3" type="text" />
-					<input id="gateway-4" type="text" />
+				<div id="static-gateway" class="setting">
+					<span class="label">Gateway:</span>
+					<input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" />
 				</div>
-				<div class="setting">
-					<span class="label">Broadcast: </span>
-					<input id="broadcast-1" type="text" />
-					<input id="broadcast-2" type="text" />
-					<input id="broadcast-3" type="text" />
-					<input id="broadcast-4" type="text" />
+				<div id="static-broadcast" class="setting">
+					<span class="label">Broadcast:</span>
+					<input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" /><input type="text" class="octet" />
 				</div>
 			</div>
-			<a id="save-btn" href="#" class="border-btn">Save</a>
-			<a id="cancel-btn" href="#" class="border-btn">Cancel</a>
-			<a id="reset-btn" href="#" class="border-btn">Revert to Factory Settings</a>
+
+			<div class="buttons">
+				<a id="save-btn" href="#" class="border-btn">Save</a><!--
+			 --><a id="cancel-btn" href="#" class="border-btn">Cancel</a><!--
+			 --><a id="reset-btn" href="#" class="border-btn">Factory Settings</a>
+			</div>
+
+			<div id="mode-dropdown" class="dropdown">
+				<div class="dropdown-header">Ethernet Mode</div>
+				<a href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">DISABLED</a>
+				<a href="#" value="STATIC" class="dropdown-option"><img src="/images/img.gif">STATIC</a>
+				<a href="#" value="DYNAMIC" class="dropdown-option"><img src="/images/img.gif">DHCP</a>
+			</div>
+
 		</div>
 	</div>
 </div>
