@@ -186,6 +186,13 @@ input {
 	padding: 5px 10px;
 }
 
+.of-btn:not(.on) .on,
+.of-btn.on .off {
+	background: #4b5168;
+	border-color: #000;
+	color: #000;
+}
+
 .of-btn.on .on,
 .of-btn:not(.on) .off {
 	border-color: #4388fd;
