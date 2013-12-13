@@ -4,8 +4,43 @@
 
 \*       */
 
-.wireless-settings,
-.if-mode-settings,
-.adhoc-mode-settings {
+#wireless-settings,
+#if-mode,
+#adhoc-mode {
 	display: none;
+}
+
+.mcg {
+	width: 700px;
+}
+
+.settings {
+	float: left;
+	width: 320px;
+}
+
+.settings + .settings {
+	float: right;
+}
+
+.setting {
+	color: #ccc;
+	line-height: 250%;
+}
+
+.label {
+	display: inline-block;
+	margin-right: 30px;
+	text-align: right;
+	width: 120px;
+}
+
+.mc .headline {
+	margin-top: 60px;
+	text-align: center;
+}
+
+.settings .border-btn {
+	float: right;
+	margin-top: 20px;
 }

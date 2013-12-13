@@ -13,54 +13,33 @@ TVRO.NetworkSettings = function() {
 				mode = xml.find('ipacu_response > mode').text();
 
 			$('#wireless-mode').text(mode);
+			$('#if-mode').toggle(mode === 'IF');
+			$('#adhoc-mode').toggle(mode === 'ADHOC');
 
-			if (mode === 'OFF') {
-				$('#wireless-settings, #if-mode-settings, #adhoc-mode-settings').hide();
-			} else {
-				$('#wireless-settings').show();
-				if (mode === 'IF') {
-					var ifModeXml = xml.find('if_mode'),
-						mode = ifModeXml.find('> mode').text(),
-						ip = ifModeXml.find('ip').text(),
-						subnet = ifModeXml.find('netmask').text(),
-						gateway = ifModeXml.find('gateway').text(),
-						broadcast = ifModeXml.find('broadcast').text(),
-						ssid = ifModeXml.find('essid').text();
-					$('#wireless-mode').text(mode);
-					$('#if-mode-ip').text(ip);
-					$('#if-mode-subnet').text(subnet);
-					$('#if-mode-gateway').text(gateway);
-					$('#if-mode-broadcast').text(broadcast);
-					$('#if-mode-ssid').text(ssid);
-					$('#adhoc-mode-settings').hide();
-					$('#if-mode-settings').show();
-				} else if (mode === 'ADHOC') {
-					var adhocModeXml = xml.find('adhoc_mode'),
-						ip = adhocModeXml.find('ip').text(),
-						security = adhocModeXml.find('security > mode').text(),
-						password = adhocModeXml.find('security > key').text();
-					$('#adhoc-mode-ip').text(ip);
-					$('#adhoc-mode-security').text(security);
-					$('#adhoc-mode-password').text(password);
-					$('#if-mode-settings').hide();
-					$('#adhoc-mode-settings').show();
-				}
+			if (mode === 'IF') {
+				$('#wireless-mode').text(xml.find('if_mode > mode').text());
+				$('#if-ip').text(xml.find('if_mode > ip').text());
+				$('#if-subnet').text(xml.find('if_mode > netmask').text());
+				$('#if-gateway').text(xml.find('if_mode > gateway').text());
+				$('#if-broadcast').text(xml.find('if_mode > broadcast').text());
+				$('#if-ssid').text(xml.find('if_mode > essid').text());
+			} else if (mode === 'ADHOC') {
+				$('#adhoc-ip').text(xml.find('adhoc_mode > ip').text());
+				$('#adhoc-security').text(xml.find('adhoc_mode > security > mode').text());
+				$('#adhoc-password').text(xml.find('adhoc_mode > security > key').text());
 			}
 		});
 
 		webService.getEthernetSettings(function(responseXml) {
 			var xml = $(responseXml),
 				error = xml.find('message').attr('error'),
-				mode = xml.find('mode').text(),
-				ip = xml.find('ip').text(),
-				subnet = xml.find('netmask').text(),
-				gateway = xml.find('gateway').text(),
-				broadcast = xml.find('broadcast').text();
+				mode = xml.find('mode').text();
 			$('#ethernet-mode').text(mode);
-			$('#ethernet-ip').text(ip);
-			$('#ethernet-subnet').text(subnet);
-			$('#ethernet-gateway').text(gateway);
-			$('#ethernet-broadcast').text(broadcast);
+			$('#ethernet-ip').text(xml.find('ip').text());
+			$('#ethernet-subnet').text(xml.find('netmask').text());
+			$('#ethernet-gateway').text(xml.find('gateway').text());
+			$('#ethernet-broadcast').text(xml.find('broadcast').text());
+			$('#wireless-settings').toggle(mode !== 'OFF');
 		});
 	};
 
