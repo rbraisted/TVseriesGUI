@@ -18,10 +18,28 @@
 		<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Change region</a>
 
 		<div class="mcg">
-			<a id="enabled-btn" href="#" class="border-btn">Enabled</a>
-			<a id="favorite-btn" href="#" class="border-btn">Favorite</a>
-			<a id="region-btn" href="#" class="border-btn">Region</a>
-			<a id="name-btn" href="#" class="border-btn">Name</a>
+
+			<div id="satellites-table" class="table">
+				<div class="table-header">
+					<span class="table-col">Select</span><!--
+				 --><a id="region-btn" href="#" class="table-col sort-btn">Region</a><!--
+				 --><a id="name-btn" href="#" class="table-col sort-btn">Satellite Name</a><!--
+				 --><a id="enabled-btn" href="#" class="table-col sort-btn">Enabled</a><!--
+				 --><a id="favorite-btn" href="#" class="table-col sort-btn">Favorite</a><!--
+				 --><span class="table-col">Satellite Profile</span>
+				</div>
+				<div id="satellites-table-row" class="table-row">
+					<a href="#" class="table-col"><img src="/images/img.gif"></a><!--
+				 --><span class="table-col"></span><!--
+				 --><span class="table-col"></span><!--
+				 --><a href="#" class="table-col"><img src="/images/img.gif"></a><!--
+				 --><a href="#" class="table-col"><img src="/images/img.gif"></a><!--
+				 --><span class="table-col"><a href="#">View</a>/<a href="#">Edit</a></span>
+				</div>
+			</div>
+
+			
 		</div>
 	</div>
+
 </div>

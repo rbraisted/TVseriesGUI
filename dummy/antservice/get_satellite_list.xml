@@ -45,7 +45,7 @@
 			<region>Europe</region>
 			<lon>40.14</lon>
 			<favorite>FALSE</favorite>
-			<enabled>TRUE</enabled>
+			<enabled>FALSE</enabled>
 			<select>TRUE</select>
 		</satellite>
 		<satellite>
@@ -56,7 +56,7 @@
 			<region>North America</region>
 			<lon>-86.96</lon>
 			<favorite>FALSE</favorite>
-			<enabled>TRUE</enabled>
+			<enabled>FALSE</enabled>
 			<select>TRUE</select>
 		</satellite>
 		<satellite>

@@ -313,6 +313,7 @@ TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
 
 	$('#'+buttonId).click(function() {
 		dropdown.show();
+		//	position dropdown over button
 		dropdown.offset($(this).offset());
 	});
 
