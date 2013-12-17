@@ -26,18 +26,15 @@ TVRO.EthernetSettings = function() {
 			self.reset();
 		});	
 
-		webService.getEthernetSettings(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
-
-			mode = xml.find('mode').text();
+		webService.request('get_eth', function(response) {
+			mode = response.find('mode').text();
 			$('#mode-dropdown .dropdown-option[value='+mode+']').click();
 
 			if (mode === 'STATIC') {
-				var ip = xml.find('ip').text().split('.'),
-					subnet = xml.find('netmask').text().split('.'),
-					gateway = xml.find('gateway').text().split('.'),
-					broadcast = xml.find('broadcast').text().split('.');
+				var ip = response.find('ip').text().split('.'),
+					subnet = response.find('netmask').text().split('.'),
+					gateway = response.find('gateway').text().split('.'),
+					broadcast = response.find('broadcast').text().split('.');
 				for (var i = 0; i < 4; i++) {
 					$('#static-ip input:eq('+i+')').val(ip[i]);
 					$('#static-subnet input:eq('+i+')').val(subnet[i]);
@@ -63,9 +60,7 @@ TVRO.EthernetSettings = function() {
 			ethernetSettings.broadcast = $('#static-broadcast input').map(function() { return this.value; }).get().join('.')
 		}
 
-		webService.setEthernetSettings(ethernetSettings, function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
+		webService.request('set_eth', ethernetSettings, function(response) {
 			window.location = '/settings/network-settings.php';
 		});
 	};
@@ -75,9 +70,7 @@ TVRO.EthernetSettings = function() {
 	};
 
 	self.reset = function() {
-		webService.resetEthernetSettings(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
+		webService.request('set_eth_factory', function(response) {
 			window.location = '/settings/network-settings.php';			
 		});
 	};

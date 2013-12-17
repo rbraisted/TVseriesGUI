@@ -48,28 +48,26 @@ TVRO.WirelessSettings = function() {
 		$('#cancel-btn').click(self.cancel);
 		$('#reset-btn').click(self.reset);
 
-		webService.getWirelessSettings(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
-			mode = xml.find('ipacu_response > mode').text();
+		webService.request('get_wlan', function(response) {
+			mode = response.find('ipacu_response > mode').text();
 			$('#mode-dropdown .dropdown-option[value='+mode+']').click();
 			if (mode === 'ADHOC') {
-				adhocSecurityMode = xml.find('adhoc_mode > security > mode').text();
+				adhocSecurityMode = response.find('adhoc_mode > security > mode').text();
 				$('#adhoc-security-dropdown .dropdown-option[value='+adhocSecurityMode+']').click();
-				$('#adhoc-password').val(xml.find('adhoc_mode > security > key').text());
-				$('#adhoc-ip').text(xml.find('adhoc_mode > ip').text());
+				$('#adhoc-password').val(response.find('adhoc_mode > security > key').text());
+				$('#adhoc-ip').text(response.find('adhoc_mode > ip').text());
 			} else if (mode === 'IF') {
-				ifMode = xml.find('if_mode > mode').text();
+				ifMode = response.find('if_mode > mode').text();
 				$('#if-mode-dropdown .dropdown-option[value='+ifMode+']').click();
 				if (ifMode === 'STATIC') {
-					staticSecurityMode = xml.find('if_mode > security > mode').text();
+					staticSecurityMode = response.find('if_mode > security > mode').text();
 					$('#static-security-dropdown .dropdown-option[value='+staticSecurityMode+']').click();
-					$('#static-password').val(xml.find('if_mode > security > key').text());
-					$('#static-ssid').val(xml.find('if_mode > essid').text());
-					var ip = xml.find('if_mode > ip').text().split('.'),
-						subnet = xml.find('if_mode > netmask').text().split('.'),
-						gateway = xml.find('if_mode > gateway').text().split('.'),
-						broadcast = xml.find('if_mode > broadcast').text().split('.');
+					$('#static-password').val(response.find('if_mode > security > key').text());
+					$('#static-ssid').val(response.find('if_mode > essid').text());
+					var ip = response.find('if_mode > ip').text().split('.'),
+						subnet = response.find('if_mode > netmask').text().split('.'),
+						gateway = response.find('if_mode > gateway').text().split('.'),
+						broadcast = response.find('if_mode > broadcast').text().split('.');
 					for (var i = 0; i < 4; i++) {
 						$('#static-ip input:eq('+i+')').val(ip[i]);
 						$('#static-subnet input:eq('+i+')').val(subnet[i]);
@@ -77,10 +75,10 @@ TVRO.WirelessSettings = function() {
 						$('#static-broadcast input:eq('+i+')').val(broadcast[i]);
 					}
 				} else if (ifMode === 'DYNAMIC') {
-					dynamicSecurityMode = xml.find('if_mode > security > mode').text();
+					dynamicSecurityMode = response.find('if_mode > security > mode').text();
 					$('#dynamic-security-dropdown .dropdown-option[value='+dynamicSecurityMode+']').click();
-					$('#dynamic-password').val(xml.find('if_mode > security > key').text());
-					$('#dynamic-ssid').val(xml.find('if_mode > essid').text());
+					$('#dynamic-password').val(response.find('if_mode > security > key').text());
+					$('#dynamic-ssid').val(response.find('if_mode > essid').text());
 				}
 			}
 		});
@@ -130,9 +128,7 @@ TVRO.WirelessSettings = function() {
 			}
 		}
 
-		webService.setWirelessSettings(wirelessSettings, function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
+		webService.request('set_wlan', wirelessSettings, function(response) {
 			window.location = '/settings/network-settings.php';
 		});
 	};
@@ -142,9 +138,7 @@ TVRO.WirelessSettings = function() {
 	};
 
 	self.reset = function() {
-		webService.resetWirelessSettings(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
+		webService.request('set_wlan_factory', function(response) {
 			window.location = '/settings/network-settings.php';
 		});
 	};

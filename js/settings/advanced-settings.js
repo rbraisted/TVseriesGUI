@@ -7,13 +7,9 @@ TVRO.AdvancedSettings = function() {
 	self.init = function() {
 		$('#advanced-settings-btn').toggleClass('selected', true);
 
-		webService.getAntennaConfig(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				sleepMode = xml.find('sleep').text() == 'ON',
-				sidelobeMode = xml.find('sidelobe').text() == 'ON';
-			$('#sleep-mode-btn').toggleClass('on', sleepMode);
-			$('#sidelobe-mode-btn').toggleClass('on', sidelobeMode);
+		webService.request('get_antenna_config', function(response) {
+			$('#sleep-mode-btn').toggleClass('on', response.find('sleep').text() === 'ON');
+			$('#sidelobe-mode-btn').toggleClass('on', response.find('sidelobe').text() === 'ON');
 		});
 
 		$('#sleep-mode-btn, #sidelobe-mode-btn').click(function() {
@@ -22,12 +18,11 @@ TVRO.AdvancedSettings = function() {
 			var sleepMode = $('#sleep-mode-btn').hasClass('on') ? 'ON' : 'OFF',
 				sidelobeMode = $('#sidelobe-mode-btn').hasClass('on') ? 'ON' : 'OFF';
 
-			webService.setAntennaConfig({
+			webService.request('get_antenna_config', {
 				'sleep' : sleepMode,
 				'sidelobe' : sidelobeMode
 			}, function(responseXml) {
-				var xml = $(responseXml),
-					error = xml.find('message').attr('error');
+				
 			});
 		});
 	};
