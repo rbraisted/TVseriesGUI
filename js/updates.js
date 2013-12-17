@@ -64,19 +64,14 @@ TVRO.UpdatesPage = function() {
 		});
 
 		$('#install-btn').click(function() {
-			self.upload(function(responseXml) {
-				var xml = $(xml),
-					error = xml.find('message').attr('error'),
-					fileName = xml.find('file_name').text();
-				self.install(fileName);
+			self.upload(function(response) {
+				self.install(response.find('file_name').text());
 			});
 		});
 
-		webService.getAntennaVersions(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				antType = xml.find('au model').text().toLowerCase(),
-				systemVersion = xml.find('current').text();
+		webService.request('antenna_versions', function(response) {
+			var antType = response.find('au model').text().toLowerCase(),
+				systemVersion = response.find('current').text();
 
 			connectedAntType = antType;
 			$('#tv1-btn, #tv3-btn, #tv5-btn, #tv6-btn').removeClass('connected');
@@ -95,12 +90,14 @@ TVRO.UpdatesPage = function() {
 
 		for (var antType in antTypesData) {
 			(function(antType) {
-				webService.getPortalVersion(antType, function(responseXml) {
-					var xml = $(responseXml),
-						error = xml.find('latest_software').attr('error');
-
-					antTypesData[antType].portalUrl = xml.find('url').text();
-					antTypesData[antType].portalVersion = xml.find('software_version').text();
+				if (antType === TVRO.ANT_TYPES.TV1) antType = 'v3';
+				else if (antType === TVRO.ANT_TYPES.TV3) antType = 'v7';
+				else if (antType === TVRO.ANT_TYPES.TV5) antType = 'v7ip';
+				else if (antType === TVRO.ANT_TYPES.TV6) antType = 'v11';
+				var requestUrl = 'http://www.kvh.com/VSAT/'+antType+'/portalMain.php/latest_software';
+				webService.request('latest_software', requestUrl, function(response) {
+					antTypesData[antType].portalUrl = response.find('url').text();
+					antTypesData[antType].portalVersion = response.find('software_version').text();
 					$('#'+antType+'-portal-version').text(antTypesData[antType].portalVersion);
 					if (selectedAntType == antType) $('#portal-version').text(antTypesData[antType].portalVersion);
 				});	
@@ -136,7 +133,7 @@ TVRO.UpdatesPage = function() {
 	};
 
 	self.install = function(fileName) {
-		webService.installSoftware({
+		webService.request('install_software', {
 			'install' : 'Y',
 			'filename' : fileName
 		}, function() {
