@@ -85,32 +85,17 @@ TVRO.CookieManager = (function() {
 }());
 
 //	webservice singleton
-//	works kinda like this:
+//	using this doc: SoftEng-56-0229IPACUXMLServicesICDrev.xB4-161213-1501-3.pdf
 //	
-//	webService.getSomeValue(function successCallback(response) {
-//		//	do something
-//	}, function errorCallback(response) {
-//		//	do something you probably don't want to do
-//	});
-//	
-//	webService.setSomeValue({
-// 		parameter : value,
-//		parameter : {
-//			parameter : value,
-//		}
-//	}, function successCallback(response) {
-//	}, function errorCallback(response) {
-//	});
-//
 //	pass request parameters as json
 //	they'll be converted to xml for you
 //	for example:
 //	
 //	user: {
-//		firstname: 'Olivia',
-//		lastname: 'Wheatley',
-//		city: 'Oxford',
-//		state: 'Oxfordshire'
+//		firstname : 'Olivia',
+//		lastname : 'Wheatley',
+//		city : 'Oxford',
+//		state : 'Oxfordshire'
 //	}
 //	
 //	will be sent as:
@@ -123,182 +108,74 @@ TVRO.CookieManager = (function() {
 //	</user>
 
 TVRO.WebService = (function() {
-	//	TODO:
-	//	consolidate this code
-	//	make our 'sendRequest' function check for
-	//	ANT_SERVICE or XML_SERVICE and use the appropriate
-	//	url defined here depending on whether or not the
-	//	app is in demo mode
-
 	var singleton,
-		ANT_SERVICE_URL = '//199.244.84.92/antservice.php',	//	for now this points to a bdu in rhode island
-		XML_SERVICE_URL = '//199.244.84.92/webservices.php',//	for now this points to a bdu in rhode island
-		DEMO_MODE_ANT_SERVICE_URL = '/dummy/antservice.php',
-		DEMO_MODE_XML_SERVICE_URL = '/dummy/xmlservices.php',
-		ANT_SERVICE = 'ant-service',
-		XML_SERVICE = 'xml-service';
+		cookieManager = new TVRO.CookieManager(),
+		LIVE_WEBSERVICE_URL = '/webservice.php',
+		DEMO_WEBSERVICE_URL = '/demo/webservice.php';
 
-	//	so as part of the above todo,
-	//	we will end up replacing these
-	var	antWebServiceUrl = '/dummy/antservice.php',
-		xmlWebServiceUrl = '/dummy/xmlservices.php';
-
-	function requestJsonAsXmlString(requestJson) {
-		var responseXml = '';
-		for (var key in requestJson) {
-			var value = requestJson[key];
-			if (typeof value === 'object') responseXml += requestJsonAsXmlString(value);
-			else responseXml += '<'+key+'>'+value+'</'+key+'>';
+	function jsonAsXml(json) {
+		var xml = '';
+		for (var key in json) {
+			var value = json[key];
+			if (value instanceof Array) {
+				for (var i = 0; i < value.length; i++) {
+					xml += '<'+key+'>'+jsonAsXml(value[i])+'</'+key+'>';
+				}
+			} else if (typeof value === 'object') {
+				xml += '<'+key+'>'+jsonAsXml(value)+'</'+key+'>';
+			} else {
+				xml += '<'+key+'>'+value+'</'+key+'>';
+			}
 		}
-		return responseXml;
-	};
-
-	function sendRequest(requestUrl, requestName, requestJson, successCallback, errorCallback) {
-		var requestXml = '<ipacu_request><message name="'+requestName+'" />'+requestJsonAsXmlString(requestJson)+'</ipacu_request>';
-		$.ajax({
-			type: 'post',
-			contentType : 'text/xml',
-			processData : false,
-			dataType : 'xml',
-			url : requestUrl,
-			data : requestXml,
-			success : successCallback,
-			error : errorCallback
-		});
+		return xml;
 	};
 
 	return function() {
 		if (!singleton) {
 			singleton = {};
 
-			singleton.getAntennaConfig = function(successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'get_antenna_config', null, successCallback, errorCallback);
-			};
+			singleton.request = function() {
+				var demoMode = cookieManager.hasCookie(TVRO.DEMO_MODE),
+					async = true,
+					requestUrl,
+					requestName,
+					requestJson,
+					requestXml,
+					successCallback,
+					errorCallback;
 
-			singleton.getAntennaStatus = function(successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'antenna_status', null, successCallback, errorCallback);
-			};
+				for (var index in arguments) {
+					var argument = arguments[index];
+					if (typeof argument === 'boolean') async = argument;
+					else if (typeof argument === 'object') requestJson = argument;
+					else if (typeof argument === 'string' && !requestName) requestName = argument;
+					else if (typeof argument === 'string' && !requestUrl) requestUrl = argument;
+					else if (typeof argument === 'function' && !successCallback) successCallback = argument;
+					else if (typeof argument === 'function' && !errorCallback) errorCallback = argument;
+				}
 
-			singleton.getAntennaVersions = function(successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'antenna_versions', null, successCallback, errorCallback);
-			};
+				if (!requestUrl) {
+					if (demoMode) requestUrl = DEMO_WEBSERVICE_URL;
+					else requestUrl = LIVE_WEBSERVICE_URL;
+				}
 
-			singleton.getAutoswitchService = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_autoswitch_service', null, successCallback, errorCallback);
-			};
+				requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>'
 
-			singleton.getEthernetSettings = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_eth', null, successCallback, errorCallback);
-			};
-
-			singleton.getEventHistoryCount = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_event_history_count', null, successCallback, errorCallback);
-			};
-
-			singleton.getEventHistoryLog = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_event_history_log', null, successCallback, errorCallback);
-			};
-
-			singleton.getPortalVersion = function(antType, successCallback, errorCallback) {
-				//	since the tvro update urls aren't set up yet,
-				//	we'll map tvro ant types to vsat ant types for testing
-				if (antType === TVRO.ANT_TYPES.TV1) antType = 'v3';
-				else if (antType === TVRO.ANT_TYPES.TV3) antType = 'v7';
-				else if (antType === TVRO.ANT_TYPES.TV5) antType = 'v7ip';
-				else if (antType === TVRO.ANT_TYPES.TV6) antType = 'v11';
-
-				var requestUrl = 'http://www.kvh.com/VSAT/'+antType+'/portalMain.php/latest_software';
-				sendRequest(requestUrl, 'latest_software', null, successCallback, errorCallback);
-			} 
-
-			singleton.getProductRegistration = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_product_registration', null, successCallback, errorCallback);
-			};
-
-			singleton.getRecentEventHistory = function(requestJson, successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_recent_event_history', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.getWirelessSettings = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'get_wlan', null, successCallback, errorCallback);
-			};
-
-			singleton.getSatelliteList = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'get_satellite_list', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.getSatelliteList2 = function(requestJson) {
-				var	requestUrl = antWebServiceUrl,
-					requestXml = '<ipacu_request><message name="get_satellite_list" />'+requestJsonAsXmlString(requestJson)+'</ipacu_request>',
-					responseXml = '';
 				$.ajax({
-					async: false,
-					type: 'post',
+					async : async,
+					type : 'post',
 					contentType : 'text/xml',
 					processData : false,
-					dataType : 'text',
+					dataType : 'xml',
 					url : requestUrl,
 					data : requestXml,
-					success : function(responseText) { responseXml = responseText; }
+					success : function(response) {
+						var error = $(response).find('ipacu_response > message').attr('error');
+						if (error === '0' && successCallback) successCallback(response);
+						else if (error !== '0' && errorCallback) errorCallback(error);
+					}
 				});
-				return responseXml;
-			};
-
-			singleton.getSatelliteParams = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'get_satellite_params', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.installSoftware = function(requestJson, successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'install_software', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.resetEthernetSettings = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'set_eth_factory', null, successCallback, errorCallback);
-			};
-
-			singleton.resetSatelliteParams = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'reset_satellite_params', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.resetWirelessSettings = function(successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'set_wlan_factory', null, successCallback, errorCallback);
-			};
-
-			singleton.setAntennaConfig = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'set_antenna_config', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setAutoswitchService = function(requestJson, successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'set_autoswitch_service', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setEthernetSettings = function(requestJson, successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'set_eth', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setProductRegistration = function(requestJson, successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'set_product_registration', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setSatelliteIdentity = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'set_satellite_identity', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setSatelliteParams = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'set_satellite_params', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setSelectedSatellite = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'select_satellite', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.setWirelessSettings = function(requestJson, successCallback, errorCallback) {
-				sendRequest(xmlWebServiceUrl, 'set_wlan', requestJson, successCallback, errorCallback);
-			};
-
-			singleton.startSerialLog = function(requestJson, successCallback, errorCallback) {
-				sendRequest(antWebServiceUrl, 'start_serial_log', requestJson, successCallback, errorCallback);
-			};
+			}
 		}
 		return singleton;
 	}

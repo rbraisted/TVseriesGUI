@@ -6,7 +6,7 @@ $message = $request->xpath('/ipacu_request/message/@name');
 $message = $message[0];
 
 if ($message) {
-	$response = simplexml_load_file('xmlservices/'.$message.'.xml');
+	$response = simplexml_load_file($message.'.xml');
 	header('Content-Type: text/xml');
 	print $response->asXML();
 }
