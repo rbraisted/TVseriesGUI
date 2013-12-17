@@ -10,11 +10,9 @@ TVRO.DashboardPage = function() {
 
 		$('#autoswitch-button').click(function() {
 			var autoswitchEnabled = $('#autoswitch-button').hasClass('on');
-			webService.setAutoswitchService({
+			webService.request('set_autoswitch_service', {
 				'enable' : (autoswitchEnabled ? 'N' : 'Y')
-			}, function(responseXml) {
-				var xml = $(responseXml),
-					error = xml.find('message').attr('error');
+			}, function(response) {
 				$('#autoswitch-button').toggleClass('on');
 			});
 		});
@@ -44,26 +42,16 @@ TVRO.DashboardPage = function() {
 	};	
 
 	self.update = function() {
-		webService.getAntennaStatus(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				lat = Number(xml.find('gps lat').text()).toFixed(3),
-				lon = Number(xml.find('gps lon').text()).toFixed(3),
-				vesselHeading = Number(xml.find('antenna brst hdg').text()).toFixed(1),
-				satName = xml.find('satellite name').text(),
-				satId = xml.find('satellite antSatID').text(),
-				satSignal = xml.find('antenna rf bars').text(),
-				azBow = Math.round(parseFloat(xml.find('az_bow').text(), 10));
+		webService.request('antenna_status', function(response) {
+			var lat = Number(response.find('gps > lat').text()).toFixed(3),
+				lon = Number(response.find('gps > lon').text()).toFixed(3),
+				vesselHeading = Number(response.find('antenna > brst > hdg').text()).toFixed(1),
+				azBow = Math.round(parseFloat(response.find('az_bow').text(), 10));
 
 			$('#lat').text((lat > 0.0) ? lat+' N' : Math.abs(lat)+' S');
 			$('#lon').text((lon > 0.0) ? lon+' E' : Math.abs(lon)+' W');
 			$('#vessel-heading').text(vesselHeading+'˚');
-			$('#sat-name').text(satName);
-			$('#sat-id').text(satId);
-			$('#sat-signal').removeClass('sat-signal-0 sat-signal-1 sat-signal-2 sat-signal-3 sat-signal-4 sat-signal-5');
-			$('#sat-signal').addClass('sat-signal-'+satSignal);
-
-			if (!isNaN(azBow) && azBow != 999) {
+			if (!isNaN(azBow) && azBow !== 999) {
 				$('#vessel-animation').css({
 					'transform' : 'rotate('+azBow+'deg)',
 					'-moz-transform' : 'rotate('+azBow+'deg)',
@@ -71,32 +59,23 @@ TVRO.DashboardPage = function() {
 					'-webkit-transform' : 'rotate('+azBow+'deg)'
 				});
 			}
+
+			$('#sat-name').text(response.find('satellite > name').text());
+			$('#sat-id').text(response.find('satellite > antSatID').text());
+			$('#sat-signal').removeClass('sat-signal-0 sat-signal-1 sat-signal-2 sat-signal-3 sat-signal-4 sat-signal-5');
+			$('#sat-signal').addClass('sat-signal-'+response.find('antenna > rf > bars').text());
 		});
 
-		webService.getAntennaVersions(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				antType = xml.find('au model').text();
-
-			$('#ant-type').text(antType);
+		webService.request('antenna_versions', function(response) {
+			$('#ant-type').text(response.find('au model').text());
 		});
 
-		webService.getAutoswitchService(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				autoswitchEnabled = {
-					'Y' : true,
-					'N' : false
-				}[xml.find('enable').eq(0).text()];
-			$('#autoswitch-button').toggleClass('on', autoswitchEnabled);
+		webService.request('get_autoswitch_service', function(response) {
+			$('#autoswitch-button').toggleClass('on', response.find('ipacu_response > enable').text() === 'Y');
 		});
 
-		webService.getProductRegistration(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				vesselName = xml.find('product vessel_name').text();
-
-			$('#vessel-name').text(vesselName);
+		webService.request('get_product_registration', function(response) {
+			$('#vessel-name').text(response.find('product vessel_name').text());
 		});
 	}
 

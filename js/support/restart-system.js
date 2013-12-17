@@ -14,11 +14,10 @@ TVRO.RestartSystem = function() {
 				'all-btn' : 'ALL'
 			}[this.id];
 
-			webService.reboot({
+			webService.request('reboot', {
 				'sys' : sys
-			}, function(responseXml) {
-				var xml = $(responseXml),
-					error = $(xml).find('message').attr('error');
+			}, function(response) {
+
 			});
 		});
 	};

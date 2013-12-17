@@ -24,11 +24,10 @@ TVRO.DiagnosticLog = function() {
 				'restart-btn' : 'Y'
 			}[this.id];
 			
-			webService.startSerialLog({
+			webService.request('start_serial_log', {
 				'restart' : restart
-			}, function(responseXml) {
-				var xml = $(responseXml),
-					error = $(xml).find('message').attr('error');
+			}, function(response) {
+				
 			});
 		});
 	};

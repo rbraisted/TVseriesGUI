@@ -171,7 +171,7 @@ TVRO.WebService = (function() {
 					data : requestXml,
 					success : function(response) {
 						var error = $(response).find('ipacu_response > message').attr('error');
-						if (error === '0' && successCallback) successCallback(response);
+						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
 					}
 				});

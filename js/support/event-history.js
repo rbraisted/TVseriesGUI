@@ -2,7 +2,7 @@
 
 TVRO.EventHistory = function() {
 	var self = {},
-		webservice = new TVRO.WebService(),
+		webService = new TVRO.WebService(),
 		eventHistoryCount = 0,
 		eventHistoryLog,
 		beginAtEvent = 1;
@@ -20,15 +20,11 @@ TVRO.EventHistory = function() {
 	};
 
 	self.load = function(howManyEvents) {
-		webservice.getRecentEventHistory({
+		webService.request('get_recent_event_history', {
 			'begin_at_event' : beginAtEvent,
 			'how_many_events' : howManyEvents
-		}, function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error'),
-				events = xml.find('event');
-
-			events.each(function() {
+		}, function(response) {
+			response.find('event').each(function() {
 				var eventComponents = $(this).text().split('::'),
 					dateTimeType = eventComponents[0],
 					message = eventComponents[1];
@@ -40,16 +36,12 @@ TVRO.EventHistory = function() {
 	};
 
 	self.update = function() {
-		webservice.getEventHistoryCount(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');			
-			eventHistoryCount = xml.find('event_count').text();
+		webService.request('get_event_history_count', function(response) {
+			eventHistoryCount = response.find('event_count').text();
 		});
 
-		webservice.getEventHistoryLog(function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
-			eventHistoryLog = xml.find('content').text();
+		webService.request('get_event_history_log', function(response) {
+			eventHistoryLog = response.find('content').text();
 		});
 	};
 
