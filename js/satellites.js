@@ -34,6 +34,89 @@ TVRO.Table = function(tableId, tableRowId, dataHandler, data) {
 	return self;
 };
 
+TVRO.Satellite = function(satellite) {
+	var self = {};
+
+	satellite = $(satellite);
+	//	these values can be retrieved from
+	//	get_satellite_list and get_satellite_params
+	self.listID = satellite.find('listID').text() || undefined;
+	self.antSatID = satellite.find('antSatID').text() || undefined;
+	self.name = satellite.find('name').text() || undefined;
+	self.region = satellite.find('region').text() || undefined;
+	self.lon = satellite.find('lon').text() || undefined;
+	self.enabled = satellite.find('enabled').text() || undefined;
+	self.favorite = satellite.find('favorite').text() || undefined;
+	self.select = satellite.find('select').text() || undefined;
+	self.triSatID = satellite.find('triSatID').text() || undefined;
+	//	these values can only be retrieved with get_satellite_params
+	self.skew = satellite.find('skew').text() || undefined;
+	self.lo1 = satellite.find('lo1').text() || undefined;
+	self.lo2 = satellite.find('lo2').text() || undefined;
+	self.kumode = satellite.find('kumode').text() || undefined;
+	//	xponders can only be retrieved with get_satellite_params
+	self.xponders = [];
+	satellite.find('xponder').each(function(index, xponder) {
+		self.xponder[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
+	});
+
+//	<satellite>
+//		<listID>21</listID>
+//		<antSatID>61W</antSatID>
+//		<name>Amazonas-2</name>
+//		<region>North America</region>
+//		<lon>-61.00</lon>
+//		<enable>TRUE</enable>
+//		<favorite>TRUE</favorite>
+//		<select>TRUE</select>
+//		<triSatID>FALSE</triSatID>
+//	</satellite>
+
+//	<listID>4</listID>
+//	<antSatID>99W</antSatID>
+//	<name>DTV99</name>
+//	<region>North America</region>
+//	<lon>-99.00</lon>
+//	<skew>0.00</skew>
+//	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
+//	<enable>FALSE</enable>
+//	<favorite>FALSE</favorite>
+//	<select>FALSE</select>
+//	<triSatID>FALSE</triSatID>
+//	<lo1>OFF</lo1>
+//	<lo2>10000</lo2>
+//	<kumode>N | W</kumode>
+
+	return self;
+};
+
+TVRO.Xponder = function(xponder) {
+	var self = {};
+
+	xponder = $(xponder);
+	self.id = xponder.find('id').text() || undefined;
+	self.pol = xponder.find('pol').text() || undefined;
+	self.band = xponder.find('band').text() || undefined;
+	self.freq = xponder.find('freq').text() || undefined;
+	self.symRate = xponder.find('symRate').text() || undefined;
+	self.fec = xponder.find('fec').text() || undefined;
+	self.netId = xponder.find('netID').text() || undefined;
+	self.modType = xponder.find('modType').text() || undefined;
+
+//	<xponder>
+//		<id>1</id>
+//		<pol>V</pol>
+//		<band>L</band>
+//		<freq>11960</freq>
+//		<symRate>20000</symRate>
+//		<fec>3/4</fec>
+//		<netID>0xFFFE</netID>
+//		<modType>QDVB</modType>
+//	</xponder>
+
+	return self;
+}
+
 TVRO.SatellitesPage = function() {
 	var self = {},
 		webService = new TVRO.WebService(),
@@ -48,6 +131,7 @@ TVRO.SatellitesPage = function() {
 		});
 
 		var table = TVRO.Table('satellites-table', 'satellites-table-row', function(data, row) {
+			console.log(data);
 			//	even though this works
 			//	i really don't want to do it this way
 			//	it's just not that explicit about how a row is supposed to be
@@ -64,27 +148,12 @@ TVRO.SatellitesPage = function() {
 		//	note we also have to get the selected satellite here
 		//	so that we can check for it when constructing the table
 
-		webService.getSatelliteList({
+		webService.request('get_satellite_list', {
 			'region_filter' : ''
-		}, function(responseXml) {
-			var xml = $(responseXml),
-				error = xml.find('message').attr('error');
-
+		}, function(response) {
 			satellites = [];
-
-			xml.find('satellite').each(function(index, satellite) {
-				satellite = $(satellite);
-				satellites.push({
-					'listID' : satellite.find('listID').text(),
-					'antSatID' : satellite.find('antSatID').text(),
-					'triSatID' : satellite.find('triSatID').text(),
-					'name' : satellite.find('name').text(),
-					'region' : satellite.find('region').text(),
-					'lon' : satellite.find('lon').text(),
-					'favorite' : satellite.find('favorite').text(),
-					'enabled' : satellite.find('enabled').text(),
-					'select' : satellite.find('select').text()
-				});
+			response.find('satellite').each(function(index, satellite) {
+				satellites.push(new TVRO.Satellite(satellite));
 			});
 			console.log("initial list:");
 			console.log(satellites);
