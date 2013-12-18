@@ -86,18 +86,18 @@ TVRO.CookieManager = (function() {
 
 //	webservice singleton
 //	using this doc: SoftEng-56-0229IPACUXMLServicesICDrev.xB4-161213-1501-3.pdf
-//	
+//
 //	pass request parameters as json
 //	they'll be converted to xml for you
 //	for example:
-//	
+//
 //	user: {
 //		firstname : 'Olivia',
 //		lastname : 'Wheatley',
 //		city : 'Oxford',
 //		state : 'Oxfordshire'
 //	}
-//	
+//
 //	will be sent as:
 //
 //	<user>
@@ -232,6 +232,87 @@ TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
 
 	return self;
 };
+
+TVRO.Table = function(tableId, tableRowId, dataHandler, data) {
+	var self = {},
+		rows = [],
+		table = $('#'+tableId),
+		tableRow = $('#'+tableRowId),
+		numCols = tableRow.find('.table-col').length;
+
+	//	first remove the tableRow from the dom
+	tableRow.detach();
+	tableRow.removeAttr('id');
+
+
+	//	using data + dataHandlers set up each row
+	//	and set up each col of each row
+	//	expected data handler signature:
+	//	function (data, row) {
+	//		return row;
+	//	}
+	//	this assumes you know the structure of your table's rows/cols
+	//	as defined in html
+	self.setData = function(data) {
+		table.find('.table-row').remove();
+		for (var i = 0; i < data.length; i++) {
+			table.append(dataHandler(data[i], tableRow.clone()));
+		}
+	};
+
+	if (data) {
+		self.setData(data);
+	}
+
+	return self;
+};
+
+TVRO.Satellite = function(satellite) {
+	var self = {};
+
+	satellite = $(satellite);
+	//	these values can be retrieved from
+	//	get_satellite_list and get_satellite_params
+	self.listID = satellite.find('listID').text();
+	self.antSatID = satellite.find('antSatID').text();
+	self.name = satellite.find('name').text();
+	self.region = satellite.find('region').text();
+	self.lon = satellite.find('lon').text();
+	self.suffix = satellite.find('suffix').text();	//	not sure about this one
+	self.enabled = satellite.find('enabled').text();
+	self.favorite = satellite.find('favorite').text();
+	self.select = satellite.find('select').text();
+	self.triSatID = satellite.find('triSatID').text();
+	//	these values can only be retrieved with get_satellite_params
+	self.skew = satellite.find('skew').text();
+	self.lo1 = satellite.find('lo1').text();
+	self.lo2 = satellite.find('lo2').text();
+	self.kumode = satellite.find('kumode').text();
+	//	xponders can only be retrieved with get_satellite_params
+	self.xponders = [];
+	satellite.find('xponder').each(function(index, xponder) {
+		self.xponder[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
+	});
+
+	return self;
+};
+
+TVRO.Xponder = function(xponder) {
+	var self = {};
+
+	xponder = $(xponder);
+	self.id = xponder.find('id').text();
+	self.pol = xponder.find('pol').text();
+	self.band = xponder.find('band').text();
+	self.freq = xponder.find('freq').text();
+	self.symRate = xponder.find('symRate').text();
+	self.fec = xponder.find('fec').text();
+	self.netId = xponder.find('netID').text();
+	self.modType = xponder.find('modType').text();
+
+	return self;
+};
+
 
 //	here's where the magic starts
 //	note: it's not magic

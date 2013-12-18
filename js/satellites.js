@@ -1,121 +1,55 @@
 "use strict";
 
-TVRO.Table = function(tableId, tableRowId, dataHandler, data) {
-	var self = {},
-		rows = [],
-		table = $('#'+tableId),
-		tableRow = $('#'+tableRowId),
-		numCols = tableRow.find('.table-col').length;
 
-	//	first remove the tableRow from the dom
-	tableRow.detach();
-	tableRow.removeAttr('id');
+TVRO.SatelliteEditor = function() {
+	var self = {};
+
+	TVRO.Dropdown('region-dropdown', 'region-btn', function(optionText, optionValue) {});
+
+	TVRO.Dropdown('suffix-dropdown', 'suffix-btn', function(optionText, optionValue) {});
+
+	TVRO.Dropdown('pol-dropdown', 'pol-btn', function(optionText, optionValue) {});
+
+	TVRO.Dropdown('fec-dropdown', 'fec-btn', function(optionText, optionValue) {});
+
+	TVRO.Dropdown('mod-type-dropdown', 'mod-type-btn', function(optionText, optionValue) {});
+
+//	region
+//	suffix
+//	xponders:
+//		pol (polatization)
+//		fec (fec code)
+//		mod-type (decoder type)
 
 
-	//	using data + dataHandlers set up each row
-	//	and set up each col of each row
-	//	expected data handler signature:
-	//	function (data, row) {
-	//		return row;
-	//	}
-	//	this assumes you know the structure of your table's rows/cols
-	//	as defined in html
-	self.setData = function(data) {
-		table.find('.table-row').remove();
-		for (var i = 0; i < data.length; i++) {
-			table.append(dataHandler(data[i], tableRow.clone()));
-		}
-	};
-
-	if (data) {
-		self.setData(data);
-	}
+//	listID			can't edit, don't show
+//	antSatID		can't edit, don't show
+//	name 			text
+//	region 			dropdown
+//	lon				text
+//	suffix			dropdown
+//	skew			text
+//	dt 				can't edit, don't show
+//	enable 			toggle
+//	favorite 		toggle
+//	select 			can't edit, don't show
+//	triSatID 		text but can be "false"
+//	lo1 			text
+//	lo2 			text
+//	kumode 			can't edit, don't show
+//
+//	xponder 		
+//		id 			can't edit, don't show
+//		pol 		dropdown
+//		band 		can't edit, don't show
+//		freq 		text
+//		symRate 	text
+//		fec 		dropdown
+//		netID 		text
+//		modType 	dropdown
 
 	return self;
 };
-
-TVRO.Satellite = function(satellite) {
-	var self = {};
-
-	satellite = $(satellite);
-	//	these values can be retrieved from
-	//	get_satellite_list and get_satellite_params
-	self.listID = satellite.find('listID').text() || undefined;
-	self.antSatID = satellite.find('antSatID').text() || undefined;
-	self.name = satellite.find('name').text() || undefined;
-	self.region = satellite.find('region').text() || undefined;
-	self.lon = satellite.find('lon').text() || undefined;
-	self.enabled = satellite.find('enabled').text() || undefined;
-	self.favorite = satellite.find('favorite').text() || undefined;
-	self.select = satellite.find('select').text() || undefined;
-	self.triSatID = satellite.find('triSatID').text() || undefined;
-	//	these values can only be retrieved with get_satellite_params
-	self.skew = satellite.find('skew').text() || undefined;
-	self.lo1 = satellite.find('lo1').text() || undefined;
-	self.lo2 = satellite.find('lo2').text() || undefined;
-	self.kumode = satellite.find('kumode').text() || undefined;
-	//	xponders can only be retrieved with get_satellite_params
-	self.xponders = [];
-	satellite.find('xponder').each(function(index, xponder) {
-		self.xponder[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
-	});
-
-//	<satellite>
-//		<listID>21</listID>
-//		<antSatID>61W</antSatID>
-//		<name>Amazonas-2</name>
-//		<region>North America</region>
-//		<lon>-61.00</lon>
-//		<enable>TRUE</enable>
-//		<favorite>TRUE</favorite>
-//		<select>TRUE</select>
-//		<triSatID>FALSE</triSatID>
-//	</satellite>
-
-//	<listID>4</listID>
-//	<antSatID>99W</antSatID>
-//	<name>DTV99</name>
-//	<region>North America</region>
-//	<lon>-99.00</lon>
-//	<skew>0.00</skew>
-//	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
-//	<enable>FALSE</enable>
-//	<favorite>FALSE</favorite>
-//	<select>FALSE</select>
-//	<triSatID>FALSE</triSatID>
-//	<lo1>OFF</lo1>
-//	<lo2>10000</lo2>
-//	<kumode>N | W</kumode>
-
-	return self;
-};
-
-TVRO.Xponder = function(xponder) {
-	var self = {};
-
-	xponder = $(xponder);
-	self.id = xponder.find('id').text() || undefined;
-	self.pol = xponder.find('pol').text() || undefined;
-	self.band = xponder.find('band').text() || undefined;
-	self.freq = xponder.find('freq').text() || undefined;
-	self.symRate = xponder.find('symRate').text() || undefined;
-	self.fec = xponder.find('fec').text() || undefined;
-	self.netId = xponder.find('netID').text() || undefined;
-	self.modType = xponder.find('modType').text() || undefined;
-
-//	<xponder>
-//		<id>1</id>
-//		<pol>V</pol>
-//		<band>L</band>
-//		<freq>11960</freq>
-//		<symRate>20000</symRate>
-//		<fec>3/4</fec>
-//		<netID>0xFFFE</netID>
-//		<modType>QDVB</modType>
-//	</xponder>
-
-	return self;
-}
 
 TVRO.SatellitesPage = function() {
 	var self = {},
@@ -124,6 +58,9 @@ TVRO.SatellitesPage = function() {
 
 	self.init = function() {
 		$('#satellites-btn').toggleClass('selected', true);
+
+		//	for now
+		TVRO.SatelliteEditor();
 
 		$('#sb a').click(function() {
 			$('#sb a').removeClass('selected');
