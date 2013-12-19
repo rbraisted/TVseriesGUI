@@ -4,8 +4,6 @@
 
 \*       */
 
-
-
 .sb .headline {
 	margin-bottom: 0;
 	padding: 10px 20px;
@@ -47,6 +45,7 @@
 .table-col {
 	display: inline-block;
 	padding: 10px;
+	white-space: nowrap;
 }
 
 .table-col+.table-col {
@@ -110,10 +109,28 @@
 
 .sort-btn {
 	cursor: pointer;
+	position: relative;
 }
 
-.sort-btn:hover {
+.sort-btn:hover,
+.sort-btn.ascending,
+.sort-btn.descending {
+	background: #203c90;
+}
 
+.sort-btn img {
+	background: transparent;
+	float: right;
+	height: 16px;
+	width: 16px;
+}
+
+.sort-btn.ascending img {
+	background: red;
+}
+
+.sort-btn.descending img {
+	background: red;
 }
 
 #satellite-editor {

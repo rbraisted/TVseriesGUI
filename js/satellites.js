@@ -1,6 +1,5 @@
 "use strict";
 
-
 TVRO.SatelliteEditor = function() {
 	var self = {};
 
@@ -52,35 +51,94 @@ TVRO.SatelliteEditor = function() {
 
 TVRO.SatellitesTable = function() {
 	var self = {},
-		table = $('#satellites-table'),
-		row = $('#table-row', table);
+		table = $('[id ~= satellites-table]'),
+		rowTemplate = $('[id ~= table-row]', table),
+		satellites = [],
+		sortedSatellites = [],
+		//	store row clicked callbacks
+		//	use like so:
+		//	table.rowClicked(function(row, satellite) {
+		//		do stuff with the row/satellite
+		//	});
+		rowClicked = [];
 
-	//	first remove the tableRow from the dom
-	row.detach();
+	//	remove the row template from the dom
+	//	we'll clone it to build out the take later
+	rowTemplate.detach();
 
-	//	using data + dataHandlers set up each row
-	//	and set up each col of each row
-	//	expected data handler signature:
-	//	function (data, row) {
-	//		return row;
-	//	}
-	//	this assumes you know the structure of your table's rows/cols
-	//	as defined in html
+	//	redraw the table -
+	self.reload = function() {
+		$('[id ~= table-row]', table).remove();
+		for (var i = 0; i < sortedSatellites.length; i++) {
+			var satellite = sortedSatellites[i],
+				row = rowTemplate.clone();
 
-	// self.setData = function(data) {
-	// 	table.find('.table-row').remove();
-	// 	for (var i = 0; i < data.length; i++) {
-	// 		table.append(dataHandler(data[i], tableRow.clone()));
-	// 	}
-	// };
+			$('[id ~= name]', row).text(satellite.name);
+			$('[id ~= orbital-slot]', row).text(satellite.antSatID);
+			$('[id ~= region]', row).text(satellite.region);
+			row.toggleClass('favorite', satellite.favorite === 'TRUE');
+			table.append(row);
+
+			(function(row, satellite) {
+				row.click(function() {
+					for (var i = 0; i < rowClicked.length; i++) {
+						rowClicked[i](row, satellite);
+					}
+				});
+			}(row, satellite));
+		}
+	};
+
+	self.setSatellites = function() {
+		satellites = arguments[0];
+		sortedSatellites = satellites.slice();
+		self.reload();
+	};
+
+	self.rowClicked = function() {
+		if (typeof arguments[0] === 'function') {
+			rowClicked.push(arguments[0]);
+		}
+	};
+
+	$('[id ~= sort-btn]', table).click(function() {
+		var sortBtn = $(this),
+			property,
+			ascending = false,
+			descending = false;
+
+		if (sortBtn.hasId('name-sort-btn')) property = 'name';
+		else if (sortBtn.hasId('orbital-slot-sort-btn')) property = 'lon';
+		else if (sortBtn.hasId('region-sort-btn')) property = 'region';
+
+		if (sortBtn.hasClass('ascending')) descending = true;
+		else if (!sortBtn.hasClass('descending')) ascending = true;
+
+		$('[id ~= sort-btn]', table).removeClass('ascending descending');
+		sortBtn.toggleClass('ascending', ascending);
+		sortBtn.toggleClass('descending', descending);
+
+		sortedSatellites = satellites.slice();
+
+		//	if we're doing a sort
+		if (ascending || descending) {
+			var x = (ascending ? 1 : -1);
+			sortedSatellites.sort(function(a, b) {
+				if (a[property] > b[property]) return 1 * x;
+				else if (a[property] < b[property]) return -1 * x;
+				else return 0;
+			});
+		}
+
+		self.reload();
+	});
 
 	return self;
 };
 
 TVRO.SatellitesPage = function() {
 	var self = {},
-		webService = new TVRO.WebService(),
-		satellites = [];
+		webService = new TVRO.WebService();
 
 	self.init = function() {
 		$('#satellites-btn').toggleClass('selected', true);
@@ -93,76 +151,19 @@ TVRO.SatellitesPage = function() {
 			$(this).toggleClass('selected', true);
 		});
 
-		// var table = TVRO.Table('satellites-table', 'satellites-table-row', function(data, row) {
-		// 	//	even though this works
-		// 	//	i really don't want to do it this way
-		// 	//	it's just not that explicit about how a row is supposed to be
-		// 	//	set up - it makes me switch between the html and js files too
-		// 	//	often to know what i am doing, and probably later on it will
-		// 	//	make me switch between html and css
-		// 	row.find('.table-col:nth-child(2)').text(data.region);
-		// 	row.find('.table-col:nth-child(3)').text(data.name);
-		// 	row.toggleClass('enabled', data.enabled === 'TRUE');
-		// 	row.toggleClass('favorite', data.favorite === 'TRUE');
-		// 	return row;
-		// });
-
-		//	note we also have to get the selected satellite here
-		//	so that we can check for it when constructing the table
+		var table = new TVRO.SatellitesTable();
+		table.rowClicked(function(row, satellite) {
+			//	show satellite details with this row
+		});
 
 		webService.request('get_satellite_list', {
 			'region_filter' : ''
 		}, function(response) {
-			satellites = [];
-			response.find('satellite').each(function(index, satellite) {
+			var satellites = [];
+			$('satellite', response).each(function(index, satellite) {
 				satellites.push(new TVRO.Satellite(satellite));
 			});
-			
-			// table.setData(satellites);
-		});
-
-		$('#enabled-btn').click(function() {
-			satellites.sort(function(a, b) {
-				if (a.enabled === b.enabled) return 0;
-				else if (a.enabled === 'TRUE') return -1;
-				else if (b.enabled === 'TRUE') return 1;
-				else return 0;
-			});
-			console.log("'enabled' sort:");
-			console.log(satellites);
-
-			// table.setData(satellites);
-		});
-
-		$('#favorite-btn').click(function() {
-			satellites.sort(function(a, b) {
-				if (a.favorite === b.favorite) return 0;
-				else if (a.favorite === 'TRUE') return -1;
-				else if (b.favorite === 'TRUE') return 1;
-				else return 0;
-			});
-
-			// table.setData(satellites);
-		});
-
-		$('#region-btn').click(function() {
-			satellites.sort(function(a, b) {
-				if (a.region > b.region) return 1;
-				else if (a.region < b.region) return -1;
-				else return 0;
-			});
-
-			// table.setData(satellites);
-		});
-
-		$('#name-btn').click(function() {
-			satellites.sort(function(a, b) {
-				if (a.name > b.name) return 1;
-				else if (a.name < b.name) return -1;
-				else return 0;
-			});
-
-			// table.setData(satellites);
+			table.setSatellites(satellites);
 		});
 	};
 

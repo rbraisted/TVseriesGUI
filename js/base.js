@@ -1,5 +1,21 @@
 "use strict";
 
+(function($) {
+	//	this is basically hasClass taken from jQuery source (1.10.2)
+	//	but rewritten for ids
+	$.fn.hasId = function( selector ) {
+		var idName = " " + selector + " ",
+			i = 0,
+			l = this.length;
+		for ( ; i < l; i++ ) {
+			if ( this[i].nodeType === 1 && (" " + this[i].id + " ").replace(/[\t\r\n\f]/g, " ").indexOf( idName ) >= 0 ) {
+				return true;
+			}
+		}
+		return false;
+	};
+}(jQuery));
+
 //	check if our app namespace has been defined
 //	if the user is running this from a native iOS/Android
 //	app, we should see that the native web views will have

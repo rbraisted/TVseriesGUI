@@ -21,50 +21,18 @@
 
 			<div id="satellites-table" class="table">
 				<div class="table-header">
-					<a id="name-btn" class="name-col table-col sort-btn" tabindex="1"><img src="/images/img.gif">Name</a><!--
-				 --><a id="orbital-slot-btn" class="orbital-slot-col table-col sort-btn" tabindex="1"><img src="/images/img.gif">Orbital Slot</a><!--
-				 --><a id="region-btn" class="region-col table-col sort-btn" tabindex="1"><img src="/images/img.gif">Region</a><!--
-				 --><a class="favorites-col table-col" tabindex="1">Favorites</a><!--
-				 --><a class="selected-col table-col" tabindex="1">Selected</a>
+					<a id="name-sort-btn sort-btn" href="#" class="name-col table-col sort-btn"><img src="/images/img.gif">Name</a><!--
+				 --><a id="orbital-slot-sort-btn sort-btn" href="#" class="orbital-slot-col table-col sort-btn"><img src="/images/img.gif">Orbital Slot</a><!--
+				 --><a id="region-sort-btn sort-btn" href="#" class="region-col table-col sort-btn"><img src="/images/img.gif">Region</a><!--
+				 --><div class="favorites-col table-col">Favorites</div><!--
+				 --><div class="selected-col table-col">Selected</div>
 				</div>
-				<a id="table-row" class="table-row selected" tabindex="1">
-					<div class="name-col table-col">Satellite name</div><!--
-				 --><div class="orbital-slot-col table-col">136W</div><!--
-				 --><div class="region-col table-col">Europe</div><!--
-				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="hover">View / Edit Details</div>
-				</a>
-				<a id="table-row" class="table-row" tabindex="1">
-					<div class="name-col table-col">Satellite name</div><!--
-				 --><div class="orbital-slot-col table-col">136W</div><!--
-				 --><div class="region-col table-col">Europe</div><!--
-				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="hover">View / Edit Details</div>
-				</a>
-				<a id="table-row" class="table-row favorite" tabindex="1">
-					<div class="name-col table-col">Satellite name</div><!--
-				 --><div class="orbital-slot-col table-col">136W</div><!--
-				 --><div class="region-col table-col">Europe</div><!--
-				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="hover">View / Edit Details</div>
-				</a>
-				<a id="table-row" class="table-row" tabindex="1">
-					<div class="name-col table-col">Satellite name</div><!--
-				 --><div class="orbital-slot-col table-col">136W</div><!--
-				 --><div class="region-col table-col">Europe</div><!--
-				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="hover">View / Edit Details</div>
-				</a>
-				<a id="table-row" class="table-row favorite" tabindex="1">
-					<div class="name-col table-col">Satellite name</div><!--
-				 --><div class="orbital-slot-col table-col">136W</div><!--
-				 --><div class="region-col table-col">Europe</div><!--
-				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
-				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
+				<a id="table-row" href="#" class="table-row">
+					<div id="name" class="name-col table-col"></div><!--
+				 --><div id="orbital-slot" class="orbital-slot-col table-col"></div><!--
+				 --><div id="region" class="region-col table-col"></div><!--
+				 --><div id="favorites" class="favorites-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div id="selected" class="selected-col table-col"><img src="/images/img.gif"></div><!--
 				 --><div class="hover">View / Edit Details</div>
 				</a>
 			</div>
