@@ -18,26 +18,56 @@
 		<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Change region</a>
 
 		<div class="mcg">
-			<? /*
+
 			<div id="satellites-table" class="table">
 				<div class="table-header">
-					<span class="table-col">Select</span><!--
-				 --><a id="region-btn" href="#" class="table-col sort-btn">Region</a><!--
-				 --><a id="name-btn" href="#" class="table-col sort-btn">Satellite Name</a><!--
-				 --><a id="enabled-btn" href="#" class="table-col sort-btn">Enabled</a><!--
-				 --><a id="favorite-btn" href="#" class="table-col sort-btn">Favorite</a><!--
-				 --><span class="table-col">Satellite Profile</span>
+					<a id="name-btn" class="name-col table-col sort-btn" tabindex="1"><img src="/images/img.gif">Name</a><!--
+				 --><a id="orbital-slot-btn" class="orbital-slot-col table-col sort-btn" tabindex="1"><img src="/images/img.gif">Orbital Slot</a><!--
+				 --><a id="region-btn" class="region-col table-col sort-btn" tabindex="1"><img src="/images/img.gif">Region</a><!--
+				 --><a class="favorites-col table-col" tabindex="1">Favorites</a><!--
+				 --><a class="selected-col table-col" tabindex="1">Selected</a>
 				</div>
-				<div id="satellites-table-row" class="table-row">
-					<a href="#" class="table-col"><img src="/images/img.gif"></a><!--
-				 --><span class="table-col"></span><!--
-				 --><span class="table-col"></span><!--
-				 --><a href="#" class="table-col"><img src="/images/img.gif"></a><!--
-				 --><a href="#" class="table-col"><img src="/images/img.gif"></a><!--
-				 --><span class="table-col"><a href="#">View</a>/<a href="#">Edit</a></span>
-				</div>
+				<a id="table-row" class="table-row selected" tabindex="1">
+					<div class="name-col table-col">Satellite name</div><!--
+				 --><div class="orbital-slot-col table-col">136W</div><!--
+				 --><div class="region-col table-col">Europe</div><!--
+				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="hover">View / Edit Details</div>
+				</a>
+				<a id="table-row" class="table-row" tabindex="1">
+					<div class="name-col table-col">Satellite name</div><!--
+				 --><div class="orbital-slot-col table-col">136W</div><!--
+				 --><div class="region-col table-col">Europe</div><!--
+				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="hover">View / Edit Details</div>
+				</a>
+				<a id="table-row" class="table-row favorite" tabindex="1">
+					<div class="name-col table-col">Satellite name</div><!--
+				 --><div class="orbital-slot-col table-col">136W</div><!--
+				 --><div class="region-col table-col">Europe</div><!--
+				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="hover">View / Edit Details</div>
+				</a>
+				<a id="table-row" class="table-row" tabindex="1">
+					<div class="name-col table-col">Satellite name</div><!--
+				 --><div class="orbital-slot-col table-col">136W</div><!--
+				 --><div class="region-col table-col">Europe</div><!--
+				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="hover">View / Edit Details</div>
+				</a>
+				<a id="table-row" class="table-row favorite" tabindex="1">
+					<div class="name-col table-col">Satellite name</div><!--
+				 --><div class="orbital-slot-col table-col">136W</div><!--
+				 --><div class="region-col table-col">Europe</div><!--
+				 --><div class="favorites-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="selected-col table-col"><img src="/images/img.gif"></div><!--
+				 --><div class="hover">View / Edit Details</div>
+				</a>
 			</div>
-			*/ ?>
 
 			<div id="satellite-editor">
 				<label for="name">Name</label><input id="name" type="text" />
@@ -141,9 +171,7 @@
 						<a href="#" value="TQPSK" class="dropdown-option"><img src="/images/img.gif">Turbo QPSK Dish</a>
 						<a href="#" value="T8PSK" class="dropdown-option"><img src="/images/img.gif">Turbo 8PSK Dish</a>
 					</div>
-
 				</div>
-
 			</div>
 
 		</div>

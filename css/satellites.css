@@ -4,88 +4,118 @@
 
 \*       */
 
+
+
 .sb .headline {
 	margin-bottom: 0;
 	padding: 10px 20px;
 }
 
-.mcg {
-	width: auto;
-}
-
 .table {
-	display: block;
+	margin-left: -137.5px;
+	width: 825px;
 }
 
-.table-header,
+.table-header {
+	margin-bottom: 2px;
+}
+
 .table-row {
+	cursor: pointer;
 	display: block;
-	height: 36px;
+	position: relative;
+	width: 100%;
 }
 
-.table-row {
-	background: #4b5169;
-	border-bottom: 1px solid #0c2359;
-	border-top: 1px solid #000;
+.table-row .table-col {
+	background: #4d5369;
 }
 
-.table-row:nth-child(2n) {
-	background: #8e94a4;
+.table-row:nth-child(2n) .table-col {
+	background: #2a3046;
 }
 
-.table-row.selected {
-	background: #507dfe;
+.table-row.selected,
+.table-row.selected .table-col {
+	background: #203c90;
+}
+
+.table-row+.table-row {
+	margin-top: 2px;
 }
 
 .table-col {
 	display: inline-block;
+	padding: 10px;
+}
+
+.table-col+.table-col {
+	margin-left: 2px;
+}
+
+.table-header .table-col {
+	background: #253a73;
+}
+
+.name-col {
+	width: 344px;
+}
+
+.orbital-slot-col {
+	width: 117px;
+}
+
+.region-col {
+	width: 106px;
+}
+
+.favorites-col,
+.selected-col {
+	text-align: center;
+	width: 75px;
+}
+
+.favorites-col img,
+.selected-col img {
 	vertical-align: top;
-}
-
-.table-col:nth-child(1) {
-	width: 80px;
-}
-
-.table-col:nth-child(1) img,
-.table-col:nth-child(4) img,
-.table-col:nth-child(5) img {
 	background: red;
-	height: 36px;
-	width: 36px;
+	height: 16px;
+	width: 16px;
 }
 
-.selected .table-col:nth-child(1) img {
+.table-row.favorite .favorites-col img {
 	background: green;
 }
 
-.enabled .table-col:nth-child(4) img {
+.table-row.selected .selected-col img {
 	background: green;
 }
 
-.favorite .table-col:nth-child(5) img {
-	background: green;
+.hover {
+	background: rgba(0, 0, 0, 0.75);
+	bottom: 0;
+	display: none;
+	left: 0;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	right: 0;
+	top: 0;
 }
 
-.table-col:nth-child(2) {
-	width: 80px;
-}
-
-.table-col:nth-child(3) {
-	width: 300px;
-}
-
-.table-col:nth-child(4) {
-	width: 80px;
-}
-
-.table-col:nth-child(5) {
-	width: 80px;
-}
-
-.table-col:nth-child(6) {
-	width: 200px;
+.table-row:hover .hover,
+.table-row:focus .hover {
+	display: block;
 }
 
 .sort-btn {
-	color : #4388fd;
+	cursor: pointer;
+}
+
+.sort-btn:hover {
+
+}
+
+#satellite-editor {
+	display: none;
 }
