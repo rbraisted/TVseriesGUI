@@ -9,80 +9,80 @@
 	padding: 10px 20px;
 }
 
-.table {
+.satellites-table {
 	margin-left: -137.5px;
 	width: 825px;
 }
 
-.table-header {
+.satellites-table .table-header {
 	margin-bottom: 2px;
 }
 
-.table-row {
+.satellites-table .table-row {
 	cursor: pointer;
 	display: block;
 	position: relative;
 	width: 100%;
 }
 
-.table-row .table-col {
+.satellites-table .table-row .table-col {
 	background: #4d5369;
 }
 
-.table-row:nth-child(2n) .table-col {
+.satellites-table .table-row:nth-child(2n) .table-col {
 	background: #2a3046;
 }
 
-.table-row.selected,
-.table-row.selected .table-col {
+.satellites-table .table-row.selected,
+.satellites-table .table-row.selected .table-col {
 	background: #203c90;
 }
 
-.table-row+.table-row {
+.satellites-table .table-row+.table-row {
 	margin-top: 2px;
 }
 
-.table-col {
+.satellites-table .table-col {
 	display: inline-block;
 	padding: 10px;
 	white-space: nowrap;
 }
 
-.table-col+.table-col {
+.satellites-table .table-col+.table-col {
 	margin-left: 2px;
 }
 
-.table-header .table-col {
+.satellites-table .table-header .table-col {
 	background: #253a73;
 }
 
-.name-col {
+.satellites-table .name-col {
 	width: 344px;
 }
 
-.orbital-slot-col {
+.satellites-table .orbital-slot-col {
 	width: 117px;
 }
 
-.region-col {
+.satellites-table .region-col {
 	width: 106px;
 }
 
-.favorites-col,
-.selected-col {
+.satellites-table .favorites-col,
+.satellites-table .selected-col {
 	text-align: center;
 	width: 75px;
 }
 
-.favorites-col img,
-.selected-col img {
+.satellites-table .favorites-col img,
+.satellites-table .selected-col img {
 	vertical-align: top;
 	background: red;
 	height: 16px;
 	width: 16px;
 }
 
-.table-row.favorite .favorites-col img {
+.satellites-table .table-row.favorite .favorites-col img {
 	background: green;
 }
 
@@ -90,7 +90,7 @@
 	background: green;
 }
 
-.hover {
+.satellites-table .hover {
 	background: rgba(0, 0, 0, 0.75);
 	bottom: 0;
 	display: none;
@@ -102,37 +102,47 @@
 	top: 0;
 }
 
-.table-row:hover .hover,
-.table-row:focus .hover {
+.satellites-table .table-row:hover .hover,
+.satellites-table .table-row:focus .hover {
 	display: block;
 }
 
-.sort-btn {
+.satellites-table .sort-btn {
 	cursor: pointer;
 	position: relative;
 }
 
-.sort-btn:hover,
-.sort-btn.ascending,
-.sort-btn.descending {
+.satellites-table .sort-btn:hover,
+.satellites-table .sort-btn.ascending,
+.satellites-table .sort-btn.descending {
 	background: #203c90;
 }
 
-.sort-btn img {
+.satellites-table .sort-btn img {
 	background: transparent;
 	float: right;
 	height: 16px;
 	width: 16px;
 }
 
-.sort-btn.ascending img {
+.satellites-table .sort-btn.ascending img {
 	background: red;
 }
 
-.sort-btn.descending img {
+.satellites-table .sort-btn.descending img {
 	background: red;
 }
 
-#satellite-editor {
+
+
+
+
+
+
+[id ~= satellite-details] {
+	display: none;
+}
+
+[id ~= satellite-details] [id ~= edit] {
 	display: none;
 }

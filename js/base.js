@@ -284,9 +284,9 @@ TVRO.Table = function(tableId, tableRowId, dataHandler, data) {
 };
 
 TVRO.Satellite = function(satellite) {
-	var self = {};
+	var self = {},
+		satellite = $(satellite);
 
-	satellite = $(satellite);
 	//	these values can be retrieved from
 	//	get_satellite_list and get_satellite_params
 	self.listID = satellite.find('listID').text();
@@ -307,7 +307,7 @@ TVRO.Satellite = function(satellite) {
 	//	xponders can only be retrieved with get_satellite_params
 	self.xponders = [];
 	satellite.find('xponder').each(function(index, xponder) {
-		self.xponder[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
+		self.xponders[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
 	});
 
 	return self;
@@ -323,7 +323,7 @@ TVRO.Xponder = function(xponder) {
 	self.freq = xponder.find('freq').text();
 	self.symRate = xponder.find('symRate').text();
 	self.fec = xponder.find('fec').text();
-	self.netId = xponder.find('netID').text();
+	self.netID = xponder.find('netID').text();
 	self.modType = xponder.find('modType').text();
 
 	return self;

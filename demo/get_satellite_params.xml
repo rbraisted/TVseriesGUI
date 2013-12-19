@@ -14,7 +14,7 @@
 	<triSatID>FALSE</triSatID>
 	<lo1>OFF</lo1>
 	<lo2>10000</lo2>
-	<kumode>N | W</kumode>
+	<kumode>W</kumode>
 	<xponder>
 		<id>1</id>
 		<pol>V</pol>
