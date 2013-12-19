@@ -1,20 +1,62 @@
 "use strict";
 
-TVRO.SatelliteDetails = function() {
+TVRO.SatelliteDetails = function(satelliteDetails) {
 	var self = {},
+		satellite,
 		webService = new TVRO.WebService(),
-		satelliteDetails = $('[id ~= satellite-details]'),
-		satellite;
+		satelliteDetails = $(satelliteDetails),
+		regionDropdown = new TVRO.Dropdown('[id ~= region-dropdown]', '[id ~= region-btn]'),
+		polarizationDropdown = new TVRO.Dropdown('[id ~= polarization-dropdown]', '[id ~= polarization-btn]'),
+		fecCodeDropdown = new TVRO.Dropdown('[id ~= fec-code-dropdown]', '[id ~= fec-code-btn]'),
+		decoderTypeDropdown = new TVRO.Dropdown('[id ~= decoder-type-dropdown]', '[id ~= decoder-type-btn]');
 
-	TVRO.Dropdown('region-dropdown', 'region-btn', function(optionText, optionValue) {});
-	TVRO.Dropdown('polarization-dropdown', 'polarization-btn', function(optionText, optionValue) {});
-	TVRO.Dropdown('fec-code-dropdown', 'fec-code-btn', function(optionText, optionValue) {});
-	TVRO.Dropdown('decoder-type-dropdown', 'decoder-type-btn', function(optionText, optionValue) {});
+	regionDropdown.optionSelected(function(name, value) {
+		$('[id ~= region][id ~= edit]', satelliteDetails).text(value);
+	});
+
+	(function(xponderIds) {
+		var xponder;
+		for (var i = 0; i < xponderIds.length; i++) {
+			(function(xponderId) {
+				var xponderDetails = $('[id ~= xponder-'+xponderId+']');
+				$('[id ~= polarization-btn]', xponderDetails).click(function() {
+					xponder = satellite.xponders[xponderId];
+					polarizationDropdown.selectValue(xponder.pol);
+					polarizationDropdown.show();
+				});
+
+				$('[id ~= fec-code-btn]', xponderDetails).click(function() {
+					xponder = satellite.xponders[xponderId];
+					fecCodeDropdown.selectValue(xponder.fec);
+					fecCodeDropdown.show();
+				});
+
+				$('[id ~= decoder-type-btn]', xponderDetails).click(function() {
+					xponder = satellite.xponders[xponderId];
+					decoderTypeDropdown.selectValue(xponder.modType);
+					decoderTypeDropdown.show();
+				});
+			}(xponderIds[i]));
+		};
+
+		polarizationDropdown.optionSelected(function(name, value) {
+			$('[id ~= xponder-'+xponder.id+'] [id ~= polarization][id ~= edit]', satelliteDetails).text(value);
+		});
+
+		fecCodeDropdown.optionSelected(function(name, value) {
+			$('[id ~= xponder-'+xponder.id+'] [id ~= fec-code][id ~= edit]', satelliteDetails).text(value);
+		});
+
+		decoderTypeDropdown.optionSelected(function(name, value) {
+			$('[id ~= xponder-'+xponder.id+'] [id ~= decoder-type][id ~= edit]', satelliteDetails).text(value);
+		});
+	}([1, 3, 5, 7]));
 
 	self.reload = function() {
 		console.log(satellite);
 		$('[id ~= name]', satelliteDetails).text(satellite.name).val(satellite.name);
 		$('[id ~= region]', satelliteDetails).text(satellite.region).val(satellite.region);
+		regionDropdown.selectValue(satellite.region);
 		$('[id ~= orbital-slot]', satelliteDetails).text(satellite.antSatID).val(satellite.antSatID);
 		$('[id ~= hemisphere]', satelliteDetails).text(satellite.name).val(satellite.name);
 		$('[id ~= sat-id]', satelliteDetails).text(satellite.listID).val(satellite.listID);
@@ -25,10 +67,12 @@ TVRO.SatelliteDetails = function() {
 		$('[id ~= favorite-btn]', satelliteDetails).toggleClass('on', satellite.favorite === 'TRUE');
 
 		var xponders = satellite.xponders;
-		for (var xponderID in xponders) {
-			var xponder = xponders[xponderID],
-				xponderDetails = $('[id ~= xponder-'+xponderID+']', satelliteDetails);
+		for (var xponderId in xponders) {
+			var xponder = xponders[xponderId],
+				xponderDetails = $('[id ~= xponder-'+xponderId+']', satelliteDetails);
 
+			//	values for polarization in html are incorrect
+			//	TODO: fix that
 			$('[id ~= polarization]', xponderDetails).text(xponder.pol).val(xponder.pol);
 			$('[id ~= frequency]', xponderDetails).text(xponder.freq).val(xponder.freq);
 			$('[id ~= symbol-rate]', xponderDetails).text(xponder.symRate).val(xponder.symRate);
@@ -36,20 +80,6 @@ TVRO.SatelliteDetails = function() {
 			$('[id ~= network-id]', xponderDetails).text(xponder.netID).val(xponder.netID);
 			$('[id ~= decoder-type]', xponderDetails).text(xponder.modType).val(xponder.modType);
 		};
-
-		// name
-		// region
-		// orbital-slot
-		// hemisphere
-		// sat-id
-		// pre-skew
-		// tri-sat
-		// xponder-1 (3, 5, 7)
-		// 	frequency
-		// 	symbol-rate
-		// 	fec-code
-		// 	network-id
-		// 	decoder-type
 	};
 
 	self.setSatellite = function() {
@@ -96,7 +126,24 @@ TVRO.SatelliteDetails = function() {
 			'triSatID' : triSatID
 		}, function(response) {
 			webService.request('set_satellite_params', {
-				'listID' : listID
+				'listID' : listID,
+				'xponder' : (function(xponderIds) {
+					var xponders = [];
+					for (var i = 0; i < xponderIds.length; i++) {
+						var xponderId = xponderIds[i],
+							xponderDetails = $('[id ~= xponder-'+xponderId+']');
+						xponders.push({
+							'id' : xponderId,
+							'pol' : $('[id ~= polarization][id ~= edit]', xponderDetails).text(),
+							'freq' : $('[id ~= frequency][id ~= edit]', xponderDetails).val(),
+							'symRate' : $('[id ~= symbol-rate][id ~= edit]', xponderDetails).val(),
+							'fec' : $('[id ~= fec-code][id ~= edit]', xponderDetails).text(),
+							'netID' : $('[id ~= network-id][id ~= edit]', xponderDetails).val(),
+							'modType' : $('[id ~= decoder-type][id ~= edit]', xponderDetails).text()
+						});
+					}
+					return xponders;
+				}([1, 3, 5, 7]))
 			}, function(response) {
 				$('[id ~= view], [id ~= edit]').toggle();
 			});
@@ -122,51 +169,20 @@ TVRO.SatelliteDetails = function() {
 		});
 	});
 
-
 	self.show = function() {
 		satelliteDetails.show();
 	};
 
-
-//	region
-//	suffix
-//	xponders:
-//		pol (polatization)
-//		fec (fec code)
-//		mod-type (decoder type)
-
-//	listID			can't edit, don't show
-//	antSatID		can't edit, don't show
-//	name 			text
-//	region 			dropdown
-//	lon				text
-//	suffix			dropdown
-//	skew			text
-//	dt 				can't edit, don't show
-//	enable 			toggle
-//	favorite 		toggle
-//	select 			can't edit, don't show
-//	triSatID 		text but can be "false"
-//	lo1 			text
-//	lo2 			text
-//	kumode 			can't edit, don't show
-//
-//	xponder 		
-//		id 			can't edit, don't show
-//		pol 		dropdown
-//		band 		can't edit, don't show
-//		freq 		text
-//		symRate 	text
-//		fec 		dropdown
-//		netID 		text
-//		modType 	dropdown
+	self.hide = function() {
+		satelliteDetails.hide();
+	};
 
 	return self;
 };
 
-TVRO.SatellitesTable = function() {
+TVRO.SatellitesTable = function(table) {
 	var self = {},
-		table = $('[id ~= satellites-table]'),
+		table = $(table),
 		rowTemplate = $('[id ~= table-row]', table),
 		satellites = [],
 		sortedSatellites = [],
@@ -248,6 +264,14 @@ TVRO.SatellitesTable = function() {
 		self.reload();
 	});
 
+	self.show = function() {
+		table.show();
+	};
+
+	self.hide = function() {
+		table.hide();
+	};
+
 	return self;
 };
 
@@ -263,9 +287,9 @@ TVRO.SatellitesPage = function() {
 			$(this).toggleClass('selected', true);
 		});
 
-		var satelliteDetails = TVRO.SatelliteDetails();
+		var satelliteDetails = new TVRO.SatelliteDetails('[id ~= satellite-details]');
 
-		var satellitesTable = new TVRO.SatellitesTable();
+		var satellitesTable = new TVRO.SatellitesTable('[id ~= satellites-table]');
 		satellitesTable.rowClicked(function(row, satellite) {
 			webService.request('get_satellite_params', {
 				'listId' : satellite.listID

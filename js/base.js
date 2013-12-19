@@ -175,7 +175,7 @@ TVRO.WebService = (function() {
 					else requestUrl = LIVE_WEBSERVICE_URL;
 				}
 
-				requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>'
+				requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>';
 
 				$.ajax({
 					async : async,
@@ -197,88 +197,42 @@ TVRO.WebService = (function() {
 	}
 }());
 
-//	our generic dropdown class
-
-TVRO.Dropdown = function(dropdownId, buttonId, callback, options) {
+TVRO.Dropdown = function(dropdown, dropdownBtn) {
 	var self = {},
-		dropdown = $('#'+dropdownId),
-		buttons = [];
+		dropdown = $(dropdown),
+		optionSelected = [];
 
-	$('#'+buttonId).click(function() {
-		dropdown.show();
-		//	position dropdown over button
-		dropdown.offset($(this).offset());
-	});
+	self.selectValue = function(value) {
+		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).click();
+	};
 
-	//	initialize with any options that are already in html
-	//	we expect options to have this format:
-	//	<tag class="dropdown-option" value="Option value"><img src="/images/img.gif">Option text</tag>
-	dropdown.find('.dropdown-option').each(function() {
-		buttons.push(this);
-		$(this).click(optionSelected);
-	});
-
-	//	initialize with options
-	//	options should be in this format:
-	//	{
-	//		'Option 1 Text' : 'option A value',
-	//		'Option B Text' : 'option 2 value'
-	//	}
-	(function() {
-		for (var key in options) {
-			var value = options[key],
-				button = $('<a href="#" value="'+value+'" class="dropdown-option"><img src="/images/img.gif">'+key+'</a>');
-			buttons.push(button);
-			button.click(optionSelected);
-			dropdown.append(button);
-		}
-	}());
-
-	function optionSelected() {
-		dropdown.hide();
-		$(buttons).removeClass('selected');
-		$(this).toggleClass('selected', true);
-		if (typeof callback === 'function') {
-			callback(this.innerText, this.getAttribute('value'));
-		}
-	}
-
-	//	if you want to set the selected option, you can do it using
-	//	jQuery like so: $('#dropdown .dropdown-option[value='+value+']').click();
-
-	return self;
-};
-
-TVRO.Table = function(tableId, tableRowId, dataHandler, data) {
-	var self = {},
-		rows = [],
-		table = $('#'+tableId),
-		tableRow = $('#'+tableRowId),
-		numCols = tableRow.find('.table-col').length;
-
-	//	first remove the tableRow from the dom
-	tableRow.detach();
-	tableRow.removeAttr('id');
-
-
-	//	using data + dataHandlers set up each row
-	//	and set up each col of each row
-	//	expected data handler signature:
-	//	function (data, row) {
-	//		return row;
-	//	}
-	//	this assumes you know the structure of your table's rows/cols
-	//	as defined in html
-	self.setData = function(data) {
-		table.find('.table-row').remove();
-		for (var i = 0; i < data.length; i++) {
-			table.append(dataHandler(data[i], tableRow.clone()));
+	self.optionSelected = function() {
+		if (typeof arguments[0] === 'function') {
+			optionSelected.push(arguments[0]);
 		}
 	};
 
-	if (data) {
-		self.setData(data);
-	}
+	$('[id ~= dropdown-option]', dropdown).click(function() {
+		$('[id ~= dropdown-option]', dropdown).removeClass('selected');
+		$(this).toggleClass('selected', true);
+		for (var i = 0; i < optionSelected.length; i++) {
+			optionSelected[i](this.innerText, this.getAttribute('value'));
+		}
+		self.hide();
+	});
+
+	$(dropdownBtn).click(function() {
+		dropdown.show();
+		dropdown.offset($(this).offset());
+	});
+
+	self.show = function() {
+		dropdown.show();
+	};
+
+	self.hide = function() {
+		dropdown.hide();
+	};
 
 	return self;
 };

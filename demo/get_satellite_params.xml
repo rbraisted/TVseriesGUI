@@ -26,7 +26,7 @@
 		<modType>QDVB</modType>
 	</xponder>
 	<xponder>
-		<id>4</id>
+		<id>3</id>
 		<pol>V</pol>
 		<band>H</band>
 		<freq>11820</freq>
@@ -34,5 +34,25 @@
 		<fec>2/3</fec>
 		<netID>0xFFFE</netID>
 		<modType>QDVB</modType>
+	</xponder>
+	<xponder>
+		<id>5</id>
+		<pol>V</pol>
+		<band>H</band>
+		<freq>12345</freq>
+		<symRate>40000</symRate>
+		<fec>3/4</fec>
+		<netID>0xABCD</netID>
+		<modType>QDSS</modType>
+	</xponder>
+	<xponder>
+		<id>7</id>
+		<pol>V</pol>
+		<band>H</band>
+		<freq>67890</freq>
+		<symRate>50000</symRate>
+		<fec>3/5</fec>
+		<netID>0xPINK</netID>
+		<modType>L8PSK</modType>
 	</xponder>
 </ipacu_response>
