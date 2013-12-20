@@ -292,6 +292,8 @@ TVRO.SatellitesPage = function() {
 	self.init = function() {
 		$('#satellites-btn').toggleClass('selected', true);
 
+		$('[id ~= satellites-table], [id ~= satellite-details], [id ~= satellite-details] [id ~= edit]').hide();
+
 		var satelliteDetails = new TVRO.SatelliteDetails('[id ~= satellite-details]');
 
 		var satellitesTable = new TVRO.SatellitesTable('[id ~= satellites-table]');

@@ -138,8 +138,8 @@
 
 .satellite-details {
 	margin-left: -137.5px;
+	position: relative;
 	width: 825px;
-	border: 1px solid red;
 }
 
 .satellite-details .border-btn {
@@ -270,7 +270,7 @@
 	width: 145px;
 }
 
-.dropdown-btn {
+.satellite-details .dropdown-btn {
 	background: #4b5168;
 	border: 1px solid #000;
 	color: #fff;
@@ -293,23 +293,36 @@
 	padding: 3px 10px;
 }
 
+.satellite-detail .dropdown-btn {
+	padding: 6px 10px;
+	width: 90px;
+}
+
 .xponder-details .dropdown-btn {
 	padding: 4px 10px;
 }
 
-.enable,
-.favorite {
+.satellite-details .enable,
+.satellite-details .favorite {
 	position: absolute;
 }
 
-/*[id ~= satellites-table] {
-	display: none;
+.satellite-details .enable label,
+.satellite-details .favorite label {
+	color: #fff;
+	margin-right: 15px;
 }
 
-[id ~= satellite-details] {
-	display: none;
+.satellite-details .enable {
+	bottom: -50px;
 }
 
-[id ~= satellite-details] [id ~= edit] {
-	display: none;
-}*/
+.satellite-details .favorite {
+	right: 0;
+	top: 20px;
+}
+
+.satellite-details .border-btn {
+	float: right;
+	margin: 25px 0 0 25px;
+}

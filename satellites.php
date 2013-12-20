@@ -282,10 +282,11 @@
 					<a id="dropdown-option" href="#" value="9/10" class="dropdown-option"><img src="/images/img.gif">9/10</a>
 				</div>
 
-				<a id="save-btn edit" href="#" class="border-btn">Save</a><!--
-			 --><a id="cancel-btn edit" href="#" class="border-btn">Cancel</a><!--
-			 --><a id="edit-btn view" href="#" class="border-btn">Edit</a><!--
-			 --><a id="select-btn view" href="#" class="border-btn">Select Satellite</a>
+				<a id="save-btn edit" href="#" class="border-btn">Save</a>
+				<a id="cancel-btn edit" href="#" class="border-btn">Cancel</a>
+
+				<a id="select-btn view" href="#" class="border-btn">Select Satellite</a>
+				<a id="edit-btn view" href="#" class="border-btn">Edit</a>
 
 			</div>
 
