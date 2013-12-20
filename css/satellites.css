@@ -158,13 +158,17 @@
 
 .satellite-detail label {
 	display: block;
+	padding-bottom: 5px;
 }
 
 .satellite-detail span {
+	display: block;
 	font-size: 24px;
+	padding: 3px 0;
 }
 
 .satellite-detail input {
+	display: block;
 	width: 90px;
 }
 

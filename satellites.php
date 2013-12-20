@@ -77,12 +77,12 @@
 				</div>
 				<div class="local-oscillators">
 				 	<div class="local-oscillator local-oscillator-1 satellite-detail">
-						<label>Local Oscillator 1</label>
+						<label>Local Oscillator #1</label>
 						<span id="local-oscillator-1 view"></span>
 						<input id="local-oscillator-1 edit" type="text" />
 					</div><!--
 				 --><div class="local-oscillator local-oscillator-2 satellite-detail">
-						<label>Local Oscillator 2</label>
+						<label>Local Oscillator #2</label>
 						<span id="local-oscillator-2 view"></span>
 						<input id="local-oscillator-2 edit" type="text" />
 					</div>
