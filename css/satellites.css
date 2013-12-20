@@ -184,6 +184,10 @@
 	width: 825px;
 }
 
+.satellite-detail.name input {
+	width: 375px;
+}
+
 .satellite-details .region {
 	padding-right: 15px;
 	width: 113px;
@@ -222,6 +226,10 @@
 	width: 397px;
 }
 
+.satellite-details .local-oscillator input {
+	width: 375px;
+}
+
 .satellite-details .local-oscillator-1 {
 	padding-right: 15px;
 }
@@ -232,7 +240,8 @@
 }
 
 .xponders {
-	
+	padding-bottom: 25px;
+	border-bottom: 1px solid #4b67b1;
 }
 
 .xponder-details {
@@ -261,15 +270,39 @@
 	width: 145px;
 }
 
+.dropdown-btn {
+	background: #4b5168;
+	border: 1px solid #000;
+	color: #fff;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: lighter;
+	margin: 0;
+	padding: 5px 10px;
+}
+
+.xponder-details input,
+.xponder-details .dropdown-btn {
+	border-color: #4b67b1;
+	display: inline-block;
+	line-height: 100%;
+	width: 180px;
+}
+
+.xponder-details input {
+	padding: 3px 10px;
+}
+
+.xponder-details .dropdown-btn {
+	padding: 4px 10px;
+}
+
 .enable,
 .favorite {
 	position: absolute;
 }
 
-
-
-
-[id ~= satellites-table] {
+/*[id ~= satellites-table] {
 	display: none;
 }
 
@@ -279,4 +312,4 @@
 
 [id ~= satellite-details] [id ~= edit] {
 	display: none;
-}
+}*/
