@@ -30,7 +30,12 @@
             <input type="button" id="button3" value="get_satellite_list" onclick="SendGetCommand('get_satellite_list')" style="width:200px" />
             <input type="button" id="button4" value="get_satellite_params_header" onclick="SendGetCommand('get_satellite_params_header')" style="width:200px" />
             <input type="button" id="button5" value="serial_log_status" onclick="SendGetCommand('serial_log_status')" style="width:200px" />
-            <input type="button" id="button6" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:200px" />
+			<input type="button" id="button6" value="get_gps" onclick="SendGetCommand('get_gps')" style="width:200px" />
+			<input type="button" id="button7" value="get_gps_cities" onclick="SendGetCommand('get_gps_cities')" style="width:200px" />
+            <input type="button" id="button8" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:200px" />
+			<input type="button" id="button9" value="get_nmea_info" onclick="SendGetCommand('get_nmea_info')" style="width:200px" />
+			<input type="button" id="button10" value="get_nmea_config" onclick="SendGetCommand('get_nmea_config')" style="width:200px" />
+			
             <input type="button" id="button8" value="power" onclick="SendGetCommand('power')" style="width:200px" />
             <input type="button" id="button9" value="ophours" onclick="SendGetCommand('ophours')" style="width:200px" />
             <input type="button" id="button11" value="get_message_protocol_version" onclick="SendGetCommand('get_message_protocol_version')" style="width:200px" />
@@ -44,15 +49,11 @@
             <input type="button" id="button22" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:200px" />
             <input type="button" id="button23" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:200px" />
             <input type="button" id="button24" value="get_product_registration" onclick="SendGetCommand('get_product_registration')" style="width:200px" />
-			
-			<input type="button" id="button25" value="get_autoswitch_config" onclick="SendGetCommand('get_autoswitch_config')" style="width:200px" />
 			<input type="button" id="button26" value="get_satellite_groups" onclick="SendGetCommand('get_satellite_groups')" style="width:200px" />
 			<input type="button" id="button27" value="get_autoswitch_status" onclick="SendGetCommand('get_autoswitch_status')" style="width:200px" />
 			<input type="button" id="button28" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:200px" />
 			<input type="button" id="button29" value="get_directv_service" onclick="SendGetCommand('get_directv_service')" style="width:200px" />
 			<input type="button" id="button30" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:200px" />
-
-			
             <input type="button" id="button31" value="get_details" onclick="get_details()" style="width:200px" />
             <input type="button" id="button32" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:200px" />
             <input type="button" id="button33" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:200px" />

@@ -317,6 +317,45 @@ function serial_log_status(xml)
 		return false;
 	}
 }
+function get_gps(xml)
+{
+	var error=$(xml).find('message').attr('error');
+			
+	if('0'==error){
+		var message='';
+		message+='GET GPS\n\n';
+		message+='State: '+$(xml).find('state').text()+'\n';
+		message+='Lat:   '+$(xml).find('lat').text()+'\n';
+		message+='Long:  '+$(xml).find('lon').text()+'\n';
+		message+='City:  '+$(xml).find('city').text()+'\n';
+		
+		$('#response').val( message +'\n');
+		return false;
+		
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
+function get_gps_cities(xml)
+{
+	var error=$(xml).find('message').attr('error');
+			
+	if('0'==error){
+		var message='';
+		message+='GET GPS CITIES\n\n';
+		$(xml).find('cities').each(function() {
+			message+='City: '+$(this).find('city').text()+'\n';
+		});
+		
+		$('#response').val( message +'\n');
+		return false;
+		
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
 function get_nmea_heading(xml)
 {
 	var error=$(xml).find('message').attr('error');
@@ -331,6 +370,84 @@ function get_nmea_heading(xml)
 		message+='Var:		'+$(xml).find('var').text()+'\n';
 		message+='DT:		'+$(xml).find('dt').text()+'\n';
 		message+='NMEA:		'+$(xml).find('nmea').text()+'\n\n';
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
+function get_nmea_info(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='';
+		message+='GET NMEA INFO\n\n';
+		$(xml).find('nmea0183').each(function() {
+			message+='NMEA 0183\n';
+			message+='Available: '+$(this).find('available').text()+'\n';
+			message+='Enabled: '+$(this).find('enable').text()+'\n\n';
+			$(this).find('message_list').each(function() {
+				$(this).find('nmea_message').each(function() {
+					message+='NMEA MESSAGE:\n';
+					message+='Name:   '+$(this).find('nmea_name').text()+'\n';
+					message+='Source: '+$(this).find('nmea_source').text()+'\n';
+				});
+			});
+
+		});
+		message+='\n';
+		$(xml).find('nmea2000').each(function() {
+			message+='NMEA 2000\n';
+			message+='Available: '+$(this).find('available').text()+'\n';
+			message+='Enabled: '+$(this).find('enable').text()+'\n\n';
+			$(this).find('message_list').each(function() {
+				$(this).find('nmea_message').each(function() {
+					message+='NMEA MESSAGE:\n';
+					message+='Name:   '+$(this).find('nmea_name').text()+'\n';
+					message+='Source: '+$(this).find('nmea_source').text()+'\n';
+				});
+			});
+
+		});
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
+function get_nmea_config(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='';
+		message+='GET NMEA INFO\n\n';
+		$(xml).find('nmea0183').each(function() {
+			message+='NMEA 0183\n';
+			message+='Enabled: '+$(this).find('enable').text()+'\n\n';
+			$(this).find('message_list').each(function() {
+				$(this).find('nmea_message').each(function() {
+					message+='NMEA MESSAGE:\n';
+					message+='Name:   '+$(this).find('nmea_name').text()+'\n';
+					message+='Source: '+$(this).find('nmea_source').text()+'\n';
+				});
+			});
+
+		});
+		message+='\n';
+		$(xml).find('nmea2000').each(function() {
+			message+='NMEA 2000\n';
+			message+='Enabled: '+$(this).find('enable').text()+'\n\n';
+			$(this).find('message_list').each(function() {
+				$(this).find('nmea_message').each(function() {
+					message+='NMEA MESSAGE:\n';
+					message+='Name:   '+$(this).find('nmea_name').text()+'\n';
+					message+='Source: '+$(this).find('nmea_source').text()+'\n';
+				});
+			});
+
+		});
 		$('#response').val( message +'\n');
 		return false;
 	}else{
@@ -816,22 +933,6 @@ function get_product_registration(xml)
 		return false;
 	}
 }
-function get_autoswitch_config(xml)
-{
-	var error=$(xml).find('message').attr('error');
-			
-	if('0'==error){
-		var message='GET AUTOSWITCH CONFIG\n\n';
-			message+='MAC: '+$(xml).find('mac_address').text()+'\n';
-			message+='SN:  '+$(xml).find('sn').text()+'\n';
-			
-		$('#response').val( message +'\n');
-		return false;
-	}else{
-		$('#response').val('ERROR: '+returnError(error)+'\n');
-		return false;
-	}
-}
 function get_satellite_groups(xml)
 {
 	var error=$(xml).find('message').attr('error');
@@ -841,8 +942,8 @@ function get_satellite_groups(xml)
 		$(xml).find('group_list').each(function() {
 			$(this).find('group').each(function() {
 				message+='GROUP\n';
-				message+='Group Name: '+$(this).find('model').text()+'\n';
-				message+='Predefined: '+$(this).find('part').text()+'\n';
+				message+='Group Name: '+$(this).find('group_name').text()+'\n';
+				message+='Predefined: '+$(this).find('predefined').text()+'\n';
 				message+='A:          '+$(this).find('A').text()+'\n';
 				if(''!=$(this).find('B').text()){
 					message+='B:          '+$(this).find('B').text()+'\n';
@@ -869,11 +970,13 @@ function get_autoswitch_status(xml)
 	if('0'==error){
 		var message='';
 		message+='GET AUTOSWITCH STATUS\n\n';
-		message+='Output:          '+$(xml).find('output').text()+'\n';
 		message+='Available:       '+$(xml).find('available').text()+'\n';
-		message+='Enable:          '+$(xml).find('enable').text()+'\n';
+		message+='Enable:          '+$(xml).find('enable').eq(0).text()+'\n';
 		message+='Service:         '+$(xml).find('service').text()+'\n';
-		message+='Service Subtype: '+$(xml).find('service_subtype').text()+'\n\n';
+		if('' != $(xml).find('service_subtype').text()){
+			message+='Service Subtype: '+$(xml).find('service_subtype').text()+'\n';
+		}
+		message+='\n';
 		$(xml).find('master').each(function() {
 			message+='MASTER\n';
 			message+='SN:      '+$(this).find('sn').text()+'\n';
@@ -902,34 +1005,40 @@ function get_autoswitch_status(xml)
 				message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
 			});
 			$(this).find('B').each(function() {
-				message+='B\n';
-				message+='List ID:    '+$(this).find('listID').text()+'\n';
-				message+='Ant Sat ID: '+$(this).find('antSatID').text()+'\n';
-				message+='Name:       '+$(this).find('name').text()+'\n';
-				message+='Region:     '+$(this).find('region').text()+'\n';
-				message+='Lon:        '+$(this).find('lon').text()+'\n';
-				message+='Enable:     '+$(this).find('enable').text()+'\n';
-				message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
+				if ($(this).find('listID').text()){
+					message+='B\n';
+					message+='List ID:    '+$(this).find('listID').text()+'\n';
+					message+='Ant Sat ID: '+$(this).find('antSatID').text()+'\n';
+					message+='Name:       '+$(this).find('name').text()+'\n';
+					message+='Region:     '+$(this).find('region').text()+'\n';
+					message+='Lon:        '+$(this).find('lon').text()+'\n';
+					message+='Enable:     '+$(this).find('enable').text()+'\n';
+					message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
+				}
 			});
 			$(this).find('C').each(function() {
-				message+='C\n';
-				message+='List ID:    '+$(this).find('listID').text()+'\n';
-				message+='Ant Sat ID: '+$(this).find('antSatID').text()+'\n';
-				message+='Name:       '+$(this).find('name').text()+'\n';
-				message+='Region:     '+$(this).find('region').text()+'\n';
-				message+='Lon:        '+$(this).find('lon').text()+'\n';
-				message+='Enable:     '+$(this).find('enable').text()+'\n';
-				message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
+				if ($(this).find('listID').text()){
+					message+='C\n';
+					message+='List ID:    '+$(this).find('listID').text()+'\n';
+					message+='Ant Sat ID: '+$(this).find('antSatID').text()+'\n';
+					message+='Name:       '+$(this).find('name').text()+'\n';
+					message+='Region:     '+$(this).find('region').text()+'\n';
+					message+='Lon:        '+$(this).find('lon').text()+'\n';
+					message+='Enable:     '+$(this).find('enable').text()+'\n';
+					message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
+				}
 			});
 			$(this).find('D').each(function() {
-				message+='D\n';
-				message+='List ID:    '+$(this).find('listID').text()+'\n';
-				message+='Ant Sat ID: '+$(this).find('antSatID').text()+'\n';
-				message+='Name:       '+$(this).find('name').text()+'\n';
-				message+='Region:     '+$(this).find('region').text()+'\n';
-				message+='Lon:        '+$(this).find('lon').text()+'\n';
-				message+='Enable:     '+$(this).find('enable').text()+'\n';
-				message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
+				if ($(this).find('listID').text()){
+					message+='D\n';
+					message+='List ID:    '+$(this).find('listID').text()+'\n';
+					message+='Ant Sat ID: '+$(this).find('antSatID').text()+'\n';
+					message+='Name:       '+$(this).find('name').text()+'\n';
+					message+='Region:     '+$(this).find('region').text()+'\n';
+					message+='Lon:        '+$(this).find('lon').text()+'\n';
+					message+='Enable:     '+$(this).find('enable').text()+'\n';
+					message+='Favorite:   '+$(this).find('favorite').text()+'\n\n';
+				}
 			});
 		});
 		$('#response').val( message +'\n');
