@@ -4,7 +4,7 @@
 	<listID>4</listID>
 	<antSatID>99W</antSatID>
 	<name>DTV99</name>
-	<region>North America</region>
+	<region>Europe</region>
 	<lon>-99.00</lon>
 	<skew>0.00</skew>
 	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>

@@ -136,8 +136,138 @@
 
 
 
+.satellite-details {
+	margin-left: -137.5px;
+	width: 825px;
+	border: 1px solid red;
+}
+
+.satellite-details .border-btn {
+	display: inline-block;
+}
+
+.satellite-details label {
+	color: #ccc;
+}
+
+.satellite-detail {
+	display: inline-block;
+	padding: 5px 0;
+	width: 111px;
+}
+
+.satellite-detail label {
+	display: block;
+}
+
+.satellite-detail span {
+	font-size: 24px;
+}
+
+.satellite-detail input {
+	width: 90px;
+}
+
+.satellite-detail span,
+.satellite-detail input {
+	white-space: nowrap;
+}
+
+.satellite-detail.name {
+	border-bottom: 1px solid #4b67b1;
+	display: block;
+	padding-bottom: 15px;
+	width: 825px;
+}
+
+.satellite-details .region {
+	padding-right: 15px;
+	width: 113px;
+}
+
+.satellite-details .tri-sat-id {
+	padding-left: 15px;
+	width: 113px;
+}
+
+.satellite-details .orbital-slot,
+.satellite-details .hemisphere,
+.satellite-details .sat-id,
+.satellite-details .pre-skew {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.satellite-details .orbital-slot,
+.satellite-details .hemisphere,
+.satellite-details .sat-id,
+.satellite-details .pre-skew,
+.satellite-details .tri-sat-id,
+.satellite-details .local-oscillator-2 {
+	border-left: 1px solid #4b67b1;
+	margin: 15px 0;
+}
+
+.satellite-details .local-oscillators {
+	border-top: 1px solid #4b67b1;
+	border-bottom: 1px solid #4b67b1;
+}
+
+.satellite-details .local-oscillator {
+	margin: 15px 0;
+	width: 397px;
+}
+
+.satellite-details .local-oscillator-1 {
+	padding-right: 15px;
+}
+
+.satellite-details .local-oscillator-2 {
+	border-left: 1px solid #4b67b1;
+	padding-left: 15px;
+}
+
+.xponders {
+	
+}
+
+.xponder-details {
+	background: #000;
+	display: inline-block;
+	line-height: 210%;
+	margin-top: 25px;
+	padding: 25px 0;
+	width: 400px;
+}
+
+.xponder-details:nth-child(2n) {
+	margin-left: 25px;
+}
+
+.xponder-details .name {
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+}
+
+.xponder-details label {
+	display: inline-block;
+	margin-right: 25px;
+	text-align: right;
+	width: 145px;
+}
+
+.enable,
+.favorite {
+	position: absolute;
+}
 
 
+
+
+[id ~= satellites-table] {
+	display: none;
+}
 
 [id ~= satellite-details] {
 	display: none;
