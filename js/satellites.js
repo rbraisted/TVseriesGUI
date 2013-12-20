@@ -152,21 +152,18 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 					return xponders;
 				}([1, 3, 5, 7]))
 			}, function(response) {
-				$('[id ~= edit]', satelliteDetails).hide();
-				$('[id ~= view]', satelliteDetails).show();
+				self.showView();
 			});
 		});
 	});
 
 	$('[id ~= cancel-btn]', satelliteDetails).click(function() {
-		$('[id ~= edit]', satelliteDetails).hide();
-		$('[id ~= view]', satelliteDetails).show();
+		self.showView();
 		self.reload();
 	});
 
 	$('[id ~= edit-btn]', satelliteDetails).click(function() {
-		$('[id ~= view]', satelliteDetails).hide();
-		$('[id ~= edit]', satelliteDetails).show();
+		self.showEdit();
 	});
 
 	$('[id ~= select-btn]', satelliteDetails).click(function() {
@@ -186,6 +183,18 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 	self.hide = function() {
 		satelliteDetails.hide();
 	};
+
+	self.showEdit = function() {
+		$('[id ~= view]', satelliteDetails).hide();
+		$('[id ~= edit]', satelliteDetails).show();
+	};
+
+	self.showView = function() {
+		$('[id ~= edit]', satelliteDetails).hide();
+		$('[id ~= view]', satelliteDetails).show();
+	};
+
+	self.showView();
 
 	return self;
 };
@@ -292,8 +301,6 @@ TVRO.SatellitesPage = function() {
 	self.init = function() {
 		$('#satellites-btn').toggleClass('selected', true);
 
-		$('[id ~= satellites-table], [id ~= satellite-details], [id ~= satellite-details] [id ~= edit]').hide();
-
 		var satelliteDetails = new TVRO.SatelliteDetails('[id ~= satellite-details]');
 
 		var satellitesTable = new TVRO.SatellitesTable('[id ~= satellites-table]');
@@ -308,6 +315,9 @@ TVRO.SatellitesPage = function() {
 			});
 		});
 
+		satelliteDetails.hide();
+		satellitesTable.hide();
+
 		$('[id ~= add-btn]', '#sb').click(function() {
 			var satellite = new TVRO.Satellite();
 			satellite.name = 'New Satellite';
@@ -317,6 +327,7 @@ TVRO.SatellitesPage = function() {
 		});
 
 		$('[id ~= filter-btn]', '#sb').click(function() {
+			console.log("filter-btn clicked");
 			var filterBtn = $(this),
 				regionFilter = '',
 				userChoiceFilter = '';
