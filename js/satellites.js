@@ -53,15 +53,18 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 	}([1, 3, 5, 7]));
 
 	self.reload = function() {
-		console.log(satellite);
 		$('[id ~= name]', satelliteDetails).text(satellite.name).val(satellite.name);
 		$('[id ~= region]', satelliteDetails).text(satellite.region).val(satellite.region);
 		regionDropdown.selectValue(satellite.region);
 		$('[id ~= orbital-slot]', satelliteDetails).text(satellite.antSatID).val(satellite.antSatID);
+		//	not sure where to get hemisphere from,
+		//	using satellite name for now
 		$('[id ~= hemisphere]', satelliteDetails).text(satellite.name).val(satellite.name);
 		$('[id ~= sat-id]', satelliteDetails).text(satellite.listID).val(satellite.listID);
 		$('[id ~= pre-skew]', satelliteDetails).text(satellite.skew).val(satellite.skew);
 		$('[id ~= tri-sat-id]', satelliteDetails).text(satellite.triSatID).val(satellite.triSatID);
+		$('[id ~= local-oscillator-1]', satelliteDetails).text(satellite.lo1).val(satellite.lo1);
+		$('[id ~= local-oscillator-2]', satelliteDetails).text(satellite.lo2).val(satellite.lo2);
 
 		$('[id ~= enable-btn]', satelliteDetails).toggleClass('on', satellite.enabled === 'TRUE');
 		$('[id ~= favorite-btn]', satelliteDetails).toggleClass('on', satellite.favorite === 'TRUE');
@@ -115,7 +118,9 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 			antSatID = $('[id ~= orbital-slot][id ~= edit]', satelliteDetails).val(),
 			region = $('[id ~= region][id ~= edit]', satelliteDetails).val(),
 			skew = $('[id ~= pre-skew][id ~= edit]', satelliteDetails).val(),
-			triSatID = $('[id ~= tri-sat-id][id ~= edit]', satelliteDetails).val();
+			triSatID = $('[id ~= tri-sat-id][id ~= edit]', satelliteDetails).val(),
+			lo1 = $('[id ~= local-oscillator-1][id ~= edit]', satelliteDetails).val(),
+			lo2 = $('[id ~= local-oscillator-2][id ~= edit]', satelliteDetails).val();
 
 		webService.request('set_satellite_identity', {
 			'name' : name,
@@ -123,7 +128,9 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 			'antSatID' : antSatID,
 			'region' : region,
 			'skew' : skew,
-			'triSatID' : triSatID
+			'triSatID' : triSatID,
+			'lo1' : lo1,
+			'lo2' : lo2
 		}, function(response) {
 			webService.request('set_satellite_params', {
 				'listID' : listID,
@@ -145,18 +152,18 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 					return xponders;
 				}([1, 3, 5, 7]))
 			}, function(response) {
-				$('[id ~= view], [id ~= edit]').toggle();
+				self.showView();
 			});
 		});
 	});
 
 	$('[id ~= cancel-btn]', satelliteDetails).click(function() {
-		$('[id ~= view], [id ~= edit]').toggle();
+		self.showView();
 		self.reload();
 	});
 
 	$('[id ~= edit-btn]', satelliteDetails).click(function() {
-		$('[id ~= view], [id ~= edit]').toggle();
+		self.showEdit();
 	});
 
 	$('[id ~= select-btn]', satelliteDetails).click(function() {
@@ -176,6 +183,18 @@ TVRO.SatelliteDetails = function(satelliteDetails) {
 	self.hide = function() {
 		satelliteDetails.hide();
 	};
+
+	self.showEdit = function() {
+		$('[id ~= view]', satelliteDetails).hide();
+		$('[id ~= edit]', satelliteDetails).show();
+	};
+
+	self.showView = function() {
+		$('[id ~= edit]', satelliteDetails).hide();
+		$('[id ~= view]', satelliteDetails).show();
+	};
+
+	self.showView();
 
 	return self;
 };
@@ -282,32 +301,78 @@ TVRO.SatellitesPage = function() {
 	self.init = function() {
 		$('#satellites-btn').toggleClass('selected', true);
 
-		$('#sb a').click(function() {
-			$('#sb a').removeClass('selected');
-			$(this).toggleClass('selected', true);
-		});
-
 		var satelliteDetails = new TVRO.SatelliteDetails('[id ~= satellite-details]');
 
 		var satellitesTable = new TVRO.SatellitesTable('[id ~= satellites-table]');
 		satellitesTable.rowClicked(function(row, satellite) {
 			webService.request('get_satellite_params', {
-				'listId' : satellite.listID
+				'listID' : satellite.listID
 			}, function(response) {
 				var satellite = new TVRO.Satellite(response);
 				satelliteDetails.setSatellite(satellite);
-				$('#satellites-table, #satellite-details').toggle();
+				satelliteDetails.show();
+				satellitesTable.hide();
 			});
 		});
 
-		webService.request('get_satellite_list', {
-			'region_filter' : ''
-		}, function(response) {
-			var satellites = [];
-			$('satellite', response).each(function(index, satellite) {
-				satellites.push(new TVRO.Satellite(satellite));
+		satelliteDetails.hide();
+		satellitesTable.hide();
+
+		$('[id ~= add-btn]', '#sb').click(function() {
+			var satellite = new TVRO.Satellite();
+			satellite.name = 'New Satellite';
+			satelliteDetails.setSatellite(satellite);
+			satelliteDetails.show();
+			satellitesTable.hide();
+		});
+
+		$('[id ~= filter-btn]', '#sb').click(function() {
+			console.log("filter-btn clicked");
+			var filterBtn = $(this),
+				regionFilter = '',
+				userChoiceFilter = '';
+
+			if (filterBtn.hasId('enabled-btn')) userChoiceFilter = 'enable';
+			else if (filterBtn.hasId('favorite-btn')) userChoiceFilter = 'favorite';
+			else if (filterBtn.hasId('africa-btn')) regionFilter = 'Africa';
+			else if (filterBtn.hasId('asia-btn')) regionFilter = 'Asia';
+			else if (filterBtn.hasId('australia-btn')) regionFilter = 'Australia';
+			else if (filterBtn.hasId('central-and-south-america-btn')) regionFilter = 'Central and South America';
+			else if (filterBtn.hasId('north-america-btn')) regionFilter = 'North America';
+
+			$('[id ~= filter-btn]', '#sb').removeClass('selected');
+			filterBtn.toggleClass('selected', true);
+
+			$('#sb, #satellite-details').removeClass('active');
+			$('#satellites-table').toggleClass('active', true);
+
+			satellitesTable.show();
+			satelliteDetails.hide();
+
+			webService.request('get_satellite_list', {
+				'region_filter' : regionFilter,
+				'user_choice_filter' : userChoiceFilter
+			}, function(response) {
+				var satellites = [];
+				$('satellite', response).each(function(index, satellite) {
+					satellites.push(new TVRO.Satellite(satellite));
+				});
+				satellitesTable.setSatellites(satellites);
 			});
-			satellitesTable.setSatellites(satellites);
+		});
+
+		$('[id ~= back-btn]', '[id ~= satellites-table]').click(function() {
+			$('#satellites-table, #satellite-details').removeClass('active');
+			$('#sb').toggleClass('active', true);
+			satellitesTable.hide();
+			satelliteDetails.hide();
+		});
+
+		$('[id ~= back-btn]', '[id ~= satellite-details]').click(function() {
+			$('#sb, #satellite-details').removeClass('active');
+			$('#satellites-table').toggleClass('active', true);
+			satellitesTable.show();
+			satelliteDetails.hide();
 		});
 	};
 

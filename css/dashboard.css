@@ -59,6 +59,7 @@ menu .of-btn {
 	height: 20px;
 }
 
+.help-btn,
 .demo-mode {
 	background: #9c232d;
 	font-weight: lighter;
@@ -197,6 +198,7 @@ menu .of-btn {
 		width: 100%;
 	}
 
+	.help-btn,
 	.demo-mode {
 		font-size: 10px;
 		padding: 5px 10px;
@@ -302,6 +304,7 @@ menu .of-btn {
 		width: 100%;
 	}
 
+	.help-btn,
 	.demo-mode {
 		padding: 10px 20px;
 		right: 20px;
@@ -321,4 +324,18 @@ menu .of-btn {
 		top: 0;
 		margin-top: -70px;
 	}
+}
+
+.help-btn {
+	background: green;
+}
+
+#dataDiv,
+#dataDiv iframe {
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 999999999;
 }

@@ -3,6 +3,7 @@
 <div id="dashboard-page" class="page">
 	<link type="text/css" rel="stylesheet" href="/css/dashboard.css">
 	<script type="text/javascript" src="/js/dashboard.js"></script>
+	<script type="text/javascript" src="/RoboHelp_CSH 2.js"></script>
 
 	<div id="vessel" class="vessel">
 		<div id="vessel-heading" class="vessel-heading"></div>
@@ -42,6 +43,8 @@
 	</menu>
 
 	<div id="demo-mode" class="demo-mode">Demo Mode</div>
+	
+	<a id="help-btn" href="javascript:RH_ShowHelp(0, 'V11_Published_Condensed/index.htm', HH_HELP_CONTEXT, 4)" class="help-btn">HELP</a>
 
 	<div id="master-list" class="alert-overlay">
 		<div class="alert-overlay-bg"></div>
