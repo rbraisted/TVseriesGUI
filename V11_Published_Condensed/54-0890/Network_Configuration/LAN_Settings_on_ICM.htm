@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>LAN Settings on ICM</title>
+
+ <meta name="generator" content="Adobe RoboHelp 10" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="\\192.168.3.55\server hd 2\User Manuals\Authoring_Files\54-0890_V3ip_UG\54-0890_Current\Network_Configuration.fm" />
+ <link rel="stylesheet" href="../../KVH_Help2012.css" type="text/css" />
+
+ <link rel="stylesheet" href="../../KVH_Help2012.css" type="text/css" />
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../whmsg.js" charset="utf-8"></script>
+<script type="text/javascript" language="javascript" src="../../whver.js" charset="utf-8"></script>
+<script type="text/javascript" language="javascript1.2" src="../../whutils.js" charset="utf-8"></script>
+<script type="text/javascript" language="javascript1.2" src="../../whproxy.js" charset="utf-8"></script>
+<script type="text/javascript" language="javascript1.2" src="../../whlang.js" charset="utf-8"></script>
+<script type="text/javascript" language="javascript1.2" src="../../whtopic.js" charset="utf-8"></script>
+
+</head>
+
+<body><script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.gbWhTopic)
+{
+	var strUrl = document.location.href;
+	var bc = 0;
+	var n = strUrl.toLowerCase().indexOf("bc-");
+	if(n != -1)
+	{
+		document.location.href = strUrl.substring(0, n);
+		bc = strUrl.substring(n+3);
+	}
+
+	if (window.addTocInfo)
+	{
+	addTocInfo("TracPhone V11-IP Help\nNetwork Configuration\nLAN Settings on ICM");
+addButton("show",BTN_TEXT,"Show","","","","",0,0,"","","");
+
+	}
+	if (window.writeBtnStyle)
+		writeBtnStyle();
+
+	if (window.writeIntopicBar)
+		writeIntopicBar(1);
+
+	
+	document.write("<p style=\"text-align:right\"> ");
+AddMasterBreadcrumbs("../../index.htm", "", ">", "Home", "../Introduction/About_this_Help_System.htm");
+document.write("<a href=\"../Introduction/About_this_Help_System.htm\">TracPhone V11-IP Help<\/a> > <a href=\"Wired_DHCP_Configuration.htm\">Network Configuration<\/a> > LAN Settings on ICM<\/p>");
+
+}
+else
+	if (window.gbIE4)
+		document.location.reload();
+
+onLoadHandler = function()
+{
+  if (window.setRelStartPage)
+	{
+	setTimeout("setRelStartPage('../../index.htm');", 1)
+
+    setTimeout("UpdateBreadCrumbsMarker();", 1);
+	}
+}
+
+if (window.addEventListener){  
+	window.addEventListener('load', onLoadHandler, false);   
+} else if (window.attachEvent){  
+	window.attachEvent('onload', onLoadHandler);  
+}
+
+function onSetStartPage()
+{
+  autoSync(1);
+  sendSyncInfo();
+  sendAveInfoOut();
+}
+//-->
+//]]></script>
+<script type="text/javascript" src="../../ehlpdhtm.js" language="JavaScript1.2"></script>
+
+
+ <h2><a name="XREF_47205_LAN_Settings_on"></a>LAN Settings on ICM</h2>
+ <p>By default, the ICM&#160;has a gateway address of 192.168.5.1 and assigns IP addresses in the 192.168.5.100-200 range (DHCP configurations only). If this configuration conflicts with another onboard network, you may change these settings.</p>
+
+ <table class="Important" style="float: alignleft; width: 344.95pt;" cellspacing="0">
+  <tr style=" height : 26.00pt;" class="t1st">
+  <td style="width : 344.953pt; vertical-align : top;">
+  <p class="SignalWord">Important!</p>
+</td>
+</tr>
+  <tr style=" height : 37.00pt;">
+  <td style="width : 344.953pt; vertical-align : top;">
+  <p class="CellBody">The default LAN settings work well for most installations. Do not change these settings unless absolutely necessary.</p>
+</td>
+</tr>
+ </table>
+
+ <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>If the optional CommBox software is enabled, or the ICM is configured for Dual Dome-Secondary or Legacy mode, the Network Settings page of the ICM&#160;will not contain any configurable fields. (See <a href="../Data_Connections/CommBox_Features.htm#XREF_22186_CommBox_Features">CommBox Features</a>&#160;for details on enabling the CommBox software. See <a href="Physical_Ethernet_Port_Configurations.htm#XREF_38715_Physical_Ethernet">Physical Ethernet Port Configurations</a>&#160;for details on changing the ICM’s configuration.) </p>
+ <p class="TextBeforeList">To change the ICM’s LAN settings, follow these steps:</p>
+ <ol start="1">
+  <li style="list-style: decimal;">
+  <p>At the TracPhone V11-IP&#160;web interface, click the <span class="Button">Settings</span>&#160;tab. Then click <span class="Button">Network Settings</span>.</p>
+</li>
+  <li style="list-style: decimal;">
+  <p>In LAN Settings, click <span class="Button">Edit</span>.</p>
+</li>
+  <li style="list-style: decimal;">
+  <p>If the Login window appears, log in with the Administrator password.</p>
+</li>
+  <li style="list-style: decimal;">
+  <p>Modify the IP Address, Subnet Mask, and DHCP Mode settings as necessary.</p>
+</li>
+  <li style="list-style: decimal;">
+  <p>Click <span class="Button">Save</span>.</p>
+</li>
+  <li style="list-style: decimal;">
+  <p>At the confirmation message, click <span class="Button">Save</span>.</p>
+</li>
+ </ol>
+ <p class="Figure">LAN Settings</p>
+ <p class="Graphic"><img alt="IPACU_LAN_settings.png" style="margin-bottom : 0.000pt; margin-left : 0.750pt; margin-top : 0.750pt; margin-right : 59.750pt; " id="image10" src="IPACU_LAN_settings.png" />&nbsp;</p>
+ <div style="width: 100%; position: relative;" id="footer">
+	<hr style="margin-bottom: 0px; margin-top: 7px;" width="50%" align="center" />
+	<p class="Trademark" style="text-align: center;">© 2013, KVH 
+	 Industries, Inc., All rights reserved.</p>
+</div>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+if (window.writeIntopicBar)
+	writeIntopicBar(0);
+
+
+highlightSearch();
+//-->
+//]]></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 	<link type="text/css" rel="stylesheet" href="/css/satellites.css">
 	<script type="text/javascript" src="/js/satellites.js"></script>
 
-	<div id="sb" class="sb">
+	<div id="sb" class="sb active">
 		<div class="headline">View satellites by region</div>
 		<a id="enabled-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Enabled</a>
 		<a id="favorites-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Favorites</a>
@@ -18,10 +18,9 @@
 	</div>
 
 	<div id="mc" class="mc">
-		<a id="back-btn" href="/support/" class="back-btn"><img src="/images/img.gif" />Change region</a>
-
 		<div class="mcg">
 			<div id="satellites-table" class="satellites-table">
+				<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Back</a>
 				<div class="table-header">
 					<a id="name-sort-btn sort-btn" href="#" class="name-col table-col sort-btn"><img src="/images/img.gif">Name</a><!--
 				 --><a id="orbital-slot-sort-btn sort-btn" href="#" class="orbital-slot-col table-col sort-btn"><img src="/images/img.gif">Orbital Slot</a><!--
@@ -40,6 +39,7 @@
 			</div>
 
 			<div id="satellite-details" class="satellite-details">
+				<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Back</a>
 				<div class="name satellite-detail">
 					<label>Name</label>
 					<span id="name view"></span>
@@ -287,11 +287,7 @@
 
 				<a id="select-btn view" href="#" class="border-btn">Select Satellite</a>
 				<a id="edit-btn view" href="#" class="border-btn">Edit</a>
-
 			</div>
-
-
-
 		</div>
 	</div>
 

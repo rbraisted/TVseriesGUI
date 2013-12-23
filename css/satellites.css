@@ -326,3 +326,139 @@
 	float: right;
 	margin: 25px 0 0 25px;
 }
+
+/*                           *\
+
+     SMALL & MEDIUM SHARED
+
+\*                           */
+
+@media screen and (max-width: 880px) {
+	.mcg {
+		padding: 0;
+	}
+
+	.sb.active,
+	.satellites-table.active,
+	.satellite-details.active {
+		display: block;
+	}
+
+	.sb:not(.active),
+	.satellites-table:not(.active),
+	.satellite-details:not(.active) {
+		display: none;
+	}
+
+	.satellites-table,
+	.satellite-details {
+		width: 100%;
+		margin: 0;
+	}
+
+	.satellites-table .table-header {
+		border-bottom: 1px solid #4b5d8a;
+		margin: 0;
+	}
+
+	.satellites-table .table-row+.table-row {
+		border-top: 1px solid #4b5d8a;
+		margin: 0;
+	}
+
+	.satellites-table .table-col {
+		box-sizing: border-box;
+	}
+
+	.satellites-table .hover,
+	.satellites-table .table-row .table-col {
+		padding: 20px 10px;
+	}
+
+	.satellites-table .table-col+.table-col {
+		margin: 0;
+	}
+ 
+	.satellites-table .region-col,
+	.satellites-table .favorites-col,
+	.satellites-table .table-header .selected-col {
+		display: none;
+	}
+
+	.satellites-table .selected-col {
+		position: absolute;
+		right: 0;
+	}
+
+	.satellites-table .name-col,
+	.satellites-table .orbital-slot-col {
+		width: 50%;
+	}
+
+
+
+
+	.satellite-detail {
+		box-sizing: border-box;
+	}
+
+	.satellite-detail.name,
+	.satellite-details .region,
+	.satellite-details .orbital-slot,
+	.satellite-details .hemisphere,
+	.satellite-details .sat-id,
+	.satellite-details .pre-skew,
+	.satellite-details .tri-sat-id,
+	.satellite-details .local-oscillator {
+		padding: 5px 15px;
+	}
+
+	.satellite-detail.name {
+		width: 100%;
+	}
+
+	.satellite-details .local-oscillator {
+		width: 50%;
+	}
+
+	.satellite-details .region,
+	.satellite-details .orbital-slot,
+	.satellite-details .hemisphere,
+	.satellite-details .sat-id,
+	.satellite-details .pre-skew,
+	.satellite-details .tri-sat-id {
+		width: 33%;
+	}
+
+	.satellite-details .region,
+	.satellite-details .orbital-slot,
+	.satellite-details .hemisphere {
+		margin-bottom: 0;
+	}
+
+	.satellite-details .sat-id,
+	.satellite-details .pre-skew,
+	.satellite-details .tri-sat-id {
+		margin-top: 0;
+	}
+
+	.satellite-details .sat-id {
+		border: 0;
+	}
+
+	.xponder-details:nth-child(n) {
+		margin: 0;
+	}
+
+	
+}
+
+/*                *\
+
+     LARGE SOLO
+
+\*                */
+
+@media screen and (min-width: 880px) {
+
+}

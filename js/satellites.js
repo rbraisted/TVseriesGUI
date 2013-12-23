@@ -343,6 +343,12 @@ TVRO.SatellitesPage = function() {
 			$('[id ~= filter-btn]', '#sb').removeClass('selected');
 			filterBtn.toggleClass('selected', true);
 
+			$('#sb, #satellite-details').removeClass('active');
+			$('#satellites-table').toggleClass('active', true);
+
+			satellitesTable.show();
+			satelliteDetails.hide();
+
 			webService.request('get_satellite_list', {
 				'region_filter' : regionFilter,
 				'user_choice_filter' : userChoiceFilter
@@ -355,6 +361,20 @@ TVRO.SatellitesPage = function() {
 				satellitesTable.show();
 				satelliteDetails.hide();
 			});
+		});
+
+		$('[id ~= back-btn]', '[id ~= satellites-table]').click(function() {
+			$('#satellites-table, #satellite-details').removeClass('active');
+			$('#sb').toggleClass('active', true);
+			satellitesTable.hide();
+			satelliteDetails.hide();
+		});
+
+		$('[id ~= back-btn]', '[id ~= satellite-details]').click(function() {
+			$('#sb, #satellite-details').removeClass('active');
+			$('#satellites-table').toggleClass('active', true);
+			satellitesTable.show();
+			satelliteDetails.hide();
 		});
 	};
 
