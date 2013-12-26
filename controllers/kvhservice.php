@@ -39,7 +39,7 @@ class Kvhservice extends Mc
 							parent::js('/js/error_key.js') .
 							parent::js('/js/kvhservice.js');
 		
-		// Displays the list of satellites accouding to the users last sort
+		// Displays the list of satellites according to the users last sort
 		list($err, $sxe)=$this->tvroXml->get_satellite_list('','');
 		
 		if('0'==$err){
@@ -69,15 +69,31 @@ class Kvhservice extends Mc
 				for ($ct = 0; $ct < count($masterParamsArray); $ct++) {
 
 					$structure .= '<option value="'.substr($masterParamsArray[$ct]['name'],0,18);
-					$structure .= '::'.$masterParamsArray[$ct]['orbitalPosition'];
+					$orbitalPosition = $masterParamsArray[$ct]['orbitalPosition'];
+					$structure .= '::'.$orbitalPosition;
 					$structure .= '::'.$masterParamsArray[$ct]['listID'].'">';
 					$structure .= substr($masterParamsArray[$ct]['name'],0,18) . '    ';
 					$structure .= $masterParamsArray[$ct]['orbitalPosition'].'</option>';
+					// For set_satellites_group
+					$orbitalList .= '<option value="'.$orbitalPosition.'">'.substr($masterParamsArray[$ct]['name'],0,18) . '    ';
+					$orbitalList .= $masterParamsArray[$ct]['orbitalPosition'].'</option>';
 				}
 			
 			}
 
 			$data['satList'] = $structure;
+			$data['orbitalList'] = $orbitalList;
+		}
+		
+		// Displays the list of satellites according to the users last sort
+		list($err, $sxe)=$this->tvroXml->get_satellite_groups();
+
+		if ( isset($sxe) ) {
+			foreach ($sxe->group_list->group as $group) {
+				$data['groupNames'] .= '<option value="'.$group->group_name.'">'.$group->group_name.'</option>';
+
+			}
+		
 		}
 		
 		$this->loadView('kvhservice.php', $data);

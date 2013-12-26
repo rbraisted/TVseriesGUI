@@ -479,6 +479,18 @@ function update_satellite_config(xml)
 		return false;
 	}
 }
+function set_satellite_group(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='Successfully Sent';
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
 function power(xml)
 {
 	var error=$(xml).find('message').attr('error');
@@ -706,119 +718,6 @@ function set_wlan_factory(xml)
 	var error=$(xml).find('message').attr('error');
 	if('0'==error){
 		var message='Successfully Sent';
-		$('#response').val( message +'\n');
-		return false;
-	}else{
-		$('#response').val('ERROR: '+returnError(error)+'\n');
-		return false;
-	}
-}
-function get_smartswitch_status(xml)
-{
-	var error=$(xml).find('message').attr('error');
-	if('0'==error){
-		var message ='GET SMARTSWITCH STATUS\n\n';
-			message+='Available:  '+$(xml).find('available').text()+'\n';
-			message+='Enable:     '+$(xml).find('enable').text()+'\n';
-			message+='Autoselect: '+$(xml).find('autoselect').text()+'\n';
-			message+='Input:      '+$(xml).find('input').text()+'\n';
-			message+='Output:     '+$(xml).find('output').text()+'\n';
-		if('set_smartswitch'==$('#chooseSetting').val()){
-			if("Y"==$(xml).find('available').text()){
-				$('#fdinYesNo1').val($(xml).find('enable').text());
-				$('#fdinYesNo2').val($(xml).find('autoselect').text());
-				$('#fdinAB').val($(xml).find('input').text());
-				$('#fdin123').val($(xml).find('output').text());
-			}else{
-				$('#field_YesNo1').addClass('hideField');
-				$('#field_YesNo2').addClass('hideField');
-				$('#field_AB').addClass('hideField');
-				$('#field_123').addClass('hideField');
-			}
-		}
-		$('#response').val( message +'\n');
-		return false;
-	}else{
-		$('#response').val('ERROR: '+returnError(error)+'\n');
-		return false;
-	}
-}
-function get_smartswitch_config(xml)
-{
-	var error=$(xml).find('message').attr('error');
-	if('0'==error){
-		var message ='GET SMARTSWITCH CONFIG\n\n';
-		$(xml).find('inA').each(function() {
-			message+='Input A\n';
-			message+='Name:   '+$(this).find('name').text()+'\n';
-			message+='Enable: '+$(this).find('enable').text()+'\n\n';
-			if('set_smartswitch_config'==$('#chooseSetting').val()){
-				$('#fdin1').val($(this).find('name').text());
-				$('#fdinYesNo1').val($(this).find('enable').text());
-			}
-		});
-		$(xml).find('inB').each(function() {
-			message+='Input B\n';
-			message+='Name:   '+$(this).find('name').text()+'\n';
-			message+='Enable: '+$(this).find('enable').text()+'\n\n';
-			if('set_smartswitch_config'==$('#chooseSetting').val()){
-				$('#fdin2').val($(this).find('name').text());
-				$('#fdinYesNo2').val($(this).find('enable').text());
-			}
-		});
-		$(xml).find('out1').each(function() {
-			message+='Output 1\n';
-			message+='Name:   '+$(this).find('name').text()+'\n';
-			message+='Enable: '+$(this).find('enable').text()+'\n\n';
-			if('set_smartswitch_config'==$('#chooseSetting').val()){
-				$('#fdin3').val($(this).find('name').text());
-				$('#fdinYesNo3').val($(this).find('enable').text());
-			}
-		});
-		$(xml).find('out2').each(function() {
-			message+='Output 2\n';
-			message+='Name:   '+$(this).find('name').text()+'\n';
-			message+='Enable: '+$(this).find('enable').text()+'\n\n';
-			if('set_smartswitch_config'==$('#chooseSetting').val()){
-				$('#fdin4').val($(this).find('name').text());
-				$('#fdinYesNo4').val($(this).find('enable').text());
-			}
-		});
-		$(xml).find('out3').each(function() {
-			message+='Output 3\n';
-			message+='Name:   '+$(this).find('name').text()+'\n';
-			message+='Enable: '+$(this).find('enable').text()+'\n\n';
-			if('set_smartswitch_config'==$('#chooseSetting').val()){
-				$('#fdin5').val($(this).find('name').text());
-				$('#fdinYesNo5').val($(this).find('enable').text());
-			}
-		});
-		$('#response').val( message +'\n');
-		return false;
-	}else{
-		$('#response').val('ERROR: '+returnError(error)+'\n');
-		return false;
-	}
-}
-function get_dualdome_status(xml)
-{
-	var error=$(xml).find('message').attr('error');
-	if('0'==error){
-		var message ='GET DUALDOME STATUS\n\n';
-			message+='Mode:      '+$(xml).find('mode').text()+'\n';
-			message+='Master IP: '+$(xml).find('master_ip').text()+'\n';
-			message+='Slave IP:  '+$(xml).find('slave_ip').text()+'\n';
-			message+='State:     '+$(xml).find('state').text()+'\n';
-			
-			if('set_dualdome_config'==$('#chooseSetting').val()){
-				$('#fdinMasterSlaveMode').val($(this).find('mode').text());
-				$('#fdin1').val($(this).find('master_ip').text());
-				$('#fdin2').val($(this).find('slave_ip').text());
-				if("MASTER"==$(this).find('mode').text()){
-					$('#field_1').removeClass('hideField');
-					$('#field_2').removeClass('hideField');
-				}
-			}
 		$('#response').val( message +'\n');
 		return false;
 	}else{
@@ -1650,6 +1549,22 @@ $('#chooseSetting').change(function(){
 			$('#field_upload').removeClass('hideField');
 			$('#fdul').html('Upload');
 			break;
+		case 'set_satellite_group':
+			clearWindow();
+			$('#field_AddDel').removeClass('hideField');
+			$('#fdAD').html('Command');
+			$('#field_6').removeClass('hideField');
+			$('#fd6').html('Group Name');
+			$('#field_SatA').removeClass('hideField');
+			$('#fdSA').html('A');
+			$('#field_SatB').removeClass('hideField');
+			$('#fdSB').html('B');
+			$('#field_SatC').removeClass('hideField');
+			$('#fdSC').html('C');
+			$('#field_SatD').removeClass('hideField');
+			$('#fdSD').html('D');
+			SendGetCommand('get_satellite_groups');
+			break;
 
 		default:
 			clearWindow();
@@ -1663,6 +1578,24 @@ $('#chooseSetting').change(function(){
 		if('set_satellite_identity' != $('#chooseSetting').val() && 'set_satellite_params' != $('#chooseSetting').val()){
 			$('#field_SendRequest').removeClass('hideField');
 		}
+	}
+});
+$('#fdinAddDel').change(function(){
+	if('DELETE'==$('#fdinAddDel').val()){ 
+		$('#field_6').addClass('hideField');
+		$('#field_SatA').addClass('hideField');
+		$('#field_SatB').addClass('hideField');
+		$('#field_SatC').addClass('hideField');
+		$('#field_SatD').addClass('hideField');
+		$('#fdGN').html('Group Name');
+		$('#field_GroupNames').removeClass('hideField');
+	}else{
+		$('#field_6').removeClass('hideField');
+		$('#field_SatA').removeClass('hideField');
+		$('#field_SatB').removeClass('hideField');
+		$('#field_SatC').removeClass('hideField');
+		$('#field_SatD').removeClass('hideField');
+		$('#field_GroupNames').addClass('hideField');
 	}
 });
 function set_antenna_config(xml)
@@ -2393,6 +2326,23 @@ $('#sendRequest').click(function(){
 			SendGetCommand($('#chooseSetting').val());
 			break;
 			
+			case 'set_satellite_group':
+			var message='';
+			if('DELETE'==$('#fdinAddDel').val()){
+				message+='<command>DELETE</command>';
+				message+='<group_name>'+$('#fdinGroupNames').val()+'</group_name>';
+				
+			}else{
+				message+='<command>ADD</command>';
+				message+='<group_name>'+$('#fdin6').val()+'</group_name>';
+				message+='<A>'+$('#fdinSatA').val()+'</A>';
+				message+='<B>'+$('#fdinSatB').val()+'</B>';
+				message+='<C>'+$('#fdinSatC').val()+'</C>';
+				message+='<D>'+$('#fdinSatD').val()+'</D>';
+			}
+			SendGetCommand2($('#chooseSetting').val(),message);
+			break;
+			
 		default:
 			
 			break;
@@ -2638,6 +2588,12 @@ clearWindow = function(){
 	$('#field_SelectExit').addClass('hideField');
 	$('#field_SelectDone').addClass('hideField');
 	$('#field_FetchData').addClass('hideField');
+	$('#field_AddDel').addClass('hideField');
+	$('#field_GroupNames').addClass('hideField');
+	$('#field_SatA').addClass('hideField');
+	$('#field_SatB').addClass('hideField');
+	$('#field_SatC').addClass('hideField');
+	$('#field_SatD').addClass('hideField');
 	$('#field_SendRequest').addClass('hideField');
 }
 

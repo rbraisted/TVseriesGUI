@@ -35,28 +35,24 @@
             <input type="button" id="button8" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:200px" />
 			<input type="button" id="button9" value="get_nmea_info" onclick="SendGetCommand('get_nmea_info')" style="width:200px" />
 			<input type="button" id="button10" value="get_nmea_config" onclick="SendGetCommand('get_nmea_config')" style="width:200px" />
-			
-            <input type="button" id="button8" value="power" onclick="SendGetCommand('power')" style="width:200px" />
-            <input type="button" id="button9" value="ophours" onclick="SendGetCommand('ophours')" style="width:200px" />
-            <input type="button" id="button11" value="get_message_protocol_version" onclick="SendGetCommand('get_message_protocol_version')" style="width:200px" />
-            <input type="button" id="button12" value="get_vessel_config" onclick="SendGetCommand('get_vessel_config')" style="width:200px" />
-            <input type="button" id="button13" value="get_eth" onclick="SendGetCommand('get_eth')" style="width:200px" />
-            <input type="button" id="button15" value="get_wlan" onclick="SendGetCommand('get_wlan')" style="width:200px" />
-            <input type="button" id="button18" value="get_smartswitch_status" onclick="SendGetCommand('get_smartswitch_status')" style="width:200px" />
-            <input type="button" id="button19" value="get_smartswitch_config" onclick="SendGetCommand('get_smartswitch_config')" style="width:200px" />
-            <input type="button" id="button20" value="get_dualdome_status" onclick="SendGetCommand('get_dualdome_status')" style="width:200px" />
-            <input type="button" id="button21" value="get_serial_log" onclick="SendGetCommand('get_serial_log')" style="width:200px" />
-            <input type="button" id="button22" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:200px" />
-            <input type="button" id="button23" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:200px" />
-            <input type="button" id="button24" value="get_product_registration" onclick="SendGetCommand('get_product_registration')" style="width:200px" />
-			<input type="button" id="button26" value="get_satellite_groups" onclick="SendGetCommand('get_satellite_groups')" style="width:200px" />
-			<input type="button" id="button27" value="get_autoswitch_status" onclick="SendGetCommand('get_autoswitch_status')" style="width:200px" />
-			<input type="button" id="button28" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:200px" />
-			<input type="button" id="button29" value="get_directv_service" onclick="SendGetCommand('get_directv_service')" style="width:200px" />
-			<input type="button" id="button30" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:200px" />
-            <input type="button" id="button31" value="get_details" onclick="get_details()" style="width:200px" />
-            <input type="button" id="button32" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:200px" />
-            <input type="button" id="button33" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:200px" />
+            <input type="button" id="button11" value="power" onclick="SendGetCommand('power')" style="width:200px" />
+            <input type="button" id="button12" value="ophours" onclick="SendGetCommand('ophours')" style="width:200px" />
+            <input type="button" id="button13" value="get_message_protocol_version" onclick="SendGetCommand('get_message_protocol_version')" style="width:200px" />
+            <input type="button" id="button14" value="get_vessel_config" onclick="SendGetCommand('get_vessel_config')" style="width:200px" />
+            <input type="button" id="button15" value="get_eth" onclick="SendGetCommand('get_eth')" style="width:200px" />
+            <input type="button" id="button16" value="get_wlan" onclick="SendGetCommand('get_wlan')" style="width:200px" />
+            <input type="button" id="button20" value="get_serial_log" onclick="SendGetCommand('get_serial_log')" style="width:200px" />
+            <input type="button" id="button21" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:200px" />
+            <input type="button" id="button22" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:200px" />
+            <input type="button" id="button23" value="get_product_registration" onclick="SendGetCommand('get_product_registration')" style="width:200px" />
+			<input type="button" id="button24" value="get_satellite_groups" onclick="SendGetCommand('get_satellite_groups')" style="width:200px" />
+			<input type="button" id="button25" value="get_autoswitch_status" onclick="SendGetCommand('get_autoswitch_status')" style="width:200px" />
+			<input type="button" id="button26" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:200px" />
+			<input type="button" id="button27" value="get_directv_service" onclick="SendGetCommand('get_directv_service')" style="width:200px" />
+			<input type="button" id="button28" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:200px" />
+            <input type="button" id="button29" value="get_details" onclick="get_details()" style="width:200px" />
+            <input type="button" id="button30" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:200px" />
+            <input type="button" id="button31" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:200px" />
         </td>
         <td valign="top" width="100%">
             <textarea name="response" id="response" rows="40" style=" height:auto; height:100%; width:95%; font-family:monospace,courier,courier new"></textarea>
@@ -82,12 +78,11 @@
                 <option value="set_eth_factory">set_eth_factory</option>
                 <option value="set_wlan">set_wlan</option>
                 <option value="set_wlan_factory">set_wlan_factory</option>
-                <option value="set_smartswitch">set_smartswitch</option>
-                <option value="set_smartswitch_config">set_smartswitch_config</option>
-                <option value="set_dualdome_config">set_dualdome_config</option>
                 <option value="get_recent_event_history">get_recent_event_history</option>
                 <option value="get_config_file">get_config_file</option>
                 <option value="update_satellite_config">update_satellite_config</option>
+				<option value="set_satellite_group">set_satellite_group</option>
+				
                 <!--option value="set_config_file">set_config_file</option-->
             </select>
             <br />
@@ -345,9 +340,62 @@
                         </select>
                     </td>
                 </tr>
+				<tr id="field_AddDel" class="hideField">
+                	<td id="fdAD" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinAddDel">
+                        	<option value="ADD">ADD</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                    </td>
+                </tr>
+				<tr id="field_GroupNames" class="hideField">
+                	<td id="fdGN" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinGroupNames">
+                        	<?php if(isset($groupNames)) echo $groupNames ?>
+                        </select>
+                    </td>
+                </tr>
                 <tr id="field_6" class="hideField">
                 	<td id="fd6" align="left">&nbsp;</td>
                     <td align="left"><input type="text" id="fdin6" style="width:170px" /></td>
+                </tr>
+				<tr id="field_SatA" class="hideField">
+                	<td id="fdSA" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinSatA">
+							<option value="">--- Choose One ---</option>
+                        	<?php if(isset($orbitalList)) echo $orbitalList ?>
+                        </select>
+                    </td>
+                </tr>
+				<tr id="field_SatB" class="hideField">
+                	<td id="fdSB" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinSatB">
+							<option value="">--- Choose One ---</option>
+                        	<?php if(isset($orbitalList)) echo $orbitalList ?>
+                        </select>
+                    </td>
+                </tr>
+				<tr id="field_SatC" class="hideField">
+                	<td id="fdSC" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinSatC">
+							<option value="">--- Choose One ---</option>
+                        	<?php if(isset($orbitalList)) echo $orbitalList ?>
+                        </select>
+                    </td>
+                </tr>
+				<tr id="field_SatD" class="hideField">
+                	<td id="fdSD" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinSatD">
+							<option value="">--- Choose One ---</option>
+                        	<?php if(isset($orbitalList)) echo $orbitalList ?>
+                        </select>
+                    </td>
                 </tr>
                 <tr id="field_7" class="hideField">
                 	<td id="fd7" align="left">&nbsp;</td>

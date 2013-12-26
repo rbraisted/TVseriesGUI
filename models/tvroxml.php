@@ -276,6 +276,11 @@
         {
             return($this->doSimple(__FUNCTION__));
         }
+		
+		function get_satellite_groups()
+        {
+            return($this->doSimple(__FUNCTION__));
+        }
     
     }
 ?>
