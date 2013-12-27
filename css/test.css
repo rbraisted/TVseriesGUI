@@ -1,0 +1,204 @@
+@import 'reset.css';
+
+@font-face {
+	font-family: Helvetica;
+	src: url(/fonts/HelveticaLTStd-Roman.otf);
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Helvetica;
+	src: url(/fonts/HelveticaLTStd-Bold.otf);
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Helvetica;
+	src: url(/fonts/HelveticaLTStd-Light.otf);
+	font-weight: lighter;
+	font-style: normal;
+}
+
+/*                                                                            *\
+
+	########     ###     ######  ######## 
+	##     ##   ## ##   ##    ## ##       
+	##     ##  ##   ##  ##       ##       
+	########  ##     ##  ######  ######   
+	##     ## #########       ## ##       
+	##     ## ##     ## ##    ## ##       
+	########  ##     ##  ######  ######## 
+
+\*                                                                            */
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	background: #000;
+	height: 100%;
+	width: 100%;
+}
+
+
+body {
+	color: #fff;
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: lighter;
+	line-height: 1;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+input {
+	background: #4b5168;
+	border: 1px solid #000;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	margin: 0;
+	padding: 5px 10px;
+}
+
+.title {
+	font-weight: normal;
+	text-align: center;
+}
+
+.fine-print {
+	color: #bac7da;
+}
+
+.header {
+	height: 80px;
+	width: 100%;
+}
+
+.header .menu {
+
+}
+
+.page {
+	min-height: 100%;
+	position: relative;
+}
+
+.page .view:not(.is-active) {
+	display: none;
+}
+
+.page .menu .title {
+	padding: 0.5em;
+	width: 100%;
+}
+
+.page .menu .menu-btn {
+	background: #243875;
+	display: block;
+	margin-bottom: 2px;
+	padding: 1em;
+	width: 100%;
+}
+
+.basic-btn {
+	background: #243875;
+	display: inline-block;
+	min-width: 280px;
+	padding: 1em;
+	text-align: center;
+}
+
+.page .menu .basic-btn {
+	display: block;
+	margin: auto;
+	width: 280px;
+}
+
+
+/*                                                                            *\
+
+	##     ##  #######  ########  #### ##       ######## 
+	###   ### ##     ## ##     ##  ##  ##       ##       
+	#### #### ##     ## ##     ##  ##  ##       ##       
+	## ### ## ##     ## ########   ##  ##       ######   
+	##     ## ##     ## ##     ##  ##  ##       ##       
+	##     ## ##     ## ##     ##  ##  ##       ##       
+	##     ##  #######  ########  #### ######## ######## 
+
+\*                                                                            */
+
+@media screen and (max-width: 880px) {
+	body {
+		font-size: 13px;
+	}
+
+	.title {
+		font-size: 21px;
+	}
+
+	.fine-print {
+		font-size: 11px;
+	}
+}
+
+/*                                                                            *\
+
+	########  ########  ######  ##    ## ########  #######  ########  
+	##     ## ##       ##    ## ##   ##     ##    ##     ## ##     ## 
+	##     ## ##       ##       ##  ##      ##    ##     ## ##     ## 
+	##     ## ######    ######  #####       ##    ##     ## ########  
+	##     ## ##             ## ##  ##      ##    ##     ## ##        
+	##     ## ##       ##    ## ##   ##     ##    ##     ## ##        
+	########  ########  ######  ##    ##    ##     #######  ##        
+
+\*                                                                            */
+
+@media screen and (min-width: 880px) {
+	body {
+		font-size: 20px;
+	}
+
+	.title {
+		font-size: 36px;
+	}
+
+	.fine-print {
+		font-size: 16px;
+	}
+
+	.page .menu {
+		bottom: 0;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 300px;
+	}
+
+	.page .menu:not(.is-active) {
+		display: block;
+	}
+
+	.page .view:not(.menu) {
+		bottom: 0;
+		left: 300px;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+}
+
+
+
+
+
+*:hover {
+	outline: 1px solid red;
+}

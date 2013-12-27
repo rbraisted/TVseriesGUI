@@ -41,9 +41,9 @@
 
 			<div id="mode-dropdown" class="dropdown">
 				<div class="dropdown-header">Ethernet Mode</div>
-				<a href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">DISABLED</a>
-				<a href="#" value="STATIC" class="dropdown-option"><img src="/images/img.gif">STATIC</a>
-				<a href="#" value="DYNAMIC" class="dropdown-option"><img src="/images/img.gif">DHCP</a>
+				<a id="dropdown-option" href="#" value="OFF" class="dropdown-option selected"><img src="/images/img.gif">DISABLED</a>
+				<a id="dropdown-option" href="#" value="STATIC" class="dropdown-option"><img src="/images/img.gif">STATIC</a>
+				<a id="dropdown-option" href="#" value="DYNAMIC" class="dropdown-option"><img src="/images/img.gif">DHCP</a>
 			</div>
 
 		</div>

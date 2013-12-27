@@ -337,7 +337,7 @@ TVRO.SatellitesPage = function() {
 			else if (filterBtn.hasId('africa-btn')) regionFilter = 'Africa';
 			else if (filterBtn.hasId('asia-btn')) regionFilter = 'Asia';
 			else if (filterBtn.hasId('australia-btn')) regionFilter = 'Australia';
-			else if (filterBtn.hasId('central-and-south-america-btn')) regionFilter = 'Central and South America';
+			else if (filterBtn.hasId('central-and-south-america-btn')) regionFilter = 'Central/South America';
 			else if (filterBtn.hasId('north-america-btn')) regionFilter = 'North America';
 
 			$('[id ~= filter-btn]', '#sb').removeClass('selected');

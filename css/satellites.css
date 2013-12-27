@@ -450,7 +450,10 @@
 		margin: 0;
 	}
 
-	
+	.satellite-details .favorite {
+		right: 15px;
+		top: 55px;
+	}	
 }
 
 /*                *\

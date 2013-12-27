@@ -8,10 +8,13 @@ TVRO.EthernetSettings = function() {
 	self.init = function() {
 		$('#network-settings-btn').toggleClass('selected', true);
 
-		TVRO.Dropdown('mode-dropdown', 'mode-btn', function(optionText, optionValue) {
-			mode = optionValue;
+		var modeDropdown = TVRO.Dropdown('#mode-dropdown', '#mode-btn');
+		modeDropdown.optionSelected(function(name, value) {
+			console.log("(0) mode: "+mode);
+			mode = value;
+			console.log("(1) mode: "+mode);
 			$('#static-mode').toggle(mode === 'STATIC');
-			$('#mode-btn').text(optionText);
+			$('#mode-btn').text(name);
 		});
 
 		$('#save-btn').click(function() {

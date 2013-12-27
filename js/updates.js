@@ -90,17 +90,13 @@ TVRO.UpdatesPage = function() {
 
 		for (var antType in antTypesData) {
 			(function(antType) {
-				if (antType === TVRO.ANT_TYPES.TV1) antType = 'v3';
-				else if (antType === TVRO.ANT_TYPES.TV3) antType = 'v7';
-				else if (antType === TVRO.ANT_TYPES.TV5) antType = 'v7ip';
-				else if (antType === TVRO.ANT_TYPES.TV6) antType = 'v11';
-				var requestUrl = 'http://www.kvh.com/VSAT/'+antType+'/portalMain.php/latest_software';
+				var requestUrl = 'http://www.kvhupdate.com/TVRO/'+antType.toUpperCase()+'/portalMain.php/latest_software';
 				webService.request('latest_software', requestUrl, function(response) {
 					antTypesData[antType].portalUrl = response.find('url').text();
 					antTypesData[antType].portalVersion = response.find('software_version').text();
 					$('#'+antType+'-portal-version').text(antTypesData[antType].portalVersion);
 					if (selectedAntType == antType) $('#portal-version').text(antTypesData[antType].portalVersion);
-				});	
+				});
 			}(antType));
 		}
 
