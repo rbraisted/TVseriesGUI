@@ -96,6 +96,17 @@ class Kvhservice extends Mc
 		
 		}
 		
+		// Displays the list of satellites according to the users last sort
+		list($err, $sxe)=$this->tvroXml->get_autoswitch_configured_names();
+
+		if ( isset($sxe) ) {
+			foreach ($sxe->autoswitch_list->autoswitch as $group) {
+				$data['autoswitchNames'] .= '<option value="'.$group->sn.'">'.$group->sn.'</option>';
+
+			}
+		
+		}
+		
 		$this->loadView('kvhservice.php', $data);
 	}
 	

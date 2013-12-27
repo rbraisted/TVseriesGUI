@@ -281,6 +281,11 @@
         {
             return($this->doSimple(__FUNCTION__));
         }
+		
+		function get_autoswitch_configured_names()
+        {
+            return($this->doSimple(__FUNCTION__));
+        }
     
     }
 ?>

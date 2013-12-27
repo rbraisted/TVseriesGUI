@@ -491,6 +491,54 @@ function set_satellite_group(xml)
 		return false;
 	}
 }
+function set_autoswitch_configured_names(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='Successfully Sent';
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
+function set_autoswitch_master(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='Successfully Sent';
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
+function set_directv_service(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='Successfully Sent';
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
+function set_checkswitch_mode(xml)
+{
+	var error=$(xml).find('message').attr('error');
+	if('0'==error){
+		var message='Successfully Sent';
+		$('#response').val( message +'\n');
+		return false;
+	}else{
+		$('#response').val('ERROR: '+returnError(error)+'\n');
+		return false;
+	}
+}
 function power(xml)
 {
 	var error=$(xml).find('message').attr('error');
@@ -1565,6 +1613,32 @@ $('#chooseSetting').change(function(){
 			$('#fdSD').html('D');
 			SendGetCommand('get_satellite_groups');
 			break;
+		case 'set_autoswitch_configured_names':
+			clearWindow();
+			$('#field_AddDelAll').removeClass('hideField');
+			$('#fdADA').html('Command');
+			$('#field_6').removeClass('hideField');
+			$('#fd6').html('Serial Number');
+			$('#field_7').removeClass('hideField');
+			$('#fd7').html('Name');
+			break;
+		case 'set_autoswitch_master':
+			clearWindow();
+			$('#field_AutoswitchNames').removeClass('hideField');
+			$('#fdAN').html('Serial Number');
+			break;
+		case 'set_directv_service':
+			clearWindow();
+			$('#field_YesNo1').removeClass('hideField');
+			$('#fdYN1').html('Enable');
+			$('#field_6').removeClass('hideField');
+			$('#fd6').html('Serial Number');
+			break;
+		case 'set_checkswitch_mode':
+			clearWindow();
+			$('#field_YesNo1').removeClass('hideField');
+			$('#fdYN1').html('Enable');
+			break;
 
 		default:
 			clearWindow();
@@ -1596,6 +1670,24 @@ $('#fdinAddDel').change(function(){
 		$('#field_SatC').removeClass('hideField');
 		$('#field_SatD').removeClass('hideField');
 		$('#field_GroupNames').addClass('hideField');
+	}
+});
+$('#fdinAddDelAll').change(function(){
+	if('DELETE'==$('#fdinAddDelAll').val()){ 
+		$('#field_6').addClass('hideField');
+		$('#field_7').addClass('hideField');
+		$('#field_AutoswitchNames').removeClass('hideField');
+		$('#fdAN').html('Serial Number');
+	}else if('DELETE_ALL'==$('#fdinAddDelAll').val()){ 
+		$('#field_6').addClass('hideField');
+		$('#field_7').addClass('hideField');
+		$('#field_AutoswitchNames').addClass('hideField');
+	}else{
+		$('#field_6').removeClass('hideField');
+		$('#fd6').html('Serial Number');
+		$('#field_7').removeClass('hideField');
+		$('#fd7').html('Name');
+		$('#field_AutoswitchNames').addClass('hideField');
 	}
 });
 function set_antenna_config(xml)
@@ -2228,45 +2320,6 @@ $('#sendRequest').click(function(){
 		case 'set_wlan_factory':
 			SendGetCommand($('#chooseSetting').val());
 			break;
-		case 'set_smartswitch':
-			var message='';
-				message+='<enable>'+$('#fdinYesNo1').val()+'</enable>';
-				message+='<autoselect>'+$('#fdinYesNo2').val()+'</autoselect>';
-				message+='<input>'+$('#fdinAB').val()+'</input>';
-				message+='<output>'+$('#fdin123').val()+'</output>';
-			SendGetCommand2($('#chooseSetting').val(),message);
-			break;
-		case 'set_smartswitch_config':
-		var message='';
-			message+='<inA>';
-			message+='<name>'+$('#fdin1').val()+'</name>';
-			message+='<enable>'+$('#fdinYesNo1').val()+'</enable>';
-			message+='</inA>';
-			message+='<inB>';
-			message+='<name>'+$('#fdin2').val()+'</name>';
-			message+='<enable>'+$('#fdinYesNo2').val()+'</enable>';
-			message+='</inB>';
-			message+='<out1>';
-			message+='<name>'+$('#fdin3').val()+'</name>';
-			message+='<enable>'+$('#fdinYesNo3').val()+'</enable>';
-			message+='</out1>';
-			message+='<out2>';
-			message+='<name>'+$('#fdin4').val()+'</name>';
-			message+='<enable>'+$('#fdinYesNo4').val()+'</enable>';
-			message+='</out2>';
-			message+='<out3>';
-			message+='<name>'+$('#fdin5').val()+'</name>';
-			message+='<enable>'+$('#fdinYesNo5').val()+'</enable>';
-			message+='</out3>';
-			SendGetCommand2($('#chooseSetting').val(),message);
-			break;
-		case 'set_dualdome_config':
-			var message='';
-				message+='<mode>'+$('#fdinMasterSlaveMode').val()+'</mode>';
-				message+='<master_ip>'+$('#fdin1').val()+'</master_ip>';
-				message+='<slave_ip>'+$('#fdin2').val()+'</slave_ip>';
-			SendGetCommand2($('#chooseSetting').val(),message);
-			break;
 		case 'get_recent_event_history':
 			SendGetCommand('get_event_history_count');
 			break;
@@ -2322,11 +2375,11 @@ $('#sendRequest').click(function(){
 			}
 			break;
 			
-			case 'update_satellite_config':
+		case 'update_satellite_config':
 			SendGetCommand($('#chooseSetting').val());
 			break;
 			
-			case 'set_satellite_group':
+		case 'set_satellite_group':
 			var message='';
 			if('DELETE'==$('#fdinAddDel').val()){
 				message+='<command>DELETE</command>';
@@ -2340,6 +2393,42 @@ $('#sendRequest').click(function(){
 				message+='<C>'+$('#fdinSatC').val()+'</C>';
 				message+='<D>'+$('#fdinSatD').val()+'</D>';
 			}
+			SendGetCommand2($('#chooseSetting').val(),message);
+			break;
+			
+		case 'set_autoswitch_configured_names':
+			var message='';
+			if('DELETE'==$('#fdinAddDelAll').val()){
+				message+='<command>DELETE</command>';
+				message+='<sn>'+$('#fdinAutoswitchNames').val()+'</sn>';
+				
+			}else if('DELETE_ALL'==$('#fdinAddDelAll').val()){
+				message+='<command>DELETE_ALL</command>';
+				
+			}else{
+				message+='<command>ADD</command>';
+				message+='<sn>'+$('#fdin6').val()+'</sn>';
+				message+='<name>'+$('#fdin7').val()+'</name>';
+			}
+			SendGetCommand2($('#chooseSetting').val(),message);
+			break;
+		case 'set_autoswitch_master':
+			var message='';
+			message+='<sn>'+$('#fdinAutoswitchNames').val()+'</sn>';
+
+			SendGetCommand2($('#chooseSetting').val(),message);
+			break;
+		case 'set_directv_service':
+			var message='';
+			message+='<enable>'+$('#fdinYesNo1').val()+'</enable>';
+			message+='<ip_address>'+$('#fdin6').val()+'</ip_address>';
+
+			SendGetCommand2($('#chooseSetting').val(),message);
+			break;
+		case 'set_checkswitch_mode':
+			var message='';
+			message+='<enable>'+$('#fdinYesNo1').val()+'</enable>';
+
 			SendGetCommand2($('#chooseSetting').val(),message);
 			break;
 			
@@ -2589,7 +2678,9 @@ clearWindow = function(){
 	$('#field_SelectDone').addClass('hideField');
 	$('#field_FetchData').addClass('hideField');
 	$('#field_AddDel').addClass('hideField');
+	$('#field_AddDelAll').addClass('hideField');
 	$('#field_GroupNames').addClass('hideField');
+	$('#field_AutoswitchNames').addClass('hideField');
 	$('#field_SatA').addClass('hideField');
 	$('#field_SatB').addClass('hideField');
 	$('#field_SatC').addClass('hideField');

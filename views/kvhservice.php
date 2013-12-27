@@ -82,6 +82,10 @@
                 <option value="get_config_file">get_config_file</option>
                 <option value="update_satellite_config">update_satellite_config</option>
 				<option value="set_satellite_group">set_satellite_group</option>
+				<option value="set_autoswitch_configured_names">set_autoswitch_configured_names</option>
+				<option value="set_autoswitch_master">set_autoswitch_master</option>
+				<option value="set_directv_service">set_directv_service</option>
+				<option value="set_checkswitch_mode">set_checkswitch_mode</option>
 				
                 <!--option value="set_config_file">set_config_file</option-->
             </select>
@@ -349,11 +353,29 @@
                         </select>
                     </td>
                 </tr>
+				<tr id="field_AddDelAll" class="hideField">
+                	<td id="fdADA" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinAddDelAll">
+                        	<option value="ADD">ADD</option>
+                            <option value="DELETE">DELETE</option>
+							<option value="DELETE_ALL">DELETE ALL</option>
+                        </select>
+                    </td>
+                </tr>
 				<tr id="field_GroupNames" class="hideField">
                 	<td id="fdGN" align="left" style="width:100px">&nbsp;</td>
                     <td align="left">
                     	<select id="fdinGroupNames">
                         	<?php if(isset($groupNames)) echo $groupNames ?>
+                        </select>
+                    </td>
+                </tr>
+				<tr id="field_AutoswitchNames" class="hideField">
+                	<td id="fdAN" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinAutoswitchNames">
+                        	<?php if(isset($autoswitchNames)) echo $autoswitchNames ?>
                         </select>
                     </td>
                 </tr>
