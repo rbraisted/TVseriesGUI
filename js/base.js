@@ -50,6 +50,38 @@ TVRO.init = function() {
 		$('#nav').toggleClass('toggled');
 	});
 
+	var webService = new TVRO.WebService();
+	setInterval(function() {
+		webService.request('antenna_status', function(response) {
+			var acu = $('acu > state', response).text(),
+				antenna = $('antenna > state', response).text();
+
+			//	ACU
+			//	acu > state OK | FLASHING | CALGYRO | ERROR
+			//	something like
+			$('[id ~= acu-state]', '#status-btn').removeClass('is-ok is-flashing is-calgyro is-error');
+			$('[id ~= acu-state]', '#status-btn').toggleClass('is-ok', acu === 'OK');
+			$('[id ~= acu-state]', '#status-btn').toggleClass('is-flashing', acu === 'FLASHING');
+			$('[id ~= acu-state]', '#status-btn').toggleClass('is-calgyro', acu === 'CALGYRO');
+			$('[id ~= acu-state]', '#status-btn').toggleClass('is-error', acu === 'ERROR');
+
+			//	ANTENNA
+			//	antenna > state INITIALIZING | WAITING FOR MODEM (Note: VSAT only) | MODEM SAT SWITCH (Note: VSAT only) | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP
+			$('[id ~= antenna-state]', '#status-btn').removeClass('is-initializing is-searching is-tracking is-idle is-error is-cable-unwrap');
+			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-initializing', antenna === 'INITIALIZING');
+			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-searching', antenna === 'SEARCHING');
+			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-tracking', antenna === 'TRACKING');
+			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-idle', antenna === 'IDLE');
+			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-error', antenna === 'ERROR');
+			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-cable-unwrap', antenna === 'CABLE UNWRAP');
+		});
+	}, 2000);
+
+	$('#status-btn').click(function() {
+		$(this).toggleClass('selected');
+		$('#status').toggleClass('toggled');
+	});
+
 	$('#sat-finder-btn').toggle(TVRO.SAT_FINDER);
 
 	if (TVRO.page && TVRO.page.init) {

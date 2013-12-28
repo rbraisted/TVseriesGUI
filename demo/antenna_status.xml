@@ -2,18 +2,18 @@
 <ipacu_response>
 	<message name="antenna_status" error="0"/>
 	<gps>
-		<state>ACQUIRED | ACQUIRING | ERROR</state>
+		<state>ACQUIRED</state><!-- ACQUIRED | ACQUIRING | ERROR -->
 		<lat>41.312934</lat>
 		<lon>-71.175168</lon>
 		<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
 	</gps>
 	<acu>
-		<state>OK | FLASHING | CALGYRO | ERROR</state>
+		<state>OK</state><!-- OK | FLASHING | CALGYRO | ERROR -->
 		<line1>Foo</line1>
 		<line2>Bar</line2>
 	</acu>
 	<antenna>
-		<state>INITIALIZING | WAITING FOR MODEM | MODEM SAT SWITCH | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP</state>
+		<state>TRACKING</state><!-- INITIALIZING | WAITING FOR MODEM | MODEM SAT SWITCH | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP -->
 		<rf>
 			<snr>7</snr>
 			<bars>4</bars>
@@ -71,10 +71,10 @@
 		</ports>
 	</mta>
 	<autoswitch>
-		<enable>Y | N</enable>
+		<enable>Y</enable><!-- Y | N -->
 		<master>
 			<sn>123456789</sn>
-			<sat>A | B | C | D</sat>
+			<sat>B</sat><!-- A | B | C | D -->
 		</master>
 	</autoswitch>
 	<smartswitch>

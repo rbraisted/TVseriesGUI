@@ -402,6 +402,16 @@ input {
 .status {
 	height: 0;
 	overflow: hidden;
+	transition: height 0.5s;
+	-moz-transition: height 0.5s;
+	-webkit-transition: height 0.5s;
+}
+
+.status.toggled {
+	height: 50px;
+	transition: height 0.5s;
+	-moz-transition: height 0.5s;
+	-webkit-transition: height 0.5s;
 }
 
 .nav {

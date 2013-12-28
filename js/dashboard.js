@@ -3,6 +3,7 @@
 TVRO.DashboardPage = function() {
 	var self = {},
 		updateInterval,
+		cookieManager = new TVRO.CookieManager(),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
@@ -28,6 +29,9 @@ TVRO.DashboardPage = function() {
 		$('#sat-button').click(function() {
 			window.location = '/satellites.php';
 		});
+
+		var demoMode = cookieManager.hasCookie(TVRO.DEMO_MODE);
+		$('#demo-mode').toggle(demoMode);
 
 		self.startUpdating();
 	};
