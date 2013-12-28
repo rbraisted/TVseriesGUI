@@ -1,13 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message name="get_autoswitch_status" error="0" />
-	<available>Y | N</available>
-	<enable>Y | N</enable>
+	<output>out1 | out2 | out3</output>
+	<available>Y</available>
+	<enable>Y</enable>
+	<service>DIRECTV | DISH | DISEQC | OTHER</service>
+	<service_subtype>NORTH_AMERICA|LATIN_AMERICA</service_subtype>
 	<master>
 		<sn>123456789</sn>
+		<valid>Y | N</valid>
 		<sat>A | B | C | D</sat>
+		<tone>Y | N</tone>
+		<voltage>H | L</voltage>
 	</master>
-	<service>1 | 2 | 3</service>
+	<active_list>
+		<autoswitch>
+			<sn>123456789</sn>
+			<name>Salon</name>
+		</autoswitch>
+		<autoswitch>
+			<sn>123123123</sn>
+			<name>Boudoir</name>
+		</autoswitch>
+		<autoswitch>
+			<sn>111222333</sn>
+			<name>Kitchen</name>
+		</autoswitch>
+	</active_list>
+	<satellite_group>EASTERN_ARC</satellite_group>
 	<satellites>
 		<A>
 			<listID>64</listID>

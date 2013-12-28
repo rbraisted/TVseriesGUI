@@ -1,12 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
-	<message name="get_autoswitch_active" error="0" />
+	<message name="autoswitch_active" error="0" />
+	<tvhub_ip>123.123.123.123</tvhub_ip>
+	<udp_port>50009</udp_port>
+	<ird>DIRECTV | DISH | DISEQC| NONE</ird>
 	<master>
 		<sn>123456789</sn>
 		<sat>A | B | C | D</sat>
+		<tone>Y | N</tone>
+		<voltage>H | L</voltage>
 	</master>
-	<list>
-		<sn>123456789</sn>
-		<sn>987654321</sn>
-	</list>
+	<autoswitch_list>
+		<autoswitch>
+			<sn>123456789</sn>
+		</autoswitch>
+		<autoswitch>
+			<sn>123456789</sn>
+		</autoswitch>
+	</autoswitch_list>
 </ipacu_response>

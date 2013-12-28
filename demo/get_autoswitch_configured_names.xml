@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_autoswitch_configured_names" error="0" />
+	<available>Y | N</available>
+	<enable>Y | N</enable>
+	<autoswitch_list>
+		<autoswitch>
+			<sn>123456789</sn>
+			<name>Salon</name>
+		</autoswitch>
+		<autoswitch>
+			<sn>123123123</sn>
+			<name>Boudoir</name>
+		</autoswitch>
+		<autoswitch>
+			<sn>111222333</sn>
+			<name>Kitchen</name>
+		</autoswitch>
+	</autoswitch_list>
+</ipacu_response>

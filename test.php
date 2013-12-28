@@ -53,7 +53,7 @@
 		</div>
 
 		<div id="page" class="page">
-			<div id="menu" class="view menu">
+			<div id="menu" class="view menu is-active">
 				<div class="title">Menu Title</div>
 				<a id="menu-btn" href="#" class="menu-btn"><img src="/images/img.gif">Menu Button</a>
 				<a id="menu-btn" href="#" class="menu-btn"><img src="/images/img.gif">Menu Button</a>
@@ -62,7 +62,7 @@
 				<a href="#" class="basic-btn">Simple Button</a>
 			</div>
 
-			<div id="view-1" class="view is-active">
+			<div id="view-1" class="view">
 				<a href="#" class="back-btn"><img src="/images/img.gif">Back to Menu</a>
 				<div class="headline">Title</div>
 				<br>

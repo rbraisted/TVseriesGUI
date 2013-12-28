@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_autoswitch_config" error="0" />
+	<mac_address>00:01:32:8e:9d:77</mac_address>
+	<sn>1231231230</sn>
+</ipacu_response>

@@ -102,7 +102,7 @@ TVRO.CookieManager = (function() {
 
 //	webservice singleton
 //	using this doc: SoftEng-56-0229IPACUXMLServicesICDrev.xB4-161213-1501-3.pdf
-//
+//	
 //	pass request parameters as json
 //	they'll be converted to xml for you
 //	for example:
@@ -189,6 +189,12 @@ TVRO.WebService = (function() {
 						var error = $(response).find('ipacu_response > message').attr('error');
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						console.log('TVRO.WebService AJAX error!');
+						console.log(jqXHR);
+						console.log(textStatus);
+						console.log(errorThrown);
 					}
 				});
 			}
@@ -237,48 +243,48 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 	return self;
 };
 
-TVRO.Satellite = function(satellite) {
+TVRO.Satellite = function(xml) {
 	var self = {},
-		satellite = $(satellite);
+		xml = $(xml);
 
 	//	these values can be retrieved from
 	//	get_satellite_list and get_satellite_params
-	self.listID = satellite.find('listID').text();
-	self.antSatID = satellite.find('antSatID').text();
-	self.name = satellite.find('name').text();
-	self.region = satellite.find('region').text();
-	self.lon = satellite.find('lon').text();
-	self.suffix = satellite.find('suffix').text();	//	not sure about this one
-	self.enabled = satellite.find('enabled').text();
-	self.favorite = satellite.find('favorite').text();
-	self.select = satellite.find('select').text();
-	self.triSatID = satellite.find('triSatID').text();
+	self.listID = $('listID', xml).text();
+	self.antSatID = $('antSatID', xml).text();
+	self.name = $('name', xml).text();
+	self.region = $('region', xml).text();
+	self.lon = $('lon', xml).text();
+	self.suffix = $('suffix', xml).text();	//	not sure about this one
+	self.enabled = $('enabled', xml).text();
+	self.favorite = $('favorite', xml).text();
+	self.select = $('select', xml).text();
+	self.triSatID = $('triSatID', xml).text();
 	//	these values can only be retrieved with get_satellite_params
-	self.skew = satellite.find('skew').text();
-	self.lo1 = satellite.find('lo1').text();
-	self.lo2 = satellite.find('lo2').text();
-	self.kumode = satellite.find('kumode').text();
+	self.skew = $('skew', xml).text();
+	self.lo1 = $('lo1', xml).text();
+	self.lo2 = $('lo2', xml).text();
+	self.kumode = $('kumode', xml).text();
 	//	xponders can only be retrieved with get_satellite_params
 	self.xponders = [];
-	satellite.find('xponder').each(function(index, xponder) {
+	$('xponder', xml).each(function(index, xponder) {
 		self.xponders[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
 	});
 
 	return self;
 };
 
-TVRO.Xponder = function(xponder) {
-	var self = {};
+TVRO.Xponder = function(xml) {
+	var self = {},
+		xml = $(xml);
 
-	xponder = $(xponder);
-	self.id = xponder.find('id').text();
-	self.pol = xponder.find('pol').text();
-	self.band = xponder.find('band').text();
-	self.freq = xponder.find('freq').text();
-	self.symRate = xponder.find('symRate').text();
-	self.fec = xponder.find('fec').text();
-	self.netID = xponder.find('netID').text();
-	self.modType = xponder.find('modType').text();
+	self.id = $('id', xml).text();
+	self.pol = $('pol', xml).text();
+	self.band = $('band', xml).text();
+	self.freq = $('freq', xml).text();
+	self.symRate = $('symRate', xml).text();
+	self.fec = $('fec', xml).text();
+	self.netID = $('netID', xml).text();
+	self.modType = $('modType', xml).text();
 
 	return self;
 };
