@@ -7,11 +7,8 @@
 <div id="menu" class="view menu">
 	<div id="autoswitch" class="autoswitch section">
 		<img src="/images/img.gif">
-		<label>Autoswitch</label>
-		<a id="on-off-switch" class="btn on-off-switch is-on">
-			<div class="on">ON</div>
-			<div class="off">OFF</div>
-		</a>
+		<label id="autoswitch-master">Kitchen</label>
+		<a id="autoswitch-dropdown-btn" href="#" class="select-btn">Select</a>
 	</div>
 	<div id="gps" class="gps section">
 		<label>Location</label>
@@ -33,13 +30,13 @@
 			</a>
 		</div>
 		<img id="satellite-signal" class="signal signal-0" src="/images/img.gif">
+		<a id="satellite-dropdown-btn" href="#" class="select-btn">Select</a>
 	</div>
 </div>
 
 <div id="view" class="view is-active">
 	<div id="vessel" class="vessel">
 		<div id="vessel-heading" class="vessel-heading"></div>
-		<img id="vessel-image" class="vessel-image" src="/images/img.gif">
 		<img id="vessel-animation" class="vessel-animation" src="/images/img.gif">
 		<div id="vessel-name" class="vessel-name"></div>
 	</div>

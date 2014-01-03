@@ -10,18 +10,42 @@
 	color: #bac7da;
 }
 
+.menu .select-btn {
+	color: #466ab3;
+	font-size: 13px;
+	margin-top: 5px;
+	text-align: right;
+}
+
+.menu .on-off-switch {
+	font-size: 13px;
+}
+
 .menu .section {
 	border-bottom: 1px solid #283d66;
 	padding: 15px 10px;
 	position: relative;
 }
 
-.menu .gps {
-	padding: 30px 10px;
+.menu .autoswitch img {
+	background: transparent url(/images/nav-autoswitch-small.png) no-repeat center center;
+	float: left;
+	height: 100%;
+	width: 20px;
 }
 
-.menu .satellite {
-	padding: 15px 10px 30px;
+.menu .autoswitch label {
+	color: #fff;
+	display: inline-block;
+	margin: 3px 10px 1px;
+}
+
+.menu .autoswitch .select-btn {
+	float: right;
+}
+
+.menu .gps {
+	padding: 30px 10px;
 }
 
 .menu .gps .coordinate,
@@ -36,12 +60,19 @@
 	margin-top: 10px;
 }
 
+.menu .satellite {
+	padding: 15px 10px 30px;
+}
+
+.menu .satellite .select-btn {
+	display: block;
+}
+
 .menu .satellite .manual {
-	bottom: 0;
 	display: inline-block;
 	font-size: 13px;
 	position: absolute;
-	padding-bottom: inherit;
+	top: 46px;
 }
 
 .menu .satellite .manual label {
@@ -50,10 +81,6 @@
 	text-align: center;
 	width: 100%;
 	margin-bottom: 7px;
-}
-
-.menu .satellite .manual .on-off-switch {
-	font-size: 13px;
 }
 
 .menu .satellite .signal {
@@ -74,56 +101,44 @@
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
 .vessel-heading,
-.vessel-image,
 .vessel-name {
-	font-size: 20px;
 	text-align: center;
 	width: 100%;
 }
 
-.vessel-heading,
-.vessel-name {
-	height: 20px;
-}
-
 .vessel {
 	background: transparent url(/images/vessel-large.png) no-repeat center center;
-	height: 520px;
-/*	left: 50%;
-	margin: -400px 0 0 -270px;
-	padding: 90px;
-	position: absolute;
-	top: 50%;
-*/	width: 520px;
-position: relative;
+	height: 530px;
+	margin-top: 30px;
+	position: relative;
+	width: 100%;
 }
 
-.vessel {
-
-	/*height: 480px;*/
+.vessel-heading {
+	font-size: 21px;
 }
 
 .vessel-animation {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	/*left: 3px;*/
 	background: transparent url(/images/vessel-animation-large.png) no-repeat center center;
-	height: 457px;
-	width: 457px;
+	display: block;
+	left: 50%;
 	margin-left: -228px;
 	margin-top: -228px;
-	/*width: 100%;*/
+	position: absolute;
+	top: 50%;
+	height: 457px;
+	width: 457px;
+}
+
+.vessel-name {
+	bottom: 0;
+	color: #bac7da;
+	position: absolute;
 }
 
 /* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
-
-.menu .autoswitch {
-	display: none;
-}
-
 
 
 
