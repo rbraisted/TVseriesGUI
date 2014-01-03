@@ -53,7 +53,7 @@
 			 		<img src="/images/img.gif">
 			 		<label>Autoswitch</label>
 			 	</a>
-				<a id="settings-btn" href="/settings/" class="settings-btn nav-btn">
+				<a id="settings-btn" href="/settings.php" class="settings-btn nav-btn">
 			 		<img src="/images/img.gif">
 			 		<label>Settings</label>
 			 	</a>

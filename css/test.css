@@ -419,6 +419,10 @@ input {
 	border-bottom: 1px solid #466ab2;
 }
 
+.page .menu .menu-btn img {
+	background-image: url(/images/menu-btn.png);
+}
+
 .page .menu .menu-btn label {
 	text-align: left;
 }
@@ -551,6 +555,10 @@ input {
 
 	.page .menu .menu-btn.is-selected {
 		background: #243774;
+	}
+
+	.page .menu .menu-btn img {
+		display: block;
 	}
 }
 
