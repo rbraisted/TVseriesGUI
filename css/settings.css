@@ -1,102 +1,55 @@
-/* 
-html5doctor.com Reset Stylesheet
-v1.6.1
-Last Updated: 2010-09-17
-Author: Richard Clark - http://richclarkdesign.com 
-Twitter: @rich_clark
-*/
-
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-    margin:0;
-    padding:0;
-    border:0;
-    outline:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
+.view:not(.menu) {
+	padding-top: 50px;
 }
 
-body {
-    line-height:1;
+.view .back-btn {
+	position: absolute;
+	top: 0;
 }
 
-article,aside,details,figcaption,figure,
-footer,header,hgroup,menu,nav,section { 
-    display:block;
+.view .setting {
+	margin: 0 auto 20px;
+	padding: 0 40px 50px;
+	position: relative;
+	max-width: 700px;
 }
 
-nav ul {
-    list-style:none;
+.view .setting:nth-child(1) {
+	padding-top: 50px;
 }
 
-blockquote, q {
-    quotes:none;
+.view .setting .on-off-switch {
+	bottom: 0;
+	display: inline-block;
+	position: absolute;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content:'';
-    content:none;
+.view .setting label,
+.view .setting p {
+	display: block;
+	line-height: 1.6;
 }
 
-a {
-    margin:0;
-    padding:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
+.view .setting p {
+	color: #cbcaca;
 }
 
-/* change colours to suit your needs */
-ins {
-    background-color:#ff9;
-    color:#000;
-    text-decoration:none;
-}
+@media screen and (max-width: 768px) {
+	.view:not(.menu) {
+		padding-top: 80px;
+	}
 
-/* change colours to suit your needs */
-mark {
-    background-color:#ff9;
-    color:#000; 
-    font-style:italic;
-    font-weight:bold;
-}
+	.view:not(.menu) .title {
+		display: none;
+	}
 
-del {
-    text-decoration: line-through;
-}
 
-abbr[title], dfn[title] {
-    border-bottom:1px dotted;
-    cursor:help;
-}
+	.view .setting {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 
-table {
-    border-collapse:collapse;
-    border-spacing:0;
-}
-
-/* change border colour to suit your needs */
-hr {
-    display:block;
-    height:1px;
-    border:0;   
-    border-top:1px solid #cccccc;
-    margin:1em 0;
-    padding:0;
-}
-
-input, select {
-    vertical-align:middle;
+	.view .setting label {
+		font-size: 21px;
+	}
 }

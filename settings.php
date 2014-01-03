@@ -21,15 +21,18 @@
 <div id="general-settings-view" class="view is-active">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif" />
-		<label>Settings</label>
+		<label>General Settings</label>
 	</a>
 
 	<div class="title">General Settings</div>
 
 	<div class="setting">
-		<a id="technician-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+		<a id="technician-mode-btn" href="#" class="on-off-switch">
+			<div class="on">On</div>
+			<div class="off">Off</div>
+		</a>
+		<label>Technician Mode</label>
 		<p>
-			Technician Mode<br>
 			Info about Technician Mode: Nulla feugiat vestibulum egestas.
 			Integer porttitor est turpis, at convallis nisi tristique ac.
 			Vestibulum ac est a quam pellentesque porta. Nunc id pulvinar
@@ -39,13 +42,17 @@
 	</div>
 
 	<div class="setting">
-		<a id="demo-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+		<a id="demo-mode-btn" href="#" class="on-off-switch">
+			<div class="on">On</div>
+			<div class="off">Off</div>
+		</a>
+		<label>Demo Mode</label>
 		<p>
-			Demo Mode<br>
 			Info about Demo Mode: In blandit nec libero ut lobortis. Aliquam
 			et eros eleifend urna mollis convallis. Duis orci nisl, gravida
 			at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
 		</p>
+		
 	</div>
 </div>
 
@@ -93,9 +100,12 @@
 	<div class="title">Advanced Settings</div>
 
 	<div class="setting">
-		<a id="sleep-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+		<a id="sleep-mode-btn" href="#" class="on-off-switch">
+			<div class="on">On</div>
+			<div class="off">Off</div>
+		</a>
+		<label>Sleep Mode</label>
 		<p>
-			Sleep Mode<br>
 			Info about Sleep Mode: In blandit nec libero ut lobortis.
 			Aliquam et eros eleifend urna mollis convallis. Duis orci nisl,
 			gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
@@ -104,9 +114,12 @@
 	</div>
 
 	<div class="setting">
-		<a id="sidelobe-mode-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+		<a id="sidelobe-mode-btn" href="#" class="on-off-switch">
+			<div class="on">On</div>
+			<div class="off">Off</div>
+		</a>
+		<label>Sidelobe Mode</label>
 		<p>
-			Sidelobe Mode<br>
 			Info about Sidelobe Mode: Nulla feugiat vestibulum egestas. Integer
 			porttitor est turpis, at convallis nisi tristique ac. Vestibulum ac
 			est a quam pellentesque porta. Nunc id pulvinar metus. Etiam commodo

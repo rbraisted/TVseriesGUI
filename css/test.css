@@ -41,6 +41,13 @@ try to keep track of all the z-indexes here
 
 * {
 	box-sizing: border-box;
+	cursor: inherit;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 html,
@@ -52,6 +59,7 @@ body {
 
 body {
 	color: #fff;
+	cursor: default;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	font-weight: lighter;

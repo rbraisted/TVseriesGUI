@@ -1,9 +1,5 @@
-/*       *\
-
-    ^3^
-
-\*       */
-
-.sb {
-	display: block;
+@media screen and (max-width: 768px) {
+	.view:not(.menu) .title {
+		display: none;
+	}
 }
