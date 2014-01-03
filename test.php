@@ -89,62 +89,65 @@
 		</div>
 
 		<div id="page" class="page">
-			<div id="menu" class="view menu is-active">
+			<div id="menu" class="view menu">
 				<div class="title">Menu Title</div>
-				<a mid="menu-btn" href="#" class="menu-btn">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Africa</label>
 				</a>
-				<a id="menu-btn" href="#" class="menu-btn is-selected">
+				<a id="menu-btn" href="#" class="btn menu-btn is-selected">
 					<img src="/images/img.gif">
 					<label>Asia</label>
 				</a>
-				<a id="menu-btn" href="#" class="menu-btn">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Australia</label>
 				</a>
-				<a id="menu-btn" href="#" class="menu-btn">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Europe</label>
 				</a>
-				<a id="menu-btn" href="#" class="menu-btn">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Central / South America</label>
 				</a>
-				<a id="menu-btn" href="#" class="menu-btn">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>North America</label>
 				</a>
-				<a id="menu-btn" href="#" class="menu-btn">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>All</label>
 				</a>
 
-				<a href="#" class="basic-btn">
+				<a href="#" class="btn">
 					<label>Basic Button</label>
 				</a>
 
-				<a href="#" class="basic-btn add-btn">
+				<a href="#" class="btn add-btn">
 					<img src="/images/img.gif">
 					<label>Add Button</label>
 				</a>
 			</div>
 
-			<div id="view-1" class="view">
-				<a href="#" class="back-btn">
+			<div id="view-a" class="view is-active">
+				<a id="menu-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Back to Menu</label>
 				</a>
 
-				<div class="title">Title</div>
+				<div class="title">View A</div>
 
 				<br>
-				<a href="#" class="basic-btn">
+				<a href="#" class="btn">
 					<label>Simple Button</label>
 				</a>
 
 				<br>
-				<a id="on-off-switch" class="on-off-switch is-on"><div class="on">On</div><div class="off">Off</div></a>
+				<a id="on-off-switch" class="btn on-off-switch is-on">
+					<label class="on">ON</label>
+					<label class="off">OFF</label>
+				</a>
 
 				<br>
 				<a id="dropdown-btn" href="#" class="dropdown-btn">
@@ -161,26 +164,29 @@
 				<br>
 				<input type="text" />
 				<br>
-				<a href="#" class="basic-btn">
-					<label>Go to View 2</label>
+				<a id="view-b-btn" href="#" class="btn">
+					<label>Go to View B</label>
 				</a>
 			</div>
 
-			<div id="view-2" class="view">
-				<a href="#" class="back-btn">
+			<div id="view-b" class="view">
+				<a id="view-a-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Back to Menu</label>
 				</a>
 
-				<div class="title">Title</div>
+				<div class="title">View B</div>
 
 				<br>
-				<a href="#" class="basic-btn">
+				<a href="#" class="btn">
 					<label>Simple Button</label>
 				</a>
 
 				<br>
-				<a id="on-off-switch" class="on-off-switch is-on"><div class="on">On</div><div class="off">Off</div></a>
+				<a id="on-off-switch" class="btn on-off-switch">
+					<label class="on">ON</label>
+					<label class="off">OFF</label>
+				</a>
 
 				<br>
 				<a id="dropdown-btn" href="#" class="dropdown-btn">
@@ -197,8 +203,8 @@
 				<br>
 				<input type="text" />
 				<br>
-				<a href="#" class="basic-btn">
-					<label>Go to View 1</label>
+				<a id="view-a-btn" href="#" class="btn">
+					<label>Go to View A</label>
 				</a>
 			</div>
 

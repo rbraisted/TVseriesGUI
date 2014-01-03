@@ -31,8 +31,11 @@ z-indexes
 
 try to keep track of all the z-indexes here
 
-header - 200
-page - 100
+.header - 200
+
+.page - 100
+.page .view - 101
+.page .menu - 102
 
 */
 
@@ -60,7 +63,7 @@ a {
 }
 
 input {
-	background: #4b5168;
+	background: #4a536a;
 	border: 1px solid #000;
 	color: inherit;
 	font-family: inherit;
@@ -76,13 +79,23 @@ input {
 	padding: 12px 0;
 }
 
-.basic-btn {
+.btn {
 	background: #243774;
-	display: block;
+	cursor: pointer;
+	display: inline-block;
+	min-width: 145px;
 	position: relative;
 }
 
-.basic-btn img {
+.btn:hover {
+	background: #1c335d;
+}
+
+.btn.is-selected {
+	background: #4f7abd;
+}
+
+.btn img {
 	background: transparent no-repeat center center;
 	display: none;
 	height: 44px;
@@ -91,15 +104,26 @@ input {
 	width: 44px;
 }
 
-.basic-btn label {
+.btn label {
 	cursor: pointer;
 	display: block;
 	padding: 14px 20px;
 	text-align: center;
 }
 
-.add-btn {
+.back-btn {
+	background: #000;
+	display: none;
+	width: 100%;
+}
 
+.back-btn:hover {
+	background: #000;
+}
+
+.back-btn img {
+	background-image: url(/images/back-btn.png);
+	left: 0;
 }
 
 .add-btn img {
@@ -111,13 +135,37 @@ input {
 	background-image: url(/images/add-btn-hover.png);
 }
 
+.on-off-switch {
+	min-width: 0;
+}
+
+.on-off-switch label {
+	float: left;
+	min-width: 55px;
+	padding: 7px 10px;
+}
+
+.on-off-switch .on,
+.on-off-switch.is-on .off {
+	background: #4a536a;
+	border: 1px solid #000;
+	color: #000;
+}
+
+.on-off-switch.is-on .on,
+.on-off-switch .off {
+	background: #4f7abd;
+	border: 1px solid #fff;
+	color: #fff;
+}
 
 /* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
 .header {
-	background: #2a4478;
+	background: transparent url(/images/header.png) no-repeat center center;
+	background-size: 100%;
 	position: relative;
 	width: 100%;
 	z-index: 200;
@@ -336,39 +384,43 @@ input {
 }
 
 .page .view {
+	display: none;
 	float: left;
 	min-height: 100%;
+	position: relative;
 	top: 0;
+	z-index: 101;
+}
+
+.page .view.is-active {
+	display: block;
 }
 
 .page .menu {
+	background: #040b17;
+	display: block;
 	width: 240px;
+	z-index: 102;
+}
+
+.page .menu .btn {
+	display: block;
 }
 
 .page .menu .menu-btn {
-	background: #243774;
 	border-bottom: 1px solid #466ab2;
-	cursor: pointer;
-	display: block;
-}
-
-.page .menu .menu-btn:hover {
-	background: #1c335d;
-}
-
-.page .menu .menu-btn.is-selected {
-	background: #4f7abd;
-}
-
-.page .menu .menu-btn img {
-	display: none;
 }
 
 .page .menu .menu-btn label {
-	cursor: pointer;
-	display: block;
-	font-size: 16px;
-	padding: 14px 20px;
+	text-align: left;
+}
+
+.page .view:not(.menu) {
+	background: #04122a url(/images/gradient.png) no-repeat;
+	background-position: top -35px left calc(50% + 120px);
+	margin-left: -240px;
+	padding-left: 240px;
+	width: 100%;
 }
 
 /* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
@@ -385,7 +437,7 @@ input {
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-.page .menu .basic-btn {
+.page .menu .btn:not(.menu-btn) {
 	margin: 10px 20px;
 }
 
