@@ -22,7 +22,9 @@
 }
 
 .menu .section {
-	border-bottom: 1px solid #283d66;
+	border-color: #283d66;
+	border-style: solid;
+	border-width: 0 0 1px 0;
 	padding: 15px 10px;
 	position: relative;
 }
@@ -107,7 +109,8 @@
 }
 
 .vessel {
-	background: transparent url(/images/vessel-large.png) no-repeat center center;
+	background: transparent no-repeat center center;
+	background-image: url(/images/vessel-large.png);
 	height: 530px;
 	margin-top: 30px;
 	position: relative;
@@ -119,7 +122,8 @@
 }
 
 .vessel-animation {
-	background: transparent url(/images/vessel-animation-large.png) no-repeat center center;
+	background: transparent no-repeat center center;
+	background-image: url(/images/vessel-animation-large.png);
 	display: block;
 	left: 50%;
 	margin-left: -228px;
@@ -140,363 +144,61 @@
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*       *\
-
-    ^3^
-
-\*       */
-
-/*
-menu {
-	background: #0c0c0c;
-	margin: 0;
-	padding: 0;
-	z-index: 1;
-}
-
-menu h3 {
-	color: #bbb;
-	padding-bottom: 10px;
-	font-weight: lighter;
-}
-
-menu section {
-	padding: 15px 0;
-	position: relative;
-}
-
-menu .label {
-	margin-top: 12px;
-}
-
-menu .button {
-	color: #4388fd;
-	float: right;
-	position: relative;
-	top: -17px;
-}
-
-menu .of-btn {
-	top: -22px;
-}
-
-.vessel {
-	/*background: -moz-radial-gradient(center, ellipse cover, #0d2764 5%, #06102a 70%); /* FF3.6+ */
-	/*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0d2764), color-stop(70%,#06102a)); /* Chrome,Safari4+ */
-	/*background: -webkit-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Chrome10+,Safari5.1+ */
-	/*background: -o-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Opera 12+ */
-	/*background: -ms-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* IE10+ */
-	/*background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
-/*}
-
-.vessel-heading,
-.vessel-image,
-.vessel-name {
-	font-size: 20px;
-	text-align: center;
-	width: 100%;
-}
-
-.vessel-heading,
-.vessel-name {
-	height: 20px;
-}
-
-.help-btn,
-.demo-mode {
-	background: #9c232d;
-	font-weight: lighter;
-	position: absolute;
-}
-
-.alert-overlay {
-	display: none;
-}
-
-.alert-overlay,
-.alert-overlay-bg {
-	left: 0;
-	position: fixed;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 99;
-}
-
-.alert-overlay-bg {
-	background: #000;
-	opacity: 0.3;
-}
-
-.master-list {
-	background: #000;
-	position: absolute;
-	z-index: 100;
-}
-
-.master-list h2,
-.master-list-item {
-	line-height: 2em;
-}
-
-.master-list h2 {
-	border-color: #4388fd;
-	border-style: solid;
-	border-width: 1px 0;
-	color: #4388fd;
-	font-weight: lighter;
-	padding: 5px 0;
-	text-align: center;
-}
-
-.master-list-item {
-	border-bottom: 1px solid #303030;
-	padding: 5px 0 0 40px;
-}
-
-.master-list-item img {
-	height: 25px;
-	left: 0;
-	position: absolute;
-	width: 40px;
-}
-
-.master-list-item.selected img {
-	background: transparent url(/images/check-mark.png) no-repeat center center;
-}*/
-
-/*                           *\
-
-     SMALL & MEDIUM SHARED
-
-\*                           */
-/*
-@media screen and (max-width: 880px) {
-	.page {
-		background: #0c0c0c;
-		overflow-x: hidden;
-		position: relative;
-	}
-
-	body {
-		background: #0c0c0c;
-	}
-
-	menu section {
-		border-right: 1px solid #303030;
-		float: left;
-		height: 150px;
-		margin: 20px 0 0 3%;
-		padding-top: 0;
-		width: 30%;
-	}
-
-	menu section:last-of-type {
-		border-right: 0;
-	}
-
-	menu .autoswitch {
-		border-bottom: 1px solid #303030;
-		border-right: 0;
-		float: none;
+@media screen and (max-width: 768px) {
+	.page .menu {
 		height: auto;
-		margin: 0 3%;
-		padding-top: 20px;
-		width: 94%;
+		min-height: 0;
+		position: relative;
+		top: 350px;
 	}
 
-	menu .sat .button {
-		left: 0;
-		bottom: 0;
+	.page .menu .section:nth-child(n+2) {
+		border-width: 0 1px 0 0;
+		display: block;
+		float: left;
+		height: 110px;
+		margin: 15px 0;
+		padding: 0 10px 15px;
+		width: 33.33%;
 	}
 
-	.sat-signal {
-		height: 45px;
-		width: 94px;
+	.page .menu .section:last-child {
+		border: 0;
 	}
 
-	.sat-signal-0 { background: transparent url(/images/sat-signal-0-small.png) no-repeat center center; }
-	.sat-signal-1 { background: transparent url(/images/sat-signal-1-small.png) no-repeat center center; }
-	.sat-signal-2 { background: transparent url(/images/sat-signal-2-small.png) no-repeat center center; }
-	.sat-signal-3 { background: transparent url(/images/sat-signal-3-small.png) no-repeat center center; }
-	.sat-signal-4 { background: transparent url(/images/sat-signal-4-small.png) no-repeat center center; }
-	.sat-signal-5 { background: transparent url(/images/sat-signal-5-small.png) no-repeat center center; }
-	
+	.page .menu .autoswitch {
+		margin: 0 10px;
+		padding: 15px 0;
+	}
+
+	.page .menu .satellite .manual {
+		display: none !important;
+	}
+
+	.page .view:not(.menu) {
+		top: auto;
+		bottom: auto;
+		position: absolute;
+		height: 350px;
+		min-height: 0;
+	}
+
 	.vessel {
-		height: 320px;
-		padding: 20px 0;
-		width: 100%;
-	}
-
-	.vessel-image {
-		background: transparent url(/images/vessel-small.png) no-repeat center center;
-		height: 280px;
+		background-image: url(/images/vessel-small.png);
+		height: 300px;
 	}
 
 	.vessel-animation {
-		position: absolute;
-		top: 40px;
-		background: transparent url(/images/vessel-animation-small.png) no-repeat center center;
-		height: 280px;
-		width: 100%;
-	}
-
-	.help-btn,
-	.demo-mode {
-		font-size: 10px;
-		padding: 5px 10px;
-		right: 17px;
-		top: 17px;
-	}
-
-	.master-list {
-		bottom: 0;
-		width: 100%;
-	}
-}
-*/
-
-/*                *\
-
-     SMALL SOLO
-
-\*                */
-
-@media screen and (max-width: 540px) {
-
-}
-
-/*                 *\
-
-     MEDIUM SOLO
-
-\*                 */
-
-@media screen and (min-width: 540px) and (max-width: 880px) {
-
-}
-
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-/*
-@media screen and (min-width: 880px) {
-	.dashboard-button {
-		background: #06102a;
-	}
-
-	.page {
-		bottom: 0;
-		overflow: hidden;
-		position: absolute;
-		top: 95px;
-		width: 100%;
-	}
-
-	menu {
-		bottom: 5px;
-		left: 5px;
-		position: absolute;
-		top: 5px;
-		width: 255px;
-	}
-
-	menu section {
-		margin: 0 20px;
-		border-bottom: 1px solid #303030;
-	}
-
-	menu section:last-of-type {
-		border-bottom: 0;
-	}
-
-	.sat-signal {
-		height: 60px;
-		width: 125px;
-	}
-
-	.sat-signal-0 { background: transparent url(/images/sat-signal-0-large.png) no-repeat center center; }
-	.sat-signal-1 { background: transparent url(/images/sat-signal-1-large.png) no-repeat center center; }
-	.sat-signal-2 { background: transparent url(/images/sat-signal-2-large.png) no-repeat center center; }
-	.sat-signal-3 { background: transparent url(/images/sat-signal-3-large.png) no-repeat center center; }
-	.sat-signal-4 { background: transparent url(/images/sat-signal-4-large.png) no-repeat center center; }
-	.sat-signal-5 { background: transparent url(/images/sat-signal-5-large.png) no-repeat center center; }
-
-	.vessel {
-		height: 520px;
-		left: 50%;
-		margin: -400px 0 0 -270px;
-		padding: 90px;
-		position: absolute;
-		top: 50%;
-		width: 520px;
-	}
-
-	.vessel-image {
-		background: transparent url(/images/vessel-large.png) no-repeat center center;
-		height: 480px;
-	}
-
-	.vessel-animation {
-		position: absolute;
-		top: 110px;
-		left: 3px;
-		background: transparent url(/images/vessel-animation-large.png) no-repeat center center;
-		height: 480px;
-		width: 100%;
-	}
-
-	.help-btn,
-	.demo-mode {
-		padding: 10px 20px;
-		right: 20px;
-		top: 20px;
-	}
-
-	.master-list {
-		border: 1px solid #888;
-		left: 120px;
-		top: 180px;
-		width: 260px;
+		background-image: url(/images/vessel-animation-small.png);
+		height: 235px;
+		margin-left: -118px;
+		margin-top: -118px;
+		width: 235px;
 	}
 }
 
-@media screen and (min-width: 880px) and (max-height: 760px) {
-	.vessel {
-		top: 0;
-		margin-top: -70px;
-	}
-}
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-.help-btn {
-	background: green;
-}
 
-#dataDiv,
-#dataDiv iframe {
-	height: 100%;
-	left: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 999999999;
-}
-*/

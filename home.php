@@ -34,7 +34,7 @@
 	</div>
 </div>
 
-<div id="view" class="view is-active">
+<div id="view" class="view">
 	<div id="vessel" class="vessel">
 		<div id="vessel-heading" class="vessel-heading"></div>
 		<img id="vessel-animation" class="vessel-animation" src="/images/img.gif">

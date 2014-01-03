@@ -45,10 +45,15 @@ TVRO = {
 }
 
 TVRO.init = function() {
-	$('#nav-btn').click(function() {
-		$(this).toggleClass('selected');
-		$('#nav').toggleClass('toggled');
+	// $('#nav-btn').click(function() {
+	// 	$(this).toggleClass('selected');
+	// 	$('#nav').toggleClass('toggled');
+	// });
+
+	$('#header > #nav-btn').click(function() {
+		$('#nav-bar', '#header').toggleClass('is-expanded');
 	});
+
 
 	var webService = new TVRO.WebService();
 	setInterval(function() {
@@ -81,6 +86,8 @@ TVRO.init = function() {
 		$(this).toggleClass('selected');
 		$('#status').toggleClass('toggled');
 	});
+
+	TVRO.SAT_FINDER = false;
 
 	$('#sat-finder-btn').toggle(TVRO.SAT_FINDER);
 
