@@ -1,9 +1,153 @@
+.page .view:not(.is-active) {
+	display: block;
+}
+
+.page .menu {
+	background: #040b17;
+}
+
+.menu *:not(.on-off-switch) label {
+	color: #bac7da;
+}
+
+.menu .section {
+	border-bottom: 1px solid #283d66;
+	padding: 15px 10px;
+	position: relative;
+}
+
+.menu .gps {
+	padding: 30px 10px;
+}
+
+.menu .satellite {
+	padding: 15px 10px 30px;
+}
+
+.menu .gps .coordinate,
+.menu .antenna .antenna-type,
+.menu label {
+	display: block;
+	min-height: 1em;
+}
+
+.menu .gps .coordinate,
+.menu .antenna .antenna-type {
+	margin-top: 10px;
+}
+
+.menu .satellite .manual {
+	bottom: 0;
+	display: inline-block;
+	font-size: 13px;
+	position: absolute;
+	padding-bottom: inherit;
+}
+
+.menu .satellite .manual label {
+	display: block;
+	font-size: 13px;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 7px;
+}
+
+.menu .satellite .manual .on-off-switch {
+	font-size: 13px;
+}
+
+.menu .satellite .signal {
+	background: transparent no-repeat right bottom;
+	height: 60px;
+	width: 100%;
+}
+
+.menu .satellite .signal-0 { background-image: url(/images/satellite-signal-0.png); }
+.menu .satellite .signal-1 { background-image: url(/images/satellite-signal-1.png); }
+.menu .satellite .signal-2 { background-image: url(/images/satellite-signal-2.png); }
+.menu .satellite .signal-3 { background-image: url(/images/satellite-signal-3.png); }
+.menu .satellite .signal-4 { background-image: url(/images/satellite-signal-4.png); }
+.menu .satellite .signal-5 { background-image: url(/images/satellite-signal-5.png); }
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+.vessel-heading,
+.vessel-image,
+.vessel-name {
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.vessel-heading,
+.vessel-name {
+	height: 20px;
+}
+
+.vessel {
+	background: transparent url(/images/vessel-large.png) no-repeat center center;
+	height: 520px;
+/*	left: 50%;
+	margin: -400px 0 0 -270px;
+	padding: 90px;
+	position: absolute;
+	top: 50%;
+*/	width: 520px;
+position: relative;
+}
+
+.vessel {
+
+	/*height: 480px;*/
+}
+
+.vessel-animation {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	/*left: 3px;*/
+	background: transparent url(/images/vessel-animation-large.png) no-repeat center center;
+	height: 457px;
+	width: 457px;
+	margin-left: -228px;
+	margin-top: -228px;
+	/*width: 100%;*/
+}
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+.menu .autoswitch {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*       *\
 
     ^3^
 
 \*       */
 
+/*
 menu {
 	background: #0c0c0c;
 	margin: 0;
@@ -38,13 +182,13 @@ menu .of-btn {
 }
 
 .vessel {
-	background: -moz-radial-gradient(center, ellipse cover, #0d2764 5%, #06102a 70%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0d2764), color-stop(70%,#06102a)); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* IE10+ */
-	background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
-}
+	/*background: -moz-radial-gradient(center, ellipse cover, #0d2764 5%, #06102a 70%); /* FF3.6+ */
+	/*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0d2764), color-stop(70%,#06102a)); /* Chrome,Safari4+ */
+	/*background: -webkit-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Chrome10+,Safari5.1+ */
+	/*background: -o-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* Opera 12+ */
+	/*background: -ms-radial-gradient(center, ellipse cover, #0d2764 5%,#06102a 70%); /* IE10+ */
+	/*background: radial-gradient(ellipse at center, #0d2764 5%, #06102a 70%); /* W3C */
+/*}
 
 .vessel-heading,
 .vessel-image,
@@ -120,14 +264,14 @@ menu .of-btn {
 
 .master-list-item.selected img {
 	background: transparent url(/images/check-mark.png) no-repeat center center;
-}
+}*/
 
 /*                           *\
 
      SMALL & MEDIUM SHARED
 
 \*                           */
-
+/*
 @media screen and (max-width: 880px) {
 	.page {
 		background: #0c0c0c;
@@ -211,6 +355,7 @@ menu .of-btn {
 		width: 100%;
 	}
 }
+*/
 
 /*                *\
 
@@ -237,7 +382,7 @@ menu .of-btn {
      LARGE SOLO
 
 \*                */
-
+/*
 @media screen and (min-width: 880px) {
 	.dashboard-button {
 		background: #06102a;
@@ -339,3 +484,4 @@ menu .of-btn {
 	width: 100%;
 	z-index: 999999999;
 }
+*/

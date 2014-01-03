@@ -53,6 +53,7 @@ body {
 body {
 	color: #fff;
 	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
 	font-weight: lighter;
 	line-height: 1;
 }
@@ -137,13 +138,19 @@ input {
 }
 
 .on-off-switch {
+	cursor: pointer;
+	display: inline-block;
 	min-width: 0;
 }
 
-.on-off-switch label {
+.on-off-switch .on,
+.on-off-switch .off {
 	float: left;
-	min-width: 55px;
-	padding: 7px 10px;
+	/*min-width: 55px;*/
+	min-width: 3.4375em;
+	/*padding: 7px 10px;*/
+	padding: 0.4375em 0.625em;
+	text-align: center;
 }
 
 .on-off-switch .on,

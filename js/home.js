@@ -1,7 +1,7 @@
 "use strict";
 
 TVRO.HomePage = function() {
-	var self = {},
+	 var self = {},
 		updateInterval,
 		cookieManager = new TVRO.CookieManager(),
 		webService = new TVRO.WebService();
@@ -33,6 +33,9 @@ TVRO.HomePage = function() {
 		var demoMode = cookieManager.hasCookie(TVRO.DEMO_MODE);
 		$('#demo-mode').toggle(demoMode);
 
+		$('[id ~= group ]', '#menu').hide();
+		$('[id ~= manual ]', '#menu').show();
+
 		self.startUpdating();
 	};
 
@@ -43,7 +46,7 @@ TVRO.HomePage = function() {
 
 	self.stopUpdating = function() {
 		clearInterval(updateInterval);
-	};	
+	};
 
 	self.update = function() {
 		webService.request('antenna_status', function(response) {
@@ -52,8 +55,8 @@ TVRO.HomePage = function() {
 				vesselHeading = Number(response.find('antenna > brst > hdg').text()).toFixed(1),
 				azBow = Math.round(parseFloat(response.find('az_bow').text(), 10));
 
-			$('#lat').text((lat > 0.0) ? lat+' N' : Math.abs(lat)+' S');
-			$('#lon').text((lon > 0.0) ? lon+' E' : Math.abs(lon)+' W');
+			$('#latitude').text((lat > 0.0) ? lat+' N' : Math.abs(lat)+' S');
+			$('#longitude').text((lon > 0.0) ? lon+' E' : Math.abs(lon)+' W');
 			$('#vessel-heading').text(vesselHeading+'˚');
 			if (!isNaN(azBow) && azBow !== 999) {
 				$('#vessel-animation').css({
@@ -64,14 +67,14 @@ TVRO.HomePage = function() {
 				});
 			}
 
-			$('#sat-name').text(response.find('satellite > name').text());
-			$('#sat-id').text(response.find('satellite > antSatID').text());
-			$('#sat-signal').removeClass('sat-signal-0 sat-signal-1 sat-signal-2 sat-signal-3 sat-signal-4 sat-signal-5');
-			$('#sat-signal').addClass('sat-signal-'+response.find('antenna > rf > bars').text());
+			$('[id ~= satellite-name ]').text(response.find('satellite > name').text());
+			$('[id ~= satellite-id ]').text(response.find('satellite > antSatID').text());
+			$('[id ~= satellite-signal ]').removeClass('sat-signal-0 sat-signal-1 sat-signal-2 sat-signal-3 sat-signal-4 sat-signal-5');
+			$('[id ~= satellite-signal ]').addClass('sat-signal-'+response.find('antenna > rf > bars').text());
 		});
 
 		webService.request('antenna_versions', function(response) {
-			$('#ant-type').text(response.find('au model').text());
+			$('#antenna-type').text(response.find('au model').text());
 		});
 
 		webService.request('get_autoswitch_service', function(response) {
