@@ -8,6 +8,10 @@ TVRO.TestPage = function() {
 	self.init = function() {
 		$('#satellites-btn', '#nav-bar').toggleClass('is-selected', true);
 
+		$('#header > #nav-btn').click(function() {
+			$('#nav-bar', '#header').toggleClass('is-expanded');
+		});
+
 		$('[id ~= on-off-switch ]').click(function() {
 			var btn = $(this);
 			btn.toggleClass('is-on');

@@ -56,7 +56,7 @@
 				<div class="nav-btn-square"></div>
 				<label>Menu</label>
 			</a>
-			<div id="nav-bar" class="nav-bar">
+			<div id="nav-bar" class="nav-bar is-expanded">
 				<a id="home-btn" href="/home.php" class="home-btn nav-btn">
 					<img src="/images/img.gif">
 					<label>Home</label>
@@ -89,13 +89,13 @@
 		</div>
 
 		<div id="page" class="page">
-			<div id="menu" class="view menu">
+			<div id="menu" class="view menu is-active">
 				<div class="title">Menu Title</div>
 				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Africa</label>
 				</a>
-				<a id="menu-btn" href="#" class="btn menu-btn is-selected">
+				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Asia</label>
 				</a>
@@ -130,7 +130,7 @@
 				</a>
 			</div>
 
-			<div id="view-a" class="view is-active">
+			<div id="view-a" class="view">
 				<a id="menu-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Back to Menu</label>
