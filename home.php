@@ -1,8 +1,8 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
-<div id="dashboard-page" class="page">
-	<link type="text/css" rel="stylesheet" href="/css/dashboard.css">
-	<script type="text/javascript" src="/js/dashboard.js"></script>
+<div id="home-page" class="page">
+	<link type="text/css" rel="stylesheet" href="/css/home.css">
+	<script type="text/javascript" src="/js/home.js"></script>
 	<script type="text/javascript" src="/RoboHelp_CSH 2.js"></script>
 
 	<div id="vessel" class="vessel">

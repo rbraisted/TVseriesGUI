@@ -1,13 +1,13 @@
 "use strict";
 
-TVRO.DashboardPage = function() {
+TVRO.HomePage = function() {
 	var self = {},
 		updateInterval,
 		cookieManager = new TVRO.CookieManager(),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-		$('#dashboard-btn').toggleClass('selected', true);
+		$('#home-btn').toggleClass('selected', true);
 
 		$('#autoswitch-button').click(function() {
 			var autoswitchEnabled = $('#autoswitch-button').hasClass('on');
@@ -86,4 +86,4 @@ TVRO.DashboardPage = function() {
 	return self;
 };
 
-TVRO.page = new TVRO.DashboardPage();
+TVRO.page = new TVRO.HomePage();

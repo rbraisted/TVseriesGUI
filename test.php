@@ -56,7 +56,7 @@
 				<div class="nav-btn-square"></div>
 				<label>Menu</label>
 			</a>
-			<div id="nav-bar" class="nav-bar is-expanded">
+			<div id="nav-bar" class="nav-bar">
 				<a id="home-btn" href="/home.php" class="home-btn nav-btn">
 					<img src="/images/img.gif">
 					<label>Home</label>
@@ -172,10 +172,23 @@
 			<div id="view-b" class="view">
 				<a id="view-a-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
-					<label>Back to Menu</label>
+					<label>Back to View A</label>
 				</a>
 
 				<div class="title">View B</div>
+
+				<br>
+				<p class="warning">
+					lorem ipsum dolor sit amet, consectetur adipiscing elit. aenean molestie consequat dignissim. sed ut feugiat elit. donec cursus fermentum urna a bibendum. praesent commodo tellus vulputate elementum scelerisque. mauris dignissim metus a lorem lacinia ultrices. cras interdum sodales lectus, vel iaculis diam tincidunt a. proin nec erat id erat porta lacinia at nec lectus.
+					<br><br>
+					nullam condimentum luctus ligula, a pharetra orci aliquet eu. suspendisse facilisis tincidunt arcu in pretium. vivamus auctor cursus interdum. vivamus id sapien convallis, commodo augue ut, faucibus massa. nulla vel eros ac risus rutrum molestie eu ut sapien. mauris neque risus, pulvinar eget nisi non, tempus ullamcorper lorem. donec adipiscing enim ut est fringilla, vitae malesuada elit rutrum. quisque sagittis felis at rhoncus posuere.
+					<br><br>
+					maecenas nisi eros, ornare ut odio id, blandit pellentesque metus. curabitur vitae ligula ut massa scelerisque porttitor. phasellus sit amet nulla et quam fringilla lacinia. aenean sollicitudin mi accumsan vestibulum iaculis. aenean in lacus aliquam, cursus nisl quis, malesuada erat. curabitur sagittis, diam at vehicula scelerisque, ante lacus semper sapien, quis auctor mi lacus vel libero. in dui diam, euismod sed venenatis non, dignissim in dui. nam bibendum, odio nec volutpat congue, lectus lorem pretium massa, eu mattis ante quam imperdiet quam. cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. nam vitae felis lacus. etiam malesuada purus ac congue feugiat.
+					<br><br>
+					sed auctor, orci vel feugiat gravida, sapien ante tristique urna, ut suscipit dolor dolor sit amet elit. quisque id feugiat nulla. vivamus eu ultrices diam. nullam semper hendrerit massa lobortis consequat. donec cursus lorem nec adipiscing tincidunt. suspendisse at condimentum orci. aliquam augue ipsum, imperdiet at metus nec, facilisis scelerisque massa. in sit amet risus in diam fringilla ornare nec et arcu. fusce tempor mi vel augue tempus, vel porttitor elit vehicula. duis fringilla consequat tristique.
+					<br><br>
+					vestibulum eu gravida mauris. donec quis magna nec leo luctus placerat et eu diam. aliquam erat volutpat. aenean purus enim, cursus eget magna et, scelerisque ultricies tortor. vestibulum elementum cursus varius. ut sodales posuere arcu, rhoncus bibendum arcu blandit id. aliquam varius malesuada lorem in malesuada. suspendisse potenti. nulla nec pretium nulla. donec venenatis arcu sed nisi dapibus pretium. in consequat, odio vitae cursus dictum, tellus lectus malesuada metus, non auctor lorem ipsum vel erat. vestibulum lobortis pharetra nisl, vitae suscipit leo consectetur sed. suspendisse vehicula molestie ante in mollis. proin a neque lacus.
+				</p>
 
 				<br>
 				<a href="#" class="btn">
