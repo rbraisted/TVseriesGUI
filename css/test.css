@@ -82,10 +82,40 @@ input {
 	padding: 5px 10px;
 }
 
-.title {
+h1,
+h2,
+h3 {
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
+
+h1 {
 	font-size: 21px;
+	padding: 0.571428571em 0;
 	text-align: center;
-	padding: 12px 0;
+}
+
+h2 {
+	font-size: 16px;
+}
+
+h3 {
+	color: #bac7da;
+	font-size: 16px;
+}
+
+p {
+	color: #cbcaca;
+	display: block;
+	line-height: 1.6em;
+}
+
+.text-wall {
+	line-height: 1.6;
+	margin: auto;
+	max-width: 700px;
+	padding: 20px 40px;
 }
 
 .btn {
@@ -154,9 +184,7 @@ input {
 .on-off-switch .on,
 .on-off-switch .off {
 	float: left;
-	/*min-width: 55px;*/
 	min-width: 3.4375em;
-	/*padding: 7px 10px;*/
 	padding: 0.4375em 0.625em;
 	text-align: center;
 }
@@ -447,7 +475,12 @@ input {
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
+
+	p {
+		font-size: 13px;
+	}
+
 	.back-btn {
 		display: block;
 	}
@@ -455,6 +488,10 @@ input {
 	.back-btn label {
 		font-size: 21px;
 		padding: 12px 0;
+	}
+
+	.text-wall {
+		padding: 20px;
 	}
 
 	/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
@@ -567,6 +604,10 @@ input {
 
 	.page .menu .menu-btn img {
 		display: block;
+	}
+
+	.page h1 {
+		display: none;
 	}
 }
 

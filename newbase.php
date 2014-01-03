@@ -41,31 +41,31 @@
 				<label>Menu</label>
 			</a>
 			<div id="nav-bar" class="nav-bar">
-				<a id="home-btn" href="/home.php" class="home-btn nav-btn">
+				<a id="home-btn nav-btn" href="/home.php" class="home-btn nav-btn">
 					<img src="/images/img.gif">
 					<label>Home</label>
 				</a>
-				<a id="satellites-btn" href="/satellites.php" class="satellites-btn nav-btn">
+				<a id="satellites-btn nav-btn" href="/satellites.php" class="satellites-btn nav-btn">
 			 		<img src="/images/img.gif">
 			 		<label>Satellites</label>
 			 	</a>
-				<a id="autoswitch-btn" href="/autoswitch.php" class="autoswitch-btn nav-btn">
+				<a id="autoswitch-btn nav-btn" href="/autoswitch.php" class="autoswitch-btn nav-btn">
 			 		<img src="/images/img.gif">
 			 		<label>Autoswitch</label>
 			 	</a>
-				<a id="settings-btn" href="/settings.php" class="settings-btn nav-btn">
+				<a id="settings-btn nav-btn" href="/settings.php" class="settings-btn nav-btn">
 			 		<img src="/images/img.gif">
 			 		<label>Settings</label>
 			 	</a>
-				<a id="updates-btn" href="/updates.php" class="updates-btn nav-btn">
+				<a id="updates-btn nav-btn" href="/updates.php" class="updates-btn nav-btn">
 			 		<img src="/images/img.gif">
 			 		<label>Updates</label>
 			 	</a>
-				<a id="support-btn" href="/support/" class="support-btn nav-btn">
+				<a id="support-btn nav-btn" href="/support/" class="support-btn nav-btn">
 			 		<img src="/images/img.gif">
 			 		<label>Support</label>
 			 	</a>
-				<a id="sat-finder-btn" href="tvro://sat-finder" class="sat-finder-btn nav-btn">
+				<a id="sat-finder-btn nav-btn" href="tvro://sat-finder" class="sat-finder-btn nav-btn">
 	 		 		<img src="/images/img.gif">
 	 		 		<label>Sat Finder</label>
 	 		 	</a>

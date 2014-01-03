@@ -6,19 +6,12 @@
 	background: #040b17;
 }
 
-.menu *:not(.on-off-switch) label {
-	color: #bac7da;
-}
-
 .menu .select-btn {
 	color: #466ab3;
+	cursor: pointer;
 	font-size: 13px;
 	margin-top: 5px;
 	text-align: right;
-}
-
-.menu .on-off-switch {
-	font-size: 13px;
 }
 
 .menu .section {
@@ -36,7 +29,7 @@
 	width: 20px;
 }
 
-.menu .autoswitch label {
+.menu .autoswitch .master {
 	color: #fff;
 	display: inline-block;
 	margin: 3px 10px 1px;
@@ -50,15 +43,15 @@
 	padding: 30px 10px;
 }
 
+.menu .satellite .name,
 .menu .gps .coordinate,
-.menu .antenna .antenna-type,
-.menu label {
+.menu .antenna .type {
 	display: block;
 	min-height: 1em;
 }
 
 .menu .gps .coordinate,
-.menu .antenna .antenna-type {
+.menu .antenna .type {
 	margin-top: 10px;
 }
 
@@ -77,11 +70,9 @@
 	top: 46px;
 }
 
-.menu .satellite .manual label {
-	display: block;
-	font-size: 13px;
+.menu .satellite .manual h3 {
+	font-size: inherit;
 	text-align: center;
-	width: 100%;
 	margin-bottom: 7px;
 }
 
@@ -102,12 +93,6 @@
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-.vessel-heading,
-.vessel-name {
-	text-align: center;
-	width: 100%;
-}
-
 .vessel {
 	background: transparent no-repeat center center;
 	background-image: url(/images/vessel-large.png);
@@ -117,11 +102,23 @@
 	width: 100%;
 }
 
-.vessel-heading {
-	font-size: 21px;
+.vessel .heading,
+.vessel .name {
+	padding: 0;
+	position: absolute;
+	text-align: center;
+	width: 100%;
 }
 
-.vessel-animation {
+.vessel .heading {
+	top: 0;
+}
+
+.vessel .name {
+	bottom: 0;
+}
+
+.vessel .animation {
 	background: transparent no-repeat center center;
 	background-image: url(/images/vessel-animation-large.png);
 	display: block;
@@ -134,17 +131,11 @@
 	width: 457px;
 }
 
-.vessel-name {
-	bottom: 0;
-	color: #bac7da;
-	position: absolute;
-}
-
 /* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
 	.page .menu {
 		height: auto;
 		min-height: 0;
@@ -188,7 +179,7 @@
 		height: 300px;
 	}
 
-	.vessel-animation {
+	.vessel .animation {
 		background-image: url(/images/vessel-animation-small.png);
 		height: 235px;
 		margin-left: -118px;

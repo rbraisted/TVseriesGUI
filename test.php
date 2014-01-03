@@ -90,7 +90,9 @@
 
 		<div id="page" class="page">
 			<div id="menu" class="view menu is-active">
-				<div class="title">Menu Title</div>
+				<h1>h1 Heading</h1>
+				<h2>h2 Heading</h2>
+				<h3>h3 Heading</h3>
 				<a id="menu-btn" href="#" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Africa</label>
@@ -136,7 +138,7 @@
 					<label>Back to Menu</label>
 				</a>
 
-				<div class="title">View A</div>
+				<h1>View A</h1>
 
 				<br>
 				<a href="#" class="btn">
@@ -175,7 +177,7 @@
 					<label>Back to View A</label>
 				</a>
 
-				<div class="title">View B</div>
+				<h1>View B</h1>
 
 				<br>
 				<p class="warning">

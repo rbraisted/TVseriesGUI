@@ -89,7 +89,7 @@ TVRO.init = function() {
 
 	TVRO.SAT_FINDER = false;
 
-	$('#sat-finder-btn').toggle(TVRO.SAT_FINDER);
+	$('[id ~= sat-finder-btn ]', '#nav-bar').toggle(TVRO.SAT_FINDER);
 
 	if (TVRO.page && TVRO.page.init) {
 		TVRO.page.init();
@@ -342,3 +342,15 @@ TVRO.Xponder = function(xml) {
 $(document).ready(function() {
 	TVRO.init();
 });
+
+TVRO.Page = function() {
+	var self = {};
+
+	self.init = function() {		
+		$('[id ~= nav-btn ]', '#nav-bar').each(function(index, element) {
+			$(element).toggleClass('is-selected', element.href === location.protocol+ '//' + location.hostname + (location.port ? ':' + location.port : '') + location.pathname);
+		});
+	}
+
+	return self;
+};

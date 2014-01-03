@@ -1,59 +1,36 @@
-/*       *\
-
-    ^3^
-
-\*       */
-
-.contact-region {
-	padding: 0 20px 20px;
+.page .menu h2 {
+	line-height: 45px;
 }
 
-.region-name {
-	line-height: 130%;
+.page .menu h2,
+.page .menu h3 {
+	padding: 0 20px;
 }
 
-.contact-region a {
-	display: block;
-	margin-top: 6px;
-	text-align: center;
+.page .menu h3 {
+	line-height: 1.2em;
 }
 
-/*                           *\
+.page .menu .contact-btn {
+	margin: 10px 20px;
+}
 
-     SMALL & MEDIUM SHARED
+.page .menu .phone-btn {
+	margin-bottom: 20px;
+}
 
-\*                           */
+.page .help-view p {
+	margin-bottom: 2em;
+}
 
 @media screen and (max-width: 880px) {
 
 }
 
-/*                *\
-
-     SMALL SOLO
-
-\*                */
-
-@media screen and (max-width: 540px) {
-
+.help-view .back-btn {
+	margin-bottom: 30px;
 }
 
-/*                 *\
-
-     MEDIUM SOLO
-
-\*                 */
-
-@media screen and (min-width: 540px) and (max-width: 880px) {
-
-}
-
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-
-@media screen and (min-width: 880px) {
-	
+.help-view h1 {
+	margin-top: 30px;
 }
