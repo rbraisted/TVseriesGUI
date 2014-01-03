@@ -21,17 +21,20 @@
 	font-style: normal;
 }
 
-/*                                                                            *\
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-	########     ###     ######  ######## 
-	##     ##   ## ##   ##    ## ##       
-	##     ##  ##   ##  ##       ##       
-	########  ##     ##  ######  ######   
-	##     ## #########       ## ##       
-	##     ## ##     ## ##    ## ##       
-	########  ##     ##  ######  ######## 
+/*
 
-\*                                                                            */
+z-indexes
+
+try to keep track of all the z-indexes here
+
+header - 200
+page - 100
+
+*/
 
 * {
 	box-sizing: border-box;
@@ -67,6 +70,48 @@ input {
 	padding: 5px 10px;
 }
 
+.title {
+	font-size: 21px;
+	text-align: center;
+	padding: 12px 0;
+}
+
+.basic-btn {
+	background: #243774;
+	display: block;
+	position: relative;
+}
+
+.basic-btn img {
+	background: transparent no-repeat center center;
+	display: none;
+	height: 44px;
+	position: absolute;
+	right: 0;
+	width: 44px;
+}
+
+.basic-btn label {
+	cursor: pointer;
+	display: block;
+	padding: 14px 20px;
+	text-align: center;
+}
+
+.add-btn {
+
+}
+
+.add-btn img {
+	background-image: url(/images/add-btn.png);
+	display: block;
+}
+
+.add-btn:hover img {
+	background-image: url(/images/add-btn-hover.png);
+}
+
+
 /* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
@@ -75,9 +120,11 @@ input {
 	background: #2a4478;
 	position: relative;
 	width: 100%;
+	z-index: 200;
 }
 
 .header .tracvision-logo {
+	cursor: pointer;
 	display: block;
 	height: 50px;
 	margin: auto;
@@ -113,6 +160,7 @@ input {
 
 .header .status-btn label {
 	bottom: 4px;
+	cursor: pointer;
 	font-size: 13px;
 	left: 0;
 	position: absolute;
@@ -151,6 +199,7 @@ input {
 
 .header .nav-btn label {
 	bottom: 4px;
+	cursor: pointer;
 	font-size: 13px;
 	left: 0;
 	position: absolute;
@@ -277,12 +326,68 @@ input {
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
+.page {
+	height: 100%;
+	padding-top: 95px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
 
+.page .view {
+	float: left;
+	min-height: 100%;
+	top: 0;
+}
+
+.page .menu {
+	width: 240px;
+}
+
+.page .menu .menu-btn {
+	background: #243774;
+	border-bottom: 1px solid #466ab2;
+	cursor: pointer;
+	display: block;
+}
+
+.page .menu .menu-btn:hover {
+	background: #1c335d;
+}
+
+.page .menu .menu-btn.is-selected {
+	background: #4f7abd;
+}
+
+.page .menu .menu-btn img {
+	display: none;
+}
+
+.page .menu .menu-btn label {
+	cursor: pointer;
+	display: block;
+	font-size: 16px;
+	padding: 14px 20px;
+}
 
 /* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
+@media screen and (max-width: 1024px) {
+	body {
+		display: none;
+	}
+}
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+.page .menu .basic-btn {
+	margin: 10px 20px;
+}
 
 
 

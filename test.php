@@ -88,49 +88,121 @@
 			</div>
 		</div>
 
-		<!--
 		<div id="page" class="page">
 			<div id="menu" class="view menu is-active">
 				<div class="title">Menu Title</div>
-				<a id="menu-btn" href="#" class="menu-btn"><img src="/images/img.gif">Menu Button</a>
-				<a id="menu-btn" href="#" class="menu-btn"><img src="/images/img.gif">Menu Button</a>
-				<a id="view-1-btn menu-btn" href="#" class="menu-btn"><img src="/images/img.gif">Go to View 1</a>
-				<br>
-				<a href="#" class="basic-btn">Simple Button</a>
+				<a mid="menu-btn" href="#" class="menu-btn">
+					<img src="/images/img.gif">
+					<label>Africa</label>
+				</a>
+				<a id="menu-btn" href="#" class="menu-btn is-selected">
+					<img src="/images/img.gif">
+					<label>Asia</label>
+				</a>
+				<a id="menu-btn" href="#" class="menu-btn">
+					<img src="/images/img.gif">
+					<label>Australia</label>
+				</a>
+				<a id="menu-btn" href="#" class="menu-btn">
+					<img src="/images/img.gif">
+					<label>Europe</label>
+				</a>
+				<a id="menu-btn" href="#" class="menu-btn">
+					<img src="/images/img.gif">
+					<label>Central / South America</label>
+				</a>
+				<a id="menu-btn" href="#" class="menu-btn">
+					<img src="/images/img.gif">
+					<label>North America</label>
+				</a>
+				<a id="menu-btn" href="#" class="menu-btn">
+					<img src="/images/img.gif">
+					<label>All</label>
+				</a>
+
+				<a href="#" class="basic-btn">
+					<label>Basic Button</label>
+				</a>
+
+				<a href="#" class="basic-btn add-btn">
+					<img src="/images/img.gif">
+					<label>Add Button</label>
+				</a>
 			</div>
 
 			<div id="view-1" class="view">
-				<a href="#" class="back-btn"><img src="/images/img.gif">Back to Menu</a>
-				<div class="headline">Title</div>
+				<a href="#" class="back-btn">
+					<img src="/images/img.gif">
+					<label>Back to Menu</label>
+				</a>
+
+				<div class="title">Title</div>
+
 				<br>
-				<a href="#" class="basic-btn">Simple Button</a>
+				<a href="#" class="basic-btn">
+					<label>Simple Button</label>
+				</a>
+
 				<br>
 				<a id="on-off-switch" class="on-off-switch is-on"><div class="on">On</div><div class="off">Off</div></a>
+
 				<br>
-				<a id="dropdown-btn" href="#" class="dropdown-btn"><img src="/images/img.gif">Dropdown Btn</a>
+				<a id="dropdown-btn" href="#" class="dropdown-btn">
+					<img src="/images/img.gif">
+					<label>Dropdown Btn</label>
+				</a>
+
 				<br>
-				<a id="sort-btn" href="#" class="sort-btn is-ascending"><img src="/images/img.gif">Sort Btn</a>
+				<a id="sort-btn" href="#" class="sort-btn is-ascending">
+					<img src="/images/img.gif">
+					<label>Sort Btn</label>
+				</a>
+
 				<br>
 				<input type="text" />
 				<br>
-				<a href="#" class="basic-btn">Go to View 2</a>
+				<a href="#" class="basic-btn">
+					<label>Go to View 2</label>
+				</a>
 			</div>
 
 			<div id="view-2" class="view">
-				<a href="#" class="back-btn"><img src="/images/img.gif">Back to View 1</a>
+				<a href="#" class="back-btn">
+					<img src="/images/img.gif">
+					<label>Back to Menu</label>
+				</a>
+
+				<div class="title">Title</div>
+
 				<br>
-				<label>Label:</label><a href="#" class="basic-btn">Simple Button</a>
+				<a href="#" class="basic-btn">
+					<label>Simple Button</label>
+				</a>
+
 				<br>
-				<label>Another Label:</label><a id="on-off-switch" class="on-off-switch is-on"><div class="on">Enabled</div><div class="off">Disabled</div></a>
+				<a id="on-off-switch" class="on-off-switch is-on"><div class="on">On</div><div class="off">Off</div></a>
+
 				<br>
-				<label>Label #3:</label><a id="dropdown-btn" href="#" class="dropdown-btn"><img src="/images/img.gif">Dropdown Btn</a>
+				<a id="dropdown-btn" href="#" class="dropdown-btn">
+					<img src="/images/img.gif">
+					<label>Dropdown Btn</label>
+				</a>
+
 				<br>
-				<label>Label No. Four:</label><a id="sort-btn" href="#" class="sort-btn is-ascending"><img src="/images/img.gif">Sort Btn</a>
+				<a id="sort-btn" href="#" class="sort-btn is-ascending">
+					<img src="/images/img.gif">
+					<label>Sort Btn</label>
+				</a>
+
 				<br>
-				<label>5th Label:</label><input type="text" />
+				<input type="text" />
+				<br>
+				<a href="#" class="basic-btn">
+					<label>Go to View 1</label>
+				</a>
 			</div>
+
 		</div>
-		-->
 
 	</body>
 </html>
