@@ -1,4 +1,4 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/newbase.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
 <link type="text/css" rel="stylesheet" href="/css/settings.css">
 <script type="text/javascript" src="/js/settings.js"></script>

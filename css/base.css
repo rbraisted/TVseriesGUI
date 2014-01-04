@@ -1,9 +1,3 @@
-/*       *\
-
-    ^3^
-
-\*       */
-
 @import 'reset.css';
 
 @font-face {
@@ -27,21 +21,49 @@
 	font-style: normal;
 }
 
-/*               *\
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-    BASE STYLES
+/*
 
-\*               */
+z-indexes
+
+try to keep track of all the z-indexes here
+
+.header - 200
+
+.page - 100
+.page .view - 101
+.page .menu - 102
+
+*/
+
+* {
+	box-sizing: border-box;
+	cursor: inherit;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 
 html,
 body {
-	background: #06102a;
+	background: #000;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	color: #fff;
+	cursor: default;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	font-weight: lighter;
-	color: #fff;
-	height: 100%;
-	width: 100%;
+	line-height: 1;
 }
 
 a {
@@ -49,519 +71,660 @@ a {
 	text-decoration: inherit;
 }
 
-p {
-	line-height: 120%;
-}
-
 input {
-	background: #4b5168;
+	background: #4a536a;
 	border: 1px solid #000;
-	color: #fff;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	font-weight: lighter;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
 	margin: 0;
 	padding: 5px 10px;
 }
 
-.page,
-.sb,
-.mc,
-.mcg,
-.bg,
-.back-btn,
-.menu-btn,
-.accordion-btn {
+h1,
+h2,
+h3 {
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
+
+h1 {
+	font-size: 21px;
+	padding: 0.571428571em 0;
+	text-align: center;
+}
+
+h2 {
+	font-size: 16px;
+}
+
+h3 {
+	color: #bac7da;
+	font-size: 16px;
+}
+
+p {
+	color: #cbcaca;
 	display: block;
+	line-height: 1.6em;
 }
 
-.sb {
-	background: #020306;
+.text-wall {
+	line-height: 1.6;
+	margin: auto;
+	max-width: 700px;
+	padding: 20px 40px;
 }
 
-.mc {
-	background: #06102a;
+.text-wall .btn,
+.text-wall .on-off-switch {
+	line-height: 1;
+	margin: 0.5em 0;
 }
 
-.mcg {
-	padding: 10px 20px;
-}
-
-.bg {
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-}
-
-.headline {
-	color: #ccc;
-	margin-bottom: 30px;
-}
-
-.mc .headline {
-	color: #fff;
-	font-size: 20px;
-}
-
-.warning {
-	background: #d22;
-	margin-bottom: 30px;
-	padding: 10px;
-}
-
-.dropdown-btn,
-.border-btn {
-	background: transparent;
-	color: #4388fd;
+.btn {
+	background: #243774;
+	cursor: pointer;
 	display: inline-block;
+	min-width: 145px;
+	position: relative;
 }
 
-.border-btn {
-	border: 1px solid #4388fd;
-	padding: 10px 20px;
+.btn:hover {
+	background: #1c335d;
 }
 
-.border-btn:hover {
-	background: #203c90;
-	border-color: #fff;
-	color: #fff;
+.btn.is-selected {
+	background: #4f7abd;
 }
 
-.back-btn img {
-	display: inline;
-	background: transparent url(/images/back.png) no-repeat center center;
-	height: 40px;
-	width: 40px;
-	vertical-align: middle;
+.btn img {
+	background: transparent no-repeat center center;
+	display: none;
+	height: 44px;
+	position: absolute;
+	right: 0;
+	width: 44px;
+}
+
+.btn label {
+	cursor: pointer;
+	display: block;
+	padding: 14px 20px;
+	text-align: center;
 }
 
 .back-btn {
-	background: #020306;
-}
-
-.menu-btn,
-.accordion-btn {
-	padding: 10px 20px;
-	position: relative;
-}
-
-.menu-btn {
-	background: #031b42;
-}
-
-.menu-btn + .menu-btn {
-	margin-top: 2px;
-}
-
-.menu-btn.selected {
-	background: #15438f;
-}
-
-.menu-btn img,
-.accordion-btn img {
-	height: 100%;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 40px;
-}
-
-.menu-btn img {
-	background: transparent url(/images/forward.png) no-repeat center center;
-}
-
-.of-btn {
-	color: #4388fd;
-	display: inline-block;
-}
-
-.of-btn .on,
-.of-btn .off {
-	border-color: transparent;
-	border-style: solid;
-	border-width: 1px;
-	display: inline-block;
-	padding: 5px 10px;
-}
-
-.of-btn:not(.on) .on,
-.of-btn.on .off {
-	background: #4b5168;
-	border-color: #000;
-	color: #000;
-}
-
-.of-btn.on .on,
-.of-btn:not(.on) .off {
-	border-color: #4388fd;
-}
-
-.accordion-btn {
-	background: #020306;
-	color: #ccc;
-}
-
-.accordion-btn img {
-	background: transparent url(/images/plus.png) no-repeat center center;
-}
-
-.accordion.exp .accordion-btn img {
-	background: transparent url(/images/minus.png) no-repeat center center;
-}
-
-.dropdown {
 	background: #000;
-	border: 1px solid #888;
 	display: none;
-	left: 120px;
-	position: fixed;
-	top: 180px;
-	width: 260px;
-	z-index: 100;
-}
-
-.dropdown-header {
-	color: #4388fd;
-	padding: 10px;
-	text-align: center;
-	border-bottom: 1px solid #4388fd;
-}
-
-.dropdown-option {
-	display: block;
-	padding: 10px 20px 10px 40px;
-	position: relative;
-}
-
-.dropdown-option+.dropdown-option {
-	border-top: 1px solid #888;
-}
-
-.dropdown-option img {
-	background: transparent url(/images/check-mark.png) no-repeat center center;
-	display: none;
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 40px;
-}
-
-.dropdown-option.selected img {
-	display: block;
-}
-
-@media screen and (max-width: 880px) {
-	.page {
-		position: relative;
-	}
-
-	.sb {
-		display: none;
-	}
-
-	.sb,
-	.mc {
-		width: 100%;
-	}
-
-	.accordion:not(.exp) {
-		height: 36px; /* MAGIC NUMBER - needs to know size of .accordian-btn, which is determined by font-size + padding */
-		overflow: hidden;
-	}
-
-}
-
-@media screen and (min-width: 880px) {
-	.back-btn {
-		display: none;
-	}
-
-	.page,
-	.mc,
-	.sb {
-		bottom: 0;
-		position: absolute;
-	}
-
-	.mcg {
-		width: 550px;
-		margin: auto;
-	}
-
-	.page {
-		top: 95px;
-	}
-
-	.page,
-	.sb {
-		left: 0;
-	}
-
-	.mc,
-	.sb {
-		top: 0;
-	}
-
-	.sb {
-		width: 260px;
-	}
-
-	.page,
-	.mc {
-		right: 0;
-	}
-
-	.mc {
-		left: 260px;
-	}
-
-	.menu-btn img,
-	.accordion-btn img {
-		display: none;
-	}
-
-	.accordion {
-		height: auto;
-	}	
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.header {
-	background: #002879; /*	#002879 - #001339 */
-	position: relative;
 	width: 100%;
 }
 
-.tracvision-logo,
-.tracvision-logo img,
-.status-btn,
-.nav-btn {
-	height: 55px;
+.back-btn:hover {
+	background: #000;
 }
 
-.tracvision-logo {
+.back-btn img {
+	background-image: url(/images/back-btn.png);
 	display: block;
-	margin: auto;
-}
-
-.tracvision-logo img {
-	background: transparent url(/images/tracvision-logo.png) no-repeat center center;
-}
-
-.tracvision-logo,
-.tracvision-logo img {
-	width: 133px;
-}
-
-.status-btn,
-.nav-btn {
-	color: #fff;
-	font-size: 12px;
-	font-weight: lighter;
-	padding: 0 5px;
-	position: absolute;
-	text-align: center;
-	top: 0;
-}
-
-.status-btn img,
-.nav-btn img {
-	background: transparent url(/images/status-icon.png) no-repeat center center;
-	display: block;
-	height: 36px;
-	width: 53px;
-}
-
-.status-btn {
 	left: 0;
 }
 
-.nav-btn {
-	right: 0;
-}
-
-.status {
-	height: 0;
-	overflow: hidden;
-	transition: height 0.5s;
-	-moz-transition: height 0.5s;
-	-webkit-transition: height 0.5s;
-}
-
-.status.toggled {
-	height: 50px;
-	transition: height 0.5s;
-	-moz-transition: height 0.5s;
-	-webkit-transition: height 0.5s;
-}
-
-.nav {
-	background: #0f344c;
-}
-
-.nav a {
-	background: #020306;
-	text-decoration: none;
-}
-
-/*                           *\
-
-     SMALL & MEDIUM SHARED
-
-\*                           */
-
-@media screen and (max-width: 880px) {
-	.nav {
-		height: 0;
-		overflow: hidden;
-		padding-bottom: 0;
-		text-align: center;
-		transition: padding-bottom 0.5s;
-		-moz-transition: padding-bottom 0.5s;
-		-webkit-transition: padding-bottom 0.5s;
-	}
-
-	.nav.toggled {
-		transition: padding-bottom 0.5s;
-		-moz-transition: padding-bottom 0.5s;
-		-webkit-transition: padding-bottom 0.5s;
-	}
-
-	.nav a {
-		float: left;
-		font-size: 15px;
-		height: 0;
-		margin: 0;/* 1% 1% 0;*/
-	}
-
-	.nav a img {	
-		height: 0;
-		padding-bottom: 60%;
-		width: 100%;
-	}
-
-	.dashboard-btn img { background: transparent url(/images/dashboard-icon-large.png) no-repeat center bottom; }
-	.satellites-btn img { background: transparent url(/images/satellites-icon-large.png) no-repeat center bottom; }
-	.autoswitch-btn img { background: transparent url(/images/autoswitch-icon-large.png) no-repeat center bottom; }
-	.settings-btn img { background: transparent url(/images/settings-icon-large.png) no-repeat center bottom; }
-	.updates-btn img { background: transparent url(/images/updates-icon-large.png) no-repeat center bottom; }
-	.support-btn img { background: transparent url(/images/support-icon-large.png) no-repeat center bottom; }
-}
-
-/*                *\
-
-     SMALL SOLO
-
-\*                */
-
-@media screen and (max-width: 540px) {
-	.nav.toggled {
-		padding-bottom: 66.666%;
-	}
-
-	.nav a {
-		padding-bottom: 33.333%;
-		width: 33.333%;
-	}
-}
-
-/*                 *\
-
-     MEDIUM SOLO
-
-\*                 */
-
-@media screen and (min-width: 540px) and (max-width: 880px) {
-	.nav.toggled {
-		padding-bottom: 16.666%;
-	}
-
-	.nav a {
-		padding-bottom: 16.666%;
-		width: 16.666%;
-	}
-}
-
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-
-@media screen and (min-width: 880px) {
-	.nav-btn {
-		display: none;
-	}
-
-	.nav {
-		height: 40px;
-	}
-
-	.nav a {
-		display: inline-block;
-		height: 35px;
-		padding: 0 20px 0 5px;
-		position: relative;
-		margin: 5px 5px 0 0;
-		line-height: 250%;
-	}
-
-	.nav a.selected {
-		background: #06102a;
-	}
-
-	.nav a img {
-		float: left;
-		height: 100%;
-		width: 40px;
-	}
-
-	.dashboard-btn img { background: transparent url(/images/dashboard-icon-small.png) no-repeat center center; }
-	.satellites-btn img { background: transparent url(/images/satellites-icon-small.png) no-repeat center center; }
-	.autoswitch-btn img { background: transparent url(/images/autoswitch-icon-small.png) no-repeat center center; }
-	.settings-btn img { background: transparent url(/images/settings-icon-small.png) no-repeat center center; }
-	.updates-btn img { background: transparent url(/images/updates-icon-small.png) no-repeat center center; }
-	.support-btn img { background: transparent url(/images/support-icon-small.png) no-repeat center center; }
-}
-
-
-
-
-
-
-
-
-.nav .sat-finder-btn {
-	position: fixed;
-	top: 0;
-	right: 70px;
-	z-index: 9999;
-	display: none;
-}
-
-.sat-finder-btn {
+.add-btn img {
+	background-image: url(/images/add-btn.png);
 	display: block;
 }
 
-.sat-finder-btn img {
-	background: white;
+.add-btn:hover img {
+	background-image: url(/images/add-btn-hover.png);
+}
+
+.on-off-switch {
+	cursor: pointer;
+	display: inline-block;
+	min-width: 0;
+}
+
+.on-off-switch .on,
+.on-off-switch .off {
+	float: left;
+	min-width: 3.4375em;
+	padding: 0.4375em 0.625em;
+	text-align: center;
+}
+
+.on-off-switch .on,
+.on-off-switch.is-on .off {
+	background: #4a536a;
+	border: 1px solid #000;
+	color: #000;
+}
+
+.on-off-switch.is-on .on,
+.on-off-switch .off {
+	background: #4f7abd;
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+.header {
+	background: transparent url(/images/header.png) no-repeat center center;
+	background-size: 100%;
+	position: relative;
+	width: 100%;
+	z-index: 200;
+}
+
+.header .tracvision-logo {
+	cursor: pointer;
+	display: block;
+	height: 50px;
+	margin: auto;
+	width: 150px;
+}
+
+.header .tracvision-logo img {
+	background: transparent url(/images/tracvision-logo.png);
+	height: 100%;
+	width: 100%;	
+}
+
+.header .status-btn {
+	height: 50px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 50px;
+}
+
+.header .status-btn .status-light {
+	background: #abd037;
+	float: left;
+	height: 22px;
+	margin-right: 3px;
+	margin-top: 7px;
+	width: 10px;
+}
+
+.header .status-btn .status-light:nth-child(1) {
+	margin-left: 7px;
+}
+
+.header .status-btn label {
+	bottom: 4px;
+	cursor: pointer;
+	font-size: 13px;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+.header .status-bar {
+	display: none;
+}
+
+.header .nav-btn {
+	display: none;
+	height: 50px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50px;
+}
+
+.header .nav-btn .nav-btn-square {
+	background: #fff;
+	float: left;
+	height: 10px;
+	margin-right: 3px;
+	margin-top: 7px;
+	width: 10px;
+}
+
+.header .nav-btn .nav-btn-square:nth-child(3n+1) {
+	margin-left: 7px;
+}
+
+.header .nav-btn .nav-btn-square:nth-child(n+4) {
+	margin-top: 3px;
+}
+
+.header .nav-btn label {
+	bottom: 4px;
+	cursor: pointer;
+	font-size: 13px;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+.header .nav-bar {
+	background: #010305;
+	height: 45px;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+}
+
+.header .nav-bar .nav-btn {
+	cursor: pointer;
+	display: block;
+	float: left;
+	padding-right: 22px;
+	position: relative;
+	width: auto;
+}
+
+.header .nav-bar .home-btn {
+	padding-left: 10px;
+}
+
+.header .nav-bar .nav-btn img {
+	background: transparent no-repeat center center;
+	display: block;
+	float: left;
+	height: 45px;
+	margin: auto 10px;
+	position: relative;
+}
+
+.header .nav-bar .home-btn img {
+	background-image: url(/images/nav-home-small.png);
+	width: 17px;
+}
+
+.header .nav-bar .home-btn:hover img,
+.header .nav-bar .home-btn.is-selected img {
+	background-image: url(/images/nav-home-small-selected.png);
+}
+
+.header .nav-bar .satellites-btn img {
+	background-image: url(/images/nav-satellites-small.png);
+	width: 18px;
+}
+
+.header .nav-bar .satellites-btn:hover img,
+.header .nav-bar .satellites-btn.is-selected img {
+	background-image: url(/images/nav-satellites-small-selected.png);
+}
+
+.header .nav-bar .autoswitch-btn img {
+	background-image: url(/images/nav-autoswitch-small.png);
+	width: 19px;
+}
+
+.header .nav-bar .autoswitch-btn:hover img,
+.header .nav-bar .autoswitch-btn.is-selected img {
+	background-image: url(/images/nav-autoswitch-small-selected.png);
+}
+
+.header .nav-bar .settings-btn img {
+	background-image: url(/images/nav-settings-small.png);
+	width: 17px;
+}
+
+.header .nav-bar .settings-btn:hover img,
+.header .nav-bar .settings-btn.is-selected img {
+	background-image: url(/images/nav-settings-small-selected.png);
+}
+
+.header .nav-bar .updates-btn img {
+	background-image: url(/images/nav-updates-small.png);
+	width: 19px;
+}
+
+.header .nav-bar .updates-btn:hover img,
+.header .nav-bar .updates-btn.is-selected img {
+	background-image: url(/images/nav-updates-small-selected.png);
+}
+
+.header .nav-bar .support-btn img {
+	background-image: url(/images/nav-support-small.png);
+	width: 13px;
+}
+
+.header .nav-bar .support-btn:hover img,
+.header .nav-bar .support-btn.is-selected img {
+	background-image: url(/images/nav-support-small-selected.png);
+}
+
+.header .nav-bar .sat-finder-btn img {
+	background-image: url(/images/nav-sat-finder-small.png);
+}
+
+.header .nav-bar .sat-finder-btn:hover img,
+.header .nav-bar .sat-finder-btn.is-selected img {
+	background-image: url(/images/nav-sat-finder-small-selected.png);
+}
+
+
+.header .nav-bar .nav-btn label {
+	color: #bac7da;
+	cursor: pointer;
+	float: left;
+	font-size: 16px;
+	margin-top: 20px;
+	position: relative;
+	width: auto;
+}
+
+.header .nav-bar .nav-btn:hover label,
+.header .nav-bar .nav-btn.is-selected label {
+	color: #fff;
+}
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+.page {
+	height: 100%;
+	padding-top: 95px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+.page .view {
+	display: none;
+	float: left;
+	min-height: 100%;
+	position: relative;
+	z-index: 101;
+}
+
+.page .view.is-active {
+	display: block;
+}
+
+.page .menu {
+	background: #040b17;
+	display: block;
+	width: 240px;
+	z-index: 102;
+}
+
+.page .menu .btn {
+	display: block;
+}
+
+.page .menu .menu-btn {
+	border-bottom: 1px solid #466ab2;
+}
+
+.page .menu .menu-btn img {
+	background-image: url(/images/menu-btn.png);
+}
+
+.page .menu .menu-btn label {
+	text-align: left;
+}
+
+.page .view:not(.menu) {
+	background: #04122a url(/images/gradient.png) no-repeat;
+	background-position: top -35px left calc(50% + 120px);
+	margin-left: -240px;
+	padding-left: 240px;
+	width: 100%;
+}
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+@media screen and (max-width: 880px) {
+
+	p {
+		font-size: 13px;
+	}
+
+	.back-btn {
+		display: block;
+	}
+
+	.back-btn label {
+		font-size: 21px;
+		padding: 12px 0;
+	}
+
+	.text-wall {
+		padding: 20px;
+	}
+
+	/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+	 <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+	\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+	.header {
+		position: fixed;
+	}
+
+	.header .nav-btn {
+		display: block;
+	}
+
+	.header .nav-bar {
+		background: #231f20;
+		height: 0;
+		transition: padding-bottom 0.5s;
+		-moz-transition: padding-bottom 0.5s;
+		-webkit-transition: padding-bottom 0.5s;
+	}
+
+	.header .nav-bar.is-expanded {
+		width: 100%;
+		padding-bottom: 74%;
+		transition: padding-bottom 0.5s;
+		-moz-transition: padding-bottom 0.5s;
+		-webkit-transition: padding-bottom 0.5s;
+	}
+
+	.header .nav-bar .nav-btn {
+		/*margin-bottom: 2%;*/
+		padding-bottom: 37%;
+		position: relative;
+		width: 33.333%;
+	}
+
+	.header .nav-bar .home-btn {
+		padding-left: 0;
+	}
+
+	.header .nav-bar .nav-btn img {
+		background: transparent no-repeat center center;
+		float: none;
+		height: 80%;
+		width: 100%;
+	}
+
+	.header .nav-bar .nav-btn label {
+		color: #fff;
+		display: block;
+		float: none;
+		text-align: center;
+		width: 100%;
+		margin: -2% 10px;
+	}
+
+	.header .nav-bar .home-btn img,
+	.header .nav-bar .home-btn:hover img,
+	.header .nav-bar .home-btn.is-selected img { background-image: url(/images/nav-home-large.png); }
+	
+	.header .nav-bar .satellites-btn img,
+	.header .nav-bar .satellites-btn:hover img,
+	.header .nav-bar .satellites-btn.is-selected img { background-image: url(/images/nav-satellites-large.png); }
+	
+	.header .nav-bar .autoswitch-btn img,
+	.header .nav-bar .autoswitch-btn:hover img,
+	.header .nav-bar .autoswitch-btn.is-selected img { background-image: url(/images/nav-autoswitch-large.png); }
+	
+	.header .nav-bar .settings-btn img,
+	.header .nav-bar .settings-btn:hover img,
+	.header .nav-bar .settings-btn.is-selected img { background-image: url(/images/nav-settings-large.png); }
+	
+	.header .nav-bar .updates-btn img,
+	.header .nav-bar .updates-btn:hover img,
+	.header .nav-bar .updates-btn.is-selected img { background-image: url(/images/nav-updates-large.png); }
+	
+	.header .nav-bar .support-btn img,
+	.header .nav-bar .support-btn:hover img,
+	.header .nav-bar .support-btn.is-selected img { background-image: url(/images/nav-support-large.png); }
+	
+	.header .nav-bar .sat-finder-btn img,
+	.header .nav-bar .sat-finder-btn:hover img,
+	.header .nav-bar .sat-finder-btn.is-selected img { background-image: url(/images/nav-sat-finder-large.png); }
+
+	/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+	 <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+	\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+	.page {
+		padding-top: 50px;
+	}
+
+	.page .view:not(.menu),
+	.page .menu {
+		background: #04122a url(/images/gradient.png) no-repeat;
+		background-position: top -35px center;
+		margin-left: 0;
+		padding-left: 0;
+		width: 100%;
+	}
+
+	.page .menu:not(.is-active) {
+		display: none;
+	}
+
+	.page .menu .menu-btn.is-selected {
+		background: #243774;
+	}
+
+	.page .menu .menu-btn img {
+		display: block;
+	}
+
+	.page h1 {
+		display: none;
+	}
+}
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+	.header .tracvision-logo img {
+		background-image: url(/images/tracvision-logo@2x.png);
+		background-size: 100% 100%;
+	}
+}
+
+@media screen and (min-width: 880px) and (-webkit-min-device-pixel-ratio: 2) {
+	.header .nav-bar .nav-btn img {
+		background-size: 100%;
+	}
+
+	.header .nav-bar .home-btn img { background-image: url(/images/nav-home-small@2x.png); }
+
+	.header .nav-bar .home-btn:hover img,
+	.header .nav-bar .home-btn.is-selected img { background-image: url(/images/nav-home-small-selected@2x.png); }
+
+	.header .nav-bar .satellites-btn img { background-image: url(/images/nav-satellites-small@2x.png); }
+
+	.header .nav-bar .satellites-btn:hover img,
+	.header .nav-bar .satellites-btn.is-selected img { background-image: url(/images/nav-satellites-small-selected@2x.png); }
+
+	.header .nav-bar .autoswitch-btn img { background-image: url(/images/nav-autoswitch-small@2x.png); }
+
+	.header .nav-bar .autoswitch-btn:hover img,
+	.header .nav-bar .autoswitch-btn.is-selected img { background-image: url(/images/nav-autoswitch-small-selected@2x.png); }
+
+	.header .nav-bar .settings-btn img { background-image: url(/images/nav-settings-small@2x.png); }
+
+	.header .nav-bar .settings-btn:hover img,
+	.header .nav-bar .settings-btn.is-selected img { background-image: url(/images/nav-settings-small-selected@2x.png); }
+
+	.header .nav-bar .updates-btn img { background-image: url(/images/nav-updates-small@2x.png); }
+
+	.header .nav-bar .updates-btn:hover img,
+	.header .nav-bar .updates-btn.is-selected img { background-image: url(/images/nav-updates-small-selected@2x.png); }
+
+	.header .nav-bar .support-btn img { background-image: url(/images/nav-support-small@2x.png); }
+
+	.header .nav-bar .support-btn:hover img,
+	.header .nav-bar .support-btn.is-selected img { background-image: url(/images/nav-support-small-selected@2x.png); }
+
+	.header .nav-bar .sat-finder-btn img { background-image: url(/images/nav-sat-finder-small@2x.png); }
+
+	.header .nav-bar .sat-finder-btn:hover img,
+	.header .nav-bar .sat-finder-btn.is-selected img { background-image: url(/images/nav-sat-finder-small-selected@2x.png); }
+}
+
+@media screen and (max-width: 880px) and (-webkit-min-device-pixel-ratio: 2) {
+
+	.header .nav-bar .nav-btn img {
+		background-size: 49px;	
+	}
+	
+	.header .nav-bar .autoswitch-btn img,
+	.header .nav-bar .support-btn img {
+		background-size: 48px 49px;
+	}
+
+	.header .nav-bar .home-btn img,
+	.header .nav-bar .home-btn:hover img,
+	.header .nav-bar .home-btn.is-selected img { background-image: url(/images/nav-home-large@2x.png); }
+
+	.header .nav-bar .satellites-btn img,
+	.header .nav-bar .satellites-btn:hover img,
+	.header .nav-bar .satellites-btn.is-selected img { background-image: url(/images/nav-satellites-large@2x.png); }
+
+	.header .nav-bar .autoswitch-btn img,
+	.header .nav-bar .autoswitch-btn:hover img,
+	.header .nav-bar .autoswitch-btn.is-selected img { background-image: url(/images/nav-autoswitch-large@2x.png); }
+
+	.header .nav-bar .settings-btn img,
+	.header .nav-bar .settings-btn:hover img,
+	.header .nav-bar .settings-btn.is-selected img { background-image: url(/images/nav-settings-large@2x.png); }
+
+	.header .nav-bar .updates-btn img,
+	.header .nav-bar .updates-btn:hover img,
+	.header .nav-bar .updates-btn.is-selected img { background-image: url(/images/nav-updates-large@2x.png); }
+
+	.header .nav-bar .support-btn img,
+	.header .nav-bar .support-btn:hover img,
+	.header .nav-bar .support-btn.is-selected img { background-image: url(/images/nav-support-large@2x.png); }
+}
+
+
+/* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> *\
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
+
+* {
+	/*outline: 1px dotted red;*/
+}
+
+*:hover {
+	outline: 1px solid red;
+}
+
+@media screen and (max-width: 880px) {
+
+	.header .nav-bar .nav-btn img {
+		background-size: 49px;
+	}
+
+	.header .nav-bar .home-btn img {
+		background-image: url(/images/nav-home-large.svg) !important;
+	}
 }

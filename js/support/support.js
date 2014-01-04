@@ -1,12 +1,15 @@
 "use strict";
 
+TVRO.EventHistoryView = function() {
+	var self = {};
+
+	return self;
+};
+
 TVRO.SupportPage = function() {
-	var self = new TVRO.Page(),
-		supa = $.extend({}, self);
+	var self = {};
 
 	self.init = function() {
-		supa.init();
-
 		$('[id ~= menu-btn ]', '#menu').click(function() {
 			var btn = $(this),
 				view = '';
@@ -27,7 +30,7 @@ TVRO.SupportPage = function() {
 			$('[id ~= '+view+' ]').toggleClass('is-active', true);
 		});
 
-		$('#back-btn').click(function() {
+		$('[id ~= back-btn ]').click(function() {
 			$('[id ~= menu-btn ]', '#menu').removeClass('is-selected');
 			$('#menu, #about-the-app-view, #about-the-satellites-view, #technical-definitions-view, #about-blockage-view, #diagnostic-log-view, #restart-system-view, #event-history-view, #command-line-view').removeClass('is-active');
 			$('#menu').toggleClass('is-active', true);

@@ -12,22 +12,64 @@
 		<meta http-equiv="pragma" content="no-cache" />
 
 		<link type="text/css" rel="stylesheet" href="/css/base.css">
+
 		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="/js/base.js"></script>
 	</head>
 	<body>
-		<div class="header">
-			<a href="/" class="tracvision-logo"><img src="/images/img.gif"></a>
-			<a id="status-btn" href="#" class="status-btn"><img src="/images/img.gif">STATUS</a>
-			<a id="nav-btn" href="#" class="nav-btn"><img src="/images/img.gif">MENU</a>
+
+		<div id="header" class="header">
+			<a href="/" class="tracvision-logo">
+				<img src="/images/img.gif">
+			</a>
+
+			<a id="status-btn" href="#" class="status-btn">
+				<div id="power-state" class="status-light"></div>
+				<div id="acu-state" class="status-light"></div>
+				<div id="ant-state" class="status-light"></div>
+				<label>Status</label>
+			</a>
+			<div id="status-bar" class="status-bar">Everything is OK!</div>
+
+			<a id="nav-btn" href="#" class="nav-btn">
+				<div class="nav-btn-square"></div>
+				<div class="nav-btn-square"></div>
+				<div class="nav-btn-square"></div>
+				<div class="nav-btn-square"></div>
+				<div class="nav-btn-square"></div>
+				<div class="nav-btn-square"></div>
+				<label>Menu</label>
+			</a>
+			<div id="nav-bar" class="nav-bar">
+				<a id="home-btn nav-btn" href="/home.php" class="home-btn nav-btn">
+					<img src="/images/img.gif">
+					<label>Home</label>
+				</a>
+				<a id="satellites-btn nav-btn" href="/satellites.php" class="satellites-btn nav-btn">
+			 		<img src="/images/img.gif">
+			 		<label>Satellites</label>
+			 	</a>
+				<a id="autoswitch-btn nav-btn" href="/autoswitch.php" class="autoswitch-btn nav-btn">
+			 		<img src="/images/img.gif">
+			 		<label>Autoswitch</label>
+			 	</a>
+				<a id="settings-btn nav-btn" href="/settings.php" class="settings-btn nav-btn">
+			 		<img src="/images/img.gif">
+			 		<label>Settings</label>
+			 	</a>
+				<a id="updates-btn nav-btn" href="/updates.php" class="updates-btn nav-btn">
+			 		<img src="/images/img.gif">
+			 		<label>Updates</label>
+			 	</a>
+				<a id="support-btn nav-btn" href="/support/" class="support-btn nav-btn">
+			 		<img src="/images/img.gif">
+			 		<label>Support</label>
+			 	</a>
+				<a id="sat-finder-btn nav-btn" href="tvro://sat-finder" class="sat-finder-btn nav-btn">
+	 		 		<img src="/images/img.gif">
+	 		 		<label>Sat Finder</label>
+	 		 	</a>
+			</div>
 		</div>
-		<div id="status" class="status">Everything is OK!</div>
-		<div id="nav" class="nav">
-			<a id="dashboard-btn" href="/dashboard.php" class="dashboard-btn"><img src="/images/img.gif">Dashboard</a><!--
-		 --><a id="satellites-btn" href="/satellites.php" class="satellites-btn"><img src="/images/img.gif">Satellites</a><!--
-		 --><a id="autoswitch-btn" href="/autoswitch.php" class="autoswitch-btn"><img src="/images/img.gif">Autoswitch</a><!--
-		 --><a id="settings-btn" href="/settings/" class="settings-btn"><img src="/images/img.gif">Settings</a><!--
-		 --><a id="updates-btn" href="/updates.php" class="updates-btn"><img src="/images/img.gif">Updates</a><!--
-		 --><a id="support-btn" href="/support/" class="support-btn"><img src="/images/img.gif">Support</a><!--
- 		 --><a id="sat-finder-btn" href="tvro://sat-finder" class="sat-finder-btn"><img src="/images/img.gif">Sat Finder</a>
-		</div>
+
+		<div id="page" class="page">
