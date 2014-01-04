@@ -17,6 +17,5 @@
 }
 
 .view .text-wall .on-off-switch {
-	line-height: 1;
-	margin: 0.5em 0 2em;
+	margin-bottom: 2em;
 }

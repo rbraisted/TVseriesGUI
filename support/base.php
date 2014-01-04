@@ -126,7 +126,28 @@
 		<img src="/images/img.gif">
 		<label>Diagnostic Log</label>
 	</a>
-	
+	<h1>Diagnostic Log</h1>
+	<div class="text-wall">
+		<a id="operational-btn" href="#" class="btn">
+			<label>View / Save Operational Log</label>
+		</a>
+		<p>Choose this option to open a text version of the Operational Log.</p>
+
+		<a id="start-btn" href="#" class="btn">
+			<label>Start New Log</label>
+		</a>
+		<p>This option will delete the existing log data and begin recording a new log.</p>
+
+		<a id="restart-btn" href="#" class="btn">
+			<label>Restart System & Start New Log</label>
+		</a>
+		<p>This option will restart your antenna system, then begin recording a new log in order to capture information logged in the startup cycle.</p>	
+
+		<a id="entry-btn" href="#" class="btn">
+			<label>View / Save Entry Log</label>
+		</a>
+		<p>Choose this option to open a text version of the Event Log</p>
+	</div>
 </div>
 
 <div id="restart-system-view" class="view">
@@ -134,7 +155,18 @@
 		<img src="/images/img.gif">
 		<label>Restart System</label>
 	</a>
-	
+	<h1>Restart System</h1>
+	<div class="text-wall">
+		<a id="system-button" class="btn">
+			<label>Restart System</label>
+		</a>
+		<a id="antenna-button" class="btn">
+			<label>Restart Antenna</label>
+		</a>
+		<a id="all-button" class="btn">
+			<label>Restart Both</label>
+		</a>
+	</div>
 </div>
 
 <div id="event-history-view" class="view">
@@ -142,7 +174,14 @@
 		<img src="/images/img.gif">
 		<label>Event History</label>
 	</a>
-	
+	<h1>Event History</h1>
+	<div id="events" class="events"></div>
+	<a id="load-btn" href="#" class="btn">
+		<label>Load More</label>
+	</a>
+	<a id="email-btn" href="#" class="btn">
+ 		<label>Email to Technician</label>
+ 	</a>
 </div>
 
 <div id="command-line-view" class="view">
