@@ -12,7 +12,7 @@ TVRO.TestPage = function() {
 			$('#nav-bar', '#header').toggleClass('is-expanded');
 		});
 
-		$('[id ~= on-off-switch ]').click(function() {
+		$('[id ~= on-off-btn ]').click(function() {
 			var btn = $(this);
 			btn.toggleClass('is-on');
 		});

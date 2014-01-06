@@ -24,7 +24,7 @@
 		<h3 id="satellite-name single" class="name"></h3>
 		<div id="manual group" class="manual">
 			<h3>Manual Mode</h3>
-			<a id="on-off-switch" class="on-off-switch is-on">
+			<a id="on-off-btn" class="on-off-btn is-on">
 				<div class="on">ON</div>
 				<div class="off">OFF</div>
 			</a>

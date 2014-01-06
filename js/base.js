@@ -127,12 +127,19 @@ TVRO.CookieManager = (function() {
 				key = encodeURIComponent(key);
 				value = encodeURIComponent(value);
 				document.cookie = key + '=' + value + expires + '; path=/';
+				return true;
 			};
 
+
+			//	if the cookie doesn't exist, return false
+			//	use this to handle toggles where no value is set for the cookie
+			//	ie demo mode:
+			//	if (!removeCookie(demoMode)) setCookie(demoMode);
 			singleton.removeCookie = function(key) {
 				if (!key || !singleton.hasCookie(key)) return false;
 				key = encodeURIComponent(key);
 				document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+				return true;
 			};
 
 			singleton.hasCookie = function(key) {

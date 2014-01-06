@@ -146,7 +146,7 @@
 				</a>
 
 				<br>
-				<a id="on-off-switch" class="on-off-switch is-on">
+				<a id="on-off-btn" class="on-off-btn is-on">
 					<div class="on">ON</div>
 					<div class="off">OFF</div>
 				</a>
@@ -198,7 +198,7 @@
 				</a>
 
 				<br>
-				<a id="on-off-switch" class="on-off-switch">
+				<a id="on-off-btn" class="on-off-btn">
 					<div class="on">ON</div>
 					<div class="off">OFF</div>
 				</a>

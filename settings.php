@@ -1,9 +1,10 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-
 <link type="text/css" rel="stylesheet" href="/css/settings.css">
 <script type="text/javascript" src="/js/settings.js"></script>
 
-<div id="menu" class="view menu">
+
+
+<div id="menu view" class="view menu is-active">
 	<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>General Settings</label>
@@ -18,7 +19,9 @@
 	</a>
 </div>
 
-<div id="general-settings-view" class="view is-active">
+
+
+<div id="general-settings-view view" class="view view view">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif" />
 		<label>General Settings</label>
@@ -34,7 +37,7 @@
 			metus. Etiam commodo faucibus augue, id placerat elit aliquet
 			non. Sed ac diam enim. Phasellus vitae interdum magna.
 		</p>
-		<a id="technician-mode-btn" href="#" class="on-off-switch">
+		<a id="technician-mode-btn" href="#" class="on-off-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -45,14 +48,16 @@
 			et eros eleifend urna mollis convallis. Duis orci nisl, gravida
 			at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
 		</p>
-		<a id="demo-mode-btn" href="#" class="on-off-switch">
+		<a id="demo-mode-btn" href="#" class="on-off-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
 	</div>
 </div>
 
-<div id="network-settings-view" class="view">
+
+
+<div id="network-settings-view view" class="view">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif" />
 		<label>Settings</label>
@@ -87,7 +92,9 @@
 	</div>
 </div>
 
-<div id="advanced-settings-view" class="view">
+
+
+<div id="advanced-settings-view view" class="view">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif" />
 		<label>Settings</label>
@@ -102,7 +109,7 @@
 			gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
 			urna.
 		</p>
-		<a id="sleep-mode-btn" href="#" class="on-off-switch">
+		<a id="sleep-mode-btn" href="#" class="on-off-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -115,7 +122,7 @@
 			faucibus augue, id placerat elit aliquet non. Sed ac diam enim.
 			Phasellus vitae interdum magna.
 		</p>
-		<a id="sidelobe-mode-btn" href="#" class="on-off-switch">
+		<a id="sidelobe-mode-btn" href="#" class="on-off-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
