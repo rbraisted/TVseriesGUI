@@ -63,8 +63,9 @@
 		<label>Settings</label>
 	</a>
 
-	<div id="wireless-settings" class="settings">
-		<div class="headline">Wireless Settings</div>
+<!-- 
+	<div id="wireless-settings-view" class="settings">
+		<h1>Wireless Settings</h1>
 		<div class="setting"><span class="label">Mode:</span><span id="wireless-mode"></span></div>
 		<div id="if-mode">
 			<div class="setting"><span class="label">IP Address:</span><span id="if-ip"></span></div>
@@ -80,15 +81,29 @@
 		</div>
 		<a href="/settings/wireless-settings.php" class="border-btn">Edit</a>
 	</div>
+ -->
 
-	<div id="ethernet-settings" class="settings">
-		<div class="headline">Ethernet Settings</div>
-		<div class="setting"><span class="label">Mode:</span><span id="ethernet-mode"></span></div>
-		<div class="setting"><span class="label">IP Address:</span><span id="ethernet-ip"></span></div>
-		<div class="setting"><span class="label">Subnet:</span><span id="ethernet-subnet"></span></div>
-		<div class="setting"><span class="label">Gateway:</span><span id="ethernet-gateway"></span></div>
-		<div class="setting"><span class="label">Broadcast:</span><span id="ethernet-broadcast"></span></div>
-		<a href="/settings/ethernet-settings.php" class="border-btn">Edit</a>
+	<div id="ethernet-settings-view" class="network-settings-view view">
+		<h1>Ethernet Settings</h1>
+
+		<label>Mode:</label>
+		<div id="ethernet-mode"></div>
+
+		<label>IP Address:</label>
+		<div id="ethernet-ip"></div>
+
+		<label>Subnet:</label>
+		<div id="ethernet-subnet"></div>
+
+		<label>Gateway:</label>
+		<div id="ethernet-gateway"></div>
+
+		<label>Broadcast:</label>
+		<div id="ethernet-broadcast"></div>
+
+		<a id="edit-btn" href="#" class="btn">
+			<label>Edit</label>
+		</a>
 	</div>
 </div>
 

@@ -3,30 +3,37 @@
 
 
 TVRO.SettingsPage = function() {
-	var self = {},
-		page,
-		menu;
+	var self = {};
 
 	self.init = function() {
-		page = $('[id ~= page ]');
-		menu = $('[id ~= menu ]', page);
+		var page = $('[id ~= page ]'),
+			menu = $('[id ~= menu ]', page),
+			menuBtns = $('[id ~= menu-btn ]', menu),
+			generalSettingsView = TVRO.GeneralSettingsView(),
+			networkSettingsView = TVRO.NetworkSettingsView(),
+			advancedSettingsView = TVRO.AdvancedSettingsView(),
+			activeView;
 
-		var	menuBtns = $('[id ~= menu-btn ]', menu);
+		generalSettingsView.init();
+		networkSettingsView.init();
+		advancedSettingsView.init();
+
 		menuBtns.click(function() {
 			var menuBtn = $(this);
 
-			$('[id ~= view ]').removeClass('is-active');
-			if (menuBtn.hasId('general-settings-btn')) $('[id ~= general-settings-view ]').addClass('is-active');
-			else if (menuBtn.hasId('network-settings-btn')) $('[id ~= network-settings-view ]').addClass('is-active');
-			else if (menuBtn.hasId('advanced-settings-btn')) $('[id ~= advanced-settings-view ]').addClass('is-active');
+			if (menuBtn.hasClass('is-selected')) return;
 
 			menuBtns.removeClass('is-selected');
 			menuBtn.addClass('is-selected');
-		});
 
-		TVRO.GeneralSettingsView(page).init();
-		// TVRO.NetworkSettingsView(page).init();
-		TVRO.AdvancedSettingsView(page).init();
+			if (activeView) activeView.hide();
+
+			if (menuBtn.hasId('general-settings-btn')) activeView = generalSettingsView;
+			else if (menuBtn.hasId('network-settings-btn')) activeView = networkSettingsView;
+			else if (menuBtn.hasId('advanced-settings-btn')) activeView = advancedSettingsView;
+
+			activeView.show();
+		});
 	}
 
 	return self;
@@ -37,22 +44,34 @@ TVRO.SettingsPage = function() {
 TVRO.GeneralSettingsView = function(page) {
 	var self = {},
 		view,
+		demoModeBtn,
+		technicianModeBtn,
 		cookieManager = new TVRO.CookieManager();
-
+		
 	self.init = function() {
 		view = $('[id ~= general-settings-view ]', page);
-		var demoModeBtn = $('[id ~= demo-mode-btn ]', view),
-			technicianModeBtn = $('[id ~= technician-mode-btn ]', view);
+		demoModeBtn = $('[id ~= demo-mode-btn ]', view);
+		technicianModeBtn = $('[id ~= technician-mode-btn ]', view);
 		
-		technicianModeBtn.click(function() {
-			if (!cookieManager.removeCookie(TVRO.TECH_MODE)) cookieManager.setCookie(TVRO.TECH_MODE);
-			technicianModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.TECH_MODE));
-		}).toggleClass('is-on', cookieManager.hasCookie(TVRO.TECH_MODE));
-
 		demoModeBtn.click(function() {
 			if (!cookieManager.removeCookie(TVRO.DEMO_MODE)) cookieManager.setCookie(TVRO.DEMO_MODE);
 			demoModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.DEMO_MODE));
-		}).toggleClass('is-on', cookieManager.hasCookie(TVRO.DEMO_MODE));
+		});
+
+		technicianModeBtn.click(function() {
+			if (!cookieManager.removeCookie(TVRO.TECH_MODE)) cookieManager.setCookie(TVRO.TECH_MODE);
+			technicianModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.TECH_MODE));
+		});
+	}
+
+	self.show = function() {
+		demoModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.DEMO_MODE));
+		technicianModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.TECH_MODE));
+		view.addClass('is-active');
+	}
+
+	self.hide = function() {
+		view.removeClass('is-active');
 	}
 
 	return self;
@@ -60,11 +79,56 @@ TVRO.GeneralSettingsView = function(page) {
 
 
 
-TVRO.NetworkSettingsView = function() {
+TVRO.AdvancedSettingsView = function(page) {
 	var self = {},
+		view,
+		sleepModeBtn,
+		sidelobeModeBtn,
 		webService = new TVRO.WebService();
 
 	self.init = function() {
+		view = $('[id ~= advanced-settings-view ]', page);
+		sleepModeBtn = $('[id ~= sleep-mode-btn ]', view);
+		sidelobeModeBtn = $('[id ~= sidelobe-mode-btn ]', view);
+
+		$(sleepModeBtn).add(sidelobeModeBtn).click(function() {
+			$(this).toggleClass('is-on');
+
+			var sleepMode = sleepModeBtn.hasClass('is-on') ? 'ON' : 'OFF',
+				sidelobeMode = sidelobeModeBtn.hasClass('is-on') ? 'ON' : 'OFF';
+
+			webService.request('set_antenna_config', {
+				'sleep' : sleepMode,
+				'sidelobe' : sidelobeMode
+			});
+		});
+	}
+
+	self.show = function() {
+		webService.request('get_antenna_config', function(response) {
+			sleepModeBtn.toggleClass('is-on', $('sleep', response).text() === 'ON');
+			sidelobeModeBtn.toggleClass('is-on', $('sidelobe', response).text() === 'ON');
+		});
+		view.addClass('is-active');
+	}
+
+	self.hide = function() {
+		view.removeClass('is-active');
+	}
+
+	return self;
+}
+
+
+
+TVRO.NetworkSettingsView = function(page) {
+	var self = {},
+		view,
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+		view = $('[id ~= network-settings-view ]', page);
+		
 		webService.request('get_wlan', function(response) {
 			var mode = response.find('ipacu_response > mode').text();
 			$('#wireless-mode').text(mode);
@@ -95,42 +159,38 @@ TVRO.NetworkSettingsView = function() {
 		});
 	}
 
-	return self;
-}
+	self.show = function() {
 
+		view.addClass('is-active');
+	}
 
-
-TVRO.AdvancedSettingsView = function(page) {
-	var self = {},
-		view,
-		webService = new TVRO.WebService();
-
-	self.init = function() {
-		view = $('[id ~= advanced-settings-view ]', page);
-		var sleepModeBtn = $('[id ~= sleep-mode-btn ]', view),
-			sidelobeModeBtn = $('[id ~= sidelobe-mode-btn ]', view);
-
-		webService.request('get_antenna_config', function(response) {
-			sleepModeBtn.toggleClass('is-on', $('sleep', response).text() === 'ON');
-			sidelobeModeBtn.toggleClass('is-on', $('sidelobe', response).text() === 'ON');
-		});
-
-		$([sleepModeBtn, sidelobeModeBtn]).click(function() {
-			$(this).toggleClass('is-on');
-
-			var sleepMode = sleepModeBtn.hasClass('is-on') ? 'ON' : 'OFF',
-				sidelobeMode = sidelobeModeBtn.hasClass('is-on') ? 'ON' : 'OFF';
-
-			webService.request('set_antenna_config', {
-				'sleep' : sleepMode,
-				'sidelobe' : sidelobeMode
-			});
-		});
+	self.hide = function() {
+		view.removeClass('is-active');
 	}
 
 	return self;
 }
 
 
+
+TVRO.WirelessSettingsView = function(view) {
+	var self = {},
+		view,
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+
+	}
+
+	self.show = function() {
+		view.addClass('is-active');
+	}
+
+	self.hide = function() {
+		view.removeClass('is-active');
+	}
+
+	return self;
+}
 
 TVRO.page = new TVRO.SettingsPage();
