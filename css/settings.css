@@ -19,3 +19,46 @@
 .view .text-wall .on-off-btn {
 	margin-bottom: 2em;
 }
+
+.settings-view {
+	position: relative;
+	width: 100%;
+	margin-bottom: 5em;
+}
+
+.settings-view:not(.is-active),
+.edit-settings-view:not(.is-active) {
+	display: none;
+}
+
+.settings-view .setting label {
+	color: #cbcaca;
+	padding-right: 10px;
+	position: absolute;
+	text-align: right;
+	right: 50%;
+}
+
+.settings-view .setting span {
+	display: block;
+	left: 50%;
+	margin-left: 50%;
+	min-height: 1.6em;	/* magic number, .text-wall */
+	padding-left: 10px;
+}
+
+.settings-view .btn {
+	float: right;
+	margin-top: 1em;
+	margin-left: 1em;
+}
+
+.popup {
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 900;
+	background: red;
+}
