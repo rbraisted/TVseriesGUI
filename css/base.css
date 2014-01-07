@@ -25,20 +25,6 @@
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-/*
-
-z-indexes
-
-try to keep track of all the z-indexes here
-
-.header - 200
-
-.page - 100
-.page .view - 101
-.page .menu - 102
-
-*/
-
 * {
 	box-sizing: border-box;
 	cursor: inherit;
@@ -216,9 +202,10 @@ p {
 .header {
 	background: transparent url(/images/header.png) no-repeat center center;
 	background-size: 100%;
-	position: relative;
+	/*position: relative;*/
+	position: absolute;
 	width: 100%;
-	z-index: 200;
+	z-index: 3;
 }
 
 .header .tracvision-logo {
@@ -425,51 +412,45 @@ p {
  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 \* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-.page {
-	height: 100%;
-	padding-top: 95px;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 100;
-}
-
-.page .view {
+.view {
 	display: none;
 	float: left;
 	min-height: 100%;
 	position: relative;
-	z-index: 101;
+	padding-top: 95px;
+	z-index: 1;
 }
 
-.page .view.is-active {
+/*
+.view.is-active {
 	display: block;
 }
+*/
 
-.page .menu {
+.menu {
 	background: #040b17;
-	display: block;
+	/*display: block;*/
 	width: 240px;
-	z-index: 102;
+	z-index: 2;
 }
 
-.page .menu .btn {
+.menu .btn {
 	display: block;
 }
 
-.page .menu .menu-btn {
+.menu .menu-btn {
 	border-bottom: 1px solid #466ab2;
 }
 
-.page .menu .menu-btn img {
+.menu .menu-btn img {
 	background-image: url(/images/menu-btn.png);
 }
 
-.page .menu .menu-btn label {
+.menu .menu-btn label {
 	text-align: left;
 }
 
-.page .view:not(.menu) {
+.view:not(.menu) {
 	background: #04122a url(/images/gradient.png) no-repeat;
 	background-position: top -35px left calc(50% + 120px);
 	margin-left: -240px;
@@ -587,12 +568,8 @@ p {
 	 <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
 	\* <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <> */
 
-	.page {
-		padding-top: 50px;
-	}
-
-	.page .view:not(.menu),
-	.page .menu {
+	.view:not(.menu),
+	.menu {
 		background: #04122a url(/images/gradient.png) no-repeat;
 		background-position: top -35px center;
 		margin-left: 0;
@@ -600,19 +577,20 @@ p {
 		width: 100%;
 	}
 
-	.page .menu:not(.is-active) {
+/*
+	.menu:not(.is-active) {
 		display: none;
 	}
-
-	.page .menu .menu-btn.is-selected {
+*/
+	.menu .menu-btn.is-selected {
 		background: #243774;
 	}
 
-	.page .menu .menu-btn img {
+	.menu .menu-btn img {
 		display: block;
 	}
 
-	.page h1 {
+	h1 {
 		display: none;
 	}
 }

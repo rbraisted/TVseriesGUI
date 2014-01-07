@@ -6,7 +6,7 @@ TVRO.SettingsPage = function() {
 	var self = {};
 
 	self.init = function() {
-		var page = $('[id ~= page ]'),
+		var page = $('body'),
 			menu = $('[id ~= menu ]', page),
 			menuBtns = $('[id ~= menu-btn ]', menu),
 			backBtns = $('[id ~= back-btn ]', page),
@@ -28,13 +28,18 @@ TVRO.SettingsPage = function() {
 			menuBtn.addClass('is-selected');
 			menu.removeClass('is-active');
 
-			if (activeView) activeView.hide();
+			// if (activeView) activeView.hide();
 
-			if (menuBtn.hasId('general-settings-btn')) activeView = generalSettingsView;
-			else if (menuBtn.hasId('network-settings-btn')) activeView = networkSettingsView;
-			else if (menuBtn.hasId('advanced-settings-btn')) activeView = advancedSettingsView;
+			// if (menuBtn.hasId('general-settings-btn')) activeView = generalSettingsView;
+			// else if (menuBtn.hasId('network-settings-btn')) activeView = networkSettingsView;
+			// else if (menuBtn.hasId('advanced-settings-btn')) activeView = advancedSettingsView;
 
-			activeView.show();
+			// activeView.show();
+
+			$('body').removeClass('is-showing-splash is-showing-general-settings is-showing-network-settings is-showing-advanced-settings');
+			if (menuBtn.hasId('general-settings-btn')) $('body').addClass('is-showing-general-settings');
+			else if (menuBtn.hasId('network-settings-btn')) $('body').addClass('is-showing-network-settings');
+			else if (menuBtn.hasId('advanced-settings-btn')) $('body').addClass('is-showing-advanced-settings');
 		});
 
 		backBtns.click(function() {
@@ -44,7 +49,7 @@ TVRO.SettingsPage = function() {
 			menu.addClass('is-active');
 		});
 
-		$('[id ~= network-settings-btn ]', menu).click();
+		// $('[id ~= network-settings-btn ]', menu).click();
 	}
 
 	return self;
@@ -193,7 +198,7 @@ TVRO.EthernetSettingsView = function(view) {
 		popup.hide();
 		view.addClass('is-active');
 
-		$('[id ~= edit-btn ]', view).click();
+		// $('[id ~= edit-btn ]', view).click();
 	}
 
 	self.hide = function() {

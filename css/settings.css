@@ -1,13 +1,3 @@
-/*.view:not(.menu) {
-	padding-top: 50px;
-}
-
-.view .back-btn {
-	position: absolute;
-	top: 0;
-}
-*/
-
 .view .back-btn {
 	margin-bottom: 30px;
 }
@@ -115,4 +105,39 @@
 		float: right;
 		margin: 1em 1em 1em 0;
 	}
+}
+
+
+body.is-showing-splash .menu {
+	display: block;
+}
+
+/**/
+
+body.is-showing-general-settings .menu {
+	display: block;
+}
+
+body.is-showing-general-settings .general-settings-view {
+	display: block;
+}
+
+/**/
+
+body.is-showing-network-settings .menu {
+	display: block;
+}
+
+body.is-showing-network-settings .network-settings-view {
+	display: block;
+}
+
+/**/
+
+body.is-showing-advanced-settings .menu {
+	display: block;
+}
+
+body.is-showing-advanced-settings .advanced-settings-view {
+	display: block;
 }

@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="/js/base.js"></script>
 	</head>
-	<body>
+	<body class="is-showing-splash">
 
 		<div id="header" class="header">
 			<a href="/" class="tracvision-logo">
@@ -71,5 +71,3 @@
 	 		 	</a>
 			</div>
 		</div>
-
-		<div id="page" class="page">

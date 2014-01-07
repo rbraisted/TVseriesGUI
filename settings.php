@@ -21,7 +21,7 @@
 
 
 
-<div id="general-settings-view" class="view">
+<div id="general-settings-view" class="view general-settings-view">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif" />
 		<label>General Settings</label>
@@ -57,7 +57,7 @@
 
 
 
-<div id="advanced-settings-view" class="view">
+<div id="advanced-settings-view" class="view advanced-settings-view">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif">
 		<label>Advanced Settings</label>
@@ -94,7 +94,7 @@
 
 
 
-<div id="network-settings-view" class="view">
+<div id="network-settings-view" class="view network-settings-view">
 	<a id="back-btn" href="#" class="btn back-btn">
 		<img src="/images/img.gif">
 		<label>Network Settings</label>
