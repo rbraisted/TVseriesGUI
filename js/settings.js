@@ -44,7 +44,7 @@ TVRO.SettingsPage = function() {
 			menu.addClass('is-active');
 		});
 
-		// $('[id ~= network-settings-btn ]', menu).click();
+		$('[id ~= network-settings-btn ]', menu).click();
 	}
 
 	return self;
@@ -168,38 +168,17 @@ TVRO.NetworkSettingsView = function(page) {
 
 TVRO.EthernetSettingsView = function(view) {
 	var self = {},
-		editingView,
+		popup,
 		webService = new TVRO.WebService();
 
 	self.init = function() {
 		view = $('[id ~= ethernet-settings-view ]', view);
-		editingView = $('[id ~= edit-ethernet-settings-view ]', view);
+		popup = new TVRO.EditEthernetSettingsPopup();
 
-		var editBtn = $('[id ~= edit-btn ]', view),
-			saveBtn = $('[id ~= save-btn ]', view),
-			cancelBtn = $('[id ~= cancel-btn ]', view),
-			resetBtn = $('[id ~= reset-btn ]', view);
+		popup.init();
 
-		editBtn.click(function() {
-			editingView.addClass('is-active');
-		});
-
-		cancelBtn.click(function() {
-			self.show();
-		});
-
-		saveBtn.click(function() {
-			webService.request('set_eth', {
-
-			}, function(response) {
-				self.show();
-			});
-		});
-
-		resetBtn.click(function() {
-			webService.request('set_eth_factory', function(response) {
-				self.show();
-			});
+		$('[id ~= edit-btn ]', view).click(function() {
+			popup.show();
 		});
 	}
 
@@ -211,14 +190,55 @@ TVRO.EthernetSettingsView = function(view) {
 			$('[id ~= gateway ]', view).text($('gateway', response).text());
 			$('[id ~= broadcast ]', view).text($('broadcast', response).text());
 		});
-		editingView.removeClass('is-active');
+		popup.hide();
 		view.addClass('is-active');
 
-		// $('[id ~= edit-btn ]', view).click();
+		$('[id ~= edit-btn ]', view).click();
 	}
 
 	self.hide = function() {
 		view.removeClass('is-active');
+	}
+
+	return self;
+}
+
+
+
+TVRO.EditEthernetSettingsPopup = function() {
+	var self = {},
+		popup = $('[id ~= edit-ethernet-settings-view ]'),
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+		$('[id ~= cancel-btn ]', popup).click(function() {
+			self.hide();
+		});
+
+		$('[id ~= save-btn ]', popup).click(function() {
+			self.hide();
+		});
+
+		$('[id ~= reset-btn ]', popup).click(function() {
+			self.hide();
+		});
+	}
+
+	self.show = function() {
+		webService.request('get_eth', function(response) {
+			var mode = $('mode', response).text();
+			$('[id ~= static-view ]', popup).toggleClass('is-active');
+			$('[id ~= mode ]', popup).text(mode);
+			$('[id ~= ip ]', popup).text($('ip', response).text());
+			$('[id ~= subnet ]', popup).text($('netmask', response).text());
+			$('[id ~= gateway ]', popup).text($('gateway', response).text());
+			$('[id ~= broadcast ]', popup).text($('broadcast', response).text());
+		});
+		popup.addClass('is-active');
+	}
+
+	self.hide = function() {
+		popup.removeClass('is-active');
 	}
 
 	return self;
@@ -277,39 +297,6 @@ TVRO.WirelessSettingsView = function(view) {
 
 	return self;
 }
-
-
-
-// TVRO.EthernetSettingsPopup = function(view) {
-// 	var self = {},
-// 		popup,
-// 		webService = new TVRO.WebService();
-
-// 	return self;
-// }
-
-
-
-
-// TVRO.WirelessSettingsPopup = function(view) {
-// 	var self = {},
-// 		popup,
-// 		webService = new TVRO.WebService();
-
-// 	self.init = function() {
-
-// 	}
-
-// 	self.show = function() {
-// 		view.addClass('is-active');
-// 	}
-
-// 	self.hide = function() {
-// 		view.removeClass('is-active');
-// 	}
-
-// 	return self;
-// }
 
 
 

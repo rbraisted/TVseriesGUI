@@ -127,17 +127,6 @@
 				<label>Edit</label>
 			</a>
 		</div>
-
-		<div id="edit-ethernet-settings-view" class="edit-settings-view popup">
-			<div class="popup-header">
-				<label>Edit Ethernet Settings</label>
-				<a id="cancel-btn" href="#" class="btn close-btn">
-					<img src="/images/img.gif">
-				</a>
-			</div>
-			<div class="popup-content">
-			</div>
-		</div>
 	</div>
 
 	<div id="wireless-settings-view" class="settings-view">
@@ -185,6 +174,55 @@
 			</div>
 			<a id="edit-btn" href="#" class="btn">
 				<label>Edit</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<div id="edit-ethernet-settings-view" class="edit-settings-view view popup">
+	<div class="popup-content settings-view">
+		<div class="popup-header">
+			<h1>Edit Ethernet Settings</h1>
+			<a id="cancel-btn" href="#" class="btn close-btn">
+				<img src="/images/img.gif">
+			</a>
+		</div>
+		<div class="setting">
+			<label>Mode:</label>
+			<a id="mode mode-btn" href="#" class="dropdown-btn"></a>
+		</div>
+		<div id="static-view">
+			<div class="setting">
+				<label>IP Address:</label>
+				<input id="ip" type="text" />
+			</div>
+			<div class="setting">
+				<label>Subnet:</label>
+				<input id="subnet" type="text" />
+			</div>
+			<div class="setting">
+				<label>Gateway:</label>
+				<input id="gateway" type="text" />
+			</div>
+			<div class="setting">
+				<label>Broadcast:</label>
+				<input id="broadcast" type="text" />
+			</div>
+		</div>
+		<div class="btns">
+			<a id="save-btn" href="#" class="btn">
+				<img src="/images/img.gif">
+				<label>Save</label>
+			</a>
+			<a id="cancel-btn" href="#" class="btn">
+				<img src="/images/img.gif">
+				<label>Cancel</label>
+			</a>
+			<a id="reset-btn" href="#" class="btn">
+				<img src="/images/img.gif">
+				<label>Factory Settings</label>
 			</a>
 		</div>
 	</div>
