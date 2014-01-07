@@ -16,10 +16,12 @@
 	margin-bottom: 5em;
 }
 
+/*
 .settings-view:not(.is-active),
 .edit-settings-view:not(.is-active) {
 	display: none;
 }
+*/
 
 .settings-view .setting label {
 	color: #cbcaca;
@@ -108,36 +110,33 @@
 }
 
 
-body.is-showing-splash .menu {
-	display: block;
-}
-
+body.is-showing-splash .menu,
 /**/
-
-body.is-showing-general-settings .menu {
-	display: block;
-}
-
-body.is-showing-general-settings .general-settings-view {
-	display: block;
-}
-
+body.is-showing-general-settings .menu,
+body.is-showing-general-settings .general-settings-view,
 /**/
-
-body.is-showing-network-settings .menu {
-	display: block;
-}
-
-body.is-showing-network-settings .network-settings-view {
-	display: block;
-}
-
+body.is-showing-advanced-settings .menu,
+body.is-showing-advanced-settings .advanced-settings-view,
 /**/
-
-body.is-showing-advanced-settings .menu {
+body.is-showing-network-settings .menu,
+body.is-showing-network-settings .network-settings-view,
+/**/
+body.is-showing-ethernet-settings .menu,
+body.is-showing-ethernet-settings .network-settings-view,
+body.is-showing-ethernet-settings .ethernet-settings-view,
+/**/
+body.is-showing-wireless-settings .menu,
+body.is-showing-wireless-settings .network-settings-view,
+body.is-showing-wireless-settings .wireless-settings-view {
 	display: block;
 }
 
-body.is-showing-advanced-settings .advanced-settings-view {
+
+
+.network-settings-view .wireless-settings-view {
+	display: none;
+}
+
+.network-settings-view.is-showing-wireless-settings .wireless-settings-view {
 	display: block;
 }

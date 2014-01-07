@@ -100,7 +100,7 @@
 		<label>Network Settings</label>
 	</a>
 
-	<div id="ethernet-settings-view" class="settings-view">
+	<div id="ethernet-settings-view" class="settings-view ethernet-settings-view">
 		<h1>Ethernet Settings</h1>
 		<div class="text-wall">
 			<div class="setting">
@@ -129,7 +129,7 @@
 		</div>
 	</div>
 
-	<div id="wireless-settings-view" class="settings-view">
+	<div id="wireless-settings-view" class="settings-view wireless-settings-view">
 		<h1>Wireless Settings</h1>
 		<div class="text-wall">
 			<div class="setting">
@@ -179,9 +179,9 @@
 	</div>
 </div>
 
-</div>
 
-<div id="edit-ethernet-settings-view" class="edit-settings-view view popup">
+
+<div id="edit-ethernet-settings-view" class="edit-settings-view view popup ethernet-settings-view">
 	<div class="popup-content settings-view">
 		<div class="popup-header">
 			<h1>Edit Ethernet Settings</h1>
