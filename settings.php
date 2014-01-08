@@ -183,6 +183,10 @@
 
 <div id="edit-ethernet-settings-view" class="popup edit-settings-view ethernet-settings-view">
 	<div class="popup-content settings-view">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Edit Ethernet Settings</label>
+		</a>
 		<div class="popup-header">
 			<h1>Edit Ethernet Settings</h1>
 			<a id="cancel-btn" href="#" class="btn close-btn">

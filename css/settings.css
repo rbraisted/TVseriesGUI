@@ -49,6 +49,7 @@
 @media screen and (min-width: 880px) {
 	.popup,
 	.dropdown {
+		display: none;
 		background: rgba(0,0,0,.2);
 		height: 100%;
 		left: 0;
@@ -142,10 +143,6 @@
 	}
 }
 
-.popup {
-	display: none;
-}
-
 body.is-showing-splash .menu,
 /**/
 body.is-showing-menu .menu,
@@ -179,11 +176,98 @@ body.is-showing-wireless-settings .wireless-settings-view {
 
 
 @media screen and (max-width: 880px) {
+
+	/*
+		.popup should be like .view
+		when we're at mobile width
+	*/
+	.popup {
+		display: none;
+		float: left;
+		min-height: 100%;
+		position: relative;
+		padding-top: 95px;
+		z-index: 1;
+	}
+
+	.popup {
+		background: #04122a url(/images/gradient.png) no-repeat;
+		background-position: top -35px left calc(50% + 120px);
+		margin-left: -240px;
+		padding-left: 240px;
+		width: 100%;
+	}
+
+	.popup {
+		background: #04122a url(/images/gradient.png) no-repeat;
+		background-position: top -35px center;
+		margin-left: 0;
+		padding-left: 0;
+		padding-top: 50px;
+		width: 100%;
+	}
+
+	.dropdown {
+		display: none;
+		background: rgba(0,0,0,.2);
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 4;
+	}
+
+	.dropdown .dropdown-content {
+		background: #041229;
+		box-shadow: 0 0 50px #000;
+		display: block;
+		position: absolute;
+	}
+
+	.dropdown .dropdown-content {
+		bottom: 0 !important;
+		left: 0 !important;
+		top: auto !important;
+		width: 100%;
+	}
+
+	.dropdown .dropdown-content .dropdown-option {
+		border-bottom: 1px solid #466ab2;
+		display: block;
+	}
+
+	.dropdown .dropdown-content .dropdown-option label {
+		padding-left: 44px;
+		text-align: left;
+	}
+
+	.dropdown .dropdown-content .dropdown-option img {
+		background-image: url(/images/check-mark.png);
+		right: auto;
+	}
+
+	.dropdown .dropdown-content .dropdown-option.is-selected img {
+		display: block;
+	}
+
+	.dropdown .dropdown-header {
+		background: #000;
+		border-bottom: 1px solid #466ab2;
+		position: relative;
+	}
+
 	body.is-showing-general-settings .menu,
+	/**/
 	body.is-showing-advanced-settings .menu,
+	/**/
 	body.is-showing-network-settings .menu,
+	/**/
 	body.is-showing-ethernet-settings .menu,
-	body.is-showing-wireless-settings .menu {
+	body.is-showing-ethernet-settings .network-settings-view,
+	/**/
+	body.is-showing-wireless-settings .menu,
+	body.is-showing-wireless-settings .network-settings-view {
 		display: none;
 	}
 }

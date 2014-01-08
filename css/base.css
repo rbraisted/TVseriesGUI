@@ -592,7 +592,7 @@ p {
 		display: block;
 	}
 
-	h1 {
+	.view h1 {
 		display: none;
 	}
 }
