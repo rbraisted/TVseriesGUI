@@ -4,7 +4,7 @@
 
 
 
-<div id="menu" class="view menu is-active">
+<div id="menu" class="view menu">
 	<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>General Settings</label>

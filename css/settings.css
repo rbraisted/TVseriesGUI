@@ -16,13 +16,6 @@
 	margin-bottom: 5em;
 }
 
-/*
-.settings-view:not(.is-active),
-.edit-settings-view:not(.is-active) {
-	display: none;
-}
-*/
-
 .settings-view .setting label {
 	color: #cbcaca;
 	padding-right: 10px;
@@ -37,7 +30,7 @@
 	display: block;
 	left: 50%;
 	margin-left: 50%;
-	min-height: 1.6em;	/* magic number, .text-wall */
+	min-height: 1.6em;
 	padding-left: 10px;
 }
 
@@ -144,22 +137,22 @@
 }
 
 body.is-showing-splash .menu,
-/**/
+
 body.is-showing-menu .menu,
-/**/
+
 body.is-showing-general-settings .menu,
 body.is-showing-general-settings .general-settings-view,
-/**/
+
 body.is-showing-advanced-settings .menu,
 body.is-showing-advanced-settings .advanced-settings-view,
-/**/
+
 body.is-showing-network-settings .menu,
 body.is-showing-network-settings .network-settings-view,
-/**/
+
 body.is-showing-ethernet-settings .menu,
 body.is-showing-ethernet-settings .network-settings-view,
 body.is-showing-ethernet-settings .ethernet-settings-view,
-/**/
+
 body.is-showing-wireless-settings .menu,
 body.is-showing-wireless-settings .network-settings-view,
 body.is-showing-wireless-settings .wireless-settings-view {
@@ -176,11 +169,6 @@ body.is-showing-wireless-settings .wireless-settings-view {
 
 
 @media screen and (max-width: 880px) {
-
-	/*
-		.popup should be like .view
-		when we're at mobile width
-	*/
 	.popup {
 		display: none;
 		float: left;
@@ -258,14 +246,14 @@ body.is-showing-wireless-settings .wireless-settings-view {
 	}
 
 	body.is-showing-general-settings .menu,
-	/**/
+	
 	body.is-showing-advanced-settings .menu,
-	/**/
+	
 	body.is-showing-network-settings .menu,
-	/**/
+	
 	body.is-showing-ethernet-settings .menu,
 	body.is-showing-ethernet-settings .network-settings-view,
-	/**/
+	
 	body.is-showing-wireless-settings .menu,
 	body.is-showing-wireless-settings .network-settings-view {
 		display: none;
