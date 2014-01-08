@@ -39,9 +39,6 @@ TVRO.SettingsPage = function() {
 			menuBtns.removeClass('is-selected');
 			menu.addClass('is-active');
 		});
-
-		$('[id ~= network-settings-btn ]').click();
-		$('[id ~= edit-btn ]', '[id ~= ethernet-settings-view ]').click();
 	}
 
 	return self;
@@ -146,14 +143,14 @@ TVRO.NetworkSettingsView = function(page) {
 			$('[id ~= gateway ]', ethernetSettingsView).text($('gateway', response).text());
 			$('[id ~= broadcast ]', ethernetSettingsView).text($('broadcast', response).text());
 
-			view.toggleClass('is-showing-wireless-settings', mode !== 'OFF');
+			wirelessSettingsView.toggle(mode !== 'OFF');
 			if (mode !== 'OFF') {
 				webService.request('get_wlan', function(response) {
 					var mode = $('mode:eq(0)', response).text(),
 						adhocMode = $('adhoc_mode', response),
 						adhocView = $('[id ~= adhoc-view ]', wirelessSettingsView),
 						infrastructureMode = $('if_mode', response),
-						infrastructureView = $('[id ~= infrastructure-view ]', wirelessSettingsView)
+						infrastructureView = $('[id ~= infrastructure-view ]', wirelessSettingsView);
 
 					$('[id ~= mode ]', wirelessSettingsView).text(mode);
 					adhocView.toggle(mode === 'ADHOC');
@@ -187,17 +184,25 @@ TVRO.EthernetSettingsView = function() {
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-		var modeDropdown = TVRO.Dropdown('#ethernet-mode-dropdown', '#mode-btn');
+		var staticView = $('[id ~= static-view ]', view),
+			modeDropdown = TVRO.Dropdown('#ethernet-mode-dropdown', '#mode-btn');
+		modeDropdown.optionSelected(function(name, value) {
+			$('[id ~= mode ]', view).text(name);
+			staticView.toggle(value === 'STATIC');
+		});
 
 		webService.request('get_eth', function(response) {
 			var mode = $('mode', response).text();
 			modeDropdown.selectValue(mode);
-			view.toggleClass('is-showing-static-mode', mode === 'STATIC');
-			$('[id ~= mode ]', view).text(mode);
-			$('[id ~= ip ]', view).val($('ip', response).text());
-			$('[id ~= subnet ]', view).val($('netmask', response).text());
-			$('[id ~= gateway ]', view).val($('gateway', response).text());
-			$('[id ~= broadcast ]', view).val($('broadcast', response).text());
+
+			staticView.toggleClass(mode === 'STATIC');
+			if (mode === 'STATIC') {
+				$('[id ~= mode ]', staticView).text(mode);
+				$('[id ~= ip ]', staticView).val($('ip', response).text());
+				$('[id ~= subnet ]', staticView).val($('netmask', response).text());
+				$('[id ~= gateway ]', staticView).val($('gateway', response).text());
+				$('[id ~= broadcast ]', staticView).val($('broadcast', response).text());
+			}
 		});
 
 		$('[id ~= cancel-btn ]', view).click(function() {
@@ -206,9 +211,17 @@ TVRO.EthernetSettingsView = function() {
 		});
 
 		$('[id ~= save-btn ]', view).click(function() {
-			webService.request('set_eth', {
+			var mode = modeDropdown.selectedValue(),
+				ethernetSettings = { 'mode' : mode };
+				
+			if (mode === 'STATIC') {
+				ethernetSettings.ip = $('[id ~= ip ]', staticView).val();
+				ethernetSettings.netmask = $('[id ~= subnet ]', staticView).val();
+				ethernetSettings.gateway = $('[id ~= gateway ]', staticView).val();
+				ethernetSettings.broadcast = $('[id ~= broadcast ]', staticView).val();
+			}
 
-			});
+			webService.request('set_eth', ethernetSettings);
 			$(document.body).removeClass('is-showing-ethernet-settings')
 							.addClass('is-showing-network-settings');
 		});

@@ -84,7 +84,17 @@
 	}
 
 	.dropdown .dropdown-content .dropdown-option label {
+		padding-left: 44px;
 		text-align: left;
+	}
+
+	.dropdown .dropdown-content .dropdown-option img {
+		background-image: url(/images/check-mark.png);
+		right: auto;
+	}
+
+	.dropdown .dropdown-content .dropdown-option.is-selected img {
+		display: block;
 	}
 
 	.popup .popup-header,
@@ -159,13 +169,14 @@ body.is-showing-wireless-settings .wireless-settings-view {
 	display: block;
 }
 
-.network-settings-view .wireless-settings-view {
+.ethernet-settings-view .static-view {
 	display: none;
 }
 
-.network-settings-view.is-showing-wireless-settings .wireless-settings-view {
+.ethernet-settings-view.is-showing-static-mode .static-view {
 	display: block;
 }
+
 
 @media screen and (max-width: 880px) {
 	body.is-showing-general-settings .menu,

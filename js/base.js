@@ -260,19 +260,24 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 
 	self.selectValue = function(value) {
 		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).click();
-	};
+	}
 
 	self.optionSelected = function() {
 		if (typeof arguments[0] === 'function') {
 			optionSelected.push(arguments[0]);
 		}
-	};
+	}
+
+	self.selectedValue = function() {
+		return $('[id ~= dropdown-option ].is-selected', dropdown).attr('value');
+	}
 
 	$('[id ~= dropdown-option]', dropdown).click(function() {
-		$('[id ~= dropdown-option]', dropdown).removeClass('selected');
-		$(this).toggleClass('selected', true);
+		var dropdownOption = $(this);
+		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
+		dropdownOption.addClass('is-selected', true);
 		for (var i = 0; i < optionSelected.length; i++) {
-			optionSelected[i](this.innerText, this.getAttribute('value'));
+			optionSelected[i]($('label', dropdownOption).text(), dropdownOption.attr('value'));
 		}
 		self.hide();
 	});
@@ -284,11 +289,11 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 
 	self.show = function() {
 		dropdown.show();
-	};
+	}
 
 	self.hide = function() {
 		dropdown.hide();
-	};
+	}
 
 	return self;
 };
