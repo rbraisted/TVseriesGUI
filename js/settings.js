@@ -9,15 +9,14 @@ TVRO.SettingsPage = function() {
 		var page = $(document.body),
 			menu = $('[id ~= menu ]', page),
 			menuBtns = $('[id ~= menu-btn ]', menu),
-			backBtns = $('[id ~= back-btn ]', page),
-			generalSettingsView = new TVRO.GeneralSettingsView(),
-			advancedSettingsView = new TVRO.AdvancedSettingsView(),
-			networkSettingsView = new TVRO.NetworkSettingsView(),
-			activeView;
+			backBtns = $('[id ~= back-btn ]', page);
 
-		generalSettingsView.init();
-		networkSettingsView.init();
-		advancedSettingsView.init();
+		TVRO.GeneralSettingsView().init();
+		TVRO.AdvancedSettingsView().init();
+		TVRO.NetworkSettingsView().init();
+
+		TVRO.EthernetSettingsView().init();
+		TVRO.WirelessSettingsView().init();
 
 		menuBtns.click(function() {
 			var menuBtn = $(this);
@@ -28,18 +27,21 @@ TVRO.SettingsPage = function() {
 			menuBtn.addClass('is-selected');
 			menu.removeClass('is-active');
 
-			$(document.body).removeClass('is-showing-splash is-showing-general-settings is-showing-advanced-settings is-showing-network-settings is-showing-ethernet-settings is-showing-wireless-settings');
+			$(document.body).removeClass('is-showing-splash is-showing-menu is-showing-general-settings is-showing-advanced-settings is-showing-network-settings is-showing-ethernet-settings is-showing-wireless-settings');
 			if (menuBtn.hasId('general-settings-btn')) $(document.body).addClass('is-showing-general-settings');
 			else if (menuBtn.hasId('advanced-settings-btn')) $(document.body).addClass('is-showing-advanced-settings');
 			else if (menuBtn.hasId('network-settings-btn')) $(document.body).addClass('is-showing-network-settings');
 		});
 
 		backBtns.click(function() {
-			if (activeView) activeView.hide();
-			activeView = undefined;
+			$(document.body).removeClass('is-showing-splash is-showing-menu is-showing-general-settings is-showing-advanced-settings is-showing-network-settings is-showing-ethernet-settings is-showing-wireless-settings');
+			$(document.body).addClass('is-showing-menu');
 			menuBtns.removeClass('is-selected');
 			menu.addClass('is-active');
 		});
+
+		$('[id ~= network-settings-btn ]').click();
+		$('[id ~= edit-btn ]', '[id ~= ethernet-settings-view ]').click();
 	}
 
 	return self;
@@ -136,8 +138,7 @@ TVRO.NetworkSettingsView = function(page) {
 		});		
 
 		webService.request('get_eth', function(response) {
-			var mode = $('mode', response).text(),
-				showWirelessSettings = mode !== 'OFF';
+			var mode = $('mode', response).text();
 
 			$('[id ~= mode ]', ethernetSettingsView).text(mode);
 			$('[id ~= ip ]', ethernetSettingsView).text($('ip', response).text());
@@ -145,15 +146,14 @@ TVRO.NetworkSettingsView = function(page) {
 			$('[id ~= gateway ]', ethernetSettingsView).text($('gateway', response).text());
 			$('[id ~= broadcast ]', ethernetSettingsView).text($('broadcast', response).text());
 
-			view.toggleClass('is-showing-wireless-settings', showWirelessSettings);
-			if (showWirelessSettings) {
+			view.toggleClass('is-showing-wireless-settings', mode !== 'OFF');
+			if (mode !== 'OFF') {
 				webService.request('get_wlan', function(response) {
 					var mode = $('mode:eq(0)', response).text(),
 						adhocMode = $('adhoc_mode', response),
-						infrastructureMode = $('if_mode', response),
 						adhocView = $('[id ~= adhoc-view ]', wirelessSettingsView),
+						infrastructureMode = $('if_mode', response),
 						infrastructureView = $('[id ~= infrastructure-view ]', wirelessSettingsView)
-
 
 					$('[id ~= mode ]', wirelessSettingsView).text(mode);
 					adhocView.toggle(mode === 'ADHOC');
@@ -181,44 +181,53 @@ TVRO.NetworkSettingsView = function(page) {
 
 
 
-// TVRO.EditEthernetSettingsPopup = function() {
-// 	var self = {},
-// 		popup = $('[id ~= edit-ethernet-settings-view ]'),
-// 		webService = new TVRO.WebService();
+TVRO.EthernetSettingsView = function() {
+	var self = {},
+		view = $('[id ~= edit-ethernet-settings-view ]'),
+		webService = new TVRO.WebService();
 
-// 	self.init = function() {
-// 		$('[id ~= cancel-btn ]', popup).click(function() {
-// 			self.hide();
-// 		});
+	self.init = function() {
+		var modeDropdown = TVRO.Dropdown('#ethernet-mode-dropdown', '#mode-btn');
 
-// 		$('[id ~= save-btn ]', popup).click(function() {
-// 			self.hide();
-// 		});
+		webService.request('get_eth', function(response) {
+			var mode = $('mode', response).text();
+			modeDropdown.selectValue(mode);
+			view.toggleClass('is-showing-static-mode', mode === 'STATIC');
+			$('[id ~= mode ]', view).text(mode);
+			$('[id ~= ip ]', view).val($('ip', response).text());
+			$('[id ~= subnet ]', view).val($('netmask', response).text());
+			$('[id ~= gateway ]', view).val($('gateway', response).text());
+			$('[id ~= broadcast ]', view).val($('broadcast', response).text());
+		});
 
-// 		$('[id ~= reset-btn ]', popup).click(function() {
-// 			self.hide();
-// 		});
-// 	}
+		$('[id ~= cancel-btn ]', view).click(function() {
+			$(document.body).removeClass('is-showing-ethernet-settings')
+							.addClass('is-showing-network-settings');
+		});
 
-// 	self.show = function() {
-// 		webService.request('get_eth', function(response) {
-// 			var mode = $('mode', response).text();
-// 			$('[id ~= static-view ]', popup).toggleClass('is-active');
-// 			$('[id ~= mode ]', popup).text(mode);
-// 			$('[id ~= ip ]', popup).text($('ip', response).text());
-// 			$('[id ~= subnet ]', popup).text($('netmask', response).text());
-// 			$('[id ~= gateway ]', popup).text($('gateway', response).text());
-// 			$('[id ~= broadcast ]', popup).text($('broadcast', response).text());
-// 		});
-// 		popup.addClass('is-active');
-// 	}
+		$('[id ~= save-btn ]', view).click(function() {
+			webService.request('set_eth', {
 
-// 	self.hide = function() {
-// 		popup.removeClass('is-active');
-// 	}
+			});
+			$(document.body).removeClass('is-showing-ethernet-settings')
+							.addClass('is-showing-network-settings');
+		});
 
-// 	return self;
-// }
+		$('[id ~= reset-btn ]', view).click(function() {
+			webService.request('set_eth_factory');
+			$(document.body).removeClass('is-showing-ethernet-settings')
+							.addClass('is-showing-network-settings');
+		});
+	}
+
+	return self;
+}
+
+
+
+TVRO.WirelessSettingsView = function() {
+	return { init : function() {} };
+}
 
 
 

@@ -181,7 +181,7 @@
 
 
 
-<div id="edit-ethernet-settings-view" class="edit-settings-view view popup ethernet-settings-view">
+<div id="edit-ethernet-settings-view" class="popup edit-settings-view ethernet-settings-view">
 	<div class="popup-content settings-view">
 		<div class="popup-header">
 			<h1>Edit Ethernet Settings</h1>
@@ -191,7 +191,9 @@
 		</div>
 		<div class="setting">
 			<label>Mode:</label>
-			<a id="mode mode-btn" href="#" class="dropdown-btn"></a>
+			<a id="mode-btn" href="#" class="dropdown-btn">
+				<div id="mode">HI</div>
+			</a>
 		</div>
 		<div id="static-view">
 			<div class="setting">
@@ -223,6 +225,28 @@
 			<a id="reset-btn" href="#" class="btn">
 				<img src="/images/img.gif">
 				<label>Factory Settings</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="ethernet-mode-dropdown" class="dropdown">
+	<div id="dropdown-content" class="dropdown-content">
+		<div id="dropdown-header" class="dropdown-header">
+			<h1>Ethernet Mode</h1>
+		</div>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option selected">
+				<img src="/images/img.gif">
+				<label>DISABLED</label>
+			</a>
+			<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>STATIC</label>
+			</a>
+			<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>DHCP</label>
 			</a>
 		</div>
 	</div>

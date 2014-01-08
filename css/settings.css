@@ -47,32 +47,55 @@
 }
 
 @media screen and (min-width: 880px) {
-	.popup {
+	.popup,
+	.dropdown {
+		background: rgba(0,0,0,.2);
 		height: 100%;
 		left: 0;
 		position: fixed;
 		top: 0;
 		width: 100%;
-		z-index: 900;
-		background: rgba(0,0,0,.5);
+		z-index: 4;
+	}
+
+	.popup .popup-content,
+	.dropdown .dropdown-content {
+		background: #041229;
+		box-shadow: 0 0 50px #000;
+		display: block;
+		position: absolute;
 	}
 
 	.popup .popup-content {
-		background: #041229;
-		display: block;
 		height: 600px;
 		left: 50%;
 		margin: -300px -400px;
-		position: absolute;
 		top: 50%;
 		width: 800px;
 	}
 
-	.popup .popup-header {
+	.dropdown .dropdown-content {
+		min-width: 250px;
+	}
+
+	.dropdown .dropdown-content .dropdown-option {
+		border-bottom: 1px solid #466ab2;
+		display: block;
+	}
+
+	.dropdown .dropdown-content .dropdown-option label {
+		text-align: left;
+	}
+
+	.popup .popup-header,
+	.dropdown .dropdown-header {
 		background: #000;
 		border-bottom: 1px solid #466ab2;
-		margin-bottom: 1em;
 		position: relative;
+	}
+
+	.popup .popup-header {
+		margin-bottom: 1em;
 	}
 
 	.popup .popup-header .close-btn {
@@ -109,8 +132,13 @@
 	}
 }
 
+.popup {
+	display: none;
+}
 
 body.is-showing-splash .menu,
+/**/
+body.is-showing-menu .menu,
 /**/
 body.is-showing-general-settings .menu,
 body.is-showing-general-settings .general-settings-view,
@@ -131,12 +159,20 @@ body.is-showing-wireless-settings .wireless-settings-view {
 	display: block;
 }
 
-
-
 .network-settings-view .wireless-settings-view {
 	display: none;
 }
 
 .network-settings-view.is-showing-wireless-settings .wireless-settings-view {
 	display: block;
+}
+
+@media screen and (max-width: 880px) {
+	body.is-showing-general-settings .menu,
+	body.is-showing-advanced-settings .menu,
+	body.is-showing-network-settings .menu,
+	body.is-showing-ethernet-settings .menu,
+	body.is-showing-wireless-settings .menu {
+		display: none;
+	}
 }

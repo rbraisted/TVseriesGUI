@@ -78,7 +78,7 @@ h3 {
 
 h1 {
 	font-size: 21px;
-	padding: 0.571428571em 0;
+	padding: 0.571428571em 1.14285714em;
 	text-align: center;
 }
 
@@ -574,6 +574,7 @@ p {
 		background-position: top -35px center;
 		margin-left: 0;
 		padding-left: 0;
+		padding-top: 50px;
 		width: 100%;
 	}
 
@@ -582,6 +583,7 @@ p {
 		display: none;
 	}
 */
+
 	.menu .menu-btn.is-selected {
 		background: #243774;
 	}

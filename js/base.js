@@ -279,7 +279,7 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 
 	$(dropdownBtn).click(function() {
 		dropdown.show();
-		dropdown.offset($(this).offset());
+		$('#dropdown-content', dropdown).offset($(this).offset());
 	});
 
 	self.show = function() {
