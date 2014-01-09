@@ -27,15 +27,15 @@ TVRO.SettingsPage = function() {
 			menuBtn.addClass('is-selected');
 			menu.removeClass('is-active');
 
-			$(document.body).removeClass('is-showing-splash is-showing-menu is-showing-general-settings is-showing-advanced-settings is-showing-network-settings is-showing-ethernet-settings is-showing-wireless-settings');
-			if (menuBtn.hasId('general-settings-btn')) $(document.body).addClass('is-showing-general-settings');
-			else if (menuBtn.hasId('advanced-settings-btn')) $(document.body).addClass('is-showing-advanced-settings');
-			else if (menuBtn.hasId('network-settings-btn')) $(document.body).addClass('is-showing-network-settings');
+			$(document.body).removeClass('at-splash at-menu at-general-settings at-advanced-settings at-network-settings at-ethernet-settings at-wireless-settings');
+			if (menuBtn.hasId('general-settings-btn')) $(document.body).addClass('at-general-settings');
+			else if (menuBtn.hasId('advanced-settings-btn')) $(document.body).addClass('at-advanced-settings');
+			else if (menuBtn.hasId('network-settings-btn')) $(document.body).addClass('at-network-settings');
 		});
 
 		backBtns.click(function() {
-			$(document.body).removeClass('is-showing-splash is-showing-menu is-showing-general-settings is-showing-advanced-settings is-showing-network-settings is-showing-ethernet-settings is-showing-wireless-settings');
-			$(document.body).addClass('is-showing-menu');
+			$(document.body).removeClass('at-splash at-menu at-general-settings at-advanced-settings at-network-settings at-ethernet-settings at-wireless-settings');
+			$(document.body).addClass('at-menu');
 			menuBtns.removeClass('is-selected');
 			menu.addClass('is-active');
 		});
@@ -121,17 +121,17 @@ TVRO.NetworkSettingsView = function(page) {
 
 	self.init = function() {
 		view = $('[id ~= network-settings-view ]', page);
-		ethernetSettingsView = $('[id ~= ethernet-settings-view ]', view);
-		wirelessSettingsView = $('[id ~= wireless-settings-view ]', view);
+		ethernetSettingsView = $('[id ~= ethernet-settings ]', view);
+		wirelessSettingsView = $('[id ~= wireless-settings ]', view);
 
 		$('[id ~= edit-btn ]', ethernetSettingsView).click(function() {
-			$(document.body).removeClass('is-showing-network-settings')
-							.addClass('is-showing-ethernet-settings');
+			$(document.body).removeClass('at-network-settings')
+							.addClass('at-ethernet-settings');
 		});
 
 		$('[id ~= edit-btn ]', wirelessSettingsView).click(function() {
-			$(document.body).removeClass('is-showing-network-settings')
-							.addClass('is-showing-wireless-settings');
+			$(document.body).removeClass('at-network-settings')
+							.addClass('at-wireless-settings');
 		});		
 
 		webService.request('get_eth', function(response) {
@@ -206,8 +206,8 @@ TVRO.EthernetSettingsView = function() {
 		});
 
 		$('[id ~= cancel-btn ]', view).click(function() {
-			$(document.body).removeClass('is-showing-ethernet-settings')
-							.addClass('is-showing-network-settings');
+			$(document.body).removeClass('at-ethernet-settings')
+							.addClass('at-network-settings');
 		});
 
 		$('[id ~= save-btn ]', view).click(function() {
@@ -222,14 +222,14 @@ TVRO.EthernetSettingsView = function() {
 			}
 
 			webService.request('set_eth', ethernetSettings);
-			$(document.body).removeClass('is-showing-ethernet-settings')
-							.addClass('is-showing-network-settings');
+			$(document.body).removeClass('at-ethernet-settings')
+							.addClass('at-network-settings');
 		});
 
 		$('[id ~= reset-btn ]', view).click(function() {
 			webService.request('set_eth_factory');
-			$(document.body).removeClass('is-showing-ethernet-settings')
-							.addClass('is-showing-network-settings');
+			$(document.body).removeClass('at-ethernet-settings')
+							.addClass('at-network-settings');
 		});
 	}
 

@@ -147,7 +147,7 @@ p {
 }
 
 .view {
-	display: block;
+	display: none;
 	position: absolute;
 }
 
@@ -164,6 +164,7 @@ p {
 .header-view {
 	background: transparent url(/images/header.png) no-repeat center center;
 	background-size: 100%;
+	display: block;
 	height: 50px;
 	position: absolute;
 	width: 100%;
@@ -223,6 +224,7 @@ p {
 
 .nav-view {
 	background-color: #010305;
+	display: block;
 	width: 100%;
 	z-index: 3;
 }
@@ -241,7 +243,6 @@ p {
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 .status-view {
-	display: none;
 	z-index: 6;
 }
 
@@ -668,12 +669,44 @@ p {
 \*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/
 
 
-.menu-view,
-.general-settings-view,
-.edit-ethernet-settings-view {
-	display: none;
+
+@media screen and (max-width: 880px) {
+	body.at-splash .menu-view,
+
+	body.at-menu .menu-view,
+
+	body.at-general-settings .general-settings-view,
+
+	body.at-advanced-settings .advanced-settings-view,
+
+	body.at-network-settings .network-settings-view,
+
+	body.at-ethernet-settings .ethernet-settings-view,
+
+	body.at-wireless-settings .wireless-settings-view {
+		display: block;
+	}
 }
 
-#ethernet-mode-dropdown {
-	display: block;
+@media screen and (min-width: 880px) {
+	body.at-splash .menu-view,
+
+	body.at-general-settings .menu-view,
+	body.at-general-settings .general-settings-view,
+
+	body.at-advanced-settings .menu-view,
+	body.at-advanced-settings .advanced-settings-view,
+
+	body.at-network-settings .menu-view,
+	body.at-network-settings .network-settings-view,
+
+	body.at-ethernet-settings .menu-view,
+	body.at-ethernet-settings .network-settings-view,
+	body.at-ethernet-settings .ethernet-settings-view,
+
+	body.at-wireless-settings .menu-view,
+	body.at-wireless-settings .network-settings-view,
+	body.at-wireless-settings .wireless-settings-view {
+		display: block;
+	}
 }

@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="/js/base.js"></script>
 		<script type="text/javascript" src="/js/settings.js"></script>
 	</head>
-	<body class="is-showing-splash">
+	<body class="at-splash">
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -157,104 +157,106 @@
 				</a>
 			</div>
 		</div>
-		
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<!-- <div id="network-settings-view" class="view network-settings-view">
-	<a id="back-btn" href="#" class="btn back-btn">
-		<img src="/images/img.gif">
-		<label>Network Settings</label>
-	</a>
-
-	<div id="ethernet-settings-view" class="settings-view">
-		<h1>Ethernet Settings</h1>
-		<div class="text-wall">
-			<div class="setting">
-				<label>Mode:</label>
-				<span id="mode"></span>
-			</div>
-			<div class="setting">
-				<label>IP Address:</label>
-				<span id="ip"></span>
-			</div>
-			<div class="setting">
-				<label>Subnet:</label>
-				<span id="subnet"></span>
-			</div>
-			<div class="setting">
-				<label>Gateway:</label>
-				<span id="gateway"></span>
-			</div>
-			<div class="setting">
-				<label>Broadcast:</label>
-				<span id="broadcast"></span>
-			</div>
-			<a id="edit-btn" href="#" class="btn">
-				<label>Edit</label>
-			</a>
-		</div>
-	</div>
-
-	<div id="wireless-settings-view" class="settings-view">
-		<h1>Wireless Settings</h1>
-		<div class="text-wall">
-			<div class="setting">
-				<label>Mode:</label>
-				<span id="mode"></span>
-			</div>
-			<div id="infrastructure-view">
-				<div class="setting">
-					<label>IP Address:</label>
-					<span id="ip"></span>
-				</div>
-				<div class="setting">
-					<label>Subnet:</label>
-					<span id="subnet"></span>
-				</div>
-				<div class="setting">
-					<label>Gateway:</label>
-					<span id="gateway"></span>
-				</div>
-				<div class="setting">
-					<label>Broadcast:</label>
-					<span id="broadcast"></span>
-				</div>
-				<div class="setting">
-					<label>SSID:</label>
-					<span id="ssid"></span>
-				</div>
-			</div>
-			<div id="adhoc-view">
-				<div class="setting">
-					<label>IP Address:</label>
-					<span id="ip"></span>
-				</div>
-				<div class="setting">
-					<label>Security:</label>
-					<span id="security"></span>
-				</div>
-				<div class="setting">
-					<label>Password:</label>
-					<span id="password"></span>
-				</div>
-			</div>
-			<a id="edit-btn" href="#" class="btn">
-				<label>Edit</label>
-			</a>
-		</div>
-	</div>
-</div> -->
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-		<div id="edit-ethernet-settings-view" class="view popup-view edit-ethernet-settings-view">
+		<div id="network-settings-view" class="view main-view network-settings-view">
+			<div class="view-content main-content">
+				<a id="back-btn" href="#" class="btn back-btn">
+					<img src="/images/img.gif">
+					<label>Network Settings</label>
+				</a>
+
+				<div id="ethernet-settings" class="settings">
+					<h1>Ethernet Settings</h1>
+					<div class="copy">
+						<div class="setting">
+							<div class="setting-name">Mode:</div>
+							<span class="setting-value" id="mode"></span>
+						</div>
+						<div class="setting">
+							<div class="setting-name">IP Address:</div>
+							<span class="setting-value" id="ip"></span>
+						</div>
+						<div class="setting">
+							<div class="setting-name">Subnet:</div>
+							<span class="setting-value" id="subnet"></span>
+						</div>
+						<div class="setting">
+							<div class="setting-name">Gateway:</div>
+							<span class="setting-value" id="gateway"></span>
+						</div>
+						<div class="setting">
+							<div class="setting-name">Broadcast:</div>
+							<span class="setting-value" id="broadcast"></span>
+						</div>
+						<a id="edit-btn" href="#" class="btn">
+							<label>Edit</label>
+						</a>
+					</div>
+				</div>
+
+				<div id="wireless-settings" class="settings">
+					<h1>Wireless Settings</h1>
+					<div class="copy">
+						<div class="setting">
+							<div class="setting-name">Mode:</div>
+							<span class="setting-value" id="mode"></span>
+						</div>
+						<div id="infrastructure-view">
+							<div class="setting">
+								<div class="setting-name">IP Address:</div>
+								<span class="setting-value" id="ip"></span>
+							</div>
+							<div class="setting">
+								<div class="setting-name">Subnet:</div>
+								<span class="setting-value" id="subnet"></span>
+							</div>
+							<div class="setting">
+								<div class="setting-name">Gateway:</div>
+								<span class="setting-value" id="gateway"></span>
+							</div>
+							<div class="setting">
+								<div class="setting-name">Broadcast:</div>
+								<span class="setting-value" id="broadcast"></span>
+							</div>
+							<div class="setting">
+								<div class="setting-name">SSID:</div>
+								<span class="setting-value" id="ssid"></span>
+							</div>
+						</div>
+						<div id="adhoc-view">
+							<div class="setting">
+								<div class="setting-name">IP Address:</div>
+								<span id="ip"></span>
+							</div>
+							<div class="setting">
+								<div class="setting-name">Security:</div>
+								<span id="security"></span>
+							</div>
+							<div class="setting">
+								<div class="setting-name">Password:</div>
+								<span id="password"></span>
+							</div>
+						</div>
+						<a id="edit-btn" href="#" class="btn">
+							<label>Edit</label>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<div id="edit-ethernet-settings-view" class="view popup-view ethernet-settings-view">
 			<div class="view-content popup-content">
 				<a id="cancel-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Edit Ethernet Settings</label>
 				</a>
 				<h1>Edit Ethernet Settings</h1>
-				<div class="edit-settings">
+				<div class="settings edit-settings">
 					<div class="setting">
 						<div class="setting-name">Mode:</div>
 						<a id="mode-btn" href="#" class="btn dropdown-btn">
