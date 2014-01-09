@@ -39,12 +39,12 @@
 	}
 }
 
-.settings {
-
+.settings-view {
+	line-height: 1.6;
 }
 
-.setting {
-
+.edit-settings-view {
+	line-height: 2.4;
 }
 
 .setting-name {
@@ -59,10 +59,6 @@
 	padding-left: 0.5em;
 }
 
-.setting-input {
-
-}
-
 .setting-edit-btn {
 	left: 100%;
 	margin: 0.5em -145px 2em;
@@ -73,271 +69,21 @@
 }
 
 .setting-dropdown-btn {
-
+	width: 200px;
 }
 
-
-
-/*
-.view .back-btn {
-	margin-bottom: 30px;
+.setting-input {
+	width: 200px;
 }
 
-.view h1 {
-	margin-top: 30px;
-}
-
-.view .text-wall .on-off-btn {
-	margin-bottom: 2em;
-}
-
-.settings-view {
-	position: relative;
-	width: 100%;
-	margin-bottom: 5em;
-}
-
-.settings-view .setting label {
-	color: #cbcaca;
-	padding-right: 10px;
+.buttons {
+	bottom: 0;
 	position: absolute;
-	text-align: right;
-	right: 50%;
+	right: 0;
+	padding: inherit;
 }
 
-.settings-view .setting span,
-.settings-view .setting input,
-.settings-view .setting a {
-	display: block;
-	left: 50%;
-	margin-left: 50%;
-	min-height: 1.6em;
-	padding-left: 10px;
-}
-
-.settings-view .btn:not(.close-btn) {
+.buttons .btn {
 	float: right;
-	margin-top: 1em;
+	margin-left: 1em;
 }
-
-@media screen and (min-width: 880px) {
-	.popup,
-	.dropdown {
-		display: none;
-		background: rgba(0,0,0,.2);
-		height: 100%;
-		left: 0;
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 4;
-	}
-
-	.popup .popup-content,
-	.dropdown .dropdown-content {
-		background: #041229;
-		box-shadow: 0 0 50px #000;
-		display: block;
-		position: absolute;
-	}
-
-	.popup .popup-content {
-		height: 600px;
-		left: 50%;
-		margin: -300px -400px;
-		top: 50%;
-		width: 800px;
-	}
-
-	.dropdown .dropdown-content {
-		min-width: 250px;
-	}
-
-	.dropdown .dropdown-content .dropdown-option {
-		border-bottom: 1px solid #466ab2;
-		display: block;
-	}
-
-	.dropdown .dropdown-content .dropdown-option label {
-		padding-left: 44px;
-		text-align: left;
-	}
-
-	.dropdown .dropdown-content .dropdown-option img {
-		background-image: url(/images/check-mark.png);
-		right: auto;
-	}
-
-	.dropdown .dropdown-content .dropdown-option.is-selected img {
-		display: block;
-	}
-
-	.popup .popup-header,
-	.dropdown .dropdown-header {
-		background: #000;
-		border-bottom: 1px solid #466ab2;
-		position: relative;
-	}
-
-	.popup .popup-header {
-		margin-bottom: 1em;
-	}
-
-	.popup .popup-header .close-btn {
-		background: transparent;
-		display: block;
-		height: 100%;
-		min-width: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 45px;
-	}
-
-	.popup .popup-header .close-btn img {
-		display: block;
-		height: 100%;
-		width: 100%;
-		background-image: url(/images/close-btn.png);
-	}
-
-	.popup .popup-header .close-btn:hover img {
-		background-image: url(/images/close-btn-hover.png);
-	}
-
-	.edit-settings-view .btns {
-		bottom: 0;
-		position: relative;
-		width: 100%;
-	}
-
-	.edit-settings-view .btns .btn {
-		float: right;
-		margin: 1em 1em 1em 0;
-	}
-}
-
-body.is-showing-splash .menu,
-
-body.is-showing-menu .menu,
-
-body.is-showing-general-settings .menu,
-body.is-showing-general-settings .general-settings-view,
-
-body.is-showing-advanced-settings .menu,
-body.is-showing-advanced-settings .advanced-settings-view,
-
-body.is-showing-network-settings .menu,
-body.is-showing-network-settings .network-settings-view,
-
-body.is-showing-ethernet-settings .menu,
-body.is-showing-ethernet-settings .network-settings-view,
-body.is-showing-ethernet-settings .ethernet-settings-view,
-
-body.is-showing-wireless-settings .menu,
-body.is-showing-wireless-settings .network-settings-view,
-body.is-showing-wireless-settings .wireless-settings-view {
-	display: block;
-}
-
-.ethernet-settings-view .static-view {
-	display: none;
-}
-
-.ethernet-settings-view.is-showing-static-mode .static-view {
-	display: block;
-}
-
-
-@media screen and (max-width: 880px) {
-	.popup {
-		display: none;
-		float: left;
-		min-height: 100%;
-		position: relative;
-		padding-top: 95px;
-		z-index: 1;
-	}
-
-	.popup {
-		background: #04122a url(/images/gradient.png) no-repeat;
-		background-position: top -35px left calc(50% + 120px);
-		margin-left: -240px;
-		padding-left: 240px;
-		width: 100%;
-	}
-
-	.popup {
-		background: #04122a url(/images/gradient.png) no-repeat;
-		background-position: top -35px center;
-		margin-left: 0;
-		padding-left: 0;
-		padding-top: 50px;
-		width: 100%;
-	}
-
-	.dropdown {
-		display: none;
-		background: rgba(0,0,0,.2);
-		height: 100%;
-		left: 0;
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 4;
-	}
-
-	.dropdown .dropdown-content {
-		background: #041229;
-		box-shadow: 0 0 50px #000;
-		display: block;
-		position: absolute;
-	}
-
-	.dropdown .dropdown-content {
-		bottom: 0 !important;
-		left: 0 !important;
-		top: auto !important;
-		width: 100%;
-	}
-
-	.dropdown .dropdown-content .dropdown-option {
-		border-bottom: 1px solid #466ab2;
-		display: block;
-	}
-
-	.dropdown .dropdown-content .dropdown-option label {
-		padding-left: 44px;
-		text-align: left;
-	}
-
-	.dropdown .dropdown-content .dropdown-option img {
-		background-image: url(/images/check-mark.png);
-		right: auto;
-	}
-
-	.dropdown .dropdown-content .dropdown-option.is-selected img {
-		display: block;
-	}
-
-	.dropdown .dropdown-header {
-		background: #000;
-		border-bottom: 1px solid #466ab2;
-		position: relative;
-	}
-
-	body.is-showing-general-settings .menu,
-	
-	body.is-showing-advanced-settings .menu,
-	
-	body.is-showing-network-settings .menu,
-	
-	body.is-showing-ethernet-settings .menu,
-	body.is-showing-ethernet-settings .network-settings-view,
-	
-	body.is-showing-wireless-settings .menu,
-	body.is-showing-wireless-settings .network-settings-view {
-		display: none;
-	}
-}
-*/

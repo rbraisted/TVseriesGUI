@@ -37,7 +37,7 @@
 }
 
 html {
-	background: #f00;
+	background-color: #f00;
 }
 
 html,
@@ -90,6 +90,18 @@ p {
 	display: block;
 }
 
+input {
+	background-color: #4c5269;
+	border: 1px solid #000;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0.375em 0.625em;
+}
+
 .btn {
 	cursor: pointer;
 	display: inline-block;
@@ -101,7 +113,12 @@ p {
 	background: transparent no-repeat center center;
 	display: block;
 	height: 100%;
+	line-height: 1;
 	width: 44px;
+}
+
+.btn label {
+	display: block;
 }
 
 .basic-btn {
@@ -113,12 +130,12 @@ p {
 	background-color: #1c335d;
 }
 
+.basic-btn:active,
 .basic-btn.is-selected {
 	background-color: #4f7abd;
 }
 
 .basic-btn label {
-	display: block;
 	padding: 0.75em 1.25em;
 	text-align: center;
 }
@@ -160,10 +177,30 @@ p {
 }
 
 .back-btn label {
-	display: block;
 	font-size: 21px;
 	padding: 0.571428571em 1.14285714em;
 	text-align: center;
+}
+
+.dropdown-btn {
+	background-color: #4c5269;
+	border: 1px solid #000;
+	margin: 0;
+	padding: 1px 0;
+}
+
+.dropdown-btn img {
+	background-image: url(/images/menu-btn.png);
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+}
+
+.dropdown-btn label {
+	color: inherit;
+	padding: 0.375em 0.625em;
+	padding-right: 30px;
 }
 
 .view {
@@ -212,13 +249,11 @@ p {
 }
 
 .header-view .header-btn label {
-	display: block;
 	font-size: 13px;
 	text-align: center;
 }
 
 .header-view .header-btn img {
-	display: block;
 	height: 23px;
 	margin: 6px auto 4px;
 	width: 35px;
@@ -283,6 +318,7 @@ p {
 	background-color: #1c335d;
 }
 
+.menu-view .menu-btn:active,
 .menu-view .menu-btn.is-selected {
 	background-color: #4f7abd;
 }
@@ -293,7 +329,6 @@ p {
 }
 
 .menu-view .menu-btn label {
-	display: block;
 	padding: 0.875em 1.25em;
 	text-align: left;
 }
@@ -485,6 +520,7 @@ p {
 		position: absolute;
 		top: 50%;
 		width: 800px;
+		padding-top: 85px;
 	}
 
 	.popup-view h1 {
@@ -537,6 +573,7 @@ p {
 		background-color: #1c335d;
 	}
 
+	.dropdown-view .dropdown-option:active,
 	.dropdown-view .dropdown-option.is-selected {
 		background-color: #4f7abd;
 	}
@@ -546,12 +583,13 @@ p {
 		float: left;
 	}
 
+
+	.dropdown-view .dropdown-option:active img,
 	.dropdown-view .dropdown-option.is-selected img {
 		background-image: url(/images/check-mark.png);
 	}
 
 	.dropdown-view .dropdown-option label {
-		display: block;
 		padding: 14px 20px;
 		text-align: left;
 	}
@@ -595,6 +633,7 @@ p {
 
 	.popup-view {
 		min-height: 100%;
+		padding-top: 50px;
 	}
 
 	.popup-view h1 {
@@ -666,6 +705,7 @@ p {
 		background-color: #1c335d;
 	}
 
+	.dropdown-view .dropdown-option:active,
 	.dropdown-view .dropdown-option.is-selected {
 		background-color: #4f7abd;
 	}
@@ -675,13 +715,13 @@ p {
 		float: left;
 	}
 
+	.dropdown-view .dropdown-option:active,
 	.dropdown-view .dropdown-option.is-selected img {
 		background-image: url(/images/check-mark.png);
 	}
 
 	.dropdown-view .dropdown-option label {
-		display: block;
-		padding: 14px 20px;
+		padding: 0.875em 1.25em;
 		text-align: left;
 	}
 }

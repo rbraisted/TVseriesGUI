@@ -21,7 +21,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="general-settings-view" class="view main-view general-settings-view">
+<div id="general-settings-view" class="view main-view settings-view general-settings-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -57,7 +57,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="advanced-settings-view" class="view main-view advanced-settings-view">
+<div id="advanced-settings-view" class="view main-view settings-view advanced-settings-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -94,14 +94,13 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="network-settings-view" class="view main-view network-settings-view">
+<div id="network-settings-view" class="view main-view settings-view network-settings-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Network Settings</label>
 		</a>
-
-		<div id="ethernet-settings" class="settings copy">
+		<div id="ethernet-settings">
 			<h1>Ethernet Settings</h1>
 			<div class="setting">
 				<label class="setting-name">Mode:</label>
@@ -127,8 +126,7 @@
 				<label>Edit</label>
 			</a>
 		</div>
-
-		<div id="wireless-settings" class="settings copy">
+		<div id="wireless-settings">
 			<h1>Wireless Settings</h1>
 			<div class="setting">
 				<label class="setting-name">Mode:</label>
@@ -179,53 +177,47 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="edit-ethernet-settings-view" class="view popup-view edit-ethernet-settings-view">
+<div id="edit-ethernet-settings-view" class="view popup-view edit-settings-view edit-ethernet-settings-view">
 	<div class="view-content popup-content">
 		<a id="cancel-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Edit Ethernet Settings</label>
 		</a>
 		<h1>Edit Ethernet Settings</h1>
-		<div class="settings edit-settings">
+		<div class="setting">
+			<label class="setting-name">Mode:</label>
+			<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+				<img src="/images/img.gif">
+				<label id="mode"></label>
+			</a>
+		</div>
+		<div id="static-view">
 			<div class="setting">
-				<label class="setting-name">Mode:</label>
-				<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
-					<label id="mode">HI</label>
-				</a>
+				<label class="setting-name">IP Address:</label>
+				<input id="ip" type="text" class="setting-input"/>
 			</div>
-
-			<div id="static-view">
-				<div class="setting">
-					<label class="setting-name">IP Address:</label>
-					<input id="ip" type="text" class="setting-input"/>
-				</div>
-				<div class="setting">
-					<label class="setting-name">Subnet:</label>
-					<input id="subnet" type="text" class="setting-input"/>
-				</div>
-				<div class="setting">
-					<label class="setting-name">Gateway:</label>
-					<input id="gateway" type="text"  class="setting-input"/>
-				</div>
-				<div class="setting">
-					<label class="setting-name">Broadcast:</label>
-					<input id="broadcast" type="text" class="setting-input"/>
-				</div>
+			<div class="setting">
+				<label class="setting-name">Subnet:</label>
+				<input id="subnet" type="text" class="setting-input"/>
+			</div>
+			<div class="setting">
+				<label class="setting-name">Gateway:</label>
+				<input id="gateway" type="text"  class="setting-input"/>
+			</div>
+			<div class="setting">
+				<label class="setting-name">Broadcast:</label>
+				<input id="broadcast" type="text" class="setting-input"/>
 			</div>
 		</div>
-
-		<div class="btns">
-			<a id="save-btn" href="#" class="btn basic-btn">
-				<img src="/images/img.gif">
-				<label>Save</label>
+		<div class="buttons">
+			<a id="reset-btn" href="#" class="btn basic-btn">
+				<label>Factory Settings</label>
 			</a>
 			<a id="cancel-btn" href="#" class="btn basic-btn">
-				<img src="/images/img.gif">
 				<label>Cancel</label>
 			</a>
-			<a id="reset-btn" href="#" class="btn basic-btn">
-				<img src="/images/img.gif">
-				<label>Factory Settings</label>
+			<a id="save-btn" href="#" class="btn basic-btn">
+				<label>Save</label>
 			</a>
 		</div>
 	</div>
@@ -235,7 +227,7 @@
 
 <div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="cancel-btn" href="#" class="btn back-btn">
+		<a id="close-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Ethernet Mode</label>
 		</a>
