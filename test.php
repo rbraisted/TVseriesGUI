@@ -249,7 +249,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-		<div id="edit-ethernet-settings-view" class="view popup-view ethernet-settings-view">
+		<div id="edit-ethernet-settings-view" class="view popup-view edit-ethernet-settings-view">
 			<div class="view-content popup-content">
 				<a id="cancel-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
@@ -303,29 +303,29 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
-	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="cancel-btn" href="#" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Ethernet Mode</label>
-		</a>
-		<h1>Ethernet Mode</h1>
-		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
-				<img src="/images/img.gif">
-				<label>DISABLED</label>
-			</a>
-			<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
-				<img src="/images/img.gif">
-				<label>STATIC</label>
-			</a>
-			<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
-				<img src="/images/img.gif">
-				<label>DHCP</label>
-			</a>
+		<div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
+			<div id="dropdown-content" class="view-content popup-content dropdown-content">
+				<a id="cancel-btn" href="#" class="btn back-btn">
+					<img src="/images/img.gif">
+					<label>Ethernet Mode</label>
+				</a>
+				<h1>Ethernet Mode</h1>
+				<div id="dropdown-options">
+					<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+						<img src="/images/img.gif">
+						<label>DISABLED</label>
+					</a>
+					<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
+						<img src="/images/img.gif">
+						<label>STATIC</label>
+					</a>
+					<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
+						<img src="/images/img.gif">
+						<label>DHCP</label>
+					</a>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
 
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
