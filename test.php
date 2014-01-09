@@ -70,7 +70,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- 		<div id="menu" class="view menu-view">
+		<div id="menu" class="view menu-view">
 			<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
 				<img src="/images/img.gif">
 				<label>General Settings</label>
@@ -83,12 +83,12 @@
 				<img src="/images/img.gif">
 				<label>Advanced Settings</label>
 			</a>
-		</div> -->
+		</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 		<div id="general-settings-view" class="view main-view general-settings-view">
-			<div class="view-content">
+			<div class="view-content main-content">
 				<a id="back-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>General Settings</label>
@@ -123,40 +123,41 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- <div id="advanced-settings-view" class="view main-view advanced-settings-view">
-	<div class="view-content">
-		<a id="back-btn" href="#" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Advanced Settings</label>
-		</a>
-		<h1>Advanced Settings</h1>
-		<div class="copy">
-			<h2>Sleep Mode</h2>
-			<p>	Info about Sleep Mode: In blandit nec libero ut lobortis.
-				Aliquam et eros eleifend urna mollis convallis. Duis orci nisl,
-				gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
-				urna.
-			</p>
+		<div id="advanced-settings-view" class="view main-view advanced-settings-view">
+			<div class="view-content">
+				<a id="back-btn" href="#" class="btn back-btn">
+					<img src="/images/img.gif">
+					<label>Advanced Settings</label>
+				</a>
+				<h1>Advanced Settings</h1>
+				<div class="copy">
+					<h2>Sleep Mode</h2>
+					<p>	Info about Sleep Mode: In blandit nec libero ut lobortis.
+						Aliquam et eros eleifend urna mollis convallis. Duis orci nisl,
+						gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
+						urna.
+					</p>
+				</div>
+				<a id="sleep-mode-btn" href="#" class="btn on-off-btn">
+					<div class="on">On</div>
+					<div class="off">Off</div>
+				</a>
+				<div class="copy">
+					<h2>Sidelobe Mode</h2>
+					<p>	Info about Sidelobe Mode: Nulla feugiat vestibulum egestas. Integer
+						porttitor est turpis, at convallis nisi tristique ac. Vestibulum ac
+						est a quam pellentesque porta. Nunc id pulvinar metus. Etiam commodo
+						faucibus augue, id placerat elit aliquet non. Sed ac diam enim.
+						Phasellus vitae interdum magna.
+					</p>
+				</div>
+				<a id="sidelobe-mode-btn" href="#" class="btn on-off-btn">
+					<div class="on">On</div>
+					<div class="off">Off</div>
+				</a>
+			</div>
 		</div>
-		<a id="sleep-mode-btn" href="#" class="btn on-off-btn">
-			<div class="on">On</div>
-			<div class="off">Off</div>
-		</a>
-		<div class="copy">
-			<h2>Sidelobe Mode</h2>
-			<p>	Info about Sidelobe Mode: Nulla feugiat vestibulum egestas. Integer
-				porttitor est turpis, at convallis nisi tristique ac. Vestibulum ac
-				est a quam pellentesque porta. Nunc id pulvinar metus. Etiam commodo
-				faucibus augue, id placerat elit aliquet non. Sed ac diam enim.
-				Phasellus vitae interdum magna.
-			</p>
-		</div>
-		<a id="sidelobe-mode-btn" href="#" class="btn on-off-btn">
-			<div class="on">On</div>
-			<div class="off">Off</div>
-		</a>
-	</div>
-</div> -->
+		
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <!-- <div id="network-settings-view" class="view network-settings-view">
@@ -246,68 +247,69 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- <div id="edit-ethernet-settings-view" class="popup edit-settings-view ethernet-settings-view">
-	<div class="popup-content settings-view">
-		<a id="cancel-btn" href="#" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Edit Ethernet Settings</label>
-		</a>
-		<div class="popup-header">
-			<h1>Edit Ethernet Settings</h1>
-			<a id="cancel-btn" href="#" class="btn close-btn">
-				<img src="/images/img.gif">
-			</a>
-		</div>
-		<div class="setting">
-			<label>Mode:</label>
-			<a id="mode-btn" href="#" class="dropdown-btn">
-				<div id="mode">HI</div>
-			</a>
-		</div>
-		<div id="static-view">
-			<div class="setting">
-				<label>IP Address:</label>
-				<input id="ip" type="text" />
+		<div id="edit-ethernet-settings-view" class="view popup-view edit-ethernet-settings-view">
+			<div class="view-content popup-content">
+				<a id="cancel-btn" href="#" class="btn back-btn">
+					<img src="/images/img.gif">
+					<label>Edit Ethernet Settings</label>
+				</a>
+				<h1>Edit Ethernet Settings</h1>
+				<div class="edit-settings">
+					<div class="setting">
+						<div class="setting-name">Mode:</div>
+						<a id="mode-btn" href="#" class="btn dropdown-btn">
+							<label id="mode">HI</label>
+						</a>
+					</div>
+
+					<div id="static-view">
+						<div class="setting">
+							<div class="setting-name">IP Address:</div>
+							<input id="ip" type="text" />
+						</div>
+						<div class="setting">
+							<div class="setting-name">Subnet:</div>
+							<input id="subnet" type="text" class="setting-value"/>
+						</div>
+						<div class="setting">
+							<div class="setting-name">Gateway:</div>
+							<input id="gateway" type="text"  class="setting-value"/>
+						</div>
+						<div class="setting">
+							<div class="setting-name">Broadcast:</div>
+							<input id="broadcast" type="text" class="setting-value"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="btns">
+					<a id="save-btn" href="#" class="btn">
+						<img src="/images/img.gif">
+						<label>Save</label>
+					</a>
+					<a id="cancel-btn" href="#" class="btn">
+						<img src="/images/img.gif">
+						<label>Cancel</label>
+					</a>
+					<a id="reset-btn" href="#" class="btn">
+						<img src="/images/img.gif">
+						<label>Factory Settings</label>
+					</a>
+				</div>
 			</div>
-			<div class="setting">
-				<label>Subnet:</label>
-				<input id="subnet" type="text" />
-			</div>
-			<div class="setting">
-				<label>Gateway:</label>
-				<input id="gateway" type="text" />
-			</div>
-			<div class="setting">
-				<label>Broadcast:</label>
-				<input id="broadcast" type="text" />
-			</div>
 		</div>
-		<div class="btns">
-			<a id="save-btn" href="#" class="btn">
-				<img src="/images/img.gif">
-				<label>Save</label>
-			</a>
-			<a id="cancel-btn" href="#" class="btn">
-				<img src="/images/img.gif">
-				<label>Cancel</label>
-			</a>
-			<a id="reset-btn" href="#" class="btn">
-				<img src="/images/img.gif">
-				<label>Factory Settings</label>
-			</a>
-		</div>
-	</div>
-</div> -->
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- <div id="ethernet-mode-dropdown" class="dropdown">
-	<div id="dropdown-content" class="dropdown-content">
-		<div id="dropdown-header" class="dropdown-header">
-			<h1>Ethernet Mode</h1>
-		</div>
+<div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Ethernet Mode</label>
+		</a>
+		<h1>Ethernet Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option selected">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DISABLED</label>
 			</a>
@@ -322,7 +324,7 @@
 		</div>
 	</div>
 </div>
- -->
+
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

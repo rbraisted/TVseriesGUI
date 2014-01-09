@@ -279,7 +279,7 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 		for (var i = 0; i < optionSelected.length; i++) {
 			optionSelected[i]($('label', dropdownOption).text(), dropdownOption.attr('value'));
 		}
-		self.hide();
+		// self.hide();
 	});
 
 	$(dropdownBtn).click(function() {
