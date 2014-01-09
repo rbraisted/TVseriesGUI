@@ -2,28 +2,24 @@
 
 @font-face {
 	font-family: Helvetica;
-	src: url(/fonts/HelveticaLTStd-Roman.otf);
+	font-style: normal;
 	font-weight: normal;
-	font-style: normal;
+	src: url(/fonts/HelveticaLTStd-Roman.otf);
 }
 
 @font-face {
 	font-family: Helvetica;
-	src: url(/fonts/HelveticaLTStd-Bold.otf);
+	font-style: normal;
 	font-weight: bold;
-	font-style: normal;
+	src: url(/fonts/HelveticaLTStd-Bold.otf);
 }
 
 @font-face {
 	font-family: Helvetica;
-	src: url(/fonts/HelveticaLTStd-Light.otf);
-	font-weight: lighter;
 	font-style: normal;
+	font-weight: lighter;
+	src: url(/fonts/HelveticaLTStd-Light.otf);
 }
-
-
-
-
 
 * {
 	box-sizing: border-box;
@@ -36,14 +32,22 @@
 	user-select: none;
 }
 
+*:hover {
+	outline: 1px solid #f00;
+}
+
+html {
+	background: #f00;
+}
+
 html,
 body {
-	background: #000;
 	height: 100%;
 	width: 100%;
 }
 
 body {
+	background: #04122a url(/images/gradient.png) no-repeat top center;
 	color: #fff;
 	cursor: default;
 	font-family: Helvetica, Arial, sans-serif;
@@ -57,120 +61,66 @@ a {
 	text-decoration: inherit;
 }
 
-input {
-	background: #4a536a;
-	border: 1px solid #000;
-	color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	margin: 0;
-	padding: 5px 10px;
-}
-
 h1,
 h2,
 h3 {
 	font-family: inherit;
 	font-weight: inherit;
-	line-height: inherit;
 }
 
 h1 {
 	font-size: 21px;
+	line-height: 1;
 	padding: 0.571428571em 1.14285714em;
 	text-align: center;
 }
 
-h2 {
+h2,
+h3 {
 	font-size: 16px;
+	line-height: inherit;
 }
 
 h3 {
 	color: #bac7da;
-	font-size: 16px;
 }
 
 p {
 	color: #cbcaca;
 	display: block;
-	line-height: 1.6em;
-}
-
-.text-wall {
-	line-height: 1.6;
-	margin: auto;
-	max-width: 700px;
-	padding: 20px 40px;
-}
-
-.text-wall .btn,
-.text-wall .on-off-btn {
-	line-height: 1;
-	margin: 0.5em 0;
 }
 
 .btn {
-	background: #243774;
 	cursor: pointer;
 	display: inline-block;
-	min-width: 145px;
+	line-height: 1;
 	position: relative;
-}
-
-.btn:hover {
-	background: #1c335d;
-}
-
-.btn.is-selected {
-	background: #4f7abd;
 }
 
 .btn img {
 	background: transparent no-repeat center center;
-	display: none;
-	height: 44px;
-	position: absolute;
-	right: 0;
+	display: block;
+	height: 100%;
 	width: 44px;
 }
 
-.btn label {
-	cursor: pointer;
+.basic-btn {
+	background-color: #243774;
+	min-width: 9.0625em;
+}
+
+.basic-btn:hover {
+	background-color: #1c335d;
+}
+
+.basic-btn.is-selected {
+	background-color: #4f7abd;
+}
+
+.basic-btn label {
 	display: block;
-	padding: 14px 20px;
+	padding: 0.75em 1.25em;
 	text-align: center;
-}
-
-.back-btn {
-	background: #000;
-	display: none;
-	width: 100%;
-}
-
-.back-btn:hover {
-	background: #000;
-}
-
-.back-btn img {
-	background-image: url(/images/back-btn.png);
-	display: block;
-	left: 0;
-}
-
-.add-btn img {
-	background-image: url(/images/add-btn.png);
-	display: block;
-}
-
-.add-btn:hover img {
-	background-image: url(/images/add-btn-hover.png);
-}
-
-.on-off-btn {
-	cursor: pointer;
-	display: inline-block;
-	min-width: 0;
 }
 
 .on-off-btn .on,
@@ -183,506 +133,558 @@ p {
 
 .on-off-btn .on,
 .on-off-btn.is-on .off {
-	background: #4a536a;
+	background-color: #4a536a;
 	border: 1px solid #000;
 	color: #000;
 }
 
 .on-off-btn.is-on .on,
 .on-off-btn .off {
-	background: #4f7abd;
+	background-color: #4f7abd;
 	border: 1px solid #fff;
 	color: #fff;
 }
 
+.back-btn {
+	background-color: #040b17;
+	left: 0;
+	position: absolute;
+	top: 50px;
+	width: 100%;
+}
 
+.back-btn img {
+	background-image: url(/images/back-btn.png);
+	left: 0;
+	position: absolute;
+}
 
+.back-btn label {
+	display: block;
+	font-size: 21px;
+	padding: 0.571428571em 1.14285714em;
+	text-align: center;
+}
 
+.view {
+	display: none;
+	position: absolute;
+}
 
-.header {
+.view-content {
+	margin: auto;
+}
+
+.copy {
+	line-height: 1.6;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.header-view {
 	background: transparent url(/images/header.png) no-repeat center center;
 	background-size: 100%;
+	display: block;
+	height: 50px;
 	position: absolute;
 	width: 100%;
 	z-index: 3;
 }
 
-.header .tracvision-logo {
-	cursor: pointer;
+.header-view .tracvision-logo {
 	display: block;
-	height: 50px;
+	height: 100%;
 	margin: auto;
 	width: 150px;
 }
 
-.header .tracvision-logo img {
-	background: transparent url(/images/tracvision-logo.png);
+.header-view .tracvision-logo img {
+	background: transparent url(/images/tracvision-logo.png) no-repeat center center;
 	height: 100%;
-	width: 100%;	
+	width: 100%;
 }
 
-.header .status-btn {
-	height: 50px;
-	left: 0;
+.header-view .header-btn {
+	height: 100%;
 	position: absolute;
 	top: 0;
 	width: 50px;
 }
 
-.header .status-btn .status-light {
-	background: #abd037;
-	float: left;
-	height: 22px;
-	margin-right: 3px;
-	margin-top: 7px;
-	width: 10px;
-}
-
-.header .status-btn .status-light:nth-child(1) {
-	margin-left: 7px;
-}
-
-.header .status-btn label {
-	bottom: 4px;
-	cursor: pointer;
-	font-size: 13px;
-	left: 0;
-	position: absolute;
-	text-align: center;
-	width: 100%;
-}
-
-.header .status-bar {
-	display: none;
-}
-
-.header .nav-btn {
-	display: none;
-	height: 50px;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 50px;
-}
-
-.header .nav-btn .nav-btn-square {
-	background: #fff;
-	float: left;
-	height: 10px;
-	margin-right: 3px;
-	margin-top: 7px;
-	width: 10px;
-}
-
-.header .nav-btn .nav-btn-square:nth-child(3n+1) {
-	margin-left: 7px;
-}
-
-.header .nav-btn .nav-btn-square:nth-child(n+4) {
-	margin-top: 3px;
-}
-
-.header .nav-btn label {
-	bottom: 4px;
-	cursor: pointer;
-	font-size: 13px;
-	left: 0;
-	position: absolute;
-	text-align: center;
-	width: 100%;
-}
-
-.header .nav-bar {
-	background: #010305;
-	height: 45px;
-	overflow: hidden;
-	position: absolute;
-	width: 100%;
-}
-
-.header .nav-bar .nav-btn {
-	cursor: pointer;
+.header-view .header-btn label {
 	display: block;
-	float: left;
-	padding-right: 22px;
-	position: relative;
-	width: auto;
+	font-size: 13px;
+	text-align: center;
 }
 
-.header .nav-bar .home-btn {
-	padding-left: 10px;
+.header-view .header-btn img {
+	display: block;
+	height: 23px;
+	margin: 6px auto 4px;
+	width: 35px;
 }
 
-.header .nav-bar .nav-btn img {
+.header-view .status-btn {
+	left: 0;
+}
+
+.header-view .status-btn img {
+	background-image: url(/images/status-btn.png);
+}
+
+.header-view .nav-btn {
+	right: 0;
+}
+
+.header-view .nav-btn img {
+	background-image: url(/images/nav-btn.png);
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.nav-view {
+	background-color: #010305;
+	display: block;
+	width: 100%;
+	z-index: 3;
+}
+
+.nav-view .nav-btn {
 	background: transparent no-repeat center center;
 	display: block;
 	float: left;
-	height: 45px;
-	margin: auto 10px;
 	position: relative;
 }
 
-.header .nav-bar .home-btn img {
-	background-image: url(/images/nav-home-small.png);
-	width: 17px;
-}
-
-.header .nav-bar .home-btn:hover img,
-.header .nav-bar .home-btn.is-selected img {
-	background-image: url(/images/nav-home-small-selected.png);
-}
-
-.header .nav-bar .satellites-btn img {
-	background-image: url(/images/nav-satellites-small.png);
-	width: 18px;
-}
-
-.header .nav-bar .satellites-btn:hover img,
-.header .nav-bar .satellites-btn.is-selected img {
-	background-image: url(/images/nav-satellites-small-selected.png);
-}
-
-.header .nav-bar .autoswitch-btn img {
-	background-image: url(/images/nav-autoswitch-small.png);
-	width: 19px;
-}
-
-.header .nav-bar .autoswitch-btn:hover img,
-.header .nav-bar .autoswitch-btn.is-selected img {
-	background-image: url(/images/nav-autoswitch-small-selected.png);
-}
-
-.header .nav-bar .settings-btn img {
-	background-image: url(/images/nav-settings-small.png);
-	width: 17px;
-}
-
-.header .nav-bar .settings-btn:hover img,
-.header .nav-bar .settings-btn.is-selected img {
-	background-image: url(/images/nav-settings-small-selected.png);
-}
-
-.header .nav-bar .updates-btn img {
-	background-image: url(/images/nav-updates-small.png);
-	width: 19px;
-}
-
-.header .nav-bar .updates-btn:hover img,
-.header .nav-bar .updates-btn.is-selected img {
-	background-image: url(/images/nav-updates-small-selected.png);
-}
-
-.header .nav-bar .support-btn img {
-	background-image: url(/images/nav-support-small.png);
-	width: 13px;
-}
-
-.header .nav-bar .support-btn:hover img,
-.header .nav-bar .support-btn.is-selected img {
-	background-image: url(/images/nav-support-small-selected.png);
-}
-
-.header .nav-bar .sat-finder-btn img {
-	background-image: url(/images/nav-sat-finder-small.png);
-}
-
-.header .nav-bar .sat-finder-btn:hover img,
-.header .nav-bar .sat-finder-btn.is-selected img {
-	background-image: url(/images/nav-sat-finder-small-selected.png);
-}
-
-
-.header .nav-bar .nav-btn label {
-	color: #bac7da;
-	cursor: pointer;
-	float: left;
-	font-size: 16px;
-	margin-top: 20px;
-	position: relative;
-	width: auto;
-}
-
-.header .nav-bar .nav-btn:hover label,
-.header .nav-bar .nav-btn.is-selected label {
-	color: #fff;
-}
-
-
-
-
-.view {
+.nav-view .sat-finder-btn {
 	display: none;
-	float: left;
-	min-height: 100%;
-	position: relative;
-	padding-top: 95px;
-	z-index: 1;
 }
 
-.menu {
-	background: #040b17;
-	width: 240px;
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.status-view {
+	z-index: 6;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.menu-view {
+	min-height: 100%;
 	z-index: 2;
 }
 
-.menu .btn {
-	display: block;
-}
-
-.menu .menu-btn {
+.menu-view .menu-btn {
+	background-color: #243774;
 	border-bottom: 1px solid #466ab2;
-}
-
-.menu .menu-btn img {
-	background-image: url(/images/menu-btn.png);
-}
-
-.menu .menu-btn label {
-	text-align: left;
-}
-
-.view:not(.menu) {
-	background: #04122a url(/images/gradient.png) no-repeat;
-	background-position: top -35px left calc(50% + 120px);
-	margin-left: -240px;
-	padding-left: 240px;
 	width: 100%;
 }
 
+.menu-view .menu-btn:hover {
+	background-color: #1c335d;
+}
 
+.menu-view .menu-btn.is-selected {
+	background-color: #4f7abd;
+}
 
+.menu-view .menu-btn img {
+	background-image: url(/images/menu-btn.png);
+	float: right;
+}
 
+.menu-view .menu-btn label {
+	display: block;
+	padding: 0.875em 1.25em;
+	text-align: left;
+}
 
-@media screen and (max-width: 880px) {
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-	p {
-		font-size: 13px;
+.main-view {
+	min-height: 100%;
+	z-index: 1;
+}
+
+.main-content {
+	max-width: 700px;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.popup-view {
+	z-index: 4;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.dropdown-view {
+	z-index: 5;
+}
+
+/*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\
+\*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/
+
+@media screen and (min-width: 880px) {
+	body {
+		background-position: top left calc(50% + 120px);
+	}
+
+	.view-content {
+		padding: 40px;
 	}
 
 	.back-btn {
-		display: block;
-	}
-
-	.back-btn label {
-		font-size: 21px;
-		padding: 12px 0;
-	}
-
-	.text-wall {
-		padding: 20px;
-	}
-
-
-
-
-
-	.header {
-		position: fixed;
-	}
-
-	.header .nav-btn {
-		display: block;
-	}
-
-	.header .nav-bar {
-		background: #231f20;
-		height: 0;
-		transition: padding-bottom 0.5s;
-		-moz-transition: padding-bottom 0.5s;
-		-webkit-transition: padding-bottom 0.5s;
-	}
-
-	.header .nav-bar.is-expanded {
-		width: 100%;
-		padding-bottom: 74%;
-		transition: padding-bottom 0.5s;
-		-moz-transition: padding-bottom 0.5s;
-		-webkit-transition: padding-bottom 0.5s;
-	}
-
-	.header .nav-bar .nav-btn {
-		padding-bottom: 37%;
-		position: relative;
-		width: 33.333%;
-	}
-
-	.header .nav-bar .home-btn {
-		padding-left: 0;
-	}
-
-	.header .nav-bar .nav-btn img {
-		background: transparent no-repeat center center;
-		float: none;
-		height: 80%;
-		width: 100%;
-	}
-
-	.header .nav-bar .nav-btn label {
-		color: #fff;
-		display: block;
-		float: none;
-		text-align: center;
-		width: 100%;
-		margin: -2% 10px;
-	}
-
-	.header .nav-bar .home-btn img,
-	.header .nav-bar .home-btn:hover img,
-	.header .nav-bar .home-btn.is-selected img { background-image: url(/images/nav-home-large.png); }
-	
-	.header .nav-bar .satellites-btn img,
-	.header .nav-bar .satellites-btn:hover img,
-	.header .nav-bar .satellites-btn.is-selected img { background-image: url(/images/nav-satellites-large.png); }
-	
-	.header .nav-bar .autoswitch-btn img,
-	.header .nav-bar .autoswitch-btn:hover img,
-	.header .nav-bar .autoswitch-btn.is-selected img { background-image: url(/images/nav-autoswitch-large.png); }
-	
-	.header .nav-bar .settings-btn img,
-	.header .nav-bar .settings-btn:hover img,
-	.header .nav-bar .settings-btn.is-selected img { background-image: url(/images/nav-settings-large.png); }
-	
-	.header .nav-bar .updates-btn img,
-	.header .nav-bar .updates-btn:hover img,
-	.header .nav-bar .updates-btn.is-selected img { background-image: url(/images/nav-updates-large.png); }
-	
-	.header .nav-bar .support-btn img,
-	.header .nav-bar .support-btn:hover img,
-	.header .nav-bar .support-btn.is-selected img { background-image: url(/images/nav-support-large.png); }
-	
-	.header .nav-bar .sat-finder-btn img,
-	.header .nav-bar .sat-finder-btn:hover img,
-	.header .nav-bar .sat-finder-btn.is-selected img { background-image: url(/images/nav-sat-finder-large.png); }
-
-
-
-
-	.view:not(.menu),
-	.menu {
-		background: #04122a url(/images/gradient.png) no-repeat;
-		background-position: top -35px center;
-		margin-left: 0;
-		padding-left: 0;
-		padding-top: 50px;
-		width: 100%;
-	}
-
-	.menu .menu-btn.is-selected {
-		background: #243774;
-	}
-
-	.menu .menu-btn img {
-		display: block;
-	}
-
-	.view h1 {
 		display: none;
 	}
-}
 
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-
-
-
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-	.header .tracvision-logo img {
-		background-image: url(/images/tracvision-logo@2x.png);
-		background-size: 100% 100%;
-	}
-}
-
-@media screen and (min-width: 880px) and (-webkit-min-device-pixel-ratio: 2) {
-	.header .nav-bar .nav-btn img {
-		background-size: 100%;
+	.header-view .nav-btn {
+		display: none;
 	}
 
-	.header .nav-bar .home-btn img { background-image: url(/images/nav-home-small@2x.png); }
-
-	.header .nav-bar .home-btn:hover img,
-	.header .nav-bar .home-btn.is-selected img { background-image: url(/images/nav-home-small-selected@2x.png); }
-
-	.header .nav-bar .satellites-btn img { background-image: url(/images/nav-satellites-small@2x.png); }
-
-	.header .nav-bar .satellites-btn:hover img,
-	.header .nav-bar .satellites-btn.is-selected img { background-image: url(/images/nav-satellites-small-selected@2x.png); }
-
-	.header .nav-bar .autoswitch-btn img { background-image: url(/images/nav-autoswitch-small@2x.png); }
-
-	.header .nav-bar .autoswitch-btn:hover img,
-	.header .nav-bar .autoswitch-btn.is-selected img { background-image: url(/images/nav-autoswitch-small-selected@2x.png); }
-
-	.header .nav-bar .settings-btn img { background-image: url(/images/nav-settings-small@2x.png); }
-
-	.header .nav-bar .settings-btn:hover img,
-	.header .nav-bar .settings-btn.is-selected img { background-image: url(/images/nav-settings-small-selected@2x.png); }
-
-	.header .nav-bar .updates-btn img { background-image: url(/images/nav-updates-small@2x.png); }
-
-	.header .nav-bar .updates-btn:hover img,
-	.header .nav-bar .updates-btn.is-selected img { background-image: url(/images/nav-updates-small-selected@2x.png); }
-
-	.header .nav-bar .support-btn img { background-image: url(/images/nav-support-small@2x.png); }
-
-	.header .nav-bar .support-btn:hover img,
-	.header .nav-bar .support-btn.is-selected img { background-image: url(/images/nav-support-small-selected@2x.png); }
-
-	.header .nav-bar .sat-finder-btn img { background-image: url(/images/nav-sat-finder-small@2x.png); }
-
-	.header .nav-bar .sat-finder-btn:hover img,
-	.header .nav-bar .sat-finder-btn.is-selected img { background-image: url(/images/nav-sat-finder-small-selected@2x.png); }
-}
-
-@media screen and (max-width: 880px) and (-webkit-min-device-pixel-ratio: 2) {
-
-	.header .nav-bar .nav-btn img {
-		background-size: 49px;	
-	}
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 	
-	.header .nav-bar .autoswitch-btn img,
-	.header .nav-bar .support-btn img {
-		background-size: 48px 49px;
+	.nav-view {
+		top: 50px;
 	}
 
-	.header .nav-bar .home-btn img,
-	.header .nav-bar .home-btn:hover img,
-	.header .nav-bar .home-btn.is-selected img { background-image: url(/images/nav-home-large@2x.png); }
+	.nav-view .nav-btn {
+		height: 45px;
+		padding-right: 22px;
+		width: auto;
+	}
 
-	.header .nav-bar .satellites-btn img,
-	.header .nav-bar .satellites-btn:hover img,
-	.header .nav-bar .satellites-btn.is-selected img { background-image: url(/images/nav-satellites-large@2x.png); }
+	.nav-view .nav-btn label {
+		color: #bac7da;
+		float: left;
+		margin-top: 1em;
+	}
 
-	.header .nav-bar .autoswitch-btn img,
-	.header .nav-bar .autoswitch-btn:hover img,
-	.header .nav-bar .autoswitch-btn.is-selected img { background-image: url(/images/nav-autoswitch-large@2x.png); }
+	.nav-view .nav-btn:hover label,
+	.nav-view .nav-btn.is-selected label {
+		color: #fff;
+	}
 
-	.header .nav-bar .settings-btn img,
-	.header .nav-bar .settings-btn:hover img,
-	.header .nav-bar .settings-btn.is-selected img { background-image: url(/images/nav-settings-large@2x.png); }
+	.nav-view .nav-btn img {
+		float: left;
+		height: 100%;
+		margin: auto 10px;
+	}
 
-	.header .nav-bar .updates-btn img,
-	.header .nav-bar .updates-btn:hover img,
-	.header .nav-bar .updates-btn.is-selected img { background-image: url(/images/nav-updates-large@2x.png); }
+	.nav-view .home-btn {
+		padding-left: 10px;
+	}
 
-	.header .nav-bar .support-btn img,
-	.header .nav-bar .support-btn:hover img,
-	.header .nav-bar .support-btn.is-selected img { background-image: url(/images/nav-support-large@2x.png); }
+	.nav-view .home-btn img {
+		background-image: url(/images/nav-home-small.png);
+		width: 17px;
+	}
+
+	.nav-view .home-btn:hover img,
+	.nav-view .home-btn.is-selected img {
+		background-image: url(/images/nav-home-small-selected.png);
+	}
+
+	.nav-view .satellites-btn img {
+		background-image: url(/images/nav-satellites-small.png);
+		width: 18px;
+	}
+
+	.nav-view .satellites-btn:hover img,
+	.nav-view .satellites-btn.is-selected img {
+		background-image: url(/images/nav-satellites-small-selected.png);
+	}
+
+	.nav-view .autoswitch-btn img {
+		background-image: url(/images/nav-autoswitch-small.png);
+		width: 19px;
+	}
+
+	.nav-view .autoswitch-btn:hover img,
+	.nav-view .autoswitch-btn.is-selected img {
+		background-image: url(/images/nav-autoswitch-small-selected.png);
+	}
+
+	.nav-view .settings-btn img {
+		background-image: url(/images/nav-settings-small.png);
+		width: 17px;
+	}
+
+	.nav-view .settings-btn:hover img,
+	.nav-view .settings-btn.is-selected img {
+		background-image: url(/images/nav-settings-small-selected.png);
+	}
+
+	.nav-view .updates-btn img {
+		background-image: url(/images/nav-updates-small.png);
+		width: 19px;
+	}
+
+	.nav-view .updates-btn:hover img,
+	.nav-view .updates-btn.is-selected img {
+		background-image: url(/images/nav-updates-small-selected.png);
+	}
+
+	.nav-view .support-btn img {
+		background-image: url(/images/nav-support-small.png);
+		width: 13px;
+	}
+
+	.nav-view .support-btn:hover img,
+	.nav-view .support-btn.is-selected img {
+		background-image: url(/images/nav-support-small-selected.png);
+	}
+
+	.nav-view .sat-finder-btn img {
+		background-image: url(/images/nav-sat-finder-small.png);
+	}
+
+	.nav-view .sat-finder-btn:hover img,
+	.nav-view .sat-finder-btn.is-selected img {
+		background-image: url(/images/nav-sat-finder-small-selected.png);
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.menu-view {
+		background-color: #040b17;
+		padding-top: 95px;
+		width: 240px;
+	}
+
+	.menu-view .menu-btn img {
+		display: none;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.main-view {
+		left: 240px;
+		padding-top: 95px;
+		right: 0;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.popup-view {
+		background-color: rgba(0,0,0,.2);
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
+	.popup-content {
+		background-color: #041229;
+		box-shadow: 0 0 50px #000;
+		height: 600px;
+		left: 50%;
+		margin: -300px -400px;
+		position: absolute;
+		top: 50%;
+		width: 800px;
+	}
+
+	.popup-view h1 {
+		background-color: #040b17;
+		border-bottom: 1px solid #466ab2;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	.popup-view .back-btn {
+		display: block;
+		left: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 44px;
+		width: 44px;
+		z-index: 1;
+	}
+
+	.popup-view .back-btn label {
+		display: none;
+	}
+
+	.popup-view .back-btn img {
+		background-image: url(/images/close-btn.png);
+	}
+
+	.popup-view .back-btn:hover img {
+		background-image: url(/images/close-btn-hover.png);
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.dropdown-content {
+		height: auto;
+		width: auto;
+		padding: 45px 0 0 0;
+	}
+
+	.dropdown-view .dropdown-option {
+		background-color: #243774;
+		border-bottom: 1px solid #466ab2;
+		width: 100%;
+	}
+
+	.dropdown-view .dropdown-option:hover {
+		background-color: #1c335d;
+	}
+
+	.dropdown-view .dropdown-option.is-selected {
+		background-color: #4f7abd;
+	}
+
+	.dropdown-view .dropdown-option img {
+		background-image: url(/images/back-btn.png);
+		float: left;
+	}
+
+	.dropdown-view .dropdown-option.is-selected img {
+		background-image: url(/images/check-mark.png);
+	}
+
+	.dropdown-view .dropdown-option label {
+		display: block;
+		padding: 14px 20px;
+		text-align: left;
+	}
 }
 
-
-
-
-
-*:hover {
-	outline: 1px solid red;
-}
+/*/\\/\\\/\\\\/\\\\\/\\\\\\/\\\\\\\/\\\\\\\\/\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\\\\*\
+\*\//\///\////\/////\//////\///////\////////\/////////\//////////\////////////*/
 
 @media screen and (max-width: 880px) {
-
-	.header .nav-bar .nav-btn img {
-		background-size: 49px;
+	.view {
+		width: 100%;
 	}
 
-	.header .nav-bar .home-btn img {
-		background-image: url(/images/nav-home-large.svg) !important;
+	.view-content {
+		padding: 100px 20px 50px;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.nav-view {
+		display: none;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.menu-view {
+		padding-top: 50px;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.main-view {
+		padding-top: 50px;
+	}
+
+	.main-view h1 {
+		display: none;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.popup-view {
+		min-height: 100%;
+	}
+
+	.popup-view h1 {
+		display: none;
+	}
+
+	.popup-view .back-btn {
+		border-bottom: 1px solid #466ab2;
+	}
+
+	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+	.dropdown-content {
+		background-color: #041229;
+		bottom: 0; 
+		box-shadow: 0 0 50px #000;
+		left: 0 !important;
+		position: absolute;
+		top: auto !important;
+		width: 100%;
+	}
+
+	.dropdown-view h1 {
+		background-color: #040b17;
+		border-bottom: 1px solid #466ab2;
+		display: block;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+	.dropdown-view .back-btn {
+		border-bottom: 0;
+		display: block;
+		left: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 44px;
+		width: 44px;
+		z-index: 1;
+	}
+
+	.dropdown-view .back-btn label {
+		display: none;
+	}
+
+	.dropdown-view .back-btn img {
+		background-image: url(/images/close-btn.png);
+	}
+
+	.dropdown-view .back-btn:hover img {
+		background-image: url(/images/close-btn-hover.png);
+	}
+
+	.dropdown-content {
+		height: auto;
+		padding: 45px 0 0 0;
+	}
+
+	.dropdown-view .dropdown-option {
+		background-color: #243774;
+		border-bottom: 1px solid #466ab2;
+		width: 100%;
+	}
+
+	.dropdown-view .dropdown-option:hover {
+		background-color: #1c335d;
+	}
+
+	.dropdown-view .dropdown-option.is-selected {
+		background-color: #4f7abd;
+	}
+
+	.dropdown-view .dropdown-option img {
+		background-image: url(/images/back-btn.png);
+		float: left;
+	}
+
+	.dropdown-view .dropdown-option.is-selected img {
+		background-image: url(/images/check-mark.png);
+	}
+
+	.dropdown-view .dropdown-option label {
+		display: block;
+		padding: 14px 20px;
+		text-align: left;
 	}
 }
+
+/*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\
+\*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/

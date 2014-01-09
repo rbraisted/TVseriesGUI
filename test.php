@@ -124,7 +124,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 		<div id="advanced-settings-view" class="view main-view advanced-settings-view">
-			<div class="view-content">
+			<div class="view-content main-content">
 				<a id="back-btn" href="#" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Advanced Settings</label>
