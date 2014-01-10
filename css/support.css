@@ -1,0 +1,63 @@
+@media screen and (max-width: 880px) {
+	body.at-splash .menu-view,
+	body.at-menu .menu-view,
+	body.at-about-the-app .about-the-app-view,
+	body.at-about-the-satellites .about-the-satellites-view,
+	body.at-technical-definitions .technical-definitions-view,
+	body.at-about-blockage .about-blockage-view,
+	body.at-diagnostic-log .diagnostic-log-view,
+	body.at-restart-system .restart-system-view,
+	body.at-event-history .event-history-view,
+	body.at-command-line .command-line-view {
+		display: block;
+	}
+}
+
+@media screen and (min-width: 880px) {
+	body.at-splash .menu-view,
+
+	body.at-about-the-app .menu-view,
+	body.at-about-the-app .about-the-app-view,
+
+	body.at-about-the-satellites .menu-view,
+	body.at-about-the-satellites .about-the-satellites-view,
+
+	body.at-technical-definitions .menu-view,
+	body.at-technical-definitions .technical-definitions-view,
+
+	body.at-about-blockage .menu-view,
+	body.at-about-blockage .about-blockage-view,
+
+	body.at-diagnostic-log .menu-view,
+	body.at-diagnostic-log .diagnostic-log-view,
+
+	body.at-restart-system .menu-view,
+	body.at-restart-system .restart-system-view,
+
+	body.at-event-history .menu-view,
+	body.at-event-history .event-history-view,
+
+	body.at-command-line .menu-view,
+	body.at-command-line .command-line-view {
+		display: block;
+	}
+}
+
+.menu-view h2,
+.menu-view h3 {
+	padding: 0.875em 1.25em;
+	text-align: left;
+}
+
+.menu-view h3:first-of-type {
+	padding-top: 0;
+}
+
+.contact-btn {
+	display: block;
+	margin: 0 20px;
+}
+
+.email-btn {
+	margin-bottom: 0.875em;
+}

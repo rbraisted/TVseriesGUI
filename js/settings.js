@@ -25,7 +25,6 @@ TVRO.SettingsPage = function() {
 
 			menuBtns.removeClass('is-selected');
 			menuBtn.addClass('is-selected');
-			menu.removeClass('is-active');
 
 			if (menuBtn.hasId('general-settings-btn')) $(document.body).setClass('at-general-settings');
 			else if (menuBtn.hasId('advanced-settings-btn')) $(document.body).setClass('at-advanced-settings');
@@ -182,7 +181,7 @@ TVRO.EthernetSettingsView = function() {
 
 	self.init = function() {
 		var staticView = $('[id ~= static-view ]', view),
-			modeDropdown = TVRO.Dropdown('#ethernet-mode-dropdown', '#mode-btn');
+			modeDropdown = new TVRO.Dropdown('#ethernet-mode-dropdown', '#mode-btn');
 		modeDropdown.optionSelected(function(name, value) {
 			$('[id ~= mode ]', view).text(name);
 			staticView.toggle(value === 'STATIC');
@@ -233,7 +232,15 @@ TVRO.EthernetSettingsView = function() {
 
 
 TVRO.WirelessSettingsView = function() {
-	return { init : function() {} };
+	var self = {},
+		view = $('[id ~= edit-wireless-settings-view ]'),
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+
+	}
+
+	return self;
 }
 
 

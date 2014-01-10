@@ -88,6 +88,7 @@ h3 {
 p {
 	color: #cbcaca;
 	display: block;
+	margin-bottom: 2em;
 }
 
 input {
@@ -130,7 +131,6 @@ input {
 	background-color: #1c335d;
 }
 
-.basic-btn:active,
 .basic-btn.is-selected {
 	background-color: #4f7abd;
 }
@@ -318,7 +318,6 @@ input {
 	background-color: #1c335d;
 }
 
-.menu-view .menu-btn:active,
 .menu-view .menu-btn.is-selected {
 	background-color: #4f7abd;
 }
@@ -503,7 +502,7 @@ input {
 	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 	.popup-view {
-		background-color: rgba(0,0,0,.2);
+		background-color: rgba(0,0,0,.25);
 		height: 100%;
 		left: 0;
 		position: fixed;
@@ -573,7 +572,6 @@ input {
 		background-color: #1c335d;
 	}
 
-	.dropdown-view .dropdown-option:active,
 	.dropdown-view .dropdown-option.is-selected {
 		background-color: #4f7abd;
 	}
@@ -584,7 +582,6 @@ input {
 	}
 
 
-	.dropdown-view .dropdown-option:active img,
 	.dropdown-view .dropdown-option.is-selected img {
 		background-image: url(/images/check-mark.png);
 	}
@@ -646,6 +643,10 @@ input {
 
 	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+	.dropdown-view {
+		background-color: rgba(0,0,0,.25);
+	}
+
 	.dropdown-content {
 		background-color: #041229;
 		bottom: 0; 
@@ -705,7 +706,6 @@ input {
 		background-color: #1c335d;
 	}
 
-	.dropdown-view .dropdown-option:active,
 	.dropdown-view .dropdown-option.is-selected {
 		background-color: #4f7abd;
 	}
@@ -715,7 +715,6 @@ input {
 		float: left;
 	}
 
-	.dropdown-view .dropdown-option:active,
 	.dropdown-view .dropdown-option.is-selected img {
 		background-image: url(/images/check-mark.png);
 	}

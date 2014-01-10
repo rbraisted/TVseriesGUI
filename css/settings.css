@@ -1,16 +1,10 @@
 @media screen and (max-width: 880px) {
 	body.at-splash .menu-view,
-
 	body.at-menu .menu-view,
-
 	body.at-general-settings .general-settings-view,
-
 	body.at-advanced-settings .advanced-settings-view,
-
 	body.at-network-settings .network-settings-view,
-
 	body.at-edit-ethernet-settings .edit-ethernet-settings-view,
-
 	body.at-edit-wireless-settings .edit-wireless-settings-view {
 		display: block;
 	}

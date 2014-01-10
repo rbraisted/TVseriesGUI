@@ -62,7 +62,7 @@
 				<img src="/images/img.gif">
 				<label>Updates</label>
 			</a>
-			<a id="support-btn nav-btn" href="/support/" class="btn nav-btn support-btn">
+			<a id="support-btn nav-btn" href="/support.php" class="btn nav-btn support-btn">
 				<img src="/images/img.gif">
 				<label>Support</label>
 			</a>

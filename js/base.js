@@ -48,11 +48,6 @@ TVRO = {
 }
 
 TVRO.init = function() {
-	// $('#nav-btn').click(function() {
-	// 	$(this).toggleClass('selected');
-	// 	$('#nav').toggleClass('toggled');
-	// });
-
 	$('#header > #nav-btn').click(function() {
 		$('#nav-bar', '#header').toggleClass('is-expanded');
 	});
@@ -94,7 +89,7 @@ TVRO.init = function() {
 
 	$('[id ~= sat-finder-btn ]', '#nav-bar').toggle(TVRO.SAT_FINDER);
 
-	$('[id ~= nav-btn ]', '#nav-bar').each(function(index, element) {
+	$('[id ~= nav-btn ]', '#nav').each(function(index, element) {
 		$(element).toggleClass('is-selected', element.href === location.protocol+ '//' + location.hostname + (location.port ? ':' + location.port : '') + location.pathname);
 	});
 

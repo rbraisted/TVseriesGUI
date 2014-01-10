@@ -2,7 +2,7 @@
 <link type="text/css" rel="stylesheet" href="/css/settings.css">
 <script type="text/javascript" src="/js/settings.js"></script>
 
-
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="menu" class="view menu-view">
 	<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
@@ -225,6 +225,54 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="edit-wireless-settings-view" class="view popup-view edit-settings-view edit-wireless-settings-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Edit Wireless Settings</label>
+		</a>
+		<h1>Edit Wireless Settings</h1>
+		<div class="setting">
+			<label class="setting-name">Mode:</label>
+			<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+				<img src="/images/img.gif">
+				<label id="mode"></label>
+			</a>
+		</div>
+		<div id="static-view">
+			<div class="setting">
+				<label class="setting-name">IP Address:</label>
+				<input id="ip" type="text" class="setting-input"/>
+			</div>
+			<div class="setting">
+				<label class="setting-name">Subnet:</label>
+				<input id="subnet" type="text" class="setting-input"/>
+			</div>
+			<div class="setting">
+				<label class="setting-name">Gateway:</label>
+				<input id="gateway" type="text"  class="setting-input"/>
+			</div>
+			<div class="setting">
+				<label class="setting-name">Broadcast:</label>
+				<input id="broadcast" type="text" class="setting-input"/>
+			</div>
+		</div>
+		<div class="buttons">
+			<a id="reset-btn" href="#" class="btn basic-btn">
+				<label>Factory Settings</label>
+			</a>
+			<a id="cancel-btn" href="#" class="btn basic-btn">
+				<label>Cancel</label>
+			</a>
+			<a id="save-btn" href="#" class="btn basic-btn">
+				<label>Save</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
 		<a id="close-btn" href="#" class="btn back-btn">
@@ -248,3 +296,5 @@
 		</div>
 	</div>
 </div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
