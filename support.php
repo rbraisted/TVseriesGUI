@@ -136,7 +136,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="diagnostic-log" class="view main-view main-view diagnostic-log-view">
-	<div class="view-content main-content">
+	<div class="copy view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Diagnostic Log</label>
@@ -145,26 +145,26 @@
 		<a id="operational-btn" href="#" class="btn basic-btn">
 			<label>View / Save Operational Log</label>
 		</a>
-		<p>Choose this option to open a text version of the Operational Log.</p>
+		<p>Donec placerat eleifend augue, eget venenatis ante tincidunt ut. In nec lacus id ante ultricies mollis.</p>
 		<a id="start-btn" href="#" class="btn basic-btn">
 			<label>Start New Log</label>
 		</a>
-		<p>This option will delete the existing log data and begin recording a new log.</p>
+		<p>Quisque non ultricies ante. Cras facilisis est consectetur turpis tempor commodo. Aenean enim lorem, euismod vel lacinia vel, vehicula vel est.</p>
 		<a id="restart-btn" href="#" class="btn basic-btn">
 			<label>Restart System & Start New Log</label>
 		</a>
-		<p>This option will restart your antenna system, then begin recording a new log in order to capture information logged in the startup cycle.</p>
+		<p>Maecenas vel arcu placerat, malesuada magna eu, imperdiet massa. Cras vel lectus dui. Donec vel elementum eros.</p>
 		<a id="entry-btn" href="#" class="btn basic-btn">
 			<label>View / Save Entry Log</label>
 		</a>
-		<p>Choose this option to open a text version of the Event Log</p>
+		<p>Phasellus at odio et mi egestas mattis mollis quis urna. Sed sit amet lectus ultricies, consequat augue quis, congue sapien.</p>
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="restart-system" class="view main-view restart-system-view">
-	<div class="view-content main-content">
+	<div class="copy view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Restart System</label>
@@ -173,12 +173,15 @@
 		<a id="system-btn" href="#" class="btn basic-btn">
 			<label>Restart System</label>
 		</a>
+		<p>Maecenas in aliquet mauris, in venenatis eros. Maecenas at velit id ante sodales vulputate sit amet quis turpis.</p>
 		<a id="antenna-btn" href="#" class="btn basic-btn">
 			<label>Restart Antenna</label>
 		</a>
+		<p>Aenean sagittis ante mi, vel ultricies risus iaculis ac. Nullam tincidunt eros sit amet augue accumsan adipiscing. Sed ac sollicitudin eros.</p>
 		<a id="all-btn" href="#" class="btn basic-btn">
 			<label>Restart Both</label>
 		</a>
+		<p>Integer iaculis gravida enim vitae varius. Phasellus rutrum urna nibh, a ornare nunc lobortis eu. Aliquam porta imperdiet luctus. In hac habitasse platea dictumst.</p>
 	</div>
 </div>
 
@@ -191,11 +194,16 @@
 			<label>Event History</label>
 		</a>
 		<h1>Event History</h1>
-		<div id="events" class="events"></div>
-		<a id="load-btn" href="#" class="btn basic-btn">
+		<div id="events" class="events">
+			<div id="event" class="event">
+				<span id="date-time" class="event-date-time"></span>
+				<span id="message" class="event-message"></span>
+			</div>
+		</div>
+		<a id="load-btn" href="#" class="btn basic-btn event-history-btn">
 			<label>Load More</label>
 		</a>
-		<a id="email-btn" href="#" class="btn basic-btn">
+		<a id="email-btn" href="#" class="btn basic-btn event-history-btn">
 	 		<label>Email to Technician</label>
 	 	</a>
 	</div>

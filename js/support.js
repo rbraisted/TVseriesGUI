@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 TVRO.DiagnosticLog = function() {
 	var self = {},
 		view = $('[id ~= diagnostic-log ]'),
@@ -10,31 +12,89 @@ TVRO.DiagnosticLog = function() {
 			window.location.href = 'logfile.php?file=IPACU.serial.log';
 		});
 
+		$('[id ~= start-btn ]', view).click(function() {
+			webService.request('start_serial_log', {'restart':'N'});
+		});
+
+		$('[id ~= restart-btn ]', view).click(function() {
+			webService.request('start_serial_log', {'restart':'Y'});
+		});
+
 		$('[id ~= entry-btn ]', view).click(function() {
 			window.location.href = 'logfile.php?file=majorError.log';
 		});
-
-		$('[id ~= start-btn ], [id ~= restart-btn ]', view).click(function() {
-			webService.request('start_serial_log', {
-				'restart' : ($(this).hasId('restart-btn') ? 'Y' : 'N')
-			});
-		});
-
 	}
 
 	return self;
 }
+
+
 
 TVRO.RestartSystem = function() {
 	var self = {},
+		view = $('[id ~= restart-system ]'),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
+		$('[id ~= system-btn ]', view).click(function() {
+			webService.request('reboot', {'sys':'SBC'});
+		});
 
+		$('[id ~= antenna-btn ]', view).click(function() {
+			webService.request('reboot', {'sys':'ANT'});
+		});
+
+		$('[id ~= all-btn ]', view).click(function() {
+			webService.request('reboot', {'sys':'ALL'});
+		});
 	}
 
 	return self;
 }
+
+
+
+TVRO.EventHistory = function() {
+	var self = {},
+		view = $('[id ~= event-history ]'),
+		eventsView = $('[id ~= events ]', view),
+		eventViewTemplate = $('[id ~= event ]', view).detach(),
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+		$('[id ~= load-btn ]', view).click(function() {
+			self.load();
+		});
+
+		$('[id ~= email-btn ]', view).click(function() {
+
+		});
+	}
+
+	self.load = function() {
+		webService.request('get_recent_event_history', {
+			'begin_at_event' : $('[id ~= event ]', eventsView).length,
+			'how_many_events' : 5
+		}, function(response) {
+			var events = $('event', response);
+			for (var i = 0; i < events.length; i++) {
+				var event = $(events[i]).text(),
+					dateTime = event.substr(0, event.indexOf('::')),
+					message = event.substr(event.indexOf('::')+2),
+					eventView = eventViewTemplate.clone(),
+					dateTimeView = $('[id ~= date-time ]', eventView),
+					messageView = $('[id ~= message ]', eventView);
+				dateTimeView.text(dateTime);
+				messageView.text(message);
+				eventsView.append(eventView);
+			}
+		});
+	}
+
+	return self;
+}
+
+
 
 TVRO.Support = function() {
 	var self = {},
@@ -46,6 +106,8 @@ TVRO.Support = function() {
 			backBtns = $('[id ~= back-btn ]');
 
 		TVRO.DiagnosticLog().init();
+		TVRO.RestartSystem().init();
+		TVRO.EventHistory().init();
 
 		menuBtns.click(function() {
 			var menuBtn = $(this);

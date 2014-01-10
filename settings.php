@@ -169,7 +169,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="edit-ethernet-settings-view" class="view popup-view edit-settings-view edit-ethernet-settings-view">
+<div id="edit-ethernet-settings-view" class="view popup-view settings-view edit-settings-view edit-ethernet-settings-view">
 	<div class="view-content popup-content">
 		<a id="cancel-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -217,7 +217,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="edit-wireless-settings-view" class="view popup-view edit-settings-view edit-wireless-settings-view">
+<div id="edit-wireless-settings-view" class="view popup-view settings-view edit-settings-view edit-wireless-settings-view">
 	<div class="view-content popup-content">
 		<a id="cancel-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">

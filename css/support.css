@@ -61,3 +61,32 @@
 .email-btn {
 	margin-bottom: 0.875em;
 }
+
+
+
+
+
+.event-history-view {
+
+}
+
+.events {
+	background: #1c335d;
+	height: 400px;
+	overflow: auto;
+	margin-bottom: 2em;
+	width: 100%;
+}
+
+.event {
+	background-color: #4c5168;
+	padding: 0.875em 1.25em;
+}
+
+.event:nth-child(2n) {
+	background-color: #3b4154;
+}
+
+.event-date-time {
+
+}
