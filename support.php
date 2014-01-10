@@ -60,7 +60,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="about-the-app-view" class="view main-view about-the-app-view">
+<div id="about-the-app" class="view main-view about-the-app-view">
 	<div class="copy view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -78,7 +78,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="about-the-satellites-view" class="view main-view about-the-satellites-view">
+<div id="about-the-satellites" class="view main-view about-the-satellites-view">
 	<div class="copy view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -97,7 +97,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="technical-definitions-view" class="view main-view technical-definitions-view">
+<div id="technical-definitions" class="view main-view technical-definitions-view">
 	<div class="copy view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -116,7 +116,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="about-blockage-view" class="view main-view about-blockage-view">
+<div id="about-blockage" class="view main-view about-blockage-view">
 	<div class="copy view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -135,7 +135,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="diagnostic-log-view" class="view main-view main-view diagnostic-log-view">
+<div id="diagnostic-log" class="view main-view main-view diagnostic-log-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -163,7 +163,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="restart-system-view" class="view main-view restart-system-view">
+<div id="restart-system" class="view main-view restart-system-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -184,7 +184,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="event-history-view" class="view main-view event-history-view">
+<div id="event-history" class="view main-view event-history-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -203,7 +203,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="command-line-view" class="view main-view command-line-view">
+<div id="command-line" class="view main-view command-line-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">

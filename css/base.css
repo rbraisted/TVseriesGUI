@@ -280,6 +280,7 @@ input {
 .nav-view {
 	background-color: #010305;
 	display: block;
+	top: 50px;
 	width: 100%;
 	z-index: 3;
 }
@@ -287,8 +288,6 @@ input {
 .nav-view .nav-btn {
 	background: transparent no-repeat center center;
 	display: block;
-	float: left;
-	position: relative;
 }
 
 .nav-view .sat-finder-btn {
@@ -379,13 +378,11 @@ input {
 
 	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 	
-	.nav-view {
-		top: 50px;
-	}
-
 	.nav-view .nav-btn {
+		float: left;
 		height: 45px;
 		padding-right: 22px;
+		position: relative;
 		width: auto;
 	}
 
@@ -607,7 +604,95 @@ input {
 	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 	.nav-view {
-		display: none;
+		height: 0;
+		transition: padding-bottom 0.5s;
+		-moz-transition: padding-bottom 0.5s;
+		-webkit-transition: padding-bottom 0.5s;
+	}
+
+	.nav-view.is-expanded {
+		padding-bottom: 66.6666666%;
+	}
+
+	.nav-view .nav-btn {
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		bottom: 50%;
+		transition: opacity 0.5s;
+		-moz-transition: opacity 0.5s;
+		-webkit-transition: opacity 0.5s;
+	}
+
+	.nav-view.is-expanded .nav-btn {
+		opacity: 1;
+	}
+
+	.nav-view .nav-btn:nth-child(n+4) {
+		top: 50%;
+		bottom: 0;
+	}
+
+	.nav-view .nav-btn:nth-child(3n+1) {
+		left: 0;
+		right: 66.666%;
+	}
+
+	.nav-view .nav-btn:nth-child(3n+2) {
+		left: 33.333%;
+		right: 33.333%;
+	}
+
+	.nav-view .nav-btn:nth-child(3n+3) {
+		left: 66.666%;
+		right: 0;
+	}
+
+	.nav-view .nav-btn img {
+		background: transparent no-repeat center center;
+		height: 60px;
+		left: 50%;
+		margin: -40px -30px;
+		position: absolute;
+		top: 50%;
+		width: 60px;
+	}
+
+	.nav-view .nav-btn label {
+		width: 100%;
+		text-align: center;
+		margin-top: 30px;
+		position: absolute;
+		top: 50%;
+	}
+
+	.nav-view .home-btn img {
+		background-image: url(/images/nav-home-large.png);
+	}
+
+	.nav-view .satellites-btn img {
+		background-image: url(/images/nav-satellites-large.png);
+	}
+
+	.nav-view .autoswitch-btn img {
+		background-image: url(/images/nav-autoswitch-large.png);
+	}
+
+	.nav-view .settings-btn img {
+		background-image: url(/images/nav-settings-large.png);
+	}
+
+	.nav-view .updates-btn img {
+		background-image: url(/images/nav-updates-large.png);
+	}
+
+	.nav-view .support-btn img {
+		background-image: url(/images/nav-support-large.png);
+	}
+
+	.nav-view .sat-finder-btn img {
+		background-image: url(/images/nav-sat-finder-large.png);
 	}
 
 	/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

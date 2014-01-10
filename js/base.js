@@ -48,55 +48,54 @@ TVRO = {
 }
 
 TVRO.init = function() {
-	$('#header > #nav-btn').click(function() {
-		$('#nav-bar', '#header').toggleClass('is-expanded');
+	var header = $('[id ~= header ]'),
+		nav = $('[id ~= nav ]'),
+		status = $('[id ~= status ]');
+
+	$('[id ~= nav-btn ]', header).click(function() {
+		nav.toggleClass('is-expanded');
 	});
 
 
-	var webService = new TVRO.WebService();
-	setInterval(function() {
-		webService.request('antenna_status', function(response) {
-			var acu = $('acu > state', response).text(),
-				antenna = $('antenna > state', response).text();
+	// var webService = new TVRO.WebService();
+	// setInterval(function() {
+	// 	webService.request('antenna_status', function(response) {
+	// 		var acu = $('acu > state', response).text(),
+	// 			antenna = $('antenna > state', response).text();
 
-			//	ACU
-			//	acu > state OK | FLASHING | CALGYRO | ERROR
-			//	something like
-			$('[id ~= acu-state]', '#status-btn').removeClass('is-ok is-flashing is-calgyro is-error');
-			$('[id ~= acu-state]', '#status-btn').toggleClass('is-ok', acu === 'OK');
-			$('[id ~= acu-state]', '#status-btn').toggleClass('is-flashing', acu === 'FLASHING');
-			$('[id ~= acu-state]', '#status-btn').toggleClass('is-calgyro', acu === 'CALGYRO');
-			$('[id ~= acu-state]', '#status-btn').toggleClass('is-error', acu === 'ERROR');
+	// 		//	ACU
+	// 		//	acu > state OK | FLASHING | CALGYRO | ERROR
+	// 		//	something like
+	// 		$('[id ~= acu-state]', '#status-btn').removeClass('is-ok is-flashing is-calgyro is-error');
+	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-ok', acu === 'OK');
+	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-flashing', acu === 'FLASHING');
+	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-calgyro', acu === 'CALGYRO');
+	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-error', acu === 'ERROR');
 
-			//	ANTENNA
-			//	antenna > state INITIALIZING | WAITING FOR MODEM (Note: VSAT only) | MODEM SAT SWITCH (Note: VSAT only) | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP
-			$('[id ~= antenna-state]', '#status-btn').removeClass('is-initializing is-searching is-tracking is-idle is-error is-cable-unwrap');
-			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-initializing', antenna === 'INITIALIZING');
-			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-searching', antenna === 'SEARCHING');
-			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-tracking', antenna === 'TRACKING');
-			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-idle', antenna === 'IDLE');
-			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-error', antenna === 'ERROR');
-			$('[id ~= antenna-state]', '#status-btn').toggleClass('is-cable-unwrap', antenna === 'CABLE UNWRAP');
-		});
-	}, 2000);
+	// 		//	ANTENNA
+	// 		//	antenna > state INITIALIZING | WAITING FOR MODEM (Note: VSAT only) | MODEM SAT SWITCH (Note: VSAT only) | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP
+	// 		$('[id ~= antenna-state]', '#status-btn').removeClass('is-initializing is-searching is-tracking is-idle is-error is-cable-unwrap');
+	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-initializing', antenna === 'INITIALIZING');
+	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-searching', antenna === 'SEARCHING');
+	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-tracking', antenna === 'TRACKING');
+	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-idle', antenna === 'IDLE');
+	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-error', antenna === 'ERROR');
+	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-cable-unwrap', antenna === 'CABLE UNWRAP');
+	// 	});
+	// }, 2000);
 
-	$('#status-btn').click(function() {
-		$(this).toggleClass('selected');
-		$('#status').toggleClass('toggled');
+	$('[id ~= status-btn ]', header).click(function() {
+		$(status).toggleClass('toggled');
 	});
 
-	TVRO.SAT_FINDER = false;
+	$('[id ~= sat-finder-btn ]', nav).toggle(false);//TVRO.SAT_FINDER);
 
-	$('[id ~= sat-finder-btn ]', '#nav-bar').toggle(TVRO.SAT_FINDER);
-
-	$('[id ~= nav-btn ]', '#nav').each(function(index, element) {
+	$('[id ~= nav-btn ]', nav).each(function(index, element) {
 		$(element).toggleClass('is-selected', element.href === location.protocol+ '//' + location.hostname + (location.port ? ':' + location.port : '') + location.pathname);
 	});
 
-	if (TVRO.page && TVRO.page.init) {
-		TVRO.page.init();
-	}
-};
+	if (TVRO.page && TVRO.page.init) TVRO.page.init();
+}
 
 //	cookie manager singleton
 //	note that cookies are set across all paths

@@ -1,5 +1,41 @@
 "use strict";
 
+TVRO.DiagnosticLog = function() {
+	var self = {},
+		view = $('[id ~= diagnostic-log ]'),
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+		$('[id ~= operational-btn ]', view).click(function() {
+			window.location.href = 'logfile.php?file=IPACU.serial.log';
+		});
+
+		$('[id ~= entry-btn ]', view).click(function() {
+			window.location.href = 'logfile.php?file=majorError.log';
+		});
+
+		$('[id ~= start-btn ], [id ~= restart-btn ]', view).click(function() {
+			webService.request('start_serial_log', {
+				'restart' : ($(this).hasId('restart-btn') ? 'Y' : 'N')
+			});
+		});
+
+	}
+
+	return self;
+}
+
+TVRO.RestartSystem = function() {
+	var self = {},
+		webService = new TVRO.WebService();
+
+	self.init = function() {
+
+	}
+
+	return self;
+}
+
 TVRO.Support = function() {
 	var self = {},
 		webService = new TVRO.WebService();
@@ -8,6 +44,8 @@ TVRO.Support = function() {
 		var menu = $('[id ~= menu ]'),
 			menuBtns = $('[id ~= menu-btn ]', menu),
 			backBtns = $('[id ~= back-btn ]');
+
+		TVRO.DiagnosticLog().init();
 
 		menuBtns.click(function() {
 			var menuBtn = $(this);
@@ -22,14 +60,14 @@ TVRO.Support = function() {
 			else if (menuBtn.hasId('technical-definitions-btn')) $(document.body).setClass('at-technical-definitions');
 			else if (menuBtn.hasId('about-blockage-btn')) $(document.body).setClass('at-about-blockage');
 			else if (menuBtn.hasId('diagnostic-log-btn')) $(document.body).setClass('at-diagnostic-log');
-			else if (menuBtn.hasId('restart-sytem-btn')) $(document.body).setClass('at-restart-sytem');
+			else if (menuBtn.hasId('restart-system-btn')) $(document.body).setClass('at-restart-system');
 			else if (menuBtn.hasId('event-history-btn')) $(document.body).setClass('at-event-history');
 			else if (menuBtn.hasId('command-line-btn')) $(document.body).setClass('at-command-line');
 		});
 
 		backBtns.click(function() {
 			$(document.body).setClass('at-menu');
-			menuBtns.removeClass('is-selected');	
+			menuBtns.removeClass('is-selected');
 		});
 	}
 

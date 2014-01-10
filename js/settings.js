@@ -35,8 +35,6 @@ TVRO.SettingsPage = function() {
 			$(document.body).setClass('at-menu');
 			menuBtns.removeClass('is-selected');
 		});
-
-		$('#ethernet-settings > #edit-btn').click();
 	}
 
 	return self;
