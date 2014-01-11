@@ -201,14 +201,14 @@
 				<input id="broadcast" type="text" class="setting-input"/>
 			</div>
 		</div>
-		<div class="buttons">
-			<a id="reset-btn" href="#" class="btn basic-btn">
+		<div class="tool-bar">
+			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
 				<label>Factory Settings</label>
 			</a>
-			<a id="cancel-btn" href="#" class="btn basic-btn">
+			<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
 				<label>Cancel</label>
 			</a>
-			<a id="save-btn" href="#" class="btn basic-btn">
+			<a id="save-btn" href="#" class="btn basic-btn save-btn">
 				<label>Save</label>
 			</a>
 		</div>
@@ -249,14 +249,14 @@
 				<input id="broadcast" type="text" class="setting-input"/>
 			</div>
 		</div>
-		<div class="buttons">
-			<a id="reset-btn" href="#" class="btn basic-btn">
+		<div class="tool-bar">
+			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
 				<label>Factory Settings</label>
 			</a>
-			<a id="cancel-btn" href="#" class="btn basic-btn">
+			<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
 				<label>Cancel</label>
 			</a>
-			<a id="save-btn" href="#" class="btn basic-btn">
+			<a id="save-btn" href="#" class="btn basic-btn save-btn">
 				<label>Save</label>
 			</a>
 		</div>

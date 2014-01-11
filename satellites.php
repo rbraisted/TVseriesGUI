@@ -1,6 +1,56 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
-<link type="text/css" rel="stylesheet" href="/css/satellites.css">
+<!--
+	things:
+
+	single
+	group auto
+	group manual
+
+	all the guys:
+		- sat signal
+		- sat mode
+
+-->
+
+<div id="menu" class="single auto manual">
+	<div class="single auto manual">
+		current satellite
+	</div>
+
+	<div class="single auto manual">
+		satellite mode (single || group)
+	</div>
+
+	<div class="single auto manual">
+		current satellite
+	</div>
+
+	<div class="single">
+		list of regions
+	</div>
+
+	<div class="single">
+		create new satellite
+	</div>
+
+	<div class="auto manual">
+		list of sat groups
+	</div>
+
+	<div class="auto manual">
+		create new group
+	</div>
+</div>
+
+<div id="satellite-list" class="single auto manual"></div>
+
+<div id="group-list" class="auto manual"></div>
+
+<div id="satellite-details" class="single auto manual"></div>
+
+
+<!-- <link type="text/css" rel="stylesheet" href="/css/satellites.css">
 <script type="text/javascript" src="/js/satellites.js"></script>
 
 <div id="sb" class="sb active">
@@ -21,19 +71,19 @@
 		<div id="satellites-table" class="satellites-table">
 			<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Back</a>
 			<div class="table-header">
-				<a id="name-sort-btn sort-btn" href="#" class="name-col table-col sort-btn"><img src="/images/img.gif">Name</a><!--
-			 --><a id="orbital-slot-sort-btn sort-btn" href="#" class="orbital-slot-col table-col sort-btn"><img src="/images/img.gif">Orbital Slot</a><!--
-			 --><a id="region-sort-btn sort-btn" href="#" class="region-col table-col sort-btn"><img src="/images/img.gif">Region</a><!--
-			 --><div class="favorites-col table-col">Favorites</div><!--
-			 --><div class="selected-col table-col">Selected</div>
+				<a id="name-sort-btn sort-btn" href="#" class="name-col table-col sort-btn"><img src="/images/img.gif">Name</a>
+				<a id="orbital-slot-sort-btn sort-btn" href="#" class="orbital-slot-col table-col sort-btn"><img src="/images/img.gif">Orbital Slot</a>
+				<a id="region-sort-btn sort-btn" href="#" class="region-col table-col sort-btn"><img src="/images/img.gif">Region</a>
+				<div class="favorites-col table-col">Favorites</div>
+				<div class="selected-col table-col">Selected</div>
 			</div>
 			<a id="table-row" href="#" class="table-row">
-				<div id="name" class="name-col table-col"></div><!--
-			 --><div id="orbital-slot" class="orbital-slot-col table-col"></div><!--
-			 --><div id="region" class="region-col table-col"></div><!--
-			 --><div id="favorites" class="favorites-col table-col"><img src="/images/img.gif"></div><!--
-			 --><div id="selected" class="selected-col table-col"><img src="/images/img.gif"></div><!--
-			 --><div class="hover">View / Edit Details</div>
+				<div id="name" class="name-col table-col"></div>
+				<div id="orbital-slot" class="orbital-slot-col table-col"></div>
+				<div id="region" class="region-col table-col"></div>
+				<div id="favorites" class="favorites-col table-col"><img src="/images/img.gif"></div>
+				<div id="selected" class="selected-col table-col"><img src="/images/img.gif"></div>
+				<div class="hover">View / Edit Details</div>
 			</a>
 		</div>
 
@@ -43,33 +93,33 @@
 				<label>Name</label>
 				<span id="name view"></span>
 				<input id="name edit" type="text" />
-			</div><!--
-		 --><div class="region satellite-detail">
+			</div>
+			<div class="region satellite-detail">
 				<label>Region</label>
 				<span id="region view"></span>
 				<a id="region edit region-btn" href="#" class="dropdown-btn">Region</a>
-			</div><!--
-		 --><div class="orbital-slot satellite-detail">
+			</div>
+			<div class="orbital-slot satellite-detail">
 				<label>Orbital Slot</label>
 				<span id="orbital-slot view"></span>
 				<input id="orbital-slot edit" type="text" />
-			</div><!--
-		 --><div class="hemisphere satellite-detail">
+			</div>
+			<div class="hemisphere satellite-detail">
 				<label>Hemisphere</label>
 				<span id="hemisphere view"></span>
 				<input id="hemisphere edit" type="text" />
-			</div><!--
-		 --><div class="sat-id satellite-detail">
+			</div>
+			<div class="sat-id satellite-detail">
 				<label>SatID</label>
 				<span id="sat-id view"></span>
 				<input id="sat-id edit" type="text" />
-			</div><!--
-		 --><div class="pre-skew satellite-detail">
+			</div>
+			<div class="pre-skew satellite-detail">
 				<label>Pre-Skew</label>
 				<span id="pre-skew view"></span>
 				<input id="pre-skew edit" type="text" />
-			</div><!--
-		 --><div class="tri-sat-id satellite-detail">
+			</div>
+			<div class="tri-sat-id satellite-detail">
 				<label>Tri-Sat</label>
 				<span id="tri-sat-id view"></span>
 				<input id="tri-sat-id edit" type="text" />
@@ -79,8 +129,8 @@
 					<label>Local Oscillator #1</label>
 					<span id="local-oscillator-1 view"></span>
 					<input id="local-oscillator-1 edit" type="text" />
-				</div><!--
-			 --><div class="local-oscillator local-oscillator-2 satellite-detail">
+				</div>
+				<div class="local-oscillator local-oscillator-2 satellite-detail">
 					<label>Local Oscillator #2</label>
 					<span id="local-oscillator-2 view"></span>
 					<input id="local-oscillator-2 edit" type="text" />
@@ -130,8 +180,8 @@
 						<span id="decoder-type view"></span>
 						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
 					</div>
-				</div><!--
-			 --><div id="xponder-3" class="xponder-details">
+				</div>
+				<div id="xponder-3" class="xponder-details">
 					<div class="name">Parameter 2</div>
 					<div class="polarization">
 						<label>Polarization:</label>
@@ -163,8 +213,8 @@
 						<span id="decoder-type view"></span>
 						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
 					</div>
-				</div><!--
-			 --><div id="xponder-5" class="xponder-details">
+				</div>
+				<div id="xponder-5" class="xponder-details">
 					<div class="name">Parameter 3</div>
 					<div class="polarization">
 						<label>Polarization:</label>
@@ -196,8 +246,8 @@
 						<span id="decoder-type view"></span>
 						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
 					</div>
-				</div><!--
-			 --><div id="xponder-7" class="xponder-details">
+				</div>
+				<div id="xponder-7" class="xponder-details">
 					<div class="name">Parameter 4</div>
 					<div class="polarization">
 						<label>Polarization:</label>
@@ -288,4 +338,4 @@
 			<a id="edit-btn view" href="#" class="border-btn">Edit</a>
 		</div>
 	</div>
-</div>
+</div> -->

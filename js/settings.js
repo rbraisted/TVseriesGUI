@@ -6,17 +6,16 @@ TVRO.SettingsPage = function() {
 	var self = {};
 
 	self.init = function() {
-		var page = $(document.body),
-			menu = $('[id ~= menu ]', page),
+		var menu = $('[id ~= menu ]'),
 			menuBtns = $('[id ~= menu-btn ]', menu),
-			backBtns = $('[id ~= back-btn ]', page);
+			backBtns = $('[id ~= back-btn ]');
 
 		TVRO.GeneralSettingsView().init();
 		TVRO.AdvancedSettingsView().init();
 		TVRO.NetworkSettingsView().init();
 
-		TVRO.EthernetSettingsView().init();
-		TVRO.WirelessSettingsView().init();
+		TVRO.EditEthernetSettingsView().init();
+		TVRO.EditWirelessSettingsView().init();
 
 		menuBtns.click(function() {
 			var menuBtn = $(this);
@@ -172,7 +171,7 @@ TVRO.NetworkSettingsView = function(page) {
 
 
 
-TVRO.EthernetSettingsView = function() {
+TVRO.EditEthernetSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-ethernet-settings-view ]'),
 		webService = new TVRO.WebService();
@@ -229,13 +228,15 @@ TVRO.EthernetSettingsView = function() {
 
 
 
-TVRO.WirelessSettingsView = function() {
+TVRO.EditWirelessSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-wireless-settings-view ]'),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-
+		$('[id ~= cancel-btn ]', view).click(function() {
+			$(document.body).setClass('at-network-settings');
+		});
 	}
 
 	return self;

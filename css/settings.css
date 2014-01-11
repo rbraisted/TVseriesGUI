@@ -70,14 +70,33 @@
 	width: 200px;
 }
 
-.buttons {
-	bottom: 0;
-	position: absolute;
-	right: 0;
-	padding: inherit;
+@media screen and (min-width: 880px) {
+	.tool-bar {
+		bottom: 0;
+		position: absolute;
+		right: 0;
+		padding: inherit;
+	}	
+
+	.tool-bar .btn {
+		float: right;
+		margin-left: 1em;
+	}
 }
 
-.buttons .btn {
-	float: right;
-	margin-left: 1em;
+@media screen and (max-width: 880px) {
+	.tool-bar .reset-btn {
+		display: block;
+		margin: 0 auto 10px;
+	}
+
+	.tool-bar .cancel-btn,
+	.tool-bar .save-btn {
+		float: left;
+		width: calc(50% - 5px);
+	}
+
+	.tool-bar .cancel-btn {
+		margin-right: 10px;
+	}
 }
