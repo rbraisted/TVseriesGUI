@@ -1,5 +1,4 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-
 <link type="text/css" rel="stylesheet" href="/css/home.css">
 <script type="text/javascript" src="/js/home.js"></script>
 <script type="text/javascript" src="/RoboHelp_CSH 2.js"></script>

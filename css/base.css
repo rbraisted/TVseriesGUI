@@ -32,10 +32,10 @@
 	user-select: none;
 }
 
-*:hover {
+/**:hover {
 	outline: 1px solid #f00;
 }
-
+*/
 html {
 	background: #04122a url(/images/gradient.png) no-repeat top center;
 }
@@ -72,6 +72,7 @@ h1 {
 	line-height: 1;
 	padding: 0.571428571em 1.14285714em;
 	text-align: center;
+	margin-bottom: 1em;
 }
 
 h2,
@@ -93,6 +94,8 @@ p {
 input {
 	background-color: #4c5269;
 	border: 1px solid #000;
+	border-radius: 0;
+	-webkit-border-radius: 0;
 	color: inherit;
 	font-family: inherit;
 	font-size: inherit;
@@ -213,6 +216,12 @@ input {
 
 .copy {
 	line-height: 1.6;
+}
+
+.warning {
+	background-color: #b11;
+	color: #fff;
+	padding: 10px;
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -557,8 +566,9 @@ input {
 
 	.dropdown-content {
 		height: auto;
-		width: auto;
+		min-width: 250px;
 		padding: 45px 0 0 0;
+		width: auto;
 	}
 
 	.dropdown-view .dropdown-option {

@@ -220,6 +220,12 @@
 			<label>Command Line</label>
 		</a>
 		<h1>Command Line</h1>
+		<p class="copy warning">Improper use of antenna commands can directly impact performance. Only KVH-authorized technicians should use this interface.</p>
+		<iframe id="output" src="/print2screen.php" class="command-line-output"></iframe>
+		<input id="input" class="command-line-input"></input>
+		<a id="send-btn" class="btn basic-btn command-line-btn">
+			<label>Send</label>
+		</a>
 	</div>
 </div>
 

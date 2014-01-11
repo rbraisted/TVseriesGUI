@@ -68,7 +68,7 @@
 }
 
 .events {
-	background: #1c335d;
+	background-color: #1c335d;
 	overflow: auto;
 	width: 100%;
 }
@@ -91,6 +91,13 @@
 	display: inline-block;
 }
 
+.command-line-output {
+	background-color: #1c335d;
+	display: block;
+	width: 100%;
+}
+
+
 @media screen and (min-width: 880px) {
 	.event-history-content {
 		max-width: 800px;
@@ -103,6 +110,10 @@
 
 	.tool-bar .basic-btn {
 		margin-right: 1em;
+	}
+
+	.command-line-output {
+		margin-bottom: 2em;
 	}
 }
 

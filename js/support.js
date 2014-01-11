@@ -138,7 +138,7 @@ TVRO.Support = function() {
 			menuBtns.removeClass('is-selected');
 		});
 
-		$(document.body).setClass('at-event-history');
+		$(document.body).setClass('at-command-line');
 	}
 
 	return self;

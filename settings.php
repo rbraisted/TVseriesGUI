@@ -95,24 +95,24 @@
 		<div id="ethernet-settings">
 			<h1>Ethernet Settings</h1>
 			<div class="setting">
-				<label class="setting-name">Mode:</label>
-				<span id="mode" class="setting-value"></span>
+				<label class="setting-name">Mode</label><!--
+			 --><span id="mode" class="setting-value"></span>
 			</div>
 			<div class="setting">
-				<label class="setting-name">IP Address:</label>
-				<span id="ip" class="setting-value"></span>
+				<label class="setting-name">IP Address</label><!--
+			 --><span id="ip" class="setting-value"></span>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Subnet:</label>
-				<span id="subnet" class="setting-value"></span>
+				<label class="setting-name">Subnet</label><!--
+			 --><span id="subnet" class="setting-value"></span>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Gateway:</label>
-				<span id="gateway" class="setting-value"></span>
+				<label class="setting-name">Gateway</label><!--
+			 --><span id="gateway" class="setting-value"></span>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Broadcast:</label>
-				<span id="broadcast" class="setting-value"></span>
+				<label class="setting-name">Broadcast</label><!--
+			 --><span id="broadcast" class="setting-value"></span>
 			</div>
 			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
 				<label>Edit</label>
@@ -121,43 +121,43 @@
 		<div id="wireless-settings">
 			<h1>Wireless Settings</h1>
 			<div class="setting">
-				<label class="setting-name">Mode:</label>
-				<span id="mode" class="setting-value"></span>
+				<label class="setting-name">Mode</label><!--
+			 --><span id="mode" class="setting-value"></span>
 			</div>
 			<div id="infrastructure-view">
 				<div class="setting">
-					<label class="setting-name">IP Address:</label>
-					<span id="ip" class="setting-value"></span>
+					<label class="setting-name">IP Address</label><!--
+				 --><span id="ip" class="setting-value"></span>
 				</div>
 				<div class="setting">
-					<label class="setting-name">Subnet:</label>
-					<span id="subnet" class="setting-value"></span>
+					<label class="setting-name">Subnet</label><!--
+				 --><span id="subnet" class="setting-value"></span>
 				</div>
 				<div class="setting">
-					<label class="setting-name">Gateway:</label>
-					<span id="gateway" class="setting-value"></span>
+					<label class="setting-name">Gateway</label><!--
+				 --><span id="gateway" class="setting-value"></span>
 				</div>
 				<div class="setting">
-					<label class="setting-name">Broadcast:</label>
-					<span id="broadcast" class="setting-value"></span>
+					<label class="setting-name">Broadcast</label><!--
+				 --><span id="broadcast" class="setting-value"></span>
 				</div>
 				<div class="setting">
-					<label class="setting-name">SSID:</label>
-					<span id="ssid" class="setting-value"></span>
+					<label class="setting-name">SSID</label><!--
+				 --><span id="ssid" class="setting-value"></span>
 				</div>
 			</div>
 			<div id="adhoc-view">
 				<div class="setting">
-					<label class="setting-name">IP Address:</label>
-					<span id="ip" class="setting-value"></span>
+					<label class="setting-name">IP Address</label><!--
+				 --><span id="ip" class="setting-value"></span>
 				</div>
 				<div class="setting">
-					<label class="setting-name">Security:</label>
-					<span id="security" class="setting-value"></span>
+					<label class="setting-name">Security</label><!--
+				 --><span id="security" class="setting-value"></span>
 				</div>
 				<div class="setting">
-					<label class="setting-name">Password:</label>
-					<span id="password" class="setting-value"></span>
+					<label class="setting-name">Password</label><!--
+				 --><span id="password" class="setting-value"></span>
 				</div>
 			</div>
 			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
@@ -177,28 +177,28 @@
 		</a>
 		<h1>Edit Ethernet Settings</h1>
 		<div class="setting">
-			<label class="setting-name">Mode:</label>
-			<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+			<label class="setting-name">Mode</label><!--
+		 --><a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="mode"></label>
 			</a>
 		</div>
 		<div id="static-view">
 			<div class="setting">
-				<label class="setting-name">IP Address:</label>
-				<input id="ip" type="text" class="setting-input"/>
+				<label class="setting-name">IP Address</label><!--
+			 --><input id="ip" type="text" class="setting-input"/>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Subnet:</label>
-				<input id="subnet" type="text" class="setting-input"/>
+				<label class="setting-name">Subnet</label><!--
+			 --><input id="subnet" type="text" class="setting-input"/>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Gateway:</label>
-				<input id="gateway" type="text"  class="setting-input"/>
+				<label class="setting-name">Gateway</label><!--
+			 --><input id="gateway" type="text"  class="setting-input"/>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Broadcast:</label>
-				<input id="broadcast" type="text" class="setting-input"/>
+				<label class="setting-name">Broadcast</label><!--
+			 --><input id="broadcast" type="text" class="setting-input"/>
 			</div>
 		</div>
 		<div class="tool-bar">
@@ -225,30 +225,91 @@
 		</a>
 		<h1>Edit Wireless Settings</h1>
 		<div class="setting">
-			<label class="setting-name">Mode:</label>
+			<label class="setting-name">Mode</label>
 			<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="mode"></label>
 			</a>
 		</div>
-		<div id="static-view">
+
+		<div id="adhoc-view">
 			<div class="setting">
-				<label class="setting-name">IP Address:</label>
+				<label class="setting-name">IP Address</label>
 				<input id="ip" type="text" class="setting-input"/>
 			</div>
 			<div class="setting">
-				<label class="setting-name">Subnet:</label>
-				<input id="subnet" type="text" class="setting-input"/>
+				<label class="setting-name">Security Mode</label>
+				<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+					<img src="/images/img.gif">
+					<label id="mode"></label>
+				</a>
 			</div>
-			<div class="setting">
-				<label class="setting-name">Gateway:</label>
-				<input id="gateway" type="text"  class="setting-input"/>
-			</div>
-			<div class="setting">
-				<label class="setting-name">Broadcast:</label>
-				<input id="broadcast" type="text" class="setting-input"/>
+			<div id="adhoc-security" class="setting">
+				<label class="setting-name">Password</label>
+				<input id="password" type="text" class="setting-input"/>
 			</div>
 		</div>
+
+		<div id="infrastructure-view">
+			<div class="setting">
+				<label class="setting-name">Network Mode</label>
+				<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+					<img src="/images/img.gif">
+					<label id="mode"></label>
+				</a>
+			</div>
+			<div id="static-view">
+				<div class="setting">
+					<label class="setting-name">IP Address</label>
+					<input id="ip" type="text" class="setting-input"/>
+				</div>
+				<div class="setting">
+					<label class="setting-name">Subnet</label>
+					<input id="subnet" type="text" class="setting-input"/>
+				</div>
+				<div class="setting">
+					<label class="setting-name">Gateway</label>
+					<input id="gateway" type="text" class="setting-input"/>
+				</div>
+				<div class="setting">
+					<label class="setting-name">Broadcast</label>
+					<input id="broadcast" type="text" class="setting-input"/>
+				</div>
+				<div class="setting">
+					<label class="setting-name">SSID</label>
+					<input id="ssid" type="text" class="setting-input"/>
+				</div>
+				<div class="setting">
+					<label class="setting-name">Security Mode</label>
+					<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="mode"></label>
+					</a>
+				</div>
+				<div id="security-view" class="setting">
+					<label class="setting-name">Password</label>
+					<input id="password" type="text" class="setting-input"/>
+				</div>
+			</div>
+			<div id="dynamic-view">
+				<div class="setting">
+					<label class="setting-name">SSID</label>
+					<input id="ssid" type="text" class="setting-input"/>
+				</div>
+				<div class="setting">
+					<label class="setting-name">Security Mode</label>
+					<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="mode"></label>
+					</a>
+				</div>
+				<div id="security-view" class="setting">
+					<label class="setting-name">Password</label>
+					<input id="password" type="text" class="setting-input"/>
+				</div>
+			</div>
+		</div>
+
 		<div class="tool-bar">
 			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
 				<label>Factory Settings</label>
@@ -269,9 +330,9 @@
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
 		<a id="close-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
-			<label>Ethernet Mode</label>
+			<label>Mode</label>
 		</a>
-		<h1>Ethernet Mode</h1>
+		<h1>Mode</h1>
 		<div id="dropdown-options">
 			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
@@ -284,6 +345,114 @@
 			<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DHCP</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="wireless-mode-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Mode</label>
+		</a>
+		<h1>Mode</h1>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>DISABLED</label>
+			</a>
+			<a id="dropdown-option" href="#" value="ADHOC" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>ADHOC</label>
+			</a>
+			<a id="dropdown-option" href="#" value="IF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>INFRASTRUCTURE</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="infrastructure-mode-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Network Mode</label>
+		</a>
+		<h1>Network Mode</h1>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>DISABLED</label>
+			</a>
+			<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>STATIC</label>
+			</a>
+			<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>DHCP</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="adhoc-security-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Security Mode</label>
+		</a>
+		<h1>Security Mode</h1>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>OFF</label>
+			</a>
+			<a id="dropdown-option" href="#" value="WEP" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>WEP</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="static-security-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Security Mode</label>
+		</a>
+		<h1>Security Mode</h1>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>OFF</label>
+			</a>
+			<a id="dropdown-option" href="#" value="WPA_PSK" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>WPA_PSK</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="dynamic-security-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Security Mode</label>
+		</a>
+		<h1>Security Mode</h1>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>OFF</label>
+			</a>
+			<a id="dropdown-option" href="#" value="WPA_PSK" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>WPA_PSK</label>
 			</a>
 		</div>
 	</div>

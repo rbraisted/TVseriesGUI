@@ -224,6 +224,8 @@ TVRO.WebService = (function() {
 
 				requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>';
 
+				console.log(requestXml);
+
 				$.ajax({
 					async : async,
 					type : 'post',

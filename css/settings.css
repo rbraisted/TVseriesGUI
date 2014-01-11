@@ -62,15 +62,23 @@
 	margin: -1.5em 0 2em;
 }
 
+.setting-input,
 .setting-dropdown-btn {
+	margin-left: 0.5em;
 	width: 200px;
 }
 
-.setting-input {
-	width: 200px;
-}
+
+
+/*	       *\
+	LARGE
+\*		   */
 
 @media screen and (min-width: 880px) {
+	.edit-settings-view .setting-name {
+		width: 45%;
+	}
+
 	.tool-bar {
 		bottom: 0;
 		position: absolute;
@@ -84,19 +92,60 @@
 	}
 }
 
+
+
+/*	       *\
+	SMALL
+\*		   */
+
 @media screen and (max-width: 880px) {
-	.tool-bar .reset-btn {
-		display: block;
-		margin: 0 auto 10px;
+	.edit-settings-view {
+		margin-top: 
 	}
 
-	.tool-bar .cancel-btn,
-	.tool-bar .save-btn {
+	.edit-settings-view .setting-name {
+		width: 40%;
+	}
+
+	.tool-bar .btn {
 		float: left;
+		min-width: 0;
+		width: calc(33.33% - 7px);
+	}
+
+	.tool-bar .save-btn {
+		margin-left: 10px;
+	}
+
+	.tool-bar .reset-btn {
+		display: block;
+		margin: 0 10px 0 0;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.edit-settings-view .setting-name,
+	.edit-settings-view .setting-input,
+	.edit-settings-view .setting-dropdown-btn {
+		display: block;
+		float: none;
+		text-align: left;
+		width: 100%;
+		margin: 0;
+	}
+
+	.edit-settings-view .setting {
+		margin-bottom: 1em;
+	}
+
+
+	.tool-bar .btn {
 		width: calc(50% - 5px);
 	}
 
-	.tool-bar .cancel-btn {
-		margin-right: 10px;
+	.tool-bar .reset-btn {
+		display: block;
+		margin: 0 0 10px;
+		width: 100%;
 	}
 }
