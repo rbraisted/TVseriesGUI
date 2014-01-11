@@ -67,8 +67,13 @@ TVRO.EventHistory = function() {
 		});
 
 		$('[id ~= email-btn ]', view).click(function() {
-
+			webService.request('get_event_history_log', function(response) {
+				var eventHistoryLog = $('content', response).text();
+				//	TODO: call mailto
+			});
 		});
+
+		self.load();
 	}
 
 	self.load = function() {
@@ -87,6 +92,7 @@ TVRO.EventHistory = function() {
 				dateTimeView.text(dateTime);
 				messageView.text(message);
 				eventsView.append(eventView);
+				eventsView.scrollTop(eventsView.prop('scrollHeight'));
 			}
 		});
 	}
@@ -131,6 +137,8 @@ TVRO.Support = function() {
 			$(document.body).setClass('at-menu');
 			menuBtns.removeClass('is-selected');
 		});
+
+		$(document.body).setClass('at-event-history');
 	}
 
 	return self;

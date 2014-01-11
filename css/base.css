@@ -37,7 +37,7 @@
 }
 
 html {
-	background-color: #f00;
+	background: #04122a url(/images/gradient.png) no-repeat top center;
 }
 
 html,
@@ -47,7 +47,6 @@ body {
 }
 
 body {
-	background: #04122a url(/images/gradient.png) no-repeat top center;
 	color: #fff;
 	cursor: default;
 	font-family: Helvetica, Arial, sans-serif;
@@ -223,7 +222,7 @@ input {
 	background-size: 100%;
 	display: block;
 	height: 50px;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	z-index: 3;
 }
@@ -280,6 +279,7 @@ input {
 .nav-view {
 	background-color: #010305;
 	display: block;
+	position: fixed;
 	top: 50px;
 	width: 100%;
 	z-index: 3;
@@ -304,6 +304,7 @@ input {
 
 .menu-view {
 	min-height: 100%;
+	padding-bottom: 40px;
 	z-index: 2;
 }
 
@@ -481,6 +482,7 @@ input {
 	.menu-view {
 		background-color: #040b17;
 		padding-top: 95px;
+		position: fixed;
 		width: 240px;
 	}
 
@@ -599,6 +601,11 @@ input {
 
 	.view-content {
 		padding: 90px 20px 40px;
+	}
+
+	.back-btn {
+		position: fixed;
+		z-index: 1;
 	}
 
 	.tool-bar {

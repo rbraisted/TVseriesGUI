@@ -188,7 +188,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="event-history" class="view main-view event-history-view">
-	<div class="view-content main-content">
+	<div class="view-content main-content event-history-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Event History</label>
@@ -200,12 +200,14 @@
 				<span id="message" class="event-message"></span>
 			</div>
 		</div>
-		<a id="load-btn" href="#" class="btn basic-btn event-history-btn">
-			<label>Load More</label>
-		</a>
-		<a id="email-btn" href="#" class="btn basic-btn event-history-btn">
-	 		<label>Email to Technician</label>
-	 	</a>
+		<div class="tool-bar">
+			<a id="load-btn" href="#" class="btn basic-btn event-history-btn">
+				<label>Load More</label>
+			</a>
+			<a id="email-btn" href="#" class="btn basic-btn event-history-btn">
+		 		<label>Email Log</label>
+		 	</a>
+	 	</div>
 	</div>
 </div>
 

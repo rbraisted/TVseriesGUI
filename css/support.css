@@ -62,19 +62,14 @@
 	margin-bottom: 0.875em;
 }
 
-
-
-
-
-.event-history-view {
-
+.diagnostic-log-view .btn,
+.restart-system-view .btn {
+	margin-bottom: 0.5em;
 }
 
 .events {
 	background: #1c335d;
-	height: 400px;
 	overflow: auto;
-	margin-bottom: 2em;
 	width: 100%;
 }
 
@@ -88,5 +83,55 @@
 }
 
 .event-date-time {
+	display: inline-block;
+	height: 100%;
+}
 
+.event-message {
+	display: inline-block;
+}
+
+@media screen and (min-width: 880px) {
+	.event-history-content {
+		max-width: 800px;
+	}
+
+	.events {
+		height: 400px;		
+		margin-bottom: 2em;
+	}
+
+	.tool-bar .basic-btn {
+		margin-right: 1em;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.event-history-view {
+		min-height: 100%;
+	}
+
+	.event-history-content {
+		height: auto;
+		max-width: 880px;
+		min-height: 100%;
+		padding: 95px 0 0;
+		position: absolute;
+		width: 100%;
+		top: 0;
+	}
+
+	.events {
+		height: 100%;
+		margin-bottom: 60px;
+	}
+
+	.tool-bar .basic-btn {
+		float: left;
+		width: calc(50% - 5px);
+	}
+
+	.tool-bar .basic-btn+.basic-btn {
+		margin-left: 10px;
+	}
 }
