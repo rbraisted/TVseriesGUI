@@ -6,16 +6,16 @@ TVRO.SettingsPage = function() {
 	var self = {};
 
 	self.init = function() {
-		var menu = $('[id ~= menu ]'),
-			menuBtns = $('[id ~= menu-btn ]', menu),
-			backBtns = $('[id ~= back-btn ]');
+		var menuView = $('[id ~= menu-view ]'),
+			menuBtns = $('[id ~= menu-btn ]', menuView),
+			backBtns = $('[id ~= back-btn ]'),
+			generalSettingsView = TVRO.GeneralSettingsView(),
+			advancedSettingsView = TVRO.AdvancedSettingsView(),
+			networkSettingsView = TVRO.NetworkSettingsView();
 
-		TVRO.GeneralSettingsView().init();
-		TVRO.AdvancedSettingsView().init();
-		TVRO.NetworkSettingsView().init();
-
-		TVRO.EditEthernetSettingsView().init();
-		TVRO.EditWirelessSettingsView().init();
+		generalSettingsView.init();
+		advancedSettingsView.init();
+		networkSettingsView.init();
 
 		menuBtns.click(function() {
 			var menuBtn = $(this);
@@ -25,17 +25,22 @@ TVRO.SettingsPage = function() {
 			menuBtns.removeClass('is-selected');
 			menuBtn.addClass('is-selected');
 
-			if (menuBtn.hasId('general-settings-btn')) $(document.body).setClass('at-general-settings');
-			else if (menuBtn.hasId('advanced-settings-btn')) $(document.body).setClass('at-advanced-settings');
-			else if (menuBtn.hasId('network-settings-btn')) $(document.body).setClass('at-network-settings');
+			if (menuBtn.hasId('general-settings-btn')) {
+				$(document.body).setClass('at-general-settings');
+				generalSettingsView.refresh();
+			} else if (menuBtn.hasId('advanced-settings-btn')) {
+				$(document.body).setClass('at-advanced-settings');
+				advancedSettingsView.refresh();
+			} else if (menuBtn.hasId('network-settings-btn')) {
+				$(document.body).setClass('at-network-settings');
+				networkSettingsView.refresh();
+			}
 		});
 
 		backBtns.click(function() {
 			$(document.body).setClass('at-menu');
 			menuBtns.removeClass('is-selected');
 		});
-
-		$(document.body).setClass('at-edit-wireless-settings');
 	}
 
 	return self;
@@ -43,18 +48,14 @@ TVRO.SettingsPage = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.GeneralSettingsView = function(page) {
+TVRO.GeneralSettingsView = function() {
 	var self = {},
-		view,
-		demoModeBtn,
-		technicianModeBtn,
+		view = $('[id ~= general-settings-view ]'),
+		demoModeBtn = $('[id ~= demo-mode-btn ]', view),
+		technicianModeBtn = $('[id ~= technician-mode-btn ]', view),
 		cookieManager = new TVRO.CookieManager();
 		
-	self.init = function() {
-		view = $('[id ~= general-settings-view ]', page);
-		demoModeBtn = $('[id ~= demo-mode-btn ]', view);
-		technicianModeBtn = $('[id ~= technician-mode-btn ]', view);
-		
+	self.init = function() {		
 		demoModeBtn.click(function() {
 			if (!cookieManager.removeCookie(TVRO.DEMO_MODE)) cookieManager.setCookie(TVRO.DEMO_MODE);
 			demoModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.DEMO_MODE));
@@ -64,7 +65,9 @@ TVRO.GeneralSettingsView = function(page) {
 			if (!cookieManager.removeCookie(TVRO.TECH_MODE)) cookieManager.setCookie(TVRO.TECH_MODE);
 			technicianModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.TECH_MODE));
 		});
+	}
 
+	self.refresh = function() {
 		demoModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.DEMO_MODE));
 		technicianModeBtn.toggleClass('is-on', cookieManager.hasCookie(TVRO.TECH_MODE));
 	}
@@ -76,16 +79,12 @@ TVRO.GeneralSettingsView = function(page) {
 
 TVRO.AdvancedSettingsView = function(page) {
 	var self = {},
-		view,
-		sleepModeBtn,
-		sidelobeModeBtn,
+		view = $('[id ~= advanced-settings-view ]'),
+		sleepModeBtn = $('[id ~= sleep-mode-btn ]', view),
+		sidelobeModeBtn = $('[id ~= sidelobe-mode-btn ]', view),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-		view = $('[id ~= advanced-settings-view ]', page);
-		sleepModeBtn = $('[id ~= sleep-mode-btn ]', view);
-		sidelobeModeBtn = $('[id ~= sidelobe-mode-btn ]', view);
-
 		$(sleepModeBtn).add(sidelobeModeBtn).click(function() {
 			$(this).toggleClass('is-on');
 
@@ -97,11 +96,13 @@ TVRO.AdvancedSettingsView = function(page) {
 				'sidelobe' : sidelobeMode
 			});
 		});
+	}
 
+	self.refresh = function() {
 		webService.request('get_antenna_config', function(response) {
 			sleepModeBtn.toggleClass('is-on', $('sleep', response).text() === 'ON');
 			sidelobeModeBtn.toggleClass('is-on', $('sidelobe', response).text() === 'ON');
-		});
+		});		
 	}
 
 	return self;
@@ -112,20 +113,28 @@ TVRO.AdvancedSettingsView = function(page) {
 TVRO.NetworkSettingsView = function() {
 	var self = {},
 		view = $('[id ~= network-settings-view ]'),
+		ethernetSettingsView = $('[id ~= ethernet-settings-view ]', view),
+		wirelessSettingsView = $('[id ~= wireless-settings-view ]', view),
+		editEthernetSettingsView = TVRO.EditEthernetSettingsView(),
+		editWirelessSettingsView = TVRO.EditWirelessSettingsView(),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-		var ethernetSettingsView = $('[id ~= ethernet-settings-view ]', view),
-			wirelessSettingsView = $('[id ~= wireless-settings-view ]', view);
+		editEthernetSettingsView.init();
+		editWirelessSettingsView.init();
 
 		$('[id ~= edit-btn ]', ethernetSettingsView).click(function() {
 			$(document.body).setClass('at-edit-ethernet-settings');
+			editEthernetSettingsView.refresh();
 		});
 
 		$('[id ~= edit-btn ]', wirelessSettingsView).click(function() {
 			$(document.body).setClass('at-edit-wireless-settings');
+			editWirelessSettingsView.refresh();
 		});
+	}
 
+	self.refresh = function() {
 		webService.request('get_eth', function(response) {
 			var mode = $('mode:eq(0)', response).text(),
 				staticView = $('[id ~= static-view ]', ethernetSettingsView);
@@ -184,43 +193,27 @@ TVRO.NetworkSettingsView = function() {
 				} else if (infrastructureMode === 'DYNAMIC') {
 					$('[id ~= security ]', staticView).text(staticSecurityMode);
 					$('[id ~= password ]', staticSecurityView).text($('security key', infrastructure).text());
-				}				
+				}
 			} 
 		});
-
 	}
 
 	return self;
 }
 
-
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.EditEthernetSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-ethernet-settings-view ]'),
+		staticView = $('[id ~= static-view ]', view),
+		modeDropdown = new TVRO.Dropdown('[id ~= ethernet-mode-dropdown', $('[id ~= mode-btn ]', view)),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-		var staticView = $('[id ~= static-view ]', view),
-			modeDropdown = new TVRO.Dropdown('[id ~= ethernet-mode-dropdown', $('[id ~= mode-btn ]', view));
-
 		modeDropdown.optionSelected(function(name, value) {
 			$('[id ~= mode ]:eq(0)', view).text(name);
 			staticView.toggle(value === 'STATIC');
-		});
-
-		webService.request('get_eth', function(response) {
-			var mode = $('mode', response).text();
-			modeDropdown.selectValue(mode);
-
-			staticView.toggle(mode === 'STATIC');
-			if (mode === 'STATIC') {
-				$('[id ~= mode ]', staticView).text(mode);
-				$('[id ~= ip ]', staticView).val($('ip', response).text());
-				$('[id ~= subnet ]', staticView).val($('netmask', response).text());
-				$('[id ~= gateway ]', staticView).val($('gateway', response).text());
-				$('[id ~= broadcast ]', staticView).val($('broadcast', response).text());
-			}
 		});
 
 		$('[id ~= cancel-btn ]', view).click(function() {
@@ -230,7 +223,7 @@ TVRO.EditEthernetSettingsView = function() {
 		$('[id ~= save-btn ]', view).click(function() {
 			var mode = modeDropdown.selectedValue(),
 				ethernetSettings = { 'mode' : mode };
-				
+
 			if (mode === 'STATIC') {
 				ethernetSettings.ip = $('[id ~= ip ]', staticView).val();
 				ethernetSettings.netmask = $('[id ~= subnet ]', staticView).val();
@@ -248,30 +241,44 @@ TVRO.EditEthernetSettingsView = function() {
 		});
 	}
 
+	self.refresh = function() {
+		webService.request('get_eth', function(response) {
+			var mode = $('mode', response).text();
+			modeDropdown.selectValue(mode);
+			staticView.toggle(mode === 'STATIC');
+			if (mode === 'STATIC') {
+				$('[id ~= mode ]', staticView).text(mode);
+				$('[id ~= ip ]', staticView).val($('ip', response).text());
+				$('[id ~= subnet ]', staticView).val($('netmask', response).text());
+				$('[id ~= gateway ]', staticView).val($('gateway', response).text());
+				$('[id ~= broadcast ]', staticView).val($('broadcast', response).text());
+			}
+		});
+	}
+
 	return self;
 }
 
-
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.EditWirelessSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-wireless-settings-view ]'),
+		modeDropdown = new TVRO.Dropdown('[id ~= wireless-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', view)),
+		adhocView = $('[id ~= adhoc-view ]', view),
+		adhocSecurityView = $('[id ~= security-view ]', adhocView),
+		adhocSecurityDropdown = TVRO.Dropdown('[id ~= adhoc-security-dropdown ]', $('[id ~= security-btn ]', adhocView)),
+		infrastructureView = $('[id ~= infrastructure-view ]', view),
+		infrastructureModeDropdown = new TVRO.Dropdown('[id ~= infrastructure-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', infrastructureView)),
+		staticView = $('[id ~= static-view ]', infrastructureView),
+		staticSecurityView = $('[id ~= security-view ]', staticView),
+		staticSecurityDropdown = new TVRO.Dropdown('[id ~= static-security-dropdown ]', $('[id ~= security-btn ]', staticView)),
+		dynamicView = $('[id ~= dynamic-view ]', infrastructureView),
+		dynamicSecurityView = $('[id ~= security-view ]', dynamicView),
+		dynamicSecurityDropdown = new TVRO.Dropdown('[id ~= dynamic-security-dropdown ]', $('[id ~= security-btn ]', dynamicView)),
 		webService = TVRO.WebService();
 
 	self.init = function() {
-		var modeDropdown = new TVRO.Dropdown('[id ~= wireless-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', view)),
-			adhocView = $('[id ~= adhoc-view ]', view),
-			adhocSecurityView = $('[id ~= security-view ]', adhocView),
-			adhocSecurityDropdown = TVRO.Dropdown('[id ~= adhoc-security-dropdown ]', $('[id ~= security-btn ]', adhocView)),
-			infrastructureView = $('[id ~= infrastructure-view ]', view),
-			infrastructureModeDropdown = new TVRO.Dropdown('[id ~= infrastructure-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', infrastructureView)),
-			staticView = $('[id ~= static-view ]', infrastructureView),
-			staticSecurityView = $('[id ~= security-view ]', staticView),
-			staticSecurityDropdown = new TVRO.Dropdown('[id ~= static-security-dropdown ]', $('[id ~= security-btn ]', staticView)),
-			dynamicView = $('[id ~= dynamic-view ]', infrastructureView),
-			dynamicSecurityView = $('[id ~= security-view ]', dynamicView),
-			dynamicSecurityDropdown = new TVRO.Dropdown('[id ~= dynamic-security-dropdown ]', $('[id ~= security-btn ]', dynamicView));
-
 		modeDropdown.optionSelected(function(name, value) {
 			$('[id ~= mode ]:eq(0)', view).text(name);
 			adhocView.toggle(value === 'ADHOC');
@@ -304,37 +311,6 @@ TVRO.EditWirelessSettingsView = function() {
 		infrastructureModeDropdown.selectValue('OFF');
 		staticSecurityDropdown.selectValue('OFF');
 		dynamicSecurityDropdown.selectValue('OFF');
-
-		webService.request('get_wlan', function(response) {
-			var mode = $('mode:eq(0)', response).text(),
-				adhoc = $('adhoc_mode', response),
-				infrastructure = $('if_mode', response),
-				infrastructureMode = $('mode:eq(0)', infrastructure).text();
-
-			modeDropdown.selectValue(mode);
-			infrastructureModeDropdown.selectValue(infrastructureMode);
-
-			if (mode === 'ADHOC') {
-				$('[id ~= ip ]', adhocView).val($('ip', adhoc).text());
-				adhocSecurityDropdown.selectValue($('security mode', adhoc).text());
-				$('[id ~= password ]', adhocView).val($('key', adhoc).text());
-			} else if (mode === 'IF') {
-				if (infrastructureMode === 'STATIC') {
-					$('[id ~= ip ]', staticView).val($('ip', infrastructure).text());
-					$('[id ~= subnet ]', staticView).val($('netmask', infrastructure).text());
-					$('[id ~= gateway ]', staticView).val($('gateway', infrastructure).text());
-					$('[id ~= broadcast ]', staticView).val($('broadcast', infrastructure).text());
-					$('[id ~= ssid ]', staticView).val($('essid', infrastructure).text());
-					staticSecurityDropdown.selectValue($('security mode', infrastructure).text());
-					$('[id ~= password ]', staticSecurityView).val($('security key', infrastructure).text());
-				} else if (infrastructureMode === 'DYNAMIC') {
-					$('[id ~= ip ]', dynamicView).val($('ip', infrastructure).text());
-					$('[id ~= ssid ]', dynamicView).val($('essid', infrastructure).text());
-					dynamicSecurityDropdown.selectValue($('security mode', infrastructure).text())
-					$('[id ~= password ]', dyanmicSecurityView).val($('security key', infrastructure).text());
-				}
-			}
-		});
 
 		$('[id ~= cancel-btn ]', view).click(function() {
 			$(document.body).setClass('at-network-settings');
@@ -389,9 +365,42 @@ TVRO.EditWirelessSettingsView = function() {
 		});
 	}
 
+	self.refresh = function() {
+		webService.request('get_wlan', function(response) {
+			var mode = $('mode:eq(0)', response).text(),
+				adhoc = $('adhoc_mode', response),
+				infrastructure = $('if_mode', response),
+				infrastructureMode = $('mode:eq(0)', infrastructure).text();
+
+			modeDropdown.selectValue(mode);
+			infrastructureModeDropdown.selectValue(infrastructureMode);
+
+			if (mode === 'ADHOC') {
+				$('[id ~= ip ]', adhocView).val($('ip', adhoc).text());
+				adhocSecurityDropdown.selectValue($('security mode', adhoc).text());
+				$('[id ~= password ]', adhocView).val($('key', adhoc).text());
+			} else if (mode === 'IF') {
+				if (infrastructureMode === 'STATIC') {
+					$('[id ~= ip ]', staticView).val($('ip', infrastructure).text());
+					$('[id ~= subnet ]', staticView).val($('netmask', infrastructure).text());
+					$('[id ~= gateway ]', staticView).val($('gateway', infrastructure).text());
+					$('[id ~= broadcast ]', staticView).val($('broadcast', infrastructure).text());
+					$('[id ~= ssid ]', staticView).val($('essid', infrastructure).text());
+					staticSecurityDropdown.selectValue($('security mode', infrastructure).text());
+					$('[id ~= password ]', staticSecurityView).val($('security key', infrastructure).text());
+				} else if (infrastructureMode === 'DYNAMIC') {
+					$('[id ~= ip ]', dynamicView).val($('ip', infrastructure).text());
+					$('[id ~= ssid ]', dynamicView).val($('essid', infrastructure).text());
+					dynamicSecurityDropdown.selectValue($('security mode', infrastructure).text())
+					$('[id ~= password ]', dyanmicSecurityView).val($('security key', infrastructure).text());
+				}
+			}
+		});
+	}
+
 	return self;
 }
 
-
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.page = TVRO.SettingsPage();

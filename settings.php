@@ -4,7 +4,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="menu" class="view menu-view">
+<div id="menu-view" class="view menu-view">
 	<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>General Settings</label>
