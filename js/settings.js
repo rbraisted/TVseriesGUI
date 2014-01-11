@@ -1,6 +1,6 @@
 "use strict";
 
-
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.SettingsPage = function() {
 	var self = {};
@@ -41,7 +41,7 @@ TVRO.SettingsPage = function() {
 	return self;
 }
 
-
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.GeneralSettingsView = function(page) {
 	var self = {},
@@ -72,7 +72,7 @@ TVRO.GeneralSettingsView = function(page) {
 	return self;
 }
 
-
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.AdvancedSettingsView = function(page) {
 	var self = {},
@@ -107,19 +107,16 @@ TVRO.AdvancedSettingsView = function(page) {
 	return self;
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-
-TVRO.NetworkSettingsView = function(page) {
+TVRO.NetworkSettingsView = function() {
 	var self = {},
-		view,
-		ethernetSettingsView,
-		wirelessSettingsView,
+		view = $('[id ~= network-settings-view ]'),
 		webService = new TVRO.WebService();
 
 	self.init = function() {
-		view = $('[id ~= network-settings-view ]', page);
-		ethernetSettingsView = $('[id ~= ethernet-settings ]', view);
-		wirelessSettingsView = $('[id ~= wireless-settings ]', view);
+		var ethernetSettingsView = $('[id ~= ethernet-settings-view ]', view),
+			wirelessSettingsView = $('[id ~= wireless-settings-view ]', view);
 
 		$('[id ~= edit-btn ]', ethernetSettingsView).click(function() {
 			$(document.body).setClass('at-edit-ethernet-settings');
@@ -127,45 +124,70 @@ TVRO.NetworkSettingsView = function(page) {
 
 		$('[id ~= edit-btn ]', wirelessSettingsView).click(function() {
 			$(document.body).setClass('at-edit-wireless-settings');
-		});		
+		});
 
 		webService.request('get_eth', function(response) {
-			var mode = $('mode', response).text();
-
-			$('[id ~= mode ]', ethernetSettingsView).text(mode);
-			$('[id ~= ip ]', ethernetSettingsView).text($('ip', response).text());
-			$('[id ~= subnet ]', ethernetSettingsView).text($('netmask', response).text());
-			$('[id ~= gateway ]', ethernetSettingsView).text($('gateway', response).text());
-			$('[id ~= broadcast ]', ethernetSettingsView).text($('broadcast', response).text());
+			var mode = $('mode:eq(0)', response).text(),
+				staticView = $('[id ~= static-view ]', ethernetSettingsView);
 
 			wirelessSettingsView.toggle(mode !== 'OFF');
-			if (mode !== 'OFF') {
-				webService.request('get_wlan', function(response) {
-					var mode = $('mode:eq(0)', response).text(),
-						adhocMode = $('adhoc_mode', response),
-						adhocView = $('[id ~= adhoc-view ]', wirelessSettingsView),
-						infrastructureMode = $('if_mode', response),
-						infrastructureView = $('[id ~= infrastructure-view ]', wirelessSettingsView);
+			staticView.toggle(mode === 'STATIC');
+			$('[id ~= mode ]', ethernetSettingsView).text(mode);
 
-					$('[id ~= mode ]', wirelessSettingsView).text(mode);
-					adhocView.toggle(mode === 'ADHOC');
-					infrastructureView.toggle(mode === 'IF');
-
-					if (mode === 'ADHOC') {
-						$('[id ~= ip ]', adhocView).text($('ip', adhocMode).text());
-						$('[id ~= security ]', adhocView).text($('security > mode', adhocMode).text());
-						$('[id ~= password ]', adhocView).text($('security > key', adhocMode).text());
-					} else if (mode === 'IF') {
-						$('[id ~= mode ]', view).text($('> mode', infrastructureMode).text());
-						$('[id ~= ip ]', infrastructureView).text($('ip', infrastructureMode).text());
-						$('[id ~= subnet ]', infrastructureView).text($('netmask', infrastructureMode).text());
-						$('[id ~= gateway ]', infrastructureView).text($('gateway', infrastructureMode).text());
-						$('[id ~= broadcast ]', infrastructureView).text($('broadcast', infrastructureMode).text());
-						$('[id ~= ssid ]', infrastructureView).text($('essid', infrastructureMode).text());
-					} 
-				});
+			if (mode === 'STATIC') {
+				$('[id ~= ip ]', staticView).text($('ip', response).text());
+				$('[id ~= subnet ]', staticView).text($('netmask', response).text());
+				$('[id ~= gateway ]', staticView).text($('gateway', response).text());
+				$('[id ~= broadcast ]', staticView).text($('broadcast', response).text());
 			}
 		});
+
+		webService.request('get_wlan', function(response) {
+			var mode = $('mode:eq(0)', response).text(),
+				adhoc = $('adhoc_mode', response),
+				adhocView = $('[id ~= adhoc-view ]', wirelessSettingsView),
+				adhocSecurityMode = $('security mode', adhoc).text(),
+				adhocSecurityView = $('[id ~= security-view ]', adhocView),
+				infrastructure = $('if_mode', response),
+				infrastructureMode = $('mode:eq(0)', infrastructure).text(),
+				infrastructureView = $('[id ~= infrastructure-view ]', wirelessSettingsView),
+				staticView = $('[id ~= static-view ]', infrastructureView),
+				staticSecurityMode = $('security mode', infrastructure).text(),
+				staticSecurityView = $('[id ~= security-view ]', staticView),
+				dynamicView = $('[id ~= dynamic-view ]', infrastructureView),
+				dynamicSecurityMode = $('security mode', infrastructure).text(),
+				dynamicSecurityView = $('[id ~= security-view ]', dynamicView);
+
+			adhocView.toggle(mode === 'ADHOC');
+			adhocSecurityView.toggle(adhocSecurityMode !== 'OFF');
+			infrastructureView.toggle(mode === 'IF');
+			staticView.toggle(infrastructureMode === 'STATIC');
+			staticSecurityView.toggle(staticSecurityMode !== 'OFF');
+			dynamicView.toggle(infrastructureMode === 'DYNAMIC');
+			dynamicSecurityView.toggle(dynamicSecurityMode !== 'OFF');
+			$('[id ~= mode ]', wirelessSettingsView).text(mode);
+
+			if (mode === 'ADHOC') {
+				$('[id ~= ip ]', adhocView).text($('ip', adhocMode).text());
+				$('[id ~= security ]', adhocView).text($('security mode', adhocMode).text());
+				$('[id ~= password ]', adhocView).text($('security key', adhocMode).text());
+			} else if (mode === 'IF') {
+				$('[id ~= mode ]', infrastructureView).text($('mode:eq(0)', infrastructure).text());
+				if (infrastructureMode === 'STATIC') {
+					$('[id ~= ip ]', staticView).text($('ip', infrastructure).text());
+					$('[id ~= subnet ]', staticView).text($('netmask', infrastructure).text());
+					$('[id ~= gateway ]', staticView).text($('gateway', infrastructure).text());
+					$('[id ~= broadcast ]', staticView).text($('broadcast', infrastructure).text());
+					$('[id ~= ssid ]', staticView).text($('essid', infrastructure).text());
+					$('[id ~= security ]', staticView).text(staticSecurityMode);
+					$('[id ~= password ]', staticSecurityView).text($('security key', infrastructure).text());
+				} else if (infrastructureMode === 'DYNAMIC') {
+					$('[id ~= security ]', staticView).text(staticSecurityMode);
+					$('[id ~= password ]', staticSecurityView).text($('security key', infrastructure).text());
+				}				
+			} 
+		});
+
 	}
 
 	return self;
@@ -181,6 +203,7 @@ TVRO.EditEthernetSettingsView = function() {
 	self.init = function() {
 		var staticView = $('[id ~= static-view ]', view),
 			modeDropdown = new TVRO.Dropdown('[id ~= ethernet-mode-dropdown', $('[id ~= mode-btn ]', view));
+
 		modeDropdown.optionSelected(function(name, value) {
 			$('[id ~= mode ]:eq(0)', view).text(name);
 			staticView.toggle(value === 'STATIC');
@@ -256,23 +279,23 @@ TVRO.EditWirelessSettingsView = function() {
 		});
 
 		adhocSecurityDropdown.optionSelected(function(name, value) {
-			$('[id ~= mode ]:eq(0)', adhocView).text(name);
+			$('[id ~= security ]', adhocView).text(name);
 			adhocSecurityView.toggle(value !== 'OFF');
 		});
 
 		infrastructureModeDropdown.optionSelected(function(name, value) {
-			$('[id ~= mode ]:eq(0)', infrastructureView).text(name);
+			$('[id ~= mode ]', infrastructureView).text(name);
 			staticView.toggle(value === 'STATIC');
 			dynamicView.toggle(value === 'DYNAMIC');
 		});
 
 		staticSecurityDropdown.optionSelected(function(name, value) {
-			$('[id ~= mode ]:eq(0)', staticView).text(name);
+			$('[id ~= security ]', staticView).text(name);
 			staticSecurityView.toggle(value !== 'OFF');
 		});
 
 		dynamicSecurityDropdown.optionSelected(function(name, value) {
-			$('[id ~= mode ]:eq(0)', dynamicView).text(name);
+			$('[id ~= security ]', dynamicView).text(name);
 			dynamicSecurityView.toggle(value !== 'OFF');
 		});
 
@@ -303,12 +326,12 @@ TVRO.EditWirelessSettingsView = function() {
 					$('[id ~= broadcast ]', staticView).val($('broadcast', infrastructure).text());
 					$('[id ~= ssid ]', staticView).val($('essid', infrastructure).text());
 					staticSecurityDropdown.selectValue($('security mode', infrastructure).text());
-					$('[id ~= password ]', staticSecurityView).val($('key', infrastructure).text());
+					$('[id ~= password ]', staticSecurityView).val($('security key', infrastructure).text());
 				} else if (infrastructureMode === 'DYNAMIC') {
 					$('[id ~= ip ]', dynamicView).val($('ip', infrastructure).text());
 					$('[id ~= ssid ]', dynamicView).val($('essid', infrastructure).text());
 					dynamicSecurityDropdown.selectValue($('security mode', infrastructure).text())
-					$('[id ~= password ]', dyanmicSecurityView).val($('key', infrastructure).text());
+					$('[id ~= password ]', dyanmicSecurityView).val($('security key', infrastructure).text());
 				}
 			}
 		});
@@ -318,16 +341,12 @@ TVRO.EditWirelessSettingsView = function() {
 		});
 
 		$('[id ~= save-btn ]', view).click(function() {
-			// 	ethernetSettings.ip = $('[id ~= ip ]', staticView).val();
-			// 	ethernetSettings.netmask = $('[id ~= subnet ]', staticView).val();
-			// 	ethernetSettings.gateway = $('[id ~= gateway ]', staticView).val();
-			// 	ethernetSettings.broadcast = $('[id ~= broadcast ]', staticView).val();
 			var mode = modeDropdown.selectedValue(),
 				infrastructureMode = infrastructureModeDropdown.selectedValue(),
-				wirelessSettings = { 'mode' : mode };
+				settings = { 'mode' : mode };
 		
 			if (mode === 'ADHOC') {
-				wirelessSettings.adhoc_mode = {
+				settings.adhoc_mode = {
 					'ip' : $('[id ~= ip ]', adhocView).val(),
 					'security' : {
 						'mode' : adhocSecurityDropdown.selectedValue(),
@@ -336,7 +355,7 @@ TVRO.EditWirelessSettingsView = function() {
 				}
 			} else if (mode === 'IF') {
 				if (infrastructureMode === 'STATIC') {
-					wirelessSettings.if_mode = {
+					settings.if_mode = {
 						'mode' : infrastructureMode,
 						'ip' : $('[id ~= ip ]', staticView).val(),
 						'netmask' : $('[id ~= subnet ]', staticView).val(),
@@ -349,7 +368,7 @@ TVRO.EditWirelessSettingsView = function() {
 						}
 					}
 				} else if (infrastructureMode === 'DYNAMIC') {
-					wirelessSettings.if_mode = {
+					settings.if_mode = {
 						'mode' : infrastructureMode,
 						'essid' : $('[id ~= ssid ]', dynamicView).val(),
 						'security' : {
@@ -360,7 +379,7 @@ TVRO.EditWirelessSettingsView = function() {
 				}
 			}
 
-			webService.request('set_wlan', wirelessSettings);
+			webService.request('set_wlan', settings);
 			$(document.body).setClass('at-network-settings');
 		});
 

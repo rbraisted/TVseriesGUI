@@ -92,39 +92,13 @@
 			<img src="/images/img.gif">
 			<label>Network Settings</label>
 		</a>
-		<div id="ethernet-settings">
+		<div id="ethernet-settings-view">
 			<h1>Ethernet Settings</h1>
 			<div class="setting">
 				<label class="setting-name">Mode</label><!--
 			 --><span id="mode" class="setting-value"></span>
 			</div>
-			<div class="setting">
-				<label class="setting-name">IP Address</label><!--
-			 --><span id="ip" class="setting-value"></span>
-			</div>
-			<div class="setting">
-				<label class="setting-name">Subnet</label><!--
-			 --><span id="subnet" class="setting-value"></span>
-			</div>
-			<div class="setting">
-				<label class="setting-name">Gateway</label><!--
-			 --><span id="gateway" class="setting-value"></span>
-			</div>
-			<div class="setting">
-				<label class="setting-name">Broadcast</label><!--
-			 --><span id="broadcast" class="setting-value"></span>
-			</div>
-			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
-				<label>Edit</label>
-			</a>
-		</div>
-		<div id="wireless-settings">
-			<h1>Wireless Settings</h1>
-			<div class="setting">
-				<label class="setting-name">Mode</label><!--
-			 --><span id="mode" class="setting-value"></span>
-			</div>
-			<div id="infrastructure-view">
+			<div id="static-view">
 				<div class="setting">
 					<label class="setting-name">IP Address</label><!--
 				 --><span id="ip" class="setting-value"></span>
@@ -141,10 +115,16 @@
 					<label class="setting-name">Broadcast</label><!--
 				 --><span id="broadcast" class="setting-value"></span>
 				</div>
-				<div class="setting">
-					<label class="setting-name">SSID</label><!--
-				 --><span id="ssid" class="setting-value"></span>
-				</div>
+			</div>
+			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
+				<label>Edit</label>
+			</a>
+		</div>
+		<div id="wireless-settings-view">
+			<h1>Wireless Settings</h1>
+			<div class="setting">
+				<label class="setting-name">Mode</label><!--
+			 --><span id="mode" class="setting-value"></span>
 			</div>
 			<div id="adhoc-view">
 				<div class="setting">
@@ -155,9 +135,63 @@
 					<label class="setting-name">Security</label><!--
 				 --><span id="security" class="setting-value"></span>
 				</div>
-				<div class="setting">
+				<div id="password-view" class="setting">
 					<label class="setting-name">Password</label><!--
 				 --><span id="password" class="setting-value"></span>
+				</div>
+			</div>
+			<div id="infrastructure-view">
+				<div class="setting">
+					<label class="setting-name">Mode</label><!--
+				 --><span id="mode" class="setting-value"></span>
+				</div>
+				<div id="static-view">
+					<div class="setting">
+						<label class="setting-name">IP Address</label><!--
+					 --><span id="ip" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">Subnet</label><!--
+					 --><span id="subnet" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">Gateway</label><!--
+					 --><span id="gateway" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">Broadcast</label><!--
+					 --><span id="broadcast" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">SSID</label><!--
+					 --><span id="ssid" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">Security Mode</label><!--
+					 --><span id="security" class="setting-value"></span>
+					</div>
+					<div id="security-view" class="setting">
+						<label class="setting-name">Password</label><!--
+					 --><span id="password" class="setting-value"></span>
+					</div>
+				</div>
+				<div id="dynamic-view">
+					<div class="setting">
+						<label class="setting-name">IP Address</label><!--
+					 --><span id="ip" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">SSID</label><!--
+					 --><span id="ssid" class="setting-value"></span>
+					</div>
+					<div class="setting">
+						<label class="setting-name">Security Mode</label><!--
+					 --><span id="security" class="setting-value"></span>
+					</div>
+					<div id="security-view" class="setting">
+						<label class="setting-name">Password</label><!--
+					 --><span id="password" class="setting-value"></span>
+					</div>
 				</div>
 			</div>
 			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
@@ -241,7 +275,7 @@
 				<label class="setting-name">Security Mode</label>
 				<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
 					<img src="/images/img.gif">
-					<label id="mode"></label>
+					<label id="security"></label>
 				</a>
 			</div>
 			<div id="adhoc-security" class="setting">
@@ -283,7 +317,7 @@
 					<label class="setting-name">Security Mode</label>
 					<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
 						<img src="/images/img.gif">
-						<label id="mode"></label>
+						<label id="security"></label>
 					</a>
 				</div>
 				<div id="security-view" class="setting">
@@ -300,7 +334,7 @@
 					<label class="setting-name">Security Mode</label>
 					<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
 						<img src="/images/img.gif">
-						<label id="mode"></label>
+						<label id="security"></label>
 					</a>
 				</div>
 				<div id="security-view" class="setting">
