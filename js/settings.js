@@ -53,7 +53,7 @@ TVRO.GeneralSettingsView = function() {
 		view = $('[id ~= general-settings-view ]'),
 		demoModeBtn = $('[id ~= demo-mode-btn ]', view),
 		technicianModeBtn = $('[id ~= technician-mode-btn ]', view),
-		cookieManager = new TVRO.CookieManager();
+		cookieManager = TVRO.CookieManager();
 		
 	self.init = function() {		
 		demoModeBtn.click(function() {
@@ -82,7 +82,7 @@ TVRO.AdvancedSettingsView = function(page) {
 		view = $('[id ~= advanced-settings-view ]'),
 		sleepModeBtn = $('[id ~= sleep-mode-btn ]', view),
 		sidelobeModeBtn = $('[id ~= sidelobe-mode-btn ]', view),
-		webService = new TVRO.WebService();
+		webService = TVRO.WebService();
 
 	self.init = function() {
 		$(sleepModeBtn).add(sidelobeModeBtn).click(function() {
@@ -117,7 +117,7 @@ TVRO.NetworkSettingsView = function() {
 		wirelessSettingsView = $('[id ~= wireless-settings-view ]', view),
 		editEthernetSettingsView = TVRO.EditEthernetSettingsView(),
 		editWirelessSettingsView = TVRO.EditWirelessSettingsView(),
-		webService = new TVRO.WebService();
+		webService = TVRO.WebService();
 
 	self.init = function() {
 		editEthernetSettingsView.init();
@@ -207,8 +207,8 @@ TVRO.EditEthernetSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-ethernet-settings-view ]'),
 		staticView = $('[id ~= static-view ]', view),
-		modeDropdown = new TVRO.Dropdown('[id ~= ethernet-mode-dropdown', $('[id ~= mode-btn ]', view)),
-		webService = new TVRO.WebService();
+		modeDropdown = TVRO.Dropdown('[id ~= ethernet-mode-dropdown', $('[id ~= mode-btn ]', view)),
+		webService = TVRO.WebService();
 
 	self.init = function() {
 		modeDropdown.optionSelected(function(name, value) {
@@ -264,18 +264,18 @@ TVRO.EditEthernetSettingsView = function() {
 TVRO.EditWirelessSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-wireless-settings-view ]'),
-		modeDropdown = new TVRO.Dropdown('[id ~= wireless-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', view)),
+		modeDropdown = TVRO.Dropdown('[id ~= wireless-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', view)),
 		adhocView = $('[id ~= adhoc-view ]', view),
 		adhocSecurityView = $('[id ~= security-view ]', adhocView),
 		adhocSecurityDropdown = TVRO.Dropdown('[id ~= adhoc-security-dropdown ]', $('[id ~= security-btn ]', adhocView)),
 		infrastructureView = $('[id ~= infrastructure-view ]', view),
-		infrastructureModeDropdown = new TVRO.Dropdown('[id ~= infrastructure-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', infrastructureView)),
+		infrastructureModeDropdown = TVRO.Dropdown('[id ~= infrastructure-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', infrastructureView)),
 		staticView = $('[id ~= static-view ]', infrastructureView),
 		staticSecurityView = $('[id ~= security-view ]', staticView),
-		staticSecurityDropdown = new TVRO.Dropdown('[id ~= static-security-dropdown ]', $('[id ~= security-btn ]', staticView)),
+		staticSecurityDropdown = TVRO.Dropdown('[id ~= static-security-dropdown ]', $('[id ~= security-btn ]', staticView)),
 		dynamicView = $('[id ~= dynamic-view ]', infrastructureView),
 		dynamicSecurityView = $('[id ~= security-view ]', dynamicView),
-		dynamicSecurityDropdown = new TVRO.Dropdown('[id ~= dynamic-security-dropdown ]', $('[id ~= security-btn ]', dynamicView)),
+		dynamicSecurityDropdown = TVRO.Dropdown('[id ~= dynamic-security-dropdown ]', $('[id ~= security-btn ]', dynamicView)),
 		webService = TVRO.WebService();
 
 	self.init = function() {

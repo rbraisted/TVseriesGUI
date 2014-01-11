@@ -1,119 +1,24 @@
 "use strict";
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-
-TVRO.DiagnosticLog = function() {
+TVRO.SupportPage = function() {
 	var self = {},
-		view = $('[id ~= diagnostic-log ]'),
-		webService = new TVRO.WebService();
+		webService = TVRO.WebService();
 
 	self.init = function() {
-		$('[id ~= operational-btn ]', view).click(function() {
-			window.location.href = 'logfile.php?file=IPACU.serial.log';
-		});
-
-		$('[id ~= start-btn ]', view).click(function() {
-			webService.request('start_serial_log', {'restart':'N'});
-		});
-
-		$('[id ~= restart-btn ]', view).click(function() {
-			webService.request('start_serial_log', {'restart':'Y'});
-		});
-
-		$('[id ~= entry-btn ]', view).click(function() {
-			window.location.href = 'logfile.php?file=majorError.log';
-		});
-	}
-
-	return self;
-}
-
-
-
-TVRO.RestartSystem = function() {
-	var self = {},
-		view = $('[id ~= restart-system ]'),
-		webService = new TVRO.WebService();
-
-	self.init = function() {
-		$('[id ~= system-btn ]', view).click(function() {
-			webService.request('reboot', {'sys':'SBC'});
-		});
-
-		$('[id ~= antenna-btn ]', view).click(function() {
-			webService.request('reboot', {'sys':'ANT'});
-		});
-
-		$('[id ~= all-btn ]', view).click(function() {
-			webService.request('reboot', {'sys':'ALL'});
-		});
-	}
-
-	return self;
-}
-
-
-
-TVRO.EventHistory = function() {
-	var self = {},
-		view = $('[id ~= event-history ]'),
-		eventsView = $('[id ~= events ]', view),
-		eventViewTemplate = $('[id ~= event ]', view).detach(),
-		webService = new TVRO.WebService();
-
-	self.init = function() {
-		$('[id ~= load-btn ]', view).click(function() {
-			self.load();
-		});
-
-		$('[id ~= email-btn ]', view).click(function() {
-			webService.request('get_event_history_log', function(response) {
-				var eventHistoryLog = $('content', response).text();
-				//	TODO: call mailto
-			});
-		});
-
-		self.load();
-	}
-
-	self.load = function() {
-		webService.request('get_recent_event_history', {
-			'begin_at_event' : $('[id ~= event ]', eventsView).length,
-			'how_many_events' : 5
-		}, function(response) {
-			var events = $('event', response);
-			for (var i = 0; i < events.length; i++) {
-				var event = $(events[i]).text(),
-					dateTime = event.substr(0, event.indexOf('::')),
-					message = event.substr(event.indexOf('::')+2),
-					eventView = eventViewTemplate.clone(),
-					dateTimeView = $('[id ~= date-time ]', eventView),
-					messageView = $('[id ~= message ]', eventView);
-				dateTimeView.text(dateTime);
-				messageView.text(message);
-				eventsView.append(eventView);
-				eventsView.scrollTop(eventsView.prop('scrollHeight'));
-			}
-		});
-	}
-
-	return self;
-}
-
-
-
-TVRO.Support = function() {
-	var self = {},
-		webService = new TVRO.WebService();
-
-	self.init = function() {
-		var menu = $('[id ~= menu ]'),
+		var menu = $('[id ~= menu-view ]'),
 			menuBtns = $('[id ~= menu-btn ]', menu),
-			backBtns = $('[id ~= back-btn ]');
+			backBtns = $('[id ~= back-btn ]'),
+			diagnosticLogView = TVRO.DiagnosticLogView(),
+			restartSystemView = TVRO.RestartSystemView(),
+			eventHistoryView = TVRO.EventHistoryView(),
+			commandLineView = TVRO.CommandLineView();
 
-		TVRO.DiagnosticLog().init();
-		TVRO.RestartSystem().init();
-		TVRO.EventHistory().init();
+		diagnosticLogView.init();
+		restartSystemView.init();
+		eventHistoryView.init();
+		commandLineView.init();
 
 		menuBtns.click(function() {
 			var menuBtn = $(this);
@@ -144,46 +49,118 @@ TVRO.Support = function() {
 	return self;
 }
 
-TVRO.page = new TVRO.Support();
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-// TVRO.EventHistoryView = function() {
-// 	var self = {};
+TVRO.DiagnosticLogView = function() {
+	var self = {},
+		view = $('[id ~= diagnostic-log-view ]'),
+		webService = TVRO.WebService();
 
-// 	return self;
-// };
+	self.init = function() {
+		$('[id ~= operational-btn ]', view).click(function() {
+			window.location.href = 'logfile.php?file=IPACU.serial.log';
+		});
 
-// TVRO.SupportPage = function() {
-// 	var self = {};
+		$('[id ~= start-btn ]', view).click(function() {
+			webService.request('start_serial_log', {'restart':'N'});
+		});
 
-// 	self.init = function() {
-// 		$('[id ~= menu-btn ]', '#menu').click(function() {
-// 			var btn = $(this),
-// 				view = '';
+		$('[id ~= restart-btn ]', view).click(function() {
+			webService.request('start_serial_log', {'restart':'Y'});
+		});
 
-// 			$('[id ~= menu-btn ]', '#menu').removeClass('is-selected');
-// 			btn.toggleClass('is-selected', true);
+		$('[id ~= entry-btn ]', view).click(function() {
+			window.location.href = 'logfile.php?file=majorError.log';
+		});
+	}
 
-// 			if (btn.hasId('about-the-app-btn')) view = 'about-the-app-view';
-// 			else if (btn.hasId('about-the-satellites-btn')) view = 'about-the-satellites-view';
-// 			else if (btn.hasId('technical-definitions-btn')) view = 'technical-definitions-view';
-// 			else if (btn.hasId('about-blockage-btn')) view = 'about-blockage-view';
-// 			else if (btn.hasId('diagnostic-log-btn')) view = 'diagnostic-log-view';
-// 			else if (btn.hasId('restart-system-btn')) view = 'restart-system-view';
-// 			else if (btn.hasId('event-history-btn')) view = 'event-history-view';
-// 			else if (btn.hasId('command-line-btn')) view = 'command-line-view';
+	return self;
+}
 
-// 			$('#menu, #about-the-app-view, #about-the-satellites-view, #technical-definitions-view, #about-blockage-view, #diagnostic-log-view, #restart-system-view, #event-history-view, #command-line-view').removeClass('is-active');
-// 			$('[id ~= '+view+' ]').toggleClass('is-active', true);
-// 		});
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-// 		$('[id ~= back-btn ]').click(function() {
-// 			$('[id ~= menu-btn ]', '#menu').removeClass('is-selected');
-// 			$('#menu, #about-the-app-view, #about-the-satellites-view, #technical-definitions-view, #about-blockage-view, #diagnostic-log-view, #restart-system-view, #event-history-view, #command-line-view').removeClass('is-active');
-// 			$('#menu').toggleClass('is-active', true);
-// 		});
-// 	};
+TVRO.RestartSystemView = function() {
+	var self = {},
+		view = $('[id ~= restart-system-view ]'),
+		webService = TVRO.WebService();
 
-// 	return self;
-// };
+	self.init = function() {
+		$('[id ~= system-btn ]', view).click(function() {
+			webService.request('reboot', {'sys':'SBC'});
+		});
 
-// TVRO.page = new TVRO.SupportPage();
+		$('[id ~= antenna-btn ]', view).click(function() {
+			webService.request('reboot', {'sys':'ANT'});
+		});
+
+		$('[id ~= all-btn ]', view).click(function() {
+			webService.request('reboot', {'sys':'ALL'});
+		});
+	}
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.EventHistoryView = function() {
+	var self = {},
+		view = $('[id ~= event-history-view ]'),
+		eventsView = $('[id ~= events-view ]', view),
+		eventViewTemplate = $('[id ~= event-view ]', view).detach(),
+		webService = TVRO.WebService();
+
+	self.init = function() {
+		$('[id ~= load-btn ]', view).click(function() {
+			self.load();
+		});
+
+		$('[id ~= email-btn ]', view).click(function() {
+			webService.request('get_event_history_log', function(response) {
+				var eventHistoryLog = $('content', response).text();
+				//	TODO: call mailto
+			});
+		});
+
+		self.load();
+	}
+
+	self.load = function() {
+		webService.request('get_recent_event_history', {
+			'begin_at_event' : $('[id ~= event-view ]', eventsView).length,
+			'how_many_events' : 5
+		}, function(response) {
+			var events = $('event', response);
+			for (var i = 0; i < events.length; i++) {
+				var event = $(events[i]).text(),
+					dateTime = event.substr(0, event.indexOf('::')),
+					message = event.substr(event.indexOf('::')+2),
+					eventView = eventViewTemplate.clone();
+				$('[id ~= date-time ]', eventView).text(dateTime);
+				$('[id ~= message ]', eventView).text(message);
+				eventsView.append(eventView);
+				eventsView.scrollTop(eventsView.prop('scrollHeight'));
+			}
+		});
+	}
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.CommandLineView = function() {
+	var self = {},
+		view = $('[id ~= command-line-view ]'),
+		webService = TVRO.WebService();
+
+	self.init = function() {
+
+	}
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.page = TVRO.SupportPage();
