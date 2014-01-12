@@ -32,10 +32,10 @@
 	user-select: none;
 }
 
-/**:hover {
+*:hover {
 	outline: 1px solid #f00;
 }
-*/
+
 html {
 	background: #04122a url(/images/gradient.png) no-repeat top center;
 }
@@ -368,7 +368,7 @@ input {
 \*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/
 
 @media screen and (min-width: 880px) {
-	body {
+	html {
 		background-position: top left calc(50% + 120px);
 	}
 
@@ -571,31 +571,31 @@ input {
 		width: auto;
 	}
 
-	.dropdown-view .dropdown-option {
+	.dropdown-option {
 		background-color: #243774;
 		border-bottom: 1px solid #466ab2;
 		width: 100%;
 	}
 
-	.dropdown-view .dropdown-option:hover {
+	.dropdown-option:hover {
 		background-color: #1c335d;
 	}
 
-	.dropdown-view .dropdown-option.is-selected {
+	.dropdown-option.is-selected {
 		background-color: #4f7abd;
 	}
 
-	.dropdown-view .dropdown-option img {
-		background-image: url(/images/back-btn.png);
+	.dropdown-option img {
+		background-image: url(/images/radio.png);
 		float: left;
 	}
 
 
-	.dropdown-view .dropdown-option.is-selected img {
-		background-image: url(/images/check-mark.png);
+	.dropdown-option.is-selected img {
+		background-image: url(/images/radio-selected.png);
 	}
 
-	.dropdown-view .dropdown-option label {
+	.dropdown-option label {
 		padding: 14px 20px;
 		text-align: left;
 	}
@@ -807,30 +807,30 @@ input {
 		padding: 45px 0 0 0;
 	}
 
-	.dropdown-view .dropdown-option {
+	.dropdown-option {
 		background-color: #243774;
 		border-bottom: 1px solid #466ab2;
 		width: 100%;
 	}
 
-	.dropdown-view .dropdown-option:hover {
+	.dropdown-option:hover {
 		background-color: #1c335d;
 	}
 
-	.dropdown-view .dropdown-option.is-selected {
+	.dropdown-option.is-selected {
 		background-color: #4f7abd;
 	}
 
-	.dropdown-view .dropdown-option img {
+	.dropdown-option img {
 		background-image: url(/images/back-btn.png);
 		float: left;
 	}
 
-	.dropdown-view .dropdown-option.is-selected img {
+	.dropdown-option.is-selected img {
 		background-image: url(/images/check-mark.png);
 	}
 
-	.dropdown-view .dropdown-option label {
+	.dropdown-option label {
 		padding: 0.875em 1.25em;
 		text-align: left;
 	}

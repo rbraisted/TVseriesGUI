@@ -1,14 +1,14 @@
 "use strict";
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.HomePage = function() {
 	 var self = {},
 		updateInterval,
-		cookieManager = new TVRO.CookieManager(),
-		webService = new TVRO.WebService();
+		cookieManager = TVRO.CookieManager(),
+		webService = TVRO.WebService();
 
 	self.init = function() {
-		$('#home-btn').toggleClass('selected', true);
-
 		$('#autoswitch-button').click(function() {
 			var autoswitchEnabled = $('#autoswitch-button').hasClass('on');
 			webService.request('set_autoswitch_service', {
@@ -74,7 +74,7 @@ TVRO.HomePage = function() {
 		});
 
 		webService.request('antenna_versions', function(response) {
-			$('#antenna-type').text(response.find('au model').text());
+			$('#antenna').text(response.find('au model').text());
 		});
 
 		webService.request('get_autoswitch_service', function(response) {
@@ -89,4 +89,6 @@ TVRO.HomePage = function() {
 	return self;
 };
 
-TVRO.page = new TVRO.HomePage();
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.page = TVRO.HomePage();
