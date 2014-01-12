@@ -65,10 +65,14 @@ body.at-splash .vessel-view {
 }
 
 .autoswitch-view img {
-	background: transparent url(/images/nav-autoswitch-small.png) no-repeat center center;
+	background: transparent url(/images/nav-autoswitch-small-selected.png) no-repeat center center;
 	float: left;
 	height: 1.4em;
 	width: 19px;
+}
+
+.autoswitch-view.is-disabled img {
+	background: transparent url(/images/nav-autoswitch-small-disabled.png) no-repeat center center;
 }
 
 .autoswitch-master-label {
@@ -76,10 +80,19 @@ body.at-splash .vessel-view {
 	margin-left: 0.5em;
 }
 
+.autoswitch-view.is-disabled h3,
+.autoswitch-view.is-disabled .autoswitch-master-label {
+	color: #4a536a;
+}
+
 .autoswitch-change-btn {
 	float: right;
 	font-size: 13px;
 	min-width: 0;
+}
+
+.autoswitch-view.is-disabled .autoswitch-change-btn {
+	display: none;
 }
 
 .autoswitch-change-btn label {

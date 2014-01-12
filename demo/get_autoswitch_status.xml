@@ -6,9 +6,9 @@
 	<service>DIRECTV | DISH | DISEQC | OTHER</service>
 	<service_subtype>NORTH_AMERICA|LATIN_AMERICA</service_subtype>
 	<master>
-		<sn>123456789</sn>
+		<sn>111222333</sn>
 		<valid>Y | N</valid>
-		<sat>A | B | C | D</sat>
+		<sat>A</sat>
 		<tone>Y | N</tone>
 		<voltage>H | L</voltage>
 	</master>
@@ -55,6 +55,14 @@
 			<enable>Y</enable>
 			<favorite>N</favorite>
 		</C>
-		<D/>
+		<D>
+			<listID>67</listID>
+			<antSatID>93W</antSatID>
+			<name>Galaxy 25</name>
+			<region>North America</region>
+			<lon>-93.03</lon>
+			<favorite>FALSE</favorite>
+			<enabled>TRUE</enabled>
+		</D>
 	</satellites>
 </ipacu_response>

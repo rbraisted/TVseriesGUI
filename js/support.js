@@ -10,10 +10,10 @@ TVRO.SupportPage = function() {
 		var menu = $('[id ~= menu-view ]'),
 			menuBtns = $('[id ~= menu-btn ]', menu),
 			backBtns = $('[id ~= back-btn ]'),
-			diagnosticLogView = TVRO.DiagnosticLogView(),
-			restartSystemView = TVRO.RestartSystemView(),
-			eventHistoryView = TVRO.EventHistoryView(),
-			commandLineView = TVRO.CommandLineView();
+			diagnosticLogView = TVRO.SupportPage.DiagnosticLogView(),
+			restartSystemView = TVRO.SupportPage.RestartSystemView(),
+			eventHistoryView = TVRO.SupportPage.EventHistoryView(),
+			commandLineView = TVRO.SupportPage.CommandLineView();
 
 		diagnosticLogView.init();
 		restartSystemView.init();
@@ -42,8 +42,6 @@ TVRO.SupportPage = function() {
 			$(document.body).setClass('at-menu');
 			menuBtns.removeClass('is-selected');
 		});
-
-		$(document.body).setClass('at-command-line');
 	}
 
 	return self;
@@ -51,7 +49,7 @@ TVRO.SupportPage = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.DiagnosticLogView = function() {
+TVRO.SupportPage.DiagnosticLogView = function() {
 	var self = {},
 		view = $('[id ~= diagnostic-log-view ]'),
 		webService = TVRO.WebService();
@@ -79,7 +77,7 @@ TVRO.DiagnosticLogView = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.RestartSystemView = function() {
+TVRO.SupportPage.RestartSystemView = function() {
 	var self = {},
 		view = $('[id ~= restart-system-view ]'),
 		webService = TVRO.WebService();
@@ -103,7 +101,7 @@ TVRO.RestartSystemView = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.EventHistoryView = function() {
+TVRO.SupportPage.EventHistoryView = function() {
 	var self = {},
 		view = $('[id ~= event-history-view ]'),
 		eventsView = $('[id ~= events-view ]', view),
@@ -149,7 +147,7 @@ TVRO.EventHistoryView = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.CommandLineView = function() {
+TVRO.SupportPage.CommandLineView = function() {
 	var self = {},
 		view = $('[id ~= command-line-view ]'),
 		webService = TVRO.WebService();

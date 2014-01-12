@@ -9,9 +9,9 @@ TVRO.SettingsPage = function() {
 		var menuView = $('[id ~= menu-view ]'),
 			menuBtns = $('[id ~= menu-btn ]', menuView),
 			backBtns = $('[id ~= back-btn ]'),
-			generalSettingsView = TVRO.GeneralSettingsView(),
-			advancedSettingsView = TVRO.AdvancedSettingsView(),
-			networkSettingsView = TVRO.NetworkSettingsView();
+			generalSettingsView = TVRO.SettingsPage.GeneralSettingsView(),
+			advancedSettingsView = TVRO.SettingsPage.AdvancedSettingsView(),
+			networkSettingsView = TVRO.SettingsPage.NetworkSettingsView();
 
 		generalSettingsView.init();
 		advancedSettingsView.init();
@@ -48,7 +48,7 @@ TVRO.SettingsPage = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.GeneralSettingsView = function() {
+TVRO.SettingsPage.GeneralSettingsView = function() {
 	var self = {},
 		view = $('[id ~= general-settings-view ]'),
 		demoModeBtn = $('[id ~= demo-mode-btn ]', view),
@@ -77,7 +77,7 @@ TVRO.GeneralSettingsView = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.AdvancedSettingsView = function(page) {
+TVRO.SettingsPage.AdvancedSettingsView = function(page) {
 	var self = {},
 		view = $('[id ~= advanced-settings-view ]'),
 		sleepModeBtn = $('[id ~= sleep-mode-btn ]', view),
@@ -110,13 +110,13 @@ TVRO.AdvancedSettingsView = function(page) {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.NetworkSettingsView = function() {
+TVRO.SettingsPage.NetworkSettingsView = function() {
 	var self = {},
 		view = $('[id ~= network-settings-view ]'),
 		ethernetSettingsView = $('[id ~= ethernet-settings-view ]', view),
 		wirelessSettingsView = $('[id ~= wireless-settings-view ]', view),
-		editEthernetSettingsView = TVRO.EditEthernetSettingsView(),
-		editWirelessSettingsView = TVRO.EditWirelessSettingsView(),
+		editEthernetSettingsView = TVRO.SettingsPage.EditEthernetSettingsView(),
+		editWirelessSettingsView = TVRO.SettingsPage.EditWirelessSettingsView(),
 		webService = TVRO.WebService();
 
 	self.init = function() {
@@ -203,7 +203,7 @@ TVRO.NetworkSettingsView = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.EditEthernetSettingsView = function() {
+TVRO.SettingsPage.EditEthernetSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-ethernet-settings-view ]'),
 		staticView = $('[id ~= static-view ]', view),
@@ -261,7 +261,7 @@ TVRO.EditEthernetSettingsView = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.EditWirelessSettingsView = function() {
+TVRO.SettingsPage.EditWirelessSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-wireless-settings-view ]'),
 		modeDropdown = TVRO.Dropdown('[id ~= wireless-mode-dropdown ]', $('[id ~= mode-btn ]:eq(0)', view)),

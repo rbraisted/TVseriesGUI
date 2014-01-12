@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_satellite_groups" error="0" />
+	<group_list>
+		<group>
+			<group_name>CENTER_ARC</group_name>
+			<predefined>Y</predefined>
+			<A>Astra 3A 23E</A>
+			<B>Astra 1 19E</B>
+			<C>Astra 1 South 28ES</C>
+		</group>
+		<group>
+			<group_name>NEW_ARC</group_name>
+			<predefined>N</predefined>
+			<A>Astra 3A 23E</A>
+			<B>Astra 2 North 28EN</B>
+		</group>
+	</group_list>
+</ipacu_response>

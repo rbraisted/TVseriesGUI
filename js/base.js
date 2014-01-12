@@ -224,8 +224,6 @@ TVRO.WebService = (function() {
 
 				requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>';
 
-				console.log(requestXml);
-
 				$.ajax({
 					async : async,
 					type : 'post',
@@ -257,6 +255,11 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 		dropdown = $(dropdown),
 		optionSelected = [];
 
+	self.setSelectedValue = function(value) {
+		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
+		$('[id ~= dropdown-option][value='+value+']', dropdown).addClass('is-selected');
+	}
+
 	self.selectValue = function(value) {
 		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).click();
 	}
@@ -282,12 +285,11 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 
 	$('[id ~= dropdown-option]', dropdown).click(function() {
 		var dropdownOption = $(this);
-		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
-		dropdownOption.addClass('is-selected', true);
+		self.hide();
+		self.setSelectedValue(dropdownOption.attr('value'));
 		for (var i = 0; i < optionSelected.length; i++) {
 			optionSelected[i]($('label', dropdownOption).text(), dropdownOption.attr('value'));
 		}
-		self.hide();
 	});
 
 	self.show = function() {
