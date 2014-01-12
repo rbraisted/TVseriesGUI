@@ -5,9 +5,21 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="vessel-view" class="view main-view vessel-view">
+	<div class="view-content main-content">
+		<div id="vessel" class="vessel">
+			<h1 id="vessel-heading" class="heading"></h1>
+			<img id="vessel-animation" class="animation" src="/images/img.gif">
+			<h3 id="vessel-name" class="name"></h3>
+		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <div id="menu-view" class="view menu-view">
 	<div id="satellite-view" class="menu-sub-view satellite-view">
-		<div id="mode-view" class="satellite-sub-view satellite-mode-view">
+		<div id="mode-view" class="satellite-sub-view">
 			<h3>Satellite Switching</h3>
 			<a id="mode-btn" href="#" class="btn on-off-btn satellite-mode-btn">
 				<div class="on">Manual</div>
@@ -15,7 +27,7 @@
 			</a>
 		</div>
 
-		<div id="details-view" class="satellite-sub-view satellite-details-view">
+		<div id="details-view" class="satellite-sub-view">
 			<h3>
 				<span id="name">Wheatly 1</span>
 				<span id="region">Middle East</span>
@@ -25,7 +37,7 @@
 		</div>
 
 		<div id="satellite-dropdown" class="satellite-sub-view satellite-dropdown-view">
-			<div id="dropdown-content dropdown-options">
+			<div id="dropdown-options">
 				<a id="dropdown-option satellite-a-btn" href="#" value="A" class="btn dropdown-option satellite-dropdown-option">
 					<img src="/images/img.gif">
 					<label id="satellite-a">
@@ -67,12 +79,12 @@
 		</a>
 	</div>
 
-	<div id="antenna-view" class="menu-sub-view antenna-view">
+	<div id="antenna-view" class="menu-sub-view">
 		<h3>Antenna</h3>
 		<span id="antenna" class="antenna-label"></span>
 	</div>
 
-	<div id="location-view" class="menu-sub-view location-view">
+	<div id="location-view" class="menu-sub-view">
 		<h3>Location</h3>
 		<span id="longitude" class="location-label"></span>
 		<span id="latitude" class="location-label"></span>
@@ -80,13 +92,3 @@
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="vessel-view" class="view main-view vessel-view">
-	<div class="view-content main-content">
-		<div id="vessel" class="vessel">
-			<h1 id="vessel-heading" class="heading"></h1>
-			<img id="vessel-animation" class="animation" src="/images/img.gif">
-			<h3 id="vessel-name" class="name"></h3>
-		</div>
-	</div>
-</div>

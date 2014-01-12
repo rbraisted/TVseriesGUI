@@ -364,6 +364,44 @@ input {
 	z-index: 5;
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.table {
+	font-size: 13px;
+	position: relative;
+	width: 100%;
+}
+
+.table-row {
+	background-color: #4d5369;
+	border-bottom: 1px solid #466ab2;
+	display: inline-block;
+	margin-top: -2px;
+	position: relative;
+	width: 100%;
+}
+
+.table-row.is-selected {
+	background-color: #203c90;
+}
+
+.table-row:nth-child(2n) {
+	background-color: #2a3046;
+}
+
+.table-col {
+	display: block;
+	float: left;
+	height: 100%;
+	padding: 1.23em 10px;
+	position: relative;
+	white-space: nowrap;
+}
+
+.table-header {
+	font-size: 11px;
+}
+
 /*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\
 \*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/
 

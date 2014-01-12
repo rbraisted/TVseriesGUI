@@ -1,9 +1,136 @@
-/*       *\
+body.at-splash .menu-view,
+body.at-splash .satellites-table-view {
+	display: block;
+}
 
-    ^3^
+.menu-view .details-view,
+.menu-view .mode-view {
+	border-bottom: 1px solid #466ab2;
+	line-height: 1.6;
+	padding: 1em;
+	position: relative;
+}
 
-\*       */
+.menu-view .satellite-status-label {
+	bottom: 1em;
+	color: #4a536a;
+	position: absolute;
+}
 
+.menu-view .satellite-signal {
+	background: transparent no-repeat right bottom;
+	height: 60px;
+	width: 100%;
+}
+
+.satellite-signal.is-0 { background-image: url(/images/satellite-signal-0.png); }
+.satellite-signal.is-1 { background-image: url(/images/satellite-signal-1.png); }
+.satellite-signal.is-2 { background-image: url(/images/satellite-signal-2.png); }
+.satellite-signal.is-3 { background-image: url(/images/satellite-signal-3.png); }
+.satellite-signal.is-4 { background-image: url(/images/satellite-signal-4.png); }
+.satellite-signal.is-5 { background-image: url(/images/satellite-signal-5.png); }
+
+.menu-view .mode-btn {
+	margin-top: 0.5em;
+	width: 100%;
+}
+
+.menu-view .mode-btn .on,
+.menu-view .mode-btn .off {
+	padding-bottom: 0.25em;
+	padding-top: 0.25em;
+	width: 50%;
+}
+
+.menu-view .new-btn {
+	display: block;
+	margin: 1em;
+}
+
+.menu-view .new-btn img {
+	background: transparent url(/images/add-btn.png) no-repeat center center;
+	position: absolute;
+	right: 0;
+	width: auto;
+}
+
+.menu-view .new-btn label {
+	padding: 0.75em;
+	text-align: left;
+}
+
+.main-view h1 {
+	position: relative;
+}
+
+.main-view h1 img {
+	background: transparent url(/images/nav-satellites-small-selected.png) no-repeat center center;
+	display: inline-block;
+	height: 100%;
+	margin-left: -2em;
+	position: absolute;
+	top: 0;
+}
+
+.satellites-table-view .view-content {
+	max-width: 780px;
+}
+
+.satellites-table img {
+	/*display: none;*/
+	height: auto;
+}
+
+.satellites-table .select-col {
+	width: 8.57142857%;
+}
+
+.satellites-table .name-col,
+.satellites-table .region-col,
+.satellites-table .favorites-col {
+	width: 25.7142857%;
+}
+
+.satellites-table .orbital-slot-col {
+	width: 14.2857143%;
+}
+
+.edit-btn {
+	background: red;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 45px;
+}
+
+.select-btn {
+	min-height: 45px;
+}
+
+.select-btn img {
+	height: 100%;
+	width: 100%;
+	left: 50%;
+	position: absolute;
+	top: 0;
+}
+
+
+.sort-btn {
+	
+}
+
+.sort-btn img {
+	display: block;
+	position: absolute;
+}
+
+
+
+
+
+/*
 .sb .headline {
 	margin-bottom: 0;
 	padding: 10px 20px;
@@ -327,12 +454,6 @@
 	margin: 25px 0 0 25px;
 }
 
-/*                           *\
-
-     SMALL & MEDIUM SHARED
-
-\*                           */
-
 @media screen and (max-width: 880px) {
 	.mcg {
 		padding: 0;
@@ -456,12 +577,4 @@
 	}	
 }
 
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-
-@media screen and (min-width: 880px) {
-
-}
+*/

@@ -1,54 +1,127 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
+<link type="text/css" rel="stylesheet" href="/css/satellites.css">
+<script type="text/javascript" src="/js/satellites.js"></script>
 
-<!--
-	things:
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-	single
-	group auto
-	group manual
-
-	all the guys:
-		- sat signal
-		- sat mode
-
--->
-
-<div id="menu" class="single auto manual">
-	<div class="single auto manual">
-		current satellite
+<div id="menu-view" class="view menu-view">
+	<div id="details-view" class="details-view">
+		<h3>
+			<span id="name">Wheatly 1</span>
+			<span id="region">Middle East</span>
+		</h3>
+		<img id="signal" src="/images/img.gif" class="satellite-signal is-0">
+		<span id="status" class="satellite-status-label">Tracking...</span>
 	</div>
 
-	<div class="single auto manual">
-		satellite mode (single || group)
+	<div id="mode-view" class="mode-view">
+		<h3>Satellite Mode</h3>
+		<a id="mode-btn" href="#" class="btn on-off-btn mode-btn">
+			<div class="on">Single</div>
+			<div class="off">Group</div>
+		</a>
 	</div>
 
-	<div class="single auto manual">
-		current satellite
+	<div id="single-view" class="single-view">
+		<a id="africa-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Africa</label>
+		</a>
+		<a id="asia-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Asia</label>
+		</a>
+		<a id="anz-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Australia / New Zealand</label>
+		</a>
+		<a id="csa-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Central / South America</label>
+		</a>
+		<a id="europe-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Europe</label>
+		</a>
+		<a id="na-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>North America</label>
+		</a>
+		<a id="all-btn menu-btn" href="#" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>All</label>
+		</a>
+		<a id="new-btn" href="#" class="btn basic-btn new-btn">
+			<img src="/images/img.gif">
+			<label>Create New Satellite</label>
+		</a>
 	</div>
 
-	<div class="single">
-		list of regions
-	</div>
-
-	<div class="single">
-		create new satellite
-	</div>
-
-	<div class="auto manual">
-		list of sat groups
-	</div>
-
-	<div class="auto manual">
-		create new group
+	<div id="group-view" class="group-view">
+		<div id="group-dropdown">
+			<div id="dropdown-options">
+				<a id="dropdown-option" href="#" class="btn dropdown-option">
+					<img src="/images/img.gif">
+					<label id="name"></label>
+				</a>
+			</div>
+		</div>
+		<a id="new-btn" href="#" class="btn basic-btn new-btn">
+			<img src="/images/img.gif">
+			<label>Create New Group</label>
+		</a>		
 	</div>
 </div>
 
-<div id="satellite-list" class="single auto manual"></div>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="group-list" class="auto manual"></div>
-
-<div id="satellite-details" class="single auto manual"></div>
-
+<div id="satellites-table-view" class="view main-view satellites-table-view">
+	<div class="view-content main-content">
+		<a id="back-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Satellites</label>
+		</a>
+		<h1>
+			<img src="/images/img.gif">
+			<span>Satellites</span>
+		</h1>
+		<div id="satellites-table" class="table satellites-table">
+			<div id="table-header" class="table-row table-header">
+				<div class="table-col select-col">Installed</div><!--
+			 --><a id="name-btn" href="#" class="btn sort-btn name-btn table-col name-col">
+					<img src="/images/img.gif">
+					<label>Name</label>
+				</a><!--
+			 --><a id="orbital-slot-btn" href="#" class="btn sort-btn orbital-slot-btn table-col orbital-slot-col">
+					<img src="/images/img.gif">
+					<label>Orbital Slot</label>
+				</a><!--
+			 --><a id="region-btn" href="#" class="btn sort-btn region-btn table-col region-col">
+					<img src="/images/img.gif">
+					<label>Region</label>
+				</a><!--
+			 --><a id="favorites-btn" href="#" class="btn sort-btn favorites-btn table-col favorites-col">
+					<img src="/images/img.gif">
+					<label>Favorites</label>
+				</a>
+			</div>
+			<div id="table-row" class="table-row">
+				<a id="select-btn" class="table-col select-col btn select-btn">
+					<img src="/images/img.gif">
+				</a><!--
+			 --><div id="name" class="table-col name-col">Name</div><!--
+			 --><div id="orbital-slot" class="table-col orbital-slot-col">Orbital Slot</div><!--
+			 --><div id="region" class="table-col region-col">Region</div><!--
+			 --><div class="table-col favorites-col">
+					<img src="/images/img.gif">
+				</div>
+				<a id="edit-btn" href="#" class="btn edit-btn">
+					<img src="/images/img.gif">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- <link type="text/css" rel="stylesheet" href="/css/satellites.css">
 <script type="text/javascript" src="/js/satellites.js"></script>
