@@ -76,56 +76,44 @@ body.at-splash .satellites-table-view {
 	max-width: 780px;
 }
 
-.satellites-table img {
-	/*display: none;*/
-	height: auto;
+.installed-col {
+	width: 9%;
 }
 
-.satellites-table .select-col {
-	width: 8.57142857%;
+.name-col,
+.region-col,
+.favorites-col {
+	width: 25%;
 }
 
-.satellites-table .name-col,
-.satellites-table .region-col,
-.satellites-table .favorites-col {
-	width: 25.7142857%;
+.orbital-slot-col {
+	width: 16%;
 }
 
-.satellites-table .orbital-slot-col {
-	width: 14.2857143%;
-}
-
-.edit-btn {
-	background: red;
-	position: absolute;
-	right: 0;
-	top: 0;
+.select-btn,
+.favorite-btn,
+.info-btn {
 	height: 100%;
-	width: 45px;
+	position: absolute;
+	top: 0;
 }
 
-.select-btn {
-	min-height: 45px;
+.favorite-btn img {
+	background-image: url(/images/favorite-btn.png);
+	display: block;
+}
+
+.info-btn img {
+	background-image: url(/images/info-btn.png);
 }
 
 .select-btn img {
-	height: 100%;
-	width: 100%;
-	left: 50%;
-	position: absolute;
-	top: 0;
+	background-image: url(/images/radio.png);
 }
 
-
-.sort-btn {
-	
+.info-btn {
+	right: 40px;
 }
-
-.sort-btn img {
-	display: block;
-	position: absolute;
-}
-
 
 
 

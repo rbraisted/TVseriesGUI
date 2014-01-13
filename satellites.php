@@ -62,7 +62,15 @@
 			<div id="dropdown-options">
 				<a id="dropdown-option" href="#" class="btn dropdown-option">
 					<img src="/images/img.gif">
-					<label id="name"></label>
+					<label id="name">Preset Group 1</label>
+				</a>
+				<a id="dropdown-option" href="#" class="btn dropdown-option">
+					<img src="/images/img.gif">
+					<label id="name">Preset Group 2</label>
+				</a>
+				<a id="dropdown-option" href="#" class="btn dropdown-option">
+					<img src="/images/img.gif">
+					<label id="name">Preset Group 3</label>
 				</a>
 			</div>
 		</div>
@@ -85,22 +93,126 @@
 			<img src="/images/img.gif">
 			<span>Satellites</span>
 		</h1>
+
+		<a class="btn sort-btn is-ascending">
+			<img src="/images/img.gif">
+			<label>Sort</label>
+		</a>
+
+		<br>
+		<br>
+
+		<table class="satellites-table">
+			<thead>
+				<tr>
+					<th class="installed-col">
+						<span>Installed</span>
+					</th>
+					<th class="name-col">
+						<a id="name-btn" href="#" class="btn sort-btn is-ascending">
+							<img src="/images/img.gif">
+							<label>Name</label>
+						</a>
+					</th>
+					<th class="orbital-slot-col">
+						<a id="orbital-slot-btn" href="#" class="btn sort-btn">
+							<img src="/images/img.gif">
+							<label>Orbital Slot</label>
+						</a>
+					</th>
+					<th class="region-col">
+						<a id="region-btn" href="#" class="btn sort-btn is-descending">
+							<img src="/images/img.gif">
+							<label>Region</label>
+						</a>
+					</th>
+					<th class="favorites-col">
+						<a id="favorites-btn" href="#" class="btn sort-btn">
+							<img src="/images/img.gif">
+							<label>Favorites</label>
+						</a>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="installed-col">
+						<a id="select-btn" href="#" class="btn select-btn">
+							<img src="/images/img.gif">
+						</a>
+					</td>
+					<td class="name-col">
+						<span id="name">Name</span>
+						<span id="region">Region</span>
+					</td>
+					<td class="orbital-slot-col">
+						<span id="orbital-slot">Orbital Slot</span>
+					</td>
+					<td class="region-col">
+						<span id="region">Region</span>
+					</td>
+					<td class="favorites-col">
+						<a id="favorite-btn" href="#" class="btn favorite-btn">
+							<img src="/images/img.gif">
+						</a>
+						<a id="info-btn" href="#" class="btn info-btn">
+							<img src="/images/img.gif">
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="installed-col">
+						<a id="select-btn" href="#" class="btn select-btn">
+							<img src="/images/img.gif">
+						</a>
+					</td>
+					<td class="name-col">
+						<span id="name">Name</span>
+						<span id="region">Region</span>
+					</td>
+					<td class="orbital-slot-col">
+						<span id="orbital-slot">Orbital Slot</span>
+					</td>
+					<td class="region-col">
+						<span id="region">Region</span>
+					</td>
+					<td class="favorites-col">
+						<a id="favorite-btn" href="#" class="btn favorite-btn">
+							<img src="/images/img.gif">
+						</a>
+						<a id="info-btn" href="#" class="btn info-btn">
+							<img src="/images/img.gif">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- 
+		select-col
+		name-col
+		orbital-slot-col
+		region-col
+		favorites-col
+		-->
+
+		<!--
 		<div id="satellites-table" class="table satellites-table">
 			<div id="table-header" class="table-row table-header">
-				<div class="table-col select-col">Installed</div><!--
-			 --><a id="name-btn" href="#" class="btn sort-btn name-btn table-col name-col">
+				<div class="table-col select-col">Installed</div>
+				<a id="name-btn" href="#" class="btn sort-btn name-btn table-col name-col">
 					<img src="/images/img.gif">
 					<label>Name</label>
-				</a><!--
-			 --><a id="orbital-slot-btn" href="#" class="btn sort-btn orbital-slot-btn table-col orbital-slot-col">
+				</a>
+				<a id="orbital-slot-btn" href="#" class="btn sort-btn orbital-slot-btn table-col orbital-slot-col">
 					<img src="/images/img.gif">
 					<label>Orbital Slot</label>
-				</a><!--
-			 --><a id="region-btn" href="#" class="btn sort-btn region-btn table-col region-col">
+				</a>
+				<a id="region-btn" href="#" class="btn sort-btn region-btn table-col region-col">
 					<img src="/images/img.gif">
 					<label>Region</label>
-				</a><!--
-			 --><a id="favorites-btn" href="#" class="btn sort-btn favorites-btn table-col favorites-col">
+				</a>
+				<a id="favorites-btn" href="#" class="btn sort-btn favorites-btn table-col favorites-col">
 					<img src="/images/img.gif">
 					<label>Favorites</label>
 				</a>
@@ -108,11 +220,11 @@
 			<div id="table-row" class="table-row">
 				<a id="select-btn" class="table-col select-col btn select-btn">
 					<img src="/images/img.gif">
-				</a><!--
-			 --><div id="name" class="table-col name-col">Name</div><!--
-			 --><div id="orbital-slot" class="table-col orbital-slot-col">Orbital Slot</div><!--
-			 --><div id="region" class="table-col region-col">Region</div><!--
-			 --><div class="table-col favorites-col">
+				</a>
+				<div id="name" class="table-col name-col">Name</div>
+				<div id="orbital-slot" class="table-col orbital-slot-col">Orbital Slot</div>
+				<div id="region" class="table-col region-col">Region</div>
+				<div class="table-col favorites-col">
 					<img src="/images/img.gif">
 				</div>
 				<a id="edit-btn" href="#" class="btn edit-btn">
@@ -120,6 +232,7 @@
 				</a>
 			</div>
 		</div>
+		-->
 	</div>
 </div>
 

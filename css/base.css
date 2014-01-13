@@ -55,6 +55,8 @@ body {
 	line-height: 1;
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 a {
 	color: inherit;
 	text-decoration: inherit;
@@ -105,6 +107,49 @@ input {
 	padding: 0.375em 0.625em;
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+table {
+	font-size: 13px;
+	position: relative;
+	width: 100%;
+}
+
+thead {
+	font-size: 11px;
+}
+
+thead tr {
+	background-color: #243774;
+}
+
+tr {
+	background-color: #4d5369;
+	border-bottom: 1px solid #466ab2;
+}
+
+tr.is-selected {
+	background-color: #203c90;
+}
+
+tr:nth-child(2n) {
+	background-color: #2a3046;
+}
+
+td,
+th {
+	font-weight: inherit;
+	padding: 1.2em 10px;
+	position: relative;
+	text-align: left;
+}
+
+th {
+	padding: 0.7em 10px;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 .btn {
 	cursor: pointer;
 	display: inline-block;
@@ -117,7 +162,9 @@ input {
 	display: block;
 	height: 100%;
 	line-height: 1;
-	width: 44px;
+	position: absolute;
+	top: 0;
+	width: 40px;
 }
 
 .btn label {
@@ -192,10 +239,8 @@ input {
 }
 
 .dropdown-btn img {
-	background-image: url(/images/menu-btn.png);
-	position: absolute;
+	background-image: url(/images/dropdown-btn.png);
 	right: 0;
-	top: 0;
 	width: 30px;
 }
 
@@ -205,13 +250,81 @@ input {
 	padding-right: 30px;
 }
 
-.view {
-	display: none;
-	position: absolute;
+.dropdown-option {
+	background-color: #243774;
+	border-bottom: 1px solid #466ab2;
+	width: 100%;
 }
 
-.view-content {
-	margin: auto;
+.dropdown-option:hover {
+	background-color: #1c335d;
+}
+
+.dropdown-option.is-selected {
+	background-color: #4f7abd;
+}
+
+.dropdown-option img {
+	background-image: url(/images/radio.png);
+	float: left;
+	position: relative;
+}
+
+.dropdown-option.is-selected img {
+	background-image: url(/images/radio-selected.png);
+}
+
+.dropdown-option label {
+	padding: 0.875em 1.25em;
+	text-align: left;
+}
+
+.sort-btn.is-ascending,
+.sort-btn.is-descending {
+	background-color: #4f7abd;
+}
+
+.sort-btn {
+	background-color: #243774;
+	min-width: 9.0625em;
+}
+
+.sort-btn:hover {
+	background-color: #1c335d;
+}
+
+.sort-btn img {
+	right: 0;
+}
+
+.sort-btn.is-ascending img {
+	background-image: url(/images/sort-btn-ascending.png);
+}
+
+.sort-btn.is-descending img {
+	background-image: url(/images/sort-btn-descending.png);
+}
+
+.sort-btn label {
+	padding: 0.75em 1.25em;
+}
+
+table .sort-btn {
+	height: 100%;
+	left: 0;
+	padding: inherit;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+table .sort-btn img {
+	width: 8px;
+	margin-right: 10px;
+}
+
+table .sort-btn label {
+	padding: 0;
 }
 
 .copy {
@@ -222,6 +335,17 @@ input {
 	background-color: #b11;
 	color: #fff;
 	padding: 10px;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.view {
+	display: none;
+	position: absolute;
+}
+
+.view-content {
+	margin: auto;
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -257,14 +381,18 @@ input {
 }
 
 .header-view .header-btn label {
+	bottom: 0;
 	font-size: 13px;
+	line-height: 1.6em;
+	position: absolute;
 	text-align: center;
+	width: 100%;
 }
 
 .header-view .header-btn img {
 	height: 23px;
-	margin: 6px auto 4px;
-	width: 35px;
+	left: 50%;
+	margin: 6px -20px;
 }
 
 .header-view .status-btn {
@@ -364,44 +492,6 @@ input {
 	z-index: 5;
 }
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-
-.table {
-	font-size: 13px;
-	position: relative;
-	width: 100%;
-}
-
-.table-row {
-	background-color: #4d5369;
-	border-bottom: 1px solid #466ab2;
-	display: inline-block;
-	margin-top: -2px;
-	position: relative;
-	width: 100%;
-}
-
-.table-row.is-selected {
-	background-color: #203c90;
-}
-
-.table-row:nth-child(2n) {
-	background-color: #2a3046;
-}
-
-.table-col {
-	display: block;
-	float: left;
-	height: 100%;
-	padding: 1.23em 10px;
-	position: relative;
-	white-space: nowrap;
-}
-
-.table-header {
-	font-size: 11px;
-}
-
 /*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\
 \*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/
 
@@ -449,6 +539,7 @@ input {
 		float: left;
 		height: 100%;
 		margin: auto 10px;
+		position: relative;
 	}
 
 	.nav-view .home-btn {
@@ -607,35 +698,6 @@ input {
 		min-width: 250px;
 		padding: 45px 0 0 0;
 		width: auto;
-	}
-
-	.dropdown-option {
-		background-color: #243774;
-		border-bottom: 1px solid #466ab2;
-		width: 100%;
-	}
-
-	.dropdown-option:hover {
-		background-color: #1c335d;
-	}
-
-	.dropdown-option.is-selected {
-		background-color: #4f7abd;
-	}
-
-	.dropdown-option img {
-		background-image: url(/images/radio.png);
-		float: left;
-	}
-
-
-	.dropdown-option.is-selected img {
-		background-image: url(/images/radio-selected.png);
-	}
-
-	.dropdown-option label {
-		padding: 14px 20px;
-		text-align: left;
 	}
 }
 
@@ -843,34 +905,6 @@ input {
 	.dropdown-content {
 		height: auto;
 		padding: 45px 0 0 0;
-	}
-
-	.dropdown-option {
-		background-color: #243774;
-		border-bottom: 1px solid #466ab2;
-		width: 100%;
-	}
-
-	.dropdown-option:hover {
-		background-color: #1c335d;
-	}
-
-	.dropdown-option.is-selected {
-		background-color: #4f7abd;
-	}
-
-	.dropdown-option img {
-		background-image: url(/images/back-btn.png);
-		float: left;
-	}
-
-	.dropdown-option.is-selected img {
-		background-image: url(/images/check-mark.png);
-	}
-
-	.dropdown-option label {
-		padding: 0.875em 1.25em;
-		text-align: left;
 	}
 }
 
