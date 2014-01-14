@@ -128,12 +128,16 @@ tr {
 	border-bottom: 1px solid #466ab2;
 }
 
-tr.is-selected {
-	background-color: #203c90;
-}
-
 tr:nth-child(2n) {
 	background-color: #2a3046;
+}
+
+tr:hover {
+	background-color: #1c335d;
+}
+
+tr.is-selected {
+	background-color: #4f7abd;
 }
 
 td,

@@ -76,6 +76,11 @@ body.at-splash .satellites-table-view {
 	max-width: 780px;
 }
 
+.satellites-table-container {
+	max-height: 500px;
+	overflow: auto;
+}
+
 .installed-col {
 	width: 9%;
 }
@@ -98,17 +103,28 @@ body.at-splash .satellites-table-view {
 	top: 0;
 }
 
+.select-btn img {
+	background-image: url(/images/radio.png);
+}
+
+.is-selected .select-btn img {
+	background-image: url(/images/radio-selected.png);
+}
+
 .favorite-btn img {
 	background-image: url(/images/favorite-btn.png);
-	display: block;
+}
+
+.is-favorite .favorite-btn img {
+	background-image: url(/images/favorite-btn-favorited.png);
+}
+
+.is-favorite.is-selected .favorite-btn img {
+	background-image: url(/images/favorite-btn-favorited-selected.png);
 }
 
 .info-btn img {
 	background-image: url(/images/info-btn.png);
-}
-
-.select-btn img {
-	background-image: url(/images/radio.png);
 }
 
 .info-btn {

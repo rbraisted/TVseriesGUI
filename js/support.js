@@ -7,8 +7,8 @@ TVRO.SupportPage = function() {
 		webService = TVRO.WebService();
 
 	self.init = function() {
-		var menu = $('[id ~= menu-view ]'),
-			menuBtns = $('[id ~= menu-btn ]', menu),
+		var menuView = $('[id ~= menu-view ]'),
+			menuBtns = $('[id ~= menu-btn ]', menuView),
 			backBtns = $('[id ~= back-btn ]'),
 			diagnosticLogView = TVRO.SupportPage.DiagnosticLogView(),
 			restartSystemView = TVRO.SupportPage.RestartSystemView(),

@@ -1,5 +1,158 @@
 "use strict";
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.SatellitesTable = function() {
+	var self = {},
+		view = $('[id ~= satellites-table ]'),
+		template = $('[id ~= satellite-view ]', view).detach(),
+		satellites = [],
+		sorted = [],
+		sort,
+		callbacks = [],
+		webService = TVRO.WebService();
+
+	self.init = function() {
+		var sortBtns = $('[id ~= sort-btn ]', view);
+
+		sortBtns.click(function() {
+			//	no-class
+			//	is-ascending
+			//	is-descending
+			var sortBtn = $(this),
+				ascending = false,
+				descending = false;
+
+			if (sortBtn.hasClass('is-ascending')) descending = true;
+			else if (!sortBtn.hasClass('is-descending')) ascending = true;
+			sortBtns.removeClass('is-ascending is-descending');
+			sortBtn.toggleClass('is-ascending', ascending);
+			sortBtn.toggleClass('is-descending', descending);
+
+			if (ascending || descending) {
+				var x = (ascending ? 1 : -1),
+					property;
+
+				if (sortBtn.hasId('name-btn')) property = 'name';
+				else if (sortBtn.hasId('orbital-slot-btn')) property = 'lon';
+				else if (sortBtn.hasId('region-btn')) property = 'region';
+				else if (sortBtn.hasId('favorites-btn')) property = 'favorite';
+
+				console.log('property: '+property);
+
+				sort = function(a, b) {
+					if (a[property] > b[property]) return 1 * x;
+					else if (a[property] < b[property]) return -1 * x;
+					else return 0;
+				}
+			} else {
+				sort = undefined;
+			}
+
+			self.refresh();
+		});
+	}
+
+	self.setData = function(data) {
+		satellites = data;
+		self.refresh();
+	}
+
+	self.refresh = function() {
+		console.log(satellites);
+		sorted = satellites.slice().sort(sort);
+		console.log(sorted);
+
+		$('tbody', view).empty();
+
+		var rows = [];
+		for (var i = 0; i < sorted.length; i++) {
+			var satellite = sorted[i],
+				row = template.clone();
+			$('[id ~= name ]', row).text(satellite.name);
+			$('[id ~= orbital-slot ]', row).text(satellite.antSatID);
+			$('[id ~= region ]', row).text(satellite.region);
+			row.toggleClass('is-favorite', satellite.favorite === 'TRUE');
+			rows.push(row);
+		}
+		$('tbody', view).append(rows);
+
+		webService.request('antenna_status', function(response) {
+			var antSatID = $('satellite antSatID', response).text(),
+				row = undefined;
+			for (var i = 0; i < sorted.length; i++) {
+				var satellite = sorted[i];
+				if (satellite.antSatID === antSatID) {
+					row = rows[i];
+					break;
+				}
+			}
+			$(row).addClass('is-selected');
+		});
+	}
+
+	self.click = function(callback) {
+		if (typeof callback === 'function') {
+			callbacks.push(callback);
+		}
+	}
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.SatellitesPage = function() {
+	var self = {},
+		webService = TVRO.WebService();
+
+	self.init = function() {
+		var menuView = $('[id ~= menu-view ]'),
+			singleView = $('[id ~= single-view ]', menuView),
+			regionBtns = $('[id ~= region-btn ]', singleView),
+			satellitesTable = TVRO.SatellitesTable();
+
+		satellitesTable.init();
+
+		regionBtns.click(function() {
+			var regionBtn = $(this),
+				regionFilter = '';
+
+			if (regionBtn.hasId('africa-btn')) regionFilter = 'Africa';
+			else if (regionBtn.hasId('asia-btn')) regionFilter = 'Asia';
+			else if (regionBtn.hasId('australia-btn')) regionFilter = 'Australia';
+			else if (regionBtn.hasId('central-and-south-america-btn')) regionFilter = 'Central/South America';
+			else if (regionBtn.hasId('europe-btn')) regionFilter = 'Europe';
+			else if (regionBtn.hasId('north-america-btn')) regionFilter = 'North America';
+
+			regionBtns.removeClass('is-selected');
+			regionBtn.addClass('is-selected');
+
+			webService.request('get_satellite_list', {
+				'region_filter' : regionFilter
+			}, function(response) {
+				var satellites = [];
+				$('satellite', response).each(function(index, satellite) {
+					satellites.push(TVRO.Satellite(satellite));
+				});
+				satellitesTable.setData(satellites);
+			});
+		});
+	}
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.page = TVRO.SatellitesPage();
+
 // TVRO.SatelliteDetails = function(satelliteDetails) {
 // 	var self = {},
 // 		satellite,
