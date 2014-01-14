@@ -22,9 +22,6 @@ TVRO.SatellitesTable = function() {
 		var sortBtns = $('[id ~= sort-btn ]', view);
 
 		sortBtns.click(function() {
-			//	no-class
-			//	is-ascending
-			//	is-descending
 			var sortBtn = $(this),
 				ascending = false,
 				descending = false;
@@ -43,8 +40,6 @@ TVRO.SatellitesTable = function() {
 				else if (sortBtn.hasId('orbital-slot-btn')) property = 'lon';
 				else if (sortBtn.hasId('region-btn')) property = 'region';
 				else if (sortBtn.hasId('favorites-btn')) property = 'favorite';
-
-				console.log('property: '+property);
 
 				sort = function(a, b) {
 					if (a[property] > b[property]) return 1 * x;
@@ -110,11 +105,14 @@ TVRO.SatellitesTable = function() {
 
 TVRO.SatellitesPage = function() {
 	var self = {},
+		menuView,
+		detailsView,
 		webService = TVRO.WebService();
 
 	self.init = function() {
-		var menuView = $('[id ~= menu-view ]'),
-			singleView = $('[id ~= single-view ]', menuView),
+		menuView = $('[id ~= menu-view ]');
+		detailsView = $('[id ~= details-view ]', menuView);
+		var singleView = $('[id ~= single-view ]', menuView),
 			regionBtns = $('[id ~= region-btn ]', singleView),
 			satellitesTable = TVRO.SatellitesTable();
 
@@ -143,6 +141,18 @@ TVRO.SatellitesPage = function() {
 				});
 				satellitesTable.setData(satellites);
 			});
+		});
+
+		self.refresh();
+	}
+
+	self.refresh = function() {
+		webService.request('antenna_status', function(response) {
+			$('[id ~= name ]', detailsView).text($('satellite name', response).text());
+			$('[id ~= region ]', detailsView).text($('satellite region', response).text());
+			$('[id ~= status ]', detailsView).text($('antenna state', response).text());
+			$('[id ~= signal ]', detailsView).removeClass('is-0 is-1 is-2 is-3 is-4 is-5');
+			$('[id ~= signal ]', detailsView).addClass('is-'+$('antenna rf bars', response).text());
 		});
 	}
 

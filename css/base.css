@@ -33,7 +33,7 @@
 }
 
 *:hover {
-	outline: 1px solid #f00;
+	/*outline: 1px solid #f00;*/
 }
 
 html {
@@ -257,6 +257,7 @@ th {
 .dropdown-option {
 	background-color: #243774;
 	border-bottom: 1px solid #466ab2;
+	display: block;
 	width: 100%;
 }
 

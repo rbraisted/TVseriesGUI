@@ -93,7 +93,6 @@
 			<img src="/images/img.gif">
 			<span>Satellites</span>
 		</h1>
-
 		<div class="satellites-table-container">
 			<table id="satellites-table" class="satellites-table">
 				<thead>
@@ -156,53 +155,12 @@
 				</tbody>
 			</table>
 		</div>
-		<!-- 
-		select-col
-		name-col
-		orbital-slot-col
-		region-col
-		favorites-col
-		-->
-
-		<!--
-		<div id="satellites-table" class="table satellites-table">
-			<div id="table-header" class="table-row table-header">
-				<div class="table-col select-col">Installed</div>
-				<a id="name-btn" href="#" class="btn sort-btn name-btn table-col name-col">
-					<img src="/images/img.gif">
-					<label>Name</label>
-				</a>
-				<a id="orbital-slot-btn" href="#" class="btn sort-btn orbital-slot-btn table-col orbital-slot-col">
-					<img src="/images/img.gif">
-					<label>Orbital Slot</label>
-				</a>
-				<a id="region-btn" href="#" class="btn sort-btn region-btn table-col region-col">
-					<img src="/images/img.gif">
-					<label>Region</label>
-				</a>
-				<a id="favorites-btn" href="#" class="btn sort-btn favorites-btn table-col favorites-col">
-					<img src="/images/img.gif">
-					<label>Favorites</label>
-				</a>
-			</div>
-			<div id="table-row" class="table-row">
-				<a id="select-btn" class="table-col select-col btn select-btn">
-					<img src="/images/img.gif">
-				</a>
-				<div id="name" class="table-col name-col">Name</div>
-				<div id="orbital-slot" class="table-col orbital-slot-col">Orbital Slot</div>
-				<div id="region" class="table-col region-col">Region</div>
-				<div class="table-col favorites-col">
-					<img src="/images/img.gif">
-				</div>
-				<a id="edit-btn" href="#" class="btn edit-btn">
-					<img src="/images/img.gif">
-				</a>
-			</div>
-		</div>
-		-->
 	</div>
 </div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
 
 <!-- <link type="text/css" rel="stylesheet" href="/css/satellites.css">
 <script type="text/javascript" src="/js/satellites.js"></script>

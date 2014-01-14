@@ -3,6 +3,14 @@ body.at-splash .satellites-table-view {
 	display: block;
 }
 
+.menu-view {}
+.satellites-table-view {} /* main-view, .satellites-table-view.main-view */
+.satellite-group-view {}
+.satellite-edit-group-view {}
+.satellite-info-view {}
+.satellites-table-view {} /* popup, .satellites-table-view.popup-view */
+
+
 .menu-view .details-view,
 .menu-view .mode-view {
 	border-bottom: 1px solid #466ab2;

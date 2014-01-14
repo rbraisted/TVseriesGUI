@@ -11,50 +11,14 @@ TVRO.HomePage = function() {
 			
 		menuView.init();
 		menuView.refresh();
+
 		vesselView.init();
 		vesselView.refresh();
+
 		setInterval(function() {
 			menuView.refresh();
 			vesselView.refresh();
 		}, 2000);
-	}
-
-	self.update = function() {
-		// webService.request('antenna_status', function(response) {
-		// 	var lat = Number(response.find('gps > lat').text()).toFixed(3),
-		// 		lon = Number(response.find('gps > lon').text()).toFixed(3),
-		// 		vesselHeading = Number(response.find('antenna > brst > hdg').text()).toFixed(1),
-		// 		azBow = Math.round(parseFloat(response.find('az_bow').text(), 10));
-
-		// 	$('#latitude').text((lat > 0.0) ? lat+' N' : Math.abs(lat)+' S');
-		// 	$('#longitude').text((lon > 0.0) ? lon+' E' : Math.abs(lon)+' W');
-		// 	$('#vessel-heading').text(vesselHeading+'˚');
-		// 	if (!isNaN(azBow) && azBow !== 999) {
-		// 		$('#vessel-animation').css({
-		// 			'transform' : 'rotate('+azBow+'deg)',
-		// 			'-moz-transform' : 'rotate('+azBow+'deg)',
-		// 			'-ms-transform' : 'rotate('+azBow+'deg)',
-		// 			'-webkit-transform' : 'rotate('+azBow+'deg)'
-		// 		});
-		// 	}
-
-		// 	$('[id ~= satellite-name ]').text(response.find('satellite > name').text());
-		// 	$('[id ~= satellite-id ]').text(response.find('satellite > antSatID').text());
-		// 	$('[id ~= satellite-signal ]').removeClass('sat-signal-0 sat-signal-1 sat-signal-2 sat-signal-3 sat-signal-4 sat-signal-5');
-		// 	$('[id ~= satellite-signal ]').addClass('sat-signal-'+response.find('antenna > rf > bars').text());
-		// });
-
-		// webService.request('antenna_versions', function(response) {
-		// 	$('#antenna').text(response.find('au model').text());
-		// });
-
-		// webService.request('get_autoswitch_service', function(response) {
-		// 	$('#autoswitch-button').toggleClass('on', response.find('ipacu_response > enable').text() === 'Y');
-		// });
-
-		// webService.request('get_product_registration', function(response) {
-		// 	$('#vessel-name').text(response.find('product vessel_name').text());
-		// });
 	}
 
 	return self;
@@ -116,8 +80,7 @@ TVRO.HomePage.SatelliteView = function() {
 	self.init = function() {
 		modeBtn.click(function() {
 			modeBtn.toggleClass('is-on');
-			//	i don't think this is the right call (???)
-			webService.request('get_autoswitch_status', {
+			webService.request('set_autoswitch_service', {
 				//	is-on = manual, send 'N'
 				'enabled' : (modeBtn.hasClass('is-on') ? 'N' : 'Y')
 			}, function(response) {
@@ -128,11 +91,16 @@ TVRO.HomePage.SatelliteView = function() {
 		dropdown.optionSelected(function(name, value) {
 			dropdown.show();
 			//	select satellite
-			self.refresh();
+			webService.request('select_satellite', {
+				'antSatID' : value
+			}, function(response) {
+				self.refresh();
+			});
 		});
 	}
 
 	self.refresh = function() {
+		console.log("!");
 		webService.request('antenna_status', function(response) {
 			$('[id ~= name ]', detailsView).text($('satellite name', response).text());
 			$('[id ~= region ]', detailsView).text($('satellite region', response).text());
@@ -144,24 +112,37 @@ TVRO.HomePage.SatelliteView = function() {
 		//	not sure about this one either (???)
 		webService.request('get_autoswitch_status', function(response) {
 			var enabled = $('enable:eq(0)', response).text() === 'Y',
-				satelliteAView = $('[id ~= satellite-a ]', view),
-				satelliteBView = $('[id ~= satellite-b ]', view),
-				satelliteCView = $('[id ~= satellite-c ]', view),
-				satelliteDView = $('[id ~= satellite-d ]', view);
+				dropdownView = $('[id ~= satellite-dropdown ]', view),
+				dropdownOptions = $('[id ~= dropdown-option ]', dropdownView),
+				satelliteABtn = $('[id ~= satellite-a-btn ]', dropdownView),
+				satelliteBBtn = $('[id ~= satellite-b-btn ]', dropdownView),
+				satelliteCBtn = $('[id ~= satellite-c-btn ]', dropdownView),
+				satelliteDBtn = $('[id ~= satellite-d-btn ]', dropdownView);
 
 			modeBtn.toggleClass('is-on', enabled);
-			dropdown.setSelectedValue($('master sat', response).text());
-			if (enabled) dropdown.show();
-			else dropdown.hide();
+			dropdownView.toggle(enabled);
 
-			$('[id ~= name ]', satelliteAView).text($('satellites A name', response).text());
-			$('[id ~= region ]', satelliteAView).text($('satellites A region', response).text());
-			$('[id ~= name ]', satelliteBView).text($('satellites B name', response).text());
-			$('[id ~= region ]', satelliteBView).text($('satellites B region', response).text());
-			$('[id ~= name ]', satelliteCView).text($('satellites C name', response).text());
-			$('[id ~= region ]', satelliteCView).text($('satellites C region', response).text());
-			$('[id ~= name ]', satelliteDView).text($('satellites D name', response).text());
-			$('[id ~= region ]', satelliteDView).text($('satellites D region', response).text());
+			satelliteABtn.toggle($('satellites A', response).children().length > 0);
+			satelliteABtn.attr('value', $('satellites A antSatID', response).text());
+			$('[id ~= name ]', satelliteABtn).text($('satellites A name', response).text());
+			$('[id ~= region ]', satelliteABtn).text($('satellites A region', response).text());
+
+			satelliteBBtn.toggle($('satellites B', response).children().length > 0);
+			satelliteBBtn.attr('value', $('satellites B antSatID', response).text());
+			$('[id ~= name ]', satelliteBBtn).text($('satellites B name', response).text());
+			$('[id ~= region ]', satelliteBBtn).text($('satellites B region', response).text());
+
+			satelliteCBtn.toggle($('satellites C', response).children().length > 0);
+			satelliteCBtn.attr('value', $('satellites C antSatID', response).text());
+			$('[id ~= name ]', satelliteCBtn).text($('satellites C name', response).text());
+			$('[id ~= region ]', satelliteCBtn).text($('satellites C region', response).text());
+
+			satelliteDBtn.toggle($('satellites D', response).children().length > 0);
+			satelliteDBtn.attr('value', $('satellites D antSatID', response).text());
+			$('[id ~= name ]', satelliteDBtn).text($('satellites D name', response).text());
+			$('[id ~= region ]', satelliteDBtn).text($('satellites D region', response).text());
+
+			dropdown.setSelectedValue($('satellites '+$('master sat', response).text()+' antSatID', response).text());
 		});
 	}
 
@@ -186,7 +167,8 @@ TVRO.HomePage.AutoswitchView = function() {
 			var masterSn = $('master sn', response).text(),
 				masterName = $('autoswitch:contains('+masterSn+') name', response).text();
 			$('[id ~= name ]', view).text(masterName);
-			view.toggle($('available', response).text() === 'Y');
+			//	we may need to check active_list.children().length > 0 instead
+			view.toggle($('active_list', response).length > 0);
 			view.toggleClass('is-disabled', $('enable:eq(0)', response).text() === 'N');
 		});
 	}
