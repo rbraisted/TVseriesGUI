@@ -142,7 +142,7 @@
 			</div>
 			<div id="infrastructure-view">
 				<div class="setting">
-					<label class="setting-name">Mode</label><!--
+					<label class="setting-name">Network Mode</label><!--
 				 --><span id="mode" class="setting-value"></span>
 				</div>
 				<div id="static-view">

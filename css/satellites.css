@@ -1,5 +1,5 @@
 body.at-splash .menu-view,
-body.at-splash .satellites-table-view {
+body.at-splash .satellite-group-view {
 	display: block;
 }
 
@@ -142,139 +142,19 @@ body.at-splash .satellites-table-view {
 
 
 
+
+
+
+.satellite-slot {
+	float: left;
+	background-color: #283148;
+	position: relative;
+	width: 325px;
+	height: 140px;
+}
+
+
 /*
-.sb .headline {
-	margin-bottom: 0;
-	padding: 10px 20px;
-}
-
-.satellites-table {
-	margin-left: -137.5px;
-	width: 825px;
-}
-
-.satellites-table .table-header {
-	margin-bottom: 2px;
-}
-
-.satellites-table .table-row {
-	cursor: pointer;
-	display: block;
-	position: relative;
-	width: 100%;
-}
-
-.satellites-table .table-row .table-col {
-	background: #4d5369;
-}
-
-.satellites-table .table-row:nth-child(2n) .table-col {
-	background: #2a3046;
-}
-
-.satellites-table .table-row.selected,
-.satellites-table .table-row.selected .table-col {
-	background: #203c90;
-}
-
-.satellites-table .table-row+.table-row {
-	margin-top: 2px;
-}
-
-.satellites-table .table-col {
-	display: inline-block;
-	padding: 10px;
-	white-space: nowrap;
-}
-
-.satellites-table .table-col+.table-col {
-	margin-left: 2px;
-}
-
-.satellites-table .table-header .table-col {
-	background: #253a73;
-}
-
-.satellites-table .name-col {
-	width: 344px;
-}
-
-.satellites-table .orbital-slot-col {
-	width: 117px;
-}
-
-.satellites-table .region-col {
-	width: 106px;
-}
-
-.satellites-table .favorites-col,
-.satellites-table .selected-col {
-	text-align: center;
-	width: 75px;
-}
-
-.satellites-table .favorites-col img,
-.satellites-table .selected-col img {
-	vertical-align: top;
-	background: red;
-	height: 16px;
-	width: 16px;
-}
-
-.satellites-table .table-row.favorite .favorites-col img {
-	background: green;
-}
-
-.table-row.selected .selected-col img {
-	background: green;
-}
-
-.satellites-table .hover {
-	background: rgba(0, 0, 0, 0.75);
-	bottom: 0;
-	display: none;
-	left: 0;
-	padding: 10px;
-	position: absolute;
-	text-align: center;
-	right: 0;
-	top: 0;
-}
-
-.satellites-table .table-row:hover .hover,
-.satellites-table .table-row:focus .hover {
-	display: block;
-}
-
-.satellites-table .sort-btn {
-	cursor: pointer;
-	position: relative;
-}
-
-.satellites-table .sort-btn:hover,
-.satellites-table .sort-btn.ascending,
-.satellites-table .sort-btn.descending {
-	background: #203c90;
-}
-
-.satellites-table .sort-btn img {
-	background: transparent;
-	float: right;
-	height: 16px;
-	width: 16px;
-}
-
-.satellites-table .sort-btn.ascending img {
-	background: red;
-}
-
-.satellites-table .sort-btn.descending img {
-	background: red;
-}
-
-
-
-
 .satellite-details {
 	margin-left: -137.5px;
 	position: relative;

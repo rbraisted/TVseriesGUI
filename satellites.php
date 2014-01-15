@@ -77,7 +77,43 @@
 		<a id="new-btn" href="#" class="btn basic-btn new-btn">
 			<img src="/images/img.gif">
 			<label>Create New Group</label>
-		</a>		
+		</a>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div id="satellite-group-view" class="view main-view satellite-group-view">
+	<div class="view-content main-content">
+		<a id="back-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label id="name">Satellites</label>
+		</a>
+		<h1>
+			<img src="/images/img.gif">
+			<span id="name">Satellites</span>
+		</h1>
+		<div id="satellite-a-view" class="satellite-slot">
+			<span class="slot-label slot-letter-label"></span>
+			<a id="select-btn" href="#" class="btn select-btn">
+				<img src="/images/img.gif">
+			</a>
+			<h3>Satellite Name</h3>
+			<span id="name" class="satellite-name"></span>
+			<a id="info-btn" href="#" class="btn info-btn">
+				<img src="/images/img.gif">
+			</a>
+			<span class="slot-label slot-installed-label">Installed</span>
+		</div>
+		<div id="satellite-a-view" class="satellite-slot">
+			
+		</div>
+		<div id="satellite-a-view" class="satellite-slot">
+			
+		</div>
+		<div id="satellite-a-view" class="satellite-slot">
+			
+		</div>
 	</div>
 </div>
 

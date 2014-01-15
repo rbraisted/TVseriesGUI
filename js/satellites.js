@@ -60,9 +60,7 @@ TVRO.SatellitesTable = function() {
 	}
 
 	self.refresh = function() {
-		console.log(satellites);
 		sorted = satellites.slice().sort(sort);
-		console.log(sorted);
 
 		$('tbody', view).empty();
 
