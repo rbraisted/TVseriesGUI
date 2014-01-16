@@ -93,26 +93,64 @@
 			<img src="/images/img.gif">
 			<span id="name">Satellites</span>
 		</h1>
-		<div id="satellite-a-view" class="satellite-slot">
-			<span class="slot-label slot-letter-label"></span>
-			<a id="select-btn" href="#" class="btn select-btn">
+		<div id="slot-a-view" class="slot is-selected">
+			<div class="slot-label slot-letter-label">Slot A</div>
+			<div class="slot-label slot-installed-label">Installed</div>
+			<div class="slot-label slot-static-name-label">Satellite Name</div>
+			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+			<a id="select-btn" href="#" class="btn select-btn slot-select-btn">
 				<img src="/images/img.gif">
 			</a>
-			<h3>Satellite Name</h3>
-			<span id="name" class="satellite-name"></span>
-			<a id="info-btn" href="#" class="btn info-btn">
+			<a id="info-btn" href="#" class="btn info-btn slot-info-btn">
 				<img src="/images/img.gif">
 			</a>
-			<span class="slot-label slot-installed-label">Installed</span>
+		</div><!--
+	 --><div id="slot-b-view" class="slot">
+			<div class="slot-label slot-letter-label">Slot B</div>
+			<div class="slot-label slot-installed-label">Installed</div>
+			<div class="slot-label slot-static-name-label">Satellite Name</div>
+			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+			<a id="select-btn" href="#" class="btn select-btn slot-select-btn">
+				<img src="/images/img.gif">
+			</a>
+			<a id="info-btn" href="#" class="btn info-btn slot-info-btn">
+				<img src="/images/img.gif">
+			</a>
+		</div><!--
+	 --><div id="slot-c-view" class="slot">
+			<div class="slot-label slot-letter-label">Slot C</div>
+			<div class="slot-label slot-installed-label">Installed</div>
+			<div class="slot-label slot-static-name-label">Satellite Name</div>
+			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+			<a id="select-btn" href="#" class="btn select-btn slot-select-btn">
+				<img src="/images/img.gif">
+			</a>
+			<a id="info-btn" href="#" class="btn info-btn slot-info-btn">
+				<img src="/images/img.gif">
+			</a>
+		</div><!--
+	 --><div id="slot-d-view" class="slot">
+			<div class="slot-label slot-letter-label">Slot D</div>
+			<div class="slot-label slot-installed-label">Installed</div>
+			<div class="slot-label slot-static-name-label">Satellite Name</div>
+			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+			<a id="select-btn" href="#" class="btn select-btn slot-select-btn">
+				<img src="/images/img.gif">
+			</a>
+			<a id="info-btn" href="#" class="btn info-btn slot-info-btn">
+				<img src="/images/img.gif">
+			</a>
 		</div>
-		<div id="satellite-a-view" class="satellite-slot">
-			
-		</div>
-		<div id="satellite-a-view" class="satellite-slot">
-			
-		</div>
-		<div id="satellite-a-view" class="satellite-slot">
-			
+		<div class="tool-bar">
+			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
+				<label>Factory Settings</label>
+			</a>
+			<a id="remove-btn" href="#" class="btn basic-btn remove-btn">
+				<label>Remove Group</label>
+			</a>
+			<a id="install-btn" href="#" class="btn basic-btn install-btn">
+				<label>Install Group</label>
+			</a>
 		</div>
 	</div>
 </div>

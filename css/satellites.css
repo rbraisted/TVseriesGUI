@@ -80,6 +80,8 @@ body.at-splash .satellite-group-view {
 	top: 0;
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 .satellites-table-view .view-content {
 	max-width: 780px;
 }
@@ -139,20 +141,84 @@ body.at-splash .satellite-group-view {
 	right: 40px;
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-
-
-
-
-
-.satellite-slot {
-	float: left;
-	background-color: #283148;
-	position: relative;
-	width: 325px;
-	height: 140px;
+.satellite-group-view .view-content {
+	max-width: 780px;
 }
 
+.slot {
+	background-color: #283148;
+	display: inline-block;
+	font-size: 13px;
+	height: 140px;
+	margin-bottom: 26px;
+	position: relative;
+	width: calc(50% - 13px);
+}
+
+.slot.is-selected {
+	background-color: #243774;
+}
+
+.slot:nth-child(2n) {
+	margin-left: 26px;
+}
+
+.slot-label {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+.slot-letter-label,
+.slot-installed-label {
+	background-color: #000;
+	padding: 0.5em;
+}
+
+.slot-installed-label {
+	bottom: 0;
+	color: #000;
+}
+
+.slot.is-selected .slot-letter-label,
+.slot.is-selected .slot-installed-label {
+	background-color: #456ab3;
+	color: inherit;
+}
+
+.slot-static-name-label {
+	color: #d7eaff;
+	bottom: 50%;
+	margin-bottom: 0.5em;
+}
+
+.slot-dynamic-name-label {
+	top: 50%;
+	font-size: 16px;
+	margin-top: 0.25em;
+}
+
+.slot-select-btn img,
+.slot-info-btn img {
+	height: auto;
+	top: 50%;
+	margin-top: -20px;
+}
+
+.slot-select-btn {
+	left: 10px;
+}
+
+.slot-info-btn {
+	right: 50px;
+}
+
+.tool-bar {
+	border-top: 1px solid #466ab2;
+	padding-top: 2em;
+}
 
 /*
 .satellite-details {
