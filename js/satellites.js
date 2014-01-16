@@ -105,13 +105,14 @@ TVRO.SatellitesPage = function() {
 	var self = {},
 		menuView,
 		detailsView,
+		singleView,
 		webService = TVRO.WebService();
 
 	self.init = function() {
 		menuView = $('[id ~= menu-view ]');
 		detailsView = $('[id ~= details-view ]', menuView);
-		var singleView = $('[id ~= single-view ]', menuView),
-			regionBtns = $('[id ~= region-btn ]', singleView),
+		singleView = $('[id ~= single-view ]', menuView);
+		var regionBtns = $('[id ~= region-btn ]', singleView),
 			satellitesTable = TVRO.SatellitesTable();
 
 		satellitesTable.init();
@@ -130,6 +131,8 @@ TVRO.SatellitesPage = function() {
 			regionBtns.removeClass('is-selected');
 			regionBtn.addClass('is-selected');
 
+			//	this should really be in satellitesTable or satelliteTableView classes
+			//	something like satellitesTable.getSatellites(region)
 			webService.request('get_satellite_list', {
 				'region_filter' : regionFilter
 			}, function(response) {
@@ -139,6 +142,11 @@ TVRO.SatellitesPage = function() {
 				});
 				satellitesTable.setData(satellites);
 			});
+		});
+
+		$('[id ~= mode-btn ]', menuView).click(function() {
+			$(this).toggleClass('is-on');
+			$(document.body).toggleClass('is-group is-single');
 		});
 
 		self.refresh();
@@ -151,6 +159,23 @@ TVRO.SatellitesPage = function() {
 			$('[id ~= status ]', detailsView).text($('antenna state', response).text());
 			$('[id ~= signal ]', detailsView).removeClass('is-0 is-1 is-2 is-3 is-4 is-5');
 			$('[id ~= signal ]', detailsView).addClass('is-'+$('antenna rf bars', response).text());
+		});
+
+		webService.request('get_autoswitch_status', function(response) {
+			//	check the number of satellites in the installed satellite group
+			var isGroup = $('satellites>*', response).map(function() {
+								if ($(this).children().length) return this;
+								else return null;
+							}).length > 1,
+				isSingle = !isGroup;
+
+			$(document.body).toggleClass('is-group', isGroup);
+			$(document.body).toggleClass('is-single', isSingle);
+			$('[id ~= mode-btn ]', menuView).toggleClass('is-on', isSingle);			
+		});
+
+		webService.request('get_satellite_groups', function(response) {
+			
 		});
 	}
 

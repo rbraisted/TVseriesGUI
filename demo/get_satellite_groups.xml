@@ -10,6 +10,13 @@
 			<C>Astra 1 South 28ES</C>
 		</group>
 		<group>
+			<group_name>CENTER_ARC</group_name>
+			<predefined>Y</predefined>
+			<A>Astra 3A 23E</A>
+			<B>Astra 1 19E</B>
+			<C>Astra 1 South 28ES</C>
+		</group>
+		<group>
 			<group_name>NEW_ARC</group_name>
 			<predefined>N</predefined>
 			<A>Astra 3A 23E</A>

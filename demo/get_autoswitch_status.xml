@@ -37,7 +37,7 @@
 			<enable>Y</enable>
 			<favorite>Y</favorite>
 		</A>
-		<B>
+<!-- 		<B>
 			<listID>65</listID>
 			<antSatID>40E</antSatID>
 			<name>BADR-6</name>
@@ -63,6 +63,6 @@
 			<lon>-93.03</lon>
 			<favorite>FALSE</favorite>
 			<enabled>TRUE</enabled>
-		</D>
+		</D> -->
 	</satellites>
 </ipacu_response>
