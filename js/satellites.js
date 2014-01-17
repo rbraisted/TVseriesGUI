@@ -161,13 +161,18 @@ TVRO.SatellitesPage = function() {
 			});
 		});
 
-		$('[id ~= mode-btn ]', menuView).click(function() {
-			$(this).toggleClass('is-on');
-			$(document.body).toggleClass('is-group is-single');
+		// $('[id ~= mode-btn ]', menuView).click(function() {
+		// 	$(this).toggleClass('is-on');
+		// 	$(document.body).toggleClass('is-group is-single');
+		// });
+
+		var toggleBtn = TVRO.ToggleBtn('[id ~= mode-btn ]', menuView);
+		toggleBtn.init();
+		toggleBtn.click(function(isSingle) {
+			$(document.body).toggleClass('is-single', isSingle);
+			$(document.body).toggleClass('is-group', !isSingle);
 		});
 
-		// var table = TVRO.Table('[id ~= group-view ]');
-		// table.init();
 
 		radioTable = TVRO.RadioTable('[id ~= group-view ]');
 		radioTable.init();

@@ -35,7 +35,7 @@
 			metus. Etiam commodo faucibus augue, id placerat elit aliquet
 			non. Sed ac diam enim. Phasellus vitae interdum magna.
 		</p>
-		<a id="technician-mode-btn" href="#" class="btn on-off-btn setting-on-off-btn">
+		<a id="technician-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -44,7 +44,7 @@
 			et eros eleifend urna mollis convallis. Duis orci nisl, gravida
 			at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
 		</p>
-		<a id="demo-mode-btn" href="#" class="btn on-off-btn setting-on-off-btn">
+		<a id="demo-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -66,7 +66,7 @@
 			gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
 			urna.
 		</p>
-		<a id="sleep-mode-btn" href="#" class="btn on-off-btn setting-on-off-btn">
+		<a id="sleep-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -77,7 +77,7 @@
 			faucibus augue, id placerat elit aliquet non. Sed ac diam enim.
 			Phasellus vitae interdum magna.
 		</p>
-		<a id="sidelobe-mode-btn" href="#" class="btn on-off-btn setting-on-off-btn">
+		<a id="sidelobe-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>

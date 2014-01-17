@@ -103,7 +103,7 @@
 						non. Sed ac diam enim. Phasellus vitae interdum magna.
 					</p>
 				</div>
-				<a id="technician-mode-btn" href="#" class="btn on-off-btn">
+				<a id="technician-mode-btn" href="#" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -114,7 +114,7 @@
 						at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
 					</p>
 				</div>
-				<a id="demo-mode-btn" href="#" class="btn on-off-btn">
+				<a id="demo-mode-btn" href="#" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -138,7 +138,7 @@
 						urna.
 					</p>
 				</div>
-				<a id="sleep-mode-btn" href="#" class="btn on-off-btn">
+				<a id="sleep-mode-btn" href="#" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -151,7 +151,7 @@
 						Phasellus vitae interdum magna.
 					</p>
 				</div>
-				<a id="sidelobe-mode-btn" href="#" class="btn on-off-btn">
+				<a id="sidelobe-mode-btn" href="#" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>

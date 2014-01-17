@@ -16,7 +16,7 @@
 
 	<div id="mode-view" class="mode-view">
 		<h3>Satellite Mode</h3>
-		<a id="mode-btn" href="#" class="btn on-off-btn mode-btn">
+		<a id="mode-btn" href="#" class="btn toggle-btn mode-btn">
 			<div class="on">Single</div>
 			<div class="off">Group</div>
 		</a>

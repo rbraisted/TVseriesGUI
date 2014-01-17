@@ -21,7 +21,7 @@
 	<div id="satellite-view" class="menu-sub-view satellite-view">
 		<div id="mode-view" class="satellite-sub-view">
 			<h3>Satellite Switching</h3>
-			<a id="mode-btn" href="#" class="btn on-off-btn satellite-mode-btn">
+			<a id="mode-btn" href="#" class="btn toggle-btn satellite-mode-btn">
 				<div class="on">Manual</div>
 				<div class="off">Automatic</div>
 			</a>

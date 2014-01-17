@@ -103,23 +103,23 @@ p {
 	width: 44px;
 }
 
-.on-off-btn .on,
-.on-off-btn .off {
+.toggle-btn .on,
+.toggle-btn .off {
 	float: left;
 	min-width: 3.4375em;
 	padding: 0.4375em 0.625em;
 	text-align: center;
 }
 
-.on-off-btn .on,
-.on-off-btn.is-on .off {
+.toggle-btn .on,
+.toggle-btn.is-on .off {
 	background-color: #4a536a;
 	border: 1px solid #000;
 	color: #000;
 }
 
-.on-off-btn.is-on .on,
-.on-off-btn .off {
+.toggle-btn.is-on .on,
+.toggle-btn .off {
 	background-color: #4f7abd;
 	border: 1px solid #fff;
 	color: #fff;

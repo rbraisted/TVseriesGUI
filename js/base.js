@@ -349,6 +349,32 @@ TVRO.Xponder = function(xml) {
 	return self;
 };
 
+TVRO.ToggleBtn = function(selector, context) {
+	var self = {},
+		view,
+		callbacks = [];
+
+	self.init = function() {
+		view = $(selector, context);
+		view.click(function() {
+			view.toggleClass('is-on');
+			for (var i = 0; i < callbacks.length; i++) {
+				callbacks[i](view.hasClass('is-on'));
+			};
+		});
+	}
+
+	self.click = function() {
+		if (typeof arguments[0] === 'function') {
+			callbacks.push(arguments[0]);
+		} else {
+			view.click();
+		}
+	}
+
+	return self;
+}
+
 //	table class
 //	given some element #table
 //	which contains some element #table-rows
