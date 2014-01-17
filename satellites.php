@@ -131,7 +131,7 @@
 			<img src="/images/img.gif">
 			<span id="name">Satellites</span>
 		</h1>
-		<div id="slot-a-view" class="slot is-selected">
+		<div id="slot-a-view" class="slot">
 			<div class="slot-label slot-letter-label">Slot A</div>
 			<div class="slot-label slot-installed-label">Installed</div>
 			<div class="slot-label slot-static-name-label">Satellite Name</div>

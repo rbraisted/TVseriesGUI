@@ -108,6 +108,8 @@ TVRO.SatellitesPage = function() {
 		singleView,
 		webService = TVRO.WebService();
 
+	var radioTable;
+
 	self.init = function() {
 		menuView = $('[id ~= menu-view ]');
 		detailsView = $('[id ~= details-view ]', menuView);
@@ -167,12 +169,22 @@ TVRO.SatellitesPage = function() {
 		// var table = TVRO.Table('[id ~= group-view ]');
 		// table.init();
 
-		var radioTable = TVRO.RadioTable('[id ~= group-view ]');
+		radioTable = TVRO.RadioTable('[id ~= group-view ]');
 		radioTable.init();
-		radioTable.setData(['apple', 'milk', 'eggs']);
 
 		radioTable.click(function(value) {
-			console.log(value);
+			$('[id ~= name ]', '#satellite-group-view').text(value);
+			webService.request('get_satellite_groups', function(response) {
+				var group = $('group', response).filter(function() { return $('group_name', this).text() === value; });
+
+				var slots = ['a', 'b', 'c', 'd'];
+				for (var i = 0; i < slots.length; i++) {
+					var slot = slots[i],
+						satellite = $(slot.toUpperCase(), group),
+						slotView = $('[id ~= slot-'+slot+'-view ]');
+					$('[id ~= name ]', slotView).text($('name', satellite).text());
+				};
+			});
 		});
 
 		self.refresh();
@@ -187,9 +199,15 @@ TVRO.SatellitesPage = function() {
 			$('[id ~= signal ]', detailsView).addClass('is-'+$('antenna rf bars', response).text());
 		});
 
+		webService.request('get_satellite_groups', function(response) {
+			var groupNames = $('group_name', response).map(function() { return $(this).text(); });
+			radioTable.setData(groupNames);
+		});
+
 		webService.request('get_autoswitch_status', function(response) {
 			//	check the number of satellites in the installed satellite group
-			var isGroup = $('satellites>*', response).map(function() {
+			var groupName = $('satellite_group', response).text(),
+				isGroup = $('satellites>*', response).map(function() {
 								if ($(this).children().length) return this;
 								else return null;
 							}).length > 1,
@@ -197,11 +215,8 @@ TVRO.SatellitesPage = function() {
 
 			$(document.body).toggleClass('is-group', isGroup);
 			$(document.body).toggleClass('is-single', isSingle);
-			$('[id ~= mode-btn ]', menuView).toggleClass('is-on', isSingle);			
-		});
-
-		webService.request('get_satellite_groups', function(response) {
-			
+			$('[id ~= mode-btn ]', menuView).toggleClass('is-on', isSingle);
+			radioTable.click(groupName);
 		});
 	}
 
