@@ -110,6 +110,23 @@ TVRO.SatellitesPage.SatelliteGroupView = function() {
 				//	show info view with this antSatID
 			});
 		}
+
+		$('[id ~= delete-btn ]', view).click(function() {
+			webService.request('set_satellite_group', {
+				'command' : 'DELETE',
+				'group_name' : this.getAttribute('value')
+			});
+		});
+
+		$('[id ~= edit-btn ]', view).click(function() {
+			//	go to info view
+		});
+
+		$('[id ~= install-btn ]', view).click(function() {
+			webService.request('set_autoswitch_service', {
+				'satellite_group' : this.getAttribute('value')
+			});
+		});
 	}
 
 	self.loadGroup = function(value) {
@@ -125,6 +142,7 @@ TVRO.SatellitesPage.SatelliteGroupView = function() {
 				$('[id ~= name ]', slotView).text($('name', satellite).text());
 				$('[id ~= select-btn ], [id ~= info-btn ]', slotView).attr('value', $('antSatID', satellite).text());
 			}
+			$('[id ~= delete-btn ], [id ~= edit-btn ], [id ~= install-btn ]', view).attr('value', value);
 			$('[id ~= delete-btn ], [id ~= edit-btn ]', view).toggle($('predefined', group).text() === 'N');
 		});
 
