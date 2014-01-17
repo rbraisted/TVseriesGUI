@@ -117,24 +117,39 @@ TVRO.SatellitesPage = function() {
 
 		satellitesTable.init();
 
-		regionBtns.click(function() {
-			var regionBtn = $(this),
-				regionFilter = '';
+		// regionBtns.click(function() {
+		// 	var regionBtn = $(this),
+		// 		regionFilter = '';
 
-			if (regionBtn.hasId('africa-btn')) regionFilter = 'Africa';
-			else if (regionBtn.hasId('asia-btn')) regionFilter = 'Asia';
-			else if (regionBtn.hasId('australia-btn')) regionFilter = 'Australia';
-			else if (regionBtn.hasId('central-and-south-america-btn')) regionFilter = 'Central/South America';
-			else if (regionBtn.hasId('europe-btn')) regionFilter = 'Europe';
-			else if (regionBtn.hasId('north-america-btn')) regionFilter = 'North America';
+		// 	if (regionBtn.hasId('africa-btn')) regionFilter = 'Africa';
+		// 	else if (regionBtn.hasId('asia-btn')) regionFilter = 'Asia';
+		// 	else if (regionBtn.hasId('australia-btn')) regionFilter = 'Australia';
+		// 	else if (regionBtn.hasId('central-and-south-america-btn')) regionFilter = 'Central/South America';
+		// 	else if (regionBtn.hasId('europe-btn')) regionFilter = 'Europe';
+		// 	else if (regionBtn.hasId('north-america-btn')) regionFilter = 'North America';
 
-			regionBtns.removeClass('is-selected');
-			regionBtn.addClass('is-selected');
+		// 	regionBtns.removeClass('is-selected');
+		// 	regionBtn.addClass('is-selected');
 
-			//	this should really be in satellitesTable or satelliteTableView classes
-			//	something like satellitesTable.getSatellites(region)
+		// 	//	this should really be in satellitesTable or satelliteTableView classes
+		// 	//	something like satellitesTable.getSatellites(region)
+		// 	webService.request('get_satellite_list', {
+		// 		'region_filter' : regionFilter
+		// 	}, function(response) {
+		// 		var satellites = [];
+		// 		$('satellite', response).each(function(index, satellite) {
+		// 			satellites.push(TVRO.Satellite(satellite));
+		// 		});
+		// 		satellitesTable.setData(satellites);
+		// 	});
+		// });
+
+		var radio = TVRO.Radio(singleView);
+		radio.init();
+		radio.click(function(value) {
+			console.log(value);
 			webService.request('get_satellite_list', {
-				'region_filter' : regionFilter
+				'region_filter' : value
 			}, function(response) {
 				var satellites = [];
 				$('satellite', response).each(function(index, satellite) {
@@ -147,6 +162,17 @@ TVRO.SatellitesPage = function() {
 		$('[id ~= mode-btn ]', menuView).click(function() {
 			$(this).toggleClass('is-on');
 			$(document.body).toggleClass('is-group is-single');
+		});
+
+		// var table = TVRO.Table('[id ~= group-view ]');
+		// table.init();
+
+		var radioTable = TVRO.RadioTable('[id ~= group-view ]');
+		radioTable.init();
+		radioTable.setData(['apple', 'milk', 'eggs']);
+
+		radioTable.click(function(value) {
+			console.log(value);
 		});
 
 		self.refresh();

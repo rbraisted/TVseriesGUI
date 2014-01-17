@@ -11,12 +11,12 @@
 			if (this[i].nodeType === 1 && (" "+this[i].id+" ").replace(/[\t\r\n\f]/g, " ").indexOf(idName) >= 0) return true;
 		}
 		return false;
-	};
+	}
 
 	//	this could probably be optimized
 	$.fn.setClass = function(className) {
 		$(this).removeClass().addClass(className);
-	};
+	}
 }(jQuery));
 
 //	check if our app namespace has been defined
@@ -349,6 +349,104 @@ TVRO.Xponder = function(xml) {
 	return self;
 };
 
+//	table class
+//	given some element #table
+//	which contains some element #table-rows
+//	and some element #template#table-row
+//	#template gets detached from #table
+//	when setData is called (expects an array, or something property 'length'),
+//	a #table-row is created from #template and added to #table-rows
+//	you can override setData to modify #table-row per #table-row
+TVRO.Table = function(selector, context) {
+	var self = {},
+		view,
+		template;
+
+	self.init = function() {
+		view = $(selector, context);
+		template = $('[id ~= template ]', view).detach();
+
+		//	remove the 'template' id from template
+		template.get(0).id = $.trim(template.get(0).id.replace('template', '').replace('  ', ' '));
+	}
+
+	self.setData = function() {
+		$('[id ~= table-rows ]', view).empty();
+		for (var i = 0; i < arguments[0].length; i++) {
+			var row = template.clone();
+			$('[id ~= table-rows ]', view).append(row);
+		}
+	}
+
+	return self;
+}
+
+//	radio class
+//	the gist of this class is:
+//	given some element #radio
+//	each #radio-option in #radio can become .is-selected on click
+//	and all other #radio-option in #radio will lose .is-selected
+TVRO.Radio = function(selector, context) {
+	var self = {},
+		view,
+		callbacks = [];
+
+	self.init = function() {
+		if (!view) view = $(selector, context);
+		$('[id ~= radio-option ]', view).click('click', function() {
+			if ($(this).hasClass('is-selected')) return;
+			$('[id ~= radio-option ]', view).removeClass('is-selected');
+			$(this).addClass('is-selected');
+			for (var i = 0; i < callbacks.length; i++) {
+				callbacks[i](this.getAttribute('value'));
+			}
+		});
+	}
+
+	self.click = function() {
+		if (typeof arguments[0] === 'function') {
+			callbacks.push(arguments[0]);
+		} else {
+			$('[id ~= radio-option ][value = '+arguments[0]+' ]', view).click();
+		}
+	}
+
+	return self;
+}
+
+TVRO.RadioTable = function(selector, context) {
+	var self = {},
+		view,
+		radio = TVRO.Radio(selector, context),
+		table = TVRO.Table(selector, context);
+
+	self.init = function() {
+		view = $(selector, context);
+		radio.init();
+		table.init();
+	}
+
+	self.setData = function() {
+		var data = arguments[0];
+		table.setData(data);
+		$('[id ~= radio-option ]', view).each(function(index, element) {
+			this.setAttribute('value', data[index]);
+			//	i ran into some kind of unexpected jQuery behavior here
+			//	where $('[id ~= name ]', this) or $('[id ~= name ]', element)
+			//	will collect all [id ~= name ] in $('[id ~= radio-option ]', view)
+			//	instead of just [id ~= name ] in this or element
+			//	so we'll do this instead:
+			$('[id ~= radio-option ][value = '+data[index]+' ] [id ~= name ]', view).text(data[index]);
+		});
+		radio.init();
+	}
+
+	self.click = function() {
+		radio.click(arguments[0]);
+	}
+
+	return self;
+}
 
 //	here's where the magic starts
 //	note: it's not magic

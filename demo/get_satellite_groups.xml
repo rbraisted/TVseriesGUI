@@ -5,22 +5,154 @@
 		<group>
 			<group_name>CENTER_ARC</group_name>
 			<predefined>Y</predefined>
-			<A>Astra 3A 23E</A>
-			<B>Astra 1 19E</B>
-			<C>Astra 1 South 28ES</C>
+			<A>
+				<listID>13</listID>
+				<antSatID>19E</antSatID>
+				<name>Astra 1</name>
+				<region>Europe</region>
+				<lon>19.27</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</A>
+			<B>
+				<listID>14</listID>
+				<antSatID>28EN</antSatID>
+				<name>Astra 2 North</name>
+				<region>Europe</region>
+				<lon>28.25</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</B>
+			<C>
+				<listID>15</listID>
+				<antSatID>28ES</antSatID>
+				<name>Astra 2 South</name>
+				<region>Europe</region>
+				<lon>28.25</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</C>
+			<D>
+				<listID>64</listID>
+				<antSatID>23E</antSatID>
+				<name>Astra 3A</name>
+				<region>Europe</region>
+				<lon>23.57</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</D>
 		</group>
 		<group>
-			<group_name>CENTER_ARC</group_name>
+			<group_name>EASTERN_ARC</group_name>
 			<predefined>Y</predefined>
-			<A>Astra 3A 23E</A>
-			<B>Astra 1 19E</B>
-			<C>Astra 1 South 28ES</C>
+			<A>
+				<listID>64</listID>
+				<antSatID>23E</antSatID>
+				<name>BADR-5</name>
+				<region>North America</region>
+				<lon>23.000</lon>
+				<enable>Y</enable>
+				<favorite>Y</favorite>
+			</A>
+			<B>
+				<listID>65</listID>
+				<antSatID>40E</antSatID>
+				<name>BADR-6</name>
+				<region>North America</region>
+				<lon>40.000</lon>
+				<enable>Y</enable>
+				<favorite>N</favorite>
+			</B>
+			<C>
+				<listID>66</listID>
+				<antSatID>33E</antSatID>
+				<name>BADR-7</name>
+				<region>North America</region>
+				<lon>33.000</lon>
+				<enable>Y</enable>
+				<favorite>N</favorite>
+			</C>
+			<D>
+				<listID>67</listID>
+				<antSatID>93W</antSatID>
+				<name>Galaxy 25</name>
+				<region>North America</region>
+				<lon>-93.03</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</D>
+		</group>
+		<group>
+			<group_name>FIRST_FOUR</group_name>
+			<predefined>N</predefined>
+			<A>
+				<listID>2</listID>
+				<antSatID>75EN</antSatID>
+				<name>ABS 1 North</name>
+				<region>Asia</region>
+				<lon>75.02</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</A>
+			<B>
+				<listID>60</listID>
+				<antSatID>75ES</antSatID>
+				<name>ABS 1 South</name>
+				<region>Asia</region>
+				<lon>75.01</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</B>
+			<C>
+				<listID>3</listID>
+				<antSatID>146E</antSatID>
+				<name>Agila 2</name>
+				<region>Asia</region>
+				<lon>145.88</lon>
+				<favorite>FALSE</favorite>
+				<enabled>TRUE</enabled>
+			</C>
+			<D>
+				<listID>61</listID>
+				<antSatID>40E</antSatID>
+				<name>AM1 Europe Wide-beam</name>
+				<region>Europe</region>
+				<lon>40.14</lon>
+				<favorite>FALSE</favorite>
+				<enabled>FALSE</enabled>
+			</D>
 		</group>
 		<group>
 			<group_name>NEW_ARC</group_name>
 			<predefined>N</predefined>
-			<A>Astra 3A 23E</A>
-			<B>Astra 2 North 28EN</B>
+			<A>
+				<listID>64</listID>
+				<antSatID>23E</antSatID>
+				<name>BADR-5</name>
+				<region>North America</region>
+				<lon>23.000</lon>
+				<enable>Y</enable>
+				<favorite>Y</favorite>
+			</A>
+			<B>
+				<listID>65</listID>
+				<antSatID>40E</antSatID>
+				<name>BADR-6</name>
+				<region>North America</region>
+				<lon>40.000</lon>
+				<enable>Y</enable>
+				<favorite>N</favorite>
+			</B>
+			<C>
+				<listID>66</listID>
+				<antSatID>33E</antSatID>
+				<name>BADR-7</name>
+				<region>North America</region>
+				<lon>33.000</lon>
+				<enable>Y</enable>
+				<favorite>N</favorite>
+			</C>
+			<D/>
 		</group>
 	</group_list>
 </ipacu_response>

@@ -263,6 +263,7 @@ jQuery.fn = jQuery.prototype = {
 	// (You can seed the arguments with an array of args, but this is
 	// only used internally.)
 	each: function( callback, args ) {
+		console.log("instance.each");
 		return jQuery.each( this, callback, args );
 	},
 
@@ -626,6 +627,7 @@ jQuery.extend({
 
 	// args is for internal usage only
 	each: function( obj, callback, args ) {
+		console.log("jQuery.each");
 		var value,
 			i = 0,
 			length = obj.length,

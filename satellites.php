@@ -23,6 +23,7 @@
 	</div>
 
 	<div id="single-view" class="single-view">
+		<!--
 		<a id="africa-btn region-btn" href="#" class="btn menu-btn">
 			<img src="/images/img.gif">
 			<label>Africa</label>
@@ -51,14 +52,50 @@
 			<img src="/images/img.gif">
 			<label>All</label>
 		</a>
+		-->
+		<a id="radio-option" href="#" value="Africa" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Africa</label>
+		</a>
+		<a id="radio-option" href="#" value="Asia" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Asia</label>
+		</a>
+		<a id="radio-option" href="#" value="Australia" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Australia / New Zealand</label>
+		</a>
+		<a id="radio-option" href="#" value="Central/South America" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Central / South America</label>
+		</a>
+		<a id="radio-option" href="#" value="Europe" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>Europe</label>
+		</a>
+		<a id="radio-option" href="#" value="North America" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>North America</label>
+		</a>
+		<a id="radio-option" href="#" value="" class="btn menu-btn">
+			<img src="/images/img.gif">
+			<label>All</label>
+		</a>
 		<a id="new-btn" href="#" class="btn basic-btn new-btn">
 			<img src="/images/img.gif">
 			<label>Create New Satellite</label>
 		</a>
 	</div>
 
-	<div id="group-view" class="group-view">
-		<div id="group-dropdown">
+	<div id="group-view table" class="group-view">
+		<div id="table-rows">
+			<a id="radio-option table-row template" href="#" value="" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label id="name">Preset Group 1</label>
+			</a>
+		</div>
+		<!--
+ 		<div id="group-dropdown">
 			<div id="dropdown-options">
 				<a id="dropdown-option" href="#" class="btn dropdown-option">
 					<img src="/images/img.gif">
@@ -74,6 +111,7 @@
 				</a>
 			</div>
 		</div>
+		 -->
 		<a id="new-btn" href="#" class="btn basic-btn new-btn">
 			<img src="/images/img.gif">
 			<label>Create New Group</label>
