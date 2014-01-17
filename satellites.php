@@ -23,36 +23,6 @@
 	</div>
 
 	<div id="single-view" class="single-view">
-		<!--
-		<a id="africa-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Africa</label>
-		</a>
-		<a id="asia-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Asia</label>
-		</a>
-		<a id="australia-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Australia / New Zealand</label>
-		</a>
-		<a id="central-and-south-america-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Central / South America</label>
-		</a>
-		<a id="europe-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Europe</label>
-		</a>
-		<a id="north-america-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>North America</label>
-		</a>
-		<a id="all-btn region-btn" href="#" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>All</label>
-		</a>
-		-->
 		<a id="radio-option" href="#" value="Africa" class="btn menu-btn">
 			<img src="/images/img.gif">
 			<label>Africa</label>
@@ -94,24 +64,6 @@
 				<label id="name">Preset Group 1</label>
 			</a>
 		</div>
-		<!--
- 		<div id="group-dropdown">
-			<div id="dropdown-options">
-				<a id="dropdown-option" href="#" class="btn dropdown-option">
-					<img src="/images/img.gif">
-					<label id="name">Preset Group 1</label>
-				</a>
-				<a id="dropdown-option" href="#" class="btn dropdown-option">
-					<img src="/images/img.gif">
-					<label id="name">Preset Group 2</label>
-				</a>
-				<a id="dropdown-option" href="#" class="btn dropdown-option">
-					<img src="/images/img.gif">
-					<label id="name">Preset Group 3</label>
-				</a>
-			</div>
-		</div>
-		 -->
 		<a id="new-btn" href="#" class="btn basic-btn new-btn">
 			<img src="/images/img.gif">
 			<label>Create New Group</label>
@@ -131,7 +83,7 @@
 			<img src="/images/img.gif">
 			<span id="name">Satellites</span>
 		</h1>
-		<div id="slot-a-view" class="slot">
+		<div id="slot-a-view slot-view" class="slot">
 			<div class="slot-label slot-letter-label">Slot A</div>
 			<div class="slot-label slot-installed-label">Installed</div>
 			<div class="slot-label slot-static-name-label">Satellite Name</div>
@@ -143,7 +95,7 @@
 				<img src="/images/img.gif">
 			</a>
 		</div><!--
-	 --><div id="slot-b-view" class="slot">
+	 --><div id="slot-b-view slot-view" class="slot">
 			<div class="slot-label slot-letter-label">Slot B</div>
 			<div class="slot-label slot-installed-label">Installed</div>
 			<div class="slot-label slot-static-name-label">Satellite Name</div>
@@ -155,7 +107,7 @@
 				<img src="/images/img.gif">
 			</a>
 		</div><!--
-	 --><div id="slot-c-view" class="slot">
+	 --><div id="slot-c-view slot-view" class="slot">
 			<div class="slot-label slot-letter-label">Slot C</div>
 			<div class="slot-label slot-installed-label">Installed</div>
 			<div class="slot-label slot-static-name-label">Satellite Name</div>
@@ -167,7 +119,7 @@
 				<img src="/images/img.gif">
 			</a>
 		</div><!--
-	 --><div id="slot-d-view" class="slot">
+	 --><div id="slot-d-view slot-view" class="slot">
 			<div class="slot-label slot-letter-label">Slot D</div>
 			<div class="slot-label slot-installed-label">Installed</div>
 			<div class="slot-label slot-static-name-label">Satellite Name</div>
@@ -180,11 +132,11 @@
 			</a>
 		</div>
 		<div class="tool-bar">
-			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
-				<label>Factory Settings</label>
+			<a id="delete-btn" href="#" class="btn basic-btn delete-btn">
+				<label>Delete Group</label>
 			</a>
-			<a id="remove-btn" href="#" class="btn basic-btn remove-btn">
-				<label>Remove Group</label>
+			<a id="edit-btn" href="#" class="btn basic-btn edit-btn">
+				<label>Edit Group</label>
 			</a>
 			<a id="install-btn" href="#" class="btn basic-btn install-btn">
 				<label>Install Group</label>
