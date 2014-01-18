@@ -5,6 +5,12 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="menu-view" class="view menu-view">
+<div id="test-div">
+	<a id="test-btn" href="#" class="btn basic-btn">
+		<label>WOO</label>
+	</a>
+</div>
+
 	<div id="details-view" class="details-view">
 		<h3>
 			<span id="name">Wheatly 1</span>

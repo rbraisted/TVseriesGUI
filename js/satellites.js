@@ -1,5 +1,10 @@
 "use strict";
 
+TVRO.SatellitesPage = function() {
+	
+}
+
+
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.SatellitesPage = function() {
@@ -43,8 +48,11 @@ TVRO.SatellitesPage = function() {
 		var toggleBtn = TVRO.ToggleBtn('[id ~= mode-btn ]', menuView);
 		toggleBtn.init();
 		toggleBtn.click(function(isSingle) {
-			$(document.body).toggleClass('is-single', isSingle);
-			$(document.body).toggleClass('is-group', !isSingle);
+			if (isSingle) {
+				$(document.body).setClass('is-single at-splash');
+			} else {
+				$(document.body).setClass('is-group at-splash');
+			}
 		});
 
 		radioTable = TVRO.RadioTable('[id ~= group-view ]');
