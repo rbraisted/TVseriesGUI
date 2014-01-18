@@ -30,11 +30,11 @@ body.is-group.at-satellite-group-info .satellite-info-view,
 
 body.is-group.at-edit-satellite-group .menu-view,
 body.is-group.at-edit-satellite-group .edit-satellite-group-view,
-
+/*
 body.is-group.at-edit-satellite-group-info .menu-view,
 body.is-group.at-edit-satellite-group-info .edit-satellite-group-view,
 body.is-group.at-edit-satellite-group-info .satellite-info-view,
-
+*/
 body.is-group.at-satellite-table .menu-view,
 body.is-group.at-satellite-table .edit-satellite-group-view,
 body.is-group.at-satellite-table .satellite-table-popup-view,
@@ -253,6 +253,41 @@ body.is-group.at-satellite-table-info .satellite-info-view {
 	border-top: 1px solid #466ab2;
 	padding-top: 2em;
 }
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+.slot-btn {
+	border-bottom: 1px solid #466ab2;
+	display: block;
+	line-height: 1.6;
+	padding: 10px;
+}
+
+.slot-btn img {
+	background-image: url(/images/menu-btn.png);
+	right: 0;
+}
+
+.group-name-label,
+.slot-name-label {
+	color: #bac7da;
+	display: block;
+	font-size: 13px;
+}
+
+.group-name-input {
+	margin-left: -10px;
+}
+
+.edit-satellite-group-view .tool-bar {
+	border: 0;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+
+
+
 
 /*
 .satellite-details {

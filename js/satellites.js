@@ -88,12 +88,50 @@ TVRO.SatellitesPage = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.SatellitesPage.SatelliteGroupView = function() {
+TVRO.SatellitesPage.EditSatelliteGroupView = function() {
 	var self = {},
-		view = $('[id ~= satellite-group-view ]'),
+		view = $('[id ~= edit-satellite-group-view ]'),
 		webService = TVRO.WebService();
 
 	self.init = function() {
+		$('[id ~= cancel-btn ]', view).click(function() {
+			$(document.body).setClass('is-group at-satellite-group');
+		});
+
+		$('[id ~= save-btn ]', view).click(function() {
+
+		});
+	}
+
+	self.loadGroup = function(groupName) {
+		$('[id ~= name ]', view).val(groupName);
+		webService.request('get_satellite_groups', function(response) {
+			var group = $('group', response).filter(function() { return $('group_name', this).text() === groupName; });
+			var slots = ['a', 'b', 'c', 'd'];
+			for (var i = 0; i < slots.length; i++) {
+				var slot = slots[i],
+					satellite = $(slot.toUpperCase(), group),
+					slotBtn = $('[id ~= slot-'+slot+'-btn ]', view);
+				$('[id ~= name ]', slotBtn).text($('name', satellite).text());
+				slotBtn.attr('value', $('antSatID', satellite).text());
+			}
+		});
+	}
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.SatellitesPage.SatelliteGroupView = function() {
+	var self = {},
+		view = $('[id ~= satellite-group-view ]'),
+		editSatelliteGroupView = TVRO.SatellitesPage.EditSatelliteGroupView(),
+		webService = TVRO.WebService();
+
+	self.init = function() {
+		editSatelliteGroupView.init();
+
 		var slots = ['a', 'b', 'c', 'd'];
 		for (var i = 0; i < slots.length; i++) {
 			var slot = slots[i],
@@ -120,6 +158,8 @@ TVRO.SatellitesPage.SatelliteGroupView = function() {
 
 		$('[id ~= edit-btn ]', view).click(function() {
 			//	go to info view
+			editSatelliteGroupView.loadGroup(this.getAttribute('value'));
+			$(document.body).setClass('is-group at-edit-satellite-group');
 		});
 
 		$('[id ~= install-btn ]', view).click(function() {

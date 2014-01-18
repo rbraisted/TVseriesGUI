@@ -224,6 +224,50 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="edit-satellite-group-view" class="view popup-view edit-satellite-group-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Edit Satellite Group Details</label>
+		</a>
+		<h1>Edit Satellite Group Details</h1>
+		<div class="btn slot-btn">
+			<label class="group-name-label">Satellite Group Name</label>
+			<input id="name" type="text" class="group-name-input"/>
+		</div>
+		<a id="slot-a-btn" href="#" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot A</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<a id="slot-b-btn" href="#" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot B</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<a id="slot-c-btn" href="#" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot C</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<a id="slot-d-btn" href="#" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot D</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<div class="tool-bar">
+			<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
+				<label>Cancel</label>
+			</a>
+			<a id="save-btn" href="#" class="btn basic-btn save-btn">
+				<label>Save</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 
 
 <!-- <link type="text/css" rel="stylesheet" href="/css/satellites.css">
