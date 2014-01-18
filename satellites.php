@@ -268,6 +268,78 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="satellite-table-popup-view" class="view popup-view satellite-table-popup-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Edit Satellite Group Details</label>
+		</a>
+		<h1>Edit Satellite Group Details</h1>
+		<div class="satellites-table-container">
+			<table id="satellites-table" class="satellites-table">
+				<thead>
+					<tr>
+						<th class="installed-col">
+							<span>Installed</span>
+						</th>
+						<th class="name-col">
+							<a id="name-btn sort-btn" href="#" class="btn sort-btn">
+								<img src="/images/img.gif">
+								<label>Name</label>
+							</a>
+						</th>
+						<th class="orbital-slot-col">
+							<a id="orbital-slot-btn sort-btn" href="#" class="btn sort-btn">
+								<img src="/images/img.gif">
+								<label>Orbital Slot</label>
+							</a>
+						</th>
+						<th class="region-col">
+							<a id="region-btn sort-btn" href="#" class="btn sort-btn">
+								<img src="/images/img.gif">
+								<label>Region</label>
+							</a>
+						</th>
+						<th class="favorites-col">
+							<a id="favorites-btn sort-btn" href="#" class="btn sort-btn">
+								<img src="/images/img.gif">
+								<label>Favorites</label>
+							</a>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="satellite-view">
+						<td class="installed-col">
+							<a id="select-btn" href="#" class="btn select-btn">
+								<img src="/images/img.gif">
+							</a>
+						</td>
+						<td class="name-col">
+							<span id="name">Name</span>
+							<span id="region">Region</span>
+						</td>
+						<td class="orbital-slot-col">
+							<span id="orbital-slot">Orbital Slot</span>
+						</td>
+						<td class="region-col">
+							<span id="region">Region</span>
+						</td>
+						<td class="favorites-col">
+							<a id="favorite-btn" href="#" class="btn favorite-btn">
+								<img src="/images/img.gif">
+							</a>
+							<a id="info-btn" href="#" class="btn info-btn">
+								<img src="/images/img.gif">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
 
 
 <!-- <link type="text/css" rel="stylesheet" href="/css/satellites.css">
