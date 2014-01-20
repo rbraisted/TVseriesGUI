@@ -354,43 +354,59 @@ TVRO.SatellitesPage.SatellitesTable = function(selector, context) {
 		uber.setData(sorted);
 
 		$('[id ~= table-row ]', view).each(function(i) {
+			var row = this;
 			//	unexpected jquery behavior where
 			//	.each index and element are correct, this value is correct,
 			//	but when performing [id ~= id-name ] selector with this or element
 			//	as the context, we end up getting all the [id ~= id-name ] in
 			//	table-rows instead of just in the one table-row
 			//	that's why we use eq() here - pretty hacky
-			$('[id ~= name ]', this).eq(i).text(sorted[i].name);
-			$('[id ~= orbital-slot ]', this).eq(i).text(sorted[i].antSatID);
-			$('[id ~= region ]', this).eq(i*2).text(sorted[i].region);
-			$('[id ~= region ]', this).eq(i*2+1).text(sorted[i].region);
-			$(this).toggleClass('is-favorite', sorted[i].favorite === 'TRUE');
+			$('[id ~= name ]', row).eq(i).text(sorted[i].name);
+			$('[id ~= orbital-slot ]', row).eq(i).text(sorted[i].antSatID);
+			$('[id ~= region ]', row).eq(i*2).text(sorted[i].region);
+			$('[id ~= region ]', row).eq(i*2+1).text(sorted[i].region);
+			$('[id ~= select-btn ], [id ~= favorite-btn ], [id ~= info-btn ]', row).attr('value', sorted[i].antSatID);
 
-			$('[id ~= select-btn ], [id ~= favorite-btn ], [id ~= info-btn ]', this).attr('value', sorted[i].antSatID);
-
-			var selectBtn = TVRO.ToggleBtn('[id ~= select-btn ]:eq('+i+')', this);
+			var selectBtn = TVRO.ToggleBtn('[id ~= select-btn ]:eq('+i+')', row);
 			selectBtn.init();
-			selectBtn.click(function(isFavorite) {
-				console.log("selectBtn");
+			selectBtn.click(function(isSelected) {
+				$('[id ~= table-row ]', view).removeClass('is-selected');
+				$(row).addClass('is-selected');
+
+				$('[id ~= table-row] [id ~= select-btn]', view).removeClass('is-on');
+				selectBtn.setOn(true);
+				
 				webService.request('select_satellite', {
 					'antSatID' : this.getAttribute('value')
 				});
 			});
 
-			var favoriteBtn = TVRO.ToggleBtn('[id ~= favorite-btn ]:eq('+i+')', this);
+			var favoriteBtn = TVRO.ToggleBtn('[id ~= favorite-btn ]:eq('+i+')', row);
 			favoriteBtn.init();
+			favoriteBtn.setOn(sorted[i].favorite === 'TRUE');
 			favoriteBtn.click(function(isFavorite) {
-				console.log("favoriteBtn");
 				webService.request('set_satellite_identity', {
 					'antSatID' : this.getAttribute('value'),
 					'favorite' : isFavorite
 				});
 			});
 
-			$('[id ~= info-btn ]', this).click(function() {
+			$('[id ~= info-btn ]', row).click(function() {
 				console.log("infoBtn");
 				//	show info view with this satellite
 			});
+		});
+
+		webService.request('antenna_status', function(response) {
+			var antSatID = $('satellite antSatID', response).text();
+			for (var i = 0; i < sorted.length; i++) {
+				if (sorted[i].antSatID === antSatID) {
+					var row = $('[id ~= table-row ]', view).eq(i);
+					row.addClass('is-selected');
+					$('[id ~= select-btn ]', row).eq(i).addClass('is-on');
+					break;
+				}
+			}
 		});
 	}
 

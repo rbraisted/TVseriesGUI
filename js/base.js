@@ -367,6 +367,10 @@ TVRO.ToggleBtn = function(selector, context) {
 		});
 	}
 
+	self.setOn = function(isOn) {
+		view.toggleClass('is-on', isOn);
+	}
+
 	self.click = function() {
 		if (typeof arguments[0] === 'function') {
 			callbacks.push(arguments[0]);

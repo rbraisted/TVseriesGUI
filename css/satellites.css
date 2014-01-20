@@ -151,7 +151,7 @@ body.is-group.at-satellite-table-info .satellite-info-view {
 	background-image: url(/images/radio.png);
 }
 
-.is-selected .select-btn img {
+.select-btn.is-on img {
 	background-image: url(/images/radio-selected.png);
 }
 
@@ -159,11 +159,11 @@ body.is-group.at-satellite-table-info .satellite-info-view {
 	background-image: url(/images/favorite-btn.png);
 }
 
-.is-favorite .favorite-btn img {
+.favorite-btn.is-on img {
 	background-image: url(/images/favorite-btn-favorited.png);
 }
 
-.is-favorite.is-selected .favorite-btn img {
+.is-selected .favorite-btn.is-on img {
 	background-image: url(/images/favorite-btn-favorited-selected.png);
 }
 
