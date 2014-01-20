@@ -233,6 +233,9 @@ TVRO.WebService = (function() {
 					url : requestUrl,
 					data : requestXml,
 					success : function(response) {
+						console.log('\n'+requestName.toUpperCase());
+						console.log($(requestXml).get(0));
+						console.log($('ipacu_response', response).get(0));
 						var error = $(response).find('ipacu_response > message').attr('error');
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
@@ -359,7 +362,7 @@ TVRO.ToggleBtn = function(selector, context) {
 		view.click(function() {
 			view.toggleClass('is-on');
 			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i](view.hasClass('is-on'));
+				callbacks[i].call(this, $(this).hasClass('is-on'));
 			};
 		});
 	}
@@ -399,7 +402,7 @@ TVRO.Table = function(selector, context) {
 	self.setData = function() {
 		$('[id ~= table-rows ]', view).empty();
 		for (var i = 0; i < arguments[0].length; i++) {
-			var row = template.clone();
+			var row = template.clone(true);
 			$('[id ~= table-rows ]', view).append(row);
 		}
 	}
@@ -418,13 +421,13 @@ TVRO.Radio = function(selector, context) {
 		callbacks = [];
 
 	self.init = function() {
-		if (!view) view = $(selector, context);
+		view = $(selector, context);
 		$('[id ~= radio-option ]', view).click('click', function() {
 			if ($(this).hasClass('is-selected')) return;
 			$('[id ~= radio-option ]', view).removeClass('is-selected');
 			$(this).addClass('is-selected');
 			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i](this.getAttribute('value'));
+				callbacks[i].call(this, this.getAttribute('value'));
 			}
 		});
 	}

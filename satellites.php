@@ -5,12 +5,6 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="menu-view" class="view menu-view">
-<div id="test-div">
-	<a id="test-btn" href="#" class="btn basic-btn">
-		<label>WOO</label>
-	</a>
-</div>
-
 	<div id="details-view" class="details-view">
 		<h3>
 			<span id="name">Wheatly 1</span>
@@ -196,8 +190,8 @@
 						</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr id="satellite-view">
+				<tbody id="table-rows">
+					<tr id="template table-row">
 						<td class="installed-col">
 							<a id="select-btn" href="#" class="btn select-btn">
 								<img src="/images/img.gif">
