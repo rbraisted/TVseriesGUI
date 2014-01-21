@@ -409,5 +409,6 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 }
 
 .satellite-info-view .popup-content {
+	margin-top: -435px;
 	height: 875px;
 }

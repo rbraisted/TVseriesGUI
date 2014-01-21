@@ -344,7 +344,7 @@
 
 <div id="satellite-info-view" class="view popup-view satellite-info-view">
 	<div class="view-content popup-content">
-		<a id="cancel-btn" href="#" class="btn back-btn">
+		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Satellite Details</label>
 		</a>
