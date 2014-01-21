@@ -352,34 +352,55 @@ TVRO.Xponder = function(xml) {
 	return self;
 };
 
-TVRO.ToggleBtn = function(selector, context) {
-	var self = {},
-		view,
+TVRO.ToggleBtn = function() {
+	var self = $.apply($, arguments),
 		callbacks = [];
 
-	self.init = function() {
-		view = $(selector, context);
-		view.click(function() {
-			view.toggleClass('is-on');
-			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i].call(this, $(this).hasClass('is-on'));
-			};
-		});
-	}
-
-	self.setOn = function(isOn) {
-		view.toggleClass('is-on', isOn);
-	}
-
-	self.click = function() {
-		if (typeof arguments[0] === 'function') {
-			callbacks.push(arguments[0]);
-		} else {
-			view.click();
+	self.click(function() {
+		self.toggleClass('is-on');
+		for (var i = 0; i < callbacks.length; i++) {
+			callbacks[i].call(this, $(this).hasClass('is-on'));
 		}
-	}
+	});
 
-	return self;
+	return $.extend({}, self, {
+		//	we'll eventaully get rid of this function since we return self now
+		setOn: function(isOn) {
+			self.toggleClass('is-on', isOn);
+		},
+		click: function() {
+			if (typeof arguments[0] !== 'function') self.click();
+			else callbacks.push(arguments[0]);
+		}
+	});
+
+	// var self = {},
+	// 	view,
+	// 	callbacks = [];
+
+	// self.init = function() {
+	// 	view = $(selector, context);
+	// 	view.click(function() {
+	// 		view.toggleClass('is-on');
+	// 		for (var i = 0; i < callbacks.length; i++) {
+	// 			callbacks[i].call(this, $(this).hasClass('is-on'));
+	// 		};
+	// 	});
+	// }
+
+	// self.setOn = function(isOn) {
+	// 	view.toggleClass('is-on', isOn);
+	// }
+
+	// self.click = function() {
+	// 	if (typeof arguments[0] === 'function') {
+	// 		callbacks.push(arguments[0]);
+	// 	} else {
+	// 		view.click();
+	// 	}
+	// }
+
+	// return self;
 }
 
 //	table class
@@ -411,7 +432,12 @@ TVRO.Table = function(selector, context) {
 		}
 	}
 
-	return self;
+	return $.extend({}, self, {
+		click: function() {
+			if (typeof arguments[0] !== 'function') self.click();
+			else callbacks.push(arguments[0]);
+		}
+	});
 }
 
 //	radio class
@@ -419,32 +445,63 @@ TVRO.Table = function(selector, context) {
 //	given some element #radio
 //	each #radio-option in #radio can become .is-selected on click
 //	and all other #radio-option in #radio will lose .is-selected
-TVRO.Radio = function(selector, context) {
-	var self = {},
-		view,
+TVRO.Radio = function() {
+	var self = $.apply($, arguments),
+		options = $('[id ~= radio-option ]', self),
 		callbacks = [];
 
-	self.init = function() {
-		view = $(selector, context);
-		$('[id ~= radio-option ]', view).click('click', function() {
-			if ($(this).hasClass('is-selected')) return;
-			$('[id ~= radio-option ]', view).removeClass('is-selected');
-			$(this).addClass('is-selected');
-			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i].call(this, this.getAttribute('value'));
-			}
-		});
-	}
-
-	self.click = function() {
-		if (typeof arguments[0] === 'function') {
-			callbacks.push(arguments[0]);
+	options.click('click', function() {
+		var option = $(this);
+		if (option.hasClass('is-selected')) {
+			return;
 		} else {
-			$('[id ~= radio-option ][value = '+arguments[0]+' ]', view).click();
+			options.removeClass('is-selected');
+			option.addClass('is-selected');
+			for (var i = 0; i < callbacks.length; i++) {
+				callbacks[i].call(this, option.attr('value'));
+			}
 		}
-	}
+	});
 
-	return self;
+	return $.extend({}, self, {
+		click: function() {
+			if (typeof arguments[0] !== 'function') options.filter('[value="'+arguments[0]+'"]').click();
+			else callbacks.push(arguments[0]);
+		},
+		selectedValue: function() {
+			return options.filter('.is-selected').attr('value');
+		},
+		setSelectedValue: function() {
+			options.removeClass('is-selected');
+			options.filter('[value="'+arguments[0]+'"]').addClass('is-selected');
+		}
+	});
+
+	// var self = {},
+	// 	view,
+	// 	callbacks = [];
+
+	// self.init = function() {
+	// 	view = $(selector, context);
+	// 	$('[id ~= radio-option ]', view).click('click', function() {
+	// 		if ($(this).hasClass('is-selected')) return;
+	// 		$('[id ~= radio-option ]', view).removeClass('is-selected');
+	// 		$(this).addClass('is-selected');
+	// 		for (var i = 0; i < callbacks.length; i++) {
+	// 			callbacks[i].call(this, this.getAttribute('value'));
+	// 		}
+	// 	});
+	// }
+
+	// self.click = function() {
+	// 	if (typeof arguments[0] === 'function') {
+	// 		callbacks.push(arguments[0]);
+	// 	} else {
+	// 		$('[id ~= radio-option ][value = '+arguments[0]+' ]', view).click();
+	// 	}
+	// }
+
+	// return self;
 }
 
 TVRO.RadioTable = function(selector, context) {

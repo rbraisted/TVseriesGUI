@@ -1,5 +1,59 @@
-/*       *\
+body.at-splash .menu-view {
+	display: block;
+}
 
-    ^3^
+.menu-sub-view,
+.satellite-sub-view {
+	border-bottom: 1px solid #466ab2;
+	line-height: 1.6;
+	padding: 1em;
+	position: relative;
+}
 
-\*       */
+.satellite-view,
+.satellite-dropdown-view {
+	border-bottom: 0;
+	padding: 0;
+}
+
+.autoswitch-master-label,
+.antenna-label,
+.location-label {
+	display: block;
+	min-height: 1.6em;
+}
+
+.satellite-mode-btn {
+	margin-top: 0.5em;
+	width: 100%;
+}
+
+.satellite-mode-btn .on,
+.satellite-mode-btn .off {
+	padding-bottom: 0.25em;
+	padding-top: 0.25em;
+	width: 50%;
+}
+
+.satellite-dropdown-option {
+	background-color: #293147;
+}
+
+.satellite-status-label {
+	bottom: 1em;
+	color: #4a536a;
+	position: absolute;
+}
+
+.satellite-signal {
+	background: transparent no-repeat right bottom;
+	height: 60px;
+	width: 100%;
+}
+
+.satellite-signal.is-0 { background-image: url(/images/satellite-signal-0.png); }
+.satellite-signal.is-1 { background-image: url(/images/satellite-signal-1.png); }
+.satellite-signal.is-2 { background-image: url(/images/satellite-signal-2.png); }
+.satellite-signal.is-3 { background-image: url(/images/satellite-signal-3.png); }
+.satellite-signal.is-4 { background-image: url(/images/satellite-signal-4.png); }
+.satellite-signal.is-5 { background-image: url(/images/satellite-signal-5.png); }

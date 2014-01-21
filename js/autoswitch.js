@@ -1,5 +1,101 @@
 "use strict";
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.AutoswitchPage = function() {
+	var webService = TVRO.WebService(),
+
+		menuView,
+		MenuView = function() {
+			var self = $.apply($, arguments),
+				satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]', self);
+
+			return $.extend(self, {});
+		}
+
+
+
+
+
+
+
+	return {
+		init: function() {
+			menuView = MenuView('[id ~= menu-view ]');
+		}
+	}
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.SatelliteTrackingView = function() {
+	var self = $.apply($, arguments),
+		webService = TVRO.WebService(),
+		switchingModeBtn = TVRO.ToggleBtn('[id ~= mode-btn ]', self),
+		satellitesRadio = TVRO.Radio('[id ~= satellite-dropdown ]', self),
+		refresh = function() {
+			webService.request('antenna_status', function(response) {
+				var detailsView = $('[id ~= details-view ]', self);
+				$('[id ~= name ]', detailsView).text($('satellite name', response).text());
+				$('[id ~= region ]', detailsView).text($('satellite region', response).text());
+				$('[id ~= status ]', detailsView).text($('antenna state', response).text());
+				$('[id ~= signal ]', detailsView).removeClass('is-0 is-1 is-2 is-3 is-4 is-5');
+				$('[id ~= signal ]', detailsView).addClass('is-'+$('antenna rf bars', response).text());
+			});
+
+			webService.request('get_autoswitch_status', function(response) {
+				var isManual = $('enable:eq(0)', response).text() === 'Y';
+
+				if (isManual) {
+					var slots = ['a', 'b', 'c', 'd'],
+						selectedSlot = $('master sat', response).text(),
+						selectedSatellite = $('satellites '+selectedSlot, response);
+
+					for (var i = 0; i < slots.length; i++) {
+						var satellite = $('satellites '+slots[i].toUpperCase(), response),
+							slotBtn = $('[id ~= slot-'+slots[i]+'-btn ]', satellitesRadio);
+
+						slotBtn.toggle(satellite.children().length > 0);
+						slotBtn.attr('value', $('antSatID', satellite).text());
+						$('[id ~= name ]', slotBtn).text($('name', satellite).text());
+						$('[id ~= region ]', slotBtn).text($('region', satellite).text());
+					}
+
+					satellitesRadio.setSelectedValue($('antSatID', selectedSatellite).text());
+				}
+
+				switchingModeBtn.toggleClass('is-on', isManual);
+				satellitesRadio.toggle(isManual);
+			});
+		};
+
+	switchingModeBtn.click(function(isManual) {
+		webService.request('set_autoswitch_service', {
+			'enabled' : (isManual ? 'N' : 'Y')
+		}, refresh);
+	});
+
+	satellitesRadio.click(function(antSatID) {
+		webService.request('select_satellite', {
+			antSatID: antSatID
+		}, refresh);
+	});
+
+	refresh();
+
+	return $.extend({}, self, {
+		refresh: refresh
+	});
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.page = TVRO.AutoswitchPage();
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/*
+
 TVRO.Autoswitch = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -95,3 +191,5 @@ TVRO.AutoswitchPage = function() {
 };
 
 TVRO.page = new TVRO.AutoswitchPage();
+
+*/

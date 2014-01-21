@@ -283,10 +283,6 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-*:hover {
-	outline: 1px solid red;
-}
-
 .label {
 	color: #d7eaff;
 	display: block;
