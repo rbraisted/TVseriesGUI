@@ -14,9 +14,9 @@ body.is-single.at-splash .satellites-table-view,
 body.is-single.at-satellites-table .menu-view,
 body.is-single.at-satellites-table .satellites-table-view,
 
-body.is-single.at-satellite-table-info .menu-view,
-body.is-single.at-satellites-table .satellites-table-view,
-body.is-single.at-satellites-table .satellite-info-view,
+body.is-single.at-satellites-table-info .menu-view,
+body.is-single.at-satellites-table-info .satellites-table-view,
+body.is-single.at-satellites-table-info .satellite-info-view,
 
 body.is-group.at-splash .menu-view,
 body.is-group.at-splash .satellite-group-view,
@@ -30,18 +30,14 @@ body.is-group.at-satellite-group-info .satellite-info-view,
 
 body.is-group.at-edit-satellite-group .menu-view,
 body.is-group.at-edit-satellite-group .edit-satellite-group-view,
-/*
-body.is-group.at-edit-satellite-group-info .menu-view,
-body.is-group.at-edit-satellite-group-info .edit-satellite-group-view,
-body.is-group.at-edit-satellite-group-info .satellite-info-view,
-*/
-body.is-group.at-satellite-table .menu-view,
-body.is-group.at-satellite-table .edit-satellite-group-view,
-body.is-group.at-satellite-table .satellite-table-popup-view,
 
-body.is-group.at-satellite-table-info .menu-view,
-body.is-group.at-satellite-table-info .edit-satellite-group-view,
-body.is-group.at-satellite-table-info .satellite-info-view {
+body.is-group.at-satellites-table .menu-view,
+body.is-group.at-satellites-table .edit-satellite-group-view,
+body.is-group.at-satellites-table .satellite-table-popup-view,
+
+body.is-group.at-satellites-table-info .menu-view,
+body.is-group.at-satellites-table-info .edit-satellite-group-view,
+body.is-group.at-satellites-table-info .satellite-info-view {
 	display: block;
 }
 

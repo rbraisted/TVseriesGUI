@@ -231,7 +231,7 @@
 			<label>Edit Satellite Group Details</label>
 		</a>
 		<h1>Edit Satellite Group Details</h1>
-		<div class="btn slot-btn">
+		<div class="slot-btn">
 			<label class="group-name-label">Satellite Group Name</label>
 			<input id="name" type="text" class="group-name-input"/>
 		</div>
@@ -340,44 +340,211 @@
 	</div>
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="satellite-info-view" class="view popup-view satellite-info-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Satellite Details</label>
+		</a>
+		<h1>Satellite Details</h1>
+			<div class="name satellite-detail">
+				<label>Name</label>
+				<span id="name view"></span>
+				<input id="name edit" type="text" />
+			</div>
+			<div class="region satellite-detail">
+				<label>Region</label>
+				<span id="region view"></span>
+				<a id="region edit region-btn" href="#" class="dropdown-btn">Region</a>
+			</div>
+			<div class="orbital-slot satellite-detail">
+				<label>Orbital Slot</label>
+				<span id="orbital-slot view"></span>
+				<input id="orbital-slot edit" type="text" />
+			</div>
+			<div class="hemisphere satellite-detail">
+				<label>Hemisphere</label>
+				<span id="hemisphere view"></span>
+				<input id="hemisphere edit" type="text" />
+			</div>
+			<div class="sat-id satellite-detail">
+				<label>SatID</label>
+				<span id="sat-id view"></span>
+				<input id="sat-id edit" type="text" />
+			</div>
+			<div class="pre-skew satellite-detail">
+				<label>Pre-Skew</label>
+				<span id="pre-skew view"></span>
+				<input id="pre-skew edit" type="text" />
+			</div>
+			<div class="tri-sat-id satellite-detail">
+				<label>Tri-Sat</label>
+				<span id="tri-sat-id view"></span>
+				<input id="tri-sat-id edit" type="text" />
+			</div>
+			<div class="local-oscillators">
+			 	<div class="local-oscillator local-oscillator-1 satellite-detail">
+					<label>Local Oscillator #1</label>
+					<span id="local-oscillator-1 view"></span>
+					<input id="local-oscillator-1 edit" type="text" />
+				</div>
+				<div class="local-oscillator local-oscillator-2 satellite-detail">
+					<label>Local Oscillator #2</label>
+					<span id="local-oscillator-2 view"></span>
+					<input id="local-oscillator-2 edit" type="text" />
+				</div>
+			</div>
 
-<!-- <link type="text/css" rel="stylesheet" href="/css/satellites.css">
-<script type="text/javascript" src="/js/satellites.js"></script>
+			<div class="enable">
+				<label>Enable Satellite</label>
+				<a id="enable-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+			</div>
 
-<div id="sb" class="sb active">
-	<div class="headline">View satellites by region</div>
-	<a id="enabled-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Enabled</a>
-	<a id="favorites-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Favorites</a>
-	<a id="africa-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Africa</a>
-	<a id="asia-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Asia</a>
-	<a id="australia-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Australia</a>
-	<a id="central-and-south-america-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Central/South America</a>
-	<a id="north-america-btn filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">North America</a>
-	<a id="filter-btn" href="#" class="menu-btn"><img src="/images/img.gif">Entire Library</a>
-	<a id="add-btn" href="#" class="border-btn"><img src="/images/img.gif">Add Satellite</a>
+			<div class="favorite">
+				<label>Add to Favorites</label>
+				<a id="favorite-btn" href="#" class="of-btn"><div class="on">On</div><div class="off">Off</div></a>
+			</div>
+
+			<div class="xponders">
+				<div id="xponder-1" class="xponder-details">
+					<div class="name">Parameter 1</div>
+					<div class="polarization xponder-detail">
+						<label>Polarization:</label>
+						<span id="polarization view"></span>
+						<a id="polarization edit polarization-btn" href="#" class="dropdown-btn">Polarization</a>
+					</div>
+					<div class="frequency xponder-detail">
+						<label>Frequency:</label>
+						<span id="frequency view"></span>
+						<input id="frequency edit" type="text" />
+					</div>
+					<div class="symbol-rate xponder-detail">
+						<label>Symbol Rate:</label>
+						<span id="symbol-rate view"></span>
+						<input id="symbol-rate edit" type="text" />
+					</div>
+					<div class="fec-code xponder-detail">
+						<label>FEC Code:</label>
+						<span id="fec-code view"></span>
+						<a id="fec-code edit fec-code-btn" href="#" class="dropdown-btn">FEC Code</a>
+					</div>
+					<div class="network-id xponder-detail">
+						<label>Network ID:</label>
+						<span id="network-id view"></span>
+						<input id="network-id edit" type="text" />
+					</div>
+					<div class="decoder-type xponder-detail">
+						<label>Decoder Type:</label>
+						<span id="decoder-type view"></span>
+						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
+					</div>
+				</div>
+				<div id="xponder-3" class="xponder-details">
+					<div class="name">Parameter 2</div>
+					<div class="polarization">
+						<label>Polarization:</label>
+						<span id="polarization view"></span>
+						<a id="polarization edit polarization-btn" href="#" class="dropdown-btn">Polarization</a>
+					</div>
+					<div class="frequency xponder-detail">
+						<label>Frequency:</label>
+						<span id="frequency view"></span>
+						<input id="frequency edit" type="text" />
+					</div>
+					<div class="symbol-rate xponder-detail">
+						<label>Symbol Rate:</label>
+						<span id="symbol-rate view"></span>
+						<input id="symbol-rate edit" type="text" />
+					</div>
+					<div class="fec-code xponder-detail">
+						<label>FEC Code:</label>
+						<span id="fec-code view"></span>
+						<a id="fec-code edit fec-code-btn" href="#" class="dropdown-btn">FEC Code</a>
+					</div>
+					<div class="network-id xponder-detail">
+						<label>Network ID:</label>
+						<span id="network-id view"></span>
+						<input id="network-id edit" type="text" />
+					</div>
+					<div class="decoder-type xponder-detail">
+						<label>Decoder Type:</label>
+						<span id="decoder-type view"></span>
+						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
+					</div>
+				</div>
+				<div id="xponder-5" class="xponder-details">
+					<div class="name">Parameter 3</div>
+					<div class="polarization">
+						<label>Polarization:</label>
+						<span id="polarization view"></span>
+						<a id="polarization edit polarization-btn" href="#" class="dropdown-btn">Polarization</a>
+					</div>
+					<div class="frequency xponder-detail">
+						<label>Frequency:</label>
+						<span id="frequency view"></span>
+						<input id="frequency edit" type="text" />
+					</div>
+					<div class="symbol-rate xponder-detail">
+						<label>Symbol Rate:</label>
+						<span id="symbol-rate view"></span>
+						<input id="symbol-rate edit" type="text" />
+					</div>
+					<div class="fec-code xponder-detail">
+						<label>FEC Code:</label>
+						<span id="fec-code view"></span>
+						<a id="fec-code edit fec-code-btn" href="#" class="dropdown-btn">FEC Code</a>
+					</div>
+					<div class="network-id xponder-detail">
+						<label>Network ID:</label>
+						<span id="network-id view"></span>
+						<input id="network-id edit" type="text" />
+					</div>
+					<div class="decoder-type xponder-detail">
+						<label>Decoder Type:</label>
+						<span id="decoder-type view"></span>
+						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
+					</div>
+				</div>
+				<div id="xponder-7" class="xponder-details">
+					<div class="name">Parameter 4</div>
+					<div class="polarization">
+						<label>Polarization:</label>
+						<span id="polarization view"></span>
+						<a id="polarization edit polarization-btn" href="#" class="dropdown-btn">Polarization</a>
+					</div>
+					<div class="frequency xponder-detail">
+						<label>Frequency:</label>
+						<span id="frequency view"></span>
+						<input id="frequency edit" type="text" />
+					</div>
+					<div class="symbol-rate xponder-detail">
+						<label>Symbol Rate:</label>
+						<span id="symbol-rate view"></span>
+						<input id="symbol-rate edit" type="text" />
+					</div>
+					<div class="fec-code xponder-detail">
+						<label>FEC Code:</label>
+						<span id="fec-code view"></span>
+						<a id="fec-code edit fec-code-btn" href="#" class="dropdown-btn">FEC Code</a>
+					</div>
+					<div class="network-id xponder-detail">
+						<label>Network ID:</label>
+						<span id="network-id view"></span>
+						<input id="network-id edit" type="text" />
+					</div>
+					<div class="decoder-type xponder-detail">
+						<label>Decoder Type:</label>
+						<span id="decoder-type view"></span>
+						<a id="decoder-type edit decoder-type-btn" href="#" class="dropdown-btn">Decoder Type</a>
+					</div>
+				</div>
+			</div>
+	</div>
 </div>
 
-<div id="mc" class="mc">
-	<div class="mcg">
-		<div id="satellites-table" class="satellites-table">
-			<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Back</a>
-			<div class="table-header">
-				<a id="name-sort-btn sort-btn" href="#" class="name-col table-col sort-btn"><img src="/images/img.gif">Name</a>
-				<a id="orbital-slot-sort-btn sort-btn" href="#" class="orbital-slot-col table-col sort-btn"><img src="/images/img.gif">Orbital Slot</a>
-				<a id="region-sort-btn sort-btn" href="#" class="region-col table-col sort-btn"><img src="/images/img.gif">Region</a>
-				<div class="favorites-col table-col">Favorites</div>
-				<div class="selected-col table-col">Selected</div>
-			</div>
-			<a id="table-row" href="#" class="table-row">
-				<div id="name" class="name-col table-col"></div>
-				<div id="orbital-slot" class="orbital-slot-col table-col"></div>
-				<div id="region" class="region-col table-col"></div>
-				<div id="favorites" class="favorites-col table-col"><img src="/images/img.gif"></div>
-				<div id="selected" class="selected-col table-col"><img src="/images/img.gif"></div>
-				<div class="hover">View / Edit Details</div>
-			</a>
-		</div>
+<!--
 
 		<div id="satellite-details" class="satellite-details">
 			<a id="back-btn" href="#" class="back-btn"><img src="/images/img.gif" />Back</a>
