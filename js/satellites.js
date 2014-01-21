@@ -22,6 +22,9 @@ TVRO.SatellitesPage = function() {
 		var satelitesTableView = TVRO.SatellitesPage.SatellitesTableView('[id ~= satellites-table-view ]');
 		satelitesTableView.init();
 
+		var satelliteInfoView = TVRO.SatellitesPage.SatelliteInfoView();
+		satelliteInfoView.init();
+
 		var radio = TVRO.Radio(singleView);
 		radio.init();
 		radio.click(function(value) {
@@ -43,6 +46,13 @@ TVRO.SatellitesPage = function() {
 		radioTable.init();
 		radioTable.click(function(value) {
 			satelliteGroupView.loadGroup(value);
+		});
+
+		$('[id ~= new-btn ]', singleView).click(function() {
+			//	need to make a special case for new sats -
+			//	need empty sat case in TVRO.Satellite ?
+			satelliteInfoView.loadSatellite(TVRO.Satellite('<satellite><listID></listID><suffix></suffix><skew></skew><antSatID></antSatID><triSatID>FALSE</triSatID><name>New Satellite</name><region></region><lon>0.0</lon><favorite>FALSE</favorite><enabled>TRUE</enabled><select>TRUE</select></satellite>'));
+			$(document.body).setClass('is-single at-satellites-table-info');
 		});
 
 		self.refresh();
@@ -76,10 +86,6 @@ TVRO.SatellitesPage = function() {
 			$(document.body).toggleClass('is-group', isGroup);
 			radioTable.click(groupName);
 		});
-
-		// var satelliteInfoView = TVRO.SatellitesPage.SatelliteInfoView();
-		// satelliteInfoView.init();
-		// satelliteInfoView.loadSatellite(TVRO.Satellite('<satellite><listID>3</listID><suffix>SUFFIX</suffix><skew>30.5</skew><antSatID>146E</antSatID><triSatID>FALSE</triSatID><name>Agila 2</name><region>Asia</region><lon>145.88</lon><favorite>FALSE</favorite><enabled>TRUE</enabled><select>TRUE</select></satellite>'));
 	}
 
 	return self;
@@ -270,53 +276,6 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 		});
 	}
 
-// 	var self = {},
-// 		satellite,
-// 		webService = new TVRO.WebService(),
-// 		satelliteDetails = $(satelliteDetails),
-// 		regionDropdown = new TVRO.Dropdown('[id ~= region-dropdown]', '[id ~= region-btn]'),
-// 		polarizationDropdown = new TVRO.Dropdown('[id ~= polarization-dropdown]', '[id ~= polarization-btn]'),
-// 		fecCodeDropdown = new TVRO.Dropdown('[id ~= fec-code-dropdown]', '[id ~= fec-code-btn]'),
-// 		decoderTypeDropdown = new TVRO.Dropdown('[id ~= decoder-type-dropdown]', '[id ~= decoder-type-btn]');
-
-// 	(function(xponderIds) {
-// 		var xponder;
-// 		for (var i = 0; i < xponderIds.length; i++) {
-// 			(function(xponderId) {
-// 				var xponderDetails = $('[id ~= xponder-'+xponderId+']');
-// 				$('[id ~= polarization-btn]', xponderDetails).click(function() {
-// 					xponder = satellite.xponders[xponderId];
-// 					polarizationDropdown.selectValue(xponder.pol);
-// 					polarizationDropdown.show();
-// 				});
-
-// 				$('[id ~= fec-code-btn]', xponderDetails).click(function() {
-// 					xponder = satellite.xponders[xponderId];
-// 					fecCodeDropdown.selectValue(xponder.fec);
-// 					fecCodeDropdown.show();
-// 				});
-
-// 				$('[id ~= decoder-type-btn]', xponderDetails).click(function() {
-// 					xponder = satellite.xponders[xponderId];
-// 					decoderTypeDropdown.selectValue(xponder.modType);
-// 					decoderTypeDropdown.show();
-// 				});
-// 			}(xponderIds[i]));
-// 		};
-
-// 		polarizationDropdown.optionSelected(function(name, value) {
-// 			$('[id ~= xponder-'+xponder.id+'] [id ~= polarization][id ~= edit]', satelliteDetails).text(value);
-// 		});
-
-// 		fecCodeDropdown.optionSelected(function(name, value) {
-// 			$('[id ~= xponder-'+xponder.id+'] [id ~= fec-code][id ~= edit]', satelliteDetails).text(value);
-// 		});
-
-// 		decoderTypeDropdown.optionSelected(function(name, value) {
-// 			$('[id ~= xponder-'+xponder.id+'] [id ~= decoder-type][id ~= edit]', satelliteDetails).text(value);
-// 		});
-// 	}([1, 3, 5, 7]));
-
 	return self;
 }
 
@@ -326,13 +285,26 @@ TVRO.SatellitesPage.EditSatelliteGroupView = function() {
 	var self = {},
 		view = $('[id ~= edit-satellite-group-view ]'),
 		satellites = [],
+		currentSlot,
 		webService = TVRO.WebService();
 
 	self.init = function() {
 		var satellitesTableView = TVRO.SatellitesPage.SatellitesTableView('[id ~= satellites-table-popup-view ]');
+		satellitesTableView.popup = true;
+		satellitesTableView.onSatelliteSelected = function(name, value) {
+			var slotView = $('[id ~= slot-'+currentSlot+'-btn ]', view);
+			$('[id ~= name ]', slotView).text(name);
+			$(slotView).attr('value', value);
+			$(document.body).setClass('is-group at-edit-satellite-group');
+		}
 		satellitesTableView.init();
 
 		$('[id ~= slot-btn ]', view).click(function() {
+			if ($(this).hasId('slot-a-btn')) currentSlot = 'a';
+			else if ($(this).hasId('slot-b-btn')) currentSlot = 'b';
+			else if ($(this).hasId('slot-c-btn')) currentSlot = 'c';
+			else if ($(this).hasId('slot-d-btn')) currentSlot = 'd';
+
 			var antSatID = this.getAttribute('value'),
 				satellite = $(satellites).filter(function(index) {
 					return this.antSatID === antSatID;
@@ -608,6 +580,8 @@ TVRO.SatellitesPage.SatellitesTableView = function(selector, context) {
 		satellitesTable,
 		webService = TVRO.WebService();
 
+	self.popup = false;
+
 	self.init = function() {
 		view = $(selector, context);
 		satellitesTable = TVRO.SatellitesPage.SatellitesTable('[id ~= satellites-table ]', view);
@@ -623,6 +597,14 @@ TVRO.SatellitesPage.SatellitesTableView = function(selector, context) {
 				satellites.push(TVRO.Satellite(satellite));
 			});
 			satellitesTable.setData(satellites);
+			if (self.popup && self.onSatelliteSelected) {
+				$('[id ~= table-row ]', view).click(function() {
+					console.log(this);
+					var name = $('[id ~= name ]', this).eq(0).text();
+					var value = $('[id ~= select-btn ]', this).eq(0).attr('value');
+					self.onSatelliteSelected(name, value);
+				});
+			}
 		});
 	}
 

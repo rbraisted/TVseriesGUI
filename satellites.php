@@ -240,17 +240,17 @@
 			<span class="slot-name-label">Slot A</span>
 			<span id="name" class="satellite-name-label"></span>
 		</a>
-		<a id="slot-b-btn" href="#" class="btn slot-btn">
+		<a id="slot-b-btn slot-btn" href="#" class="btn slot-btn">
 			<img src="/images/img.gif">
 			<span class="slot-name-label">Slot B</span>
 			<span id="name" class="satellite-name-label"></span>
 		</a>
-		<a id="slot-c-btn" href="#" class="btn slot-btn">
+		<a id="slot-c-btn slot-btn" href="#" class="btn slot-btn">
 			<img src="/images/img.gif">
 			<span class="slot-name-label">Slot C</span>
 			<span id="name" class="satellite-name-label"></span>
 		</a>
-		<a id="slot-d-btn" href="#" class="btn slot-btn">
+		<a id="slot-d-btn slot-btn" href="#" class="btn slot-btn">
 			<img src="/images/img.gif">
 			<span class="slot-name-label">Slot D</span>
 			<span id="name" class="satellite-name-label"></span>
