@@ -95,6 +95,7 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 	} else return TVRO.SatellitesPage.SatelliteInfoView.instance;
 
 	var view = $('[id ~= satellite-info-view ]'),
+		webService = TVRO.WebService(),
 		satellite;
 
 	self.init = function() {
@@ -108,6 +109,9 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 			$('[id ~= view ]', view).hide();
 			$('[id ~= edit ]', view).show();
 		});
+
+		$('[id ~= edit ]', view).hide();
+		$('[id ~= view ]', view).show();
 
 		self.init.inited = true;
 	}
@@ -123,14 +127,43 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 		$('[id ~= local-oscillator-1 ]', view).text(satellite.lo1);
 		$('[id ~= local-oscillator-2 ]', view).text(satellite.lo2);
 
+		//	TODO: check LNB mode to determine which params we should show
+		$('[id ~= circular ]', view).hide();
+		$('[id ~= linear ]', view).show();
+
+		if (true) {	//	if we're linear
+			var xponderIds = [1, 3, 5, 7];
+			for (var i = 0; i < xponderIds.length; i++) {
+				var xponderId = xponderIds[i],
+					xponderView = $('[id ~= xponder-'+xponderId+' ]', view),
+					xponder = satellite.xponders[xponderId];
+
+				console.log(xponder);
+
+				$('[id ~= frequency ]', xponderView).text(xponder.freq).val(xponder.freq);
+				$('[id ~= symbol-rate ]', xponderView).text(xponder.symRate).val(xponder.symRate);
+				$('[id ~= fec-code ]', xponderView).text(xponder.fec);
+				$('[id ~= satellite-id ]', xponderView).text(xponder.netID).val(xponder.netID);
+				$('[id ~= decoder-type ]', xponderView).text(xponder.modType);
+			}
+		} else {	//	if we're circular
+
+		}
+
 		//	refresh always goes back to view mode
 		$('[id ~= edit ]', view).hide();
 		$('[id ~= view ]', view).show();
 	}
 
-	self.loadSatellite = function() {
+	self.loadSatellite = function(antSatID) {
 		satellite = arguments[0];
-		self.refresh();
+		//	get the satellite params
+		webService.request('get_satellite_params', {
+			'antSatID' : satellite.antSatID
+		}, function(response) {
+			satellite = TVRO.Satellite(response);
+			self.refresh();
+		});
 	}
 
 // 	var self = {},

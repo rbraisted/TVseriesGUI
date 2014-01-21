@@ -351,7 +351,7 @@
 		<h1>Satellite Details</h1>
 		<div class="detail name-container">
 			<div class="label">Satellite Name</div>
-			<div id="name view"></div>
+			<div id="name view" class="value"></div>
 			<input id="name edit">
 		</div>
 		<div class="detail favorite-container">
@@ -364,7 +364,7 @@
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Region</div>
-			<div id="region view"></div>
+			<div id="region view" class="value"></div>
 			<a id="region-btn edit" href="#" class="btn dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="region edit"></label>
@@ -372,12 +372,12 @@
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Orbital Slot</div>
-			<div id="orbital-slot view"></div>
+			<div id="orbital-slot view" class="value"></div>
 			<input id="orbital-slot edit">
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Hemisphere</div>
-			<div id="hemisphere view"></div>
+			<div id="hemisphere view" class="value"></div>
 			<a id="hemisphere-btn edit" href="#" class="btn dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="hemisphere edit"></label>
@@ -385,17 +385,17 @@
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Suffix</div>
-			<div id="suffix view"></div>
+			<div id="suffix view" class="value"></div>
 			<input id="suffix edit">
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Pre-Skew</div>
-			<div id="pre-skew view"></div>
+			<div id="pre-skew view" class="value"></div>
 			<input id="pre-skew edit">
 		</div>
 		<div class="detail top-detail three-split">
 			<div class="label">LNB Type</div>
-			<div id="lnb-type view"></div>
+			<div id="lnb-type view" class="value"></div>
 			<a id="lnb-type-btn edit" href="#" class="btn dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="lnb-type edit"></label>
@@ -403,7 +403,7 @@
 		</div>
 		<div class="detail top-detail three-split">
 			<div class="label">Local Oscillator #1</div>
-			<div id="local-oscillator-1 view"></div>
+			<div id="local-oscillator-1 view" class="value"></div>
 			<a id="local-oscillator-1-btn edit" href="#" class="btn dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="local-oscillator-1 edit"></label>
@@ -411,24 +411,166 @@
 		</div>
 		<div class="detail top-detail three-split">
 			<div class="label">Local Oscillator #2</div>
-			<div id="local-oscillator-2 view"></div>
+			<div id="local-oscillator-2 view" class="value"></div>
 			<a id="local-oscillator-2-btn edit" href="#" class="btn dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="local-oscillator-2 edit"></label>
 			</a>
 		</div>
-		<a id="edit-btn view" href="#" class="btn basic-btn edit-btn">
-			<label>Edit</label>
-		</a>
-		<a id="reset-btn edit" href="#" class="btn basic-btn reset-btn">
-			<label>Reset To Factory Settings</label>
-		</a>
-		<a id="cancel-btn edit" href="#" class="btn basic-btn cancel-btn">
-			<label>Cancel</label>
-		</a>
-		<a id="save-btn edit" href="#" class="btn basic-btn save-btn">
-			<label>Save</label>
-		</a>
+
+		<div id="linear" class="linear">
+			<div id="xponder-1 linear" class="xponder">
+				<div class="xponder-header">Horizontal High</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Frequency</div>
+					<div id="frequency view" class="value"></div>
+					<input id="frequency edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Symbol Rate</div>
+					<div id="symbol-rate view" class="value"></div>
+					<input id="symbol-rate edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">FEC Code</div>
+					<div id="fec-code view" class="value"></div>
+					<a id="fec-code-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="fec-code edit"></label>
+					</a>
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Satellite ID</div>
+					<div id="satellite-id view" class="value"></div>
+					<input id="satellite-id edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Decoder Type</div>
+					<div id="decoder-type view" class="value"></div>
+					<a id="decoder-type-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="decoder-type edit"></label>
+					</a>
+				</div>
+			</div>
+			<div id="xponder-3 linear" class="xponder">
+				<div class="xponder-header">Horizontal Low</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Frequency</div>
+					<div id="frequency view" class="value"></div>
+					<input id="frequency edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Symbol Rate</div>
+					<div id="symbol-rate view" class="value"></div>
+					<input id="symbol-rate edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">FEC Code</div>
+					<div id="fec-code view" class="value"></div>
+					<a id="fec-code-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="fec-code edit"></label>
+					</a>
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Satellite ID</div>
+					<div id="satellite-id view" class="value"></div>
+					<input id="satellite-id edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Decoder Type</div>
+					<div id="decoder-type view" class="value"></div>
+					<a id="decoder-type-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="decoder-type edit"></label>
+					</a>
+				</div>
+			</div>
+			<div id="xponder-5 linear" class="xponder">
+				<div class="xponder-header">Vertical High</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Frequency</div>
+					<div id="frequency view" class="value"></div>
+					<input id="frequency edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Symbol Rate</div>
+					<div id="symbol-rate view" class="value"></div>
+					<input id="symbol-rate edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">FEC Code</div>
+					<div id="fec-code view" class="value"></div>
+					<a id="fec-code-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="fec-code edit"></label>
+					</a>
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Satellite ID</div>
+					<div id="satellite-id view" class="value"></div>
+					<input id="satellite-id edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Decoder Type</div>
+					<div id="decoder-type view" class="value"></div>
+					<a id="decoder-type-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="decoder-type edit"></label>
+					</a>
+				</div>
+			</div>
+			<div id="xponder-7 linear" class="xponder">
+				<div class="xponder-header">Vertical Low</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Frequency</div>
+					<div id="frequency view" class="value"></div>
+					<input id="frequency edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Symbol Rate</div>
+					<div id="symbol-rate view" class="value"></div>
+					<input id="symbol-rate edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">FEC Code</div>
+					<div id="fec-code view" class="value"></div>
+					<a id="fec-code-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="fec-code edit"></label>
+					</a>
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Satellite ID</div>
+					<div id="satellite-id view" class="value"></div>
+					<input id="satellite-id edit">
+				</div>
+				<div class="detail xponder-detail two-split">
+					<div class="label">Decoder Type</div>
+					<div id="decoder-type view" class="value"></div>
+					<a id="decoder-type-btn edit" href="#" class="btn dropdown-btn">
+						<img src="/images/img.gif">
+						<label id="decoder-type edit"></label>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="tool-bar">
+			<a id="edit-btn view" href="#" class="btn basic-btn edit-btn">
+				<label>Edit Satellite Details</label>
+			</a>
+			<a id="reset-btn edit" href="#" class="btn basic-btn reset-btn">
+				<label>Reset To Factory Settings</label>
+			</a>
+			<a id="cancel-btn edit" href="#" class="btn basic-btn cancel-btn">
+				<label>Cancel</label>
+			</a>
+			<a id="save-btn edit" href="#" class="btn basic-btn save-btn">
+				<label>Save</label>
+			</a>
+		</div>
 	</div>
 </div>
 

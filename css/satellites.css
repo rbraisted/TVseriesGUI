@@ -291,9 +291,32 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 	font-size: 13px;
 }
 
+.value {
+	margin-bottom: 2.5px;
+	margin-top: 4px;
+}
+
 .detail {
 	position: relative;
 	line-height: 1.6;
+}
+
+.detail .dropdown-btn,
+.detail input {
+	margin-left: -10px;
+}
+
+.detail .dropdown-btn,
+.detail input {
+	width: calc(100% + 20px);
+}
+
+.name-container {
+	margin-left: 10px;
+}
+
+.name-container input {
+	width: 50%;
 }
 
 /* terrible, fix later, deadline approaching */
@@ -340,6 +363,51 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 	width: 33%;
 }
 
-.satellite-info-view .edit-btn {
-	display: none !important;
+.satellite-info-view .tool-bar {
+	border: 0;
+	bottom: 0;
+	margin: 25px 20px;
+	position: absolute;
+}
+
+.linear {
+	margin-top: 170px;
+}
+
+.xponder {
+	background-color: #283148;
+	height: 230px;
+	width: 320px;
+	position: relative;
+	padding: 40px 20px;
+	float: left;
+	margin: 0 20px 20px 20px;
+}
+
+.xponder-header {
+	background-color: #000;
+	font-size: 13px;
+	line-height: 25px;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.xponder-detail {
+	float: left;
+}
+
+.two-split {
+	width: 40%;
+	margin-bottom: 10px;
+}
+
+.two-split:nth-child(2n) {
+	margin-right: 20%;
+}
+
+.satellite-info-view .popup-content {
+	height: 875px;
 }

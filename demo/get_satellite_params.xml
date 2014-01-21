@@ -7,6 +7,7 @@
 	<region>Europe</region>
 	<lon>-99.00</lon>
 	<skew>0.00</skew>
+	<suffix>SUFFIX</suffix>
 	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
 	<enable>FALSE</enable>
 	<favorite>FALSE</favorite>
