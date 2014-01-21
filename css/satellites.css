@@ -281,323 +281,65 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+*:hover {
+	outline: 1px solid red;
+}
 
+.label {
+	color: #d7eaff;
+	display: block;
+	font-size: 13px;
+}
 
-
-
-/*
-.satellite-details {
-	margin-left: -137.5px;
+.detail {
 	position: relative;
-	width: 825px;
+	line-height: 1.6;
 }
 
-.satellite-details .border-btn {
-	display: inline-block;
+/* terrible, fix later, deadline approaching */
+.detail div {
+	min-height: 1.6em;
 }
 
-.satellite-details label {
-	color: #ccc;
+.top-detail {
+	border-left: 1px solid #466ab2;
+	margin-top: 20px;
+	padding: 0 20px;
 }
 
-.satellite-detail {
-	display: inline-block;
-	padding: 5px 0;
-	width: 111px;
-}
-
-.satellite-detail label {
-	display: block;
-	padding-bottom: 5px;
-}
-
-.satellite-detail span {
-	display: block;
-	font-size: 24px;
-	padding: 3px 0;
-}
-
-.satellite-detail input {
-	display: block;
-	width: 90px;
-}
-
-.satellite-detail span,
-.satellite-detail input {
-	white-space: nowrap;
-}
-
-.satellite-detail.name {
-	border-bottom: 1px solid #4b67b1;
-	display: block;
-	padding-bottom: 15px;
-	width: 825px;
-}
-
-.satellite-detail.name input {
-	width: 375px;
-}
-
-.satellite-details .region {
-	padding-right: 15px;
-	width: 113px;
-}
-
-.satellite-details .tri-sat-id {
-	padding-left: 15px;
-	width: 113px;
-}
-
-.satellite-details .orbital-slot,
-.satellite-details .hemisphere,
-.satellite-details .sat-id,
-.satellite-details .pre-skew {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.satellite-details .orbital-slot,
-.satellite-details .hemisphere,
-.satellite-details .sat-id,
-.satellite-details .pre-skew,
-.satellite-details .tri-sat-id,
-.satellite-details .local-oscillator-2 {
-	border-left: 1px solid #4b67b1;
-	margin: 15px 0;
-}
-
-.satellite-details .local-oscillators {
-	border-top: 1px solid #4b67b1;
-	border-bottom: 1px solid #4b67b1;
-}
-
-.satellite-details .local-oscillator {
-	margin: 15px 0;
-	width: 397px;
-}
-
-.satellite-details .local-oscillator input {
-	width: 375px;
-}
-
-.satellite-details .local-oscillator-1 {
-	padding-right: 15px;
-}
-
-.satellite-details .local-oscillator-2 {
-	border-left: 1px solid #4b67b1;
-	padding-left: 15px;
-}
-
-.xponders {
-	padding-bottom: 25px;
-	border-bottom: 1px solid #4b67b1;
-}
-
-.xponder-details {
-	background: #000;
-	display: inline-block;
-	line-height: 210%;
-	margin-top: 25px;
-	padding: 25px 0;
-	width: 400px;
-}
-
-.xponder-details:nth-child(2n) {
-	margin-left: 25px;
-}
-
-.xponder-details .name {
-	font-weight: bold;
-	text-align: center;
-	width: 100%;
-}
-
-.xponder-details label {
-	display: inline-block;
-	margin-right: 25px;
-	text-align: right;
-	width: 145px;
-}
-
-.satellite-details .dropdown-btn {
-	background: #4b5168;
-	border: 1px solid #000;
-	color: #fff;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	font-weight: lighter;
-	margin: 0;
-	padding: 5px 10px;
-}
-
-.xponder-details input,
-.xponder-details .dropdown-btn {
-	border-color: #4b67b1;
-	display: inline-block;
-	line-height: 100%;
-	width: 180px;
-}
-
-.xponder-details input {
-	padding: 3px 10px;
-}
-
-.satellite-detail .dropdown-btn {
-	padding: 6px 10px;
-	width: 90px;
-}
-
-.xponder-details .dropdown-btn {
-	padding: 4px 10px;
-}
-
-.satellite-details .enable,
-.satellite-details .favorite {
+.favorite-container {
+	width: 260px;
 	position: absolute;
+	right: 40px;
+	top: 0;
+	margin-top: 100px;
 }
 
-.satellite-details .enable label,
-.satellite-details .favorite label {
-	color: #fff;
-	margin-right: 15px;
+.favorite-container .label {
+	margin-top: 6px;
 }
 
-.satellite-details .enable {
-	bottom: -50px;
+.satellite-info-view .favorite-btn {
+	height: auto;
+	right: 40px;
 }
 
-.satellite-details .favorite {
-	right: 0;
-	top: 20px;
+.satellite-info-view .favorite-btn img {
+	left: 100%;
 }
 
-.satellite-details .border-btn {
-	float: right;
-	margin: 25px 0 0 25px;
+.top-detail {
+	float: left;
 }
 
-@media screen and (max-width: 880px) {
-	.mcg {
-		padding: 0;
-	}
-
-	.sb.active,
-	.satellites-table.active,
-	.satellite-details.active {
-		display: block;
-	}
-
-	.sb:not(.active),
-	.satellites-table:not(.active),
-	.satellite-details:not(.active) {
-		display: none;
-	}
-
-	.satellites-table,
-	.satellite-details {
-		width: 100%;
-		margin: 0;
-	}
-
-	.satellites-table .table-header {
-		border-bottom: 1px solid #4b5d8a;
-		margin: 0;
-	}
-
-	.satellites-table .table-row+.table-row {
-		border-top: 1px solid #4b5d8a;
-		margin: 0;
-	}
-
-	.satellites-table .table-col {
-		box-sizing: border-box;
-	}
-
-	.satellites-table .hover,
-	.satellites-table .table-row .table-col {
-		padding: 20px 10px;
-	}
-
-	.satellites-table .table-col+.table-col {
-		margin: 0;
-	}
- 
-	.satellites-table .region-col,
-	.satellites-table .favorites-col,
-	.satellites-table .table-header .selected-col {
-		display: none;
-	}
-
-	.satellites-table .selected-col {
-		position: absolute;
-		right: 0;
-	}
-
-	.satellites-table .name-col,
-	.satellites-table .orbital-slot-col {
-		width: 50%;
-	}
-
-
-
-
-	.satellite-detail {
-		box-sizing: border-box;
-	}
-
-	.satellite-detail.name,
-	.satellite-details .region,
-	.satellite-details .orbital-slot,
-	.satellite-details .hemisphere,
-	.satellite-details .sat-id,
-	.satellite-details .pre-skew,
-	.satellite-details .tri-sat-id,
-	.satellite-details .local-oscillator {
-		padding: 5px 15px;
-	}
-
-	.satellite-detail.name {
-		width: 100%;
-	}
-
-	.satellite-details .local-oscillator {
-		width: 50%;
-	}
-
-	.satellite-details .region,
-	.satellite-details .orbital-slot,
-	.satellite-details .hemisphere,
-	.satellite-details .sat-id,
-	.satellite-details .pre-skew,
-	.satellite-details .tri-sat-id {
-		width: 33%;
-	}
-
-	.satellite-details .region,
-	.satellite-details .orbital-slot,
-	.satellite-details .hemisphere {
-		margin-bottom: 0;
-	}
-
-	.satellite-details .sat-id,
-	.satellite-details .pre-skew,
-	.satellite-details .tri-sat-id {
-		margin-top: 0;
-	}
-
-	.satellite-details .sat-id {
-		border: 0;
-	}
-
-	.xponder-details:nth-child(n) {
-		margin: 0;
-	}
-
-	.satellite-details .favorite {
-		right: 15px;
-		top: 55px;
-	}	
+.five-split {
+	width: 20%;
 }
 
-*/
+.three-split {
+	width: 33%;
+}
+
+.satellite-info-view .edit-btn {
+	display: none !important;
+}

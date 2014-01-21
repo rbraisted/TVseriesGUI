@@ -17,25 +17,25 @@ TVRO.SettingsPage = function() {
 		advancedSettingsView.init();
 		networkSettingsView.init();
 
-		// menuBtns.click(function() {
-		// 	var menuBtn = $(this);
+		menuBtns.click(function() {
+			var menuBtn = $(this);
 
-		// 	if (menuBtn.hasClass('is-selected')) return;
+			if (menuBtn.hasClass('is-selected')) return;
 
-		// 	menuBtns.removeClass('is-selected');
-		// 	menuBtn.addClass('is-selected');
+			menuBtns.removeClass('is-selected');
+			menuBtn.addClass('is-selected');
 
-		// 	if (menuBtn.hasId('general-settings-btn')) {
-		// 		$(document.body).setClass('at-general-settings');
-		// 		generalSettingsView.refresh();
-		// 	} else if (menuBtn.hasId('advanced-settings-btn')) {
-		// 		$(document.body).setClass('at-advanced-settings');
-		// 		advancedSettingsView.refresh();
-		// 	} else if (menuBtn.hasId('network-settings-btn')) {
-		// 		$(document.body).setClass('at-network-settings');
-		// 		networkSettingsView.refresh();
-		// 	}
-		// });
+			if (menuBtn.hasId('general-settings-btn')) {
+				$(document.body).setClass('at-general-settings');
+				generalSettingsView.refresh();
+			} else if (menuBtn.hasId('advanced-settings-btn')) {
+				$(document.body).setClass('at-advanced-settings');
+				advancedSettingsView.refresh();
+			} else if (menuBtn.hasId('network-settings-btn')) {
+				$(document.body).setClass('at-network-settings');
+				networkSettingsView.refresh();
+			}
+		});
 
 		backBtns.click(function() {
 			$(document.body).setClass('at-menu');
