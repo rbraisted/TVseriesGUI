@@ -77,10 +77,9 @@ TVRO.SatellitesPage = function() {
 			radioTable.click(groupName);
 		});
 
-		$(document.body).setClass('is-single at-satellites-table-info');
-		var satelliteInfoView = TVRO.SatellitesPage.SatelliteInfoView();
-		satelliteInfoView.init();
-		satelliteInfoView.loadSatellite(TVRO.Satellite('<satellite><listID>3</listID><suffix>SUFFIX</suffix><skew>30.5</skew><antSatID>146E</antSatID><triSatID>FALSE</triSatID><name>Agila 2</name><region>Asia</region><lon>145.88</lon><favorite>FALSE</favorite><enabled>TRUE</enabled><select>TRUE</select></satellite>'));
+		// var satelliteInfoView = TVRO.SatellitesPage.SatelliteInfoView();
+		// satelliteInfoView.init();
+		// satelliteInfoView.loadSatellite(TVRO.Satellite('<satellite><listID>3</listID><suffix>SUFFIX</suffix><skew>30.5</skew><antSatID>146E</antSatID><triSatID>FALSE</triSatID><name>Agila 2</name><region>Asia</region><lon>145.88</lon><favorite>FALSE</favorite><enabled>TRUE</enabled><select>TRUE</select></satellite>'));
 	}
 
 	return self;
@@ -95,11 +94,46 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 	} else return TVRO.SatellitesPage.SatelliteInfoView.instance;
 
 	var view = $('[id ~= satellite-info-view ]'),
+		favoriteBtn = TVRO.ToggleBtn('[id ~= favorite-btn ]', view),
+		regionDropdown = TVRO.Dropdown('[id ~= region-dropdown ]', $('[id ~= region-btn ]', view)),
+		hemisphereDropdown = TVRO.Dropdown('[id ~= hemisphere-dropdown ]', $('[id ~= hemisphere-btn ]', view)),
+		lnbTypeDropdown = TVRO.Dropdown('[id ~= lnb-type-dropdown ]', $('[id ~= lnb-type-btn ]', view)),
+		currentXponder,
+		fecCodeDropdown = TVRO.Dropdown('[id ~= fec-code-dropdown ]', $('[id ~= fec-code-btn ]', view)),
+		decoderTypeDropdown = TVRO.Dropdown('[id ~= decoder-type-dropdown ]', $('[id ~= decoder-type-btn ]', view)),
 		webService = TVRO.WebService(),
 		satellite;
 
 	self.init = function() {
 		if (self.init.inited) return;
+
+		favoriteBtn.init();
+		favoriteBtn.click(function(isFavorite) {
+			webService.request('set_satellite_identity', {
+				'antSatID' : satellite.antSatID,
+				'favorite' : (isFavorite ? 'TRUE' : 'FALSE')
+			});
+		});
+
+		regionDropdown.optionSelected(function(name, value) {
+			$('[id ~= region ]', view).text(value);
+		});
+
+		hemisphereDropdown.optionSelected(function(name, value) {
+			$('[id ~= hemisphere ]', view).text(value);
+		});
+
+		lnbTypeDropdown.optionSelected(function(name, value) {
+			$('[id ~= lnb-type ]', view).text(value);
+		});
+
+		fecCodeDropdown.optionSelected(function(name, value) {
+			$('[id ~= xponder-'+currentXponder.id+'] [id ~= fec-code ]', view).text(value);
+		});
+
+		decoderTypeDropdown.optionSelected(function(name, value) {
+			$('[id ~= xponder-'+currentXponder.id+'] [id ~= decoder-type ]', view).text(value);
+		});
 
 		$('[id ~= back-btn]', view).click(function() {
 			$(document.body).get(0).className = $(document.body).get(0).className.replace('-info', '');
@@ -112,6 +146,59 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 		$('[id ~= edit-btn]', view).click(function() {
 			$('[id ~= view ]', view).hide();
 			$('[id ~= edit ]', view).show();
+		});
+
+		$('[id ~= reset-btn]', view).click(function() {
+			webService.request('reset_satellite_params', {
+				'antSatID' : antSatID
+			}, function(response) {
+				self.refresh();
+			});
+		});
+
+		$('[id ~= save-btn]', view).click(function() {
+			var name = $('[id ~= name][id ~= edit]', view).val(),
+				antSatID = $('[id ~= orbital-slot][id ~= edit]', view).val(),
+				region = $('[id ~= region][id ~= edit]', view).val(),
+				suffix = $('[id ~= suffix][id ~= edit]', view).val(),
+				skew = $('[id ~= pre-skew][id ~= edit]', view).val(),
+				lo1 = $('[id ~= local-oscillator-1][id ~= edit]', view).val(),
+				lo2 = $('[id ~= local-oscillator-2][id ~= edit]', view).val();
+
+				//	hemisphere
+				//	lnb
+
+			webService.request('set_satellite_identity', {
+				'name' : name,
+				'antSatID' : antSatID,
+				'region' : region,
+				'skew' : skew,
+				'suffix' : suffix,
+				'lo1' : lo1,
+				'lo2' : lo2
+			}, function(response) {
+				webService.request('set_satellite_params', {
+					'antSatID' : antSatID,
+					'xponder' : (function(xponderIds) {
+						var xponders = [];
+						for (var i = 0; i < xponderIds.length; i++) {
+							var xponderId = xponderIds[i],
+								xponderView = $('[id ~= xponder-'+xponderId+']');
+							xponders.push({
+								'id' : xponderId,
+								'freq' : $('[id ~= frequency][id ~= edit]', xponderView).val(),
+								'symRate' : $('[id ~= symbol-rate][id ~= edit]', xponderView).val(),
+								'fec' : $('[id ~= fec-code][id ~= edit]', xponderView).text(),
+								'netID' : $('[id ~= satellite-id][id ~= edit]', xponderView).val(),
+								'modType' : $('[id ~= decoder-type][id ~= edit]', xponderView).text()
+							});
+						}
+						return xponders;
+					}([1, 3, 5, 7]))
+				}, function(response) {
+					self.refresh();
+				});
+			});
 		});
 
 		$('[id ~= edit ]', view).hide();
@@ -128,8 +215,10 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 		$('[id ~= suffix ]', view).text(satellite.suffix).val(satellite.suffix);
 		$('[id ~= pre-skew ]', view).text(satellite.skew).val(satellite.skew);
 		$('[id ~= lnb-type ]', view).text(satellite.triSatID);
-		$('[id ~= local-oscillator-1 ]', view).text(satellite.lo1);
-		$('[id ~= local-oscillator-2 ]', view).text(satellite.lo2);
+		$('[id ~= local-oscillator-1 ]', view).text(satellite.lo1).val(satellite.lo1);
+		$('[id ~= local-oscillator-2 ]', view).text(satellite.lo2).val(satellite.lo2);
+
+		favoriteBtn.setOn(satellite.favorite === 'TRUE');
 
 		//	TODO: check LNB mode to determine which params we should show
 		$('[id ~= circular ]', view).hide();
@@ -142,13 +231,24 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 					xponderView = $('[id ~= xponder-'+xponderId+' ]', view),
 					xponder = satellite.xponders[xponderId];
 
-				console.log(xponder);
-
 				$('[id ~= frequency ]', xponderView).text(xponder.freq).val(xponder.freq);
 				$('[id ~= symbol-rate ]', xponderView).text(xponder.symRate).val(xponder.symRate);
 				$('[id ~= fec-code ]', xponderView).text(xponder.fec);
 				$('[id ~= satellite-id ]', xponderView).text(xponder.netID).val(xponder.netID);
 				$('[id ~= decoder-type ]', xponderView).text(xponder.modType);
+
+				(function(xponder, xponderView) {
+					$('[id ~= fec-code-btn ]', xponderView).click(function() {
+						currentXponder = xponder;
+						console.log($('[id ~= fec-code ]', xponderView).text());
+						fecCodeDropdown.setSelectedValue($('[id ~= fec-code ][id ~= edit ]', xponderView).text());
+					});
+
+					$('[id ~= decoder-type-btn ]', xponderView).click(function() {
+						currentXponder = xponder;
+						decoderTypeDropdown.setSelectedValue($('[id ~= decoder-type ][id ~= edit ]', xponderView).text());
+					});
+				}(xponder, xponderView));
 			}
 		} else {	//	if we're circular
 
@@ -178,10 +278,6 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 // 		polarizationDropdown = new TVRO.Dropdown('[id ~= polarization-dropdown]', '[id ~= polarization-btn]'),
 // 		fecCodeDropdown = new TVRO.Dropdown('[id ~= fec-code-dropdown]', '[id ~= fec-code-btn]'),
 // 		decoderTypeDropdown = new TVRO.Dropdown('[id ~= decoder-type-dropdown]', '[id ~= decoder-type-btn]');
-
-// 	regionDropdown.optionSelected(function(name, value) {
-// 		$('[id ~= region][id ~= edit]', satelliteDetails).text(value);
-// 	});
 
 // 	(function(xponderIds) {
 // 		var xponder;
@@ -221,62 +317,6 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 // 		});
 // 	}([1, 3, 5, 7]));
 
-// 	$('[id ~= favorite-btn]', satelliteDetails).click(function() {
-// 		var favorite = (satellite.favorite === 'TRUE' ? 'FALSE' : 'TRUE');
-// 		webService.request('set_satellite_identity', {
-// 			'listID' : satellite.listID,
-// 			'favorite' : favorite
-// 		}, function(response) {
-// 			satellite.favorite = favorite;
-// 			$('[id ~= favorite-btn]', satelliteDetails).toggleClass('on', favorite === 'TRUE');
-// 		});
-// 	});
-
-// 	$('[id ~= save-btn]', satelliteDetails).click(function() {
-// 		var name = $('[id ~= name][id ~= edit]', satelliteDetails).val(),
-// 			listID = $('[id ~= sat-id][id ~= edit]', satelliteDetails).val(),
-// 			antSatID = $('[id ~= orbital-slot][id ~= edit]', satelliteDetails).val(),
-// 			region = $('[id ~= region][id ~= edit]', satelliteDetails).val(),
-// 			skew = $('[id ~= pre-skew][id ~= edit]', satelliteDetails).val(),
-// 			triSatID = $('[id ~= tri-sat-id][id ~= edit]', satelliteDetails).val(),
-// 			lo1 = $('[id ~= local-oscillator-1][id ~= edit]', satelliteDetails).val(),
-// 			lo2 = $('[id ~= local-oscillator-2][id ~= edit]', satelliteDetails).val();
-
-// 		webService.request('set_satellite_identity', {
-// 			'name' : name,
-// 			'listID' : listID,
-// 			'antSatID' : antSatID,
-// 			'region' : region,
-// 			'skew' : skew,
-// 			'triSatID' : triSatID,
-// 			'lo1' : lo1,
-// 			'lo2' : lo2
-// 		}, function(response) {
-// 			webService.request('set_satellite_params', {
-// 				'listID' : listID,
-// 				'xponder' : (function(xponderIds) {
-// 					var xponders = [];
-// 					for (var i = 0; i < xponderIds.length; i++) {
-// 						var xponderId = xponderIds[i],
-// 							xponderDetails = $('[id ~= xponder-'+xponderId+']');
-// 						xponders.push({
-// 							'id' : xponderId,
-// 							'pol' : $('[id ~= polarization][id ~= edit]', xponderDetails).text(),
-// 							'freq' : $('[id ~= frequency][id ~= edit]', xponderDetails).val(),
-// 							'symRate' : $('[id ~= symbol-rate][id ~= edit]', xponderDetails).val(),
-// 							'fec' : $('[id ~= fec-code][id ~= edit]', xponderDetails).text(),
-// 							'netID' : $('[id ~= network-id][id ~= edit]', xponderDetails).val(),
-// 							'modType' : $('[id ~= decoder-type][id ~= edit]', xponderDetails).text()
-// 						});
-// 					}
-// 					return xponders;
-// 				}([1, 3, 5, 7]))
-// 			}, function(response) {
-// 				self.showView();
-// 			});
-// 		});
-// 	});
-
 	return self;
 }
 
@@ -285,11 +325,22 @@ TVRO.SatellitesPage.SatelliteInfoView = function() {
 TVRO.SatellitesPage.EditSatelliteGroupView = function() {
 	var self = {},
 		view = $('[id ~= edit-satellite-group-view ]'),
-		webService = TVRO.WebService(),
-		satelliteInfoView = TVRO.SatellitesPage.SatelliteInfoView();
+		satellites = [],
+		webService = TVRO.WebService();
 
 	self.init = function() {
-		satelliteInfoView.init();
+		var satellitesTableView = TVRO.SatellitesPage.SatellitesTableView('[id ~= satellites-table-popup-view ]');
+		satellitesTableView.init();
+
+		$('[id ~= slot-btn ]', view).click(function() {
+			var antSatID = this.getAttribute('value'),
+				satellite = $(satellites).filter(function(index) {
+					return this.antSatID === antSatID;
+				}).get(0);
+
+			satellitesTableView.loadRegion('');
+			$(document.body).setClass('is-group at-satellites-table');
+		});
 
 		$('[id ~= cancel-btn ]', view).click(function() {
 			$(document.body).setClass('is-group at-satellite-group');
@@ -308,6 +359,8 @@ TVRO.SatellitesPage.EditSatelliteGroupView = function() {
 
 	self.loadGroup = function(groupName) {
 		$('[id ~= name ]', view).val(groupName);
+
+		satellites = [];
 		webService.request('get_satellite_groups', function(response) {
 			var group = $('group', response).filter(function() { return $('group_name', this).text() === groupName; });
 			var slots = ['a', 'b', 'c', 'd'];
@@ -315,6 +368,8 @@ TVRO.SatellitesPage.EditSatelliteGroupView = function() {
 				var slot = slots[i],
 					satellite = $(slot.toUpperCase(), group),
 					slotBtn = $('[id ~= slot-'+slot+'-btn ]', view);
+
+				satellites.push(TVRO.Satellite(satellite));
 				$('[id ~= name ]', slotBtn).text($('name', satellite).text());
 				slotBtn.attr('value', $('antSatID', satellite).text());
 			}
@@ -522,7 +577,7 @@ TVRO.SatellitesPage.SatellitesTable = function(selector, context) {
 					}).get(0);
 
 				//	show info view with this satellite
-				$(document.body).get(0).className = $(document.body).get(0).className.replace('at-satellites-table', 'at-satellites-table-info');
+				$(document.body).get(0).className = $(document.body).get(0).className.replace('at-splash', 'at-satellites-table').replace('at-satellites-table', 'at-satellites-table-info');
 				satelliteInfoView.loadSatellite(satellite);
 			});
 		});

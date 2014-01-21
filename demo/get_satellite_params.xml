@@ -10,7 +10,7 @@
 	<suffix>SUFFIX</suffix>
 	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
 	<enable>FALSE</enable>
-	<favorite>FALSE</favorite>
+	<favorite>TRUE</favorite>
 	<select>FALSE</select>
 	<triSatID>FALSE</triSatID>
 	<lo1>OFF</lo1>

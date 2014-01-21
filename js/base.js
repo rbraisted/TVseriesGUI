@@ -260,7 +260,7 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 
 	self.setSelectedValue = function(value) {
 		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
-		$('[id ~= dropdown-option][value='+value+']', dropdown).addClass('is-selected');
+		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).addClass('is-selected');
 	}
 
 	self.selectValue = function(value) {

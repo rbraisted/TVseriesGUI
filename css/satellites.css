@@ -41,6 +41,8 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 	display: block;
 }
 
+
+
 .menu-view .details-view,
 .menu-view .mode-view {
 	border-bottom: 1px solid #466ab2;
@@ -304,11 +306,12 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 .detail .dropdown-btn,
 .detail input {
 	margin-left: -10px;
+	width: calc(100% + 20px);
 }
 
-.detail .dropdown-btn,
+.detail .dropdown-btn label,
 .detail input {
-	width: calc(100% + 20px);
+	white-space: nowrap;
 }
 
 .name-container {
