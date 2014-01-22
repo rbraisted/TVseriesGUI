@@ -233,18 +233,23 @@ TVRO.WebService = (function() {
 					url : requestUrl,
 					data : requestXml,
 					success : function(response) {
-						console.log('\n'+requestName.toUpperCase());
+						console.log('\n------------------------------------------------------------');
+						console.log('  '+requestName.toUpperCase());
 						console.log($(requestXml).get(0));
 						console.log($('ipacu_response', response).get(0));
+						console.log('------------------------------------------------------------\n');
+
 						var error = $(response).find('ipacu_response > message').attr('error');
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
-						console.log('TVRO.WebService AJAX error!');
+						console.log('\n------------------------------------------------------------');
+						console.log('  TVRO.WebService AJAX error!');
 						console.log(jqXHR);
 						console.log(textStatus);
 						console.log(errorThrown);
+						console.log('------------------------------------------------------------\n');
 					}
 				});
 			}
@@ -387,6 +392,13 @@ TVRO.Table = function(selector, context) {
 	var self = $.apply($, arguments),
 		template = $('[id ~= template ]', self).detach();
 
+	console.log("self");
+	console.log(self);
+	console.log("arguments");
+	console.log(arguments);
+	console.log("template");
+	console.log(template);
+
 	template.get(0).id = $.trim(template.get(0).id.replace('template', ''));
 
 	return $.extend({}, self, {
@@ -396,28 +408,6 @@ TVRO.Table = function(selector, context) {
 				$.map(arguments[0], function() { return template.clone(); }));
 		}
 	});
-
-	// var self = {},
-	// 	view,
-	// 	template;
-
-	// self.init = function() {
-	// 	view = $(selector, context);
-	// 	template = $('[id ~= template ]', view).detach();
-
-	// 	//	remove the 'template' id from template
-	// 	template.get(0).id = $.trim(template.get(0).id.replace('template', '').replace('  ', ' '));
-	// }
-
-	// self.setData = function() {
-	// 	$('[id ~= table-rows ]', view).empty();
-	// 	for (var i = 0; i < arguments[0].length; i++) {
-	// 		var row = template.clone(true);
-	// 		$('[id ~= table-rows ]', view).append(row);
-	// 	}
-	// }
-
-	// return self;
 }
 
 //	radio class

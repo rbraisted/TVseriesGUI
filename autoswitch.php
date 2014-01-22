@@ -2,6 +2,8 @@
 <link type="text/css" rel="stylesheet" href="/css/autoswitch.css">
 <script type="text/javascript" src="/js/autoswitch.js"></script>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <div id="menu-view" class="view menu-view">
 	<div id="satellite-view" class="menu-sub-view satellite-view">
 		<div id="mode-view" class="satellite-sub-view">
@@ -59,6 +61,8 @@
 	</a>
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <div id="autoswitches-view" class="view main-view autoswitches-view">
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
@@ -96,3 +100,18 @@
 		</div>
 	</div>
 </div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div id="edit-view" class="view popup-view edit-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Edit Autoswitch</label>
+		</a>
+		<h1>Edit Autoswitch</h1>
+		
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

@@ -20,26 +20,76 @@ TVRO.AutoswitchPage = function() {
 		autoswitchesView,
 		AutoswitchesView = function() {
 			var self = $.apply($, arguments),
-				autoswitchesTable = TVRO.Table('[id ~= autoswitches-table ]', self),
-				autoswitchesRadio = TVRO.Radio('[id ~= autoswitches-table ]', self),
+				AutoswitchesRadioTable = function() {
+					var self = $.apply($, arguments),
+						table = TVRO.Table.apply(this, arguments),
+						radio = TVRO.Radio.apply(this, arguments),
+						autoswitches = [];
+
+					radio.click(function(index) {
+						$('[id ~= table-row ]', table)
+							.removeClass('is-master')
+							.has(this)
+							.addClass('is-master');
+
+						webService.request('set_autoswitch_master', {
+							sn: autoswitches[index].sn
+						}, refresh);
+					});
+
+					return $.extend({}, self, table, radio, {
+						setData: function() {
+							autoswitches = arguments[0];
+							table.setData(autoswitches);
+							$('[id ~= table-row ]', table).each(function(i) {
+								$('[id ~= name ]', this).eq(i).text(autoswitches[i].name);
+								$('[id ~= serial-number ]', this).eq(i).text(autoswitches[i].sn);
+								$('[id ~= select-btn ]', this).eq(i).attr('value', i);
+								$('[id ~= edit-btn ]', this).eq(i).attr('value', i).click(function() {
+									editView.loadAutoswitch(autoswitches[i]);
+								});
+								$(this).toggleClass('is-master', autoswitches[i].isMaster);
+							});
+							radio.refresh();
+						}
+					});
+				},
+				autoswitchesRadioTable = AutoswitchesRadioTable('[id ~= autoswitches-table ]', self),
 				refresh = function() {
 					webService.request('get_autoswitch_status', function(response) {
-						autoswitchesTable.setData([1, 2, 3]);
-						autoswitchesRadio.refresh();
+						var master = $('master', response),
+							autoswitches = $('autoswitch', response).map(function() {
+							return {
+								sn: $('sn', this).text(),
+								name: $('name', this).text(),
+								isMaster: $('sn', this).text() === $('sn', master).text()
+							}
+						});
+
+						autoswitchesRadioTable.setData(autoswitches);
 					});
 				};
-
-			autoswitchesRadio.click(function(value) {
-				$('[id ~= table-row ]', autoswitchesTable)
-					.removeClass('is-master')
-					.has(this)
-					.addClass('is-master');
-			});
 
 			return $.extend({}, self, {
 				refresh: refresh
 			});
-		};
+		},
+
+		editView,
+		EditView = function() {
+			var self = $.apply($, arguments),
+				autoswitch,
+				refresh = function() {
+					$('[id ~= name ]', self).text(autoswitch.name);
+					$('[id ~= serial-number ]', self).text(autoswitch.sn);
+				}
+
+			return $.extend({}, self, {
+				loadAutoswitch: function() {
+					autoswitch = arguments[0];
+				}
+			});
+		}
 
 
 
@@ -103,7 +153,7 @@ TVRO.SatelliteTrackingView = function() {
 
 	switchingModeBtn.click(function(isManual) {
 		webService.request('set_autoswitch_service', {
-			'enabled' : (isManual ? 'N' : 'Y')
+			enabled: (isManual ? 'N' : 'Y')
 		}, refresh);
 	});
 
