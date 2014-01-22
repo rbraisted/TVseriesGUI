@@ -58,6 +58,8 @@ TVRO.AutoswitchPage = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.SatelliteTrackingView = function() {
 	var self = $.apply($, arguments),
 		webService = TVRO.WebService(),
