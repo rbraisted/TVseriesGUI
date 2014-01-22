@@ -1,4 +1,9 @@
-body.at-splash .menu-view {
+*:hover {
+	outline: 1px solid #f5aacb;
+}
+
+body.at-splash .menu-view,
+body.at-splash .autoswitches-view {
 	display: block;
 }
 
@@ -57,3 +62,125 @@ body.at-splash .menu-view {
 .satellite-signal.is-3 { background-image: url(/images/satellite-signal-3.png); }
 .satellite-signal.is-4 { background-image: url(/images/satellite-signal-4.png); }
 .satellite-signal.is-5 { background-image: url(/images/satellite-signal-5.png); }
+
+.new-btn {
+	display: block;
+	margin: 1em;
+}
+
+.new-btn img {
+	background: transparent url(/images/add-btn.png) no-repeat center center;
+	position: absolute;
+	right: 0;
+	width: auto;
+}
+
+.new-btn label {
+	padding: 0.75em;
+	text-align: left;
+}
+
+.main-view h1 {
+	position: relative;
+}
+
+.main-view h1 img {
+	background: transparent url(/images/nav-autoswitch-small-selected.png) no-repeat center center;
+	display: inline-block;
+	height: 100%;
+	margin-left: -2em;
+	margin-top: -2px;
+	position: absolute;
+	top: 0;
+}
+
+.autoswitch-view {
+	background-color: #000;
+	height: 85px;
+	margin: 0 auto 25px;
+	max-width: 600px;
+	position: relative;
+}
+
+.label {
+	color: #d7eaff;
+	font-size: 13px;
+	position: absolute;
+	top: 25px;
+}
+
+.value {
+	position: absolute;
+	top: 45px;
+}
+
+.receiver-label,
+.receiver-value {
+	left: 120px;
+}
+
+.serial-number-label,
+.serial-number-value {
+	left: 225px;
+}
+
+.status-label {
+	left: 50px;
+	position: absolute;
+	top: 36px;
+}
+
+.status-img {
+	background: transparent url(/images/autoswitch-status-red.png) no-repeat center center;
+	height: 100%;
+	left: 20px;
+	position: absolute;
+	top: 0;
+	width: 21px;
+}
+
+.master-label {
+	display: none;
+	right: 65px;
+	position: absolute;
+	top: 36px;
+}
+
+.master-img {
+	background: transparent url(/images/radio-selected.png) no-repeat center center;
+	display: none;
+	height: 100%;
+	right: 35px;
+	position: absolute;
+	top: 0;
+	width: 21px;
+}
+
+.edit-btn,
+.select-btn {
+	min-width: 100px;
+	position: absolute;
+	top: 22px;
+}
+
+.edit-btn {
+	right: 140px;
+}
+
+.select-btn {
+	right: 20px;
+	z-index: 1;
+}
+
+.autoswitch-view.is-master {
+	background-color: #4e79bc;
+}
+
+.autoswitch-view.is-master .select-btn {
+	display: none;
+}
+
+.autoswitch-view.is-master .master-label,
+.autoswitch-view.is-master .master-img {
+	display: block;
+}

@@ -373,34 +373,6 @@ TVRO.ToggleBtn = function() {
 			else callbacks.push(arguments[0]);
 		}
 	});
-
-	// var self = {},
-	// 	view,
-	// 	callbacks = [];
-
-	// self.init = function() {
-	// 	view = $(selector, context);
-	// 	view.click(function() {
-	// 		view.toggleClass('is-on');
-	// 		for (var i = 0; i < callbacks.length; i++) {
-	// 			callbacks[i].call(this, $(this).hasClass('is-on'));
-	// 		};
-	// 	});
-	// }
-
-	// self.setOn = function(isOn) {
-	// 	view.toggleClass('is-on', isOn);
-	// }
-
-	// self.click = function() {
-	// 	if (typeof arguments[0] === 'function') {
-	// 		callbacks.push(arguments[0]);
-	// 	} else {
-	// 		view.click();
-	// 	}
-	// }
-
-	// return self;
 }
 
 //	table class
@@ -412,32 +384,40 @@ TVRO.ToggleBtn = function() {
 //	a #table-row is created from #template and added to #table-rows
 //	you can override setData to modify #table-row per #table-row
 TVRO.Table = function(selector, context) {
-	var self = {},
-		view,
-		template;
+	var self = $.apply($, arguments),
+		template = $('[id ~= template ]', self).detach();
 
-	self.init = function() {
-		view = $(selector, context);
-		template = $('[id ~= template ]', view).detach();
-
-		//	remove the 'template' id from template
-		template.get(0).id = $.trim(template.get(0).id.replace('template', '').replace('  ', ' '));
-	}
-
-	self.setData = function() {
-		$('[id ~= table-rows ]', view).empty();
-		for (var i = 0; i < arguments[0].length; i++) {
-			var row = template.clone(true);
-			$('[id ~= table-rows ]', view).append(row);
-		}
-	}
+	template.get(0).id = $.trim(template.get(0).id.replace('template', ''));
 
 	return $.extend({}, self, {
-		click: function() {
-			if (typeof arguments[0] !== 'function') self.click();
-			else callbacks.push(arguments[0]);
+		//	override this function to set text, images, etc
+		setData: function() {
+			$('[id ~= table-rows ]', self).empty().append(
+				$.map(arguments[0], function() { return template.clone(); }));
 		}
 	});
+
+	// var self = {},
+	// 	view,
+	// 	template;
+
+	// self.init = function() {
+	// 	view = $(selector, context);
+	// 	template = $('[id ~= template ]', view).detach();
+
+	// 	//	remove the 'template' id from template
+	// 	template.get(0).id = $.trim(template.get(0).id.replace('template', '').replace('  ', ' '));
+	// }
+
+	// self.setData = function() {
+	// 	$('[id ~= table-rows ]', view).empty();
+	// 	for (var i = 0; i < arguments[0].length; i++) {
+	// 		var row = template.clone(true);
+	// 		$('[id ~= table-rows ]', view).append(row);
+	// 	}
+	// }
+
+	// return self;
 }
 
 //	radio class
@@ -447,23 +427,29 @@ TVRO.Table = function(selector, context) {
 //	and all other #radio-option in #radio will lose .is-selected
 TVRO.Radio = function() {
 	var self = $.apply($, arguments),
-		options = $('[id ~= radio-option ]', self),
-		callbacks = [];
-
-	options.click('click', function() {
-		var option = $(this);
-		if (option.hasClass('is-selected')) {
-			return;
-		} else {
-			options.removeClass('is-selected');
-			option.addClass('is-selected');
-			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i].call(this, option.attr('value'));
+		options, // look at refresh function
+		callbacks = [],
+		click = function() {
+			var option = $(this);
+			if (option.hasClass('is-selected')) {
+				return;
+			} else {
+				options.removeClass('is-selected');
+				option.addClass('is-selected');
+				for (var i = 0; i < callbacks.length; i++) {
+					callbacks[i].call(this, option.attr('value'));
+				}
 			}
-		}
-	});
+		},
+		refresh = function() {
+			options = $('[id ~= radio-option ]', self);
+			options.unbind('click', click).click(click);
+		};
+
+	refresh();
 
 	return $.extend({}, self, {
+		refresh: refresh,
 		click: function() {
 			if (typeof arguments[0] !== 'function') options.filter('[value="'+arguments[0]+'"]').click();
 			else callbacks.push(arguments[0]);
@@ -476,32 +462,6 @@ TVRO.Radio = function() {
 			options.filter('[value="'+arguments[0]+'"]').addClass('is-selected');
 		}
 	});
-
-	// var self = {},
-	// 	view,
-	// 	callbacks = [];
-
-	// self.init = function() {
-	// 	view = $(selector, context);
-	// 	$('[id ~= radio-option ]', view).click('click', function() {
-	// 		if ($(this).hasClass('is-selected')) return;
-	// 		$('[id ~= radio-option ]', view).removeClass('is-selected');
-	// 		$(this).addClass('is-selected');
-	// 		for (var i = 0; i < callbacks.length; i++) {
-	// 			callbacks[i].call(this, this.getAttribute('value'));
-	// 		}
-	// 	});
-	// }
-
-	// self.click = function() {
-	// 	if (typeof arguments[0] === 'function') {
-	// 		callbacks.push(arguments[0]);
-	// 	} else {
-	// 		$('[id ~= radio-option ][value = '+arguments[0]+' ]', view).click();
-	// 	}
-	// }
-
-	// return self;
 }
 
 TVRO.RadioTable = function(selector, context) {

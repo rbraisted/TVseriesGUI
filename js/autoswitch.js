@@ -10,18 +10,48 @@ TVRO.AutoswitchPage = function() {
 			var self = $.apply($, arguments),
 				satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]', self);
 
-			return $.extend(self, {});
-		}
+			$('[id ~= new-btn ]', self).click(function() {
+				//	show the popup
+			});
 
+			return $.extend({}, self, {});
+		},
 
+		autoswitchesView,
+		AutoswitchesView = function() {
+			var self = $.apply($, arguments),
+				autoswitchesTable = TVRO.Table('[id ~= autoswitches-table ]', self),
+				autoswitchesRadio = TVRO.Radio('[id ~= autoswitches-table ]', self),
+				refresh = function() {
+					webService.request('get_autoswitch_status', function(response) {
+						autoswitchesTable.setData([1, 2, 3]);
+						autoswitchesRadio.refresh();
+					});
+				};
 
+			autoswitchesRadio.click(function(value) {
+				$('[id ~= table-row ]', autoswitchesTable)
+					.removeClass('is-master')
+					.has(this)
+					.addClass('is-master');
+			});
 
+			return $.extend({}, self, {
+				refresh: refresh
+			});
+		};
 
 
 
 	return {
 		init: function() {
 			menuView = MenuView('[id ~= menu-view ]');
+			autoswitchesView = AutoswitchesView('[id ~= autoswitches-view ]');
+
+			this.refresh();
+		},
+		refresh: function() {
+			autoswitchesView.refresh();
 		}
 	}
 }

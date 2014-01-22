@@ -52,4 +52,47 @@
 			</a>
 		</div>
 	</div>
+
+	<a id="new-btn" href="#" class="btn basic-btn new-btn">
+		<img src="/images/img.gif">
+		<label>Add Receiver</label>
+	</a>
+</div>
+
+<div id="autoswitches-view" class="view main-view autoswitches-view">
+	<div class="view-content main-content">
+		<a id="back-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label id="name">Autoswitches</label>
+		</a>
+		<h1>
+			<img src="/images/img.gif">
+			<span id="name">Autoswitches</span>
+		</h1>
+		<div id="autoswitches-table">
+			<div id="table-rows">
+				<div id="template table-row" class="autoswitch-view">
+					<div class="label status-label">Status</div>
+					<img src="/images/img.gif" class="status-img">
+
+					<div class="label master-label">Master</div>
+					<img src="/images/img.gif" class="master-img">
+
+					<div class="label receiver-label">Receiver</div>
+					<div id="name" class="value receiver-value">Bedroom</div>
+
+					<div class="label serial-number-label">Serial #</div>
+					<div id="serial-number" class="value serial-number-value">1234567890</div>
+
+					<a id="edit-btn" href="#" class="btn basic-btn edit-btn">
+						<label>Edit</label>
+					</a>
+
+					<a id="radio-option select-btn" href="#" class="btn basic-btn select-btn">
+						<label>Select</label>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
