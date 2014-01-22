@@ -18,10 +18,6 @@
 			<name>Salon</name>
 		</autoswitch>
 		<autoswitch>
-			<sn>123123123</sn>
-			<name>Boudoir</name>
-		</autoswitch>
-		<autoswitch>
 			<sn>111222333</sn>
 			<name>Kitchen</name>
 		</autoswitch>
@@ -37,7 +33,6 @@
 			<enable>Y</enable>
 			<favorite>Y</favorite>
 		</A>
-		<!--
 		<B>
 			<listID>65</listID>
 			<antSatID>40E</antSatID>
@@ -65,6 +60,5 @@
 			<favorite>FALSE</favorite>
 			<enabled>TRUE</enabled>
 		</D>
-		-->
 	</satellites>
 </ipacu_response>

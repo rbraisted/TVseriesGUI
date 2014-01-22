@@ -184,3 +184,7 @@ body.at-splash .autoswitches-view {
 .autoswitch-view.is-master .master-img {
 	display: block;
 }
+
+.autoswitch-view.is-active .status-img {
+	background-image: url(/images/autoswitch-status-green.png);
+}
