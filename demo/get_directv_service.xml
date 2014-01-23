@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_directv_service" error="0" />
+	<available>Y</available>
+	<enable>Y</enable>
+	<receiver_list>
+		<receiver>
+			<ip_address>111.111.111.1</ip_address>
+			<name>Bridge</name>
+		</receiver>
+		<receiver>
+			<ip_address>222.222.222.2</ip_address>
+			<name>Cabin</name>
+		</receiver>
+		<receiver>
+			<ip_address>333.333.333.3</ip_address>
+			<name>Deck</name>
+		</receiver>
+		<receiver>
+			<ip_address>444.444.444.4</ip_address>
+			<name>Galley</name>
+		</receiver>
+	</receiver_list>
+</ipacu_response>

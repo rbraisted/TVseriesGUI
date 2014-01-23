@@ -1,27 +1,70 @@
 <ipacu_response>
 	<message name="get_autoswitch_status" error="0" />
-	<output>out1 | out2 | out3</output>
-	<available>Y</available>
-	<enable>Y</enable>
-	<service>DIRECTV | DISH | DISEQC | OTHER</service>
-	<service_subtype>NORTH_AMERICA|LATIN_AMERICA</service_subtype>
+	<output>out1</output><!-- out1 | out2 | out3 -->
+	<available>Y</available><!-- Y | N -->
+	<enable>Y</enable><!-- Y | N -->
+
+	<!--
+	<service> DIRECTV | DISH | DISEQC | OTHER
+	<service_subtype> NORTH_AMERICA | LATIN_AMERICA
 	<master>
-		<sn>111222333</sn>
-		<valid>Y | N</valid>
+		<valid> Y | N
+		<sat> A | B | C | D
+		<tone> Y | N
+		<voltage> H | L
+	</master>
+	-->
+
+	<!-- DISH and DISEQC services -->
+	<service>DISH</service>
+	<service_subtype>NORTH_AMERICA</service_subtype>
+	<master>
+		<sn>333333333</sn>
+		<name>Kitchen</name>
+		<valid>Y</valid>
 		<sat>A</sat>
-		<tone>Y | N</tone>
-		<voltage>H | L</voltage>
+		<tone>Y</tone>
+		<voltage>H</voltage>
 	</master>
 	<active_list>
 		<autoswitch>
-			<sn>123456789</sn>
-			<name>Salon</name>
+			<sn>111111111</sn>
+			<name>Boudoir</name>
 		</autoswitch>
 		<autoswitch>
-			<sn>111222333</sn>
+			<sn>333333333</sn>
 			<name>Kitchen</name>
 		</autoswitch>
+		<autoswitch>
+			<sn>444444444</sn>
+			<name>Salon</name>
+		</autoswitch>
 	</active_list>
+
+	<!-- DIRECTV services -->
+	<!-- 
+	<service>DIRECTV</service>
+	<service_subtype>NORTH_AMERICA</service_subtype>
+	<master>
+		<ip_address>111.111.111.1</ip_address>
+		<name>Bridge</name>
+		<valid>Y</valid>
+		<sat>A</sat>
+		<tone>Y</tone>
+		<voltage>H</voltage>
+	</master>
+	<active_list>
+		<receiver>
+			<ip_address>111.111.111.1</ip_address>
+			<name>Bridge</name>
+		</receiver>
+		<receiver>
+			<ip_address>444.444.444.4</ip_address>
+			<name>Galley</name>
+		</receiver>
+	</active_list>
+	-->
+
 	<satellite_group>FIRST_FOUR</satellite_group>
 	<satellites>
 		<A>
@@ -57,8 +100,8 @@
 			<name>Galaxy 25</name>
 			<region>North America</region>
 			<lon>-93.03</lon>
-			<favorite>FALSE</favorite>
-			<enabled>TRUE</enabled>
+			<enable>Y</enable>
+			<favorite>N</favorite>
 		</D>
 	</satellites>
 </ipacu_response>

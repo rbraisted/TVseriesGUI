@@ -5,16 +5,20 @@
 	<enable>Y | N</enable>
 	<autoswitch_list>
 		<autoswitch>
-			<sn>123456789</sn>
-			<name>Salon</name>
-		</autoswitch>
-		<autoswitch>
-			<sn>123123123</sn>
+			<sn>111111111</sn>
 			<name>Boudoir</name>
 		</autoswitch>
 		<autoswitch>
-			<sn>111222333</sn>
+			<sn>222222222</sn>
+			<name>Engine Room</name>
+		</autoswitch>
+		<autoswitch>
+			<sn>333333333</sn>
 			<name>Kitchen</name>
+		</autoswitch>
+		<autoswitch>
+			<sn>444444444</sn>
+			<name>Salon</name>
 		</autoswitch>
 	</autoswitch_list>
 </ipacu_response>
