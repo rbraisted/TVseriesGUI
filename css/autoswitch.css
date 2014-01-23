@@ -3,7 +3,14 @@
 }
 
 body.at-splash .menu-view,
-body.at-splash .autoswitches-view {
+body.at-splash .autoswitches-view,
+
+body.at-autoswitches .menu-view,
+body.at-autoswitches .autoswitches-view,
+
+body.at-edit .menu-view,
+body.at-edit .autoswitches-view,
+body.at-edit .edit-view {
 	display: block;
 }
 
@@ -187,4 +194,60 @@ body.at-splash .autoswitches-view {
 
 .autoswitch-view.is-active .status-img {
 	background-image: url(/images/autoswitch-status-green.png);
+}
+
+
+
+
+
+
+
+.edit-view .popup-content {
+	height: 300px;
+	margin-top: -150px;
+	width: 700px;
+	margin-left: -350px;
+}
+
+.edit-view p {
+	color: #fff;
+	font-size: 13px;
+	font-style: italic;
+	position: absolute;
+	width: 350px;
+	right: 40px;
+	top: 70px;
+}
+
+.edit-view .guts {
+	border-bottom: 1px solid #466ab2;
+	border-top: 1px solid #466ab2;
+	height: 70px;
+	margin-top: 70px;
+	margin-bottom: 12px;
+}
+
+.edit-view .label {
+	top: 165px;
+	margin-left: 10px;
+}
+
+.edit-view .value {
+	top: 185px;
+	width: calc(50% - 50px);
+}
+
+.edit-view .receiver-label,
+.edit-view .receiver-value {
+	left: 40px;
+}
+
+.edit-view .serial-number-label,
+.edit-view .serial-number-value {
+	left: calc(50% + 10px);
+}
+
+.wizard-btn {
+	position: absolute;
+	top: 85px;
 }

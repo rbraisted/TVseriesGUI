@@ -5,17 +5,14 @@
 TVRO.AutoswitchPage = function() {
 	var webService = TVRO.WebService(),
 
-		//	ip autoswitches and directv receivers
-		//	autoswitchesTableView refresh() populates these
-		receivers = [],
-		masterReceiver = {},
-		activeReceivers = [],
-
 		satelliteTrackingView,
 
 		autoswitchesTableView,
 		AutoswitchesTableView = function() {
 			var self = $.apply($, arguments),
+				receivers = [],
+				masterReceiver = {},
+				activeReceivers = [],
 				table = TVRO.Table.apply(this, arguments),
 				refresh = function() {
 					var	getReceivers = function() {
@@ -25,6 +22,7 @@ TVRO.AutoswitchPage = function() {
 							ip: $('ip_address', this).text()
 						}
 					},
+
 					populateTable = function() {
 						table.setData(receivers);
 
@@ -37,7 +35,8 @@ TVRO.AutoswitchPage = function() {
 							$('[id ~= ip ]', this).eq(i).text(receivers[i].sn);
 
 							$('[id ~= edit-btn ]', this).eq(i).click(function() {
-								editView.loadAutoswitch(receivers[i]);
+								editView.loadReceiver(receivers[i]);
+								$(document.body).setClass('at-edit');
 							});
 
 							$('[id ~= select-btn ]', this).eq(i).click(function() {
@@ -65,23 +64,75 @@ TVRO.AutoswitchPage = function() {
 							populateTable();
 						});
 					});
-				};
+				}
 
 			return $.extend({}, self, {
 				refresh: refresh
+			});
+		},
+
+		editView,
+		EditView = function() {
+			var self = $.apply($, arguments),
+				receiver = {},
+				isNew = false,
+				refresh = function() {
+					$('[id ~= delete-btn ]', self).toggle(!isNew);
+					$('[id ~= serial-number ]', self).val(receiver.sn);
+					$('[id ~= name ]', self).val(receiver.name);
+					$('[id ~= ip ]', self).val(receiver.ip);
+				}
+
+			$('[id ~= delete-btn ]', self).click(function() {
+				webService.request('set_autoswitch_configured_names', {
+					sn: receiver.sn,
+					name: receiver.name
+				}, function() {
+					autoswitchesTableView.refresh();
+					$(document.body).setClass('at-receivers-table-view');
+				});
+			});
+
+			$('[id ~= cancel-btn ]', self).click(function() {
+				if (isNew) $(document.body).setClass('at-menu');
+				else $(document.body).setClass('at-autoswitches');
+			});
+
+			$('[id ~= save-btn ]', self).click(function() {
+				webService.request('set_autoswitch_configured_names', {
+					sn: receiver.sn,
+					name: receiver.name
+				}, function() {
+					autoswitchesTableView.refresh();
+					$('[id ~= cancel-btn ]', self).click();
+				});
+			});
+
+			return $.extend({}, self, {
+				loadReceiver: function() {
+					isNew = false;
+					receiver = arguments[0];
+					refresh();
+				},
+				loadNew: function() {
+					isNew = true;
+					receiver = {};
+					refresh();
+				}
 			});
 		}
 
 	return {
 		init: function() {
 			satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]');
-			// autoswitchesView = AutoswitchesView();
 			autoswitchesTableView = AutoswitchesTableView('[id ~= autoswitches-view ]');
+			editView = EditView('[id ~= edit-view ]');
 
 			$('[id ~= new-btn ]', self).click(function() {
 				//	show the popup
+				editView.loadNew();
+				$(document.body).setClass('at-edit');
 			});
-
 
 			this.refresh();
 		},
@@ -91,8 +142,6 @@ TVRO.AutoswitchPage = function() {
 		}
 	}
 }
-
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
@@ -161,103 +210,3 @@ TVRO.SatelliteTrackingView = function() {
 TVRO.page = TVRO.AutoswitchPage();
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-
-/*
-
-TVRO.Autoswitch = function(xml) {
-	var self = {},
-		xml = $(xml);
-
-	self.name = $('name', xml).text();
-	self.ip = $('ip', xml).text();
-	self.sn = $('sn', xml).text();
-
-	return self;
-};
-
-// TVRO.AutoswitchView = function(view, autoswitch) {
-// 	var self = {},
-// 		view = $(view),
-// 		autoswitch = new TVRO.Autoswitch(autoswitch);
-// 	return self;
-// };
-
-TVRO.AutoswitchView = function(view, autoswitch) {
-	var self = {},
-		autoswitch = new TVRO.Autoswitch(autoswitch);
-
-	$('[id ~= save-btn]', view).click(function() {
-		self.showView();
-	});
-
-	$('[id ~= cancel-btn]', view).click(function() {
-		self.showView();
-	});
-
-	$('[id ~= edit-btn]', view).click(function() {
-		self.showEdit();
-	});
-
-	$('[id ~= remove-btn]', view).click(function() {
-		self.showEdit();
-	});
-
-	$('[id ~= name]', view).text(autoswitch.name).val(autoswitch.name);
-	$('[id ~= ip]', view).text(autoswitch.ip).val(autoswitch.ip);
-	$('[id ~= sn]', view).text(autoswitch.sn).val(autoswitch.sn);
-
-	$('#mc').append(view);
-
-	self.showEdit = function() {
-		$('[id ~= edit]', view).show();
-		$('[id ~= view]', view).hide();
-	};
-
-	self.showView = function() {
-		$('[id ~= view]', view).show();
-		$('[id ~= edit]', view).hide();
-	};
-
-	return self;
-};
-
-TVRO.AutoswitchPage = function() {
-	var self = {},
-		webService = new TVRO.WebService();
-
-	self.init = function() {
-		$('#autoswitch-btn').toggleClass('selected', true);
-
-		//	so
-		//	first off
-		//	check if autoswitch is like avail or not
-
-		webService.request('get_autoswitch_status', function(response) {
-			console.log(response);
-
-			var available = $('available', response).text() === 'Y',
-				enabled = $('ipacu_response > enable', response).text() === 'Y',
-				autoswitches = $('active_list > autoswitch', response),
-				master = $('master', response);
-
-			if (!available) {
-				//	show something else, redirect maybe?
-			} else if (!enabled) {
-				//	no screen set up yet, not sure what to do
-				//	in this case (available && !enabled)
-			} else {
-				var template = $('[id ~= autoswitch]').detach();
-				$('[id ~= edit]', template).hide();
-				autoswitches.each(function(index, autoswitch) {
-					var g = new TVRO.AutoswitchView(template.clone(true), autoswitch);
-				});
-			}
-		});		
-	};
-
-	return self;
-};
-
-TVRO.page = new TVRO.AutoswitchPage();
-
-*/

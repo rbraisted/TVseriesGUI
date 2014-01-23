@@ -109,6 +109,32 @@
 		</a>
 		<h1>Edit Autoswitch</h1>
 
+		<a id="wizard-btn" href="#" class="btn basic-btn wizard-btn">
+			<label>Launch Setup Wizard</label>
+		</a>
+
+		<p class="copy">KVH recommends that you run the Setup Wizard whenever you change your
+			system's configuration by adding or removing devices.</p>
+
+		<div class="guts">
+			<div class="label receiver-label">Receiver</div>
+			<input id="name" type="text" class="value receiver-value">
+
+			<div class="label serial-number-label">Serial #</div>
+			<input id="serial-number" type="text" class="value serial-number-value">
+		</div>
+
+		<a id="delete-btn" href="#" class="btn basic-btn delete-btn">
+			<label>Remove</label>
+		</a>
+
+		<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
+			<label>Cancel</label>
+		</a>
+
+		<a id="save-btn" href="#" class="btn basic-btn save-btn">
+			<label>Save</label>
+		</a>
 	</div>
 </div>
 
