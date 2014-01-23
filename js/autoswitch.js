@@ -42,14 +42,16 @@ TVRO.AutoswitchPage = function() {
 							});
 
 							$('[id ~= select-btn ]', this).eq(i).click(function() {
-								$('[id ~= table-row ]', table)
-									.removeClass('is-master')
-									.has(this)
-									.addClass('is-master');
+								if (confirm('Make "'+receivers[i].name+'" Master?')) {
+									$('[id ~= table-row ]', table)
+										.removeClass('is-master')
+										.has(this)
+										.addClass('is-master');
 
-								webService.request('set_autoswitch_master', {
-									sn: receivers[i].sn
-								}, refresh);
+									webService.request('set_autoswitch_master', {
+										sn: receivers[i].sn
+									}, refresh);
+								}
 							});
 						});
 					}
@@ -87,14 +89,16 @@ TVRO.AutoswitchPage = function() {
 				}
 
 			$('[id ~= delete-btn ]', self).click(function() {
-				webService.request('set_autoswitch_configured_names', {
-					command: 'DELETE',
-					sn: receiver.sn,
-					name: receiver.name
-				}, function() {
-					autoswitchesTableView.refresh();
-					$(document.body).setClass('at-receivers-table-view');
-				});
+				if (confirm('Remove '+(isDirecTV ? 'Receiver' : 'IP Autoswitch')+'?')) {
+					webService.request('set_autoswitch_configured_names', {
+						command: 'DELETE',
+						sn: receiver.sn,
+						name: receiver.name
+					}, function() {
+						autoswitchesTableView.refresh();
+						$(document.body).setClass('at-receivers-table-view');
+					});
+				}
 			});
 
 			$('[id ~= cancel-btn ]', self).click(function() {
@@ -103,26 +107,28 @@ TVRO.AutoswitchPage = function() {
 			});
 
 			$('[id ~= save-btn ]', self).click(function() {
-				var add = function() {
-					webService.request('set_autoswitch_configured_names', {
-						command: 'ADD',
-						sn: $('[id ~= serial-number ]', self).val(),
-						name: $('[id ~= name ]', self).val()
-					}, function() {
-						autoswitchesTableView.refresh();
-						$('[id ~= cancel-btn ]', self).click();
-					});
-				}
+				if (confirm((isNew ? 'Add' : 'Edit')+' '+(isDirecTV ? 'Receiver' : 'IP Autoswitch')+'?')) {
+					var add = function() {
+						webService.request('set_autoswitch_configured_names', {
+							command: 'ADD',
+							sn: $('[id ~= serial-number ]', self).val(),
+							name: $('[id ~= name ]', self).val()
+						}, function() {
+							autoswitchesTableView.refresh();
+							$('[id ~= cancel-btn ]', self).click();
+						});
+					}
 
-				if (isNew) {
-					add();
-				} else {
-					//	delete the old entry (???)
-					webService.request('set_autoswitch_configured_names', {
-						command: 'DELETE',
-						sn: receiver.sn,
-						name: receiver.name
-					}, add);
+					if (isNew) {
+						add();
+					} else {
+						//	delete the old entry (???)
+						webService.request('set_autoswitch_configured_names', {
+							command: 'DELETE',
+							sn: receiver.sn,
+							name: receiver.name
+						}, add);
+					}
 				}
 			});
 

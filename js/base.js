@@ -392,13 +392,6 @@ TVRO.Table = function(selector, context) {
 	var self = $.apply($, arguments),
 		template = $('[id ~= template ]', self).detach();
 
-	console.log("self");
-	console.log(self);
-	console.log("arguments");
-	console.log(arguments);
-	console.log("template");
-	console.log(template);
-
 	template.get(0).id = $.trim(template.get(0).id.replace('template', ''));
 
 	return $.extend({}, self, {

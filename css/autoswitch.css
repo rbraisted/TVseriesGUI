@@ -2,19 +2,34 @@
 	outline: 1px solid #f5aacb;
 }
 
-body.at-splash .menu-view,
-body.at-splash .autoswitches-view,
 
-body.at-menu .menu-view,
-body.at-menu .autoswitches-view,
+@media screen and (min-width: 880px) {
+	body.at-splash .menu-view,
+	body.at-splash .autoswitches-view,
 
-body.at-autoswitches .menu-view,
-body.at-autoswitches .autoswitches-view,
+	body.at-menu .menu-view,
+	body.at-menu .autoswitches-view,
 
-body.at-edit .menu-view,
-body.at-edit .autoswitches-view,
-body.at-edit .edit-view {
-	display: block;
+	body.at-autoswitches .menu-view,
+	body.at-autoswitches .autoswitches-view,
+
+	body.at-edit .menu-view,
+	body.at-edit .autoswitches-view,
+	body.at-edit .edit-view {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	body.at-splash .menu-view,
+
+	body.at-menu .menu-view,
+
+	body.at-autoswitches .autoswitches-view,
+
+	body.at-edit .edit-view {
+		display: block;
+	}	
 }
 
 .menu-sub-view,
