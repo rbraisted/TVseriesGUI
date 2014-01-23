@@ -57,7 +57,8 @@
 
 	<a id="new-btn" href="#" class="btn basic-btn new-btn">
 		<img src="/images/img.gif">
-		<label>Add Receiver</label>
+		<label id="not-directv">Add IP Autoswitch</label>
+		<label id="directv">Add Receiver</label>
 	</a>
 </div>
 
@@ -67,11 +68,13 @@
 	<div class="view-content main-content">
 		<a id="back-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
-			<label id="name">Autoswitches</label>
+			<label id="not-directv">IP Autoswitches</label>
+			<label id="directv">Receivers</label>
 		</a>
 		<h1>
 			<img src="/images/img.gif">
-			<span id="name">Autoswitches</span>
+			<span id="not-directv">IP Autoswitches</span>
+			<span id="directv">Receivers</span>
 		</h1>
 		<div id="table-rows">
 			<div id="template table-row" class="autoswitch-view">
@@ -82,10 +85,13 @@
 				<img src="/images/img.gif" class="master-img">
 
 				<div class="label receiver-label">Receiver</div>
-				<div id="name" class="value receiver-value">Bedroom</div>
+				<div id="name" class="value receiver-value"></div>
 
-				<div class="label serial-number-label">Serial #</div>
-				<div id="serial-number" class="value serial-number-value">1234567890</div>
+				<div id="not-directv" class="label serial-number-label">Serial #</div>
+				<div id="not-directv serial-number" class="value serial-number-value"></div>
+
+				<div id="directv" class="label serial-number-label">IP Address</div>
+				<div id="directv ip" class="value serial-number-value"></div>
 
 				<a id="edit-btn" href="#" class="btn basic-btn edit-btn">
 					<label>Edit</label>
@@ -105,9 +111,19 @@
 	<div class="view-content popup-content">
 		<a id="cancel-btn" href="#" class="btn back-btn">
 			<img src="/images/img.gif">
-			<label>Edit Autoswitch</label>
+			<label>
+				<span id="new">Add</span>
+				<span id="old">Edit</span>
+				<span id="not-directv">IP Autoswitch</span>
+				<span id="directv">Receiver</span>
+			</label>
 		</a>
-		<h1>Edit Autoswitch</h1>
+		<h1>
+			<span id="new">Add</span>
+			<span id="old">Edit</span>
+			<span id="not-directv">IP Autoswitch</span>
+			<span id="directv">Receiver</span>
+		</h1>
 
 		<a id="wizard-btn" href="#" class="btn basic-btn wizard-btn">
 			<label>Launch Setup Wizard</label>
@@ -117,14 +133,20 @@
 			system's configuration by adding or removing devices.</p>
 
 		<div class="guts">
-			<div class="label receiver-label">Receiver</div>
+			<div class="label receiver-label">
+				<span id="not-directv">IP Autoswitch</span>
+				<span id="directv">Receiver</span>
+			</div>
 			<input id="name" type="text" class="value receiver-value">
 
-			<div class="label serial-number-label">Serial #</div>
-			<input id="serial-number" type="text" class="value serial-number-value">
+			<div id="not-directv" class="label serial-number-label">Serial #</div>
+			<input id="not-directv serial-number" type="text" class="value serial-number-value">
+
+			<div id="directv" class="label serial-number-label">IP Address</div>
+			<input id="directv ip" type="text" class="value serial-number-value">
 		</div>
 
-		<a id="delete-btn" href="#" class="btn basic-btn delete-btn">
+		<a id="old delete-btn" href="#" class="btn basic-btn delete-btn">
 			<label>Remove</label>
 		</a>
 

@@ -5,6 +5,8 @@
 TVRO.AutoswitchPage = function() {
 	var webService = TVRO.WebService(),
 
+		isDirecTV = false,
+
 		satelliteTrackingView,
 
 		autoswitchesTableView,
@@ -77,7 +79,8 @@ TVRO.AutoswitchPage = function() {
 				receiver = {},
 				isNew = false,
 				refresh = function() {
-					$('[id ~= delete-btn ]', self).toggle(!isNew);
+					$('[id ~= new ]', self).toggle(isNew);
+					$('[id ~= old ]', self).toggle(!isNew);
 					$('[id ~= serial-number ]', self).val(receiver.sn);
 					$('[id ~= name ]', self).val(receiver.name);
 					$('[id ~= ip ]', self).val(receiver.ip);
@@ -85,6 +88,7 @@ TVRO.AutoswitchPage = function() {
 
 			$('[id ~= delete-btn ]', self).click(function() {
 				webService.request('set_autoswitch_configured_names', {
+					command: 'DELETE',
 					sn: receiver.sn,
 					name: receiver.name
 				}, function() {
@@ -99,13 +103,27 @@ TVRO.AutoswitchPage = function() {
 			});
 
 			$('[id ~= save-btn ]', self).click(function() {
-				webService.request('set_autoswitch_configured_names', {
-					sn: receiver.sn,
-					name: receiver.name
-				}, function() {
-					autoswitchesTableView.refresh();
-					$('[id ~= cancel-btn ]', self).click();
-				});
+				var add = function() {
+					webService.request('set_autoswitch_configured_names', {
+						command: 'ADD',
+						sn: $('[id ~= serial-number ]', self).val(),
+						name: $('[id ~= name ]', self).val()
+					}, function() {
+						autoswitchesTableView.refresh();
+						$('[id ~= cancel-btn ]', self).click();
+					});
+				}
+
+				if (isNew) {
+					add();
+				} else {
+					//	delete the old entry (???)
+					webService.request('set_autoswitch_configured_names', {
+						command: 'DELETE',
+						sn: receiver.sn,
+						name: receiver.name
+					}, add);
+				}
 			});
 
 			return $.extend({}, self, {
@@ -124,21 +142,24 @@ TVRO.AutoswitchPage = function() {
 
 	return {
 		init: function() {
-			satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]');
-			autoswitchesTableView = AutoswitchesTableView('[id ~= autoswitches-view ]');
-			editView = EditView('[id ~= edit-view ]');
-
-			$('[id ~= new-btn ]', self).click(function() {
+			$('[id ~= new-btn ]').click(function() {
 				//	show the popup
 				editView.loadNew();
 				$(document.body).setClass('at-edit');
 			});
 
-			this.refresh();
-		},
-		refresh: function() {
-			satelliteTrackingView.refresh();
-			autoswitchesTableView.refresh();
+			webService.request('get_autoswitch_status', function(response) {
+				isDirecTV = $('service', response).text() === 'DIRECTV';
+				if (isDirecTV) $('[id ~= not-directv ]').remove();
+				else $('[id ~= directv ]').remove();
+
+				satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]');
+				autoswitchesTableView = AutoswitchesTableView('[id ~= autoswitches-view ]');
+				editView = EditView('[id ~= edit-view ]');
+
+				satelliteTrackingView.refresh();
+				autoswitchesTableView.refresh();
+			});
 		}
 	}
 }
