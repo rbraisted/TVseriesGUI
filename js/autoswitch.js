@@ -29,12 +29,13 @@ TVRO.AutoswitchPage = function() {
 						table.setData(receivers);
 
 						$('[id ~= table-row ]', table).each(function(i) {
-							$(this).toggleClass('is-master', receivers[i].sn === masterReceiver.sn)
-								.toggleClass('is-active', Boolean($(activeReceivers).filter(function() { return receivers[i].sn === this.sn; }).length));
+							var property = isDirecTV ? 'ip' : 'sn';
+							$(this).toggleClass('is-master', receivers[i][property] === masterReceiver[property])
+								.toggleClass('is-active', Boolean($(activeReceivers).filter(function() { return receivers[i][property] === this[property]; }).length));
 
 							$('[id ~= name ]', this).eq(i).text(receivers[i].name);
 							$('[id ~= serial-number ]', this).eq(i).text(receivers[i].sn);
-							$('[id ~= ip ]', this).eq(i).text(receivers[i].sn);
+							$('[id ~= ip ]', this).eq(i).text(receivers[i].ip);
 
 							$('[id ~= edit-btn ]', this).eq(i).click(function() {
 								editView.loadReceiver(receivers[i]);
@@ -48,23 +49,22 @@ TVRO.AutoswitchPage = function() {
 										.has(this)
 										.addClass('is-master');
 
-									webService.request('set_autoswitch_master', {
-										sn: receivers[i].sn
-									}, refresh);
+									var params = (isDirecTV ? { ip_address: receivers[i].ip } : { sn: receivers[i].sn });
+									webService.request('set_autoswitch_master', params, refresh);
 								}
 							});
 						});
 					}
 
-					//	using get_autoswitch_configured_names,
+					//	using get_directv_service/get_autoswitch_configured_names,
 					//	get the full list of devices
-					webService.request('get_autoswitch_configured_names', function(response) {
-						receivers = $('autoswitch', response).map(getReceivers).toArray();
+					webService.request(isDirecTV ? 'get_directv_service' : 'get_autoswitch_configured_names', function(response) {
+						receivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(getReceivers).toArray();
 
 						//	using get_autoswitch_status, get the active subset
 						webService.request('get_autoswitch_status', function(response) {
 							masterReceiver = getReceivers.call($('master', response));
-							activeReceivers = $('autoswitch', response).map(getReceivers).toArray();
+							activeReceivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(getReceivers).toArray();
 							populateTable();
 						});
 					});
@@ -90,13 +90,13 @@ TVRO.AutoswitchPage = function() {
 
 			$('[id ~= delete-btn ]', self).click(function() {
 				if (confirm('Remove '+(isDirecTV ? 'Receiver' : 'IP Autoswitch')+'?')) {
-					webService.request('set_autoswitch_configured_names', {
+					var params = isDirecTV ? { ip_address: receiver.ip } : { sn: receiver.sn };
+					webService.request(isDirecTV ? 'set_directv_service' : 'set_autoswitch_configured_names', $.extend(params, {
 						command: 'DELETE',
-						sn: receiver.sn,
 						name: receiver.name
-					}, function() {
+					}), function() {
 						autoswitchesTableView.refresh();
-						$(document.body).setClass('at-receivers-table-view');
+						$(document.body).setClass('at-autoswitches');
 					});
 				}
 			});
@@ -109,11 +109,11 @@ TVRO.AutoswitchPage = function() {
 			$('[id ~= save-btn ]', self).click(function() {
 				if (confirm((isNew ? 'Add' : 'Edit')+' '+(isDirecTV ? 'Receiver' : 'IP Autoswitch')+'?')) {
 					var add = function() {
-						webService.request('set_autoswitch_configured_names', {
+						var params = isDirecTV ? { ip_address: $('[id ~= ip ]', self).val() } : { sn: $('[id ~= serial-number ]', self).val() };
+						webService.request(isDirecTV ? 'set_directv_service' : 'set_autoswitch_configured_names', $.extend(params, {
 							command: 'ADD',
-							sn: $('[id ~= serial-number ]', self).val(),
 							name: $('[id ~= name ]', self).val()
-						}, function() {
+						}), function() {
 							autoswitchesTableView.refresh();
 							$('[id ~= cancel-btn ]', self).click();
 						});
@@ -123,11 +123,11 @@ TVRO.AutoswitchPage = function() {
 						add();
 					} else {
 						//	delete the old entry (???)
-						webService.request('set_autoswitch_configured_names', {
+						var params = isDirecTV ? { ip_address: receiver.ip } : { sn: receiver.sn };
+						webService.request(isDirecTV ? 'set_directv_service' : 'set_autoswitch_configured_names', $.extend(params, {
 							command: 'DELETE',
-							sn: receiver.sn,
 							name: receiver.name
-						}, add);
+						}), add);
 					}
 				}
 			});

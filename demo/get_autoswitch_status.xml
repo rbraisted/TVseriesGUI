@@ -16,6 +16,7 @@
 	-->
 
 	<!-- DISH and DISEQC services -->
+	
 	<service>DISH</service>
 	<service_subtype>NORTH_AMERICA</service_subtype>
 	<master>
