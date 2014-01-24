@@ -118,8 +118,6 @@ TVRO.AutoswitchPage = function() {
 			return $.extend({}, self, {
 				loadReceiver: function() {
 					receiver = arguments[0];
-
-					console.log(receiver);
 					refresh();
 				}
 			});

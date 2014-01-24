@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message error="0" name="antenna_versions"/>
-	<system>TVRO | VSAT</system>
+	<system>TVRO</system>
 	<part>04-1234</part>
 	<current>102</current>
-	<icm>Y | N</icm>
+	<icm>Y</icm><!-- Y | N -->
 	<acu>
 		<model>TVRO-IPACU</model>
 		<part>04-1234</part>
@@ -53,7 +53,17 @@
 		<ver>1.00</ver>
 	</fpga>
 	<lnb>
+		<part>19-0815</part>
 		<ver>1.00</ver>
+		<name>DishPro Stacked</name>
+		<polarization>LINEAR</polarization><!-- LINEAR | CIRCULAR -->
+		<voltage>18V</voltage>
+		<LO1_freq>11250</LO1_freq>
+		<LO1_convert>NORMAL</LO1_convert><!-- NORMAL | INVERTED -->
+		<LO1_tone>ON</LO1_tone><!-- ON | OFF -->
+		<LO2_freq>14350</LO2_freq>
+		<LO2_convert>NORMAL</LO2_convert><!-- NORMAL | INVERTED -->
+		<LO2_tone>ON</LO2_tone><!-- ON | OFF -->
 	</lnb>
 	<sensor>
 		<part>04-1234</part>
@@ -70,7 +80,8 @@
 		<sn>1234567</sn>
 		<ver>1.0</ver>
 		<sed>acbdef</sed>
-		<sscf>123456</sscf></modem>
+		<sscf>123456</sscf>
+	</modem>
 	<mta>
 		<mac>172.31.255.6</mac>
 		<ver>9.15.25</ver>

@@ -2,7 +2,7 @@
 <ipacu_response>
 	<message name="antenna_status" error="0"/>
 	<gps>
-		<state>ACQUIRED</state><!-- ACQUIRED | ACQUIRING | ERROR -->
+		<state>ACQUIRED</state><!-- ACQUIRED | ACQUIRING | ERROR | MANUAL -->
 		<lat>41.312934</lat>
 		<lon>-71.175168</lon>
 		<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
@@ -18,11 +18,11 @@
 			<snr>7</snr>
 			<bars>4</bars>
 			<rssi>4.3</rssi>
-			<hazard_zone>NOTSET | ZONE1 | ZONE2 | ZONE1 and ZONE2 | NONE | IGNORED</hazard_zone>
+			<hazard_zone>NOTSET</hazard_zone><!-- NOTSET | ZONE1 | ZONE2 | ZONE1 and ZONE2 | NONE | IGNORED -->
 		</rf>
 		<brst>
 			<hdg>123.6</hdg>
-			<az_bow>99.0</az_bow>
+			<az_bow>10.0</az_bow>
 			<az>190.0</az>
 			<el>89.1</el>
 			<tilt>-87.4</tilt>
@@ -54,19 +54,19 @@
 		<ebno>5.0</ebno>
 	</modem>
 	<mta>
-		<state>ONLINE | CONNECTING | UNAVAILABLE | UNKNOWN</state>
+		<state>ONLINE</state><!-- ONLINE | CONNECTING | UNAVAILABLE | UNKNOWN -->
 		<ports>
 			<port>
 				<addr>1</addr>￼￼￼
-				<sip>REGISTERED | NOT_REGISTERED</sip>
-				<status>AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN</status>
-				<mail>Y | N</mail>
+				<sip>REGISTERED</sip><!-- REGISTERED | NOT_REGISTERED -->
+				<status>AVAILABLE</status><!-- AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN -->
+				<mail>Y</mail><!-- Y | N -->
 			</port>
 			<port>
 				<addr>2</addr>
-				<sip>REGISTERED | NOT_REGISTERED</sip>
-				<status>AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN</status>
-				<mail>Y | N</mail>
+				<sip>REGISTERED</sip><!-- REGISTERED | NOT_REGISTERED -->
+				<status>AVAILABLE</status><!-- AVAILABLE | DIALING | OFF HOOK | RINGING | IN USE | UNAVAILABLE | UNKNOWN -->
+				<mail>Y</mail><!-- Y | N -->
 			</port>
 		</ports>
 	</mta>
@@ -78,13 +78,13 @@
 		</master>
 	</autoswitch>
 	<smartswitch>
-		<available>Y | N</available>
-		<autoselect>Y | N</autoselect>
-		<input>A | B</input>
-		<output>1 | 2 | 3</output>
+		<available>Y</available><!-- Y | N -->
+		<autoselect>Y</autoselect><!-- Y | N -->
+		<input>A</input><!-- A | B -->
+		<output>1</output><!-- 1 | 2 | 3 -->
 	</smartswitch>
 	<dualdome>
-		<mode>SINGLE | MASTER | SLAVE</mode>
-		<state>SINGLE | DISCOVER | SYNCH | NO_RF | FOLLOW | ACTIVE</state>
+		<mode>SINGLE</mode><!-- SINGLE | MASTER | SLAVE -->
+		<state>SINGLE</state><!-- SINGLE | DISCOVER | SYNCH | NO_RF | FOLLOW | ACTIVE -->
 	</dualdome>
 </ipacu_response>

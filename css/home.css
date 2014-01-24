@@ -1,3 +1,7 @@
+*:hover {
+	outline: 1px solid #f5aacb;
+}
+
 body.at-splash .menu-view,
 body.at-splash .vessel-view {
 	display: block;
