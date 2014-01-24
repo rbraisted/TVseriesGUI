@@ -2,16 +2,12 @@
 	outline: 1px solid #f5aacb;
 }
 
-
 @media screen and (min-width: 880px) {
 	body.at-splash .menu-view,
 	body.at-splash .autoswitches-view,
 
-	body.at-menu .menu-view,
-	body.at-menu .autoswitches-view,
-
-	body.at-autoswitches .menu-view,
-	body.at-autoswitches .autoswitches-view,
+	body.at-view .menu-view,
+	body.at-view .autoswitches-view,
 
 	body.at-edit .menu-view,
 	body.at-edit .autoswitches-view,
@@ -21,15 +17,13 @@
 }
 
 @media screen and (max-width: 880px) {
-	body.at-splash .menu-view,
+	body.at-splash .autoswitches-view,
 
-	body.at-menu .menu-view,
-
-	body.at-autoswitches .autoswitches-view,
+	body.at-view .autoswitch-view,
 
 	body.at-edit .edit-view {
 		display: block;
-	}	
+	}
 }
 
 .menu-sub-view,
@@ -119,7 +113,7 @@
 	top: 0;
 }
 
-.autoswitch-view {
+.autoswitch-table-row {
 	background-color: #000;
 	height: 85px;
 	margin: 0 auto 25px;
@@ -197,35 +191,25 @@
 	z-index: 1;
 }
 
-.autoswitch-view.is-master {
+.autoswitch-table-row.is-master {
 	background-color: #4e79bc;
 }
 
-.autoswitch-view.is-master .select-btn {
+.autoswitch-table-row.is-master .select-btn {
 	display: none;
 }
 
-.autoswitch-view.is-master .master-label,
-.autoswitch-view.is-master .master-img {
+.autoswitch-table-row.is-master .master-label,
+.autoswitch-table-row.is-master .master-img {
 	display: block;
 }
 
-.autoswitch-view.is-active .status-img {
+.autoswitch-table-row.is-active .status-img {
 	background-image: url(/images/autoswitch-status-green.png);
 }
 
 
 
-
-
-
-
-.edit-view .popup-content {
-	height: 300px;
-	margin-top: -150px;
-	width: 700px;
-	margin-left: -350px;
-}
 
 .edit-view p {
 	color: #fff;
@@ -235,14 +219,6 @@
 	width: 350px;
 	right: 40px;
 	top: 70px;
-}
-
-.edit-view .guts {
-	border-bottom: 1px solid #466ab2;
-	border-top: 1px solid #466ab2;
-	height: 70px;
-	margin-top: 70px;
-	margin-bottom: 12px;
 }
 
 .edit-view .label {
@@ -268,4 +244,256 @@
 .wizard-btn {
 	position: absolute;
 	top: 85px;
+}
+
+
+@media screen and (min-width: 880px) {
+	.autoswitches-view .new-btn,
+	.autoswitch-table-row .view-btn {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.autoswitch-table-row .edit-btn,
+	.autoswitch-table-row .select-btn,
+	.autoswitch-table-row .label,
+	.autoswitch-table-row .value,
+	.autoswitch-table-row .label.master-label {
+		display: none;
+	}
+
+	.autoswitch-table-row .receiver-value {
+		display: block;
+		left: 50px;
+		top: 17px;
+	}
+
+	.autoswitch-table-row {
+		background-color: #293047;
+		border-bottom: 1px solid #4f7abd;
+		height: 50px;
+		margin: 0;
+		max-width: 100%;
+	}
+
+	.autoswitch-table-row:hover:not(.is-master) {
+		background-color: #1c335d;	
+	}
+
+	.autoswitch-table-row .status-img,
+	.autoswitch-table-row .master-img {
+		left: 10px;
+	}
+
+	.autoswitch-table-row .view-btn {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.autoswitch-table-row .view-btn img {
+		background-image: url(/images/menu-btn.png);
+		right: 0;
+	}
+
+	.autoswitch-table-row.is-master .view-btn img {
+		background-image: url(/images/menu-btn-selected.png);
+	}
+
+	.autoswitches-view .view-content {
+		max-width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		width: 100%;
+	}
+
+	.autoswitches-view .back-btn {
+		cursor: default;
+	}
+
+	.autoswitches-view .back-btn img {
+		display: none;
+	}
+
+	.autoswitches-view .new-btn {
+		z-index: 1;
+		height: 45px;
+		width: 40px;
+		min-width: 0;
+		background-color: transparent;
+		position: absolute;
+		top: 50px;
+		right: 0;
+		margin: 0;
+	}
+
+	.edit-view .value,
+	.autoswitch-view .value,
+	.edit-view .label,
+	.autoswitch-view .label {
+		left: auto;
+		top: auto;
+		width: 100%;
+		position: relative;
+	}
+	.autoswitch-view .value,
+	.edit-view .label,
+	.autoswitch-view .label {
+		padding: 0 10px;
+	}
+
+	.edit-view .value,
+	.autoswitch-view .value {
+		top: -35px;
+	}
+
+	.edit-view .label,
+	.autoswitch-view .label {
+		height: 60px;
+		border-bottom: 1px solid #4f7abd;
+	}
+
+	.edit-view .status-label,
+	.autoswitch-view .status-label {
+		height: auto;
+		padding-top: 5px;
+		padding-bottom: 20px;
+		padding-left: 40px;
+	}
+
+	.edit-view .status-img,
+	.autoswitch-view .status-img {
+		position: relative;
+		top: -39px;
+		left: 10px;
+	}
+
+	.edit-view.is-active .status-img,
+	.autoswitch-view.is-active .status-img {
+		background-image: url(/images/autoswitch-status-green.png);
+	}
+
+	.edit-view.is-master .select-btn,
+	.autoswitch-view.is-master .select-btn {
+		display: none;
+	}
+
+	.edit-view.is-master .master-label,
+	.autoswitch-view.is-master .master-label,
+	.edit-view.is-master .master-img,
+	.autoswitch-view.is-master .master-img {
+		display: block;
+	}
+
+	.edit-view .master-label,
+	.autoswitch-view .master-label {
+		position: absolute;
+		width: auto;
+		border: 0;
+		height: auto;
+		text-align: center;
+		bottom: 22px;
+		right: 50px;
+		left: auto;
+		font-size: 16px;
+	}
+
+	.edit-view.is-master .master-img,
+	.autoswitch-view.is-master .master-img {
+		position: absolute;
+		height: 22px;
+		bottom: 20px;
+		top: auto;
+		right: 20px;
+	}
+
+	.edit-btn,
+	.select-btn,
+	.cancel-btn,
+	.save-btn,
+	.delete-btn {
+		top: auto;
+		bottom: 10px;
+		width: calc(50% - 15px);
+		position: absolute;
+	}
+
+	.select-btn,
+	.save-btn {
+		left: auto;
+		right: 10px;
+	}
+
+	.cancel-btn,
+	.delete-btn,
+	.edit-btn {
+		left: 10px;
+	}
+
+	.edit-view .cancel-btn {
+		display: none;
+	}
+
+	.edit-view .copy {
+		position: relative;
+		top: auto;
+		width: auto;
+		right: auto;
+	}
+
+	.edit-view .wizard-btn {
+		position: relative;
+		width: 100%;
+		top: auto;
+	}
+
+	.edit-view .save-btn {
+		right: 10px;
+		left: auto;
+	}
+
+	.edit-view .guts {
+		position: relative;
+		margin-top: 20px;
+		left: -10px;
+	}
+
+	.edit-view .view-content {
+		max-width: 700px;
+	}
+
+	.edit-view .value {
+		margin-left: 10px;
+		margin-top: -15px;
+	}
+
+	.edit-view .label {
+		height: 70px;
+	}
+
+}
+
+
+
+
+
+@media screen and (min-width: 880px) {
+	.edit-view .popup-content {
+		height: 300px;
+		margin-top: -150px;
+		width: 700px;
+		margin-left: -350px;
+	}
+
+	.edit-view .guts {
+		border-bottom: 1px solid #466ab2;
+		border-top: 1px solid #466ab2;
+		height: 70px;
+		margin-top: 70px;
+		margin-bottom: 12px;
+	}
 }

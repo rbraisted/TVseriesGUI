@@ -71,20 +71,29 @@
 			<label id="not-directv">IP Autoswitches</label>
 			<label id="directv">Receivers</label>
 		</a>
+		<a id="new-btn" href="#" class="btn basic-btn new-btn">
+			<img src="/images/img.gif">
+		</a>
 		<h1>
 			<img src="/images/img.gif">
 			<span id="not-directv">IP Autoswitches</span>
 			<span id="directv">Receivers</span>
 		</h1>
 		<div id="table-rows">
-			<div id="template table-row" class="autoswitch-view">
+			<div id="template table-row" class="autoswitch-table-row">
+				<a id="view-btn" href="#" class="btn view-btn">
+					<img src="/images/img.gif">
+				</a>
 				<div class="label status-label">Status</div>
 				<img src="/images/img.gif" class="status-img">
 
 				<div class="label master-label">Master</div>
 				<img src="/images/img.gif" class="master-img">
 
-				<div class="label receiver-label">Receiver</div>
+				<div class="label receiver-label">
+					<span id="not-directv">IP Autoswitch</span>
+					<span id="directv">Receiver</span>
+				</div>
 				<div id="name" class="value receiver-value"></div>
 
 				<div id="not-directv" class="label serial-number-label">Serial #</div>
@@ -97,11 +106,54 @@
 					<label>Edit</label>
 				</a>
 
-				<a id="radio-option select-btn" href="#" class="btn basic-btn select-btn">
+				<a id="select-btn" href="#" class="btn basic-btn select-btn">
 					<label>Select</label>
 				</a>
 			</div>
 		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div id="autoswitch-view" class="view main-view autoswitch-view">
+	<div class="view-content main-content">
+		<a id="back-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label id="not-directv">AutoSwitch Details</label>
+			<label id="directv">Receiver Details</label>
+		</a>
+		<h1>
+			<img src="/images/img.gif">
+			<span id="not-directv">AutoSwitch Details</span>
+			<span id="directv">Receiver Details</span>
+		</h1>
+
+		<div class="label receiver-label">
+			<span id="not-directv">IP Autoswitch</span>
+			<span id="directv">Receiver</span>
+		</div>
+		<div id="name" class="value receiver-value"></div>
+
+		<div id="not-directv" class="label serial-number-label">Serial #</div>
+		<div id="not-directv serial-number" class="value serial-number-value"></div>
+
+		<div id="directv" class="label serial-number-label">IP Address</div>
+		<div id="directv ip" class="value serial-number-value"></div>
+
+		<div class="label status-label">Status</div>
+		<img src="/images/img.gif" class="status-img">
+
+		<div class="label master-label">Master</div>
+		<img src="/images/img.gif" class="master-img">
+
+		<a id="edit-btn" href="#" class="btn basic-btn edit-btn">
+			<label>Edit</label>
+		</a>
+
+		<a id="select-btn" href="#" class="btn basic-btn select-btn">
+			<label>Select</label>
+		</a>
 	</div>
 </div>
 
@@ -125,13 +177,14 @@
 			<span id="directv">Receiver</span>
 		</h1>
 
-		<a id="wizard-btn" href="#" class="btn basic-btn wizard-btn">
-			<label>Launch Setup Wizard</label>
-		</a>
 
 		<p class="copy">KVH recommends that you run the Setup Wizard whenever you change your
 			system's configuration by adding or removing devices.</p>
 
+		<a id="wizard-btn" href="#" class="btn basic-btn wizard-btn">
+			<label>Launch Setup Wizard</label>
+		</a>
+		
 		<div class="guts">
 			<div class="label receiver-label">
 				<span id="not-directv">IP Autoswitch</span>

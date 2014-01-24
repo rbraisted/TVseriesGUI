@@ -7,14 +7,15 @@ TVRO.AutoswitchPage = function() {
 
 		isDirecTV = false,
 
+		receivers = [],
+		masterReceiver = {},
+		activeReceivers = [],
+
 		satelliteTrackingView,
 
 		autoswitchesTableView,
 		AutoswitchesTableView = function() {
 			var self = $.apply($, arguments),
-				receivers = [],
-				masterReceiver = {},
-				activeReceivers = [],
 				table = TVRO.Table.apply(this, arguments),
 				refresh = function() {
 					var	getReceivers = function() {
@@ -36,6 +37,11 @@ TVRO.AutoswitchPage = function() {
 							$('[id ~= name ]', this).eq(i).text(receivers[i].name);
 							$('[id ~= serial-number ]', this).eq(i).text(receivers[i].sn);
 							$('[id ~= ip ]', this).eq(i).text(receivers[i].ip);
+
+							$('[id ~= view-btn ]', this).eq(i).click(function() {
+								autoswitchView.loadReceiver(receivers[i]);
+								$(document.body).setClass('at-view');
+							});
 
 							$('[id ~= edit-btn ]', this).eq(i).click(function() {
 								editView.loadReceiver(receivers[i]);
@@ -75,6 +81,51 @@ TVRO.AutoswitchPage = function() {
 			});
 		},
 
+
+		autoswitchView,
+		AutoswitchView = function() {
+			var self = $.apply($, arguments),
+				receiver = {},
+				refresh = function() {
+					var property = isDirecTV ? 'ip' : 'sn';
+					self.toggleClass('is-master', receiver[property] === masterReceiver[property])
+						.toggleClass('is-active', Boolean($(activeReceivers).filter(function() { return receiver[property] === this[property]; }).length));
+
+					$('[id ~= serial-number ]', self).text(receiver.sn);
+					$('[id ~= name ]', self).text(receiver.name);
+					$('[id ~= ip ]', self).text(receiver.ip);
+				}
+
+			$('[id ~= back-btn ]', self).click(function() {
+				autoswitchesTableView.refresh();
+				$(document.body).setClass('at-splash');
+			});
+
+			$('[id ~= edit-btn ]', self).click(function() {
+				editView.loadReceiver(receiver);
+				$(document.body).setClass('at-edit');
+			});
+
+			$('[id ~= select-btn ]', self).click(function() {
+				if (confirm('Make "'+receiver.name+'" Master?')) {
+					self.addClass('is-master');
+
+					var params = (isDirecTV ? { ip_address: receiver.ip } : { sn: receiver.sn });
+					webService.request('set_autoswitch_master', params);
+				}
+			});
+
+			return $.extend({}, self, {
+				loadReceiver: function() {
+					receiver = arguments[0];
+
+					console.log(receiver);
+					refresh();
+				}
+			});
+		},
+
+
 		editView,
 		EditView = function() {
 			var self = $.apply($, arguments),
@@ -96,14 +147,14 @@ TVRO.AutoswitchPage = function() {
 						name: receiver.name
 					}), function() {
 						autoswitchesTableView.refresh();
-						$(document.body).setClass('at-autoswitches');
+						$(document.body).setClass('at-splash');
 					});
 				}
 			});
 
 			$('[id ~= cancel-btn ]', self).click(function() {
-				if (isNew) $(document.body).setClass('at-menu');
-				else $(document.body).setClass('at-autoswitches');
+				if (isNew) $(document.body).setClass('at-splash');
+				else $(document.body).setClass('at-view');
 			});
 
 			$('[id ~= save-btn ]', self).click(function() {
@@ -114,8 +165,14 @@ TVRO.AutoswitchPage = function() {
 							command: 'ADD',
 							name: $('[id ~= name ]', self).val()
 						}), function() {
+							autoswitchView.loadReceiver({
+								name: $('[id ~= name ]', self).val(),
+								ip: $('[id ~= ip ]', self).val(),
+								sn: $('[id ~= serial-number ]', self).val()
+							});
 							autoswitchesTableView.refresh();
-							$('[id ~= cancel-btn ]', self).click();
+							if (isNew) $(document.body).setClass('at-view');
+							else $('[id ~= cancel-btn ]', self).click();
 						});
 					}
 
@@ -146,6 +203,7 @@ TVRO.AutoswitchPage = function() {
 			});
 		}
 
+
 	return {
 		init: function() {
 			$('[id ~= new-btn ]').click(function() {
@@ -161,6 +219,7 @@ TVRO.AutoswitchPage = function() {
 
 				satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]');
 				autoswitchesTableView = AutoswitchesTableView('[id ~= autoswitches-view ]');
+				autoswitchView = AutoswitchView('[id ~= autoswitch-view ]');
 				editView = EditView('[id ~= edit-view ]');
 
 				satelliteTrackingView.refresh();
