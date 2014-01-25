@@ -180,18 +180,33 @@ TVRO.HomePage.AutoswitchView = function() {
 
 TVRO.HomePage.VesselView = function() {
 	var self = {},
-		view = $('[id ~= menu-view ]'),
+		view = $('[id ~= vessel-view ]'),
 		webService = TVRO.WebService();
 
 	self.init = function() {
-		
+		webService.request('get_product_registration', function(response) {
+			$('[id ~= vessel-name ]', view).text($('vessel_name', response).text());
+		});
 	}
 
 	self.refresh = function() {
-		
+		webService.request('antenna_status', function(response) {
+			var vesselHeading = Number($('antenna > brst > hdg', response).text()).toFixed(1),
+				azBow = Math.round(parseFloat($('az_bow', response).text(), 10));
+
+			$('[id ~= vessel-heading ]', view).text(vesselHeading+'˚');
+			if (!isNaN(azBow) && azBow !== 999) {
+				$('[id ~= vessel-animation ]', view).css({
+					'transform' : 'rotate('+azBow+'deg)',
+					'-moz-transform' : 'rotate('+azBow+'deg)',
+					'-ms-transform' : 'rotate('+azBow+'deg)',
+					'-webkit-transform' : 'rotate('+azBow+'deg)'
+				});
+			}
+		});
 	}
 
-	return self;	
+	return self;
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

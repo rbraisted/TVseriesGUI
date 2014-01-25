@@ -103,101 +103,10 @@ body.at-splash .vessel-view {
 }
 
 
-/*
-.page .view:not(.is-active) {
-	display: block;
-}
-
-.page .menu {
-	background: #040b17;
-}
-
-.menu .select-btn {
-	color: #466ab3;
-	cursor: pointer;
-	font-size: 13px;
-	margin-top: 5px;
-	text-align: right;
-}
-
-.menu .section {
-	border-color: #283d66;
-	border-style: solid;
-	border-width: 0 0 1px 0;
-	padding: 15px 10px;
-	position: relative;
-}
-
-.menu .autoswitch img {
-	background: transparent url(/images/nav-autoswitch-small.png) no-repeat center center;
-	float: left;
-	height: 100%;
-	width: 20px;
-}
-
-.menu .autoswitch .master {
-	color: #fff;
-	display: inline-block;
-	margin: 3px 10px 1px;
-}
-
-.menu .autoswitch .select-btn {
-	float: right;
-}
-
-.menu .gps {
-	padding: 30px 10px;
-}
-
-.menu .satellite .name,
-.menu .gps .coordinate,
-.menu .antenna .type {
-	display: block;
-	min-height: 1em;
-}
-
-.menu .gps .coordinate,
-.menu .antenna .type {
-	margin-top: 10px;
-}
-
-.menu .satellite {
-	padding: 15px 10px 30px;
-}
-
-.menu .satellite .select-btn {
-	display: block;
-}
-
-.menu .satellite .manual {
-	display: inline-block;
-	font-size: 13px;
-	position: absolute;
-	top: 46px;
-}
-
-.menu .satellite .manual h3 {
-	font-size: inherit;
-	text-align: center;
-	margin-bottom: 7px;
-}
-
-.menu .satellite .signal {
-	background: transparent no-repeat right bottom;
-	height: 60px;
-	width: 100%;
-}
-
-.menu .satellite .signal-0 { background-image: url(/images/satellite-signal-0.png); }
-.menu .satellite .signal-1 { background-image: url(/images/satellite-signal-1.png); }
-.menu .satellite .signal-2 { background-image: url(/images/satellite-signal-2.png); }
-.menu .satellite .signal-3 { background-image: url(/images/satellite-signal-3.png); }
-.menu .satellite .signal-4 { background-image: url(/images/satellite-signal-4.png); }
-.menu .satellite .signal-5 { background-image: url(/images/satellite-signal-5.png); }
 
 .vessel {
 	background: transparent no-repeat center center;
-	background-image: url(/images/vessel-large.png);
+	background-image: url(/images/vessel-bg-large.png);
 	height: 530px;
 	margin-top: 30px;
 	position: relative;
@@ -222,67 +131,44 @@ body.at-splash .vessel-view {
 
 .vessel .animation {
 	background: transparent no-repeat center center;
-	background-image: url(/images/vessel-animation-large.png);
+	background-image: url(/images/vessel-green-large.png);
 	display: block;
 	left: 50%;
-	margin-left: -228px;
-	margin-top: -228px;
+	margin-left: -230px;
+	margin-top: -230px;
 	position: absolute;
 	top: 50%;
-	height: 457px;
-	width: 457px;
+	height: 460px;
+	width: 460px;
 }
 
 @media screen and (max-width: 880px) {
-	.page .menu {
-		height: auto;
-		min-height: 0;
-		position: relative;
-		top: 350px;
+	.menu-view {
+		background-color: #000;
+		margin-top: 450px;
+		padding-top: 0;
 	}
 
-	.page .menu .section:nth-child(n+2) {
-		border-width: 0 1px 0 0;
+	.vessel-view .view-content {
+		padding-top: 0;
+		overflow: hidden;
+	}
+
+	.vessel .heading {
 		display: block;
-		float: left;
-		height: 110px;
-		margin: 15px 0;
-		padding: 0 10px 15px;
-		width: 33.33%;
-	}
-
-	.page .menu .section:last-child {
-		border: 0;
-	}
-
-	.page .menu .autoswitch {
-		margin: 0 10px;
-		padding: 15px 0;
-	}
-
-	.page .menu .satellite .manual {
-		display: none !important;
-	}
-
-	.page .view:not(.menu) {
-		top: auto;
-		bottom: auto;
-		position: absolute;
-		height: 350px;
-		min-height: 0;
 	}
 
 	.vessel {
-		background-image: url(/images/vessel-small.png);
-		height: 300px;
+		background-image: url(/images/vessel-bg-small.png);
+		height: 350px;
+		margin-top: 30px;
 	}
 
 	.vessel .animation {
-		background-image: url(/images/vessel-animation-small.png);
-		height: 235px;
-		margin-left: -118px;
-		margin-top: -118px;
-		width: 235px;
+		background-image: url(/images/vessel-green-small.png);
+		height: 300px;
+		margin-left: -150px;
+		margin-top: -150px;
+		width: 300px;
 	}
 }
-*/

@@ -207,7 +207,7 @@ TVRO.SettingsPage.EditEthernetSettingsView = function() {
 	var self = {},
 		view = $('[id ~= edit-ethernet-settings-view ]'),
 		staticView = $('[id ~= static-view ]', view),
-		modeDropdown = TVRO.Dropdown('[id ~= ethernet-mode-dropdown', $('[id ~= mode-btn ]', view)),
+		modeDropdown = TVRO.Dropdown('[id ~= ethernet-mode-dropdown ]', $('[id ~= mode-btn ]', view)),
 		webService = TVRO.WebService();
 
 	self.init = function() {

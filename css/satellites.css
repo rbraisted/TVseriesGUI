@@ -1,3 +1,7 @@
+*:hover {
+	outline: 1px solid #f5aacb;
+}
+
 .single-view,
 .group-view {
 	display: none;
