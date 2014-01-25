@@ -236,10 +236,13 @@ TVRO.WebService = (function() {
 						console.log('\n------------------------------------------------------------');
 						console.log('  '+requestName.toUpperCase());
 						console.log($(requestXml).get(0));
+
+						var error = $(response).find('ipacu_response > message').attr('error');
+
+						console.log(error === '0' ? 'success!' : 'error: '+error);
 						console.log($('ipacu_response', response).get(0));
 						console.log('------------------------------------------------------------\n');
 
-						var error = $(response).find('ipacu_response > message').attr('error');
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
 					},
