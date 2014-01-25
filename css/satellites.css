@@ -403,12 +403,12 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 }
 
 .two-split {
-	width: 40%;
+	width: 50%;
 	margin-bottom: 10px;
 }
 
 .two-split:nth-child(2n) {
-	margin-right: 20%;
+	margin-right: 0%;
 }
 
 .satellite-info-view .popup-content {

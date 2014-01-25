@@ -416,12 +416,12 @@
 			<div id="xponder-1 linear" class="xponder">
 				<div class="xponder-header">Horizontal High</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency</div>
+					<div class="label">Frequency (MHz)</div>
 					<div id="frequency view" class="value"></div>
 					<input id="frequency edit">
 				</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate</div>
+					<div class="label">Symbol Rate (Msym/s)</div>
 					<div id="symbol-rate view" class="value"></div>
 					<input id="symbol-rate edit">
 				</div>
@@ -450,12 +450,12 @@
 			<div id="xponder-3 linear" class="xponder">
 				<div class="xponder-header">Horizontal Low</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency</div>
+					<div class="label">Frequency (MHz)</div>
 					<div id="frequency view" class="value"></div>
 					<input id="frequency edit">
 				</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate</div>
+					<div class="label">Symbol Rate (Msym/s)</div>
 					<div id="symbol-rate view" class="value"></div>
 					<input id="symbol-rate edit">
 				</div>
@@ -484,12 +484,12 @@
 			<div id="xponder-5 linear" class="xponder">
 				<div class="xponder-header">Vertical High</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency</div>
+					<div class="label">Frequency (MHz)</div>
 					<div id="frequency view" class="value"></div>
 					<input id="frequency edit">
 				</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate</div>
+					<div class="label">Symbol Rate (Msym/s)</div>
 					<div id="symbol-rate view" class="value"></div>
 					<input id="symbol-rate edit">
 				</div>
@@ -518,12 +518,12 @@
 			<div id="xponder-7 linear" class="xponder">
 				<div class="xponder-header">Vertical Low</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency</div>
+					<div class="label">Frequency (MHz)</div>
 					<div id="frequency view" class="value"></div>
 					<input id="frequency edit">
 				</div>
 				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate</div>
+					<div class="label">Symbol Rate (Msym/s)</div>
 					<div id="symbol-rate view" class="value"></div>
 					<input id="symbol-rate edit">
 				</div>

@@ -2,6 +2,62 @@
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+/*
+TVRO.SatellitesPage = function() {
+	var
+	webService = TVRO.WebService(),
+
+	menuView,
+	MenuView = function() {
+		var
+		self = $.apply($, arguments);
+
+		return $.extend({}, self, {});
+	},
+	
+	groupView,
+	GroupView = function() {
+		var
+		self = $.apply($, arguments);
+
+		return $.extend({}, self, {});
+	},
+
+	editView,
+	EditView = function() {
+		var
+		self = $.apply($, arguments);
+
+		return $.extend({}, self, {});
+	},
+
+	singleTableView,
+	groupTableView,
+	TableView = function() {
+		var
+		self = $.apply($, arguments);
+
+		return $.extend({}, self, {});
+	},
+
+	infoView,
+	InfoView = function() {
+		var
+		self = $.apply($, arguments);
+
+		return $.extend({}, self, {});
+	}
+
+	return {
+		init: function() {
+
+		}
+	}
+}
+*/
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.SatellitesPage = function() {
 	var self = {},
 		menuView,
