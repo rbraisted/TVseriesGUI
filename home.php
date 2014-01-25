@@ -91,3 +91,23 @@
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div id="autoswitch-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" href="#" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Select Master</label>
+		</a>
+		<h1>Select Master</h1>
+		<div id="dropdown-options">
+			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>OFF</label>
+			</a>
+			<a id="dropdown-option" href="#" value="WPA_PSK" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label>WPA_PSK</label>
+			</a>
+		</div>
+	</div>
+</div>
