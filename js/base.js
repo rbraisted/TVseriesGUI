@@ -19,21 +19,21 @@
 	}
 }(jQuery));
 
-//	check if our app namespace has been defined
-//	if the user is running this from a native iOS/Android
-//	app, we should see that the native web views will have
-//	injected TVRO = { MOBILE_APP : true } before any other
-//	javascript is executed, so we don't want to overwrite
-//	that
-
+/*
+	check if our app namespace has been defined
+	if the user is running this from a native iOS/Android
+	app, we should see that the native web views will have
+	injected TVRO = { MOBILE_APP : true } before any other
+	javascript is executed, so we don't want to overwrite that
+	*/
 if (typeof TVRO === 'undefined') {
 	var TVRO = {};
 }
-
-//	as mentioned above,
-//	MOBILE_APP and SAT_FINDER should be set by iOS/Android
-//	web view before any other script executes
-
+/*
+	as mentioned above,
+	MOBILE_APP and SAT_FINDER should be set by iOS/Android
+	web view before any other script executes
+	*/
 TVRO = {
 	MOBILE_APP : TVRO.MOBILE_APP || false,
 	SAT_FINDER : TVRO.SAT_FINDER || false,
@@ -97,6 +97,8 @@ TVRO.init = function() {
 	if (TVRO.page && TVRO.page.init) TVRO.page.init();
 }
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 //	cookie manager singleton
 //	note that cookies are set across all paths
 //	note that getCookie vs hasCookie is like
@@ -147,29 +149,30 @@ TVRO.CookieManager = (function() {
 	}
 }());
 
-//	webservice singleton
-//	using this doc: SoftEng-56-0229IPACUXMLServicesICDrev.xB4-161213-1501-3.pdf
-//	
-//	pass request parameters as json
-//	they'll be converted to xml for you
-//	for example:
-//
-//	user: {
-//		firstname : 'Olivia',
-//		lastname : 'Wheatley',
-//		city : 'Oxford',
-//		state : 'Oxfordshire'
-//	}
-//
-//	will be sent as:
-//
-//	<user>
-//		<firstname>Olivia</firstname>
-//		<lastname>Wheatley</lastname>
-//		<city>Oxford</city>
-//		<state>Oxfordshire</state>
-//	</user>
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+/*
+	webservice
+	pass request parameters as json
+	they'll be converted to xml for you
+	for example:
+
+	user: {
+		firstname : 'Olivia',
+		lastname : 'Wheatley',
+		city : 'Oxford',
+		state : 'Oxfordshire'
+	}
+
+	will be sent as:
+
+	<user>
+		<firstname>Olivia</firstname>
+		<lastname>Wheatley</lastname>
+		<city>Oxford</city>
+		<state>Oxfordshire</state>
+	</user>
+	*/
 TVRO.WebService = (function() {
 	var singleton,
 		cookieManager = new TVRO.CookieManager(),
@@ -261,6 +264,8 @@ TVRO.WebService = (function() {
 	}
 }());
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.Dropdown = function(dropdown, dropdownBtn) {
 	var self = {},
 		dropdown = $(dropdown),
@@ -314,6 +319,24 @@ TVRO.Dropdown = function(dropdown, dropdownBtn) {
 	return self;
 };
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.Group = function(xml) {
+	var self = {},
+		xml = $(xml);
+
+	self.name = $('group_name', xml).text();
+	self.predefined = $('predefined', xml).text();
+	self.satelliteA = TVRO.Satellite($('A', xml));
+	self.satelliteB = TVRO.Satellite($('B', xml));
+	self.satelliteC = TVRO.Satellite($('C', xml));
+	self.satelliteD = TVRO.Satellite($('D', xml));
+
+	return self;
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.Satellite = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -344,6 +367,8 @@ TVRO.Satellite = function(xml) {
 	return self;
 };
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.Xponder = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -360,7 +385,20 @@ TVRO.Xponder = function(xml) {
 	return self;
 };
 
-TVRO.ToggleBtn = function() {
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/*
+	toggle
+	gets toggleClass(is-on) on click
+	use like so:
+
+	var toggle = TVRO.Toggle(element);
+	toggle.click(function(isOn) {
+		isOn here tells us if the
+		element hasClass(is-on)
+	})
+	*/
+TVRO.Toggle = function() {
 	var self = $.apply($, arguments),
 		callbacks = [];
 
@@ -383,22 +421,40 @@ TVRO.ToggleBtn = function() {
 	});
 }
 
-//	table class
-//	given some element #table
-//	which contains some element #table-rows
-//	and some element #template#table-row
-//	#template gets detached from #table
-//	when setData is called (expects an array, or something property 'length'),
-//	a #table-row is created from #template and added to #table-rows
-//	you can override setData to modify #table-row per #table-row
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/*
+	table class
+	given some element #table
+	which contains some element #table-rows
+	and some element #template#table-row
+	#template gets detached from #table
+	when setData is called (expects an array, or something property 'length'),
+	a #table-row is created from #template and added to #table-rows
+	you can override setData to modify #table-row per #table-row
+	*/
 TVRO.Table = function(selector, context) {
 	var self = $.apply($, arguments),
-		template = $('[id ~= template ]', self).detach();
+		template = $('[id ~= template ]', self).detach(),
+		callbacks = [];
 
 	template.get(0).id = $.trim(template.get(0).id.replace('template', ''));
 
 	return $.extend({}, self, {
-		//	override this function to set text, images, etc
+		//	build(10) - makes 10 rows
+		//	build(function(index, row) - use this function to build the row element at index
+		build: function() {
+			if (typeof arguments[0] !== 'function') {
+				var tableRows = $('[id ~= table-rows ]', self).empty();
+				for (var index = 0; index < arguments[0]; index++) {
+					var row = template.clone();
+					for (var i = 0; i < callbacks.length; i++) {
+						callbacks[i].call(this, index, row);
+					}
+					tableRows.append(row);
+				}
+			} else callbacks.push(arguments[0]);
+		},
 		setData: function() {
 			$('[id ~= table-rows ]', self).empty().append(
 				$.map(arguments[0], function() { return template.clone(); }));
@@ -406,11 +462,15 @@ TVRO.Table = function(selector, context) {
 	});
 }
 
-//	radio class
-//	the gist of this class is:
-//	given some element #radio
-//	each #radio-option in #radio can become .is-selected on click
-//	and all other #radio-option in #radio will lose .is-selected
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/*
+	radio class
+	the gist of this class is:
+	given some element #radio
+	each #radio-option in #radio can become .is-selected on click
+	and all other #radio-option in #radio will lose .is-selected
+	*/
 TVRO.Radio = function() {
 	var self = $.apply($, arguments),
 		options, // look at refresh function
@@ -430,7 +490,7 @@ TVRO.Radio = function() {
 		refresh = function() {
 			options = $('[id ~= radio-option ]', self);
 			options.unbind('click', click).click(click);
-		};
+		}
 
 	refresh();
 
@@ -449,6 +509,8 @@ TVRO.Radio = function() {
 		}
 	});
 }
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 TVRO.RadioTable = function(selector, context) {
 	var self = {},
@@ -484,15 +546,70 @@ TVRO.RadioTable = function(selector, context) {
 	return self;
 }
 
-//	here's where the magic starts
-//	note: it's not magic
-//	this should be the only document.ready that inits
-//	any TVRO app stuff
-//	TVRO.init will call TVRO.page.init if it is available
-//	TVRO.page should be set up by scripts included per page
-//	ie if you have sidebar (#sb) or main content (#mc)
-//	stuff that needs to be initialized you should set up
-//	sb.init or mc.init in your TVRO.page
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.SatelliteTrackingView = function() {
+	var 
+	self = $.apply($, arguments),
+	webService = TVRO.WebService(),
+	switchingModeBtn = TVRO.Toggle('[id ~= mode-btn ]', self),
+	satellitesRadio = TVRO.Radio('[id ~= satellite-dropdown ]', self),
+	refresh = function() {
+		webService.request('antenna_status', function(response) {
+			var detailsView = $('[id ~= details-view ]', self);
+			$('[id ~= name ]', detailsView).text($('satellite name', response).text());
+			$('[id ~= region ]', detailsView).text($('satellite region', response).text());
+			$('[id ~= status ]', detailsView).text($('antenna state', response).text());
+			$('[id ~= signal ]', detailsView).removeClass('is-0 is-1 is-2 is-3 is-4 is-5');
+			$('[id ~= signal ]', detailsView).addClass('is-'+$('antenna rf bars', response).text());
+		});
+
+		webService.request('get_autoswitch_status', function(response) {
+			var isManual = $('enable:eq(0)', response).text() === 'Y';
+
+			if (isManual) {
+				var slots = ['a', 'b', 'c', 'd'],
+					selectedSlot = $('master sat', response).text(),
+					selectedSatellite = $('satellites '+selectedSlot, response);
+
+				for (var i = 0; i < slots.length; i++) {
+					var satellite = $('satellites '+slots[i].toUpperCase(), response),
+						slotBtn = $('[id ~= slot-'+slots[i]+'-btn ]', satellitesRadio);
+
+					slotBtn.toggle(satellite.children().length > 0);
+					slotBtn.attr('value', $('antSatID', satellite).text());
+					$('[id ~= name ]', slotBtn).text($('name', satellite).text());
+					$('[id ~= region ]', slotBtn).text($('region', satellite).text());
+				}
+
+				satellitesRadio.setSelectedValue($('antSatID', selectedSatellite).text());
+			}
+
+			switchingModeBtn.toggleClass('is-on', isManual);
+			satellitesRadio.toggle(isManual);
+		});
+	}
+
+	switchingModeBtn.click(function(isManual) {
+		webService.request('set_autoswitch_service', {
+			enabled: (isManual ? 'N' : 'Y')
+		}, refresh);
+	});
+
+	satellitesRadio.click(function(antSatID) {
+		webService.request('select_satellite', {
+			antSatID: antSatID
+		}, refresh);
+	});
+
+	refresh();
+
+	return $.extend({}, self, {
+		refresh: refresh
+	});
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 $(document).ready(function() {
 	TVRO.init();

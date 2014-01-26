@@ -5,15 +5,17 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="menu-view" class="view menu-view">
-	<div id="details-view" class="details-view">
-		<h3>
-			<span id="name">Wheatly 1</span>
-			<span id="region">Middle East</span>
-		</h3>
-		<img id="signal" src="/images/img.gif" class="satellite-signal is-0">
-		<span id="status" class="satellite-status-label">Tracking...</span>
+	<div id="tracking-view">
+		<div id="details-view" class="details-view">
+			<h3>
+				<span id="name">Wheatly 1</span>
+				<span id="region">Middle East</span>
+			</h3>
+			<img id="signal" src="/images/img.gif" class="satellite-signal is-0">
+			<span id="status" class="satellite-status-label">Tracking...</span>
+		</div>
 	</div>
-
+	
 	<div id="mode-view" class="mode-view">
 		<h3>Satellite Mode</h3>
 		<a id="mode-btn" href="#" class="btn toggle-btn mode-btn">

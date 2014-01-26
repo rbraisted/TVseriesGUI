@@ -197,6 +197,10 @@ body.is-group.at-satellites-table-info .satellite-info-view {
 	background-color: #243774;
 }
 
+.slot.is-selected .slot-select-btn img {
+	background-image: url(/images/radio-selected.png);
+}
+
 .slot:nth-child(2n) {
 	margin-left: 26px;
 }
