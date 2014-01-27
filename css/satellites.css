@@ -107,6 +107,14 @@ body.is-group.at-satellites-table .satellite-table-popup-view {
 	top: 0;
 }
 
+.group-menu-btn.is-selected img {
+	background-image: url(/images/radio.png);
+}
+
+.group-menu-btn.is-installed .group-menu-select-btn img {
+	background-image: url(/images/radio-selected.png);
+}
+
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 .satellites-table-view .view-content {

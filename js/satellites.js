@@ -36,8 +36,20 @@ TVRO.SatellitesPage = function() {
 		});
 
 		groupTable.build(function(i, row) {
+			var group = groups[i];
 			row.attr('value', i);
-			$('[id ~= name ]', row).text(groups[i].name);
+			row.toggleClass('is-installed', group.name === selectedGroup.name);
+			$('[id ~= name ]', row).text(group.name);
+			$('[id ~= select-btn ]', row).click(function() {
+				if (confirm('Install '+group.name+'?')) {
+					$('[id ~= table-row ]', groupTable).removeClass('is-installed');
+					row.addClass('is-installed');
+					selectedGroup = group;
+					webService.request('set_autoswitch_service', {
+						'satellite_group' : group.name
+					});
+				}
+			});
 		});
 
 		$('[id ~= new-btn ]', self).click(function() {
@@ -55,9 +67,6 @@ TVRO.SatellitesPage = function() {
 						groups.push(TVRO.Group(this));
 					});
 
-					groupTable.build(groups.length);
-					groupRadio.refresh();
-
 					webService.request('get_autoswitch_status', function(response) {
 						var groupName = $('satellite_group', response).text(),
 							selectedSlot = $('master sat', response).text(),
@@ -72,6 +81,8 @@ TVRO.SatellitesPage = function() {
 									C: selectedGroup.satelliteC,
 									D: selectedGroup.satelliteD
 								}[selectedSlot];
+								groupTable.build(groups.length);
+								groupRadio.refresh();
 								groupRadio.click(i);
 							}
 						}

@@ -57,10 +57,12 @@
 
 	<div id="group-view table" class="group-view">
 		<div id="table-rows">
-			<a id="radio-option table-row template" href="#" value="" class="btn dropdown-option">
-				<img src="/images/img.gif">
+			<div id="radio-option table-row template" href="#" value="" class="btn dropdown-option group-menu-btn">
+				<a id="select-btn" href="#" class="group-menu-select-btn">
+					<img src="/images/img.gif">
+				</a>
 				<label id="name">Preset Group 1</label>
-			</a>
+			</div>
 		</div>
 		<a id="new-btn" href="#" class="btn basic-btn new-btn">
 			<img src="/images/img.gif">
