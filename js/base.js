@@ -266,61 +266,6 @@ TVRO.WebService = (function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.Dropdown = function(dropdown, dropdownBtn) {
-	var self = {},
-		dropdown = $(dropdown),
-		optionSelected = [];
-
-	self.setSelectedValue = function(value) {
-		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
-		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).addClass('is-selected');
-	}
-
-	self.selectValue = function(value) {
-		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).click();
-	}
-
-	self.optionSelected = function() {
-		if (typeof arguments[0] === 'function') {
-			optionSelected.push(arguments[0]);
-		}
-	}
-
-	self.selectedValue = function() {
-		return $('[id ~= dropdown-option ].is-selected', dropdown).attr('value');
-	}
-
-	$(dropdownBtn).click(function() {
-		dropdown.show();
-		$('#dropdown-content', dropdown).offset($(this).offset());
-	});
-
-	$('[id ~= close-btn ]', dropdown).click(function() {
-		self.hide();
-	});
-
-	$('[id ~= dropdown-option]', dropdown).click(function() {
-		var dropdownOption = $(this);
-		self.hide();
-		self.setSelectedValue(dropdownOption.attr('value'));
-		for (var i = 0; i < optionSelected.length; i++) {
-			optionSelected[i]($('label', dropdownOption).text(), dropdownOption.attr('value'));
-		}
-	});
-
-	self.show = function() {
-		dropdown.show();
-	}
-
-	self.hide = function() {
-		dropdown.hide();
-	}
-
-	return self;
-};
-
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-
 TVRO.Group = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -355,6 +300,7 @@ TVRO.Satellite = function(xml) {
 	self.lo1 = $('lo1', xml).text();
 	self.lo2 = $('lo2', xml).text();
 	self.kumode = $('kumode', xml).text();
+	self.preferredPolarity = $('preferredPolarity', xml).text();
 	//	xponders can only be retrieved with get_satellite_params
 	self.xponders = [];
 	$('xponder', xml).each(function(index, xponder) {
@@ -509,39 +455,71 @@ TVRO.Radio = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.RadioTable = function(selector, context) {
+TVRO.Dropdown = function() {
+	var self = $.apply($, arguments),
+		radio = TVRO.Radio(self);
+
+	$('[id ~= close-btn ]', self).click(function() {
+		self.hide();
+	});
+
+	return $.extend({}, self, radio, {});
+}
+
+/*
+TVRO.Dropdown = function(dropdown, dropdownBtn) {
 	var self = {},
-		view,
-		radio = TVRO.Radio(selector, context),
-		table = TVRO.Table(selector, context);
+		dropdown = $(dropdown),
+		optionSelected = [];
 
-	self.init = function() {
-		view = $(selector, context);
-		radio.init();
-		table.init();
+	self.setSelectedValue = function(value) {
+		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
+		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).addClass('is-selected');
 	}
 
-	self.setData = function() {
-		var data = arguments[0];
-		table.setData(data);
-		$('[id ~= radio-option ]', view).each(function(index, element) {
-			this.setAttribute('value', data[index]);
-			//	i ran into some kind of unexpected jQuery behavior here
-			//	where $('[id ~= name ]', this) or $('[id ~= name ]', element)
-			//	will collect all [id ~= name ] in $('[id ~= radio-option ]', view)
-			//	instead of just [id ~= name ] in this or element
-			//	so we'll do this instead:
-			$('[id ~= radio-option ][value = '+data[index]+' ] [id ~= name ]', view).text(data[index]);
-		});
-		radio.init();
+	self.selectValue = function(value) {
+		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).click();
 	}
 
-	self.click = function() {
-		radio.click(arguments[0]);
+	self.optionSelected = function() {
+		if (typeof arguments[0] === 'function') {
+			optionSelected.push(arguments[0]);
+		}
+	}
+
+	self.selectedValue = function() {
+		return $('[id ~= dropdown-option ].is-selected', dropdown).attr('value');
+	}
+
+	$(dropdownBtn).click(function() {
+		dropdown.show();
+		$('#dropdown-content', dropdown).offset($(this).offset());
+	});
+
+	$('[id ~= close-btn ]', dropdown).click(function() {
+		self.hide();
+	});
+
+	$('[id ~= dropdown-option]', dropdown).click(function() {
+		var dropdownOption = $(this);
+		self.hide();
+		self.setSelectedValue(dropdownOption.attr('value'));
+		for (var i = 0; i < optionSelected.length; i++) {
+			optionSelected[i]($('label', dropdownOption).text(), dropdownOption.attr('value'));
+		}
+	});
+
+	self.show = function() {
+		dropdown.show();
+	}
+
+	self.hide = function() {
+		dropdown.hide();
 	}
 
 	return self;
 }
+*/
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 

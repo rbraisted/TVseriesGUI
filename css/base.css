@@ -248,6 +248,7 @@ th {
 
 .dropdown-btn label {
 	color: inherit;
+	min-height: 1.75em;
 	padding: 0.375em 0.625em;
 	padding-right: 30px;
 }

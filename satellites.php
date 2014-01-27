@@ -577,27 +577,27 @@
 			<label>Region</label>
 		</a>
 		<h1>Region</h1>
-		<a id="dropdown-option" href="#" value="Africa" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Africa" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Africa</label>
 		</a>
-		<a id="dropdown-option" href="#" value="Asia" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Asia" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Asia</label>
 		</a>
-		<a id="dropdown-option" href="#" value="Australia" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Australia" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Australia / New Zealand</label>
 		</a>
-		<a id="dropdown-option" href="#" value="Central/South America" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Central/South America" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Central / South America</label>
 		</a>
-		<a id="dropdown-option" href="#" value="Europe" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Europe" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Europe</label>
 		</a>
-		<a id="dropdown-option" href="#" value="North America" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="North America" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>North America</label>
 		</a>
@@ -613,11 +613,11 @@
 			<label>Hemisphere</label>
 		</a>
 		<h1>Hemisphere</h1>
-		<a id="dropdown-option" href="#" value="East" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="East" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>East</label>
 		</a>
-		<a id="dropdown-option" href="#" value="West" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="West" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>West</label>
 		</a>
@@ -633,11 +633,11 @@
 			<label>Region</label>
 		</a>
 		<h1>Region</h1>
-		<a id="dropdown-option" href="#" value="Linear" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Linear" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Linear</label>
 		</a>
-		<a id="dropdown-option" href="#" value="Circular" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="Circular" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Circular</label>
 		</a>
@@ -653,51 +653,51 @@
 			<label>FEC Code</label>
 		</a>
 		<h1>FEC Code</h1>
-		<a id="dropdown-option" href="#" value="1/2" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="1/2" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>1/2</label>
 		</a>
-		<a id="dropdown-option" href="#" value="2/3" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="2/3" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>2/3</label>
 		</a>
-		<a id="dropdown-option" href="#" value="3/4" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="3/4" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>3/4</label>
 		</a>
-		<a id="dropdown-option" href="#" value="3/5" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="3/5" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>3/5</label>
 		</a>
-		<a id="dropdown-option" href="#" value="4/5" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="4/5" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>4/5</label>
 		</a>
-		<a id="dropdown-option" href="#" value="5/6" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="5/6" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>5/6</label>
 		</a>
-		<a id="dropdown-option" href="#" value="5/11" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="5/11" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>5/11</label>
 		</a>
-		<a id="dropdown-option" href="#" value="6/7" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="6/7" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>6/7</label>
 		</a>
-		<a id="dropdown-option" href="#" value="7/8" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="7/8" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>7/8</label>
 		</a>
-		<a id="dropdown-option" href="#" value="8/9" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="8/9" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>8/9</label>
 		</a>
-		<a id="dropdown-option" href="#" value="9/9" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="9/9" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>9/9</label>
 		</a>
-		<a id="dropdown-option" href="#" value="9/10" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="9/10" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>9/10</label>
 		</a>
@@ -713,31 +713,31 @@
 			<label>Decoder Type</label>
 		</a>
 		<h1>Decoder Type</h1>
-		<a id="dropdown-option" href="#" value="QDSS" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="QDSS" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>DSS DTV</label>
 		</a>
-		<a id="dropdown-option" href="#" value="QDC2" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="QDC2" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>DCII QPSK DigiCipher 2</label>
 		</a>
-		<a id="dropdown-option" href="#" value="QDVB" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="QDVB" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>DVB QPSK</label>
 		</a>
-		<a id="dropdown-option" href="#" value="LQPSK" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="LQPSK" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>LDPC QPSK STD DVB-S2</label>
 		</a>
-		<a id="dropdown-option" href="#" value="L8PSK" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="L8PSK" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>LDPC 8PSK STD DVB-S2</label>
 		</a>
-		<a id="dropdown-option" href="#" value="TQPSK" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="TQPSK" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Turbo QPSK Dish</label>
 		</a>
-		<a id="dropdown-option" href="#" value="T8PSK" class="btn dropdown-option">
+		<a id="dropdown-option radio-option" href="#" value="T8PSK" class="btn dropdown-option">
 			<img src="/images/img.gif">
 			<label>Turbo 8PSK Dish</label>
 		</a>
