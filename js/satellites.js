@@ -372,8 +372,8 @@ TVRO.SatellitesPage = function() {
 			favoriteBtn.setOn(satellite.favorite === 'TRUE' || satellite.favorite === 'Y');
 
 			//	TODO: check LNB mode to determine which params we should show
-			$('[id ~= circular ]', self).hide();
-			$('[id ~= linear ]', self).show();
+			$('[id ~= circular ]', self).toggle(lnbTypeDropdown.selectedValue() === 'Circular');
+			$('[id ~= linear ]', self).toggle(lnbTypeDropdown.selectedValue() === 'Linear');
 
 			if (lnbTypeDropdown.selectedValue() === 'Linear') {	//	if we're linear
 				var xponderIds = [1, 3, 5, 7];
@@ -485,12 +485,12 @@ TVRO.SatellitesPage = function() {
 					'antSatID' : antSatID
 				}, function(response) {
 					refresh();
-				});				
+				});
 			}
 		});
 
 		$('[id ~= save-btn]', self).click(function() {
-			if (confirm('Save '+satellite.name+'?')) {
+			if (confirm('Are you sure you want to change the parameters for this satellite?')) {
 				var name = $('[id ~= name][id ~= edit]', self).val(),
 					antSatID = $('[id ~= orbital-slot][id ~= edit]', self).val(),
 					region = $('[id ~= region][id ~= edit]', self).val(),
@@ -498,9 +498,6 @@ TVRO.SatellitesPage = function() {
 					skew = $('[id ~= pre-skew][id ~= edit]', self).val(),
 					lo1 = $('[id ~= local-oscillator-1][id ~= edit]', self).val(),
 					lo2 = $('[id ~= local-oscillator-2][id ~= edit]', self).val();
-
-					//	hemisphere
-					//	lnb
 
 				webService.request('set_satellite_identity', {
 					'name' : name,

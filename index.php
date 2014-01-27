@@ -1,3 +1,3 @@
-<? include 'base.php'; ?>
-
-abc
+<?
+header("Location: /home.php");
+die();

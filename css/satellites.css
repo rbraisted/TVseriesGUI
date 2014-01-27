@@ -294,6 +294,7 @@ body.is-group.at-satellites-table .satellite-table-popup-view {
 	color: #d7eaff;
 	display: block;
 	font-size: 13px;
+	white-space: nowrap;
 }
 
 .value {
@@ -406,12 +407,12 @@ body.is-group.at-satellites-table .satellite-table-popup-view {
 }
 
 .two-split {
-	width: 50%;
+	width: 45%;
 	margin-bottom: 10px;
 }
 
 .two-split:nth-child(2n) {
-	margin-right: 0%;
+	margin-right: 10%;
 }
 
 .satellite-info-view .popup-content {
