@@ -32,6 +32,7 @@ TVRO.SatellitesPage = function() {
 
 		groupRadio.click(function(i) {
 			groupView.loadGroup(groups[i]);
+			$(document.body).setClass('is-group at-satellite-group');
 		});
 
 		groupTable.build(function(i, row) {
@@ -40,7 +41,10 @@ TVRO.SatellitesPage = function() {
 		});
 
 		$('[id ~= new-btn ]', self).click(function() {
-
+			var group = TVRO.Group();
+			group.predefined = 'N';
+			editView.loadGroup(group);
+			$(document.body).setClass('is-group at-edit-satellite-group');
 		});
 
 		return $.extend({}, self, {
