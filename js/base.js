@@ -349,10 +349,7 @@ TVRO.Satellite = function(xml) {
 	self.region = $('region', xml).text();
 	self.lon = Number($('lon', xml).text());
 	self.suffix = $('suffix', xml).text();	//	not sure about this one
-	self.enabled = $('enabled', xml).text();
 	self.favorite = $('favorite', xml).text();
-	self.select = $('select', xml).text();
-	self.triSatID = $('triSatID', xml).text();
 	//	these values can only be retrieved with get_satellite_params
 	self.skew = $('skew', xml).text();
 	self.lo1 = $('lo1', xml).text();
