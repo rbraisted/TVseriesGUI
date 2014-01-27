@@ -311,7 +311,7 @@
 					</tr>
 				</thead>
 				<tbody id="table-rows">
-					<tr id="template table-row">
+					<tr id="template table-row radio-option">
 						<td class="installed-col">
 							<a id="select-btn" href="#" class="btn select-btn">
 								<img src="/images/img.gif">

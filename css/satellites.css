@@ -27,6 +27,7 @@ body.is-group.at-satellite-group .menu-view,
 body.is-group.at-satellite-group .satellite-group-view,
 
 body.is-group.at-edit-satellite-group .menu-view,
+body.is-group.at-edit-satellite-group .satellite-group-view,
 body.is-group.at-edit-satellite-group .edit-satellite-group-view,
 
 body.is-group.at-satellites-table .menu-view,
@@ -143,7 +144,7 @@ body.is-group.at-satellites-table .satellite-table-popup-view {
 	background-image: url(/images/radio.png);
 }
 
-.select-btn.is-on img {
+.is-selected .select-btn img {
 	background-image: url(/images/radio-selected.png);
 }
 

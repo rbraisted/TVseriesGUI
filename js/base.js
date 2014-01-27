@@ -600,6 +600,7 @@ TVRO.SatelliteTrackingView = function() {
 	});
 
 	refresh();
+	setInterval(refresh, 3000);
 
 	return $.extend({}, self, {
 		refresh: refresh
