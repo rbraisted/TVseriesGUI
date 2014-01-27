@@ -49,13 +49,9 @@
 			<img src="/images/img.gif">
 			<label>North America</label>
 		</a>
-		<a id="radio-option" href="#" value="" class="btn menu-btn">
+		<a id="radio-option" href="#" value="All" class="btn menu-btn">
 			<img src="/images/img.gif">
 			<label>All</label>
-		</a>
-		<a id="new-btn" href="#" class="btn basic-btn new-btn">
-			<img src="/images/img.gif">
-			<label>Create New Satellite</label>
 		</a>
 	</div>
 
