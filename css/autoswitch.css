@@ -59,12 +59,6 @@
 	background-color: #293147;
 }
 
-.satellite-status-label {
-	bottom: 1em;
-	color: #4a536a;
-	position: absolute;
-}
-
 .satellite-signal {
 	background: transparent no-repeat right bottom;
 	height: 60px;
@@ -242,15 +236,43 @@
 	top: 85px;
 }
 
+.autoswitches-view .copy {
+	color: #d7eaff;
+	font-size: 13px;
+	max-width: 600px;
+	margin: 0px auto 2em;
+}
+
+.autoswitches-view .copy .white {
+	color: #fff;
+	display: block;
+	font-style: italic;
+	margin-top: 2em;
+}
+
+.autoswitches-view .copy a {
+	color: #4f7abe;
+}
+
 
 @media screen and (min-width: 880px) {
 	.autoswitches-view .new-btn,
 	.autoswitch-table-row .view-btn {
 		display: none;
 	}
+
+	.autoswitches-view .satellite-sub-view {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 880px) {
+	.autoswitches-view .copy {
+		max-width: 620px;	
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
 	.autoswitch-table-row .edit-btn,
 	.autoswitch-table-row .select-btn,
 	.autoswitch-table-row .label,

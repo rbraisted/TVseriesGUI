@@ -79,6 +79,31 @@
 			<span id="not-directv">IP Autoswitches</span>
 			<span id="directv">Receivers</span>
 		</h1>
+		<div id="not-directv" class="copy">
+			The following IP AutoSwitch(es) have been found or were previously
+			configured on your network. The receiver connected to the master IP
+			AutoSwitch controls satellite selection in automatic satellite
+			switching mode. You may choose the master by selecting it below or
+			by pressing the Master Select button on the IP AutoSwitch itself,
+			provided it is currently active on the network (status is green).
+			Assign a unique name to each IP AutoSwitch so you can easily identify
+			it later.
+			<span class="white">
+				Hint: To determine the location of an IP AutoSwitch, press its
+				Master Select button. That IP AutoSwitch will then become the
+				master in the list below.
+			</span>
+		</div>
+		<div id="directv" class="copy">
+			The following receivers have been set up for automatic satellite
+			switching. The master receiver controls satellite selection. You may
+			choose the master by selecting it below. To add a receiver to the 
+			list, enter its IP address and assign it a unique name (location).
+			<a href="#">(Find your receiver’s IP address.)</a>
+			<span class="white">
+				Note: Receiver must be activated to view its IP address.
+			</span>
+		</div>
 		<div id="table-rows">
 			<div id="template table-row" class="autoswitch-table-row">
 				<a id="view-btn" class="btn view-btn">
@@ -110,6 +135,13 @@
 					<label>Select</label>
 				</a>
 			</div>
+		</div>
+		<div id="mode-view" class="satellite-sub-view">
+			<h3>Satellite Switching</h3>
+			<a id="mode-btn" class="btn toggle-btn satellite-mode-btn">
+				<div class="on">Manual</div>
+				<div class="off">Automatic</div>
+			</a>
 		</div>
 	</div>
 </div>

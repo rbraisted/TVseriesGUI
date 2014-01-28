@@ -19,6 +19,7 @@ TVRO.AutoswitchPage = function() {
 		var 
 		self = $.apply($, arguments),
 		table = TVRO.Table.apply(this, arguments),
+		switchingModeBtn = TVRO.Toggle('[id ~= mode-btn ]', self),
 		populateTable = function() {
 			table.setData(receivers);
 
@@ -66,9 +67,17 @@ TVRO.AutoswitchPage = function() {
 					masterReceiver = TVRO.Autoswitch($('master', response));
 					activeReceivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(function() { return TVRO.Autoswitch(this); }).toArray();
 					populateTable();
+
+					switchingModeBtn.toggleClass('is-on', $('enable:eq(0)', response).text() === 'Y');
 				});
 			});
 		}
+
+		switchingModeBtn.click(function(isManual) {
+			webService.request('set_autoswitch_service', {
+				enabled: (isManual ? 'N' : 'Y')
+			}, refresh);
+		});
 
 		return $.extend({}, self, {
 			refresh: refresh

@@ -70,12 +70,6 @@ body.is-group .group-view {
 	position: relative;
 }
 
-.menu-view .satellite-status-label {
-	bottom: 1em;
-	color: #4a536a;
-	position: absolute;
-}
-
 .menu-view .satellite-signal {
 	background: transparent no-repeat right bottom;
 	height: 60px;
