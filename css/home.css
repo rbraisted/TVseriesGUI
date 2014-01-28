@@ -121,7 +121,6 @@ body.at-splash .vessel-view {
 
 .vessel .animation {
 	background: transparent no-repeat center center;
-	background-image: url(/images/vessel-green-large.png);
 	display: block;
 	left: 50%;
 	margin-left: -230px;
@@ -130,6 +129,18 @@ body.at-splash .vessel-view {
 	top: 50%;
 	height: 460px;
 	width: 460px;
+}
+
+.vessel .animation.is-green {
+	background-image: url(/images/vessel-green-large.png);
+}
+
+.vessel .animation.is-orange {
+	background-image: url(/images/vessel-orange-large.png);
+}
+
+.vessel .animation.is-red {
+	background-image: url(/images/vessel-red-large.png);
 }
 
 @media screen and (max-width: 880px) {
@@ -155,10 +166,21 @@ body.at-splash .vessel-view {
 	}
 
 	.vessel .animation {
-		background-image: url(/images/vessel-green-small.png);
 		height: 300px;
 		margin-left: -150px;
 		margin-top: -150px;
 		width: 300px;
+	}
+
+	.vessel .animation.is-green {
+		background-image: url(/images/vessel-green-small.png);
+	}
+
+	.vessel .animation.is-orange {
+		background-image: url(/images/vessel-orange-small.png);
+	}
+
+	.vessel .animation.is-red {
+		background-image: url(/images/vessel-red-small.png);
 	}
 }

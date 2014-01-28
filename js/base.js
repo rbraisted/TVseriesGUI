@@ -29,6 +29,7 @@
 if (typeof TVRO === 'undefined') {
 	var TVRO = {};
 }
+
 /*
 	as mentioned above,
 	MOBILE_APP and SAT_FINDER should be set by iOS/Android

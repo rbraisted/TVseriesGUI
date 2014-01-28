@@ -80,11 +80,23 @@ TVRO.HomePage = function() {
 			refresh: function() {
 				webService.request('antenna_status', function(response) {
 					var heading = Number($('antenna brst hdg', response).text()).toFixed(1),
-						azBow = Math.round(parseFloat($('az_bow', response).text(), 10));
+						azBow = Math.round(parseFloat($('az_bow', response).text(), 10)),
+						state = $('antenna state', response).text(),
+						animation = $('[id ~= vessel-animation ]', self);
+
+					animation.removeClass('is-green is-orange is-red');
+					animation.addClass({
+						'INITIALIZING': 'is-orange',
+						'SEARCHING': 'is-orange',
+						'TRACKING': 'is-green',
+						'IDLE': 'is-orange',
+						'ERROR': 'is-red',
+						'CABLE UNWRAP': 'is-orange'
+					}[state]);
 
 					$('[id ~= vessel-heading ]', self).text(heading+'˚');
 					if (!isNaN(azBow) && azBow !== 999) {
-						$('[id ~= vessel-animation ]', self).css({
+						animation.css({
 							'transform' : 'rotate('+azBow+'deg)',
 							'-moz-transform' : 'rotate('+azBow+'deg)',
 							'-ms-transform' : 'rotate('+azBow+'deg)',
