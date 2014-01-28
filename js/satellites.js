@@ -48,7 +48,7 @@ TVRO.SatellitesPage = function() {
 					row.addClass('is-installed');
 					selectedGroup = group;
 					webService.request('set_autoswitch_service', {
-						'satellite_group' : group.name
+						satellite_group: group.name
 					});
 				}
 			});
@@ -122,7 +122,7 @@ TVRO.SatellitesPage = function() {
 					self.addClass('is-selected');
 					selectedSatellite = satellite;
 					webService.request('select_satellite', {
-						'antSatID' : satellite.antSatID
+						antSatID: satellite.antSatID
 					});
 				}
 			});
@@ -148,8 +148,8 @@ TVRO.SatellitesPage = function() {
 		$('[id ~= delete-btn ]', self).click(function() {
 			if (confirm('Delete '+group.name+'?')) {
 				webService.request('set_satellite_group', {
-					'command' : 'DELETE',
-					'group_name' : group.name
+					command: 'DELETE',
+					group_name: group.name
 				});
 			}
 		});
@@ -163,7 +163,7 @@ TVRO.SatellitesPage = function() {
 			if (confirm('Install '+group.name+'?')) {
 				selectedGroup = group;
 				webService.request('set_autoswitch_service', {
-					'satellite_group' : group.name
+					satellite_group: group.name
 				});
 			}
 		});
@@ -477,17 +477,14 @@ TVRO.SatellitesPage = function() {
 		$('[id ~= reset-btn]', self).click(function() {
 			if (confirm('Reset '+satellite.name+'?')) {
 				webService.request('reset_satellite_params', {
-					'antSatID' : antSatID
-				}, function(response) {
-					refresh();
-				});
+					antSatID: antSatID
+				}, refresh);
 			}
 		});
 
 		$('[id ~= save-btn]', self).click(function() {
 			if (confirm('Are you sure you want to change the parameters for this satellite?')) {
 				var name = $('[id ~= name ][id ~= edit ]', self).val(),
-					antSatID = $('[id ~= orbital-slot][id ~= edit]', self).val(),
 					region = $('[id ~= region][id ~= edit]', self).val(),
 					suffix = $('[id ~= suffix][id ~= edit]', self).val(),
 					skew = $('[id ~= pre-skew][id ~= edit]', self).val(),
@@ -495,28 +492,30 @@ TVRO.SatellitesPage = function() {
 					lo2 = $('[id ~= local-oscillator-2][id ~= edit]', self).val();
 
 				webService.request('set_satellite_identity', {
-					'name' : name,
-					'antSatID' : antSatID,
-					'region' : region,
-					'skew' : skew,
-					'suffix' : suffix,
-					'lo1' : lo1,
-					'lo2' : lo2
+					listID: satellite.listID,
+					antSatID: satellite.antSatID,
+					name: name,
+					region: region,
+					skew: skew,
+					suffix: suffix,
+					lo1: lo1,
+					lo2: lo2
 				}, function(response) {
 					webService.request('set_satellite_params', {
-						'antSatID' : antSatID,
-						'xponder' : (function(xponderIds) {
+						listID: satellite.listID,
+						antSatID: satellite.antSatID,
+						xponder: (function(xponderIds) {
 							var xponders = [];
 							for (var i = 0; i < xponderIds.length; i++) {
 								var xponderId = xponderIds[i],
 									xponderView = $('[id ~= xponder-'+xponderId+']');
 								xponders.push({
-									'id' : xponderId,
-									'freq' : $('[id ~= frequency][id ~= edit]', xponderView).val(),
-									'symRate' : $('[id ~= symbol-rate][id ~= edit]', xponderView).val(),
-									'fec' : $('[id ~= fec-code][id ~= edit]', xponderView).text(),
-									'netID' : $('[id ~= satellite-id][id ~= edit]', xponderView).val(),
-									'modType' : $('[id ~= decoder-type][id ~= edit]', xponderView).text()
+									id: xponderId,
+									freq: $('[id ~= frequency][id ~= edit]', xponderView).val(),
+									symRate: $('[id ~= symbol-rate][id ~= edit]', xponderView).val(),
+									fec: $('[id ~= fec-code][id ~= edit]', xponderView).text(),
+									netID: $('[id ~= satellite-id][id ~= edit]', xponderView).val(),
+									modType: $('[id ~= decoder-type][id ~= edit]', xponderView).text()
 								});
 							}
 							return xponders;
@@ -536,7 +535,7 @@ TVRO.SatellitesPage = function() {
 				satellite = arguments[0];
 
 				webService.request('get_satellite_params', {
-					'antSatID' : satellite.antSatID
+					antSatID: satellite.antSatID
 				}, function(response) {
 					satellite = TVRO.Satellite(response);
 					refresh();
