@@ -211,7 +211,7 @@ TVRO.SettingsPage.EditEthernetSettingsView = function() {
 		webService = TVRO.WebService();
 
 	self.init = function() {
-		modeDropdown.optionSelected(function(name, value) {
+		modeDropdown.click(function(value) {
 			$('[id ~= mode ]:eq(0)', view).text(name);
 			staticView.toggle(value === 'STATIC');
 		});
@@ -244,7 +244,7 @@ TVRO.SettingsPage.EditEthernetSettingsView = function() {
 	self.refresh = function() {
 		webService.request('get_eth', function(response) {
 			var mode = $('mode', response).text();
-			modeDropdown.selectValue(mode);
+			modeDropdown.click(mode);
 			staticView.toggle(mode === 'STATIC');
 			if (mode === 'STATIC') {
 				$('[id ~= mode ]', staticView).text(mode);
@@ -279,38 +279,38 @@ TVRO.SettingsPage.EditWirelessSettingsView = function() {
 		webService = TVRO.WebService();
 
 	self.init = function() {
-		modeDropdown.optionSelected(function(name, value) {
+		modeDropdown.click(function(value) {
 			$('[id ~= mode ]:eq(0)', view).text(name);
 			adhocView.toggle(value === 'ADHOC');
 			infrastructureView.toggle(value === 'IF');
 		});
 
-		adhocSecurityDropdown.optionSelected(function(name, value) {
+		adhocSecurityDropdown.click(function(value) {
 			$('[id ~= security ]', adhocView).text(name);
 			adhocSecurityView.toggle(value !== 'OFF');
 		});
 
-		infrastructureModeDropdown.optionSelected(function(name, value) {
+		infrastructureModeDropdown.click(function(value) {
 			$('[id ~= mode ]', infrastructureView).text(name);
 			staticView.toggle(value === 'STATIC');
 			dynamicView.toggle(value === 'DYNAMIC');
 		});
 
-		staticSecurityDropdown.optionSelected(function(name, value) {
+		staticSecurityDropdown.click(function(value) {
 			$('[id ~= security ]', staticView).text(name);
 			staticSecurityView.toggle(value !== 'OFF');
 		});
 
-		dynamicSecurityDropdown.optionSelected(function(name, value) {
+		dynamicSecurityDropdown.click(function(value) {
 			$('[id ~= security ]', dynamicView).text(name);
 			dynamicSecurityView.toggle(value !== 'OFF');
 		});
 
-		modeDropdown.selectValue('OFF');
-		adhocSecurityDropdown.selectValue('OFF');
-		infrastructureModeDropdown.selectValue('OFF');
-		staticSecurityDropdown.selectValue('OFF');
-		dynamicSecurityDropdown.selectValue('OFF');
+		modeDropdown.click('OFF');
+		adhocSecurityDropdown.click('OFF');
+		infrastructureModeDropdown.click('OFF');
+		staticSecurityDropdown.click('OFF');
+		dynamicSecurityDropdown.click('OFF');
 
 		$('[id ~= cancel-btn ]', view).click(function() {
 			$(document.body).setClass('at-network-settings');
@@ -372,12 +372,12 @@ TVRO.SettingsPage.EditWirelessSettingsView = function() {
 				infrastructure = $('if_mode', response),
 				infrastructureMode = $('mode:eq(0)', infrastructure).text();
 
-			modeDropdown.selectValue(mode);
-			infrastructureModeDropdown.selectValue(infrastructureMode);
+			modeDropdown.click(mode);
+			infrastructureModeDropdown.click(infrastructureMode);
 
 			if (mode === 'ADHOC') {
 				$('[id ~= ip ]', adhocView).val($('ip', adhoc).text());
-				adhocSecurityDropdown.selectValue($('security mode', adhoc).text());
+				adhocSecurityDropdown.click($('security mode', adhoc).text());
 				$('[id ~= password ]', adhocView).val($('key', adhoc).text());
 			} else if (mode === 'IF') {
 				if (infrastructureMode === 'STATIC') {
@@ -386,12 +386,12 @@ TVRO.SettingsPage.EditWirelessSettingsView = function() {
 					$('[id ~= gateway ]', staticView).val($('gateway', infrastructure).text());
 					$('[id ~= broadcast ]', staticView).val($('broadcast', infrastructure).text());
 					$('[id ~= ssid ]', staticView).val($('essid', infrastructure).text());
-					staticSecurityDropdown.selectValue($('security mode', infrastructure).text());
+					staticSecurityDropdown.click($('security mode', infrastructure).text());
 					$('[id ~= password ]', staticSecurityView).val($('security key', infrastructure).text());
 				} else if (infrastructureMode === 'DYNAMIC') {
 					$('[id ~= ip ]', dynamicView).val($('ip', infrastructure).text());
 					$('[id ~= ssid ]', dynamicView).val($('essid', infrastructure).text());
-					dynamicSecurityDropdown.selectValue($('security mode', infrastructure).text())
+					dynamicSecurityDropdown.click($('security mode', infrastructure).text())
 					$('[id ~= password ]', dyanmicSecurityView).val($('security key', infrastructure).text());
 				}
 			}

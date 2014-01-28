@@ -465,7 +465,7 @@ table .sort-btn label {
 
 .menu-view .menu-btn img {
 	background-image: url(/images/menu-btn.png);
-	float: right;
+	right: 0;
 }
 
 .menu-view .menu-btn label {
@@ -846,6 +846,7 @@ table .sort-btn label {
 	.popup-view {
 		min-height: 100%;
 		padding-top: 50px;
+		z-index: 1;
 	}
 
 	.popup-view h1 {

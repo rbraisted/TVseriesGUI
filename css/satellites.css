@@ -12,30 +12,58 @@ body.is-group .group-view {
 	display: block;
 }
 
-body.is-group.at-info .satellite-info-view,
+@media screen and (min-width: 880px) {
+	body.at-info .satellite-info-view,
 
-body.is-single.at-splash .menu-view,
-body.is-single.at-splash .satellites-table-view,
+	body.is-single.at-splash .menu-view,
+	body.is-single.at-splash .satellites-table-view,
 
-body.is-single.at-satellites-table .menu-view,
-body.is-single.at-satellites-table .satellites-table-view,
+	body.is-single.at-satellites-table .menu-view,
+	body.is-single.at-satellites-table .satellites-table-view,
 
-body.is-group.at-splash .menu-view,
-body.is-group.at-splash .satellite-group-view,
+	body.is-group.at-splash .menu-view,
+	body.is-group.at-splash .satellite-group-view,
 
-body.is-group.at-satellite-group .menu-view,
-body.is-group.at-satellite-group .satellite-group-view,
+	body.is-group.at-satellite-group .menu-view,
+	body.is-group.at-satellite-group .satellite-group-view,
 
-body.is-group.at-edit-satellite-group .menu-view,
-body.is-group.at-edit-satellite-group .satellite-group-view,
-body.is-group.at-edit-satellite-group .edit-satellite-group-view,
+	body.is-group.at-edit-satellite-group .menu-view,
+	body.is-group.at-edit-satellite-group .satellite-group-view,
+	body.is-group.at-edit-satellite-group .edit-satellite-group-view,
 
-body.is-group.at-satellites-table .menu-view,
-body.is-group.at-satellites-table .edit-satellite-group-view,
-body.is-group.at-satellites-table .satellite-table-popup-view {
-	display: block;
+	body.is-group.at-satellites-table .menu-view,
+	body.is-group.at-satellites-table .edit-satellite-group-view,
+	body.is-group.at-satellites-table .satellite-table-popup-view {
+		display: block;
+	}
 }
 
+@media screen and (max-width: 880px) {
+	body.is-single.at-splash .menu-view,
+
+	body.is-single.at-satellites-table .satellites-table-view,
+
+	body.is-group.at-splash .menu-view,
+
+	body.is-group.at-satellite-group .satellite-group-view,
+
+	body.is-group.at-edit-satellite-group .edit-satellite-group-view,
+
+	body.is-group.at-satellites-table .satellite-table-popup-view,
+
+	body.at-info .satellite-info-view {
+		display: block;
+	}
+
+	body.at-info .menu-view,
+	body.at-info .satellite-group-view,
+	body.at-info .edit-satellite-group-view,
+	body.at-info .satellites-table-view,
+	body.at-info .satellites-table-popup-view {
+		/* plz fix l8r */
+		display: none !important;
+	}
+}
 
 
 .menu-view .details-view,

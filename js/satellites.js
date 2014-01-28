@@ -28,6 +28,7 @@ TVRO.SatellitesPage = function() {
 
 		singleRadio.click(function(region) {
 			singleTableView.loadRegion(region);
+			$(document.body).setClass('is-single at-satellites-table');
 		});
 
 		groupRadio.click(function(i) {
@@ -41,6 +42,7 @@ TVRO.SatellitesPage = function() {
 			row.toggleClass('is-installed', group.name === selectedGroup.name);
 			$('[id ~= name ]', row).text(group.name);
 			$('[id ~= select-btn ]', row).click(function() {
+				event.stopPropagation();
 				if (confirm('Install '+group.name+'?')) {
 					$('[id ~= table-row ]', groupTable).removeClass('is-installed');
 					row.addClass('is-installed');
@@ -81,14 +83,18 @@ TVRO.SatellitesPage = function() {
 									C: selectedGroup.satelliteC,
 									D: selectedGroup.satelliteD
 								}[selectedSlot];
+								groupView.loadGroup(groups[i]);
 								groupTable.build(groups.length);
 								groupRadio.refresh();
-								groupRadio.click(i);
+								groupRadio.setSelectedValue(i);
 							}
 						}
 
 						modeBtn.setOn(isSingle);
-						if (!singleRadio.selectedValue()) singleRadio.click('All');
+						if (!singleRadio.selectedValue()) {
+							singleTableView.loadRegion('All');
+							singleRadio.setSelectedValue('All');
+						}
 						$(document.body).toggleClass('is-single', isSingle).toggleClass('is-group', !isSingle);
 					});
 				});
@@ -134,6 +140,10 @@ TVRO.SatellitesPage = function() {
 		slotBView = SlotView('[id ~= slot-b-view ]', self),
 		slotCView = SlotView('[id ~= slot-c-view ]', self),
 		slotDView = SlotView('[id ~= slot-d-view ]', self);
+
+		$('[id ~= back-btn ]', self).click(function() {
+			$(document.body).setClass('is-group at-splash');
+		});
 
 		$('[id ~= delete-btn ]', self).click(function() {
 			if (confirm('Delete '+group.name+'?')) {
@@ -302,7 +312,7 @@ TVRO.SatellitesPage = function() {
 		});
 
 		$('[id ~= back-btn ]', self).click(function() {
-			$(document.body).setClass('???');
+			$(document.body).setClass('is-single at-splash');
 		});
 
 		$('[id ~= cancel-btn ]', self).click(function() {

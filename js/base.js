@@ -56,6 +56,9 @@ TVRO.init = function() {
 		nav.toggleClass('is-expanded');
 	});
 
+	$('[href = # ]').click(function() {
+		return false;
+	});
 
 	// var webService = new TVRO.WebService();
 	// setInterval(function() {
@@ -420,14 +423,10 @@ TVRO.Radio = function() {
 		callbacks = [],
 		click = function() {
 			var option = $(this);
-			if (option.hasClass('is-selected')) {
-				return;
-			} else {
-				options.removeClass('is-selected');
-				option.addClass('is-selected');
-				for (var i = 0; i < callbacks.length; i++) {
-					callbacks[i].call(this, option.attr('value'));
-				}
+			options.removeClass('is-selected');
+			option.addClass('is-selected');
+			for (var i = 0; i < callbacks.length; i++) {
+				callbacks[i].call(this, option.attr('value'));
 			}
 		},
 		refresh = function() {
@@ -457,13 +456,29 @@ TVRO.Radio = function() {
 
 TVRO.Dropdown = function() {
 	var self = $.apply($, arguments),
-		radio = TVRO.Radio(self);
+		radio = TVRO.Radio(self),
+		buttons,
+		click = function() {
+			self.show();
+			$('[id ~= dropdown-content ]', self).offset($(this).offset());
+		}
+
+	radio.click(function(value) {
+		if (buttons) $('[id ~= radio-value ]', buttons).text(value);
+		self.hide();
+	});
 
 	$('[id ~= close-btn ]', self).click(function() {
 		self.hide();
 	});
 
-	return $.extend({}, self, radio, {});
+	return $.extend({}, self, radio, {
+		setButtons: function() {
+			if (buttons) buttons.unbind('click', click);
+			buttons = $.apply($, arguments);
+			buttons.click(click);
+		}
+	});
 }
 
 /*
