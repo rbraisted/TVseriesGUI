@@ -36,36 +36,34 @@
 		</div>
 
 		<div id="satellite-dropdown" class="satellite-sub-view satellite-dropdown-view">
-			<div id="dropdown-options">
-				<a id="dropdown-option satellite-a-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
-					<img src="/images/img.gif">
-					<label>
-						<span id="name">Rosalind 1</span>
-						<span id="region">Europe</span>
-					</label>
-				</a>
-				<a id="dropdown-option satellite-b-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
-					<img src="/images/img.gif">
-					<label>
-						<span id="name">Elena 22</span>
-						<span id="region">Europe</span>
-					</label>
-				</a>
-				<a id="dropdown-option satellite-c-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
-					<img src="/images/img.gif">
-					<label>
-						<span id="name">Astrea 2</span>
-						<span id="region">Middle East</span>
-					</label>
-				</a>
-				<a id="dropdown-option satellite-d-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
-					<img src="/images/img.gif">
-					<label>
-						<span id="name">Lane 3</span>
-						<span id="region">Middle East</span>
-					</label>
-				</a>
-			</div>
+			<a id="radio-option slot-a-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+				<img src="/images/img.gif">
+				<label>
+					<span id="name">Rosalind 1</span>
+					<span id="region">Europe</span>
+				</label>
+			</a>
+			<a id="radio-option slot-b-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+				<img src="/images/img.gif">
+				<label>
+					<span id="name">Elena 22</span>
+					<span id="region">Europe</span>
+				</label>
+			</a>
+			<a id="radio-option slot-c-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+				<img src="/images/img.gif">
+				<label>
+					<span id="name">Astrea 2</span>
+					<span id="region">Middle East</span>
+				</label>
+			</a>
+			<a id="radio-option slot-d-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+				<img src="/images/img.gif">
+				<label>
+					<span id="name">Lane 3</span>
+					<span id="region">Middle East</span>
+				</label>
+			</a>
 		</div>
 	</div>
 
