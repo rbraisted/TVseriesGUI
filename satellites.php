@@ -372,8 +372,11 @@
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Orbital Slot</div>
+			<div id="orbital-slot" class="value"></div>
+			<!--
 			<div id="orbital-slot view" class="value"></div>
 			<input id="orbital-slot edit">
+			-->
 		</div>
 		<div class="detail top-detail five-split">
 			<div class="label">Hemisphere</div>

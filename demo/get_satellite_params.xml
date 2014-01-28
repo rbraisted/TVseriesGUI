@@ -3,6 +3,7 @@
 	<message error="0" name="get_satellite_params"/>
 	<listID>4</listID>
 	<antSatID>99W</antSatID>
+	<!-- <antSatID>USER-1</antSatID> -->
 	<name>DTV99</name>
 	<region>Europe</region>
 	<lon>-99.00</lon>

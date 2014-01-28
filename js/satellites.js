@@ -362,26 +362,24 @@ TVRO.SatellitesPage = function() {
 		satellite = {},
 		currentXponder,
 		favoriteBtn = TVRO.Toggle('[id ~= favorite-btn ]', self),
-		regionDropdown = TVRO.Dropdown('[id ~= region-dropdown ]'),//$('[id ~= region-btn ]', self)),
-		hemisphereDropdown = TVRO.Dropdown('[id ~= hemisphere-dropdown ]'),//$('[id ~= hemisphere-btn ]', self)),
-		lnbTypeDropdown = TVRO.Dropdown('[id ~= lnb-type-dropdown ]'),//$('[id ~= lnb-type-btn ]', self)),
-		fecCodeDropdown = TVRO.Dropdown('[id ~= fec-code-dropdown ]'),//$('[id ~= fec-code-btn ]', self)),
-		decoderTypeDropdown = TVRO.Dropdown('[id ~= decoder-type-dropdown ]'),//$('[id ~= decoder-type-btn ]', self)),
+		regionDropdown = TVRO.Dropdown('[id ~= region-dropdown ]'),
+		hemisphereDropdown = TVRO.Dropdown('[id ~= hemisphere-dropdown ]'),
+		lnbTypeDropdown = TVRO.Dropdown('[id ~= lnb-type-dropdown ]'),
+		fecCodeDropdown = TVRO.Dropdown('[id ~= fec-code-dropdown ]'),
+		decoderTypeDropdown = TVRO.Dropdown('[id ~= decoder-type-dropdown ]'),
 		webService = TVRO.WebService(),
 		refresh = function() {
+			favoriteBtn.setOn(satellite.favorite === 'TRUE' || satellite.favorite === 'Y');
 			$('[id ~= name ]', self).text(satellite.name).val(satellite.name);
-			regionDropdown.click(satellite.region);// $('[id ~= region ]', self).text(satellite.region);
+			regionDropdown.click(satellite.region);
 			$('[id ~= orbital-slot ]', self).text(satellite.antSatID).val(satellite.antSatID);
-			hemisphereDropdown.click(satellite.lon > 0 ? 'East' : 'West');// $('[id ~= hemisphere ]', self).text(satellite.lon > 0 ? 'EAST' : 'WEST');
+			hemisphereDropdown.click(satellite.lon > 0 ? 'East' : 'West');
 			$('[id ~= suffix ]', self).text(satellite.suffix).val(satellite.suffix);
 			$('[id ~= pre-skew ]', self).text(satellite.skew).val(satellite.skew);
-			lnbTypeDropdown.click((satellite.preferredPolarity === 'R' || satellite.preferredPolarity === 'L') ? 'Linear' : 'Circular');// $('[id ~= lnb-type ]', self).text(satellite.triSatID);
+			lnbTypeDropdown.click((satellite.preferredPolarity === 'R' || satellite.preferredPolarity === 'L') ? 'Linear' : 'Circular');
 			$('[id ~= local-oscillator-1 ]', self).text(satellite.lo1).val(satellite.lo1);
 			$('[id ~= local-oscillator-2 ]', self).text(satellite.lo2).val(satellite.lo2);
 
-			favoriteBtn.setOn(satellite.favorite === 'TRUE' || satellite.favorite === 'Y');
-
-			//	TODO: check LNB mode to determine which params we should show
 			$('[id ~= circular ]', self).toggle(lnbTypeDropdown.selectedValue() === 'Circular');
 			$('[id ~= linear ]', self).toggle(lnbTypeDropdown.selectedValue() === 'Linear');
 
@@ -402,11 +400,15 @@ TVRO.SatellitesPage = function() {
 						$('[id ~= fec-code-btn ]', xponderView).click(function() {
 							currentXponder = xponder;
 							fecCodeDropdown.setSelectedValue($('[id ~= fec-code ][id ~= edit ]', xponderView).text());
+							fecCodeDropdown.show();
+							$('[id ~= dropdown-content ]', fecCodeDropdown).offset($(this).offset());
 						});
 
 						$('[id ~= decoder-type-btn ]', xponderView).click(function() {
 							currentXponder = xponder;
 							decoderTypeDropdown.setSelectedValue($('[id ~= decoder-type ][id ~= edit ]', xponderView).text());
+							decoderTypeDropdown.show();
+							$('[id ~= dropdown-content ]', decoderTypeDropdown).offset($(this).offset());
 						});
 					}(xponder, xponderView));
 				}
@@ -426,53 +428,26 @@ TVRO.SatellitesPage = function() {
 			});
 		});
 
-		$('[id ~= region-btn ]', self).click(function() {
-			regionDropdown.show();
-			$('[id ~= dropdown-content ]', regionDropdown).offset($(this).offset());
-		});
-
+		regionDropdown.setButtons($('[id ~= region-btn ]', self));
 		regionDropdown.click(function(value) {
-			regionDropdown.hide();
 			$('[id ~= region ]', self).text(value);
 		});
 
-		$('[id ~= hemisphere-btn ]', self).click(function() {
-			hemisphereDropdown.show();
-			$('[id ~= dropdown-content ]', hemisphereDropdown).offset($(this).offset());
-		});
-
+		hemisphereDropdown.setButtons($('[id ~= hemisphere-btn ]', self));
 		hemisphereDropdown.click(function(value) {
-			hemisphereDropdown.hide();
 			$('[id ~= hemisphere ]', self).text(value);
 		});
 
-		$('[id ~= lnb-type-btn ]', self).click(function() {
-			lnbTypeDropdown.show();
-			$('[id ~= dropdown-content ]', lnbTypeDropdown).offset($(this).offset());
-		});
-
+		lnbTypeDropdown.setButtons($('[id ~= lnb-type-btn ]', self));
 		lnbTypeDropdown.click(function(value) {
-			lnbTypeDropdown.hide();
 			$('[id ~= lnb-type ]', self).text(value);
 		});
 
-		$('[id ~= fec-code-btn ]', self).click(function() {
-			fecCodeDropdown.show();
-			$('[id ~= dropdown-content ]', fecCodeDropdown).offset($(this).offset());
-		});
-
 		fecCodeDropdown.click(function(value) {
-			fecCodeDropdown.hide();
 			$('[id ~= xponder-'+currentXponder.id+'] [id ~= fec-code ]', self).text(value);
 		});
 
-		$('[id ~= decoder-type-btn ]', self).click(function() {
-			decoderTypeDropdown.show();
-			$('[id ~= dropdown-content ]', decoderTypeDropdown).offset($(this).offset());
-		});
-
 		decoderTypeDropdown.click(function(value) {
-			decoderTypeDropdown.hide();
 			$('[id ~= xponder-'+currentXponder.id+'] [id ~= decoder-type ]', self).text(value);
 		});
 
@@ -487,6 +462,16 @@ TVRO.SatellitesPage = function() {
 		$('[id ~= edit-btn]', self).click(function() {
 			$('[id ~= view ]', self).hide();
 			$('[id ~= edit ]', self).show();
+			if (satellite.antSatID.substr(0, 4) !== 'USER') {
+				$('[id ~= name ]', self).toggle();
+				$('[id ~= region ], [id ~= region-btn ]', self).toggle();
+				$('[id ~= hemisphere ], [id ~= hemisphere-btn ]', self).toggle();
+				$('[id ~= suffix ]', self).toggle();
+				$('[id ~= pre-skew ]', self).toggle();
+				$('[id ~= lnb-type ], [id ~= lnb-type-btn ]', self).toggle();
+				$('[id ~= local-oscillator-1 ]', self).toggle();
+				$('[id ~= local-oscillator-2 ]', self).toggle();
+			}
 		});
 
 		$('[id ~= reset-btn]', self).click(function() {
@@ -501,7 +486,7 @@ TVRO.SatellitesPage = function() {
 
 		$('[id ~= save-btn]', self).click(function() {
 			if (confirm('Are you sure you want to change the parameters for this satellite?')) {
-				var name = $('[id ~= name][id ~= edit]', self).val(),
+				var name = $('[id ~= name ][id ~= edit ]', self).val(),
 					antSatID = $('[id ~= orbital-slot][id ~= edit]', self).val(),
 					region = $('[id ~= region][id ~= edit]', self).val(),
 					suffix = $('[id ~= suffix][id ~= edit]', self).val(),
