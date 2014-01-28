@@ -1,6 +1,6 @@
 @import 'reset.css';
 
-@font-face {
+/*@font-face {
 	font-family: Helvetica;
 	font-style: normal;
 	font-weight: normal;
@@ -20,11 +20,13 @@
 	font-weight: lighter;
 	src: url(/fonts/HelveticaLTStd-Light.otf);
 }
-
+*/
 * {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	cursor: inherit;
+	font-size-adjust: 0.55;
+	text-rendering: optimizeLegibility;	
 	user-select: none;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
