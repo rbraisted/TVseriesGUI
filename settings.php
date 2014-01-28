@@ -5,15 +5,15 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="menu-view" class="view menu-view">
-	<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="general-settings-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>General Settings</label>
 	</a>
-	<a id="network-settings-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="network-settings-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Network Settings</label>
 	</a>
-	<a id="advanced-settings-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="advanced-settings-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Advanced Settings</label>
 	</a>
@@ -23,7 +23,7 @@
 
 <div id="general-settings-view" class="view main-view settings-view general-settings-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>General Settings</label>
 		</a>
@@ -35,7 +35,7 @@
 			metus. Etiam commodo faucibus augue, id placerat elit aliquet
 			non. Sed ac diam enim. Phasellus vitae interdum magna.
 		</p>
-		<a id="technician-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
+		<a id="technician-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -44,7 +44,7 @@
 			et eros eleifend urna mollis convallis. Duis orci nisl, gravida
 			at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
 		</p>
-		<a id="demo-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
+		<a id="demo-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -55,7 +55,7 @@
 
 <div id="advanced-settings-view" class="view main-view settings-view advanced-settings-view">
 	<div class="view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Advanced Settings</label>
 		</a>
@@ -66,7 +66,7 @@
 			gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
 			urna.
 		</p>
-		<a id="sleep-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
+		<a id="sleep-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -77,7 +77,7 @@
 			faucibus augue, id placerat elit aliquet non. Sed ac diam enim.
 			Phasellus vitae interdum magna.
 		</p>
-		<a id="sidelobe-mode-btn" href="#" class="btn toggle-btn setting-toggle-btn">
+		<a id="sidelobe-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
@@ -88,7 +88,7 @@
 
 <div id="network-settings-view" class="view main-view settings-view network-settings-view">
 	<div class="view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Network Settings</label>
 		</a>
@@ -116,7 +116,7 @@
 				 --><span id="broadcast" class="setting-value"></span>
 				</div>
 			</div>
-			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
+			<a id="edit-btn" class="btn basic-btn setting-edit-btn">
 				<label>Edit</label>
 			</a>
 		</div>
@@ -194,7 +194,7 @@
 					</div>
 				</div>
 			</div>
-			<a id="edit-btn" href="#" class="btn basic-btn setting-edit-btn">
+			<a id="edit-btn" class="btn basic-btn setting-edit-btn">
 				<label>Edit</label>
 			</a>
 		</div>
@@ -205,14 +205,14 @@
 
 <div id="edit-ethernet-settings-view" class="view popup-view settings-view edit-settings-view edit-ethernet-settings-view">
 	<div class="view-content popup-content">
-		<a id="cancel-btn" href="#" class="btn back-btn">
+		<a id="cancel-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Edit Ethernet Settings</label>
 		</a>
 		<h1>Edit Ethernet Settings</h1>
 		<div class="setting">
 			<label class="setting-name">Mode</label><!--
-		 --><a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+		 --><a id="mode-btn" class="btn dropdown-btn setting-dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="mode"></label>
 			</a>
@@ -236,13 +236,13 @@
 			</div>
 		</div>
 		<div class="tool-bar">
-			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
+			<a id="reset-btn" class="btn basic-btn reset-btn">
 				<label>Factory Settings</label>
 			</a>
-			<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
+			<a id="cancel-btn" class="btn basic-btn cancel-btn">
 				<label>Cancel</label>
 			</a>
-			<a id="save-btn" href="#" class="btn basic-btn save-btn">
+			<a id="save-btn" class="btn basic-btn save-btn">
 				<label>Save</label>
 			</a>
 		</div>
@@ -253,14 +253,14 @@
 
 <div id="edit-wireless-settings-view" class="view popup-view settings-view edit-settings-view edit-wireless-settings-view">
 	<div class="view-content popup-content">
-		<a id="cancel-btn" href="#" class="btn back-btn">
+		<a id="cancel-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Edit Wireless Settings</label>
 		</a>
 		<h1>Edit Wireless Settings</h1>
 		<div class="setting">
 			<label class="setting-name">Mode</label>
-			<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+			<a id="mode-btn" class="btn dropdown-btn setting-dropdown-btn">
 				<img src="/images/img.gif">
 				<label id="mode"></label>
 			</a>
@@ -273,7 +273,7 @@
 			</div>
 			<div class="setting">
 				<label class="setting-name">Security Mode</label>
-				<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+				<a id="security-btn" class="btn dropdown-btn setting-dropdown-btn">
 					<img src="/images/img.gif">
 					<label id="security"></label>
 				</a>
@@ -287,7 +287,7 @@
 		<div id="infrastructure-view">
 			<div class="setting">
 				<label class="setting-name">Network Mode</label>
-				<a id="mode-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+				<a id="mode-btn" class="btn dropdown-btn setting-dropdown-btn">
 					<img src="/images/img.gif">
 					<label id="mode"></label>
 				</a>
@@ -315,7 +315,7 @@
 				</div>
 				<div class="setting">
 					<label class="setting-name">Security Mode</label>
-					<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+					<a id="security-btn" class="btn dropdown-btn setting-dropdown-btn">
 						<img src="/images/img.gif">
 						<label id="security"></label>
 					</a>
@@ -332,7 +332,7 @@
 				</div>
 				<div class="setting">
 					<label class="setting-name">Security Mode</label>
-					<a id="security-btn" href="#" class="btn dropdown-btn setting-dropdown-btn">
+					<a id="security-btn" class="btn dropdown-btn setting-dropdown-btn">
 						<img src="/images/img.gif">
 						<label id="security"></label>
 					</a>
@@ -345,13 +345,13 @@
 		</div>
 
 		<div class="tool-bar">
-			<a id="reset-btn" href="#" class="btn basic-btn reset-btn">
+			<a id="reset-btn" class="btn basic-btn reset-btn">
 				<label>Factory Settings</label>
 			</a>
-			<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
+			<a id="cancel-btn" class="btn basic-btn cancel-btn">
 				<label>Cancel</label>
 			</a>
-			<a id="save-btn" href="#" class="btn basic-btn save-btn">
+			<a id="save-btn" class="btn basic-btn save-btn">
 				<label>Save</label>
 			</a>
 		</div>
@@ -362,21 +362,21 @@
 
 <div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Mode</label>
 		</a>
 		<h1>Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+			<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DISABLED</label>
 			</a>
-			<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
+			<a id="dropdown-option" value="STATIC" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>STATIC</label>
 			</a>
-			<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
+			<a id="dropdown-option" value="DYNAMIC" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DHCP</label>
 			</a>
@@ -386,21 +386,21 @@
 
 <div id="wireless-mode-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Mode</label>
 		</a>
 		<h1>Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+			<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DISABLED</label>
 			</a>
-			<a id="dropdown-option" href="#" value="ADHOC" class="btn dropdown-option">
+			<a id="dropdown-option" value="ADHOC" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>ADHOC</label>
 			</a>
-			<a id="dropdown-option" href="#" value="IF" class="btn dropdown-option">
+			<a id="dropdown-option" value="IF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>INFRASTRUCTURE</label>
 			</a>
@@ -410,21 +410,21 @@
 
 <div id="infrastructure-mode-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Network Mode</label>
 		</a>
 		<h1>Network Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+			<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DISABLED</label>
 			</a>
-			<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
+			<a id="dropdown-option" value="STATIC" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>STATIC</label>
 			</a>
-			<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
+			<a id="dropdown-option" value="DYNAMIC" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>DHCP</label>
 			</a>
@@ -434,17 +434,17 @@
 
 <div id="adhoc-security-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Security Mode</label>
 		</a>
 		<h1>Security Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+			<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>OFF</label>
 			</a>
-			<a id="dropdown-option" href="#" value="WEP" class="btn dropdown-option">
+			<a id="dropdown-option" value="WEP" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>WEP</label>
 			</a>
@@ -454,17 +454,17 @@
 
 <div id="static-security-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Security Mode</label>
 		</a>
 		<h1>Security Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+			<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>OFF</label>
 			</a>
-			<a id="dropdown-option" href="#" value="WPA_PSK" class="btn dropdown-option">
+			<a id="dropdown-option" value="WPA_PSK" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>WPA_PSK</label>
 			</a>
@@ -474,17 +474,17 @@
 
 <div id="dynamic-security-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Security Mode</label>
 		</a>
 		<h1>Security Mode</h1>
 		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+			<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>OFF</label>
 			</a>
-			<a id="dropdown-option" href="#" value="WPA_PSK" class="btn dropdown-option">
+			<a id="dropdown-option" value="WPA_PSK" class="btn dropdown-option">
 				<img src="/images/img.gif">
 				<label>WPA_PSK</label>
 			</a>

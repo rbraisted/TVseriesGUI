@@ -10,7 +10,25 @@ TVRO.HomePage = function() {
 	MenuView = function() {	
 		var
 		self = $.apply($, arguments),
-		satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]', self);
+		satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= satellite-view ]', self),
+		autoswitches = [],
+		autoswitchTable = TVRO.Table('[id ~= autoswitch-dropdown ]'),
+		autoswitchDropdown = TVRO.Dropdown('[id ~= autoswitch-dropdown ]');
+
+		autoswitchTable.build(function(i, row) {
+			var autoswitch = autoswitches[i];
+			$('[id ~= name ]', row).text(autoswitch.name);
+			row.attr('value', i);
+		});
+
+		autoswitchDropdown.setButtons('[id ~= autoswitch-btn ]', self);
+		autoswitchDropdown.click(function(i) {
+			var autoswitch = autoswitches[i];
+			$('[id ~= master ]', self).text(autoswitch.name);
+			webService.request('set_autoswitch_master', {
+				sn: autoswitch.sn
+			});
+		});
 
 		webService.request('antenna_versions', function(response) {
 			$('[id ~= antenna ]', self).text($('au model', response).text());
@@ -25,6 +43,25 @@ TVRO.HomePage = function() {
 
 					$('[id ~= latitude ]', self).text(latitude > 0.0 ? latitude+'N' : Math.abs(latitude)+'S');
 					$('[id ~= longitude ]', self).text(longitude > 0.0 ? longitude+'E' : Math.abs(longitude)+'W');
+				});
+
+				webService.request('get_autoswitch_status', function(response) {
+					var view = $('[id ~= autoswitch-view ]', self),
+						masterSn = $('master sn', response).text(),
+						masterName = $('autoswitch:contains('+masterSn+') name', response).text();
+
+					autoswitches = $('autoswitch', response).map(function() { return TVRO.Autoswitch(this); }).toArray();
+					autoswitchTable.build(autoswitches.length);
+					autoswitchDropdown.refresh();
+
+					for (var i = 0; i < autoswitches.length; i++) {
+						if (autoswitches[i].name === masterName) autoswitchDropdown.setSelectedValue(i);
+					}
+
+					$('[id ~= master ]', view).text(masterName);
+					//	we may need to check active_list.children().length > 0 instead
+					view.toggle($('active_list', response).length > 0);
+					view.toggleClass('is-disabled', $('enable:eq(0)', response).text() === 'N');
 				});
 			}
 		});

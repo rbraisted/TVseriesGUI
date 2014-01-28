@@ -861,6 +861,7 @@ table .sort-btn label {
 
 	.dropdown-view {
 		background-color: rgba(0,0,0,.25);
+		z-index: 5;
 	}
 
 	.dropdown-content {
@@ -868,7 +869,7 @@ table .sort-btn label {
 		bottom: 0; 
 		box-shadow: 0 0 50px #000;
 		left: 0 !important;
-		position: absolute;
+		position: fixed;
 		top: auto !important;
 		width: 100%;
 	}

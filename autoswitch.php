@@ -8,7 +8,7 @@
 	<div id="satellite-view" class="menu-sub-view satellite-view">
 		<div id="mode-view" class="satellite-sub-view">
 			<h3>Satellite Switching</h3>
-			<a id="mode-btn" href="#" class="btn toggle-btn satellite-mode-btn">
+			<a id="mode-btn" class="btn toggle-btn satellite-mode-btn">
 				<div class="on">Manual</div>
 				<div class="off">Automatic</div>
 			</a>
@@ -24,28 +24,28 @@
 		</div>
 
 		<div id="satellite-dropdown" class="satellite-sub-view satellite-dropdown-view">
-			<a id="radio-option slot-a-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-a-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Rosalind 1</span>
 					<span id="region">Europe</span>
 				</label>
 			</a>
-			<a id="radio-option slot-b-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-b-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Elena 22</span>
 					<span id="region">Europe</span>
 				</label>
 			</a>
-			<a id="radio-option slot-c-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-c-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Astrea 2</span>
 					<span id="region">Middle East</span>
 				</label>
 			</a>
-			<a id="radio-option slot-d-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-d-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Lane 3</span>
@@ -55,7 +55,7 @@
 		</div>
 	</div>
 
-	<a id="new-btn" href="#" class="btn basic-btn new-btn">
+	<a id="new-btn" class="btn basic-btn new-btn">
 		<img src="/images/img.gif">
 		<label id="not-directv">Add IP Autoswitch</label>
 		<label id="directv">Add Receiver</label>
@@ -66,12 +66,12 @@
 
 <div id="autoswitches-view" class="view main-view autoswitches-view">
 	<div class="view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label id="not-directv">IP Autoswitches</label>
 			<label id="directv">Receivers</label>
 		</a>
-		<a id="new-btn" href="#" class="btn basic-btn new-btn">
+		<a id="new-btn" class="btn basic-btn new-btn">
 			<img src="/images/img.gif">
 		</a>
 		<h1>
@@ -81,7 +81,7 @@
 		</h1>
 		<div id="table-rows">
 			<div id="template table-row" class="autoswitch-table-row">
-				<a id="view-btn" href="#" class="btn view-btn">
+				<a id="view-btn" class="btn view-btn">
 					<img src="/images/img.gif">
 				</a>
 				<div class="label status-label">Status</div>
@@ -102,11 +102,11 @@
 				<div id="directv" class="label serial-number-label">IP Address</div>
 				<div id="directv ip" class="value serial-number-value"></div>
 
-				<a id="edit-btn" href="#" class="btn basic-btn edit-btn">
+				<a id="edit-btn" class="btn basic-btn edit-btn">
 					<label>Edit</label>
 				</a>
 
-				<a id="select-btn" href="#" class="btn basic-btn select-btn">
+				<a id="select-btn" class="btn basic-btn select-btn">
 					<label>Select</label>
 				</a>
 			</div>
@@ -118,7 +118,7 @@
 
 <div id="autoswitch-view" class="view main-view autoswitch-view">
 	<div class="view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label id="not-directv">AutoSwitch Details</label>
 			<label id="directv">Receiver Details</label>
@@ -147,11 +147,11 @@
 		<div class="label master-label">Master</div>
 		<img src="/images/img.gif" class="master-img">
 
-		<a id="edit-btn" href="#" class="btn basic-btn edit-btn">
+		<a id="edit-btn" class="btn basic-btn edit-btn">
 			<label>Edit</label>
 		</a>
 
-		<a id="select-btn" href="#" class="btn basic-btn select-btn">
+		<a id="select-btn" class="btn basic-btn select-btn">
 			<label>Select</label>
 		</a>
 	</div>
@@ -161,7 +161,7 @@
 
 <div id="edit-view" class="view popup-view edit-view">
 	<div class="view-content popup-content">
-		<a id="cancel-btn" href="#" class="btn back-btn">
+		<a id="cancel-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>
 				<span id="new">Add</span>
@@ -181,7 +181,7 @@
 		<p class="copy">KVH recommends that you run the Setup Wizard whenever you change your
 			system's configuration by adding or removing devices.</p>
 
-		<a id="wizard-btn" href="#" class="btn basic-btn wizard-btn">
+		<a id="wizard-btn" class="btn basic-btn wizard-btn">
 			<label>Launch Setup Wizard</label>
 		</a>
 		
@@ -199,15 +199,15 @@
 			<input id="directv ip" type="text" class="value serial-number-value">
 		</div>
 
-		<a id="old delete-btn" href="#" class="btn basic-btn delete-btn">
+		<a id="old delete-btn" class="btn basic-btn delete-btn">
 			<label>Remove</label>
 		</a>
 
-		<a id="cancel-btn" href="#" class="btn basic-btn cancel-btn">
+		<a id="cancel-btn" class="btn basic-btn cancel-btn">
 			<label>Cancel</label>
 		</a>
 
-		<a id="save-btn" href="#" class="btn basic-btn save-btn">
+		<a id="save-btn" class="btn basic-btn save-btn">
 			<label>Save</label>
 		</a>
 	</div>

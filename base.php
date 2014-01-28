@@ -25,11 +25,11 @@
 			<a href="/" class="btn tracvision-logo">
 				<img src="/images/img.gif">
 			</a>
-			<a id="status-btn" href="#" class="btn header-btn status-btn">
+			<a id="status-btn" class="btn header-btn status-btn">
 				<img src="/images/img.gif">
 				<label>Status</label>
 			</a>
-			<a id="nav-btn" href="#" class="btn header-btn nav-btn">
+			<a id="nav-btn" class="btn header-btn nav-btn">
 				<img src="/images/img.gif">
 				<label>Menu</label>
 			</a>

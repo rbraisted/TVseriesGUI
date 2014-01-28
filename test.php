@@ -25,11 +25,11 @@
 			<a href="/" class="btn tracvision-logo">
 				<img src="/images/img.gif">
 			</a>
-			<a id="status-btn" href="#" class="btn header-btn status-btn">
+			<a id="status-btn" class="btn header-btn status-btn">
 				<img src="/images/img.gif">
 				<label>Status</label>
 			</a>
-			<a id="nav-btn" href="#" class="btn header-btn nav-btn">
+			<a id="nav-btn" class="btn header-btn nav-btn">
 				<img src="/images/img.gif">
 				<label>Menu</label>
 			</a>
@@ -71,15 +71,15 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 		<div id="menu" class="view menu-view">
-			<a id="general-settings-btn menu-btn" href="#" class="btn menu-btn">
+			<a id="general-settings-btn menu-btn" class="btn menu-btn">
 				<img src="/images/img.gif">
 				<label>General Settings</label>
 			</a>
-			<a id="network-settings-btn menu-btn" href="#" class="btn menu-btn">
+			<a id="network-settings-btn menu-btn" class="btn menu-btn">
 				<img src="/images/img.gif">
 				<label>Network Settings</label>
 			</a>
-			<a id="advanced-settings-btn menu-btn" href="#" class="btn menu-btn">
+			<a id="advanced-settings-btn menu-btn" class="btn menu-btn">
 				<img src="/images/img.gif">
 				<label>Advanced Settings</label>
 			</a>
@@ -89,7 +89,7 @@
 
 		<div id="general-settings-view" class="view main-view general-settings-view">
 			<div class="view-content main-content">
-				<a id="back-btn" href="#" class="btn back-btn">
+				<a id="back-btn" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>General Settings</label>
 				</a>
@@ -103,7 +103,7 @@
 						non. Sed ac diam enim. Phasellus vitae interdum magna.
 					</p>
 				</div>
-				<a id="technician-mode-btn" href="#" class="btn toggle-btn">
+				<a id="technician-mode-btn" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -114,7 +114,7 @@
 						at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
 					</p>
 				</div>
-				<a id="demo-mode-btn" href="#" class="btn toggle-btn">
+				<a id="demo-mode-btn" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -125,7 +125,7 @@
 
 		<div id="advanced-settings-view" class="view main-view advanced-settings-view">
 			<div class="view-content main-content">
-				<a id="back-btn" href="#" class="btn back-btn">
+				<a id="back-btn" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Advanced Settings</label>
 				</a>
@@ -138,7 +138,7 @@
 						urna.
 					</p>
 				</div>
-				<a id="sleep-mode-btn" href="#" class="btn toggle-btn">
+				<a id="sleep-mode-btn" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -151,7 +151,7 @@
 						Phasellus vitae interdum magna.
 					</p>
 				</div>
-				<a id="sidelobe-mode-btn" href="#" class="btn toggle-btn">
+				<a id="sidelobe-mode-btn" class="btn toggle-btn">
 					<div class="on">On</div>
 					<div class="off">Off</div>
 				</a>
@@ -162,7 +162,7 @@
 
 		<div id="network-settings-view" class="view main-view network-settings-view">
 			<div class="view-content main-content">
-				<a id="back-btn" href="#" class="btn back-btn">
+				<a id="back-btn" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Network Settings</label>
 				</a>
@@ -190,7 +190,7 @@
 							<div class="setting-name">Broadcast:</div>
 							<span class="setting-value" id="broadcast"></span>
 						</div>
-						<a id="edit-btn" href="#" class="btn">
+						<a id="edit-btn" class="btn">
 							<label>Edit</label>
 						</a>
 					</div>
@@ -239,7 +239,7 @@
 								<span id="password"></span>
 							</div>
 						</div>
-						<a id="edit-btn" href="#" class="btn">
+						<a id="edit-btn" class="btn">
 							<label>Edit</label>
 						</a>
 					</div>
@@ -251,7 +251,7 @@
 
 		<div id="edit-ethernet-settings-view" class="view popup-view edit-ethernet-settings-view">
 			<div class="view-content popup-content">
-				<a id="cancel-btn" href="#" class="btn back-btn">
+				<a id="cancel-btn" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Edit Ethernet Settings</label>
 				</a>
@@ -259,7 +259,7 @@
 				<div class="settings edit-settings">
 					<div class="setting">
 						<div class="setting-name">Mode:</div>
-						<a id="mode-btn" href="#" class="btn dropdown-btn">
+						<a id="mode-btn" class="btn dropdown-btn">
 							<label id="mode">HI</label>
 						</a>
 					</div>
@@ -285,15 +285,15 @@
 				</div>
 
 				<div class="btns">
-					<a id="save-btn" href="#" class="btn">
+					<a id="save-btn" class="btn">
 						<img src="/images/img.gif">
 						<label>Save</label>
 					</a>
-					<a id="cancel-btn" href="#" class="btn">
+					<a id="cancel-btn" class="btn">
 						<img src="/images/img.gif">
 						<label>Cancel</label>
 					</a>
-					<a id="reset-btn" href="#" class="btn">
+					<a id="reset-btn" class="btn">
 						<img src="/images/img.gif">
 						<label>Factory Settings</label>
 					</a>
@@ -305,21 +305,21 @@
 
 		<div id="ethernet-mode-dropdown" class="view popup-view dropdown-view">
 			<div id="dropdown-content" class="view-content popup-content dropdown-content">
-				<a id="cancel-btn" href="#" class="btn back-btn">
+				<a id="cancel-btn" class="btn back-btn">
 					<img src="/images/img.gif">
 					<label>Ethernet Mode</label>
 				</a>
 				<h1>Ethernet Mode</h1>
 				<div id="dropdown-options">
-					<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+					<a id="dropdown-option" value="OFF" class="btn dropdown-option">
 						<img src="/images/img.gif">
 						<label>DISABLED</label>
 					</a>
-					<a id="dropdown-option" href="#" value="STATIC" class="btn dropdown-option">
+					<a id="dropdown-option" value="STATIC" class="btn dropdown-option">
 						<img src="/images/img.gif">
 						<label>STATIC</label>
 					</a>
-					<a id="dropdown-option" href="#" value="DYNAMIC" class="btn dropdown-option">
+					<a id="dropdown-option" value="DYNAMIC" class="btn dropdown-option">
 						<img src="/images/img.gif">
 						<label>DHCP</label>
 					</a>

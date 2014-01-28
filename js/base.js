@@ -56,10 +56,6 @@ TVRO.init = function() {
 		nav.toggleClass('is-expanded');
 	});
 
-	$('[href = # ]').click(function() {
-		return false;
-	});
-
 	// var webService = new TVRO.WebService();
 	// setInterval(function() {
 	// 	webService.request('antenna_status', function(response) {
@@ -266,6 +262,21 @@ TVRO.WebService = (function() {
 		return singleton;
 	}
 }());
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.Autoswitch = function(xml) {
+	var self = {},
+		xml = $(xml);
+
+	console.log(xml.get(0));
+
+	self.sn = $('sn', xml).text();
+	self.name = $('name', xml).text();
+	self.ip = $('ip_address', xml).text();
+
+	return self;
+}
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 

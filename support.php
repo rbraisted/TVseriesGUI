@@ -6,37 +6,37 @@
 
 <div id="menu-view" class="view menu-view">
 	<h2>Help</h2>
-	<a id="about-the-app-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="about-the-app-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>About the App</label>
 	</a>
-	<a id="about-the-satellites-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="about-the-satellites-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>About the Satellites</label>
 	</a>
-	<a id="technical-definitions-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="technical-definitions-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Technical Definitions</label>
 	</a>
-	<a id="about-blockage-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="about-blockage-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>About Blockage</label>
 	</a>
 
 	<h2>Advanced</h2>
-	<a id="diagnostic-log-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="diagnostic-log-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Diagnostic Log</label>
 	</a>
-	<a id="restart-system-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="restart-system-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Restart System</label>
 	</a>
-	<a id="event-history-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="event-history-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Event History</label>
 	</a>
-	<a id="command-line-btn menu-btn" href="#" class="btn menu-btn">
+	<a id="command-line-btn menu-btn" class="btn menu-btn">
 		<img src="/images/img.gif">
 		<label>Command Line</label>
 	</a>
@@ -62,7 +62,7 @@
 
 <div id="about-the-app-view" class="view main-view about-the-app-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>About the App</label>
 		</a>
@@ -80,7 +80,7 @@
 
 <div id="about-the-satellites-view" class="view main-view about-the-satellites-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>About the Satellites</label>
 		</a>
@@ -99,7 +99,7 @@
 
 <div id="technical-definitions-view" class="view main-view technical-definitions-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Technical Definitions</label>
 		</a>
@@ -118,7 +118,7 @@
 
 <div id="about-blockage-view" class="view main-view about-blockage-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>About Blockage</label>
 		</a>
@@ -137,24 +137,24 @@
 
 <div id="diagnostic-log-view" class="view main-view main-view diagnostic-log-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Diagnostic Log</label>
 		</a>
 		<h1>Diagnostic Log</h1>
-		<a id="operational-btn" href="#" class="btn basic-btn">
+		<a id="operational-btn" class="btn basic-btn">
 			<label>View / Save Operational Log</label>
 		</a>
 		<p>Donec placerat eleifend augue, eget venenatis ante tincidunt ut. In nec lacus id ante ultricies mollis.</p>
-		<a id="start-btn" href="#" class="btn basic-btn">
+		<a id="start-btn" class="btn basic-btn">
 			<label>Start New Log</label>
 		</a>
 		<p>Quisque non ultricies ante. Cras facilisis est consectetur turpis tempor commodo. Aenean enim lorem, euismod vel lacinia vel, vehicula vel est.</p>
-		<a id="restart-btn" href="#" class="btn basic-btn">
+		<a id="restart-btn" class="btn basic-btn">
 			<label>Restart System & Start New Log</label>
 		</a>
 		<p>Maecenas vel arcu placerat, malesuada magna eu, imperdiet massa. Cras vel lectus dui. Donec vel elementum eros.</p>
-		<a id="entry-btn" href="#" class="btn basic-btn">
+		<a id="entry-btn" class="btn basic-btn">
 			<label>View / Save Entry Log</label>
 		</a>
 		<p>Phasellus at odio et mi egestas mattis mollis quis urna. Sed sit amet lectus ultricies, consequat augue quis, congue sapien.</p>
@@ -165,20 +165,20 @@
 
 <div id="restart-system-view" class="view main-view restart-system-view">
 	<div class="copy view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Restart System</label>
 		</a>
 		<h1>Restart System</h1>
-		<a id="system-btn" href="#" class="btn basic-btn">
+		<a id="system-btn" class="btn basic-btn">
 			<label>Restart System</label>
 		</a>
 		<p>Maecenas in aliquet mauris, in venenatis eros. Maecenas at velit id ante sodales vulputate sit amet quis turpis.</p>
-		<a id="antenna-btn" href="#" class="btn basic-btn">
+		<a id="antenna-btn" class="btn basic-btn">
 			<label>Restart Antenna</label>
 		</a>
 		<p>Aenean sagittis ante mi, vel ultricies risus iaculis ac. Nullam tincidunt eros sit amet augue accumsan adipiscing. Sed ac sollicitudin eros.</p>
-		<a id="all-btn" href="#" class="btn basic-btn">
+		<a id="all-btn" class="btn basic-btn">
 			<label>Restart Both</label>
 		</a>
 		<p>Integer iaculis gravida enim vitae varius. Phasellus rutrum urna nibh, a ornare nunc lobortis eu. Aliquam porta imperdiet luctus. In hac habitasse platea dictumst.</p>
@@ -189,7 +189,7 @@
 
 <div id="event-history-view" class="view main-view event-history-view">
 	<div class="view-content main-content event-history-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Event History</label>
 		</a>
@@ -201,10 +201,10 @@
 			</div>
 		</div>
 		<div class="tool-bar">
-			<a id="load-btn" href="#" class="btn basic-btn event-history-btn">
+			<a id="load-btn" class="btn basic-btn event-history-btn">
 				<label>Load More</label>
 			</a>
-			<a id="email-btn" href="#" class="btn basic-btn event-history-btn">
+			<a id="email-btn" class="btn basic-btn event-history-btn">
 		 		<label>Email Log</label>
 		 	</a>
 	 	</div>
@@ -215,7 +215,7 @@
 
 <div id="command-line-view" class="view main-view command-line-view">
 	<div class="view-content main-content">
-		<a id="back-btn" href="#" class="btn back-btn">
+		<a id="back-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Command Line</label>
 		</a>

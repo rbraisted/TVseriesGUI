@@ -20,7 +20,7 @@
 	<div id="satellite-view" class="menu-sub-view satellite-view">
 		<div id="mode-view" class="satellite-sub-view">
 			<h3>Satellite Switching</h3>
-			<a id="mode-btn" href="#" class="btn toggle-btn satellite-mode-btn">
+			<a id="mode-btn" class="btn toggle-btn satellite-mode-btn">
 				<div class="on">Manual</div>
 				<div class="off">Automatic</div>
 			</a>
@@ -36,28 +36,28 @@
 		</div>
 
 		<div id="satellite-dropdown" class="satellite-sub-view satellite-dropdown-view">
-			<a id="radio-option slot-a-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-a-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Rosalind 1</span>
 					<span id="region">Europe</span>
 				</label>
 			</a>
-			<a id="radio-option slot-b-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-b-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Elena 22</span>
 					<span id="region">Europe</span>
 				</label>
 			</a>
-			<a id="radio-option slot-c-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-c-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Astrea 2</span>
 					<span id="region">Middle East</span>
 				</label>
 			</a>
-			<a id="radio-option slot-d-btn" href="#" value="" class="btn dropdown-option satellite-dropdown-option">
+			<a id="radio-option slot-d-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
 					<span id="name">Lane 3</span>
@@ -70,8 +70,8 @@
 	<div id="autoswitch-view" class="menu-sub-view autoswitch-view">
 		<h3>Master</h3>
 		<img src="/images/img.gif">
-		<span id="name" class="autoswitch-master-label">Kitchen</span>
-		<a id="change-btn" href="#" class="btn basic-btn autoswitch-change-btn">
+		<span id="master" class="autoswitch-master-label">Kitchen</span>
+		<a id="autoswitch-btn" class="btn basic-btn autoswitch-change-btn">
 			<label>Change</label>
 		</a>
 	</div>
@@ -92,19 +92,15 @@
 
 <div id="autoswitch-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" href="#" class="btn back-btn">
+		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Select Master</label>
 		</a>
 		<h1>Select Master</h1>
-		<div id="dropdown-options">
-			<a id="dropdown-option" href="#" value="OFF" class="btn dropdown-option">
+		<div id="table-rows">
+			<a id="table-row template radio-option dropdown-option" value="" class="btn dropdown-option">
 				<img src="/images/img.gif">
-				<label>OFF</label>
-			</a>
-			<a id="dropdown-option" href="#" value="WPA_PSK" class="btn dropdown-option">
-				<img src="/images/img.gif">
-				<label>WPA_PSK</label>
+				<label id="name"></label>
 			</a>
 		</div>
 	</div>

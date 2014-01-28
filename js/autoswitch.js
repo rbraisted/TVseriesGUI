@@ -19,60 +19,52 @@ TVRO.AutoswitchPage = function() {
 		var 
 		self = $.apply($, arguments),
 		table = TVRO.Table.apply(this, arguments),
-		refresh = function() {
-			var	getReceivers = function() {
-				return {
-					sn: $('sn', this).text(),
-					name: $('name', this).text(),
-					ip: $('ip_address', this).text()
-				}
-			},
+		populateTable = function() {
+			table.setData(receivers);
 
-			populateTable = function() {
-				table.setData(receivers);
+			$('[id ~= table-row ]', table).each(function(i) {
+				var property = isDirecTV ? 'ip' : 'sn',
+					receiver = receivers[i];
+				$(this).toggleClass('is-master', receiver[property] === masterReceiver[property])
+					.toggleClass('is-active', Boolean($(activeReceivers).filter(function() { return receiver[property] === this[property]; }).length));
 
-				$('[id ~= table-row ]', table).each(function(i) {
-					var property = isDirecTV ? 'ip' : 'sn';
-					$(this).toggleClass('is-master', receivers[i][property] === masterReceiver[property])
-						.toggleClass('is-active', Boolean($(activeReceivers).filter(function() { return receivers[i][property] === this[property]; }).length));
+				$('[id ~= name ]', this).eq(i).text(receiver.name);
+				$('[id ~= serial-number ]', this).eq(i).text(receiver.sn);
+				$('[id ~= ip ]', this).eq(i).text(receiver.ip);
 
-					$('[id ~= name ]', this).eq(i).text(receivers[i].name);
-					$('[id ~= serial-number ]', this).eq(i).text(receivers[i].sn);
-					$('[id ~= ip ]', this).eq(i).text(receivers[i].ip);
-
-					$('[id ~= view-btn ]', this).eq(i).click(function() {
-						autoswitchView.loadReceiver(receivers[i]);
-						$(document.body).setClass('at-view');
-					});
-
-					$('[id ~= edit-btn ]', this).eq(i).click(function() {
-						editView.loadReceiver(receivers[i]);
-						$(document.body).setClass('at-edit');
-					});
-
-					$('[id ~= select-btn ]', this).eq(i).click(function() {
-						if (confirm('Make "'+receivers[i].name+'" Master?')) {
-							$('[id ~= table-row ]', table)
-								.removeClass('is-master')
-								.has(this)
-								.addClass('is-master');
-
-							var params = (isDirecTV ? { ip_address: receivers[i].ip } : { sn: receivers[i].sn });
-							webService.request('set_autoswitch_master', params, refresh);
-						}
-					});
+				$('[id ~= view-btn ]', this).eq(i).click(function() {
+					autoswitchView.loadReceiver(receiver);
+					$(document.body).setClass('at-view');
 				});
-			}
 
+				$('[id ~= edit-btn ]', this).eq(i).click(function() {
+					editView.loadReceiver(receiver);
+					$(document.body).setClass('at-edit');
+				});
+
+				$('[id ~= select-btn ]', this).eq(i).click(function() {
+					if (confirm('Make "'+receiver.name+'" Master?')) {
+						$('[id ~= table-row ]', table)
+							.removeClass('is-master')
+							.has(this)
+							.addClass('is-master');
+
+						var params = (isDirecTV ? { ip_address: receiver.ip } : { sn: receiver.sn });
+						webService.request('set_autoswitch_master', params, refresh);
+					}
+				});
+			});
+		},
+		refresh = function() {
 			//	using get_directv_service/get_autoswitch_configured_names,
 			//	get the full list of devices
 			webService.request(isDirecTV ? 'get_directv_service' : 'get_autoswitch_configured_names', function(response) {
-				receivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(getReceivers).toArray();
+				receivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(function() { return TVRO.Autoswitch(this); }).toArray();
 
 				//	using get_autoswitch_status, get the active subset
 				webService.request('get_autoswitch_status', function(response) {
-					masterReceiver = getReceivers.call($('master', response));
-					activeReceivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(getReceivers).toArray();
+					masterReceiver = TVRO.Autoswitch($('master', response));
+					activeReceivers = $(isDirecTV ? 'receiver' : 'autoswitch', response).map(function() { return TVRO.Autoswitch(this); }).toArray();
 					populateTable();
 				});
 			});
