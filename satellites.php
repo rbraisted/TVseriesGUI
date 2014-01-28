@@ -61,6 +61,7 @@
 				<a id="select-btn" class="group-menu-select-btn">
 					<img src="/images/img.gif">
 				</a>
+				<img src="/images/img.gif" class="menu-btn-image">
 				<label id="name">Preset Group 1</label>
 			</div>
 		</div>
@@ -83,6 +84,10 @@
 			<img src="/images/img.gif">
 			<span id="name">Satellites</span>
 		</h1>
+		<div class="mobile">
+			<span class="satellite-group-name-label">Satellite Group Name</span>
+			<span id="name">Satellites</span>
+		</div>
 		<div id="slot-a-view slot-view" class="slot">
 			<div class="slot-label slot-letter-label">Slot A</div>
 			<div class="slot-label slot-installed-label">Installed</div>

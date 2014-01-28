@@ -437,3 +437,63 @@ body.is-group .group-view {
 	margin-top: -435px;
 	height: 875px;
 }
+
+@media screen and (min-width: 880px) {
+	.group-menu-btn .menu-btn-image {
+		display: none;
+	}
+
+	.mobile {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.group-menu-btn .menu-btn-image {
+		background-image: url(/images/menu-btn.png) !important;
+		float: right;
+	}
+
+	.group-menu-btn.is-selected {
+		background-color: #243774;
+	}
+
+	.satellite-group-view .slot-info-btn,
+	.satellite-group-view .slot-letter-label,
+	.satellite-group-view .slot-static-name-label,
+	.satellite-group-view .slot-installed-label {
+		display: none !important;
+	}
+
+	.satellite-group-view .slot {
+		background-color: transparent !important;
+		border-bottom: 1px solid #456ab3;
+		display: block;
+		margin: 0;
+		width: 100%;
+		height: 50px;
+	}
+
+	.satellite-group-view .slot-dynamic-name-label {
+		top: 14px;
+		text-align: left;
+		margin-left: 45px;
+		width: auto;
+	}
+
+	.satellite-group-view .slot-select-btn {
+		left: 0;
+	}
+
+	.satellite-group-name-label {
+		color: #bac7da;
+		font-size: 13px;
+		display: block;
+		margin-bottom: 1em;
+	}
+
+	.mobile {
+		padding-bottom: 1em;
+		border-bottom: 1px solid #456ab3;
+	}
+}
