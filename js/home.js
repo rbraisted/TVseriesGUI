@@ -2,13 +2,118 @@
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+// TVRO.HomePage = function() {
+// 	var
+// 	webService = TVRO.WebService(),
+
+// 	menuView,
+// 	MenuView = function() {	
+// 		var
+// 		self = $.apply($, arguments),
+// 		satelliteTrackingView = TVRO.SatelliteTrackingView('[id ~= tracking-view ]', self),
+// 		modeBtn = TVRO.Toggle('[id ~= mode-btn ]', self),
+// 		singleRadio = TVRO.Radio('[id ~= single-view ]', self),
+// 		groupRadio = TVRO.Radio('[id ~= group-view ]', self),
+// 		groupTable = TVRO.Table('[id ~= group-view ]', self);
+
+// 		modeBtn.click(function(isSingle) {
+// 			if (isSingle) $(document.body).setClass('is-single at-splash');
+// 			else $(document.body).setClass('is-group at-splash');
+// 		});
+
+// 		singleRadio.click(function(region) {
+// 			singleTableView.loadRegion(region);
+// 			$(document.body).setClass('is-single at-satellites-table');
+// 		});
+
+// 		groupRadio.click(function(i) {
+// 			groupView.loadGroup(groups[i]);
+// 			$(document.body).setClass('is-group at-satellite-group');
+// 		});
+
+// 		groupTable.build(function(i, row) {
+// 			var group = groups[i];
+// 			row.attr('value', i);
+// 			row.toggleClass('is-installed', group.name === selectedGroup.name);
+// 			$('[id ~= name ]', row).text(group.name);
+// 			$('[id ~= select-btn ]', row).click(function() {
+// 				event.stopPropagation();
+// 				if (confirm('Install '+group.name+'?')) {
+// 					$('[id ~= table-row ]', groupTable).removeClass('is-installed');
+// 					row.addClass('is-installed');
+// 					selectedGroup = group;
+// 					webService.request('set_autoswitch_service', {
+// 						satellite_group: group.name
+// 					});
+// 				}
+// 			});
+// 		});
+
+// 		$('[id ~= new-btn ]', self).click(function() {
+// 			var group = TVRO.Group();
+// 			group.predefined = 'N';
+// 			editView.loadGroup(group);
+// 			$(document.body).setClass('is-group at-edit-satellite-group');
+// 		});
+
+// 		return $.extend({}, self, {
+// 			refresh: function() {
+// 				webService.request('get_satellite_groups', function(response) {
+// 					groups = [];
+// 					$('group', response).each(function() {
+// 						groups.push(TVRO.Group(this));
+// 					});
+
+// 					webService.request('get_autoswitch_status', function(response) {
+// 						var groupName = $('satellite_group', response).text(),
+// 							selectedSlot = $('master sat', response).text(),
+// 							isSingle = $('satellites>*', response).filter(function() { return $(this).children().length; }).length === 1;
+
+// 						for (var i = 0; i < groups.length; i++) {
+// 							if (groups[i].name === groupName) {
+// 								selectedGroup = groups[i];
+// 								selectedSatellite = {
+// 									A: selectedGroup.satelliteA,
+// 									B: selectedGroup.satelliteB,
+// 									C: selectedGroup.satelliteC,
+// 									D: selectedGroup.satelliteD
+// 								}[selectedSlot];
+// 								groupView.loadGroup(groups[i]);
+// 								groupTable.build(groups.length);
+// 								groupRadio.refresh();
+// 								groupRadio.setSelectedValue(i);
+// 							}
+// 						}
+
+// 						modeBtn.setOn(isSingle);
+// 						if (!singleRadio.selectedValue()) {
+// 							singleTableView.loadRegion('All');
+// 							singleRadio.setSelectedValue('All');
+// 						}
+// 						$(document.body).toggleClass('is-single', isSingle).toggleClass('is-group', !isSingle);
+// 					});
+// 				});
+// 			}
+// 		});
+// 	}
+
+// 	return {
+// 		init: function() {
+// 			menuView = MenuView();
+// 			vesselView = VesselView();
+// 		}
+// 	}
+// }
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.HomePage = function() {
 	var self = {};
 
 	self.init = function() {
 		var menuView = TVRO.HomePage.MenuView(),
 			vesselView = TVRO.HomePage.VesselView();
-			
+
 		menuView.init();
 		menuView.refresh();
 
@@ -88,7 +193,7 @@ TVRO.HomePage.SatelliteView = function() {
 			});
 		});
 
-		dropdown.optionSelected(function(name, value) {
+		dropdown.click(function(name, value) {
 			dropdown.show();
 			//	select satellite
 			webService.request('select_satellite', {

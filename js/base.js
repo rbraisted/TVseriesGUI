@@ -453,7 +453,17 @@ TVRO.Radio = function() {
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+/*
+	dropdown class
+	a popup that contains a radio
+	setButtons takes whatever elements you give it
+	assigns a click that shows the dropdown and
+	positions the dropdown over the button
 
+	also if the button has a #radio-value it will
+	$(#radio-value).text(radio.selectedValue())
+	when a #radio-option is selected
+	*/
 TVRO.Dropdown = function() {
 	var self = $.apply($, arguments),
 		radio = TVRO.Radio(self),
@@ -477,64 +487,13 @@ TVRO.Dropdown = function() {
 			if (buttons) buttons.unbind('click', click);
 			buttons = $.apply($, arguments);
 			buttons.click(click);
+		},
+		setSelectedValue: function() {
+			radio.setSelectedValue(arguments[0]);
+			if (buttons) $('[id ~= radio-value ]', buttons).text(radio.selectedValue());
 		}
 	});
 }
-
-/*
-TVRO.Dropdown = function(dropdown, dropdownBtn) {
-	var self = {},
-		dropdown = $(dropdown),
-		optionSelected = [];
-
-	self.setSelectedValue = function(value) {
-		$('[id ~= dropdown-option]', dropdown).removeClass('is-selected');
-		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).addClass('is-selected');
-	}
-
-	self.selectValue = function(value) {
-		$('[id ~= dropdown-option][value = "'+value+'"]', dropdown).click();
-	}
-
-	self.optionSelected = function() {
-		if (typeof arguments[0] === 'function') {
-			optionSelected.push(arguments[0]);
-		}
-	}
-
-	self.selectedValue = function() {
-		return $('[id ~= dropdown-option ].is-selected', dropdown).attr('value');
-	}
-
-	$(dropdownBtn).click(function() {
-		dropdown.show();
-		$('#dropdown-content', dropdown).offset($(this).offset());
-	});
-
-	$('[id ~= close-btn ]', dropdown).click(function() {
-		self.hide();
-	});
-
-	$('[id ~= dropdown-option]', dropdown).click(function() {
-		var dropdownOption = $(this);
-		self.hide();
-		self.setSelectedValue(dropdownOption.attr('value'));
-		for (var i = 0; i < optionSelected.length; i++) {
-			optionSelected[i]($('label', dropdownOption).text(), dropdownOption.attr('value'));
-		}
-	});
-
-	self.show = function() {
-		dropdown.show();
-	}
-
-	self.hide = function() {
-		dropdown.hide();
-	}
-
-	return self;
-}
-*/
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
@@ -593,7 +552,6 @@ TVRO.SatelliteTrackingView = function() {
 	});
 
 	refresh();
-	setInterval(refresh, 3000);
 
 	return $.extend({}, self, {
 		refresh: refresh

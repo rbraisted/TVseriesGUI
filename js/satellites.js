@@ -63,6 +63,7 @@ TVRO.SatellitesPage = function() {
 
 		return $.extend({}, self, {
 			refresh: function() {
+				satelliteTrackingView.refresh();
 				webService.request('get_satellite_groups', function(response) {
 					groups = [];
 					$('group', response).each(function() {
@@ -196,16 +197,11 @@ TVRO.SatellitesPage = function() {
 		var
 		self = $.apply($, arguments),
 		group = {},
-		slotABtn = $('[id ~= slot-a-btn ]', self),
-		slotBBtn = $('[id ~= slot-b-btn ]', self),
-		slotCBtn = $('[id ~= slot-c-btn ]', self),
-		slotDBtn = $('[id ~= slot-d-btn ]', self),
+		slotABtn = $('[id ~= slot-a-btn ]', self).click(function() { slotBeingEdited = 'A'; }),
+		slotBBtn = $('[id ~= slot-b-btn ]', self).click(function() { slotBeingEdited = 'B'; }),
+		slotCBtn = $('[id ~= slot-c-btn ]', self).click(function() { slotBeingEdited = 'C'; }),
+		slotDBtn = $('[id ~= slot-d-btn ]', self).click(function() { slotBeingEdited = 'D'; }),
 		slotBeingEdited;
-
-		slotABtn.click(function() { slotBeingEdited = 'A'; });
-		slotBBtn.click(function() { slotBeingEdited = 'B'; });
-		slotCBtn.click(function() { slotBeingEdited = 'C'; });
-		slotDBtn.click(function() { slotBeingEdited = 'D'; });
 
 		$('[id ~= slot-btn ]', self).click(function() {
 			groupTableView.loadRegion('All');
@@ -219,6 +215,19 @@ TVRO.SatellitesPage = function() {
 		$('[id ~= save-btn ]', self).click(function() {
 			var groupName = $('[id ~= name ]', self).val();
 			if (confirm('Save '+groupName+'?')) {
+				webService.request('set_satellite_group', {
+					command: 'DELETE',
+					group_name: group.name
+				}, function(response) {
+					webService.request('set_satellite_group', {
+						command: 'ADD',
+						group_name: groupName,
+						A: group.satelliteA.antSatID,
+						B: group.satelliteB.antSatID,
+						C: group.satelliteC.antSatID,
+						D: group.satelliteD.antSatID
+					});
+				});
 				group.name = groupName;
 				groupView.loadGroup(group);
 				$(document.body).setClass('is-group at-satellite-group');
