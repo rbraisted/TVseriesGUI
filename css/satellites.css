@@ -218,7 +218,7 @@ body.is-group .group-view {
 	background-image: url(/images/radio-selected.png);
 }
 
-.slot:nth-child(2n) {
+.slot:nth-child(2n+1) {
 	margin-left: 26px;
 }
 
@@ -478,13 +478,13 @@ body.is-group .group-view {
 		margin: 0;
 		width: 100%;
 		height: 50px;
+		overflow: hidden;
 	}
 
 	.satellite-group-view .slot-dynamic-name-label {
 		top: 14px;
 		text-align: left;
 		margin-left: 45px;
-		width: auto;
 	}
 
 	.satellite-group-view .slot-select-btn {
