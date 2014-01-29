@@ -83,7 +83,7 @@ TVRO.SatellitesPage = function() {
 									B: selectedGroup.satelliteB,
 									C: selectedGroup.satelliteC,
 									D: selectedGroup.satelliteD
-								}[selectedSlot];
+								}[selectedSlot] || {};
 								groupView.loadGroup(groups[i]);
 								groupTable.build(groups.length);
 								groupRadio.refresh();
@@ -213,12 +213,8 @@ TVRO.SatellitesPage = function() {
 		});
 
 		$('[id ~= save-btn ]', self).click(function() {
-			var groupName = $('[id ~= name ]', self).val();
-			if (confirm('Save '+groupName+'?')) {
-				webService.request('set_satellite_group', {
-					command: 'DELETE',
-					group_name: group.name
-				}, function(response) {
+			var groupName = $('[id ~= name ]', self).val(),
+				add = function() {
 					webService.request('set_satellite_group', {
 						command: 'ADD',
 						group_name: groupName,
@@ -227,7 +223,19 @@ TVRO.SatellitesPage = function() {
 						C: group.satelliteC.antSatID,
 						D: group.satelliteD.antSatID
 					});
-				});
+				}
+
+			if (confirm('Save '+groupName+'?')) {
+				//	check if this is a new group
+				if (groups.indexOf(group) !== -1) {
+					webService.request('set_satellite_group', {
+						command: 'DELETE',
+						group_name: group.name
+					}, add);
+				} else {
+					add();
+				}
+
 				group.name = groupName;
 				groupView.loadGroup(group);
 				$(document.body).setClass('is-group at-satellite-group');
@@ -432,8 +440,9 @@ TVRO.SatellitesPage = function() {
 
 		favoriteBtn.click(function(isFavorite) {
 			webService.request('set_satellite_identity', {
-				'antSatID' : satellite.antSatID,
-				'favorite' : (isFavorite ? 'TRUE' : 'FALSE')
+				listID: satellite.listID,
+				antSatID: satellite.antSatID,
+				favorite: (isFavorite ? 'TRUE' : 'FALSE')
 			});
 		});
 
