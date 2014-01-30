@@ -270,8 +270,6 @@ TVRO.Autoswitch = function(xml) {
 	var self = {},
 		xml = $(xml);
 
-	console.log(xml.get(0));
-
 	self.sn = $('sn', xml).text();
 	self.name = $('name', xml).text();
 	self.ip = $('ip_address', xml).text();
@@ -301,25 +299,25 @@ TVRO.Satellite = function(xml) {
 	var self = {},
 		xml = $(xml);
 
-	//	these values can be retrieved from
+	//	these values can be retrieved from both
 	//	get_satellite_list and get_satellite_params
 	self.listID = $('listID', xml).text();
 	self.antSatID = $('antSatID', xml).text();
 	self.name = $('name', xml).text();
 	self.region = $('region', xml).text();
 	self.lon = Number($('lon', xml).text());
-	self.suffix = $('suffix', xml).text();	//	not sure about this one
+	self.suffix = $('suffix', xml).text();
 	self.favorite = $('favorite', xml).text();
+
 	//	these values can only be retrieved with get_satellite_params
 	self.skew = $('skew', xml).text();
 	self.lo1 = $('lo1', xml).text();
 	self.lo2 = $('lo2', xml).text();
 	self.kumode = $('kumode', xml).text();
 	self.preferredPolarity = $('preferredPolarity', xml).text();
-	//	xponders can only be retrieved with get_satellite_params
 	self.xponders = [];
-	$('xponder', xml).each(function(index, xponder) {
-		self.xponders[$(xponder).find('id').text()] = new TVRO.Xponder(xponder);
+	$('xponder', xml).each(function() {
+		self.xponders.push[TVRO.Xponder(this)];
 	});
 
 	return self;
@@ -339,6 +337,7 @@ TVRO.Xponder = function(xml) {
 	self.fec = $('fec', xml).text();
 	self.netID = $('netID', xml).text();
 	self.modType = $('modType', xml).text();
+	// self.title // to be added into the web service by paul
 
 	return self;
 };
