@@ -1,11 +1,133 @@
-/*       *\
 
-    ^3^
+@media screen and (max-width: 880px) {
+	body.at-splash .menu-view,
+	body.at-update .update-view {
+		display: block;
+	}
+}
 
-\*       */
+@media screen and (min-width: 880px) {
+	body.at-splash .menu-view,
+	body.at-splash .update-view,
+	body.at-update .menu-view,
+	body.at-update .update-view {
+		display: block;
+	}
+}
 
+body:not(.is-technician-mode) .menu-view,
+body:not(.is-technician-mode) .back-btn {
+	display: none;
+}
+
+body:not(.is-technician-mode).at-splash .update-view {
+	display: block;
+}
+
+.c {
+	color: #b5ce49;
+	display: none;
+	margin-left: 0.5em;
+}
+
+.v {
+	white-space: nowrap;
+	color: #bac7da;
+}
+
+.menu-view .v {
+	font-size: 13px;
+}
+
+.updates-menu-btn {
+	line-height: 1.2em;
+}
+
+.update-view {
+	overflow: hidden;
+}
+
+.p {
+	position: relative;
+	margin-bottom: 90px;
+	padding: 30px 0;
+}
+
+.l {
+	font-size: 21px;
+	text-align: left;
+	padding-bottom: 0.5em;
+}
+
+.bg {
+	position: absolute;
+	left: -100%;
+	top: 0;
+	background: #fff;
+	height: 100%;
+	opacity: 0.1;
+	width: 300%;
+	border-bottom: 3px solid #bbb;
+}
+
+.cta {
+	color: #b5ce49;
+	position: absolute;
+	left: 105px;
+	bottom: -30px;
+}
+
+.download-btn,
+.install-btn {
+	height: 95px;
+	margin-top: -20px;
+	position: absolute;
+	top: 100%;
+	width: 95px;
+	z-index: 1;
+}
+
+.download-btn {
+	background: transparent url(/images/download-button.png) no-repeat center center;
+}
+
+.install-btn {
+	background: transparent url(/images/upload-button.png) no-repeat center center;
+}
+
+.upload-btn {
+	cursor: pointer;
+	height: 100%;
+	opacity: 0.01;
+	width: 100%;
+}
+
+body:not(.is-technician-mode) .update-view {
+	left: 0;
+}
+
+@media screen and (max-width: 880px) {
+	.l {
+		font-size: 16px;
+	}
+
+	.v,
+	.cta {
+		font-size: 13px;
+	}
+
+	body:not(.is-technician-mode) .update-view h1 {
+		display: block;
+	}
+
+	body:not(.is-technician-mode) .update-view .view-content {
+		padding-top: 25px;
+	}
+}
+
+/*
 .sb .ant-btn {
-	/*margin-bottom: 25px;*/
+
 }
 
 .sb .ant-type {
@@ -107,12 +229,6 @@
 	width: 100%;
 }
 
-/*                           *\
-
-     SMALL & MEDIUM SHARED
-
-\*                           */
-
 @media screen and (max-width: 880px) {
 	.technician-mode .sb.selected {
 		display: block;
@@ -129,12 +245,6 @@
 	}
 }
 
-/*                *\
-
-     LARGE SOLO
-
-\*                */
-
 @media screen and (min-width: 880px) {
 	.page:not(.technician-mode) .sb {
 		display: none;
@@ -145,3 +255,4 @@
 		right: 0;
 	}
 }
+*/

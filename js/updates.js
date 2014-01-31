@@ -1,5 +1,125 @@
 "use strict";
 
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.UpdatesPage = function() {
+	var
+	webService = TVRO.WebService(),
+	technicianMode = false,
+
+	antTypes = [],
+	AntType = function(antType) {
+		return {
+			toString: function() { return antType; },
+			valueOf: function() { return antType; },
+			connected: false,
+			portalUrl: '',
+			portalVersion: '',
+			systemVersion: '',
+			deviceVersion: ''
+		}
+	},
+
+	menuView,
+	MenuView = function() {	
+		var
+		self = $.apply($, arguments),
+		radio = TVRO.Radio(self);
+
+		radio.click(function(antType) {
+			updateView.loadAntType(antType);
+			$(document.body).setClass('at-update').toggleClass('is-technician-mode', technicianMode);
+		});
+
+		return $.extend({}, self, {
+			refresh: function() {
+				$(antTypes).each(function() {
+					var btn = $('[id ~= '+this+'-btn ]', self),
+						system = $('[id ~= system ]', btn).toggle(!!this.systemVersion),
+						portal = $('[id ~= portal ]', btn).toggle(!!this.portalVersion),
+						device = $('[id ~= device ]', btn).toggle(!!this.deviceVersion);
+
+					$('[id ~= connected ]', btn).toggle(this.connected);
+					$('[id ~= version ]', system).text(this.systemVersion);
+					$('[id ~= version ]', portal).text(this.portalVersion);
+					$('[id ~= version ]', device).text(this.deviceVersion);
+				});
+			}
+		});
+	},
+
+	updateView,
+	UpdateView = function() {
+		var
+		self = $.apply($, arguments),
+		antType;
+
+		$('[id ~= back-btn ]', self).click(function() {
+			$(document.body).setClass('at-splash').toggleClass('is-technician-mode', technicianMode);
+		});
+
+		return $.extend({}, self, {
+			loadAntType: function() {
+				antType = arguments[0];
+
+				$('[id ~= ant-type ]', self).text(String(antType).toUpperCase());
+				$('[id ~= mobile ]', self).toggle(!!antType.deviceVersion);
+				$('[id ~= desktop ]', self).toggle(!antType.deviceVersion);
+
+				var system = $('[id ~= system ]', self),
+					portal = $('[id ~= portal ]', self),
+					device = $('[id ~= device ]', self);
+
+				$('[id ~= version ]', system).text(antType.systemVersion);
+				$('[id ~= version ]', portal).text(antType.portalVersion);
+				$('[id ~= version ]', device).text(antType.deviceVersion);
+			},
+			refresh: function() {
+				this.loadAntType(antType);
+			}
+		});
+	}
+
+	return {
+		init: function() {
+			var cookieManager = TVRO.CookieManager();
+			technicianMode = cookieManager.hasCookie(TVRO.TECH_MODE);
+			$(document.body).toggleClass('is-technician-mode', technicianMode);
+
+			menuView = MenuView('[id ~= menu-view ]');
+			updateView = UpdateView('[id ~= update-view ]');
+
+			antTypes = [AntType('tv1'), AntType('tv3'), AntType('tv5'), AntType('tv6')];
+			$(antTypes).each(function() {
+				var antType = this;
+				webService.request('latest_software', 'http://www.kvhupdate.com/TVRO/'+String(this).toUpperCase()+'/portalMain.php/latest_software', function(response) {
+					antType.portalUrl = response.find('url').text();
+					antType.portalVersion = response.find('software_version').text();
+					menuView.refresh();
+					updateView.refresh();
+				});
+			});
+
+			webService.request('antenna_versions', function(response) {
+				var systemVersion = $('au ver', response).text(),
+					antType = $(antTypes).filter(function() { return this == $('au model', response).text().toLowerCase(); }).get(0);
+				if (antType) {
+					antType.connected = true;
+					antType.systemVersion = systemVersion;
+					updateView.loadAntType(antType);
+				}
+				menuView.refresh();
+				updateView.refresh();
+			});
+		}
+	}
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+TVRO.page = new TVRO.UpdatesPage();
+
+/*
 TVRO.UpdatesPage = function() {
 	var self = {},
 		updateInterval,
@@ -152,3 +272,4 @@ TVRO.UpdatesPage = function() {
 };
 
 TVRO.page = new TVRO.UpdatesPage();
+*/

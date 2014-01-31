@@ -1,26 +1,5 @@
 @import 'reset.css';
 
-/*@font-face {
-	font-family: Helvetica;
-	font-style: normal;
-	font-weight: normal;
-	src: url(/fonts/HelveticaLTStd-Roman.otf);
-}
-
-@font-face {
-	font-family: Helvetica;
-	font-style: normal;
-	font-weight: bold;
-	src: url(/fonts/HelveticaLTStd-Bold.otf);
-}
-
-@font-face {
-	font-family: Helvetica;
-	font-style: normal;
-	font-weight: lighter;
-	src: url(/fonts/HelveticaLTStd-Light.otf);
-}
-*/
 * {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;

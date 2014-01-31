@@ -550,7 +550,7 @@ TVRO.SatellitesPage = function() {
 
 		$('[id ~= save-btn]', self).click(function() {
 			if (confirm('Are you sure you want to change the parameters for this satellite?')) {
-				var name = $('[id ~= name ][id ~= edit ]', self).val(),
+					var name = $('[id ~= name ][id ~= edit ]', self).val(),
 					region = $('[id ~= region][id ~= edit]', self).val(),
 					suffix = $('[id ~= suffix][id ~= edit]', self).val(),
 					skew = $('[id ~= pre-skew][id ~= edit]', self).val(),

@@ -15,7 +15,7 @@
 
 	//	this could probably be optimized
 	$.fn.setClass = function(className) {
-		$(this).removeClass().addClass(className);
+		return $(this).removeClass().addClass(className);
 	}
 }(jQuery));
 
@@ -230,7 +230,7 @@ TVRO.WebService = (function() {
 				$.ajax({
 					async : async,
 					type : 'post',
-					contentType : 'text/xml',
+					// contentType : 'text/xml',
 					processData : false,
 					dataType : 'xml',
 					url : requestUrl,
