@@ -162,8 +162,14 @@ body.is-group .group-view {
 .favorite-btn,
 .info-btn {
 	height: 100%;
+	display: inline;
 	position: absolute;
 	top: 0;
+	/*float: left;*/
+}
+
+.favorites-col, .installed-col {
+	padding: 0 5px;
 }
 
 .select-btn img {
@@ -191,7 +197,8 @@ body.is-group .group-view {
 }
 
 .info-btn {
-	right: 40px;
+right: 40px;
+	margin-left: 40%;
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -275,6 +282,10 @@ body.is-group .group-view {
 .tool-bar {
 	border-top: 1px solid #466ab2;
 	padding-top: 2em;
+}
+
+.td_box {
+	position: relative;
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

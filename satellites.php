@@ -198,27 +198,38 @@
 				<tbody id="table-rows">
 					<tr id="template table-row">
 						<td class="installed-col">
-							<a id="select-btn" class="btn select-btn">
-								<img src="/images/img.gif">
-							</a>
+							<div class="td_box">
+								<a id="select-btn" class="btn select-btn">
+									<img src="/images/img.gif">
+								</a>
+							</div>
 						</td>
 						<td class="name-col">
-							<span id="name">Name</span>
-							<span id="region">Region</span>
+							<div class="td_box">
+								<span id="name">Name</span>
+								<span id="region">Region</span>
+							</div>
 						</td>
 						<td class="orbital-slot-col">
-							<span id="orbital-slot">Orbital Slot</span>
+							<div class="td_box">
+								<span id="orbital-slot">Orbital Slot</span>
+							</div>
 						</td>
 						<td class="region-col">
-							<span id="region">Region</span>
+							<div class="td_box">
+								<span id="region">Region</span>
+							</div>
 						</td>
 						<td class="favorites-col">
-							<a id="favorite-btn" class="btn favorite-btn">
-								<img src="/images/img.gif">
-							</a>
-							<a id="info-btn" class="btn info-btn">
-								<img src="/images/img.gif">
-							</a>
+							<div class="td_box">
+								<a id="favorite-btn" class="btn favorite-btn">
+									<img src="/images/img.gif">
+								</a>
+								
+								<a id="info-btn" class="btn info-btn">
+									<img src="/images/img.gif">
+								</a>							
+							</div>
 						</td>
 					</tr>
 				</tbody>
