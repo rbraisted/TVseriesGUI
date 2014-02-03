@@ -195,6 +195,7 @@
 						</th>
 					</tr>
 				</thead>
+
 				<tbody id="table-rows">
 					<tr id="template table-row">
 						<td class="installed-col">
