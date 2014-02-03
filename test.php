@@ -17,35 +17,22 @@
 			<thead>
 				<tr>
 					<th class="installed-col">
-						<span>Installed</span>
+						<div>Installed</div>
 					</th>
 					<th class="name-col">
-						<a id="name-btn sort-btn" class="btn sort-btn">
-							<img src="/images/img.gif">
-							<label>Name</label>
-						</a>
+						<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
 					</th>
 					<th class="orbital-slot-col">
-						<a id="orbital-slot-btn sort-btn" class="btn sort-btn">
-							<img src="/images/img.gif">
-							<label>Orbital Slot</label>
-						</a>
+						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital</div>
 					</th>
 					<th class="region-col">
-						<a id="region-btn sort-btn" class="btn sort-btn">
-							<img src="/images/img.gif">
-							<label>Region</label>
-						</a>
+						<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
 					</th>
 					<th class="favorites-col">
-						<a id="favorites-btn sort-btn" class="btn sort-btn">
-							<img src="/images/img.gif">
-							<label>Favorites</label>
-						</a>
+						<div id="favorites-btn sort-btn" class="btn sort-btn">Favorites</div>
 					</th>
 				</tr>
 			</thead>
-
 			<tbody id="table-rows">
 				<tr id="template table-row">
 					<td class="installed-col">
@@ -68,7 +55,6 @@
 				</tr>
 			</tbody>
 		</table>
-
 	</div>
 </div>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

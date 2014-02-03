@@ -538,6 +538,31 @@ right: 40px;
 }
 
 .satellites-table .info-icon {
-	position: absolute;
-	right: 5px;
+	position: relative;
+	left: 100%;
+	margin-left: -52px;
 }
+
+/* how to i make the header fixed ??? */
+thead {
+	display: block;
+}
+
+thead tr {
+	display: block;
+	position: relative;
+}
+
+tbody {
+	display: block;
+	height: 262px;
+	overflow: auto;
+	width: 100%;
+}
+
+.sort-btn:hover {
+	outline: 1px solid red;
+}
+
+th:hover {
+	outline: 1px solid green;
