@@ -55,8 +55,35 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>	
+</div>
+
+<div class="menu-view">
+	<div id="toggle" class="btn toggle-btn">
+		<span class="on">BRAD</span>
+		<span class="off">MIKY</span>
+	</div>
+
+	<div id="radio">
+		<div id="radio-option" value="Rigo" class="btn menu-btn"><label>Rigo</label></div>
+		<div id="radio-option" value="Brad" class="btn menu-btn"><label>Brad</label></div>
+		<div id="radio-option" value="Miky" class="btn menu-btn"><label>Miky</label></div>
+		<div id="radio-option" value="Revo" class="btn menu-btn"><label>Revo</label></div>
+	</div>
+
+	<div id="table">
+		<div id="table-rows">
+			<div id="template">
+				<span id="id"></span>
+				| Age:
+				<span id="age"></span>
+				| Name:
+				<span id="name"></span>
+			</div>
+		</div>
 	</div>
 </div>
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <script type="text/javascript">
@@ -67,5 +94,43 @@
 			$('#region', row).text(!(i%5) ? "Extra Long Region Name" : "Region");
 		});
 		g.build(20);
+
+		var toggle = TVRO.Toggle('#toggle');
+		toggle.click(function(isBrad) {
+			console.log(isBrad);
+		});
+
+		var radio = TVRO.Radio('#radio');
+		radio.click(function(value) {
+			console.log(value);
+		});
+
+		radio.click('Brad');
+
+
+		var tableData = [{
+			age: 27,
+			name: 'Rigo'
+		},
+		{
+			age: 24,
+			name: 'Brad'
+		},
+		{
+			age: '??',
+			name: 'Revo'
+		},
+		{
+			age: 25,
+			name: 'Miky'
+		}];
+
+		var table = TVRO.Table('#table');
+		table.build(function(i, row) {
+			$('#id', row).text(i);
+			$('#name', row).text(tableData[i].name);
+			$('#age', row).text(tableData[i].age);
+		});
+		table.build(tableData.length);
 	});
 </script>

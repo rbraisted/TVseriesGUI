@@ -113,7 +113,7 @@ TVRO.CookieManager = (function() {
 
 			singleton.getCookie = function(key) {
 				return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
-			};
+			}
 
 			singleton.setCookie = function(key, value, end) {
 				if (!key || /^(?:expires|max\-age|path|domain|secure)$/i.test(key)) return false;
@@ -127,8 +127,7 @@ TVRO.CookieManager = (function() {
 				value = encodeURIComponent(value);
 				document.cookie = key + '=' + value + expires + '; path=/';
 				return true;
-			};
-
+			}
 
 			//	if the cookie doesn't exist, return false
 			//	use this to handle toggles where no value is set for the cookie
@@ -139,11 +138,11 @@ TVRO.CookieManager = (function() {
 				key = encodeURIComponent(key);
 				document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
 				return true;
-			};
+			}
 
 			singleton.hasCookie = function(key) {
 				return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
-			};
+			}
 		}
 		return singleton;
 	}
