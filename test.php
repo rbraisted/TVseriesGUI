@@ -60,25 +60,22 @@
 
 <div class="menu-view">
 	<div id="toggle" class="btn toggle-btn">
-		<span class="on">BRAD</span>
-		<span class="off">MIKY</span>
+		<span class="on">On</span>
+		<span class="off">Off</span>
 	</div>
 
 	<div id="radio">
-		<div id="radio-option" value="Rigo" class="btn menu-btn"><label>Rigo</label></div>
-		<div id="radio-option" value="Brad" class="btn menu-btn"><label>Brad</label></div>
-		<div id="radio-option" value="Miky" class="btn menu-btn"><label>Miky</label></div>
-		<div id="radio-option" value="Revo" class="btn menu-btn"><label>Revo</label></div>
+		<div id="radio-option" value="A" class="btn menu-btn"><label>Option A</label></div>
+		<div id="radio-option" value="B" class="btn menu-btn"><label>Option B</label></div>
+		<div id="radio-option" value="C" class="btn menu-btn"><label>Option C</label></div>
+		<div id="radio-option" value="D" class="btn menu-btn"><label>Option D</label></div>
 	</div>
 
 	<div id="table">
 		<div id="table-rows">
 			<div id="template">
 				<span id="id"></span>
-				| Age:
-				<span id="age"></span>
-				| Name:
-				<span id="name"></span>
+				<span id="value"></span>
 			</div>
 		</div>
 	</div>
@@ -90,14 +87,14 @@
 	$(function() {
 		var g = TVRO.Table('#satellites-table');
 		g.build(function(i, row) {
-			$('#name', row).text("Row "+i);
-			$('#region', row).text(!(i%5) ? "Extra Long Region Name" : "Region");
+			$('#name', row).text("Sat-Name");
+			$('#region', row).text(i%5 === 1 ? "Long-Region-Name-To-Test-Wrapping" : "Region-Name");
 		});
-		g.build(20);
+		g.build(50);
 
 		var toggle = TVRO.Toggle('#toggle');
-		toggle.click(function(isBrad) {
-			console.log(isBrad);
+		toggle.click(function(isOn) {
+			console.log(isOn);
 		});
 
 		var radio = TVRO.Radio('#radio');
@@ -108,28 +105,12 @@
 		radio.click('Brad');
 
 
-		var tableData = [{
-			age: 27,
-			name: 'Rigo'
-		},
-		{
-			age: 24,
-			name: 'Brad'
-		},
-		{
-			age: '??',
-			name: 'Revo'
-		},
-		{
-			age: 25,
-			name: 'Miky'
-		}];
+		var tableData = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
 		var table = TVRO.Table('#table');
 		table.build(function(i, row) {
 			$('#id', row).text(i);
-			$('#name', row).text(tableData[i].name);
-			$('#age', row).text(tableData[i].age);
+			$('#value', row).text(tableData[i]);
 		});
 		table.build(tableData.length);
 	});

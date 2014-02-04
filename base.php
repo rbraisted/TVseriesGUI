@@ -23,6 +23,7 @@
 
 		<div id="header" class="view header-view">
 			<a href="/" class="btn tracvision-logo">
+				<span style="font-size: 11px; position: absolute; bottom: 3px; right: 0;">v0.1</span>
 				<img src="/images/img.gif">
 			</a>
 			<a id="status-btn" class="btn header-btn status-btn">
