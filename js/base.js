@@ -19,22 +19,18 @@
 	}
 }(jQuery));
 
-/*
-	check if our app namespace has been defined
-	if the user is running this from a native iOS/Android
-	app, we should see that the native web views will have
-	injected TVRO = { MOBILE_APP : true } before any other
-	javascript is executed, so we don't want to overwrite that
-	*/
+//	check if our app namespace has been defined
+//	if the user is running this from a native iOS/Android
+//	app, we should see that the native web views will have
+//	injected TVRO = { MOBILE_APP : true } before any other
+//	javascript is executed, so we don't want to overwrite that
 if (typeof TVRO === 'undefined') {
 	var TVRO = {};
 }
 
-/*
-	as mentioned above,
-	MOBILE_APP and SAT_FINDER should be set by iOS/Android
-	web view before any other script executes
-	*/
+//	as mentioned above,
+//	MOBILE_APP and SAT_FINDER should be set by iOS/Android
+//	web view before any other script executes
 TVRO = {
 	MOBILE_APP : TVRO.MOBILE_APP || false,
 	SAT_FINDER : TVRO.SAT_FINDER || false,
@@ -104,7 +100,6 @@ TVRO.init = function() {
 //	note that getCookie vs hasCookie is like
 //	getCookie -> 'cookieValue' vs hasCookie -> true
 //	getCookie -> undefined vs hasCookie -> false
-
 TVRO.CookieManager = (function() {
 	var singleton;
 	return function() {
@@ -150,28 +145,26 @@ TVRO.CookieManager = (function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-/*
-	webservice
-	pass request parameters as json
-	they'll be converted to xml for you
-	for example:
-
-	user: {
-		firstname : 'Olivia',
-		lastname : 'Wheatley',
-		city : 'Oxford',
-		state : 'Oxfordshire'
-	}
-
-	will be sent as:
-
-	<user>
-		<firstname>Olivia</firstname>
-		<lastname>Wheatley</lastname>
-		<city>Oxford</city>
-		<state>Oxfordshire</state>
-	</user>
-	*/
+//	webservice
+//	pass request parameters as json
+//	they'll be converted to xml for you
+//	for example:
+//
+//	user: {
+//		firstname : 'Olivia',
+//		lastname : 'Wheatley',
+//		city : 'Oxford',
+//		state : 'Oxfordshire'
+//	}
+//
+//	will be sent as:
+//
+//	<user>
+//		<firstname>Olivia</firstname>
+//		<lastname>Wheatley</lastname>
+//		<city>Oxford</city>
+//		<state>Oxfordshire</state>
+//	</user>
 TVRO.WebService = (function() {
 	var singleton,
 		cookieManager = new TVRO.CookieManager(),
@@ -265,6 +258,7 @@ TVRO.WebService = (function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+//	directv receivers and ip autoswitch devices
 TVRO.Autoswitch = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -278,6 +272,7 @@ TVRO.Autoswitch = function(xml) {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+//	satellite groups
 TVRO.Group = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -324,6 +319,7 @@ TVRO.Satellite = function(xml) {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+//	satellite xponder/params
 TVRO.Xponder = function(xml) {
 	var self = {},
 		xml = $(xml);
@@ -343,17 +339,15 @@ TVRO.Xponder = function(xml) {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-/*
-	toggle
-	gets toggleClass(is-on) on click
-	use like so:
-
-	var toggle = TVRO.Toggle(element);
-	toggle.click(function(isOn) {
-		isOn here tells us if the
-		element hasClass(is-on)
-	})
-	*/
+//	toggle
+//	gets toggleClass(is-on) on click
+//	use like so:
+//
+//	var toggle = TVRO.Toggle(element);
+//	toggle.click(function(isOn) {
+//		isOn here tells us if the
+//		element hasClass(is-on)
+//	})
 TVRO.Toggle = function() {
 	var self = $.apply($, arguments),
 		callbacks = [];
@@ -379,16 +373,14 @@ TVRO.Toggle = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-/*
-	table class
-	given some element #table
-	which contains some element #table-rows
-	and some element #template#table-row
-	#template gets detached from #table
-	when setData is called (expects an array, or something property 'length'),
-	a #table-row is created from #template and added to #table-rows
-	you can override setData to modify #table-row per #table-row
-	*/
+//	table class
+//	given some element #table
+//	which contains some element #table-rows
+//	and some element #template#table-row
+//	#template gets detached from #table
+//	when setData is called (expects an array, or something property 'length'),
+//	a #table-row is created from #template and added to #table-rows
+//	you can override setData to modify #table-row per #table-row
 TVRO.Table = function(selector, context) {
 	var self = $.apply($, arguments),
 		template = $('[id ~= template ]', self).detach(),
@@ -420,13 +412,11 @@ TVRO.Table = function(selector, context) {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-/*
-	radio class
-	the gist of this class is:
-	given some element #radio
-	each #radio-option in #radio can become .is-selected on click
-	and all other #radio-option in #radio will lose .is-selected
-	*/
+//	radio class
+//	the gist of this class is:
+//	given some element #radio
+//	each #radio-option in #radio can become .is-selected on click
+//	and all other #radio-option in #radio will lose .is-selected
 TVRO.Radio = function() {
 	var self = $.apply($, arguments),
 		options, // look at refresh function
@@ -463,17 +453,16 @@ TVRO.Radio = function() {
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-/*
-	dropdown class
-	a popup that contains a radio
-	setButtons takes whatever elements you give it
-	assigns a click that shows the dropdown and
-	positions the dropdown over the button
 
-	also if the button has a #radio-value it will
-	$(#radio-value).text(radio.selectedValue())
-	when a #radio-option is selected
-	*/
+//	dropdown class
+//	a popup that contains a radio
+//	setButtons takes whatever elements you give it
+//	assigns a click that shows the dropdown and
+//	positions the dropdown over the button
+//
+//	also if the button has a #radio-value it will
+//	$(#radio-value).text(radio.selectedValue())
+//	when a #radio-option is selected
 TVRO.Dropdown = function() {
 	var self = $.apply($, arguments),
 		radio = TVRO.Radio(self),

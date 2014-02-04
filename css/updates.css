@@ -61,12 +61,12 @@ body:not(.is-technician-mode).at-splash .update-view {
 
 .bg {
 	position: absolute;
-	left: -100%;
+	left: -200%;
 	top: 0;
 	background: #fff;
 	height: 100%;
-	opacity: 0.1;
-	width: 300%;
+	opacity: 0.07;
+	width: 500%;
 	border-bottom: 3px solid #bbb;
 }
 
