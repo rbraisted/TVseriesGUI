@@ -1,0 +1,86 @@
+.first-steps-header {
+	width: 100%;
+}
+
+.header-view .tracvision-logo {
+	margin: 0;
+}
+
+.wizard-title-view {
+	position: relative;
+	top: 110px;
+	text-align: center;
+	color: white;
+	font-size: 28px;
+	height: 50px;
+	margin: auto;
+	border-bottom: 1px solid #466ab2;
+}
+
+
+.step-icon {
+	border-radius: 50%;
+	background-color: #466ab2;
+	text-align: center;
+	float: left;
+}
+
+.step-copy {
+	border-bottom: 1px solid #466ab2;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.step {
+	vertical-align: middle;
+}
+
+@media screen and (min-width: 880px) {
+	
+	.mobile {
+		display:  none;
+	}
+	
+	.wizard-title-view {
+		width: 800px;
+	}
+	.step {
+		width: 350px;
+		height: 65px;
+	}
+	.step-icon {
+		width: 45px;
+		height: 45px; 
+		line-height: 45px;
+	}
+	.wizard-content-view {
+		position: absolute;
+		left: 50%;
+		margin-left: -400px;
+		width: 800px;
+		top: 220px;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.desktop {
+		display: none;
+	}
+	
+	.wizard-title-view {
+		background-color: black;
+		width: 100%;
+		top: 50px;
+		padding-top: 10px;
+	}
+	
+	.step {
+		width: 280px;
+		height: 50px;
+	}
+	.step-icon {
+		width: 30px;
+		height: 30px; 
+		line-height: 30px;
+	}
+}
