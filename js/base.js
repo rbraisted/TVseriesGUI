@@ -151,19 +151,19 @@ TVRO.CookieManager = (function() {
 //	for example:
 //
 //	user: {
-//		firstname : 'Olivia',
-//		lastname : 'Wheatley',
-//		city : 'Oxford',
-//		state : 'Oxfordshire'
+//		firstname : 'John',
+//		lastname : 'Smith',
+//		city : 'Middletown',
+//		state : 'Rhode Island'
 //	}
 //
 //	will be sent as:
 //
 //	<user>
-//		<firstname>Olivia</firstname>
-//		<lastname>Wheatley</lastname>
-//		<city>Oxford</city>
-//		<state>Oxfordshire</state>
+//		<firstname>John</firstname>
+//		<lastname>Smitch</lastname>
+//		<city>Middletown</city>
+//		<state>Rhode Island</state>
 //	</user>
 TVRO.WebService = (function() {
 	var singleton,

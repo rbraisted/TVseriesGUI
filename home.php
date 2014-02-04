@@ -28,40 +28,40 @@
 
 		<div id="details-view" class="satellite-sub-view">
 			<h3>
-				<span id="name">Wheatly 1</span>
-				<span id="region">Middle East</span>
+				<span id="name"></span>
+				<span id="region"></span>
 			</h3>
 			<img id="signal" src="/images/img.gif" class="satellite-signal is-0">
-			<span id="status" class="satellite-status-label">Tracking...</span>
+			<span id="status" class="satellite-status-label"></span>
 		</div>
 
 		<div id="satellite-dropdown" class="satellite-sub-view satellite-dropdown-view">
 			<a id="radio-option slot-a-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
-					<span id="name">Rosalind 1</span>
-					<span id="region">Europe</span>
+					<span id="name"></span>
+					<span id="region"></span>
 				</label>
 			</a>
 			<a id="radio-option slot-b-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
-					<span id="name">Elena 22</span>
-					<span id="region">Europe</span>
+					<span id="name"></span>
+					<span id="region"></span>
 				</label>
 			</a>
 			<a id="radio-option slot-c-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
-					<span id="name">Astrea 2</span>
-					<span id="region">Middle East</span>
+					<span id="name"></span>
+					<span id="region"></span>
 				</label>
 			</a>
 			<a id="radio-option slot-d-btn" value="" class="btn dropdown-option satellite-dropdown-option">
 				<img src="/images/img.gif">
 				<label>
-					<span id="name">Lane 3</span>
-					<span id="region">Middle East</span>
+					<span id="name"></span>
+					<span id="region"></span>
 				</label>
 			</a>
 		</div>
@@ -70,7 +70,7 @@
 	<div id="autoswitch-view" class="menu-sub-view autoswitch-view">
 		<h3>Master</h3>
 		<img src="/images/img.gif">
-		<span id="master" class="autoswitch-master-label">Kitchen</span>
+		<span id="master" class="autoswitch-master-label"></span>
 		<a id="autoswitch-btn" class="btn basic-btn autoswitch-change-btn">
 			<label>Change</label>
 		</a>
