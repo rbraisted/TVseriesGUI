@@ -5,9 +5,11 @@
 <div class="wizard-view">
 	<div class="wizard-content">
 		<div class="wizard-title-view tac bb dfs26 mfs21">Installer Identification</div>
-		<div class="tac mt2 dlh1.6">
+		<div class="tac mt2 dlh1.6 mlh1.6">
 			<div class="dfs21 mfs16">Choose the GPS source you would like to use for your location coordinates.</div>
-			<div class="dfs16 mfs16">This location will allow the antenna to find the satellite(s) more quickly.</div>
+			<div class="mobile mt1"></div>
+			<div class="dfs16 mfs13">This location will allow the antenna to find the satellite(s) more quickly.</div>
+			<div class="mobile mt1"></div>
 		</div>
 		<div id="radio">
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 0183</div>
@@ -31,5 +33,12 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	.highlight { color: #669beb; }
 </style>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+	$(function() {
+		
+	});
+</script>

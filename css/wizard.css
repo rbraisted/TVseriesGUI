@@ -4,6 +4,7 @@
 
 .header-view .tracvision-logo { margin: 0; }
 
+.cp { cursor: pointer; }
 .tac { text-align: center; }
 .bb { border-bottom: 1px solid #466ab2; }
 
