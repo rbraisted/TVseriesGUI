@@ -144,3 +144,36 @@
 .radio-icon.is-selected {
 	background-image: url(/images/radio-selected.png);
 }
+
+
+
+.radio-btn {
+	display: block;	
+	background-position: left center;
+	padding-left: 40px;
+	line-height: 3.75;
+}
+
+@media screen and (max-width: 880px) {
+	.radio-btn {
+		margin: 0 20px;
+	}
+}
+
+
+
+.wizard-form {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 440px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.wizard-form-label { margin-bottom: 0.5em; }
+
+@media screen and (min-width: 880px) {
+	.wizard-form-label { margin-top: 0.5em; }
+}
+
+.wizard-form-input { width: 100%; }

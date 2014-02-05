@@ -62,8 +62,8 @@
 	</div>
 
 	<div class="bottom-bar">
-		<div class="btn exit-btn exit-icon fl">Exit</div>
-		<div class="btn next-btn next-icon fr">Next</div>
+		<a href="/home.php" class="btn exit-btn exit-icon fl">Exit</a>
+		<a href="/wizard/2.php" class="btn next-btn next-icon fr">Next</a>
 	</div>
  </div>
 

@@ -13,24 +13,12 @@
 	</div>
 
 	<div class="bottom-bar">
-		<div class="btn prev-btn prev-icon fl">Previous</div>
-		<div class="btn next-btn next-icon fr">Next</div>
+		<a href="/wizard/1.php" class="btn prev-btn prev-icon fl">Previous</a>
+		<a href="/wizard/3.php" class="btn next-btn next-icon fr">Next</a>
 	</div>
  </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	.radio-btn {
-		display: block;	
-		background-position: left center;
-		padding-left: 30px;
-		line-height: 3.75;
-	}
-
-	@media screen and (max-width: 880px) {
-		.radio-btn {
-			margin: 0 20px;
-		}
-	}
 </style>
