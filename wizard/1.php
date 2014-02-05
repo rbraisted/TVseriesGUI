@@ -62,10 +62,39 @@
 	</div>
 
 	<div class="bottom-bar">
-		<div class="btn exit-btn exit-icon">Exit</div>
-		<div class="btn next-btn next-icon">Next</div>
-		<div class="btn prev-btn prev-icon">Previous</div>
+		<div class="btn exit-btn exit-icon fl">Exit</div>
+		<div class="btn next-btn next-icon fr">Next</div>
 	</div>
-
  </div>
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<style type="text/css">
+	.step {
+		height: 65px;
+		position: relative;
+		margin: auto 15px auto 65px;
+	}
+
+	@media screen and (max-width: 880px) {
+		.step { margin: auto 20px auto 75px; }
+	}
+
+	.step-1, .step-3 { padding-top: 12px; }
+	.step-2 { padding-top: 22px; }
+
+	.bullet {
+		background-color: #466ab2;
+		border-radius: 100%;
+		height: 45px;
+		left: -55px;
+		line-height: 45px;
+		position: absolute;
+		top: 10px;
+		width: 45px;
+	}
+
+	@media screen and (max-width: 880px) {
+		.bullet { left: -60px; }
+	}
+</style>

@@ -23,6 +23,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 		<div id="header" class="view header-view">
+			<div class="fr dfs16 mfs16 mt1 mr1">Setup Wizard</div>
 			<a href="/" class="btn tracvision-logo">
 				<img src="/images/img.gif">
 			</a>
