@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message error="0" name="get_wizard_status"/>
+	<status>NONE</status><!-- NONE | SUCCESS -->
+</ipacu_response>

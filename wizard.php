@@ -29,33 +29,3 @@
 		</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-
-		<div id="wizard-title" class="wizard-title-view">
-			<span class="mobile">Welcome To The Wizard</span>
-			<span class="desktop">Welcome to The TracVision Setup Wizard</span>
-		</div>
-		
-		<div id="wizard-content" class="wizard-content-view">		
-			<div id="first-steps" class="first-steps-view">
-				<span class="first-steps-header">Before you start the Wizard,<br/>please do the following:</span>
-				<div class="step">
-					<div class="step-icon">1</div>
-					<div class="step-copy">Identify the desired service provider & associated satellite(s)</div>
-				</div>
-				<div class="step">
-					<div class="step-icon">2</div>
-					<div class="step-copy">Download the latest antenna software</div>
-				</div>
-				<div class="step">
-					<div class="step-icon">3</div>
-					<div class="step-copy">Connect all system components for your particular configuration</div>
-				</div>
-			</div>
-		</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-
-	</body>
-</html>
