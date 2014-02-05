@@ -9,13 +9,13 @@
 
 <div class="wizard-view">
 	<div class="wizard-content">
-		<div class="wizard-title-view tac dfs26 bb">
+		<div class="wizard-title-view tac bb dfs26 mfs21">
 			Welcome to The <span class="desktop">TracVision Setup </span>Wizard
 		</div>
 
-		<div class="tac dfs21 mb3 mt3">
-			System Detected:
-			<span class="dfs26">
+		<div class="tac mb3 mt3 dfs21 mfs16 dlh1.2 mlh1.6">
+			System Detected:<br class="mobile">
+			<span class="dfs26 mfs21">
 				Tracvision
 				<span id="">XX-X</span>
 				with
@@ -24,30 +24,32 @@
 			</span>
 		</div>
 
-		<div class="two-split lh1.2">
-			<div class="tac dfs21 mb1">
+		<div class="d2col dlh1.2 mlh1.6 mb2">
+			<div class="tac mb1 dfs21 mfs16">
 				Before you start the Wizard,<br>
 				please do the following:
 			</div>
-			<div class="step bb dfs16">
-				Identify the desired service provider & associated satellite(s)
-				<div class="bullet tac dfs21">1</div>
+			<div class="step step-1 bb dfs16 mfs13">
+				Identify the desired service provider<br>
+				& associated satellite(s)
+				<div class="bullet tac dfs21 mfs16">1</div>
 			</div>
-			<div class="step bb dfs16">
+			<div class="step step-2 bb dfs16 mfs13">
 				Download the latest antenna software
-				<div class="bullet tac dfs21">2</div>
+				<div class="bullet tac dfs21 mfs16">2</div>
 			</div>
-			<div class="step bb dfs16">
-				Connect all system components for your particular configuration
-				<div class="bullet tac dfs21">3</div>
+			<div class="step step-3 bb dfs16 mfs13">
+				Connect all system components for<br>
+				your particular configuration
+				<div class="bullet tac dfs21 mfs16">3</div>
 			</div>
 		</div><!--
-	 --><div class="two-split lh1.2">
-			<div class="tac dfs21 mb1">
+	 --><div class="d2col dlh1.2 mlh1.6">
+			<div class="tac mb1 dfs21 mfs16">
 				I have everything I need.<br>
 				Let's get started!
 			</div>
-			<div class="tac dfs13">
+			<div class="tac dfs13 mfs13">
 				Please note that the setup process might<br>
 				take up to 30 minutes to complete.
 			</div>

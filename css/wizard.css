@@ -15,25 +15,54 @@
 .mt2 { margin-top: 2em; }
 .mt3 { margin-top: 3em; }
 
-.lh1\.2 { line-height: 1.2; }
-.lh1\.6 { line-height: 1.6; }
-
-.rel { position: relative; }
-
 @media screen and (max-width: 880px) {
+	.desktop { display: none; }
+
+	.mlh1\.2 { line-height: 1.2; }
+	.mlh1\.6 { line-height: 1.6; }
+
 	.mfs11 { font-size: 11px; }
 	.mfs13 { font-size: 13px; }
 	.mfs16 { font-size: 16px; }
 	.mfs21 { font-size: 21px; }
 	.mfs26 { font-size: 26px; }
+
+	.wizard-title-view {
+		background-color: #000;
+		line-height: 50px;
+		position: fixed;
+		top: 50px;
+		width: 100%;
+		z-index: 1;
+	}
+
+	.wizard-content {
+		padding-top: 50px;
+	}
 }
 
 @media screen and (min-width: 880px) {
+	.mobile { display: none; }
+
+	.dlh1\.2 { line-height: 1.2; }
+	.dlh1\.6 { line-height: 1.6; }
+
 	.dfs11 { font-size: 11px; }
 	.dfs13 { font-size: 13px; }
 	.dfs16 { font-size: 16px; }
 	.dfs21 { font-size: 21px; }
 	.dfs26 { font-size: 26px; }
+
+	.d2col {
+		vertical-align: top;
+		display: inline-block;
+		width: 50%;
+	}
+
+	.wizard-title-view {
+		margin-top: 65px;
+		padding-bottom: 20px;
+	}
 }
 
 .wizard-view {
@@ -45,24 +74,17 @@
 .wizard-content {
 	max-width: 800px;
 	margin: auto;
-}
-
-.wizard-title-view {
-	margin-top: 65px;
-	padding-bottom: 20px;
-}
-
-.two-split {
-	vertical-align: top;
-	display: inline-block;
-	width: 50%;
+	padding-bottom: 100px;
 }
 
 .step {
 	height: 65px;
 	position: relative;
-	margin: auto 10px auto 65px;
+	margin: auto 15px auto 65px;
 }
+
+.step-1, .step-3 { padding-top: 13px; }
+.step-2 { padding-top: 23px; }
 
 .bullet {
 	background-color: #466ab2;
