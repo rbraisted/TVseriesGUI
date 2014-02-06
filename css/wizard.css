@@ -41,6 +41,7 @@
 
 	.wizard-title-view {
 		background-color: #000;
+		left: 0;
 		line-height: 50px;
 		position: fixed;
 		top: 50px;
@@ -60,12 +61,6 @@
 	.dfs16 { font-size: 16px; }
 	.dfs21 { font-size: 21px; }
 	.dfs26 { font-size: 26px; }
-
-	.d2col {
-		vertical-align: top;
-		display: inline-block;
-		width: 50%;
-	}
 
 	.wizard-title-view {
 		margin-top: 65px;
