@@ -95,11 +95,21 @@ table {
 }
 
 thead {
+	display: block;
 	font-size: 11px;
 }
 
 thead tr {
 	background-color: #243774;
+	display: block;
+	position: relative;
+}
+
+tbody {
+	display: block;
+	height: 262px;
+	overflow: auto;
+	width: 100%;
 }
 
 tr {
@@ -119,13 +129,15 @@ tr.is-selected {
 	background-color: #4f7abd;
 }
 
+td {
+	vertical-align: middle;
+}
+
 td,
 th {
 	font-weight: inherit;
 	padding: 1.2em 10px;
-	/*position: relative;*/
 	text-align: left;
-	/*vertical-align: middle;*/
 }
 
 th {

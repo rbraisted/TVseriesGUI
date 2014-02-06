@@ -386,7 +386,8 @@ TVRO.Table = function(selector, context) {
 		template = $('[id ~= template ]', self).detach(),
 		callbacks = [];
 
-	template.get(0).id = $.trim(template.get(0).id.replace('template', ''));
+	// template.attr('id', template.attr('id').replace('template', ''));
+	if (template.length) template.get(0).id = $.trim(template.get(0).id.replace('template', ''));
 
 	return $.extend({}, self, {
 		//	build(10) - makes 10 rows

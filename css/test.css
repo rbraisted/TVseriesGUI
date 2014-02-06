@@ -477,7 +477,7 @@ right: 40px;
 		width: 15%;
 	}
 
-	.name-col {
+	.name-col {	
 		width: 50%;
 	}
 
@@ -544,6 +544,7 @@ right: 40px;
 }
 
 /* how to i make the header fixed ??? */
+/*
 thead {
 	display: block;
 }
@@ -559,11 +560,4 @@ tbody {
 	overflow: auto;
 	width: 100%;
 }
-
-.sort-btn:hover {
-	outline: 1px solid red;
-}
-
-th:hover {
-	outline: 1px solid green;
-}
+*/

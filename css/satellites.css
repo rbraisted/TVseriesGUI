@@ -546,3 +546,45 @@ right: 40px;
 		height: auto;
 	}
 }
+
+/* base */
+.radio-icon {
+	background: transparent url(/images/radio.png) no-repeat center center;
+	background-size: 21px 21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
+.heart-icon {
+	background: transparent url(/images/favorite-btn.png) no-repeat center center;
+	background-size: 21px 21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
+.info-icon {
+	background: transparent url(/images/info-btn.png) no-repeat center center;
+	background-size: 21px 21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
+/* not base */
+/* rename these 4 later */
+.satellites-table .radio-icon {
+	display: block;
+}
+
+.satellites-table .heart-icon {
+	margin-left: 5px;
+}
+
+.satellites-table .info-icon {
+	position: relative;
+	left: 100%;
+	margin-left: -52px;
+}
+
+.satellites-table tbody {
+	height: 595px;
+}
