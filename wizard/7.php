@@ -48,7 +48,7 @@
 	$(function() {
 		var 
 		table = TVRO.Table('#table'),
-		radio = TVRO.Radio(table),
+		// radio = TVRO.Radio(table),
 		data = ['The Quick Brown Fox Jumps Over The Lazy Dog',
 				'NMEA 0183', 
 				'NMEA 2000',
@@ -60,6 +60,6 @@
 		});
 
 		table.build(data.length);
-		radio.refresh();
+		// radio.refresh();
 	});
 </script>
