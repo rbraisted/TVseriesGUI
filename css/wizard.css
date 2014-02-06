@@ -5,7 +5,6 @@
 .header-view .tracvision-logo { margin: 0; }
 
 .cp { cursor: pointer; }
-.tac { text-align: center; }
 .bb { border-bottom: 1px solid #466ab2; }
 
 .mt1 { margin-top: 1em; }
@@ -26,6 +25,11 @@
 
 .fl { float: left; }
 .fr { float: right; }
+
+.tac { text-align: center; }
+.tal { text-align: left; }
+.tar { text-align: right; }
+.i { font-style: italic; }
 
 @media screen and (max-width: 880px) {
 	.desktop { display: none; }
@@ -173,3 +177,109 @@
 }
 
 .wizard-form-input { width: 100%; }
+
+
+
+
+
+
+
+
+
+
+.wiz-opt {
+	background-color: #283148;
+	position: relative;
+	vertical-align: top;
+}
+
+.wiz-opt-btn {
+	display: block;
+	left: 0;
+	position: absolute;
+	width: 100%;
+}
+
+@media screen and (max-width: 880px) {
+	.wizard-content {
+		max-width: none;
+	}
+
+	.wiz-opt-title {
+		background-color: #000;
+		line-height: 25px;
+		width: 100%;
+	}
+
+	.wiz-opt-copy {
+		background: transparent url(/images/menu-btn.png) no-repeat right 20px center;
+		padding: 20px 60px 20px 20px;
+	}
+
+	.wiz-opt-btn,
+	.wiz-opt-btn:hover {
+		background-color: transparent;
+		height: 100%;
+		top: 0;
+	}
+
+	.wiz-opt-btn label {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 880px) {
+	.wiz-opt {
+		display: inline-block;
+		height: 200px;
+		padding: 0 20px;
+		width: 245px;
+	}
+
+	.wiz-opt+.wiz-opt {
+		margin-left: 30px;
+	}
+
+	.wiz-opt-title {
+		border-bottom: 1px solid #fff;
+		padding: 1em 0;
+	}
+
+	.wiz-opt-copy {
+		padding: 20px 5px;
+	}
+
+	.wiz-opt-btn {
+		top: 100%;
+		margin-top: 15px;
+	}
+}
+
+.wiz-opt-single-satellite-img {
+	background: transparent url(/images/wizard-single-satellite.png) no-repeat center center;
+	background-size: 70px 69px;
+	min-height: 69px;
+	min-width: 70px;
+}
+
+.wiz-opt-preset-group-img {
+	background: transparent url(/images/wizard-preset-group.png) no-repeat center center;
+	background-size: 127px 69px;
+	min-height: 69px;
+	min-width: 127px;
+}
+
+.wiz-opt-new-group-img {
+	background: transparent url(/images/wizard-new-group.png) no-repeat center center;
+	background-size: 142px 69px;
+	min-height: 69px;
+	min-width: 142px;
+}
+
+
+
+.instructions { padding: 0 60px; }
+
+@media screen and (max-width: 880px) {
+	.instructions { padding: 0 20px; }
+}

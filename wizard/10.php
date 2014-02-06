@@ -27,12 +27,6 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	.instructions { padding: 0 60px; }
-
-	@media screen and (max-width: 880px) {
-		.instructions { padding: 0 20px; }
-	}
-
 	.highlighted {
 		color: #669beb;
 		text-decoration: underline;
