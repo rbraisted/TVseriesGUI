@@ -7,20 +7,19 @@
 	miky out
 -->
 
-<div class="wizard-view">
-	<div class="wizard-content">
-		<div class="wizard-title-view tac bb dfs26 mfs21">
+<div class="wiz-view">
+	<div class="wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">
 			Welcome to The <span class="desktop">TracVision Setup </span>Wizard
 		</div>
 
 		<div class="tac mb3 mt3 dfs21 mfs16 dlh1.2 mlh1.6">
 			System Detected:<br class="mobile">
 			<span class="dfs26 mfs21">
-				Tracvision
-				<span id="">XX-X</span>
-				with
-				<span id="">XXXXX</span>
-				LNB
+				Tracvision <span id="">XX-X</span>
+				<span class="desktop">with</span>
+				<br class="mobile">
+				<span id="">XXXXX</span> LNB
 			</span>
 		</div>
 
@@ -81,7 +80,7 @@
 	.step {
 		height: 65px;
 		position: relative;
-		margin: auto 15px auto 65px;
+		margin: auto 15px auto 75px;
 	}
 
 	@media screen and (max-width: 880px) {
@@ -95,14 +94,10 @@
 		background-color: #466ab2;
 		border-radius: 100%;
 		height: 45px;
-		left: -55px;
+		left: -60px;
 		line-height: 45px;
 		position: absolute;
 		top: 10px;
 		width: 45px;
-	}
-
-	@media screen and (max-width: 880px) {
-		.bullet { left: -60px; }
 	}
 </style>

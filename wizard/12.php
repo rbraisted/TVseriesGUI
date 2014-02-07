@@ -2,9 +2,9 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="wizard-view">
-	<div class="wizard-content">
-		<div class="wizard-title-view tac bb dfs26 mfs21">DISH Network</div>
+<div class="wiz-view">
+	<div class="wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">DISH Network</div>
 		<div class="tac dfs21 mfs16 mt3 mb1">Choose your DISH Network satellites.</div>
 		<div id="radio-table">
 			<div id="table-rows">

@@ -2,11 +2,11 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="wizard-view">
-	<div class="wizard-content">
-		<div class="wizard-title-view tac bb dfs26 mfs21">Service Provider</div>
+<div class="wiz-view">
+	<div class="wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Service Provider</div>
 		<div class="tac dfs21 mfs16 mt3 mb1">Choose your satellite TV service provider.</div>
-		<div id="radio">
+		<div id="radio" class="wiz-radio">
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">DIRECTV</div>
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">DISH Network</div>
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">Bell TV</div>

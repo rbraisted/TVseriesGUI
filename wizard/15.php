@@ -2,9 +2,9 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="wizard-view">
-	<div class="wizard-content">
-		<div class="wizard-title-view tac bb dfs26 mfs21">Satellite Selection</div>
+<div class="wiz-view">
+	<div class="wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
 		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 instructions">
 			Note: While you may choose any combination of DIRECTV, DISH Network,
 			Bell TV, &/or any other circular satellites you will be limited to

@@ -2,9 +2,9 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="wizard-view">
-	<div class="wizard-content">
-		<div class="wizard-title-view tac bb dfs26 mfs21">DIRECTV</div>
+<div class="wiz-view">
+	<div class="wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">DIRECTV</div>
 		<div class="tac dfs21 mfs16 mlh1.6 mt3 mb3">Success! You’re now setup for all your DIRECTV programming!</div>
 
 		<div class="tac">

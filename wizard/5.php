@@ -2,21 +2,21 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="wizard-view">
-	<div class="wizard-content">
-		<div class="wizard-title-view tac bb dfs26 mfs21">Installer Information</div>
-		<div class="wizard-form mt2">
-			<div class="dfs13 mfs11 ml1 wizard-form-label">Installer Name *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wizard-form-input">
+<div class="wiz-view">
+	<div class="wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Installer Information</div>
+		<div class="wiz-form mt2">
+			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Name *</div>
+			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
-			<div class="dfs13 mfs11 ml1 wizard-form-label">Main Installer Contact *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wizard-form-input">
+			<div class="dfs13 mfs11 ml1 wiz-form-label">Main Installer Contact *</div>
+			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
-			<div class="dfs13 mfs11 ml1 wizard-form-label">Installer Contact Phone Number *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wizard-form-input">
+			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Phone Number *</div>
+			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
-			<div class="dfs13 mfs11 ml1 wizard-form-label">Installer Contain Email *</div>
-			<input type="text" class="dfs16 mfs16 mb2 wizard-form-input">
+			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Email *</div>
+			<input type="text" class="dfs16 mfs16 mb2 wiz-form-input">
 
 			<div class="mb2">
 				<div class="radio-icon is-selected fl"></div>

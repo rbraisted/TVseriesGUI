@@ -32,65 +32,67 @@ if (typeof TVRO === 'undefined') {
 //	MOBILE_APP and SAT_FINDER should be set by iOS/Android
 //	web view before any other script executes
 TVRO = {
-	MOBILE_APP : TVRO.MOBILE_APP || false,
-	SAT_FINDER : TVRO.SAT_FINDER || false,
-	DEMO_MODE : 'demo-mode',
-	TECH_MODE : 'technician-mode',
-	ANT_TYPES : {
-		TV1 : 'tv1',
-		TV3 : 'tv3',
-		TV5 : 'tv5',
-		TV6 : 'tv6'
-	}
-}
+	MOBILE_APP: TVRO.MOBILE_APP || false,
+	SAT_FINDER: TVRO.SAT_FINDER || false,
+	DEMO_MODE: 'demo-mode',
+	TECH_MODE: 'technician-mode',
+	ANT_TYPES: {
+		TV1: 'tv1',
+		TV3: 'tv3',
+		TV5: 'tv5',
+		TV6: 'tv6'
+	},
 
-TVRO.init = function() {
-	var header = $('[id ~= header ]'),
+	debug: false,
+	init: function() {
+		var
+		header = $('[id ~= header ]'),
 		nav = $('[id ~= nav ]'),
 		status = $('[id ~= status ]');
 
-	$('[id ~= nav-btn ]', header).click(function() {
-		nav.toggleClass('is-expanded');
-	});
+		$('[id ~= nav-btn ]', header).click(function() {
+			nav.toggleClass('is-expanded');
+		});
 
-	// var webService = new TVRO.WebService();
-	// setInterval(function() {
-	// 	webService.request('antenna_status', function(response) {
-	// 		var acu = $('acu > state', response).text(),
-	// 			antenna = $('antenna > state', response).text();
+		// var webService = new TVRO.WebService();
+		// setInterval(function() {
+		// 	webService.request('antenna_status', function(response) {
+		// 		var acu = $('acu > state', response).text(),
+		// 			antenna = $('antenna > state', response).text();
 
-	// 		//	ACU
-	// 		//	acu > state OK | FLASHING | CALGYRO | ERROR
-	// 		//	something like
-	// 		$('[id ~= acu-state]', '#status-btn').removeClass('is-ok is-flashing is-calgyro is-error');
-	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-ok', acu === 'OK');
-	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-flashing', acu === 'FLASHING');
-	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-calgyro', acu === 'CALGYRO');
-	// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-error', acu === 'ERROR');
+		// 		//	ACU
+		// 		//	acu > state OK | FLASHING | CALGYRO | ERROR
+		// 		//	something like
+		// 		$('[id ~= acu-state]', '#status-btn').removeClass('is-ok is-flashing is-calgyro is-error');
+		// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-ok', acu === 'OK');
+		// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-flashing', acu === 'FLASHING');
+		// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-calgyro', acu === 'CALGYRO');
+		// 		$('[id ~= acu-state]', '#status-btn').toggleClass('is-error', acu === 'ERROR');
 
-	// 		//	ANTENNA
-	// 		//	antenna > state INITIALIZING | WAITING FOR MODEM (Note: VSAT only) | MODEM SAT SWITCH (Note: VSAT only) | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP
-	// 		$('[id ~= antenna-state]', '#status-btn').removeClass('is-initializing is-searching is-tracking is-idle is-error is-cable-unwrap');
-	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-initializing', antenna === 'INITIALIZING');
-	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-searching', antenna === 'SEARCHING');
-	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-tracking', antenna === 'TRACKING');
-	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-idle', antenna === 'IDLE');
-	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-error', antenna === 'ERROR');
-	// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-cable-unwrap', antenna === 'CABLE UNWRAP');
-	// 	});
-	// }, 2000);
+		// 		//	ANTENNA
+		// 		//	antenna > state INITIALIZING | WAITING FOR MODEM (Note: VSAT only) | MODEM SAT SWITCH (Note: VSAT only) | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP
+		// 		$('[id ~= antenna-state]', '#status-btn').removeClass('is-initializing is-searching is-tracking is-idle is-error is-cable-unwrap');
+		// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-initializing', antenna === 'INITIALIZING');
+		// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-searching', antenna === 'SEARCHING');
+		// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-tracking', antenna === 'TRACKING');
+		// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-idle', antenna === 'IDLE');
+		// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-error', antenna === 'ERROR');
+		// 		$('[id ~= antenna-state]', '#status-btn').toggleClass('is-cable-unwrap', antenna === 'CABLE UNWRAP');
+		// 	});
+		// }, 2000);
 
-	$('[id ~= status-btn ]', header).click(function() {
-		$(status).toggleClass('toggled');
-	});
+		$('[id ~= status-btn ]', header).click(function() {
+			$(status).toggleClass('toggled');
+		});
 
-	$('[id ~= sat-finder-btn ]', nav).toggle(false);//TVRO.SAT_FINDER);
+		$('[id ~= sat-finder-btn ]', nav).toggle(false);//TVRO.SAT_FINDER);
 
-	$('[id ~= nav-btn ]', nav).each(function(index, element) {
-		$(element).toggleClass('is-selected', element.href === location.protocol+ '//' + location.hostname + (location.port ? ':' + location.port : '') + location.pathname);
-	});
+		$('[id ~= nav-btn ]', nav).each(function(index, element) {
+			$(element).toggleClass('is-selected', element.href === location.protocol+ '//' + location.hostname + (location.port ? ':' + location.port : '') + location.pathname);
+		});
 
-	if (TVRO.page && TVRO.page.init) TVRO.page.init();
+		if (TVRO.page && TVRO.page.init) TVRO.page.init();
+	}
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -195,6 +197,7 @@ TVRO.WebService = (function() {
 			singleton.request = function() {
 				var demoMode = cookieManager.hasCookie(TVRO.DEMO_MODE),
 					async = true,
+					contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
 					requestUrl,
 					requestName,
 					requestJson,
@@ -217,17 +220,21 @@ TVRO.WebService = (function() {
 					else requestUrl = LIVE_WEBSERVICE_URL;
 				}
 
+				if (requestUrl === DEMO_WEBSERVICE_URL || requestUrl === LIVE_WEBSERVICE_URL) {
+					contentType = 'text/xml';
+				}
+
 				requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>';
 
 				$.ajax({
-					async : async,
-					type : 'post',
-					// contentType : 'text/xml',
-					processData : false,
-					dataType : 'xml',
-					url : requestUrl,
-					data : requestXml,
-					success : function(response) {
+					async: async,
+					type: 'post',
+					contentType: contentType,
+					processData: false,
+					dataType: 'xml',
+					url: requestUrl,
+					data: requestXml,
+					success: function(response) {
 						console.log('\n------------------------------------------------------------');
 						console.log('  '+requestName.toUpperCase());
 						console.log($(requestXml).get(0));
@@ -241,7 +248,7 @@ TVRO.WebService = (function() {
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
 					},
-					error : function(jqXHR, textStatus, errorThrown) {
+					error: function(jqXHR, textStatus, errorThrown) {
 						console.log('\n------------------------------------------------------------');
 						console.log('  TVRO.WebService AJAX error!');
 						console.log(jqXHR);
