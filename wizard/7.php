@@ -49,7 +49,7 @@
 		var 
 		table = TVRO.Table('#table'),
 		// radio = TVRO.Radio(table),
-		data = ['The Quick Brown Fox Jumps Over The Lazy Dog',
+		data = [//'The Quick Brown Fox Jumps Over The Lazy Dog',
 				'NMEA 0183', 
 				'NMEA 2000',
 				'Other'];

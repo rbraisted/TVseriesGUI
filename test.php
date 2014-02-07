@@ -4,145 +4,245 @@
 <head>
 	<title></title>
 	<link type="text/css" rel="stylesheet" href="/css/reset.css">
+	<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/js/base.js"></script>
 </head>
 <body>
-	<div class="table-wrap">
+	<div id="table" class="table-wrap">
+		<div class="thead">
+			<div class="selected-col th">Installed</div><!--
+		 --><div id="name-btn" class="name-col th cp">Name</div><!--
+		 --><div id="orbital-slot-btn" class="orbital-slot-col th cp">Orbital Slot</div><!--
+		 --><div id="region-btn" class="region-col th cp">Region</div>
+		</div>
 		<table>
-			<thead>
+<!-- 		<thead>
 				<tr>
-					<th class="col-1"></th>
-					<th class="col-2"></th>
+					<th class="selected-col">Installed</th>
+					<th id="name-btn" class="name-col cp">Name</th>
+					<th id="orbital-slot-btn" class="orbital-slot-col cp">Orbital Slot</th>
+					<th id="region-btn" class="region-col cp">Region</th>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="col-1">
-						<div class="td-content-wrap">
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-							this text is too long! 
-						</div>
+			</thead> -->
+ 			<tbody id="table-rows">
+				<tr id="template table-row">
+					<td class="selected-col radio-icon"></td>
+					<td class="name-col">
+						<span id="name"></span>
+						<span id="region"></span>
 					</td>
-					<td class="col-2"></td>
+					<td id="orbital-slot" class="orbital-slot-col"></td>
+					<td id="region" class="region-col"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </body>
-<style type="text/css">
+
+<style id="style" type="text/css">
+	.cp {
+		cursor: pointer;
+	}
+
 	* {
 		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		cursor: inherit;
+		font-size-adjust: 0.55;
+		text-rendering: optimizeLegibility;	
+		user-select: none;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+
+	*:hover {
+		outline: 1px solid #f5aacb;
+	}
+
+	html,
+	body {
+		width: 100%;
+		background: black;
 	}
 
 	body {
-		width: 100%;
+		color: #fff;
+		cursor: default;
+		font-family: Helvetica, Arial, sans-serif;
+		font-size: 16px;
+		font-weight: lighter;
+		line-height: 1;
 	}
 
 	.table-wrap {
-		background: #f5aacb;
-		height: 500px;
+		background: white;
+		/*height: 500px;*/
 		width: 500px;
 		margin: 50px auto;
 	}
+
+	.table-scroll {
+		height: 500px;
+		overflow: auto;
+	}
+
+	/*
+
+	243774	normal blue
+	4f7abd	selected blue
+	4c5168	grey 1
+	3b4154	grey 2
+
+	*/
 
 	table {
 		width: 100%;
 	}
 
 	thead {
-		border-bottom: 1px solid red;
+		font-size: 11px;
+		font-weight: inherit;
 		text-align: left;
 	}
 
-	td, th {
-		padding: 5px;
+	thead tr {
+		background: #243774;
 	}
 
-	.col-1 {
-		width: 20%;
-		background: green;
-	}
-
-	.col-2 {
-		width: 80%;
-		background: blue;
-	}
-
-	.td-content-wrap {
-		min-width: 110px;
-	}
-
-	/*
-	.blue-btn {
-		-webkit-background-clip: border-box;
-		-webkit-background-origin: padding-box;
-		-webkit-background-size: 21px 21px;
-		-webkit-user-select: none;
-		background-attachment: scroll;
-		background-clip: border-box;
-		background-color: rgba(0, 0, 0, 0);
-		background-image: url(http://localhost/images/radio.png);
-		background-origin: padding-box;
-		background-size: 21px 21px;
-		border-bottom-color: rgb(255, 255, 255);
-		border-bottom-style: none;
-		border-bottom-width: 0px;
-		border-collapse: collapse;
-		border-image-outset: 0px;
-		border-image-repeat: stretch;
-		border-image-slice: 100%;
-		border-image-source: none;
-		border-image-width: 1;
-		border-left-color: rgb(255, 255, 255);
-		border-left-style: none;
-		border-left-width: 0px;
-		border-right-color: rgb(255, 255, 255);
-		border-right-style: none;
-		border-right-width: 0px;
-		border-top-color: rgb(255, 255, 255);
-		border-top-style: none;
-		border-top-width: 0px;
-		box-sizing: border-box;
-		color: rgb(255, 255, 255);
-		cursor: pointer;
-		display: block;
-		font-family: Helvetica, Arial, sans-serif;
+	tbody {
 		font-size: 13px;
-		font-weight: 100;
-		height: 21px;
-		line-height: 13px;
-		margin-bottom: 0px;
-		margin-left: 0px;
-		margin-right: 0px;
-		margin-top: 0px;
+	}
+
+	tbody tr {
+		background: #3b4154;
+	}
+
+	tbody tr:nth-child(even) {
+		background: #4c5168;
+	}
+
+	tr {
+		border-bottom: 1px solid #4f7abd;
+	}
+
+	th {
+		font-weight: inherit;
+		height: 25px;
+		padding: 0 10px;
+		vertical-align: middle;
+	}
+
+	td {
+		height: 45px;
+		padding: 10px;
+		vertical-align: middle;
+	}
+
+	.thead {
+		background: #243774;
+		display: block;
+		line-height: 25px;
+		font-size: 11px;
+		white-space: nowrap;
+	}
+
+	.th {
+		display: inline-block;
+		padding: 0 10px;
+	}
+
+	.selected-col {
+		padding: 0;
+		text-align: center;
+		width: 10%;
+	}
+
+	.name-col {
+		width: 40%;
+	}
+
+	.orbital-slot-col {
+		width: 20%;
+	}
+
+	.region-col {
+		width: 30%;
+	}
+
+	.radio-icon {
+		background: transparent url(/images/radio.png) no-repeat center center;
+		background-size: 21px 21px;
 		min-height: 21px;
 		min-width: 21px;
-		outline-color: rgb(255, 255, 255);
-		outline-style: none;
-		outline-width: 0px;
-		padding-bottom: 0px;
-		padding-left: 0px;
-		padding-right: 0px;
-		padding-top: 0px;
-		position: relative;
-		text-align: left;
-		text-rendering: optimizelegibility;
-		vertical-align: baseline;
-		width: 59px;
 	}
-	*/
+
+
+/*	table {
+		position: relative;
+	}
+
+	thead, tbody {
+		display: block;
+	}
+
+	thead tr {
+		display: block;
+		position: relative;
+		width: 100%;
+	}
+
+	tbody {
+		height: 200px;
+		overflow: auto;
+		width: 100%;
+	}
+*/
 </style>
+
+<script id="script" type="text/javascript">
+	$(function() {
+		var
+		table = TVRO.Table('#table'),
+		data = [{
+			name: 'Astra 1',
+			region: 'Europe',
+			antSatID: '19E'
+		}, {
+			name: 'Astra 2 North',
+			region: 'Europe',
+			antSatID: '28EN'
+		}, {
+			name: 'Astra 2 South',
+			region: 'Europe',
+			antSatID: '28ES'
+		}, {
+			name: 'Astra 3A',
+			region: 'Europe',
+			antSatID: '23E'
+		}, {
+			name: 'Amos 2',
+			region: 'Europe',
+			antSatID: '4W'
+		}, {
+			name: 'Amos 2 Middle East',
+			region: 'Africa',
+			antSatID: '4WME'
+		}];
+
+		table.build(function(i, row) {
+			i = data[i%data.length];
+			$('#name', row).text(i.name);
+			$('#orbital-slot', row).text(i.antSatID);
+			$('#region', row).text(i.region);
+		});
+
+		table.build(data.length * 3);
+	});
+</script>
+
 </html>
 
 

@@ -15,7 +15,6 @@
 
 		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="/js/base.js"></script>
-		<script type="text/javascript" src="/js/settings.js"></script>
 	</head>
 	<body class="at-splash">
 
