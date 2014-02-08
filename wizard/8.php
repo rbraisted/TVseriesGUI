@@ -4,7 +4,7 @@
 
 <div class="wiz-view">
 	<div class="wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Backup GPS Source</div>
+		<div class="wiz-title-view tac bb dfs26 mfs21">Heading Source</div>
 		<div class="tac mt2 mlh1.6">
 			<div class="dfs16 mfs13 dlh1.6 wiz-instructions">
 				The system has detected the following NMEA heading sources.

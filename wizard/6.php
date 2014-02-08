@@ -18,15 +18,23 @@
 		<div id="radio" class="wiz-radio">
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 0183</div>
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 2000</div>
-			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">
-				Enter your latitude<input type="text" placeholder="Format XXS or XXN" class="dfs13 ml1 mr1">
-				and longitude<input type="text" placeholder="Format XXE or XXW" class="dfs13 ml1 mr1">
+			<div class="desktop">
+				<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">
+					Enter your latitude<input type="text" placeholder="Format XXS or XXN" class="dfs13 ml1 mr1">
+					and longitude<input type="text" placeholder="Format XXE or XXW" class="dfs13 ml1 mr1">
+				</div>
+				<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13 ">
+					Choose your nearest major city<!--
+				 --><div id="city-btn" class="btn dropdown-btn ml1">
+						<img src="/images/img.gif">
+						<label id="radio-value">Los Angeles</label>
+					</div>
+				</div>
 			</div>
-			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13 ">
-				Choose your nearest major city<!--
-			 --><div id="city-btn" class="btn dropdown-btn ml1">
-					<img src="/images/img.gif">
-					<label id="radio-value">Los Angeles</label>
+			<div class="mobile">
+				<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">Enter your latitude & longitude</div>
+				<div id="radio-option city-btn" class="btn radio-btn radio-icon bb dfs16 mfs13">
+					<span id="radio-value">Choose your nearest major city</span>
 				</div>
 			</div>
 		</div>
@@ -49,9 +57,9 @@
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
 		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
-			<label>Region</label>
+			<label>Select a City</label>
 		</a>
-		<h1>Region</h1>
+		<h1>Select a City</h1>
 		<div id="table-rows">
 			<a id="template table-row dropdown-option radio-option" class="btn dropdown-option">
 				<img src="/images/img.gif">
@@ -77,11 +85,14 @@
 		table = TVRO.Table(dropdown),
 		cities = [];
 
-		dropdown.setButtons('#city-btn');
+		radio.click(function(value) {
+
+		});
+
+		dropdown.setButtons('[id ~= city-btn ]');
 		dropdown.click(function(city) {
 			console.log(city);
 		});
-
 
 		table.build(function(i, row) {
 			row.attr('value', cities[i]);

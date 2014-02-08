@@ -18,8 +18,8 @@
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Email *</div>
 			<input type="text" class="dfs16 mfs16 mb2 wiz-form-input">
 
-			<div class="mb2">
-				<div id="toggle" class="cp radio-icon fl"></div>
+			<div id="toggle" class="cp mb2">
+				<div class="radio-icon fl"></div>
 				<span class="dfs13 mfs11 dlh1.6 ml1.6 ml1 highlight">Save this info for use with future installations</span>
 			</div>
 

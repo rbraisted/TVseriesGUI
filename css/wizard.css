@@ -2,9 +2,7 @@ html {
 	background-position: top center;
 }
 
-*:hover {
-	outline: 1px solid #f5aacb;
-}
+/**:hover { outline: 1px solid #f5aacb; }*/
 
 .header-view .tracvision-logo { margin: 0; }
 
