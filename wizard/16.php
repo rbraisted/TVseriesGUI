@@ -5,7 +5,7 @@
 <div class="wiz-view">
 	<div class="wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
-		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 instructions">
+		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 wiz-instructions">
 			* You will have the opportunity to create your own group if one of
 			the preset groups doesn’t meet your needs.
 		</div>

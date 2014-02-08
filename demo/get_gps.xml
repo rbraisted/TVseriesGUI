@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_gps" error="0"/>
+	<state>ACQUIRED</state><!-- ACQUIRED | ACQUIRING | ERROR | MANUAL -->
+	<lat>32.383228</lat>
+	<lon>-65.123456</lon>
+	<city>BOSTON</city>
+</ipacu_response>

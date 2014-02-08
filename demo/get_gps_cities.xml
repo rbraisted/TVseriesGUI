@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+<message name="get_gps_cities" error="0"/>
+	<cities>
+		<city>LONDON</city>
+		<city>BOSTON</city>
+		<city>PARIS</city>
+		<city>BRUSSELS</city>
+		<city>BUENOS AIRES</city>
+		<city>TOKYO</city>
+		<city>SAN FRANCISCO</city>
+		<city>LISBON</city>
+	</cities>
+</ipacu_response>

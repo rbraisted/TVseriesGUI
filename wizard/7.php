@@ -10,7 +10,7 @@
 				Choose the backup GPS source you would like
 				to use for your location coordinates.
 			</div>
-			<div class="mobile instructions">					
+			<div class="mobile wiz-instructions">					
 				Choose the backup GPS source you would like
 				to use for your location coordinates.
 			</div>
@@ -22,7 +22,7 @@
 			<div id="radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13">Other</div>
 		</div>
 
-		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 instructions">
+		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 wiz-instructions">
 			The system will use this backup GPS only if the antenna’s<br class="desktop">
 			built-in GPS is unable to determine your location.
 		</div>

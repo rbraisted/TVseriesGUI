@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_heading_config" error="0" />
+	<nmea0183>
+		<enable>Y</enable><!-- Y | N -->
+		<message_list>
+			<nmea_message>
+				<nmea_name>True heading from north seeking gyro</nmea_name>
+				<heading_value>274</heading_value>
+				<nmea_source>HEHDT</nmea_source>
+				<state>ACTIVE</state><!-- ACTIVE | INACTIVE -->
+				<selected>N</selected><!-- Y | N -->
+			</nmea_message>
+		</message_list>
+	</nmea0183>
+	<nmea2000>
+		<enable>Y</enable><!-- Y | N -->
+		<message_list>
+			<nmea_message>
+				<nmea_name>Heading from magnetic compass</nmea_name>
+				<heading_value>260</heading_value>
+				<nmea_source>MAG-HEADING</nmea_source>
+				<state>ACTIVE</state><!-- ACTIVE | INACTIVE -->
+				<selected>Y</selected><!-- Y | N -->
+			</nmea_message>
+		</message_list>
+	</nmea2000>
+</ipacu_response>

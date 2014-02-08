@@ -5,7 +5,7 @@
 <div class="wiz-view">
 	<div class="wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">Local Channels</div>
-		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt3 mb1 instructions">
+		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt3 mb1 wiz-instructions">
 			If the channels for your local TV stations are broadcast on the 119
 			satellite, then you can choose to install that satellite now.
 			Otherwise, click Next to continue with your system setup.
