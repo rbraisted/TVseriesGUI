@@ -19,7 +19,7 @@
 			<input type="text" class="dfs16 mfs16 mb2 wiz-form-input">
 
 			<div class="mb2">
-				<div class="radio-icon is-selected fl"></div>
+				<div id="toggle" class="cp radio-icon fl"></div>
 				<span class="dfs13 mfs11 dlh1.6 ml1.6 ml1 highlight">Save this info for use with future installations</span>
 			</div>
 
@@ -38,3 +38,14 @@
 <style type="text/css">
 	.highlight { color: #669beb; }
 </style>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+	$(function() {
+		var toggle = TVRO.Toggle('#toggle');
+		toggle.click(function(isOn) {
+			toggle.toggleClass('is-selected', isOn);
+		});
+	});
+</script>

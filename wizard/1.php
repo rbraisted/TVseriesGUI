@@ -53,9 +53,9 @@
 				take up to 30 minutes to complete.
 			</div>
 			<div class="tac mt2">
-				<div class="btn basic-btn">
+				<a href="/wizard/2.php" class="btn basic-btn">
 					<label>Proceed with Setup Wizard</label>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>

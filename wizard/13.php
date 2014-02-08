@@ -6,7 +6,7 @@
 	<div class="wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">DISH Network</div>
 		<div class="tac dfs21 mfs16 mt3 mb1">Choose your DISH Network satellite.</div>
-		<div id="radio-table">
+		<div id="radio-table" class="wiz-radio">
 			<div id="table-rows">
 				<div id="table-row template radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
 			</div>

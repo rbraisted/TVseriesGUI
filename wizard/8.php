@@ -40,6 +40,6 @@
 
 <script type="text/javascript">
 	$(function() {
-
+		var radio = TVRO.Radio('#radio');
 	});
 </script>

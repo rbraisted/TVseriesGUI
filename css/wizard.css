@@ -1,3 +1,7 @@
+html {
+	background-position: top center;
+}
+
 *:hover {
 	outline: 1px solid #f5aacb;
 }
@@ -86,7 +90,10 @@
 }
 
 @media screen and (max-width: 880px) {
-	.wiz-content { padding-top: 50px; }
+	.wiz-content {
+		max-width: none;
+		padding-top: 50px;
+	}
 }
 
 .bottom-bar {
@@ -184,16 +191,9 @@
 	vertical-align: top;
 }
 
-.wiz-opt-btn {
-	display: block;
-	left: 0;
-	position: absolute;
-	width: 100%;
-}
-
 @media screen and (max-width: 880px) {
-	.wiz-content {
-		max-width: none;
+	.wiz-opt.is-selected {
+		background-color: #243774;
 	}
 
 	.wiz-opt-title {
@@ -202,19 +202,16 @@
 		width: 100%;
 	}
 
+	.is-selected .wiz-opt-title {
+		background-color: #4f7abd;
+	}
+
 	.wiz-opt-copy {
-		background: transparent url(/images/menu-btn.png) no-repeat right 20px center;
-		padding: 20px 60px 20px 20px;
+		/*background: transparent url(/images/menu-btn.png) no-repeat right 20px center;*/
+		padding: 20px;
 	}
 
-	.wiz-opt-btn,
-	.wiz-opt-btn:hover {
-		background-color: transparent;
-		height: 100%;
-		top: 0;
-	}
-
-	.wiz-opt-btn label {
+	.wiz-opt-radio {
 		display: none;
 	}
 }
@@ -225,6 +222,10 @@
 		height: 200px;
 		padding: 0 20px;
 		width: 245px;
+	}
+
+	.wiz-opt.is-selected {
+		background-color: #4f7abd;
 	}
 
 	.wiz-opt+.wiz-opt {
@@ -240,9 +241,12 @@
 		padding: 20px 5px;
 	}
 
-	.wiz-opt-btn {
+	.wiz-opt-radio {
+		display: block;
+		left: 50%;
+		position: absolute;
+		margin: 15px -10.5px;
 		top: 100%;
-		margin-top: 15px;
 	}
 }
 

@@ -22,3 +22,11 @@
 
 <style type="text/css">
 </style>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+	$(function() {
+		var radio = TVRO.Radio('#radio');
+	});
+</script>
