@@ -15,7 +15,7 @@
 				<label>Install DIRECTV Satellite 119</label>
 			</div>
 		</div>
-		<div class="cp tac dfs16 mfs11 dlh1.6 mlh1.6 mt2 highlighted">Find out which channels are carried on the 119 satellite.</div>
+		<div class="cp tac dfs16 mfs11 dlh1.6 mlh1.6 mt2 wiz-link">Find out which channels are carried on the 119 satellite.</div>
 	</div>
 
 	<div class="bottom-bar">
@@ -27,8 +27,4 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	.highlighted {
-		color: #669beb;
-		text-decoration: underline;
-	}
 </style>

@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="tac mt2">
-			<span class="cp dfs16 mfs11 highlighted">Learn more about these satellite options.</span>
+			<span class="cp dfs16 mfs11 wiz-link">Learn more about these satellite options.</span>
 		</div>
 	</div>
 
@@ -25,10 +25,6 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	.highlighted {
-		color: #669beb;
-		text-decoration: underline;
-	}
 </style>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

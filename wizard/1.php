@@ -69,14 +69,6 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	@media screen and (min-width: 880px) {
-		.d2col {
-			display: inline-block;
-			vertical-align: top;
-			width: 50%;
-		}
-	}
-
 	.step {
 		height: 65px;
 		position: relative;

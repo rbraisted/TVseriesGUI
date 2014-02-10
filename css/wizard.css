@@ -2,7 +2,7 @@ html {
 	background-position: top center;
 }
 
-/**:hover { outline: 1px solid #f5aacb; }*/
+*:hover { outline: 1px solid #f5aacb; }
 
 .header-view .tracvision-logo { margin: 0; }
 
@@ -68,6 +68,12 @@ html {
 	.dfs16 { font-size: 16px; }
 	.dfs21 { font-size: 21px; }
 	.dfs26 { font-size: 26px; }
+
+	.d2col {
+		display: inline-block;
+		vertical-align: top;
+		width: 50%;
+	}
 
 	.wiz-title-view {
 		margin-top: 65px;
@@ -273,4 +279,9 @@ html {
 
 @media screen and (max-width: 880px) {
 	.wiz-instructions { padding: 0 20px; }
+}
+
+.wiz-link {
+	color: #669beb;
+	text-decoration: underline;
 }
