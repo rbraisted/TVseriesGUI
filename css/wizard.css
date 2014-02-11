@@ -196,9 +196,7 @@ html {
 }
 
 @media screen and (max-width: 880px) {
-	.wiz-opt.is-selected {
-		background-color: #243774;
-	}
+	.wiz-opt.is-selected { background-color: #243774; }
 
 	.wiz-opt-title {
 		background-color: #000;
@@ -206,44 +204,33 @@ html {
 		width: 100%;
 	}
 
-	.is-selected .wiz-opt-title {
-		background-color: #4f7abd;
-	}
+	.is-selected .wiz-opt-title { background-color: #4f7abd; }
 
-	.wiz-opt-copy {
-		/*background: transparent url(/images/menu-btn.png) no-repeat right 20px center;*/
-		padding: 20px;
-	}
+	.wiz-opt-copy { padding: 20px; }
 
-	.wiz-opt-radio {
-		display: none;
-	}
+	.wiz-opt-radio { display: none; }
 }
 
 @media screen and (min-width: 880px) {
+	.wiz-opt.is-selected { background-color: #4f7abd; }
+
 	.wiz-opt {
 		display: inline-block;
 		height: 200px;
-		padding: 0 20px;
+		/*padding: 0 20px;*/
 		width: 245px;
 	}
 
-	.wiz-opt.is-selected {
-		background-color: #4f7abd;
-	}
-
-	.wiz-opt+.wiz-opt {
-		margin-left: 30px;
-	}
+	.wiz-opt+.wiz-opt { margin-left: 30px; }
 
 	.wiz-opt-title {
 		border-bottom: 1px solid #fff;
+		margin: auto;
 		padding: 1em 0;
+		width: calc(100% - 40px);
 	}
 
-	.wiz-opt-copy {
-		padding: 20px 5px;
-	}
+	.wiz-opt-copy { padding: 20px 25px; }
 
 	.wiz-opt-radio {
 		display: block;
@@ -257,22 +244,64 @@ html {
 .wiz-opt-single-satellite-img {
 	background: transparent url(/images/wizard-single-satellite.png) no-repeat center center;
 	background-size: 70px 69px;
-	min-height: 69px;
+	min-height: 105px;
 	min-width: 70px;
 }
 
 .wiz-opt-preset-group-img {
 	background: transparent url(/images/wizard-preset-group.png) no-repeat center center;
 	background-size: 127px 69px;
-	min-height: 69px;
+	min-height: 105px;
 	min-width: 127px;
 }
 
 .wiz-opt-new-group-img {
 	background: transparent url(/images/wizard-new-group.png) no-repeat center center;
 	background-size: 142px 69px;
-	min-height: 69px;
+	min-height: 105px;
 	min-width: 142px;
+}
+
+.wiz-opt-config-1-img {
+	background: transparent url(/images/wizard-config-1.png) no-repeat center center;
+	background-size: 163px 168px;
+	min-height: 168px;
+	min-width: 163px;
+}
+
+.wiz-opt-config-2-img {
+	background: transparent url(/images/wizard-config-2.png) no-repeat center center;
+	background-size: 214px 189px;
+	min-height: 189px;
+	min-width: 214px;
+}
+
+.wiz-opt-config-3-img {
+	background: transparent url(/images/wizard-config-3.png) no-repeat center center;
+	background-size: 231px 199px;
+	min-height: 199px;
+	min-width: 231px;
+}
+
+@media screen and (max-width: 880px) {
+	.wiz-opt-config { padding-bottom: 20px; }
+
+	.wiz-opt-config-1-img,
+	.wiz-opt-config-2-img,
+	.wiz-opt-config-3-img { margin: 20px 0; }
+}
+
+@media screen and (min-width: 880px) {
+	.wiz-opt-config {
+		height: 350px;
+		width: 255px;
+	}
+
+	.wiz-opt-config+.wiz-opt-config { margin-left: 15px; }
+
+	.wiz-opt-config-1-img,
+	.wiz-opt-config-2-img,
+	.wiz-opt-config-3-img { height: 250px; }
 }
 
 .wiz-instructions { padding: 0 60px; }

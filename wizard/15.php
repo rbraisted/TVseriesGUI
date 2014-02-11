@@ -17,16 +17,12 @@
 		<div id="radio" class="tac">
 			<div id="radio-option" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
-				<div class="tal dfs13 mfs13 dlh1.6 mlh1.6 wiz-opt-copy">
-					<div class="wiz-opt-single-satellite-img"></div>
-				</div>
+				<div class="wiz-opt-single-satellite-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
 			</div><!--
 		 --><div id="radio-option" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
-				<div class="tal dfs13 mfs13 dlh1.6 mlh1.6 wiz-opt-copy">
-					<div class="wiz-opt-new-group-img"></div>
-				</div>
+				<div class="wiz-opt-new-group-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
 			</div>
 		</div>

@@ -11,27 +11,30 @@
 		</div>
 
 		<div id="radio" class="tac">
-			<div id="radio-option" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
-				<div class="wiz-opt-single-satellite-img"></div>
+			<div id="radio-option" class="wiz-opt wiz-opt-config cp">
+				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Configuration #1</div>
+				<div class="wiz-opt-config-1-img"></div>
+				<div class="tac dfs13 mfs13">One Receiver</div>
 				<div class="radio-icon wiz-opt-radio"></div>
 			</div><!--
-		 --><div id="radio-option" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Preset Group of Satellites</div>
-				<div class="wiz-opt-preset-group-img"></div>
+		 --><div id="radio-option" class="wiz-opt wiz-opt-config cp">
+				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Configuration #2</div>
+				<div class="wiz-opt-config-2-img"></div>
+				<div class="tac dfs13 mfs13">One Master Receiver + Multiswitch</div>
 				<div class="radio-icon wiz-opt-radio"></div>
 			</div><!--
-		 --><div id="radio-option" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
-				<div class="wiz-opt-new-group-img"></div>
+		 --><div id="radio-option" class="wiz-opt wiz-opt-config cp">
+				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Configuration #3</div>
+				<div class="wiz-opt-config-3-img"></div>
+				<div class="tac dfs13 mfs13">Multiple Receivers w/ AutoSwitch(es)</div>
 				<div class="radio-icon wiz-opt-radio"></div>
 			</div>
 		</div>
 	</div>
 
 	<div class="bottom-bar">
-		<a href="/wizard/15.php" class="btn prev-btn prev-icon fl">Previous</a>
-		<a href="/wizard/17.php" class="btn next-btn next-icon fr">Next</a>
+		<a href="/wizard/28.php" class="btn prev-btn prev-icon fl">Previous</a>
+		<a href="/wizard/30.php" class="btn next-btn next-icon fr">Next</a>
 	</div>
  </div>
 

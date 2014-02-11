@@ -43,7 +43,7 @@
 				'-ms-transform' : 'rotate('+rotation+'deg)',
 				'-webkit-transform' : 'rotate('+rotation+'deg)'
 			});
-			rotation--;
-		}, 25);
+			rotation -= 45;
+		}, 125);
 	});
 </script>
