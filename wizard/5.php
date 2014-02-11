@@ -6,7 +6,7 @@
 	<div class="wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">Installer Information</div>
 		<div class="wiz-form mt2">
-			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Name *</div>
+			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Company *</div>
 			<input id="company" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Main Installer Contact *</div>
@@ -43,12 +43,21 @@
 
 <script type="text/javascript">
 	$(function() {
-		var toggle = TVRO.Toggle('#toggle');
+		var webService = TVRO.WebService(),
+			toggle = TVRO.Toggle('#toggle');
+
 		toggle.click(function(isOn) {
 			toggle.toggleClass('is-selected', isOn);
 		});
 
-		TVRO.WebService().request('antenna_versions', function(response) {
+		webService.request('get_product_registration', function(response) {
+			$('#company').val($('dealer company', response).text());
+			$('#contact').val($('dealer installer_name', response).text());
+			$('#phone').val($('dealer installer_phone', response).text());
+			$('#email').val($('dealer installer_email', response).text());
+		});
+
+		webService.request('antenna_versions', function(response) {
 			$('[id ~= next-btn ]').click(function() {
 				var company = $('#company').val(),
 					contact = $('#contact').val(),
@@ -61,7 +70,7 @@
 					else if (!phone) alert('You must enter a phone number to proceed.');
 					else if (!email) alert('You must enter an email address to proceed.');
 				} else {
-					TVRO.WebService().request('set_product_registration', {
+					webService.request('set_product_registration', {
 						dealer: {
 							company: company,
 							installer_name: contact,

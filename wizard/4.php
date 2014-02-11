@@ -40,6 +40,16 @@
 
 <script type="text/javascript">
 	$(function() {
+		var webService = TVRO.WebService();
+
+		webService.request('get_product_registration', function(response) {
+			$('#name').val($('product vessel_name', response).text());
+			$('#owner').val($('user name', response).text());
+			$('#contact').val($('user contact_name', response).text());
+			$('#phone').val($('user phone', response).text());
+			$('#email').val($('user email', response).text());
+		});
+
 		$('[id ~= next-btn ]').click(function() {
 			var name = $('#name').val(),
 				owner = $('#owner').val(),
@@ -51,16 +61,17 @@
 				if (!name) alert('You must enter a vessel name to proceed.');
 				else if (!owner) alert('You must enter an owner name to proceed.');
 			} else {
-				var params = {
-					product: { vessel_name: name },
-					user: { name: owner }
-				};
-
-				if (contact) params.user.contact_name = contact;
-				if (phone) params.user.phone = phone;
-				if (email) params.user.email = email;
-
-				TVRO.WebService().request('set_product_registration', params, function() {
+				webService.request('set_product_registration', {
+					product: {
+						vessel_name: name
+					},
+					user: {
+						name: owner,
+						contact_name: contact,
+						phone: phone,
+						email: email
+					}
+				}, function() {
 					window.location = '/wizard/5.php';
 				});
 			}

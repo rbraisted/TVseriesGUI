@@ -6,6 +6,7 @@
 	<user>
 		<firstname>Miky</firstname>
 		<lastname>Ma</lastname>
+		<name>Miky Ma</name><!-- not in docs -->
 		<salutation></salutation>
 		<title>Developer</title>
 		<email>miky@vainmedia.com</email>
@@ -19,20 +20,20 @@
 		<phone>1234567890</phone>
 		<mobile>1234567890</mobile>
 		<fax>1234567890</fax>
-		<website>http://vainmedia.com</website>
+		<contact_name>Miky</contact_name>
 	</user>
 	<dealer>
-		<company/>
+		<company>Installer Co.</company>
 		<state/>
 		<country/>
-		<installer_name/>
-		<installer_email/>
-		<installer_phone/>
+		<installer_name>Installer Name</installer_name>
+		<installer_email>installer@installerco.com</installer_email>
+		<installer_phone>1 (555) 467-8255</installer_phone>
 	</dealer>
 	<product>
-		<acu_model>VSAT-IPACU | TVRO-IPACU</acu_model>
+		<acu_model>TVRO-IPACU</acu_model><!-- VSAT-IPACU | TVRO-IPACU -->
 		<acu_sn/>
-		<ant_model>HD7 | HD11 | V7 | V7IP | V3 | V11</ant_model>
+		<ant_model>TV1</ant_model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
 		<ant_sn/>
 		<market/>
 		<sector/>

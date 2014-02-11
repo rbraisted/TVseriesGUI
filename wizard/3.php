@@ -39,6 +39,16 @@
 
 <script type="text/javascript">
 	$(function() {
+		var webService = TVRO.WebService();
+
+		webService.request('get_product_registration', function(response) {
+			$('#name').val($('product vessel_name', response).text());
+			$('#owner').val($('user name', response).text());
+			$('#contact').val($('user contact_name', response).text());
+			$('#phone').val($('user phone', response).text());
+			$('#email').val($('user email', response).text());
+		});
+
 		$('[id ~= next-btn ]').click(function() {
 			var name = $('#name').val(),
 				owner = $('#owner').val(),
@@ -53,7 +63,7 @@
 				else if (!phone) alert('You must enter a phone number to proceed.');
 				else if (!email) alert('You must enter an email address to proceed.');
 			} else {
-				TVRO.WebService().request('set_product_registration', {
+				webService.request('set_product_registration', {
 					product: {
 						vessel_name: name
 					},
