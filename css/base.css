@@ -930,5 +930,12 @@ table .sort-btn label {
 	}
 }
 
+.info-icon {
+	background: transparent url(/images/info-btn.png) no-repeat center center;
+	background-size: 21px 21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
 /*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\
 \*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/
