@@ -53,7 +53,7 @@
 				take up to 30 minutes to complete.
 			</div>
 			<div class="tac mt2">
-				<a href="/wizard/2.php" class="btn basic-btn">
+				<a id="next-btn" class="btn basic-btn">
 					<label>Proceed with Setup Wizard</label>
 				</a>
 			</div>
@@ -62,7 +62,7 @@
 
 	<div class="bottom-bar">
 		<a href="/home.php" class="btn exit-btn exit-icon fl">Exit</a>
-		<a href="/wizard/2.php" class="btn next-btn next-icon fr">Next</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
  </div>
 
@@ -93,3 +93,21 @@
 		width: 45px;
 	}
 </style>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+	$(function() {
+		TVRO.WebService().request('antenna_versions', function(response) {
+			$('[id ~= next-btn ]').click(function() {
+				window.location = {
+					TV1: '/wizard/2.php',
+					TV3: '/wizard/2.php',
+					RV1: '/wizard/2.php',
+					TV5: '/wizard/4.php',
+					TV6: '/wizard/4.php'
+				}[$('au model', response).text()];
+			});
+		});
+	});
+</script>

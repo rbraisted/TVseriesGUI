@@ -7,19 +7,19 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21">Vessel Information</div>
 		<div class="wiz-form mt2">
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Name *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="name" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Owner *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="owner" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Main Vessel Contact</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="contact" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Contact Phone Number</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="phone" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Contact Email</div>
-			<input type="text" class="dfs16 mfs16 mb2 wiz-form-input">
+			<input id="email" type="text" class="dfs16 mfs16 mb2 wiz-form-input">
 
 			<div class="dfs13 mfs11 fr">* Indicates required field</div>
 		</div>
@@ -27,7 +27,7 @@
 
 	<div class="bottom-bar">
 		<a href="/wizard/3.php" class="btn prev-btn prev-icon fl">Previous</a>
-		<a href="/wizard/5.php" class="btn next-btn next-icon fr">Next</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
  </div>
 
@@ -35,3 +35,35 @@
 
 <style type="text/css">
 </style>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<script type="text/javascript">
+	$(function() {
+		$('[id ~= next-btn ]').click(function() {
+			var name = $('#name').val(),
+				owner = $('#owner').val(),
+				contact = $('#contact').val(),
+				phone = $('#phone').val(),
+				email = $('#email').val();
+
+			if (!name || !owner) {
+				if (!name) alert('You must enter a vessel name to proceed.');
+				else if (!owner) alert('You must enter an owner name to proceed.');
+			} else {
+				var params = {
+					product: { vessel_name: name },
+					user: { name: owner }
+				};
+
+				if (contact) params.user.contact_name = contact;
+				if (phone) params.user.phone = phone;
+				if (email) params.user.email = email;
+
+				TVRO.WebService().request('set_product_registration', params, function() {
+					window.location = '/wizard/5.php';
+				});
+			}
+		});
+	});
+</script>

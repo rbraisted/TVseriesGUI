@@ -7,16 +7,16 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21">Installer Information</div>
 		<div class="wiz-form mt2">
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Name *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="company" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Main Installer Contact *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="contact" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Phone Number *</div>
-			<input type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="phone" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Email *</div>
-			<input type="text" class="dfs16 mfs16 mb2 wiz-form-input">
+			<input id="email" type="text" class="dfs16 mfs16 mb2 wiz-form-input">
 
 			<div id="toggle" class="cp mb2">
 				<div class="radio-icon fl"></div>
@@ -46,6 +46,41 @@
 		var toggle = TVRO.Toggle('#toggle');
 		toggle.click(function(isOn) {
 			toggle.toggleClass('is-selected', isOn);
+		});
+
+		TVRO.WebService().request('antenna_versions', function(response) {
+			$('[id ~= next-btn ]').click(function() {
+				var company = $('#company').val(),
+					contact = $('#contact').val(),
+					phone = $('#phone').val(),
+					email = $('#email').val();
+
+				if (!company || !owner || !contact || !phone || !email) {
+					if (!company) alert('You must enter a company name to proceed.');
+					else if (!contact) alert('You must enter an installer contact to proceed.');
+					else if (!phone) alert('You must enter a phone number to proceed.');
+					else if (!email) alert('You must enter an email address to proceed.');
+				} else {
+					TVRO.WebService().request('set_product_registration', {
+						dealer: {
+							company: company,
+							installer_name: contact,
+							installer_phone: phone,
+							installer_email: email
+						}
+					}, function() {
+						//	note that response here is from the antenna_versions
+						//	call, not the set_product_registration call
+						window.location = {
+							TV1: '/wizard/6.php',
+							TV3: '/wizard/6.php',
+							RV1: '/wizard/6.php',
+							TV5: '/wizard/7.php',
+							TV6: '/wizard/7.php'
+						}[$('au model', response).text()];
+					});
+				}
+			});
 		});
 	});
 </script>
