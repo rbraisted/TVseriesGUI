@@ -8,22 +8,20 @@
 	<script type="text/javascript" src="/js/base.js"></script>
 </head>
 <body>
+	<div class="test">
+		<span class="test-span">Satellites AUTOSWITCH</span>
+		<img class="test-img" src="/images/test.svg">
+	</div>
 	<div id="table" class="table-wrap">
-		<div class="thead">
-			<div class="selected-col th">Installed</div><!--
-		 --><div id="name-btn" class="name-col th cp">Name</div><!--
-		 --><div id="orbital-slot-btn" class="orbital-slot-col th cp">Orbital Slot</div><!--
-		 --><div id="region-btn" class="region-col th cp">Region</div>
-		</div>
 		<table>
-<!-- 		<thead>
+			<thead>
 				<tr>
 					<th class="selected-col">Installed</th>
 					<th id="name-btn" class="name-col cp">Name</th>
 					<th id="orbital-slot-btn" class="orbital-slot-col cp">Orbital Slot</th>
 					<th id="region-btn" class="region-col cp">Region</th>
 				</tr>
-			</thead> -->
+			</thead>
  			<tbody id="table-rows">
 				<tr id="template table-row">
 					<td class="selected-col radio-icon"></td>
@@ -40,6 +38,31 @@
 </body>
 
 <style id="style" type="text/css">
+
+	.test {
+		height: 50px;
+		background: red;
+	}
+
+	.test:before {
+		content: '';
+		vertical-align: middle;
+		height: 100%;
+		display: inline-block;
+		width: 0px;
+		overflow: hidden;
+		margin-right: -0.125em;
+	}
+
+	.test-span {
+		vertical-align: middle;
+	}
+
+	.test-img {
+		display: none;
+		/*vertical-align: middle;*/
+	}
+
 	.cp {
 		cursor: pointer;
 	}
