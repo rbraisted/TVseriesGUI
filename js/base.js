@@ -247,6 +247,26 @@ TVRO.WebService = (function() {
 
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
+
+						// The error numbers are defined as
+						// ERROR                   1 	Doesn't fall into another category.  Shouldn't really be used...
+						// INVALID_XML_MESSAGE     2 	Not only don't I understand you, you're not even sending XML.
+						// UNKNOWN_MESSAGE         3 	Sorry boss, I don't know what you're asking me.
+						// MISSING_ELEMENT_ERROR   4 	Required tag is missing from XML data
+						// INVALID_ELEMENT_VALUE   5 	I found the correct tag, but the value inside it makes no sense
+						// MISSING_DATA            6 	Couldn't find the information you requested.
+						// UNKNOWN_FILE_NAME_ERROR 7 	File name is not in the known list
+						// FILE_NOT_FOUND_ERROR    8 	Couldn't find the file (does not exist on system)
+						// FILE_UNREADABLE_ERROR   9 	Couldn't read from file
+						// FILE_LOCKED_ERROR       10	Couldn't open file for writing
+						// FILE_UNWRITABLE_ERROR   11	Couldn't write to file
+						// EVENT_NOT_FOUND         12	The starting value is greater than the number we have in our list, so no events will be returned.
+						// TOO_MANY_EVENTS         13	We have at least the starting value number of events, but not so many that we are able to return the desired number.
+						// DATASTORE_UNAVAILABLE   14	Umm...I don't know what to do here, nor do I know when this could happen.
+						// TIMEOUT                 15	Ttl was not specified or 0, or requested button was not pressed
+						// INVALID_UPDATE_FILE     16	The name you provided doesn't start with "HD11-" and end with ".kvh".
+						// DUPLICATE_DATA          17	data value already in use
+						// -Paul
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						console.log('\n------------------------------------------------------------');

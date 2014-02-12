@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="/js/base.js"></script>
 		
 	</head>
-	<body>
+	<body class="at-splash">
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

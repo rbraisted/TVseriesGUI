@@ -50,8 +50,8 @@ TVRO.SatellitesPage = function() {
 				event.stopPropagation();
 				if (confirm('Install '+group.name+'?')) {
 					webService.request('set_autoswitch_service', {
-						service: service,
 						enable: enable,
+						service: service,
 						satellite_group: group.name
 					}, function() {
 						$('[id ~= table-row ]', groupTable).removeClass('is-installed');
