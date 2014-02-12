@@ -46,7 +46,7 @@
 		<a href="/wizard/30.php" class="btn prev-btn prev-icon fl">Previous</a>
 		<a href="/wizard/32.php" class="btn next-btn next-icon fr">Next</a>
 	</div>
- </div>
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

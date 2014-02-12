@@ -64,7 +64,7 @@
 		<a href="/home.php" class="btn exit-btn exit-icon fl">Exit</a>
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
- </div>
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -83,7 +83,7 @@
 	.step-2 { padding-top: 22px; }
 
 	.bullet {
-		background-color: #466ab2;
+	background-color: #466ab2;
 		border-radius: 100%;
 		height: 45px;
 		left: -60px;
@@ -91,6 +91,19 @@
 		position: absolute;
 		top: 10px;
 		width: 45px;
+	}
+
+	.test {
+/*
+		this works on ios6 -
+		background: transparent no-repeat url(/images/test.svg);
+		background-size: 200px;
+		background-position: center center;
+
+		but we'll save 2 lines per image by doing this instead:*/
+		background: transparent no-repeat url(/images/test.svg) center/200px;
+		min-width: 100px;
+		min-height: 100px;
 	}
 </style>
 
