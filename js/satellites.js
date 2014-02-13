@@ -389,12 +389,12 @@ TVRO.SatellitesPage = function() {
 				sortOrder = 0,
 				sortProperty = '';
 
-			if (sortBtn.hasClass('is-ascending')) sortOrder = -1;
-			else if (!sortBtn.hasClass('is-descending')) sortOrder = 1;
+			if (sortBtn.hasClass('is-descending')) sortOrder = 1;
+			else sortOrder = -1;
 
 			$('[id ~= sort-btn ]', self).removeClass('is-ascending is-descending');
 			if (sortOrder === 1) sortBtn.addClass('is-ascending');
-			else if (sortOrder === -1) sortBtn.addClass('is-descending');
+			else sortBtn.addClass('is-descending');
 
 			if (sortBtn.hasId('name-btn')) sortProperty = 'name';
 			else if (sortBtn.hasId('orbital-slot-btn')) sortProperty = 'lon';
@@ -402,8 +402,8 @@ TVRO.SatellitesPage = function() {
 			else if (sortBtn.hasId('favorites-btn')) sortProperty = 'favorite';
 
 			sort = function(a, b) {
-				if (a[sortProperty] > b[sortProperty]) return 1 * sortOrder;
-				else if (a[sortProperty] < b[sortProperty]) return -1 * sortOrder;
+				if (a[sortProperty] > b[sortProperty]) return -1 * sortOrder;
+				else if (a[sortProperty] < b[sortProperty]) return 1 * sortOrder;
 				return 0;
 			}
 

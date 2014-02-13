@@ -297,12 +297,14 @@ th {
 	right: 0;
 }
 
-.sort-btn.is-ascending img {
-	background-image: url(/images/sort-btn-ascending.png);
+.sort-btn.is-ascending {
+	background: url(/images/sort-btn-ascending.png) no-repeat;
+	background-position: 97%;
 }
 
-.sort-btn.is-descending img {
-	background-image: url(/images/sort-btn-descending.png);
+.sort-btn.is-descending {
+	background: url(/images/sort-btn-descending.png) no-repeat;
+	background-position: 97%;
 }
 
 .sort-btn label {
