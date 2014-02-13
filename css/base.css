@@ -933,10 +933,20 @@ table .sort-btn label {
 }
 
 .info-icon {
-	background: transparent url(/images/info-btn.png) no-repeat center center;
-	background-size: 21px 21px;
+	background: transparent no-repeat url(/images/info-btn.png) center/21px;
 	min-height: 21px;
 	min-width: 21px;
+}
+
+.radio-icon {
+	background: transparent no-repeat url(/images/radio.png) center/21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
+.is-selected .radio-icon,
+.radio-icon.is-selected {
+	background-image: url(/images/radio-selected.png);
 }
 
 /*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\

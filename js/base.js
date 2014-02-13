@@ -524,6 +524,22 @@ TVRO.Dropdown = function() {
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+TVRO.Input = function() {
+	var self = $.apply($, arguments);
+
+	return $.extend({}, self, {
+		validate: function(type) {
+			if (self.attr('required')) {
+				console.log(self.attr('id')+" WOOOOOO!");
+			} else {
+				console.log(self.attr('id')+"OOOOOHH!");
+			}
+		}
+	});
+}
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 TVRO.SatelliteTrackingView = function() {
 	var 
 	self = $.apply($, arguments),
