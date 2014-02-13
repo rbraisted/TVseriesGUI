@@ -30,7 +30,7 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21">Vessel Information</div>
 		<div class="wiz-form mt2">
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Name *</div>
-			<input id="name" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="vessel" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Owner *</div>
 			<input id="owner" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
@@ -63,7 +63,7 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21">Vessel Information</div>
 		<div class="wiz-form mt2">
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Name *</div>
-			<input id="name" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="vessel" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Vessel Owner *</div>
 			<input id="owner" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
@@ -96,16 +96,16 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21">Installer Information</div>
 		<div class="wiz-form mt2">
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Company *</div>
-			<input id="company" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="company" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Main Installer Contact *</div>
-			<input id="contact" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="contact" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Phone Number *</div>
-			<input id="phone" type="text" class="dfs16 mfs16 mb1 wiz-form-input">
+			<input id="phone" required type="text" class="dfs16 mfs16 mb1 wiz-form-input">
 
 			<div class="dfs13 mfs11 ml1 wiz-form-label">Installer Contact Email *</div>
-			<input id="email" type="text" class="dfs16 mfs16 mb2 wiz-form-input">
+			<input id="email" required type="text" class="dfs16 mfs16 mb2 wiz-form-input">
 
 			<div id="toggle" class="cp mb2">
 				<div class="radio-icon fl"></div>
