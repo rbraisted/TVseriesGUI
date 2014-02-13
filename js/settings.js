@@ -96,6 +96,14 @@ TVRO.SettingsPage.AdvancedSettingsView = function(page) {
 				'sidelobe' : sidelobeMode
 			});
 		});
+
+		webService.request('antenna_versions', function(response) {
+			if ($('au model', response).text() === "RV1") {
+				$('#vessel-type-copy').html("vehicle");
+			} else {
+				$('#vessel-type-copy').html("vessel");
+			}
+		});
 	}
 
 	self.refresh = function() {

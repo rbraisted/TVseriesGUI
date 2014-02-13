@@ -40,9 +40,8 @@
 			<div class="off">Off</div>
 		</a>
 		<h2>Demo Mode</h2>
-		<p>	Info about Demo Mode: In blandit nec libero ut lobortis. Aliquam
-			et eros eleifend urna mollis convallis. Duis orci nisl, gravida
-			at lacus vitae, vehicula laoreet leo. Proin nec sagittis urna.
+		<p>	Turn on Demo mode to browse the capabilities of the app and 
+			the TracVision system without making any actual changes.
 		</p>
 		<a id="demo-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
@@ -61,21 +60,19 @@
 		</a>
 		<h1>Advanced Settings</h1>
 		<h2>Sleep Mode</h2>
-		<p>	Info about Sleep Mode: In blandit nec libero ut lobortis.
-			Aliquam et eros eleifend urna mollis convallis. Duis orci nisl,
-			gravida at lacus vitae, vehicula laoreet leo. Proin nec sagittis
-			urna.
+		<p>	Sleep mode locks the antenna in place to conserve power whenever the 
+			<span id="vessel-type-copy"></span> is stationary and holds its position for one minute. 
+			Sleep mode is enabled by default.
 		</p>
 		<a id="sleep-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>
 			<div class="off">Off</div>
 		</a>
 		<h2>Sidelobe Mode</h2>
-		<p>	Info about Sidelobe Mode: Nulla feugiat vestibulum egestas. Integer
-			porttitor est turpis, at convallis nisi tristique ac. Vestibulum ac
-			est a quam pellentesque porta. Nunc id pulvinar metus. Etiam commodo
-			faucibus augue, id placerat elit aliquet non. Sed ac diam enim.
-			Phasellus vitae interdum magna.
+		<p>	Side Lobe mode ensures the antenna is always tracking the main beam of 
+			the satellite, and not on a weaker side lobe. For optimum performance, 
+			keep Side Lobe mode enabled unless directed otherwise by KVH Technical 
+			Support.
 		</p>
 		<a id="sidelobe-mode-btn" class="btn toggle-btn setting-toggle-btn">
 			<div class="on">On</div>

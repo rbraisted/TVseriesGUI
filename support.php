@@ -171,17 +171,17 @@
 		</a>
 		<h1>Restart System</h1>
 		<a id="system-btn" class="btn basic-btn">
-			<label>Restart System</label>
+			<label>Restart TV-Hub</label>
 		</a>
-		<p>Maecenas in aliquet mauris, in venenatis eros. Maecenas at velit id ante sodales vulputate sit amet quis turpis.</p>
+		<p>Choose this option to restart just the TV-Hub.</p>
 		<a id="antenna-btn" class="btn basic-btn">
 			<label>Restart Antenna</label>
 		</a>
-		<p>Aenean sagittis ante mi, vel ultricies risus iaculis ac. Nullam tincidunt eros sit amet augue accumsan adipiscing. Sed ac sollicitudin eros.</p>
+		<p>Choose this option to restart just the antenna.</p>
 		<a id="all-btn" class="btn basic-btn">
-			<label>Restart Both</label>
+			<label>Restart All</label>
 		</a>
-		<p>Integer iaculis gravida enim vitae varius. Phasellus rutrum urna nibh, a ornare nunc lobortis eu. Aliquam porta imperdiet luctus. In hac habitasse platea dictumst.</p>
+		<p>Choose this option to restart the entire system, both TV-Hub and antenna.</p>
 	</div>
 </div>
 
