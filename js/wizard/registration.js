@@ -69,8 +69,8 @@ TVRO.RegistrationPage = function() {
 					}
 				});
 
-				if (self.is('#cdt-vessel-info-view')) $(document.body).setClass('at-installer-info-view');
-				else if (self.is('#diy-vessel-info-view')) window.location = '/wizard/gps.php';
+				if (self.is(cdtVesselInfoView)) $(document.body).setClass('at-installer-info-view');
+				else if (self.is(diyVesselInfoView)) window.location = '/wizard/gps.php';
 			}
 		});
 
@@ -91,7 +91,13 @@ TVRO.RegistrationPage = function() {
 
 	installerInfoView,
 	InstallerInfoView = function() {
-		var self = InfoView.apply({}, arguments);
+		var self = InfoView.apply({}, arguments),
+			toggle = TVRO.Toggle('#toggle', self);
+
+		toggle.click(function(isOn) {
+			toggle.toggleClass('is-selected', isOn);
+			//	set a good cookie
+		});
 
 		$('[id ~= next-btn ]', self).click(function() {
 			if (self.isValid()) {

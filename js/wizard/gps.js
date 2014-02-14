@@ -24,16 +24,108 @@ TVRO.GpsPage = function() {
 	var
 	webService = TVRO.WebService(),
 
-	installerIdentificationView,
-	InstallerIdentificationView = function() {
+	vesselLocationView,
+	backupGpsSourceView,
+	GpsSourceView = function() {
 		var self = $.apply($, arguments),
-			radio = TVRO.Radio(self);
+			radio = TVRO.Radio(self),
+			selectedValue,
+			lastSelectedValue;
+
+		radio.click(function(value) {
+			lastSelectedValue = selectedValue;
+			selectedValue = value;
+			if (value === 'coordinates') {
+				coordinatesView.setCoordinates({
+					latitude: $('#latitude', self).val(),
+					longitude: $('#longitude', self).val()
+				});
+				$(document.body).setClass('at-coordinates-view');
+			}
+		});
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = radio.selectedValue();
 			if (!selectedValue) alert('You must select an option to proceed.'); 
-			else if (selectedValue === 'CDT') $(document.body).setClass('at-cdt-vessel-info-view');
-			else if (selectedValue === 'DIY') $(document.body).setClass('at-diy-vessel-info-view');
+			else if (selectedValue === 'nmea0183' || selectedValue === 'nmea2000') {
+				webService.request('set_gps_config', {
+					nmea0183: { enable: (selectedValue === 'nmea0183' ? 'Y' : 'N') },
+					nmea2000: { enable: (selectedValue === 'nmea2000' ? 'Y' : 'N') }
+				});
+				$(document.body).setClass('at-heading-source-view');
+			} else if (selectedValue === 'coordinates' || selectedValue === 'city') {
+				webService.request('set_gps', {
+					lat: (selectedValue === 'coordinates' ? $('#latitude', self).val() : ''),
+					lon: (selectedValue === 'coordinates' ? $('#longitude', self).val() : ''),
+					city: (selectedValue === 'city' ? dropdown.selectedValue() : '')
+				});
+				$(document.body).setClass('at-heading-source-view');
+			}
+		});
+
+		$('[id ~= prev-btn ]', self).click(function() {
+			window.location = '/wizard/registration.php';
+		});
+
+		return $.extend({}, self, {
+			undoSelection: function() {
+				radio.setSelectedValue(lastSelectedValue);
+				selectedValue = lastSelectedValue;
+			},
+			setCoordinates: function(coordinates) {
+				if (coordinates) {
+					if (coordinates.latitude) $('#latitude', self).val(coordinates.latitude);
+					if (coordinates.longitude) $('#longitude', self).val(coordinates.longitude);
+				}
+			}
+		});
+	},
+
+	coordinatesView,
+	CoordinatesView = function() {
+		var self = $.apply($, arguments);
+
+		$('[id ~= cancel-btn ]', self).click(function() {
+			vesselLocationView.undoSelection();
+			$(document.body).setClass('at-vessel-location-view');
+		});
+
+		$('[id ~= save-btn ]', self).click(function() {
+			vesselLocationView.setCoordinates({
+				latitude: $('#latitude', self).val(),
+				longitude: $('#longitude', self).val()
+			});
+			$(document.body).setClass('at-vessel-location-view');
+		});
+
+		return $.extend({}, self, {
+			setCoordinates: function(coordinates) {
+				if (coordinates) {
+					if (coordinates.latitude) $('#latitude', self).val(coordinates.latitude);
+					if (coordinates.longitude) $('#longitude', self).val(coordinates.longitude);
+				}
+			}
+		});
+	},
+
+	headingSourceView,
+	HeadingSourceView = function() {
+		var self = $.apply($, arguments);
+
+		$('[id ~= next-btn ]', self).click(function() {
+			//	in the pdf it seems like the next pages are:
+			//	circular lnb - 9 (service)
+			//	tv5 manual - 1 (???)
+			//	linear lnb tv1 & tv3 - 17 (satellite)
+			//	linear lnb tv5 & tv6 - 14 (satellite)
+			//	tri-americas lnb - 11 (service)
+			//	note: these may not cover all cases, haven't checked yet
+		});
+
+		$('[id ~= prev-btn ]', self).click(function() {
+			//	depends on ant type
+			//	tv1, tv3, rv1 - goes to vesselLocationView
+			//	tv5, tv6 - goes to backupGpsSourceView
 		});
 
 		return $.extend({}, self, {});
@@ -41,8 +133,10 @@ TVRO.GpsPage = function() {
 
 	return {
 		init: function() {
-			webService.request('get_product_registration', function(response) {
-			});
+			vesselLocationView = GpsSourceView('#vessel-location-view');
+			backupGpsSourceView = GpsSourceView('#backup-gps-source-view');
+			coordinatesView = CoordinatesView('#coordinates-view');
+			headingSourceView = HeadingSourceView('#heading-source-view');
 		}
 	}
 };
