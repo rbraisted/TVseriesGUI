@@ -199,8 +199,8 @@
 			</div>
 		</div>
 		<div class="tool-bar">
-			<a id="load-btn" class="btn basic-btn event-history-btn">
-				<label>Load More</label>
+			<a id="save-btn" class="btn basic-btn event-history-btn">
+				<label>Save Log</label>
 			</a>
 			<a id="email-btn" class="btn basic-btn event-history-btn">
 		 		<label>Email Log</label>

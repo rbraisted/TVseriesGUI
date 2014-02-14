@@ -94,6 +94,7 @@ TVRO.SupportPage.RestartSystemView = function() {
 		$('[id ~= all-btn ]', view).click(function() {
 			webService.request('reboot', {'sys':'ALL'});
 		});
+
 	}
 
 	return self;
@@ -121,12 +122,24 @@ TVRO.SupportPage.EventHistoryView = function() {
 		});
 
 		self.load();
+		self.scrollCheck();
+
+		$('#email-btn').click(function() {
+			self.email();
+		});
+		$('#save-btn').click(function() {
+			self.save();
+		});
+
+		if (TVRO.MOBILE_APP) {
+			$('#save-btn').hide();
+		}
 	}
 
 	self.load = function() {
 		webService.request('get_recent_event_history', {
 			'begin_at_event' : $('[id ~= event-view ]', eventsView).length,
-			'how_many_events' : 5
+			'how_many_events' : 15
 		}, function(response) {
 			var events = $('event', response);
 			for (var i = 0; i < events.length; i++) {
@@ -140,6 +153,33 @@ TVRO.SupportPage.EventHistoryView = function() {
 				eventsView.scrollTop(eventsView.prop('scrollHeight'));
 			}
 		});
+	}
+
+	self.scrollCheck = function() {  
+		
+	    var scrolltop=$('#events-view').prop('scrollTop');  
+	    var scrollheight=$('#events-view').prop('scrollHeight');  
+	    var windowheight=$('#events-view').prop('clientHeight');  
+	    var scrolloffset=20;  
+	
+	    if(scrolltop>=(scrollheight-(windowheight+scrolloffset))) {  
+	        //fetch new items  
+	        self.load();
+	    }  
+	    setTimeout(function() {
+	    	self.scrollCheck();
+	    }, 1500);  
+	}
+
+	self.email = function() {
+		webService.request('get_event_history_log', function(response) {
+			var content = $('content', response)[0].innerHTML;
+			window.open("mailto:?subject=TVRO Event Log&body="+content);
+		});
+	}
+
+	self.save = function() {
+
 	}
 
 	return self;
