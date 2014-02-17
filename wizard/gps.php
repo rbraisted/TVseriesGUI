@@ -30,7 +30,7 @@
 					Choose your nearest major city<!--
 				 --><div id="city-btn" class="btn dropdown-btn ml1">
 						<img src="/images/img.gif">
-						<label id="radio-value"></label>
+						<label id="radio-value">Select a City</label>
 					</div>
 				</div>
 			</div>
@@ -54,9 +54,11 @@
 	</div>
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <div id="coordinates-view" class="view main-view coordinates-view">
 	<div class="view-content main-content">
-		<a id="cancel-btn" class="btn back-btn bb">
+		<a id="back-btn" class="btn back-btn bb">
 			<img src="/images/img.gif">
 			<label>Enter Coordinates</label>
 		</a>
@@ -69,20 +71,25 @@
 			<input id="longitude" type="text" placeholder="Format XXE or XXW" class="mfs13">
 		</div>
 	</div>
-
-	<div class="bottom-bar">
-		<a id="cancel-btn" class="btn fl">Cancel</a>
-		<a id="save-btn" class="btn fr">Save</a>
-	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-
+<div id="city-dropdown" class="view popup-view dropdown-view">
+	<div id="dropdown-content" class="view-content popup-content dropdown-content">
+		<a id="close-btn" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Select a City</label>
+		</a>
+		<h1>Select a City</h1>
+		<div id="table-rows">
+			<a id="template table-row dropdown-option radio-option" class="btn dropdown-option">
+				<img src="/images/img.gif">
+				<label id="name"></label>
+			</a>
+		</div>
+	</div>
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

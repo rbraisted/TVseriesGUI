@@ -28,13 +28,9 @@ TVRO.GpsPage = function() {
 	backupGpsSourceView,
 	GpsSourceView = function() {
 		var self = $.apply($, arguments),
-			radio = TVRO.Radio(self),
-			selectedValue,
-			lastSelectedValue;
+			radio = TVRO.Radio(self);
 
 		radio.click(function(value) {
-			lastSelectedValue = selectedValue;
-			selectedValue = value;
 			if (value === 'coordinates') {
 				coordinatesView.setCoordinates({
 					latitude: $('#latitude', self).val(),
@@ -45,7 +41,11 @@ TVRO.GpsPage = function() {
 		});
 
 		$('[id ~= next-btn ]', self).click(function() {
-			var selectedValue = radio.selectedValue();
+			var selectedValue = radio.selectedValue(),
+				latitude = $('#latitude', self).val(),
+				longitude = $('#longitude', self).val(),
+				city = cityDropdown.selectedValue();
+
 			if (!selectedValue) alert('You must select an option to proceed.'); 
 			else if (selectedValue === 'nmea0183' || selectedValue === 'nmea2000') {
 				webService.request('set_gps_config', {
@@ -53,13 +53,28 @@ TVRO.GpsPage = function() {
 					nmea2000: { enable: (selectedValue === 'nmea2000' ? 'Y' : 'N') }
 				});
 				$(document.body).setClass('at-heading-source-view');
-			} else if (selectedValue === 'coordinates' || selectedValue === 'city') {
-				webService.request('set_gps', {
-					lat: (selectedValue === 'coordinates' ? $('#latitude', self).val() : ''),
-					lon: (selectedValue === 'coordinates' ? $('#longitude', self).val() : ''),
-					city: (selectedValue === 'city' ? dropdown.selectedValue() : '')
-				});
-				$(document.body).setClass('at-heading-source-view');
+			} else if (selectedValue === 'coordinates') {
+				if (!latitude.length) {
+					alert('You must enter a latitude to proceed.');
+					$(document.body).setClass('at-coordinates-view');
+				} else if (!longitude.length) {
+					alert('You must enter a longitude to proceed.');
+					$(document.body).setClass('at-coordinates-view');	
+				} else {
+					webService.request('set_gps', {
+						lat: latitude,
+						lon: longitude,
+					});
+					$(document.body).setClass('at-heading-source-view');
+				}
+			} else if (selectedValue === 'city') {
+				if (!city) {
+					alert('You must select a city to proceed.');
+					$('#city-btn', self).click();
+				} else {
+					webService.request('set_gps', { city: city });
+					$(document.body).setClass('at-heading-source-view');					
+				}
 			}
 		});
 
@@ -68,10 +83,6 @@ TVRO.GpsPage = function() {
 		});
 
 		return $.extend({}, self, {
-			undoSelection: function() {
-				radio.setSelectedValue(lastSelectedValue);
-				selectedValue = lastSelectedValue;
-			},
 			setCoordinates: function(coordinates) {
 				if (coordinates) {
 					if (coordinates.latitude) $('#latitude', self).val(coordinates.latitude);
@@ -85,12 +96,7 @@ TVRO.GpsPage = function() {
 	CoordinatesView = function() {
 		var self = $.apply($, arguments);
 
-		$('[id ~= cancel-btn ]', self).click(function() {
-			vesselLocationView.undoSelection();
-			$(document.body).setClass('at-vessel-location-view');
-		});
-
-		$('[id ~= save-btn ]', self).click(function() {
+		$('[id ~= back-btn ]', self).click(function() {
 			vesselLocationView.setCoordinates({
 				latitude: $('#latitude', self).val(),
 				longitude: $('#longitude', self).val()
@@ -106,6 +112,28 @@ TVRO.GpsPage = function() {
 				}
 			}
 		});
+	},
+
+	cityDropdown,
+	CityDropdown = function() {
+		var self = $.apply($, arguments),
+			dropdown = TVRO.Dropdown('#city-dropdown'),
+			table = TVRO.Table('#city-dropdown');
+
+		dropdown.setButtons('[id ~= city-btn ]');
+
+		webService.request('get_gps_cities', function(response) {
+			var cities = $('city', response).map(function() { return $(this).text(); }).get();
+			table.build(function(i, row) {
+				console.log(cities);
+				row.attr('value', cities[i]);
+				$('#name', row).text(cities[i]);
+			});
+			table.build(cities.length);
+			dropdown.refresh();
+		});
+
+		return $.extend({}, self, dropdown, table);
 	},
 
 	headingSourceView,
@@ -134,8 +162,9 @@ TVRO.GpsPage = function() {
 	return {
 		init: function() {
 			vesselLocationView = GpsSourceView('#vessel-location-view');
-			backupGpsSourceView = GpsSourceView('#backup-gps-source-view');
 			coordinatesView = CoordinatesView('#coordinates-view');
+			cityDropdown = CityDropdown('#city-dropdown');
+			backupGpsSourceView = GpsSourceView('#backup-gps-source-view');
 			headingSourceView = HeadingSourceView('#heading-source-view');
 		}
 	}
