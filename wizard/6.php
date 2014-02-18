@@ -64,7 +64,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
- <div id="city-dropdown" class="view popup-view dropdown-view">
+<div id="city-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
 		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
