@@ -19,14 +19,14 @@
 			</div>
 		</div>
 		<div class="wiz-radio">
-			<div id="radio-option" value="nmea0183" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 0183</div>
-			<div id="radio-option" value="nmea2000" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 2000</div>
+			<div id="radio-option" value="NMEA0183" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 0183</div>
+			<div id="radio-option" value="NMEA2000" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 2000</div>
 			<div class="desktop">
-				<div id="radio-option" value="coordinates" class="btn radio-btn radio-icon bb dfs16 mfs13">
+				<div id="radio-option" value="COORDINATES" class="btn radio-btn radio-icon bb dfs16 mfs13">
 					Enter your latitude<input id="latitude" type="text" placeholder="Format XXS or XXN" class="dfs13 ml1 mr1">
 					and longitude<input id="longitude" type="text" placeholder="Format XXE or XXW" class="dfs13 ml1 mr1">
 				</div>
-				<div id="radio-option" value="city" class="btn radio-btn radio-icon bb dfs16 mfs13 ">
+				<div id="radio-option" value="CITY" class="btn radio-btn radio-icon bb dfs16 mfs13 ">
 					Choose your nearest major city<!--
 				 --><div id="city-btn" class="btn dropdown-btn ml1">
 						<img src="/images/img.gif">
@@ -35,8 +35,8 @@
 				</div>
 			</div>
 			<div class="mobile">
-				<div id="radio-option" value="coordinates" class="btn radio-btn radio-icon bb dfs16 mfs13">Enter your latitude & longitude</div>
-				<div id="radio-option city-btn" value="city" class="btn radio-btn radio-icon bb dfs16 mfs13">
+				<div id="radio-option" value="COORDINATES" class="btn radio-btn radio-icon bb dfs16 mfs13">Enter your latitude & longitude</div>
+				<div id="radio-option city-btn" value="CITY" class="btn radio-btn radio-icon bb dfs16 mfs13">
 					<span id="radio-value">Choose your nearest major city</span>
 				</div>
 			</div>
@@ -53,8 +53,6 @@
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="coordinates-view" class="view main-view coordinates-view">
 	<div class="view-content main-content">
@@ -73,8 +71,6 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
 <div id="city-dropdown" class="view popup-view dropdown-view">
 	<div id="dropdown-content" class="view-content popup-content dropdown-content">
 		<a id="close-btn" class="btn back-btn">
@@ -88,6 +84,75 @@
 				<label id="name"></label>
 			</a>
 		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- 7 -->
+
+<div id="backup-gps-source-view" class="view main-view wiz-view backup-gps-source-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Backup GPS Source</div>
+		<div class="tac dfs21 mfs16 dlh1.2 mlh1.6 mt2 mb1">
+			<div class="desktop nw">
+				Choose the backup GPS source you would like
+				to use for your location coordinates.
+			</div>
+			<div class="mobile wiz-instructions">					
+				Choose the backup GPS source you would like
+				to use for your location coordinates.
+			</div>
+		</div>
+
+		<div id="radio" class="wiz-radio">
+			<div id="radio-option" value="NMEA0183" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 0183</div>
+			<div id="radio-option" value="NMEA2000" class="btn radio-btn radio-icon bb dfs16 mfs13">NMEA 2000</div>
+			<div id="radio-option" value="NONE" class="btn radio-btn radio-icon bb dfs16 mfs13">None</div>
+		</div>
+
+		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 wiz-instructions">
+			The system will use this backup GPS only if the antenna’s<br class="desktop">
+			built-in GPS is unable to determine your location.
+		</div>
+	</div>
+
+	<div class="bottom-bar">
+		<a href="/wizard/" class="btn prev-btn prev-icon fl">Previous</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- 8 -->
+
+<div id="heading-source-view" class="view main-view wiz-view heading-source-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Heading Source</div>
+		<div class="tac mt2 mlh1.6">
+			<div class="dfs16 mfs13 dlh1.6 wiz-instructions">
+				The system has detected the following NMEA heading sources.
+				Please choose the one you would like to use.
+				Sources are listed in the recommended order.
+			</div>
+			<div class="mt1"></div>
+		</div>
+
+		<div class="wiz-radio">
+			<div id="radio-option" value="THS" class="btn radio-btn radio-icon bb dfs16 mfs13">THS</div>
+			<div id="radio-option" value="OSD" class="btn radio-btn radio-icon bb dfs16 mfs13">OSD - Own Ship Data</div>
+			<div id="radio-option" value="VHW" class="btn radio-btn radio-icon bb dfs16 mfs13">VHW - Water Speed & Handling</div>
+			<div id="radio-option" value="HDT" class="btn radio-btn radio-icon bb dfs16 mfs13">HDT - Heading - True</div>
+			<div id="radio-option" value="HDG" class="btn radio-btn radio-icon bb dfs16 mfs13">HDG - Heading - Deviation & Variation</div>
+			<div id="radio-option" value="HDM" class="btn radio-btn radio-icon bb dfs16 mfs13">HDM - Heading - Magnetic</div>
+			<div id="radio-option" value="OTHER" class="btn radio-btn radio-icon bb dfs16 mfs13">Other</div>
+		</div>
+	</div>
+
+	<div class="bottom-bar">
+		<a href="/wizard/" class="btn prev-btn prev-icon fl">Previous</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
 

@@ -22,6 +22,7 @@
 
 TVRO.GpsPage = function() {
 	var
+	antType,
 	webService = TVRO.WebService(),
 
 	vesselLocationView,
@@ -31,7 +32,7 @@ TVRO.GpsPage = function() {
 			radio = TVRO.Radio(self);
 
 		radio.click(function(value) {
-			if (value === 'coordinates') {
+			if (value === 'COORDINATES') {
 				coordinatesView.setCoordinates({
 					latitude: $('#latitude', self).val(),
 					longitude: $('#longitude', self).val()
@@ -47,19 +48,20 @@ TVRO.GpsPage = function() {
 				city = cityDropdown.selectedValue();
 
 			if (!selectedValue) alert('You must select an option to proceed.'); 
-			else if (selectedValue === 'nmea0183' || selectedValue === 'nmea2000') {
+			else if (selectedValue === 'NONE') $(document.body).setClass('at-heading-source-view');
+			else if (selectedValue === 'NMEA0183' || selectedValue === 'NMEA2000') {
 				webService.request('set_gps_config', {
-					nmea0183: { enable: (selectedValue === 'nmea0183' ? 'Y' : 'N') },
-					nmea2000: { enable: (selectedValue === 'nmea2000' ? 'Y' : 'N') }
+					nmea0183: { enable: (selectedValue === 'NMEA0183' ? 'Y' : 'N') },
+					nmea2000: { enable: (selectedValue === 'NMEA2000' ? 'Y' : 'N') }
 				});
 				$(document.body).setClass('at-heading-source-view');
-			} else if (selectedValue === 'coordinates') {
+			} else if (selectedValue === 'COORDINATES') {
 				if (!latitude.length) {
 					alert('You must enter a latitude to proceed.');
 					$(document.body).setClass('at-coordinates-view');
 				} else if (!longitude.length) {
 					alert('You must enter a longitude to proceed.');
-					$(document.body).setClass('at-coordinates-view');	
+					$(document.body).setClass('at-coordinates-view');
 				} else {
 					webService.request('set_gps', {
 						lat: latitude,
@@ -67,13 +69,13 @@ TVRO.GpsPage = function() {
 					});
 					$(document.body).setClass('at-heading-source-view');
 				}
-			} else if (selectedValue === 'city') {
+			} else if (selectedValue === 'CITY') {
 				if (!city) {
 					alert('You must select a city to proceed.');
 					$('#city-btn', self).click();
 				} else {
 					webService.request('set_gps', { city: city });
-					$(document.body).setClass('at-heading-source-view');					
+					$(document.body).setClass('at-heading-source-view');
 				}
 			}
 		});
@@ -125,7 +127,6 @@ TVRO.GpsPage = function() {
 		webService.request('get_gps_cities', function(response) {
 			var cities = $('city', response).map(function() { return $(this).text(); }).get();
 			table.build(function(i, row) {
-				console.log(cities);
 				row.attr('value', cities[i]);
 				$('#name', row).text(cities[i]);
 			});
@@ -138,9 +139,12 @@ TVRO.GpsPage = function() {
 
 	headingSourceView,
 	HeadingSourceView = function() {
-		var self = $.apply($, arguments);
+		var self = $.apply($, arguments),
+			radio = TVRO.Radio(self);
 
 		$('[id ~= next-btn ]', self).click(function() {
+			var selectedValue = radio.selectedValue();
+			if (!selectedValue) alert('You must select an option to proceed.');
 			//	in the pdf it seems like the next pages are:
 			//	circular lnb - 9 (service)
 			//	tv5 manual - 1 (???)
@@ -166,6 +170,10 @@ TVRO.GpsPage = function() {
 			cityDropdown = CityDropdown('#city-dropdown');
 			backupGpsSourceView = GpsSourceView('#backup-gps-source-view');
 			headingSourceView = HeadingSourceView('#heading-source-view');
+
+			webService.request('antenna_versions', function(response) {
+				antType = $('au model', response).text();
+			});
 		}
 	}
 };
