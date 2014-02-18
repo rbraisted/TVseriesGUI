@@ -47,15 +47,25 @@ TVRO.GpsPage = function() {
 				longitude = $('#longitude', self).val(),
 				city = cityDropdown.selectedValue();
 
-			if (!selectedValue) alert('You must select an option to proceed.'); 
-			else if (selectedValue === 'NONE') $(document.body).setClass('at-heading-source-view');
-			else if (selectedValue === 'NMEA0183' || selectedValue === 'NMEA2000') {
+			//	this block is very ugly, but basically:
+			//	/*1*/	if no value selected, alert
+			//	/*2*/	if NONE is selected, go to heading source view
+			//	/*3*/	if an NMEA choice is selected, set_gps_config then
+			//			go to heading source view
+			//	/*4*/ 	if COORDINATES selected, check valid values and go to
+			//			coordinates view if necessary
+			//			otherwise set_gps lat lon and go to heaving source view
+			//	/*5*/	if CITY is selected, check for valid city and then go
+			//			to heading source view
+	/*1*/	if (!selectedValue) alert('You must select an option to proceed.'); 
+	/*2*/	else if (selectedValue === 'NONE') $(document.body).setClass('at-heading-source-view');
+	/*3*/	else if (selectedValue === 'NMEA0183' || selectedValue === 'NMEA2000') {
 				webService.request('set_gps_config', {
 					nmea0183: { enable: (selectedValue === 'NMEA0183' ? 'Y' : 'N') },
 					nmea2000: { enable: (selectedValue === 'NMEA2000' ? 'Y' : 'N') }
 				});
 				$(document.body).setClass('at-heading-source-view');
-			} else if (selectedValue === 'COORDINATES') {
+	/*4*/	} else if (selectedValue === 'COORDINATES') {
 				if (!latitude.length) {
 					alert('You must enter a latitude to proceed.');
 					$(document.body).setClass('at-coordinates-view');
@@ -69,7 +79,7 @@ TVRO.GpsPage = function() {
 					});
 					$(document.body).setClass('at-heading-source-view');
 				}
-			} else if (selectedValue === 'CITY') {
+	/*5*/	} else if (selectedValue === 'CITY') {
 				if (!city) {
 					alert('You must select a city to proceed.');
 					$('#city-btn', self).click();
@@ -140,24 +150,65 @@ TVRO.GpsPage = function() {
 	headingSourceView,
 	HeadingSourceView = function() {
 		var self = $.apply($, arguments),
-			radio = TVRO.Radio(self);
+			radio = TVRO.Radio(self),
+			table = TVRO.Table(self),
+			nmea0183Sources,
+			nmea2000Sources,
+			headingSources;
+
+		table.build(function(i, row) {
+			row.attr('value', i);
+			$('#name', row).text(headingSources[i].name);
+			$('#source', row).text(headingSources[i].source);
+		});
+
+		webService.request('get_heading_config', function(response) {
+			var getHeadingSource = function() {
+				return {
+					name: $('nmea_name', this).text(),
+					source: $('nmea_source', this).text()
+				}
+			}
+
+			nmea0183Sources = $('nmea0183 nmea_message', response).map(getHeadingSource).get();
+			nmea2000Sources = $('nmea2000 nmea_message', response).map(getHeadingSource).get();
+			headingSources = nmea0183Sources.concat(nmea2000Sources);
+			console.log(headingSources);
+			table.build(headingSources.length);
+			radio.refresh();
+		});
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = radio.selectedValue();
 			if (!selectedValue) alert('You must select an option to proceed.');
-			//	in the pdf it seems like the next pages are:
-			//	circular lnb - 9 (service)
-			//	tv5 manual - 1 (???)
-			//	linear lnb tv1 & tv3 - 17 (satellite)
-			//	linear lnb tv5 & tv6 - 14 (satellite)
-			//	tri-americas lnb - 11 (service)
-			//	note: these may not cover all cases, haven't checked yet
+			else {
+				if (nmea0183.indexOf(headingSources[selectedValue]) !== -1) {
+					webService.request('set_heading_config', {
+						nmea0183: { enable: 'Y', nmea_source: headingSources[selectedValue].source },
+						nmea2000: { enable: 'N' }
+					});
+				} else if (nmea2000.indexOf(headingSources[selectedValue]) !== -1) {
+					webService.request('set_heading_config', {
+						nmea0183: { enable: 'N' },
+						nmea2000: { enable: 'Y', nmea_source: headingSources[selectedValue].source }
+					});
+				}
+				//	in the pdf it seems like the next pages are:
+				//	circular lnb - 9 (service)
+				//	tv5 manual - 1 (???)
+				//	linear lnb tv1 & tv3 - 17 (satellite)
+				//	linear lnb tv5 & tv6 - 14 (satellite)
+				//	tri-americas lnb - 11 (service)
+				//	note: these may not cover all cases, haven't checked yet
+			}
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
 			//	depends on ant type
 			//	tv1, tv3, rv1 - goes to vesselLocationView
 			//	tv5, tv6 - goes to backupGpsSourceView
+			if (antType === 'TV1' || antType === 'TV3' || antType === 'RV1') $(document.body).setClass('at-vessel-location-view');
+			else if (antType === 'TV5' || antType === 'TV6') $(document.body).setClass('at-backup-gps-source-view');
 		});
 
 		return $.extend({}, self, {});
@@ -173,6 +224,8 @@ TVRO.GpsPage = function() {
 
 			webService.request('antenna_versions', function(response) {
 				antType = $('au model', response).text();
+				if (antType === 'TV1' || antType === 'TV3' || antType === 'RV1') $(document.body).setClass('at-vessel-location-view');
+				else if (antType === 'TV5' || antType === 'TV6') $(document.body).setClass('at-backup-gps-source-view');
 			});
 		}
 	}

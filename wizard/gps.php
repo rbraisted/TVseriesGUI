@@ -139,14 +139,10 @@
 			<div class="mt1"></div>
 		</div>
 
-		<div class="wiz-radio">
-			<div id="radio-option" value="THS" class="btn radio-btn radio-icon bb dfs16 mfs13">THS</div>
-			<div id="radio-option" value="OSD" class="btn radio-btn radio-icon bb dfs16 mfs13">OSD - Own Ship Data</div>
-			<div id="radio-option" value="VHW" class="btn radio-btn radio-icon bb dfs16 mfs13">VHW - Water Speed & Handling</div>
-			<div id="radio-option" value="HDT" class="btn radio-btn radio-icon bb dfs16 mfs13">HDT - Heading - True</div>
-			<div id="radio-option" value="HDG" class="btn radio-btn radio-icon bb dfs16 mfs13">HDG - Heading - Deviation & Variation</div>
-			<div id="radio-option" value="HDM" class="btn radio-btn radio-icon bb dfs16 mfs13">HDM - Heading - Magnetic</div>
-			<div id="radio-option" value="OTHER" class="btn radio-btn radio-icon bb dfs16 mfs13">Other</div>
+		<div id="table-rows" class="wiz-radio">
+			<div id="template table-row radio-option" value="" class="btn radio-btn radio-icon bb dfs16 mfs13">
+				<span id="source"></span> - <span id="name"></span>
+			</div>
 		</div>
 	</div>
 

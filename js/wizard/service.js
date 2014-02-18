@@ -27,7 +27,7 @@ TVRO.ServicePage = function() {
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
-
+			
 		});
 
 		return $.extend({}, self, {});
@@ -65,8 +65,8 @@ TVRO.ServicePage = function() {
 			var selectedValue = self.selectedValue();
 			if (!selectedValue) alert('You must select an option to proceed.');
 			else {
-
-			}			
+				
+			}
 		});
 		
 		$('[id ~= prev-btn ]', self).click(function() {
