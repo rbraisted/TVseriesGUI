@@ -179,7 +179,18 @@ TVRO.SupportPage.EventHistoryView = function() {
 	}
 
 	self.save = function() {
+	webService.request('get_event_history_log', function(response) {
+				var content = $('content', response)[0].innerHTML;
+				$.ajax({url: 'save.php',
+						data: {text: content},
+						type: 'post',
+						success: function(output) {
+							document.location = "log.txt";
+						}
+				});
+			});
 
+		
 	}
 
 	return self;

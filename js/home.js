@@ -62,6 +62,13 @@ TVRO.HomePage = function() {
 					//	we may need to check active_list.children().length > 0 instead
 					view.toggle($('active_list', response).length > 0);
 					view.toggleClass('is-disabled', $('enable:eq(0)', response).text() === 'N');
+
+					var isManual = $('enable:eq(0)', response).text() === 'Y';
+					if (isManual) {
+						view.hide();
+					} else {
+						view.show();
+					}
 				});
 			}
 		});
@@ -112,6 +119,8 @@ TVRO.HomePage = function() {
 		init: function() {
 			menuView = MenuView('[id ~= menu-view ]');
 			vesselView = VesselView('[id ~= vessel-view ]');
+
+
 
 			menuView.refresh();
 			vesselView.refresh();

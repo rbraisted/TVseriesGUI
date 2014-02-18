@@ -101,7 +101,10 @@
 			list, enter its IP address and assign it a unique name (location).
 			<a href="#">(Find your receiver’s IP address.)</a>
 			<span class="white">
-				Note: Receiver must be activated to view its IP address.
+				Note: Receiver must be activated to view its IP address. The 
+				receiver also must be set up to allow external access before it 
+				will communicate with the TV-Hub. 
+				<a href="#">Learn how to enable external access on your DIRECTV receiver.</a>
 			</span>
 		</div>
 		<div id="table-rows">
