@@ -2,24 +2,6 @@
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-//	this page
-//	should have 1 radio (gps options)
-//	1 dropdown (cities)
-//	also there is one modal view but only on mobile
-//	here's how we'll do it:
-//	at-splash we see the options
-//	at-coordinates we see the modal
-//	in the CoordinatesView the back button
-//	checks if the CoordinatesView inputs are empty
-//	if so, uncheck the radio
-//	same for the dropdown actually, when the dropdown closes, if there's
-//	no city selected, we should uncheck the radio
-//	the CoordinatesView on save will update the #latitude and #longitude inputs
-//	of the OptionsView with the values of the same inputs in CoordinatesView
-//	when we hit next in options view
-//	we will check if the radio has a selected value
-//	seems pretty easy yes???
-
 TVRO.GpsPage = function() {
 	var
 	antType,
@@ -193,20 +175,11 @@ TVRO.GpsPage = function() {
 						nmea2000: { enable: 'Y', nmea_source: headingSources[selectedValue].source }
 					});
 				}
-				//	in the pdf it seems like the next pages are:
-				//	circular lnb - 9 (service)
-				//	tv5 manual - 1 (???)
-				//	linear lnb tv1 & tv3 - 17 (satellite)
-				//	linear lnb tv5 & tv6 - 14 (satellite)
-				//	tri-americas lnb - 11 (service)
-				//	note: these may not cover all cases, haven't checked yet
+				window.location = '/wizard/service.php';
 			}
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
-			//	depends on ant type
-			//	tv1, tv3, rv1 - goes to vesselLocationView
-			//	tv5, tv6 - goes to backupGpsSourceView
 			if (antType === 'TV1' || antType === 'TV3' || antType === 'RV1') $(document.body).setClass('at-vessel-location-view');
 			else if (antType === 'TV5' || antType === 'TV6') $(document.body).setClass('at-backup-gps-source-view');
 		});
