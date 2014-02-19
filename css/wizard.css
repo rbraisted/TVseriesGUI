@@ -304,3 +304,10 @@ html {
 	color: #669beb;
 	text-decoration: underline;
 }
+
+.spinner {
+	background: transparent url(/images/wizard-spinner.png) no-repeat center center;
+	height: 120px;
+	margin: auto;
+	width: 120px;
+}

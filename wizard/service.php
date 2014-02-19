@@ -103,8 +103,11 @@
 
 		<div id="group">
 			<div class="tac dfs21 mfs16 mt3 mb1">Choose your DISH Network satellites.</div>
-			<div id="table-rows" class="wiz-radio">
-				<div id="table-row template radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
+			<div class="wiz-radio">
+				<div id="table-rows">
+					<div id="table-row template radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
+				</div>
+				<div id="table-row radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
 			</div>
 			<div class="tac mt2">
 				<span class="cp dfs16 mfs11 wiz-link">Learn more about these satellite options.</span>
@@ -113,8 +116,11 @@
 
 		<div id="single">
 			<div class="tac dfs21 mfs16 mt3 mb1">Choose your DISH Network satellite.</div>
-			<div id="table-rows" class="wiz-radio">
-				<div id="table-row template radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
+			<div class="wiz-radio">
+				<div id="table-rows">
+					<div id="table-row template radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
+				</div>
+				<div id="table-row radio-option" class="btn radio-btn radio-icon bb dfs16 mfs13"></div>
 			</div>
 		</div>
 	</div>
@@ -125,6 +131,39 @@
 	</div>
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- 26 -->
+
+<div id="spinner-view" class="view main-view wiz-view spinner-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Installing Satellites</div>
+		<div class="tac dfs21 mfs16 mlh1.6 mt3 mb3 wiz-instructions">
+			Please wait while your satellites are being installed...
+		</div>
+		<div id="spinner" class="spinner"></div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<!-- 27 -->
+
+<div id="service-subtype-view" class="view main-view wiz-view service-subtype-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Choose the Active Service</div>
+		<div class="tac dfs21 mfs16 mt3 mb1">Which service do you want the antenna to track now?</div>
+		<div class="wiz-radio">
+			<div id="radio-option" value="NORTH_AMERICA" class="btn radio-btn radio-icon bb dfs16 mfs13">DIRECTV North America</div>
+			<div id="radio-option" value="LATIN_AMERICA" class="btn radio-btn radio-icon bb dfs16 mfs13">DIRECTV Latin America</div>
+		</div>
+	</div>
+
+	<div class="bottom-bar">
+		<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
+	</div>
+ </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -133,7 +172,9 @@
 	body.at-service-provider-view .service-provider-view,
 	body.at-local-channels-view .local-channels-view,
 	body.at-directv-view .directv-view,
-	body.at-dish-network-view .dish-network-view {
+	body.at-service-subtype-view .service-subtype-view,
+	body.at-dish-network-view .dish-network-view,
+	body.at-spinner-view .spinner-view {
 		display: block;
 	}
 </style>

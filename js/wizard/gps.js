@@ -164,12 +164,12 @@ TVRO.GpsPage = function() {
 			var selectedValue = radio.selectedValue();
 			if (!selectedValue) alert('You must select an option to proceed.');
 			else {
-				if (nmea0183.indexOf(headingSources[selectedValue]) !== -1) {
+				if (nmea0183Sources.indexOf(headingSources[selectedValue]) !== -1) {
 					webService.request('set_heading_config', {
 						nmea0183: { enable: 'Y', nmea_source: headingSources[selectedValue].source },
 						nmea2000: { enable: 'N' }
 					});
-				} else if (nmea2000.indexOf(headingSources[selectedValue]) !== -1) {
+				} else if (nmea2000Sources.indexOf(headingSources[selectedValue]) !== -1) {
 					webService.request('set_heading_config', {
 						nmea0183: { enable: 'N' },
 						nmea2000: { enable: 'Y', nmea_source: headingSources[selectedValue].source }

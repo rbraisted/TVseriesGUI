@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_lnb_list" error="0"></message>
+	<lnb_list>
+		<name>19-0000 DBS Unstacked</name>
+		<name>19-0398 DBS Stacked</name>
+		<name>19-0815 DishPro Stacked</name>
+		<name>19-0577 Tri-Americas</name>
+		<name>19-0805 Galaxy</name>
+		<name>19-0444 Single Linear</name>
+		<name>19-0298 Dual Linear</name>
+		<name>19-0299 Quad Linear</name>
+		<name>19-ASIA Asia Dual Linear</name>
+		<name>19-AUST Aust Dual Linear</name>
+		</lnb_list>
+	<enable>N</enable>
+</ipacu_response>
