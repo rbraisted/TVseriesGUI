@@ -226,7 +226,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	body.at-splash .linear-system-config-view,
+	body.at-splash .skew-angle-view,
 	body.at-skew-angle-view .skew-angle-view,
 	body.at-other-system-config-view .other-system-config-view,
 	body.at-linear-system-config-view .linear-system-config-view,
