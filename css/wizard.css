@@ -253,21 +253,21 @@ html {
 }
 
 .wiz-opt-config-1-img {
-	background: transparent url(/images/wizard-config-1.png) no-repeat center center;
+	background: transparent url(/images/wizard-config-1.svg	) no-repeat center center;
 	background-size: 163px 168px;
 	min-height: 168px;
 	min-width: 163px;
 }
 
 .wiz-opt-config-2-img {
-	background: transparent url(/images/wizard-config-2.png) no-repeat center center;
+	background: transparent url(/images/wizard-config-2.svg) no-repeat center center;
 	background-size: 214px 189px;
 	min-height: 189px;
 	min-width: 214px;
 }
 
 .wiz-opt-config-3-img {
-	background: transparent url(/images/wizard-config-3.png) no-repeat center center;
+	background: transparent url(/images/wizard-config-3.svg) no-repeat center center;
 	background-size: 231px 199px;
 	min-height: 199px;
 	min-width: 231px;

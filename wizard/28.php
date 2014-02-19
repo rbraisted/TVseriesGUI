@@ -5,7 +5,6 @@
 <div class="wiz-view">
 	<div class="wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21 mb2">Set Skew Angle</div>
-
 		<div class="d2col dlh1.6 mlh1.2 mt1 mb2 skew">
 			<div class="dfs16 mfs13">
 				Based on your selections, the LNB inside the antenna
