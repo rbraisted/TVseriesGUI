@@ -22,7 +22,9 @@ TVRO.SatellitesPage = function() {
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
-
+			if (self.is(optionsView)) window.location = '';
+			else if (self.is(circularOptionsView)) window.location = '';
+			else if (self.is(tv5ManualOptionsView)) window.location = '';
 		});
 
 		return $.extend({}, self, {});
@@ -31,8 +33,10 @@ TVRO.SatellitesPage = function() {
 	singleView,
 	SingleView = function() {
 		var self = $.apply($, arguments),
-			menu = TVRO.Radio('#menu', self),
+			radio = TVRO.Radio('#radio', self),
 			table = TVRO.Table('#table', self);
+
+		table.build(10);
 
 		$('[id ~= next-btn ]', self).click(function() {
 		});
@@ -43,7 +47,12 @@ TVRO.SatellitesPage = function() {
 
 	groupView,
 	GroupView = function() {
-		var self = $.apply($, arguments);
+		var self = $.apply($, arguments),
+			radio = TVRO.Radio('#radio', self),
+			table = TVRO.Table(radio);
+
+		table.build(10);
+
 		$('[id ~= next-btn ]', self).click(function() {
 		});
 		$('[id ~= prev-btn ]', self).click(function() {

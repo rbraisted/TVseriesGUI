@@ -3,8 +3,6 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<!-- 14 -->
-
 <div id="options-view" class="view main-view wiz-view options-view">
 	<div class="view-content main-content wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
@@ -34,8 +32,6 @@
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<!-- 15 -->
 
 <div id="circular-options-view" class="view main-view wiz-view circular-options-view">
 	<div class="view-content main-content wiz-content">
@@ -68,8 +64,6 @@
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<!-- 16 -->
 
 <div id="tv5-manual-options-view" class="view main-view wiz-view tv5-manual-options-view">
 	<div class="view-content main-content wiz-content">
@@ -104,8 +98,169 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="single-view" class="view main-view wiz-view single-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Select a Satellite</div>
+		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 mb2 wiz-instructions">
+			Select a region. Then choose a satellite in that region.
+		</div>
+
+		<div class="container">
+			<div id="menu" class="menu-view">
+				<h1>Region</h1>
+				<a id="radio-option" value="Africa" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>Africa</label>
+				</a>
+				<a id="radio-option" value="Asia" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>Asia</label>
+				</a>
+				<a id="radio-option" value="Australia" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>Australia / New Zealand</label>
+				</a>
+				<a id="radio-option" value="Central/South America" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>Central / South America</label>
+				</a>
+				<a id="radio-option" value="Europe" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>Europe</label>
+				</a>
+				<a id="radio-option" value="North America" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>North America</label>
+				</a>
+				<a id="radio-option" value="All" class="btn menu-btn">
+					<img src="/images/img.gif">
+					<label>All</label>
+				</a>
+			</div>
+			<div class="right">
+				<h1>Satellites</h1>
+				<div class="satellites-table-container">
+					<table id="table" class="satellites-table">
+						<thead>
+							<tr>
+								<th class="installed-col">
+									<div>Installed</div>
+								</th>
+								<th class="name-col">
+									<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
+								</th>
+								<th class="orbital-slot-col">
+									<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital Slot</div>
+								</th>
+								<th class="region-col">
+									<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody id="table-rows">
+							<tr id="template table-row">
+								<td class="installed-col">
+									<div id="select-btn" class="btn radio-icon"></div>
+								</td>
+								<td class="name-col">
+									<span id="name">Name</span>
+									<span id="region">Region</span>
+								</td>
+								<td class="orbital-slot-col">
+									<span id="orbital-slot">Orbital Slot</span>
+								</td>
+								<td class="region-col">
+									<span id="region">Region</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom-bar">
+		<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div id="group-view" class="view main-view wiz-view group-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Select a Satellite Group</div>
+		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 mb2 wiz-instructions">
+			Select a group name to view its included satellites.
+		</div>
+
+		<div class="container">
+			<div id="radio" class="menu-view">
+				<h1>Groups</h1>
+				<div id="table-rows" class="group-menu-view">
+					<div id="radio-option table-row template" value="" class="btn dropdown-option group-menu-btn">
+						<a id="select-btn" class="group-menu-select-btn">
+							<img src="/images/img.gif">
+						</a>
+						<img src="/images/img.gif" class="menu-btn-image">
+						<label id="name">Preset Group 1</label>
+					</div>
+				</div>
+				<div class="dfs13 mfs13 dlh1.6 mlh1.6 wiz-instructions">
+					If you don't see a group that will work for you...
+				</div>
+				<div id="new-btn" class="btn basic-btn new-btn">
+					<img src="/images/img.gif">
+					<label>Create New Group</label>
+				</div>
+			</div>
+			<div class="right">
+				<h1>Satellites</h1>
+				<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt1 mb1">
+					Note: For automatic satellite switching, be sure to set up
+					the satellites in<br>your receivers in the same order as they
+					are listed in the group (A-B-C-D).
+				</div>
+				<div id="slot-a-view slot-view" class="slot">
+					<div class="slot-label slot-letter-label">Slot A</div>
+					<div class="slot-label slot-installed-label">Installed</div>
+					<div class="slot-label slot-static-name-label">Satellite Name</div>
+					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+				</div><!--
+			 --><div id="slot-b-view slot-view" class="slot">
+					<div class="slot-label slot-letter-label">Slot B</div>
+					<div class="slot-label slot-installed-label">Installed</div>
+					<div class="slot-label slot-static-name-label">Satellite Name</div>
+					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+				</div><!--
+			 --><div id="slot-c-view slot-view" class="slot">
+					<div class="slot-label slot-letter-label">Slot C</div>
+					<div class="slot-label slot-installed-label">Installed</div>
+					<div class="slot-label slot-static-name-label">Satellite Name</div>
+					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+				</div><!--
+			 --><div id="slot-d-view slot-view" class="slot">
+					<div class="slot-label slot-letter-label">Slot D</div>
+					<div class="slot-label slot-installed-label">Installed</div>
+					<div class="slot-label slot-static-name-label">Satellite Name</div>
+					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
+				</div>
+				<div class="btn basic-btn fr mr1">
+					<label>Install Group</label>
+				</div>
+			</div>
+		</div>
+		<div class="bottom-bar">
+			<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
+			<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
+		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <style type="text/css">
-	body.at-splash .options-view,
+	body.at-splash .group-view,
 	body.at-options-view .options-view,
 	body.at-circular-options-view .circular-options-view,
 	body.at-tv5-manual-options-view .tv5-manual-options-view,
@@ -121,5 +276,219 @@
 		body.at-group-satellites-view .group-view {
 			display: block;
 		}
+	}
+
+	.menu-view {
+		background-color: transparent;
+		min-height: 0;
+		padding: 0;
+		position: absolute;
+		z-index: 0;
+	}
+
+	.satellites-table .radio-icon {
+		display: block;
+	}
+
+	.group-menu-btn.is-selected img {
+		background-image: url(/images/radio.png);
+	}
+
+	.group-menu-btn.is-installed .group-menu-select-btn img {
+		background-image: url(/images/radio-selected.png);
+	}
+
+	.slot {
+		background-color: #283148;
+		display: inline-block;
+		font-size: 13px;
+		height: 120px;
+		margin: 0 0 12px 12px;
+		position: relative;
+		width: 260px;
+	}
+
+	.slot.is-selected {
+		background-color: #243774;
+	}
+
+	.slot.is-selected .slot-select-btn img {
+		background-image: url(/images/radio-selected.png);
+	}
+
+	.slot-label {
+		position: absolute;
+		text-align: center;
+		width: 100%;
+	}
+
+	.slot-letter-label,
+	.slot-installed-label {
+		background-color: #000;
+		padding: 0.5em;
+	}
+
+	.slot-installed-label {
+		bottom: 0;
+		color: #000;
+	}
+
+	.slot.is-selected .slot-letter-label,
+	.slot.is-selected .slot-installed-label {
+		background-color: #456ab3;
+		color: inherit;
+	}
+
+	.slot-static-name-label {
+		color: #bac7da;
+		bottom: 50%;
+		margin-bottom: 0.5em;
+	}
+
+	.slot-dynamic-name-label {
+		top: 50%;
+		font-size: 16px;
+		margin-top: 0.25em;
+	}
+
+	.slot-select-btn img,
+	.slot-info-btn img {
+		height: auto;
+		top: 50%;
+		margin-top: -20px;
+	}
+
+	.slot-select-btn {
+		left: 10px;
+	}
+
+	.slot-info-btn {
+		right: 50px;
+	}
+
+
+	@media screen and (max-width: 880px) {
+		.container h1 {
+			display: none;
+		}
+
+		.menu-view {
+			width: 100%;
+		}
+
+		.group-menu-btn .menu-btn-image {
+			background-image: url(/images/menu-btn.png) !important;
+			float: right;
+		}
+
+		.group-menu-btn.is-selected {
+			background-color: #243774;
+		}
+
+		.group-view .slot-info-btn,
+		.group-view .slot-letter-label,
+		.group-view .slot-static-name-label,
+		.group-view .slot-installed-label,
+		.group-view .install-btn {
+			display: none !important;
+		}
+
+		.group-view .slot {
+			background-color: transparent !important;
+			border-bottom: 1px solid #456ab3;
+			display: block;
+			margin: 0;
+			width: 100%;
+			height: 50px;
+			overflow: hidden;
+		}
+
+		.group-view .slot-dynamic-name-label {
+			top: 14px;
+			text-align: left;
+			margin-left: 45px;
+		}
+
+		.group-view .slot-select-btn {
+			left: 0;
+		}
+
+		.satellite-group-name-label {
+			color: #bac7da;
+			font-size: 13px;
+			display: block;
+			margin-bottom: 1em;
+		}
+	}
+	
+	@media screen and (min-width: 880px) {
+		.container {
+			background-color: #101f30;	
+			height: 450px;
+			position: relative;
+			width: 100%;
+		}
+
+		.container h1 {
+			background-color: #000;
+			margin-bottom: 0;
+		}
+
+		.group-menu-view {
+			height: 270px;
+			overflow: auto;
+		}
+
+		.right {
+			height: 100%;
+			padding-left: 243px;
+		}
+
+		.satellites-table-container {
+			height: calc(100% - 45px);/*based on the height of h1*/
+			overflow: auto;
+		}
+
+		.installed-col {
+			text-align: center;
+			width: 11%;
+		}
+
+		.name-col {
+			width: 29%;
+		}
+
+		.orbital-slot-col {
+			width: 28%;
+		}
+
+		.region-col {
+			width: 32%;
+		}
+
+		.group-menu-btn .menu-btn-image {
+			display: none;
+		}
+	}
+
+	.menu-view .new-btn {
+		display: block;
+		margin: 1em;
+	}
+
+	.menu-view .new-btn img {
+		background: transparent url(/images/add-btn.png) no-repeat center center;
+		position: absolute;
+		right: 0;
+		width: auto;
+	}
+
+	.menu-view .new-btn label {
+		padding: 0.75em;
+		text-align: left;
+	}
+
+	.menu-view .wiz-instructions {
+		padding: 20px 20px 0;
 	}
 </style>

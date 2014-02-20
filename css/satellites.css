@@ -165,7 +165,6 @@ body.is-group .group-view {
 	display: inline;
 	position: absolute;
 	top: 0;
-	/*float: left;*/
 }
 
 .favorites-col, .installed-col {
@@ -197,7 +196,7 @@ body.is-group .group-view {
 }
 
 .info-btn {
-right: 40px;
+	right: 40px;
 	margin-left: 40%;
 }
 
@@ -282,10 +281,6 @@ right: 40px;
 .tool-bar {
 	border-top: 1px solid #466ab2;
 	padding-top: 2em;
-}
-
-.td_box {
-	position: relative;
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -545,21 +540,6 @@ right: 40px;
 		max-height: none;
 		height: auto;
 	}
-}
-
-/* base */
-.radio-icon {
-	background: transparent url(/images/radio.png) no-repeat center center;
-	background-size: 21px 21px;
-	min-height: 21px;
-	min-width: 21px;
-}
-
-.heart-icon {
-	background: transparent url(/images/favorite-btn.png) no-repeat center center;
-	background-size: 21px 21px;
-	min-height: 21px;
-	min-width: 21px;
 }
 
 /* not base */

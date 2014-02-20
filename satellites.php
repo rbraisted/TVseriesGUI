@@ -173,7 +173,7 @@
 						<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
 					</th>
 					<th class="orbital-slot-col">
-						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital</div>
+						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital Slot</div>
 					</th>
 					<th class="region-col">
 						<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
