@@ -6,7 +6,6 @@
 	<div class="wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
 		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 wiz-instructions"><br></div>
-
 		<div id="radio" class="tac">
 			<div id="radio-option" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>

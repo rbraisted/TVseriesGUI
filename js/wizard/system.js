@@ -75,7 +75,7 @@ TVRO.SystemPage = function() {
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {

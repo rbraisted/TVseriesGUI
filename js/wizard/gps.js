@@ -39,7 +39,7 @@ TVRO.GpsPage = function() {
 			//			otherwise set_gps lat lon and go to heaving source view
 			//	/*5*/	if CITY is selected, check for valid city and then go
 			//			to heading source view
-	/*1*/	if (!selectedValue) alert('You must select an option to proceed.'); 
+	/*1*/	if (!selectedValue) alert('You must select an option to continue.'); 
 	/*2*/	else if (selectedValue === 'NONE') $(document.body).setClass('at-heading-source-view');
 	/*3*/	else if (selectedValue === 'NMEA0183' || selectedValue === 'NMEA2000') {
 				webService.request('set_gps_config', {
@@ -49,10 +49,10 @@ TVRO.GpsPage = function() {
 				$(document.body).setClass('at-heading-source-view');
 	/*4*/	} else if (selectedValue === 'COORDINATES') {
 				if (!latitude.length) {
-					alert('You must enter a latitude to proceed.');
+					alert('You must enter a latitude to continue.');
 					$(document.body).setClass('at-coordinates-view');
 				} else if (!longitude.length) {
-					alert('You must enter a longitude to proceed.');
+					alert('You must enter a longitude to continue.');
 					$(document.body).setClass('at-coordinates-view');
 				} else {
 					webService.request('set_gps', {
@@ -63,7 +63,7 @@ TVRO.GpsPage = function() {
 				}
 	/*5*/	} else if (selectedValue === 'CITY') {
 				if (!city) {
-					alert('You must select a city to proceed.');
+					alert('You must select a city to continue.');
 					$('#city-btn', self).click();
 				} else {
 					webService.request('set_gps', { city: city });
@@ -162,7 +162,7 @@ TVRO.GpsPage = function() {
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 			else {
 				if (nmea0183Sources.indexOf(headingSources[selectedValue]) !== -1) {
 					webService.request('set_heading_config', {

@@ -58,8 +58,8 @@
 				email = $('#email').val();
 
 			if (!name || !owner) {
-				if (!name) alert('You must enter a vessel name to proceed.');
-				else if (!owner) alert('You must enter an owner name to proceed.');
+				if (!name) alert('You must enter a vessel name to continue.');
+				else if (!owner) alert('You must enter an owner name to continue.');
 			} else {
 				webService.request('set_product_registration', {
 					product: {

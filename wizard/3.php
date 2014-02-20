@@ -57,11 +57,11 @@
 				email = $('#email').val();
 
 			if (!name || !owner || !contact || !phone || !email) {
-				if (!name) alert('You must enter a vessel name to proceed.');
-				else if (!owner) alert('You must enter an owner name to proceed.');
-				else if (!contact) alert('You must enter a vessel contact to proceed.');
-				else if (!phone) alert('You must enter a phone number to proceed.');
-				else if (!email) alert('You must enter an email address to proceed.');
+				if (!name) alert('You must enter a vessel name to continue.');
+				else if (!owner) alert('You must enter an owner name to continue.');
+				else if (!contact) alert('You must enter a vessel contact to continue.');
+				else if (!phone) alert('You must enter a phone number to continue.');
+				else if (!email) alert('You must enter an email address to continue.');
 			} else {
 				webService.request('set_product_registration', {
 					product: {

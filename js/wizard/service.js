@@ -12,7 +12,7 @@ TVRO.ServicePage = function() {
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = self.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 			else if (selectedValue === 'DISH') $(document.body).setClass('at-dish-network-view');
 			else if (selectedValue === 'DIRECTV') {
 				$(document.body).setClass('at-spinner-view');
@@ -83,7 +83,7 @@ TVRO.ServicePage = function() {
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = self.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 			else if (selectedValue === 'AUTOMATIC') window.location = '/wizard/autoswitch.php';
 			else if (selectedValue === 'SINGLE') {
 				webService.request('select_satellite', { antSatID: '101W' });
@@ -114,7 +114,7 @@ TVRO.ServicePage = function() {
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = self.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 			else {
 				webService.request('set_autoswitch_service', {
 					service_subtype: selectedValue
@@ -179,7 +179,7 @@ TVRO.ServicePage = function() {
 					window.location = '/wizard/system.php';
 				});
 			} else {
-				alert('You must select an option to proceed.');
+				alert('You must select an option to continue.');
 			}
 		});
 		

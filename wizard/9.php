@@ -36,7 +36,7 @@
 		webService.request('get_satellite_groups', function(response) {
 			$('[id ~= next-btn ]').click(function() {
 				var selectedValue = radio.selectedValue();
-				if (!selectedValue) alert('You must select an option to proceed.');
+				if (!selectedValue) alert('You must select an option to continue.');
 				else {
 					//	ok, i did this wrong:
 					//	the 'service setup' pages of the wizard should be

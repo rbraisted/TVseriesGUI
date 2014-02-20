@@ -13,7 +13,7 @@ TVRO.RegistrationPage = function() {
 
 		$('[id ~= next-btn ]', self).click(function() {
 			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.'); 
+			if (!selectedValue) alert('You must select an option to continue.'); 
 			else if (selectedValue === 'CDT') $(document.body).setClass('at-cdt-vessel-info-view');
 			else if (selectedValue === 'DIY') $(document.body).setClass('at-diy-vessel-info-view');
 		});
@@ -34,12 +34,12 @@ TVRO.RegistrationPage = function() {
 				$('input', self).each(function() {
 					if (this.hasAttribute('required') && !this.value) {
 						alert({
-							vessel: 'You must enter a vessel name to proceed.',
-							company: 'You must enter a company name to proceed.',
-							owner: 'You must enter an owner name to proceed.',
-							contact: 'You must enter a contact name to proceed.',
-							phone: 'You must enter a phone number to proceed.',
-							email: 'You must enter an email address to proceed.'
+							vessel: 'You must enter a vessel name to continue.',
+							company: 'You must enter a company name to continue.',
+							owner: 'You must enter an owner name to continue.',
+							contact: 'You must enter a contact name to continue.',
+							phone: 'You must enter a phone number to continue.',
+							email: 'You must enter an email address to continue.'
 						}[this.id]);
 						isValid = false;
 						return false;

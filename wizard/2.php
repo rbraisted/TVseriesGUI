@@ -30,7 +30,7 @@
 		var radio = TVRO.Radio('#radio');
 		$('[id ~= next-btn ]').click(function() {
 			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 			else window.location = selectedValue;
 		});
 	});

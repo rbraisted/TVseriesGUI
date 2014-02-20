@@ -139,7 +139,7 @@
 
 		$('[id ~= next-btn ]').click(function() {
 			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to proceed.');
+			if (!selectedValue) alert('You must select an option to continue.');
 			else if (selectedValue === 'coordinates') {
 
 			} else if (selectedValue === 'coordinates') {

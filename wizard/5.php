@@ -65,10 +65,10 @@
 					email = $('#email').val();
 
 				if (!company || !owner || !contact || !phone || !email) {
-					if (!company) alert('You must enter a company name to proceed.');
-					else if (!contact) alert('You must enter an installer contact to proceed.');
-					else if (!phone) alert('You must enter a phone number to proceed.');
-					else if (!email) alert('You must enter an email address to proceed.');
+					if (!company) alert('You must enter a company name to continue.');
+					else if (!contact) alert('You must enter an installer contact to continue.');
+					else if (!phone) alert('You must enter a phone number to continue.');
+					else if (!email) alert('You must enter an email address to continue.');
 				} else {
 					webService.request('set_product_registration', {
 						dealer: {
