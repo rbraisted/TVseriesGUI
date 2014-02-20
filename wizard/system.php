@@ -65,7 +65,7 @@
 			</div>
 		</div><!--
 	 --><div class="d2col dlh1.2 mlh1.6 mb2">
-			<div class="diagram"></div>
+			<div class="skew-angle-diagram"></div>
 			<div class="cp tac dfs16 mfs13 mt2 wiz-link">
 				Learn how to adjust the LNB’s skew angle.
 			</div>
@@ -85,7 +85,7 @@
 <div id="other-system-config-view" class="view main-view wiz-view other-system-config-view">
 	<div class="view-content main-content wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21"><span class="desktop">Choose Your </span>System Configuration</div>
-		<div class="tac dfs21 mfs16 dlh1.6 mt2 mb2 wiz-instructions">
+		<div class="tac dfs21 mfs16 dlh1.6 mlh1.6 mt2 mb2 wiz-instructions">
 			Choose the configuration that most closely resembles<br class="desktop">
 			the one on your vessel.
 		</div>
@@ -125,7 +125,7 @@
 <div id="linear-system-config-view" class="view main-view wiz-view linear-system-config-view">
 	<div class="view-content main-content wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21"><span class="desktop">Choose Your </span>System Configuration</div>
-		<div class="tac dfs21 mfs16 dlh1.6 mt2 mb1">
+		<div class="tac dfs21 mfs16 dlh1.6 mlh1.6 mt2 mb1 wiz-instructions">
 			Choose the configuration that most closely resembles<br class="desktop">
 			the one on your vessel.
 		</div>
@@ -174,52 +174,52 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="diagram-1-view" class="view popup-view diagram-view diagram-1-view">
-	<div class="view-content popup-content">
+	<div class="view-content popup-content diagram-content">
 		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Configuration 1</label>
 		</a>
 		<h1>Configuration 1</h1>
-		<img src="/images/wizard-diagram-1.svg">
+		<img src="/images/wizard-diagram-1.svg" class="diagram-image">
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="diagram-2-view" class="view popup-view diagram-view diagram-2-view">
-	<div class="view-content popup-content">
+	<div class="view-content popup-content diagram-content">
 		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Configuration 2</label>
 		</a>
 		<h1>Configuration 2</h1>
-		<img src="/images/wizard-diagram-2.svg">
+		<img src="/images/wizard-diagram-2.svg" class="diagram-image">
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="diagram-3-view" class="view popup-view diagram-view diagram-3-view">
-	<div class="view-content popup-content">
+	<div class="view-content popup-content diagram-content">
 		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Configuration 3</label>
 		</a>
 		<h1>Configuration 3</h1>
-		<img src="/images/wizard-diagram-3.svg">
+		<img src="/images/wizard-diagram-3.svg" class="diagram-image">
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="diagram-4-view" class="view popup-view diagram-view diagram-4-view">
-	<div class="view-content popup-content">
+	<div class="view-content popup-content diagram-content">
 		<a id="close-btn" class="btn back-btn">
 			<img src="/images/img.gif">
 			<label>Configuration 4</label>
 		</a>
 		<h1>Configuration 4</h1>
-		<img src="/images/wizard-diagram-4.svg">
+		<img src="/images/wizard-diagram-4.svg" class="diagram-image">
 	</div>
 </div>
 
@@ -246,7 +246,7 @@
 		}
 	}
 
-	.diagram {
+	.skew-angle-diagram {
 		background: transparent url(/images/wizard-skew.svg) no-repeat center/320px;
 		height: 350px;
 		width: 100%;
@@ -272,6 +272,27 @@
 		top: 0;
 	}
 
+	.diagram-image {
+		height: 100%;
+		width: 100%;
+	}
+
+	@media screen and (min-width: 880px) {
+		.diagram-content {
+			height: 530px;
+			margin: -265px -400px;
+			width: 800px;
+		}
+	}
+
+	@media screen and (min-width: 1020px) {
+		.diagram-content {
+			height: 600px;
+			margin: -300px -450px;
+			width: 900px;
+		}
+	}
+
 	@media screen and (max-width: 880px) {
 		.skew { padding: 1em 20px 0;}
 
@@ -289,7 +310,7 @@
 	}
 
 	@media screen and (max-width: 440px) {
-		.diagram {
+		.skew-angle-diagram {
 			background-size: 260px;
 			height: 280px;
 		}

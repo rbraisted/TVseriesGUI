@@ -71,8 +71,8 @@
 
 	.step {
 		height: 65px;
-		position: relative;
 		margin: auto 15px auto 75px;
+		position: relative;
 	}
 
 	@media screen and (max-width: 880px) {
@@ -85,13 +85,8 @@
 	.step-2 { padding-top: 22px; }
 
 	.bullet {
-		background-color: #466ab2;
-		border-radius: 100%;
-		height: 45px;
 		left: -60px;
-		line-height: 45px;
 		position: absolute;
 		top: 10px;
-		width: 45px;
 	}
 </style>

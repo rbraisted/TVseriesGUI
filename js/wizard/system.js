@@ -54,7 +54,7 @@ TVRO.SystemPage = function() {
 		});
 
 		$('[id ~= next-btn ]', self).click(function() {
-
+			$(document.body).setClass('at-linear-system-config-view');
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
@@ -79,30 +79,18 @@ TVRO.SystemPage = function() {
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
-
+			
 		});
 
-		$.each([1, 2, 3, 4], function() {
-			var i = this;
+		$.each([1, 2, 3, 4], function(undefined, i) {
 			$('[id ~= diagram-'+i+'-btn ]', self).click(function() {
 				$(document.body).setClass('at-diagram-'+i+'-view');
 				return false;
 			});
-		});
 
-		return $.extend({}, self, {});
-	},
-
-
-	diagram1View,
-	diagram2View,
-	diagram3View,
-	diagram4View,
-	DiagramView = function() {
-		var self = $.apply($, arguments);
-
-		$('[id ~= close-btn ]', self).click(function() {
-			$(document.body).setClass('at-linear-system-config-view');
+			$('[id ~= close-btn ]', '[id ~= diagram-'+i+'-view ]').click(function() {
+				$(document.body).setClass('at-linear-system-config-view');
+			});
 		});
 
 		return $.extend({}, self, {});
@@ -114,10 +102,6 @@ TVRO.SystemPage = function() {
 			skewAngleView = SkewAngleView('#skew-angle-view');
 			otherSystemConfigView = SystemConfigView('#other-system-config-view');
 			linearSystemConfigView = SystemConfigView('#linear-system-config-view');
-			diagram1View = DiagramView('#diagram-1-view');
-			diagram2View = DiagramView('#diagram-2-view');
-			diagram3View = DiagramView('#diagram-3-view');
-			diagram4View = DiagramView('#diagram-4-view');
 		}
 	}
 };

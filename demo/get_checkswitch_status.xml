@@ -1,0 +1,4 @@
+<ipacu_response>
+	<message name="get_checkswitch_status" error="0" />
+	<enable>Y</enable>
+</ipacu_response>
