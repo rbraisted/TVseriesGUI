@@ -13,6 +13,111 @@ TVRO.SatellitesPage = function() {
 	groups = [],
 	selectedGroup = {},
 
+	TableView = function() {
+		var
+		self = $.apply($, arguments),
+		radio = TVRO.Radio('[id ~= satellites-table ]', self),
+		table = TVRO.Table('[id ~= satellites-table ]', self),
+		filter,
+		filtered = [],
+		sort,
+		sorted = [],
+		refresh = function() {
+			filtered = $(satellites).filter(filter).toArray();
+			sorted = filtered.slice().sort(sort);
+
+			table.build(sorted.length);
+			radio.refresh();
+		};
+
+		radio.click(function(i) {
+			editView.setSatellite(sorted[i]);
+			$(document.body).setClass('is-group at-edit-satellite-group');
+		});
+
+		table.build(function(i, row) {
+			var satellite = sorted[i],
+				favoriteBtn = TVRO.Toggle('[id ~= favorite-btn ]', row);
+
+			row.attr('value', i);
+			$('[id ~= name ]', row).text(satellite.name);
+			$('[id ~= region ]', row).text(satellite.region);
+			$('[id ~= orbital-slot ]', row).text(satellite.antSatID);
+
+			$('[id ~= select-btn ]', row).click(function() {
+				event.stopPropagation();
+				if (confirm('Select '+satellite.name+'?')) {
+					$('[id ~= table-row ]', table).removeClass('is-selected');
+					$(row).addClass('is-selected');
+					selectedSatellite = satellite;
+					webService.request('select_satellite', {
+						antSatID: satellite.antSatID
+					});	
+				}
+			});
+
+			$('[id ~= info-btn ]', row).click(function() {
+				event.stopPropagation();
+				infoView.loadSatellite(satellite);
+			});
+
+			favoriteBtn.setOn(satellite.favorite === 'TRUE');
+			favoriteBtn.click(function(isFavorite) {
+				event.stopPropagation();
+				webService.request('set_satellite_identity', {
+					listID: satellite.listID,
+					antSatID: satellite.antSatID,
+					favorite: (isFavorite ? 'TRUE' : 'FALSE')
+				});
+			});
+
+			if (satellite.antSatID === selectedSatellite.antSatID) row.addClass('is-selected');
+		});
+
+		$('[id ~= back-btn ]', self).click(function() {
+			$(document.body).setClass('is-single at-splash');
+		});
+
+		$('[id ~= cancel-btn ]', self).click(function() {
+			$(document.body).setClass('is-group at-edit-satellite-group');
+		});
+
+		$('[id ~= sort-btn ]', self).click(function() {
+			var sortBtn = $(this),
+				sortOrder = 0,
+				sortProperty = '';
+
+			if (sortBtn.hasClass('is-descending')) sortOrder = 1;
+			else sortOrder = -1;
+
+			$('[id ~= sort-btn ]', self).removeClass('is-ascending is-descending');
+			if (sortOrder === 1) sortBtn.addClass('is-ascending');
+			else sortBtn.addClass('is-descending');
+
+			if (sortBtn.hasId('name-btn')) sortProperty = 'name';
+			else if (sortBtn.hasId('orbital-slot-btn')) sortProperty = 'lon';
+			else if (sortBtn.hasId('region-btn')) sortProperty = 'region';
+			else if (sortBtn.hasId('favorites-btn')) sortProperty = 'favorite';
+
+			sort = function(a, b) {
+				if (a[sortProperty] > b[sortProperty]) return -1 * sortOrder;
+				else if (a[sortProperty] < b[sortProperty]) return 1 * sortOrder;
+				return 0;
+			}
+
+			refresh();
+		});
+
+		return $.extend({}, self, {
+			refresh: refresh,
+			loadRegion: function(region) {
+				if (region === 'All') filter = function() { return true; }
+				else filter = function() { return this.region === region; }
+				refresh();
+			}
+		});
+	},
+
 	optionsView,
 	circularOptionsView,
 	tv5ManualOptionsView,
@@ -41,15 +146,29 @@ TVRO.SatellitesPage = function() {
 	SingleView = function() {
 		var self = $.apply($, arguments),
 			radio = TVRO.Radio('#radio', self),
-			table = TVRO.Table('#table', self);
+			table = TableView(self);
 
-		table.build(10);
+		radio.click(function(region) {
+			table.loadRegion(region);
+		});
 
 		$('[id ~= next-btn ]', self).click(function() {
+
 		});
+
 		$('[id ~= prev-btn ]', self).click(function() {
+
 		});
-		return $.extend({}, self, {});
+
+		return $.extend({}, self, {
+			refresh: function() {
+				if (!radio.selectedValue()) {
+					table.loadRegion('All');
+					radio.setSelectedValue('All');
+				}
+				table.refresh();
+			}
+		});
 	},
 
 	groupView,
@@ -79,10 +198,6 @@ TVRO.SatellitesPage = function() {
 							$('[id ~= slot-'+this+'-view').addClass('is-selected');
 						}
 					});
-					// if (group.satelliteA.antSatID === selectedSatellite.antSatID) slotAView.addClass('is-selected');
-					// if (group.satelliteB.antSatID === selectedSatellite.antSatID) slotBView.addClass('is-selected');
-					// if (group.satelliteC.antSatID === selectedSatellite.antSatID) slotCView.addClass('is-selected');
-					// if (group.satelliteD.antSatID === selectedSatellite.antSatID) slotDView.addClass('is-selected');
 				}
 			};
 
@@ -203,6 +318,7 @@ TVRO.SatellitesPage = function() {
 						}
 					});
 
+					singleView.refresh();
 					groupView.refresh();
 				});
 			});

@@ -106,7 +106,7 @@
 		</div>
 
 		<div class="container">
-			<div id="menu" class="menu-view">
+			<div id="radio" class="menu-view">
 				<h1>Region</h1>
 				<a id="radio-option" value="Africa" class="btn menu-btn">
 					<img src="/images/img.gif">
@@ -140,7 +140,7 @@
 			<div class="right">
 				<h1>Satellites</h1>
 				<div class="satellites-table-container">
-					<table id="table" class="satellites-table">
+					<table id="satellites-table" class="satellites-table">
 						<thead>
 							<tr>
 								<th class="installed-col">
@@ -260,7 +260,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	body.at-splash .group-view,
+	body.at-splash .single-view,
 	body.at-options-view .options-view,
 	body.at-circular-options-view .circular-options-view,
 	body.at-tv5-manual-options-view .tv5-manual-options-view,
