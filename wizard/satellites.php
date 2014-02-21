@@ -137,7 +137,7 @@
 					<label>All</label>
 				</a>
 			</div>
-			<div class="right">
+			<div class="right main-view">
 				<h1>Satellites</h1>
 				<div class="satellites-table-container">
 					<table id="satellites-table" class="satellites-table">
@@ -214,7 +214,7 @@
 					<label>Create New Group</label>
 				</div>
 			</div>
-			<div class="right">
+			<div class="right main-view">
 				<h1>Satellites</h1>
 				<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt1 mb1">
 					Note: For automatic satellite switching, be sure to set up
@@ -313,7 +313,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="group-satellites-view" class="view popup-view group-satellites-view">
+<div id="group-sats-view" class="view popup-view group-sats-view">
 	<div class="view-content popup-content">
 		<a id="cancel-btn" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -368,22 +368,37 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	body.at-splash .group-view,
-	body.at-splash .group-edit-view,
-
+	body.at-splash .options-view,
 	body.at-options-view .options-view,
 	body.at-circular-options-view .circular-options-view,
 	body.at-tv5-manual-options-view .tv5-manual-options-view,
-	body.at-single-view .single-view,
-	body.at-group-view .group-view,
+	body.at-single-menu-view .single-view,
+	body.at-single-main-view .single-view,
+	body.at-group-menu-view .group-view,
+	body.at-group-main-view .group-view,
 	body.at-group-edit-view .group-edit-view,
-	body.at-group-satellites-view .group-satellites-view {
+	body.at-group-sats-view .group-sats-view {
 		display: block;
+	}
+
+	@media screen and (max-width: 880px) {
+		body.at-single-menu-view .single-view .main-view,
+		body.at-single-main-view .single-view .menu-view,
+
+		body.at-group-menu-view .group-view .main-view,
+		body.at-group-main-view .group-view .menu-view {
+			display: none;
+		}
 	}
 
 	@media screen and (min-width: 880px) {
 		body.at-group-edit-view .group-view,
-		body.at-group-satellites-view .group-view {
+		body.at-group-edit-view .group-view .menu-view,
+		body.at-group-edit-view .group-view .main-view,
+
+		body.at-group-sats-view .group-view,
+		body.at-group-sats-view .group-view .menu-view,
+		body.at-group-sats-view .group-view .main-view {
 			display: block;
 		}
 	}
@@ -486,6 +501,10 @@
 			width: 100%;
 		}
 
+		.right {
+			padding-top: 0;
+		}
+
 		.group-menu-btn .menu-btn-image {
 			background-image: url(/images/menu-btn.png) !important;
 			float: right;
@@ -551,7 +570,8 @@
 
 		.right {
 			height: 100%;
-			padding-left: 243px;
+			padding: 0 0 0 243px;
+
 		}
 
 		.satellites-table-container {
