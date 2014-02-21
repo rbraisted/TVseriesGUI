@@ -245,15 +245,15 @@
 					<div class="slot-label slot-static-name-label">Satellite Name</div>
 					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
 				</div>
-				<div class="btn basic-btn fr mr1">
+				<div id="install-btn" class="btn basic-btn fr mr1">
 					<label>Install Group</label>
 				</div>
 			</div>
 		</div>
-		<div class="bottom-bar">
-			<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
-			<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
-		</div>
+	</div>
+	<div class="bottom-bar">
+		<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
+		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
 
@@ -435,7 +435,7 @@
 		}
 
 		.group-menu-view {
-			height: 270px;
+			max-height: 270px;
 			overflow: auto;
 		}
 
