@@ -259,8 +259,64 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="group-edit-view" class="view popup-view group-edit-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Create New Satellite Group</label>
+		</a>
+		<h1>Create New Satellite Group</h1>
+		<div class="tac desktop mb2">
+			<div class="dfs16 mfs13 dlh1.6 mlh1.6">
+				You can choose up to 4 satellites, using slots A-D.
+			</div>
+			<div class="i dfs13 mfs11 dlh1.2 mlh1.2">
+				Note: For automatic satellite switching, be sure to set up
+				the satellites in<br>your receivers in the same order as they
+				are listed in the group (A-B-C-D).
+			</div>
+		</div>
+		<div class="slot-btn">
+			<label class="group-name-label">Satellite Group Name</label>
+			<input id="name" type="text" class="group-name-input"/>
+		</div>
+		<a id="slot-a-btn slot-btn" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot A</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<a id="slot-b-btn slot-btn" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot B</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<a id="slot-c-btn slot-btn" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot C</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<a id="slot-d-btn slot-btn" class="btn slot-btn">
+			<img src="/images/img.gif">
+			<span class="slot-name-label">Slot D</span>
+			<span id="name" class="satellite-name-label"></span>
+		</a>
+		<div class="tool-bar">
+			<a id="cancel-btn" class="btn basic-btn cancel-btn">
+				<label>Cancel</label>
+			</a>
+			<a id="save-btn" class="btn basic-btn save-btn">
+				<label>Save</label>
+			</a>
+		</div>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <style type="text/css">
-	body.at-splash .single-view,
+	body.at-splash .group-view,
+	body.at-splash .group-edit-view,
+
 	body.at-options-view .options-view,
 	body.at-circular-options-view .circular-options-view,
 	body.at-tv5-manual-options-view .tv5-manual-options-view,
@@ -491,4 +547,32 @@
 	.menu-view .wiz-instructions {
 		padding: 20px 20px 0;
 	}
+
+	.slot-btn {
+		border-bottom: 1px solid #466ab2;
+		display: block;
+		line-height: 1.6;
+		padding: 10px;
+	}
+
+	.slot-btn img {
+		background-image: url(/images/menu-btn.png);
+		right: 0;
+	}
+
+	.group-name-label,
+	.slot-name-label {
+		color: #bac7da;
+		display: block;
+		font-size: 13px;
+	}
+
+	.group-name-input {
+		margin-left: -10px;
+	}
+
+	.edit-satellite-group-view .tool-bar {
+		border: 0;
+	}
+
 </style>
