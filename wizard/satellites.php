@@ -313,6 +313,60 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div id="group-satellites-view" class="view popup-view group-satellites-view">
+	<div class="view-content popup-content">
+		<a id="cancel-btn" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label>Edit Satellite Group Details</label>
+		</a>
+		<h1>Edit Satellite Group Details</h1>
+		<table id="satellites-table" class="satellites-table">
+			<thead>
+				<tr>
+					<th class="installed-col">
+						<div>Installed</div>
+					</th>
+					<th class="name-col">
+						<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
+					</th>
+					<th class="orbital-slot-col">
+						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital</div>
+					</th>
+					<th class="region-col">
+						<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
+					</th>
+					<th class="favorites-col">
+						<div id="favorites-btn sort-btn" class="btn sort-btn">Favorites</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody id="table-rows">
+				<tr id="template table-row radio-option">
+					<td class="installed-col">
+						<div id="select-btn" class="btn radio-icon"></div>
+					</td>
+					<td class="name-col">
+						<span id="name">Name</span>
+						<span id="region">Region</span>
+					</td>
+					<td class="orbital-slot-col">
+						<span id="orbital-slot">Orbital Slot</span>
+					</td>
+					<td class="region-col">
+						<span id="region">Region</span>
+					</td>
+					<td class="favorites-col">
+						<div id="favorite-btn" class="btn heart-icon"></div>
+						<div id="info-btn" class="btn info-icon"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <style type="text/css">
 	body.at-splash .group-view,
 	body.at-splash .group-edit-view,
