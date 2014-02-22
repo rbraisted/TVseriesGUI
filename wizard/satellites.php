@@ -100,14 +100,19 @@
 
 <div id="single-view" class="view main-view wiz-view single-view">
 	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Select a Satellite</div>
-		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 mb2 wiz-instructions">
+		<div class="wiz-title-view tac bb dfs26 mfs21">
+			<div id="back-btn" class="btn back-btn prev-icon"></div>
+			Select a Satellite
+		</div>
+		<div class="tac dfs16 dlh1.6 mt2 mb2 wiz-instructions desktop">
 			Select a region. Then choose a satellite in that region.
 		</div>
-
 		<div class="container">
 			<div id="radio" class="menu-view">
 				<h1>Region</h1>
+				<div class="tac mlh1.6 mfs13 mt1 mb2 wiz-instructions mobile">
+					Select a region. Then choose a satellite in that region.
+				</div>
 				<a id="radio-option" value="Africa" class="btn menu-btn">
 					<img src="/images/img.gif">
 					<label>Africa</label>
@@ -189,14 +194,19 @@
 
 <div id="group-view" class="view main-view wiz-view group-view">
 	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Select a Satellite Group</div>
-		<div class="tac dfs16 mfs13 dlh1.6 mlh1.6 mt2 mb2 wiz-instructions">
+		<div class="wiz-title-view tac bb dfs26 mfs21">
+			<div id="back-btn" class="btn back-btn prev-icon"></div>
+			Select a Satellite Group
+		</div>
+		<div class="tac dfs16 dlh1.6 mt2 mb2 wiz-instructions desktop">
 			Select a group name to view its included satellites.
 		</div>
-
 		<div class="container">
 			<div id="radio" class="menu-view">
 				<h1>Groups</h1>
+				<div class="tac mfs13 mlh1.6 mt1 mb2 wiz-instructions mobile">
+					Select a group name to view its included satellites.
+				</div>
 				<div id="table-rows" class="group-menu-view">
 					<div id="radio-option table-row template" value="" class="btn dropdown-option group-menu-btn">
 						<a id="select-btn" class="group-menu-select-btn">
@@ -217,6 +227,7 @@
 			<div class="right main-view">
 				<h1>Satellites</h1>
 				<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt1 mb1">
+					<br class="mobile">
 					Note: For automatic satellite switching, be sure to set up
 					the satellites in<br>your receivers in the same order as they
 					are listed in the group (A-B-C-D).
@@ -320,55 +331,50 @@
 			<label>Edit Satellite Group Details</label>
 		</a>
 		<h1>Edit Satellite Group Details</h1>
-		<table id="satellites-table" class="satellites-table">
-			<thead>
-				<tr>
-					<th class="installed-col">
-						<div>Installed</div>
-					</th>
-					<th class="name-col">
-						<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
-					</th>
-					<th class="orbital-slot-col">
-						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital</div>
-					</th>
-					<th class="region-col">
-						<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
-					</th>
-					<th class="favorites-col">
-						<div id="favorites-btn sort-btn" class="btn sort-btn">Favorites</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody id="table-rows">
-				<tr id="template table-row radio-option">
-					<td class="installed-col">
-						<div id="select-btn" class="btn radio-icon"></div>
-					</td>
-					<td class="name-col">
-						<span id="name">Name</span>
-						<span id="region">Region</span>
-					</td>
-					<td class="orbital-slot-col">
-						<span id="orbital-slot">Orbital Slot</span>
-					</td>
-					<td class="region-col">
-						<span id="region">Region</span>
-					</td>
-					<td class="favorites-col">
-						<div id="favorite-btn" class="btn heart-icon"></div>
-						<div id="info-btn" class="btn info-icon"></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="satellites-table-container">
+			<table id="satellites-table" class="satellites-table">
+				<thead>
+					<tr>
+						<th class="installed-col">
+							<div>Installed</div>
+						</th>
+						<th class="name-col">
+							<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
+						</th>
+						<th class="orbital-slot-col">
+							<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital</div>
+						</th>
+						<th class="region-col">
+							<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody id="table-rows">
+					<tr id="template table-row radio-option">
+						<td class="installed-col">
+							<div id="select-btn" class="btn radio-icon"></div>
+						</td>
+						<td class="name-col">
+							<span id="name">Name</span>
+							<span id="region">Region</span>
+						</td>
+						<td class="orbital-slot-col">
+							<span id="orbital-slot">Orbital Slot</span>
+						</td>
+						<td class="region-col">
+							<span id="region">Region</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
-	body.at-splash .options-view,
+	body.at-splash .single-view,
 	body.at-options-view .options-view,
 	body.at-circular-options-view .circular-options-view,
 	body.at-tv5-manual-options-view .tv5-manual-options-view,
@@ -382,9 +388,11 @@
 	}
 
 	@media screen and (max-width: 880px) {
+		body.at-single-menu-view .single-view .back-btn,
 		body.at-single-menu-view .single-view .main-view,
 		body.at-single-main-view .single-view .menu-view,
 
+		body.at-group-menu-view .group-view .back-btn,
 		body.at-group-menu-view .group-view .main-view,
 		body.at-group-main-view .group-view .menu-view {
 			display: none;
@@ -548,6 +556,19 @@
 			display: block;
 			margin-bottom: 1em;
 		}
+
+		.installed-col,
+		.region-col {
+			display: none;
+		}
+
+		.name-col {
+			width: 65%;
+		}
+
+		.orbital-slot-col {
+			width: 35%;
+		}
 	}
 	
 	@media screen and (min-width: 880px) {
@@ -575,8 +596,15 @@
 		}
 
 		.satellites-table-container {
-			height: calc(100% - 45px);/*based on the height of h1*/
 			overflow: auto;
+		}
+
+		.single-view .satellites-table-container {
+			height: calc(100% - 45px);/*based on the height of h1*/
+		}
+
+		.group-sats-view .satellites-table-container {
+			height: 100%;
 		}
 
 		.installed-col {
@@ -645,8 +673,18 @@
 		margin-left: -10px;
 	}
 
-	.edit-satellite-group-view .tool-bar {
-		border: 0;
+	.group-sats-view .view-content {
+		padding: 46px 0 0 0;
 	}
 
+	.single-view .back-btn,
+	.group-view .back-btn {
+		background-color: transparent;
+		background-position: 10px 50%;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
 </style>

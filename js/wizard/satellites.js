@@ -154,11 +154,11 @@ TVRO.SatellitesPage = function() {
 		});
 
 		$('[id ~= next-btn ]', self).click(function() {
-
+			
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
-
+			$(document.body).setClass('at-options-view');
 		});
 
 		return $.extend({}, self, {
@@ -257,12 +257,16 @@ TVRO.SatellitesPage = function() {
 			$(document.body).setClass('at-group-edit-view');
 		});
 
+		$('[id ~= back-btn ]', self).click(function() {
+			$(document.body).setClass('at-group-menu-view');
+		});
+
 		$('[id ~= next-btn ]', self).click(function() {
 
 		});
 
 		$('[id ~= prev-btn ]', self).click(function() {
-
+			$(document.body).setClass('at-options-view');
 		});
 
 		return $.extend({}, self, {
@@ -313,6 +317,7 @@ TVRO.SatellitesPage = function() {
 						groups.push(group);
 						group.name = groupName;
 						groupView.loadGroup(group);
+						groupView.refresh();
 					});
 				};
 
@@ -327,7 +332,7 @@ TVRO.SatellitesPage = function() {
 					}, function() {
 						groups.splice(groups.indexOf(group), 1);
 						addGroup();
-					});					
+					});
 				}
 
 				$(document.body).setClass('at-group-main-view');
