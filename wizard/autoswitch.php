@@ -28,21 +28,21 @@
 					</div>
 					<div class="device-table-row-name">
 						<div class="name-label">IP Autoswitch</div>
-						<div class="name-text">Bathroom</div>
+						<div id="name" class="name-text"></div>
 					</div>
 					<div class="device-table-row-id">
 						<div class="id-label">Serial #</div>
-						<div class="id-text">1020304050</div>
+						<div id="serial-number" class="id-text"></div>
 					</div>
 					<div class="device-table-row-master">
 						<div class="master-label">Master</div>
 						<div class="master-icon"></div>
 					</div>
-					<div class="btn basic-btn view-btn"></div>
-					<div class="btn basic-btn edit-btn">
+					<div id="view-btn" class="btn basic-btn view-btn"></div>
+					<div id="edit-btn" class="btn basic-btn edit-btn">
 						<label>Edit</label>
 					</div>
-					<div class="btn basic-btn master-btn">
+					<div id="select-btn" class="btn basic-btn master-btn">
 						<label>Select</label>
 					</div>
 				</div>
@@ -59,7 +59,17 @@
 
 <div id="autoswitch-view" class="view main-view wiz-view autoswitch-view">
 	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Autoswitching Setup</div>
+		<a id="back-btn" class="btn back-btn">
+			<img src="/images/img.gif">
+			<label id="not-directv">AutoSwitch Details</label>
+			<label id="directv">Receiver Details</label>
+		</a>
+		<h1>
+			<img src="/images/img.gif">
+			<span id="not-directv">AutoSwitch Details</span>
+			<span id="directv">Receiver Details</span>
+		</h1>
+
 		<div class="label receiver-label">
 			<span id="not-directv">IP Autoswitch</span>
 			<span id="directv">Receiver</span>
@@ -90,7 +100,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="edit-view" class="view popup-view edit-view">
+<div id="autoswitch-edit-view" class="view popup-view autoswitch-edit-view">
 	<div class="view-content popup-content">
 		<a id="cancel-btn" class="btn back-btn">
 			<img src="/images/img.gif">
@@ -150,7 +160,6 @@
 		body.at-splash .autoswitches-view,
 		body.at-autoswitches-view .autoswitches-view,
 		body.at-autoswitch-view .autoswitches-view,
-		body.at-autoswitch-view .autoswitch-view,
 		body.at-autoswitch-edit-view .autoswitches-view,
 		body.at-autoswitch-edit-view .autoswitch-edit-view {
 			display: block;
@@ -159,6 +168,7 @@
 
 	@media screen and (max-width: 880px) {
 		body.at-splash .autoswitches-view,
+		body.at-autoswitches-view .autoswitches-view,
 		body.at-autoswitch-view .autoswitch-view,
 		body.at-autoswitch-edit-view .autoswitch-edit-view {
 			display: block;
