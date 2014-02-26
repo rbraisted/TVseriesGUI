@@ -106,14 +106,17 @@ TVRO.AutoswitchPage = function() {
 					case 1: row.addClass('is-active'); break;
 				}
 
-				var f = function() {
-					console.log("!");
-					console.log(this);
-				}
+				$('.view-btn', row).click(function() {
 
-				$('.view-btn', row).click(f);
-				$('.master-btn', row).click(f);
+				});
 			});
+
+			window.onhashchange = function() {
+				console.log(location.hash);
+				if (location.hash === '#test') {
+					history.back();
+				}
+			}
 
 			table.build(3);
 

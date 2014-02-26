@@ -57,19 +57,9 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="autoswitch-view" class="view main-view autoswitch-view">
-	<div class="view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label id="not-directv">AutoSwitch Details</label>
-			<label id="directv">Receiver Details</label>
-		</a>
-		<h1>
-			<img src="/images/img.gif">
-			<span id="not-directv">AutoSwitch Details</span>
-			<span id="directv">Receiver Details</span>
-		</h1>
-
+<div id="autoswitch-view" class="view main-view wiz-view autoswitch-view">
+	<div class="view-content main-content wiz-content">
+		<div class="wiz-title-view tac bb dfs26 mfs21">Autoswitching Setup</div>
 		<div class="label receiver-label">
 			<span id="not-directv">IP Autoswitch</span>
 			<span id="directv">Receiver</span>
@@ -159,16 +149,18 @@
 	@media screen and (min-width: 880px) {
 		body.at-splash .autoswitches-view,
 		body.at-autoswitches-view .autoswitches-view,
+		body.at-autoswitch-view .autoswitches-view,
 		body.at-autoswitch-view .autoswitch-view,
-		body.at-edit-view .edit-view {
+		body.at-autoswitch-edit-view .autoswitches-view,
+		body.at-autoswitch-edit-view .autoswitch-edit-view {
 			display: block;
 		}
 	}
 
 	@media screen and (max-width: 880px) {
 		body.at-splash .autoswitches-view,
-		body.at-view .autoswitch-view,
-		body.at-edit .edit-view {
+		body.at-autoswitch-view .autoswitch-view,
+		body.at-autoswitch-edit-view .autoswitch-edit-view {
 			display: block;
 		}
 	}
