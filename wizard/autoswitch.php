@@ -1,6 +1,4 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php'; ?>
-<script type="text/javascript" src="/js/lodash.min.js"></script>
-<script src="http://www.promisejs.org/implementations/promise/promise-3.2.0.js"></script>
 <script type="text/javascript" src="/js/wizard/autoswitch.js"></script>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -9,7 +7,7 @@
 	<div class="view-content main-content wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">Autoswitching Setup</div>
 		<div class="dmaxw700 mc">
-			<div class="dfs13 dlh1.4 mt3 mb2">
+			<div class="dfs13 dlh1.4 mfs16 mlh1.4 mt3 mb2 wiz-instructions">
 				IP AutoSwitch(es) have been detected on your network. Choose the IP
 				AutoSwitch you would like to be the master (controlling satellite
 				selection). If you like, you can also name the IP AutoSwitch(es)
@@ -23,23 +21,24 @@
 				master.
 			</div>
 			<div id="table-rows">
-				<div id="template table-row" class="device-table-row mt1">
+				<div id="template table-row" class="device-table-row">
 					<div class="device-table-row-status">
 						<div class="status-icon"></div>
-						<div class="status-text">Status</div>
+						<div class="status-label">Status</div>
 					</div>
 					<div class="device-table-row-name">
-						<div class="dfs13 mb1">IP Autoswitch</div>
-						<div class="dfs16">Bathroom</div>
+						<div class="name-label">IP Autoswitch</div>
+						<div class="name-text">Bathroom</div>
 					</div>
 					<div class="device-table-row-id">
-						<div class="dfs13 mb1">Serial #</div>
-						<div class="dfs16">1020304050</div>
+						<div class="id-label">Serial #</div>
+						<div class="id-text">1020304050</div>
 					</div>
 					<div class="device-table-row-master">
-						<div class="master-text">Master</div>
+						<div class="master-label">Master</div>
 						<div class="master-icon"></div>
 					</div>
+					<div class="btn basic-btn view-btn"></div>
 					<div class="btn basic-btn edit-btn">
 						<label>Edit</label>
 					</div>
@@ -178,6 +177,7 @@
 		background: #000;
 		border: 1px solid #c3140f;
 		height: 85px;
+		margin-top: 10px;
 		position: relative;
 	}
 
@@ -220,17 +220,23 @@
 	}
 
 	.device-table-row .status-icon,
-	.device-table-row .status-text,
+	.device-table-row .status-label,
 	.device-table-row .master-icon,
-	.device-table-row .master-text {
+	.device-table-row .master-label {
 		display: inline-block;
 		vertical-align: middle;
 		font-size: 13px;
 	}
 
-	.device-table-row .status-text,
-	.device-table-row .master-text {
+	.device-table-row .status-label,
+	.device-table-row .master-label {
 		margin: 0 5px 0;
+	}
+
+	.device-table-row .name-label,
+	.device-table-row .id-label {
+		font-size: 13px;
+		margin-bottom: 10px;
 	}
 
 	.device-table-row .status-icon,
@@ -244,11 +250,15 @@
 		background-image: url(/images/red-dot-icon.svg);
 	}
 
-	.device-table-row .status-icon {
-		background-image: url(/images/red-dot-icon.svg);
+	.device-table-row.is-active .status-icon {
+		background-image: url(/images/green-dot-icon.svg);
 	}
 
 	.device-table-row .master-icon {
+		background-image: url(/images/radio.png);
+	}
+
+	.device-table-row.is-master .master-icon {
 		background-image: url(/images/radio-selected.png);
 	}
 
@@ -267,5 +277,71 @@
 
 	.device-table-row.is-master .master-btn {
 		display: none;
+	}
+
+	.device-table-row .view-btn {
+		display: none;
+	}
+
+	@media screen and (max-width: 880px) {
+		.device-table-row,
+		.device-table-row.is-active {
+			background: #293047 url(/images/menu-btn.png) no-repeat center right 10px/7px 8px;
+			border-color: #4e79bc;
+			border-width: 0 0 1px;
+			height: 50px;
+			margin: 0;
+		}
+
+		.device-table-row.is-master {
+			background-color: #4e79bc;
+			background-image: url(/images/menu-btn-selected.png);
+			border-color: #4e79bc;
+		}
+
+		.device-table-row-status,
+		.device-table-row-master,
+		.device-table-row .name-label,
+		.device-table-row-id,
+		.device-table-row .edit-btn,
+		.device-table-row .master-btn label {
+			display: none;
+		}
+
+		.device-table-row-name {
+			left: 60px;
+			margin-top: -0.5em;
+		}
+
+		.device-table-row .master-btn {
+			background: transparent url(/images/radio.png) no-repeat center/21px;
+			height: 21px;
+			left: 15px;
+			margin-top: -10px;
+			min-width: 0;
+			position: absolute;
+			top: 50%;
+			width: 21px;
+		}
+
+		.device-table-row.is-master .master-btn {
+			background-image: url(/images/radio-selected.png);
+			display: block;
+		}
+
+		.device-table-row .master-btn label {
+			display: none;
+		}
+
+		.device-table-row .view-btn {
+			background-color: transparent;
+			display: block;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			margin: 0;
+		}
 	}
 </style>

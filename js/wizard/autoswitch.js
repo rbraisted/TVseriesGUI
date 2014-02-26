@@ -102,10 +102,19 @@ TVRO.AutoswitchPage = function() {
 			var table = TVRO.Table('#autoswitches-view');
 			table.build(function(i, row) {
 				switch(i) {
-					case 0: row.addClass('is-active'); break;
-					case 1: row.addClass('is-master'); break;
+					case 0: row.addClass('is-active is-master'); break;
+					case 1: row.addClass('is-active'); break;
 				}
+
+				var f = function() {
+					console.log("!");
+					console.log(this);
+				}
+
+				$('.view-btn', row).click(f);
+				$('.master-btn', row).click(f);
 			});
+
 			table.build(3);
 
 			// skewAngleView = SkewAngleView('#skew-angle-view');
