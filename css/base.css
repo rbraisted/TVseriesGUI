@@ -958,5 +958,17 @@ table .sort-btn label {
 	min-width: 21px;
 }
 
+.green-dot-icon {
+	background: transparent url(/images/green-dot-icon.svg) no-repeat center/21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
+.red-dot-icon {
+	background: transparent url(/images/red-dot-icon.svg) no-repeat center/21px;
+	min-height: 21px;
+	min-width: 21px;
+}
+
 /*////////////\//////////\/////////\////////\///////\//////\/////\////\///\//\*\
 \*\\\\\\\\\\\\/\\\\\\\\\\/\\\\\\\\\/\\\\\\\\/\\\\\\\/\\\\\\/\\\\\/\\\\/\\\/\\/*/

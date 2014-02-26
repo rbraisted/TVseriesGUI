@@ -20,5 +20,9 @@
 			<sn>444444444</sn>
 			<name>Salon</name>
 		</autoswitch>
+		<autoswitch>
+			<ip_address>123.456.67.89</ip_address>
+			<name>Salon</name>
+		</autoswitch>
 	</autoswitch_list>
 </ipacu_response>

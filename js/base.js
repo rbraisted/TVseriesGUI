@@ -313,6 +313,7 @@ TVRO.Autoswitch = function(xml) {
 	self.sn = $('sn', xml).text();
 	self.name = $('name', xml).text();
 	self.ip = $('ip_address', xml).text();
+	self.active = false;
 
 	return self;
 }
@@ -538,22 +539,6 @@ TVRO.Dropdown = function() {
 		setSelectedValue: function() {
 			radio.setSelectedValue(arguments[0]);
 			if (buttons) $('[id ~= radio-value ]', buttons).text(radio.selectedValue());
-		}
-	});
-}
-
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-
-TVRO.Input = function() {
-	var self = $.apply($, arguments);
-
-	return $.extend({}, self, {
-		validate: function(type) {
-			if (self.attr('required')) {
-				console.log(self.attr('id')+" WOOOOOO!");
-			} else {
-				console.log(self.attr('id')+"OOOOOHH!");
-			}
 		}
 	});
 }

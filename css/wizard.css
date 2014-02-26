@@ -33,12 +33,14 @@ html {
 .tar { text-align: right; }
 .i { font-style: italic; }
 .nw { white-space: nowrap; }
-.rel { position: relative; }
+.mc { margin-left: auto; margin-right: auto; }
+.fill { width: 100%; height: 100%; }
 
 @media screen and (max-width: 880px) {
 	.desktop { display: none; }
 
 	.mlh1\.2 { line-height: 1.2; }
+	.mlh1\.4 { line-height: 1.4; }
 	.mlh1\.6 { line-height: 1.6; }
 
 	.mfs11 { font-size: 11px; }
@@ -56,12 +58,23 @@ html {
 		width: 100%;
 		z-index: 1;
 	}
+
+	.mmaxw800 { max-width: 800px; }
+	.mmaxw700 { max-width: 700px; }
+	.mmaxw600 { max-width: 600px; }
+	.mmaxw500 { max-width: 500px; }
+	.mmaxw400 { max-width: 400px; }
+	.mmaxw300 { max-width: 300px; }
+	.mmaxw200 { max-width: 200px; }
+	.mmaxw100 { max-width: 100px; }
+	.mmaxw0 { max-width: none; }
 }
 
 @media screen and (min-width: 880px) {
 	.mobile { display: none; }
 
 	.dlh1\.2 { line-height: 1.2; }
+	.dlh1\.4 { line-height: 1.4; }
 	.dlh1\.6 { line-height: 1.6; }
 
 	.dfs11 { font-size: 11px; }
@@ -80,6 +93,16 @@ html {
 		margin-top: 65px;
 		padding-bottom: 20px;
 	}
+
+	.dmaxw800 { max-width: 800px; }
+	.dmaxw700 { max-width: 700px; }
+	.dmaxw600 { max-width: 600px; }
+	.dmaxw500 { max-width: 500px; }
+	.dmaxw400 { max-width: 400px; }
+	.dmaxw300 { max-width: 300px; }
+	.dmaxw200 { max-width: 200px; }
+	.dmaxw100 { max-width: 100px; }
+	.dmaxw0 { max-width: none; }
 }
 
 .wiz-view {
