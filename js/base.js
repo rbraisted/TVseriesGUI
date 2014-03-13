@@ -43,7 +43,6 @@ TVRO = {
 		TV6: 'tv6'
 	},
 
-	debug: false,
 	init: function() {
 		var
 		header = $('[id ~= header ]'),
@@ -172,6 +171,8 @@ TVRO.WebService = (function() {
 		cookieManager = new TVRO.CookieManager(),
 		LIVE_WEBSERVICE_URL = '/webservice.php',
 		DEMO_WEBSERVICE_URL = '/demo/webservice.php';
+
+	LIVE_WEBSERVICE_URL = DEMO_WEBSERVICE_URL;
 
 	function jsonAsXml(json) {
 		var xml = '';
@@ -332,6 +333,11 @@ TVRO.Group = function(xml) {
 	self.satelliteC = TVRO.Satellite($('C', xml));
 	self.satelliteD = TVRO.Satellite($('D', xml));
 
+	self.a = self.satelliteA;
+	self.b = self.satelliteB;
+	self.c = self.satelliteC;
+	self.d = self.satelliteD;
+
 	return self;
 }
 
@@ -411,10 +417,12 @@ TVRO.Toggle = function() {
 		//	we'll eventaully get rid of this function since we return self now
 		setOn: function(isOn) {
 			self.toggleClass('is-on', isOn);
+			return this;
 		},
 		click: function() {
 			if (typeof arguments[0] !== 'function') self.click();
 			else callbacks.push(arguments[0]);
+			return this;
 		}
 	});
 }

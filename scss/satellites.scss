@@ -1,0 +1,565 @@
+@import "base.scss";
+
+@mixin slot-anchor {
+	@include row($short-row-height);
+	background-color: #000;
+	font-size: $small;
+	left: 0;
+	padding: 6px;
+	position: absolute;
+	text-align: center;
+}
+
+@mixin slot($style) {
+	//	$desktop style is the grey boxes
+	//	$mobile style is basically like a table-row
+
+	@if $style == $desktop {
+		background-color: $dark-grey;
+		display: inline-block;
+		margin: 0 0 30px;
+		padding: $short-row-height;
+		position: relative;
+		width: calc(50% - 15px);
+		&:nth-child(even) {
+			margin-left: 30px;
+		}
+
+		.slot-head {
+			@include slot-anchor;
+			top: 0;
+		}
+
+		.slot-foot {
+			@include slot-anchor;
+			bottom: 0;
+			color: #000;
+		}		
+	} @elseif $style == $mobile {
+		@include right-icon-blue(right 10px, center, 10px, 10px);
+		border-bottom: 1px solid $bright-blue;
+		cursor: pointer;
+		padding: 14px 0;
+		margin: auto;
+
+		@include breakpoint($desktop) {
+			width: $desktop-max-width - $tall-row-height * 2;	
+		}
+
+		@include breakpoint($mobile) {
+			//	$tall-row-height
+			//	for some reason sass won't use $var but this works:
+			width: calc(100% - 46px * 2);
+		}
+
+		&.first-slot {
+			border-top: 1px solid $bright-blue;
+			margin-top: $tall-row-height;
+		}
+
+		.label,
+		.sat-name {
+			margin-left: $tall-row-height/4;
+		}	
+	}
+}
+
+//	shared views
+////////////////////////////////////////////////////////////////////////////////
+
+.sat-icon {
+	@include sat-icon-white;
+	display: inline-block;
+	margin-right: 5px;
+	vertical-align: text-top;
+}
+
+.sat-status {
+	color: $light-grey;
+	position: absolute;
+	bottom: $sidebar-padding;
+}
+
+.sat-signal {
+	background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;
+	width: 100%;
+	height: 60px;
+	margin-top: -$sidebar-padding;
+
+	&.\$0 { background-image: url(/images/sat-signal-0.svg); }
+	&.\$1 { background-image: url(/images/sat-signal-1.svg); }
+	&.\$2 { background-image: url(/images/sat-signal-2.svg); }
+	&.\$3 { background-image: url(/images/sat-signal-3.svg); }
+	&.\$4 { background-image: url(/images/sat-signal-4.svg); }
+	&.\$5 { background-image: url(/images/sat-signal-5.svg); }
+}
+
+.sat-table {
+	@extend .table;
+	max-height: 600px;
+	overflow: auto;
+
+	.table-row {
+		font-size: $small;
+		&:nth-child(1) { margin-top: $short-row-height; }
+		&:nth-child(odd) { background-color: $light-grey; }
+		&:nth-child(even) { background-color: $dark-grey; }
+		&.\$ins { background-color: $bright-blue; }
+
+		.install-col,
+		.fav-col {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	.table-head {
+		@include row($short-row-height);
+		font-size: $fine;
+		.table-col {
+			padding: 6px 15px;
+		}
+	}
+
+	.table-row,
+	.table-head {
+		.install-col {
+			padding-left: 0;
+			padding-right: 0;
+			text-align: center;
+			width: 9%;
+		}
+
+		.install-btn {
+			@include radio-unchecked;
+			cursor: pointer;
+		}
+
+		&.\$ins .install-btn  {
+			@include radio-checked;
+		}
+
+		.name-col {
+			width: 25%;
+		}
+
+		.orb-slot-col {
+			width: 16%;
+		}
+
+		.region-col {
+			width: 25%;
+		}
+
+		.fav-col {
+			width: 25%;
+		}
+
+		.fav-btn {
+			@include heart-icon-black;
+			cursor: pointer;
+			float: left;
+		}
+
+		&.\$fav .fav-btn { @include heart-icon-white; }
+
+		.info-btn {
+			@include info-icon;
+			cursor: pointer;
+			float: right;
+		}
+	}
+}
+
+.sat-info,
+.sat-edit {
+	margin-top: -450px !important;
+	max-height: 900px !important;
+
+	.input {
+		width: 100%;
+		margin-top: -10px;
+		margin-bottom: -7px;
+	}
+
+	@mixin block($fit) {
+		display: inline-block;
+		margin-bottom: $tall-row-height/2;
+		vertical-align: top;
+		width: ($desktop-max-width - $tall-row-height * 2)/$fit;
+		border-left: 1px solid $bright-blue;
+		padding: 0 $tall-row-height/2;
+	}
+
+	.label {
+		font-size: $small;
+		color: $bright-grey;
+		margin-bottom: $tall-row-height/4;
+	}
+
+	//	these blocks need to get a margin on desktop
+	.name-block,
+	.region-block,
+	.lnb-block {
+		margin-left: $tall-row-height;
+	}
+
+	.name-block {
+		@include block(1);
+		border: 0;
+	}
+
+	.fav-block {
+		position: absolute;
+		top: $tall-row-height*2;
+		right: $tall-row-height;
+
+		.label {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.heart-btn {
+			display: inline-block;
+			&.\$on .off, .on { display: none; }
+			&.\$on .on, .off { display: block; }
+			.on { @include heart-icon-white; }
+			.off { @include heart-icon-black; }
+			vertical-align: middle;
+		}
+
+		.favorite-btn {
+			margin: 0 10px;
+			vertical-align: middle;
+		}
+	}
+
+	.region-block,
+	.orb-slot-block,
+	.hemisphere-block,
+	.suffix-block,
+	.skew-block {
+		@include block(5);
+	}
+
+	.lnb-block,
+	.lo1-block,
+	.lo2-block {
+		@include block(3);
+	}
+
+	.slot {
+		@include slot($desktop);
+		padding-top: $short-row-height*2;
+		padding-bottom: $short-row-height - $tall-row-height/2;
+		//	$tall-row-height doesn't work here,
+		//	we'll have to hardcode it
+		width: calc(50% - 46px - 15px);
+		&:nth-child(odd) { margin-left: $tall-row-height; }
+
+		.xponder-block {
+			margin-bottom: $tall-row-height/2;
+			width: 50%;
+			&:nth-child(odd) { float: right; }
+			&:nth-child(even) { float: left; }
+		}
+	}
+}
+
+//	single views
+////////////////////////////////////////////////////////////////////////////////
+
+.region-table {
+	@extend .table;
+	.table-row {
+		cursor: pointer;
+		&:hover { background-color: $dark-blue; }
+		&.\$sel { background-color: $bright-blue; }
+	}
+}
+
+//	group views
+////////////////////////////////////////////////////////////////////////////////
+
+.group-table {
+	@extend .region-table;
+	.table-row {
+		.install-btn {
+			@include radio-unchecked;
+			display: inline-block;
+			padding: 0;
+			margin-left: 15px;
+		}
+
+		&.\$ins .install-btn {
+			@include radio-checked;
+		}
+	}
+}
+
+.group-info {
+	.slot {
+		@include breakpoint($desktop) {
+			@include slot($desktop);
+			height: 140px;
+			text-align: center;
+
+			.sat-name {
+				left: 0;
+				//	the default font-size is $medium
+				margin-top: $medium/-2;
+				position: absolute;
+				top: 50%;
+				width: 100%;
+			}
+
+			.install-btn {
+				left: 25px;
+				//	the default icon size is $large
+				margin-top: $large/-2;
+				position: absolute;
+				top: 50%;
+			}
+
+			.info-btn {
+				@include info-icon;
+				cursor: pointer;
+				margin-top: $large/-2;
+				position: absolute;
+				right: 25px;
+				top: 50%;
+			}
+		}
+
+		@include breakpoint($mobile) {
+			@include slot($mobile);
+			padding: 15px;
+			border-bottom: 1px solid $bright-blue;
+
+			.slot-head,
+			.slot-foot {
+				display: none;
+			}
+
+			.sat-name,
+			.install-btn {
+				display: inline-block;
+			}
+		}
+
+		.install-btn {
+			@include radio-unchecked;
+			cursor: pointer;
+			display: none;
+		}
+	}
+
+	&.\$ins {
+		.slot .install-btn {
+			display: block;
+
+			@include breakpoint($mobile) {
+				float: left;
+				margin-top: -3px;
+			}
+		}
+
+		.slot.\$ins {
+			@include breakpoint($desktop) {
+				background-color: $light-blue;
+
+				.slot-head,
+				.slot-foot {
+					background-color: $bright-blue;
+					color: #fff;
+				}
+			}			
+
+			.install-btn {
+				@include radio-checked;
+			}
+		}
+	}
+
+	&.\$ins .btn-tray .install-btn,
+	&.is-predefined .btn-tray .edit-btn,
+	&.is-predefined .btn-tray .delete-btn {
+		display: none;
+	}
+}
+
+.group-edit {
+	.label {
+		color: $bright-grey;
+		display: block;
+		font-size: $small;
+		margin-bottom: 10px;
+		margin-left: $tall-row-height * 1.25;
+	}
+
+	.name-input {
+		margin-left: $tall-row-height;
+
+		@include breakpoint($desktop) {
+			width: ($desktop-max-width - $tall-row-height * 4)/3;
+		}
+
+		@include breakpoint($mobile) {
+			//	$tall-row-height
+			//	for some reason sass won't use $var but this works:
+			width: calc(100% - 46px * 2);
+		}
+	}
+
+	.slot {
+		@include slot($mobile);
+	}
+}
+
+//	routing
+////////////////////////////////////////////////////////////////////////////////
+
+.\#region-table-view,
+.\#group-table-view {
+	display: none;
+}
+
+
+//	mobile
+@include breakpoint($mobile) {
+
+	//	single mode
+	.\/regions .sidebar, .\/regions .\#region-table-view,
+	.\/regions\/region .\#single-sat-table-view,
+	.\/regions\/region\/sat .\#sat-info-view,
+	.\/regions\/region\/sat\/edit .\#sat-edit-view,
+
+	//	group mode
+	.\/groups  .sidebar, .\/groups  .\#group-table-view,
+	.\/groups\/group .\#group-info-view,
+	.\/groups\/group\/edit .\#group-edit-view,
+	.\/groups\/group\/sat .\#sat-info-view,
+	.\/groups\/group\/edit\/sats .\#group-sat-table-view,
+	.\/groups\/group\/sat\/edit .\#sat-edit-view,
+	.\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+	.\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+		display: block;
+	}
+
+	// single mode
+	.at-region-table-view .sidebar,
+	.at-region-table-view .\#region-table-view,
+	.at-single-sat-table-view .\#single-sat-table-view,
+	.at-single-sat-info-view .\#single-sat-info-view,
+
+	// group mode
+	.at-group-table-view .sidebar,
+	.at-group-table-view .\#group-table-view,
+	.at-group-info-view .\#group-info-view,
+	.at-group-edit-view .\#group-edit-view,
+	.at-group-sat-table-view .\#group-sat-table-view,
+	.at-group-sat-info-view .\#group-sat-info-view {
+		display: block;
+	}
+}
+
+//	desktop
+@include breakpoint($desktop)  {
+	.sidebar {
+		display: block;
+	}
+
+	//	single mode
+	.\/regions,
+	.\/regions\/region,
+	.\/regions\/region\/sat,
+	.\/regions\/region\/sat\/edit {
+		.\#region-table-view,
+		.\#single-sat-table-view {
+			display: block;
+		}
+	}
+	
+	.\/regions\/region\/sat .\#sat-info-view,
+	.\/regions\/region\/sat\/edit .\#sat-edit-view {
+		display: block;
+	}
+
+
+	//	group mode
+	.\/groups,
+	.\/groups\/group,
+	.\/groups\/group\/edit,
+	.\/groups\/group\/sat,
+	.\/groups\/group\/edit\/sats,
+	.\/groups\/group\/sat\/edit,
+	.\/groups\/group\/edit\/sats\/sat,
+	.\/groups\/group\/edit\/sats\/sat\/edit {
+		.\#group-table-view,
+		.\#group-info-view {
+			display: block;
+		}
+	}
+
+	.\/groups\/group\/edit .\#group-edit-view,
+	.\/groups\/group\/sat .\#sat-info-view,
+	.\/groups\/group\/edit\/sats .\#group-sat-table-view,
+	.\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+	.\/groups\/group\/sat\/edit .\#sat-edit-view,
+	.\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+		display: block;
+	}
+
+	// single mode
+	.at-region-table-view,
+	.at-single-sat-table-view,
+	.at-single-sat-info-view {
+		.\#region-table-view,
+		.\#single-sat-table-view {
+			display: block;
+		}
+	}
+
+	.at-single-sat-info-view .\#single-sat-info-view {
+		display: block;
+	}
+
+	// group mode
+	.at-group-table-view {
+		.\#group-table-view,
+		.\#group-info-view {
+			display: block;
+		}		
+	}
+
+	.at-group-info-view {
+		.\#group-table-view,
+		.\#group-info-view {
+			display: block;
+		}		
+	}
+
+	.at-group-edit-view {
+		.\#group-table-view,
+		.\#group-info-view,
+		.\#group-edit-view {
+			display: block;
+		}
+	}
+
+	.at-group-sat-table-view {
+		.\#group-table-view,
+		.\#group-info-view,
+		.\#group-sat-table-view {
+			display: block;
+		}
+	}
+
+	.at-group-sat-info-view {
+		.\#group-table-view,
+		.\#group-info-view,
+		.\#group-sat-info-view {
+			display: block;
+		}
+	}
+}

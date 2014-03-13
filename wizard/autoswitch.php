@@ -1,5 +1,6 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php'; ?>
 <script type="text/javascript" src="/js/wizard/autoswitch.js"></script>
+<script type="text/javascript" src="/js/wizard/autoswitch.js"></script>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

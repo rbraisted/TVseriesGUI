@@ -20,6 +20,7 @@
 	<preferredPolarity>R</preferredPolarity><!-- R | L -->
 	<xponder>
 		<id>1</id>
+		<display>Vertical Low</display>
 		<pol>V</pol>
 		<band>L</band>
 		<freq>11960</freq>
@@ -30,6 +31,7 @@
 	</xponder>
 	<xponder>
 		<id>3</id>
+		<display>Vertical High</display>
 		<pol>V</pol>
 		<band>H</band>
 		<freq>11820</freq>
@@ -40,7 +42,8 @@
 	</xponder>
 	<xponder>
 		<id>5</id>
-		<pol>V</pol>
+		<display>Horizontal High</display>
+		<pol>H</pol>
 		<band>H</band>
 		<freq>12345</freq>
 		<symRate>40000</symRate>
@@ -50,8 +53,9 @@
 	</xponder>
 	<xponder>
 		<id>7</id>
-		<pol>V</pol>
-		<band>H</band>
+		<display>Horizontal Low</display>
+		<pol>H</pol>
+		<band>L</band>
 		<freq>67890</freq>
 		<symRate>50000</symRate>
 		<fec>3/5</fec>

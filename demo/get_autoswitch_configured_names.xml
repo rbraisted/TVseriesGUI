@@ -5,6 +5,10 @@
 	<enable>Y</enable><!-- Y | N -->
 	<autoswitch_list>
 		<autoswitch>
+			<sn>TVHUB</sn>
+			<name>TV-Hub</name>
+		</autoswitch>
+		<autoswitch>
 			<sn>111111111</sn>
 			<name>Boudoir</name>
 		</autoswitch>

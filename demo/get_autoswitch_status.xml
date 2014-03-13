@@ -29,6 +29,10 @@
 	</master>
 	<active_list>
 		<autoswitch>
+			<sn>TVHUB</sn>
+			<name>TV-Hub</name>
+		</autoswitch>
+		<autoswitch>
 			<sn>111111111</sn>
 			<name>Boudoir</name>
 		</autoswitch>
@@ -70,7 +74,7 @@
 	<satellites>
 		<A>
 			<listID>64</listID>
-			<antSatID>23E</antSatID>
+			<antSatID>26E</antSatID>
 			<name>BADR-5</name>
 			<region>North America</region>
 			<lon>23.000</lon>

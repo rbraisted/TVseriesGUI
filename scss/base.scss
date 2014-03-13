@@ -1,0 +1,521 @@
+@import "reset.css";
+@import "images.scss";
+
+//	for debugging -
+////////////////////////////////////////////////////////////////////////////////
+*:hover {
+	// outline: 1px solid #faabcd;
+}
+
+//	media queries
+//	@mixin breakpoint($desktop) {
+//		desktop styles go here!
+//	}
+//	i stole this from guff
+////////////////////////////////////////////////////////////////////////////////
+@mixin breakpoint($querystring) {
+	@media #{$querystring} {
+		@content;
+	}
+}
+
+$mobile: "screen and (max-width : 880px)";
+$desktop: "screen and (min-width : 881px)";
+
+//	so .view is max-width: 800px
+//	and .sidebar is width: 240px
+//	so at some point while still $desktop (gt 880px)
+//	you can have a situation where .view gets crunched
+//	use this to adjust .view's width/max-width for those situations
+$crunch: "screen and (min-width : 880px) and (max-width: 1100px)";
+
+//	simple vendor prefixes mixin
+////////////////////////////////////////////////////////////////////////////////
+@mixin prefix($property, $value) {
+	-webkit-#{$property}: #{$value};
+	-ms-#{$property}: #{$value};
+	-moz-#{$property}: #{$value};
+	-o-#{$property}: #{$value};
+	#{$property}: #{$value};
+}
+
+//	clearfix
+////////////////////////////////////////////////////////////////////////////////
+@mixin clearfix {
+	&:after {
+		content:"";
+		display:table;
+		clear:both;
+	}
+}
+
+
+//	fonts/text
+////////////////////////////////////////////////////////////////////////////////
+$large: 21px;
+$medium: 16px;
+$small: 13px;
+$fine: 11px;
+
+@mixin text-shadow {
+	text-shadow: 0 2px #000;
+}
+
+//	magic numbers
+//	we can save them as variables now!
+////////////////////////////////////////////////////////////////////////////////
+$header-height: 50px;
+$nav-height: 45px;
+
+$sidebar-width: 240px;
+$sidebar-padding: 15px;
+
+$tall-row-height: 46px;
+$short-row-height: 26px;
+
+$desktop-max-width: 800px;
+$crunch-max-width: 600px;
+
+//	colors
+//	these turn up a lot
+//	avoiding using colors other than the ones listed below, #fff, and #000
+//	the one exception is html/body background color which follows
+////////////////////////////////////////////////////////////////////////////////
+$green: #acd038;
+$red: #c51313;
+
+$bright-blue: #4f7abd;
+$light-blue: #243774;
+$dark-blue: #1c335d;
+
+$grey-blue: #101f30;
+
+$bright-grey: #bac7da;
+$light-grey: #4c5269;
+$dark-grey: #293147;
+
+//	base
+//	note that first things we do:
+//	1. border-box,
+//	2. make all cursors inherit, later we set body cursor to default
+//	   so basically you must explicitly set the cursor of all elements
+//	3. user-select: none and all it's prefixes so you can't select/copy text
+////////////////////////////////////////////////////////////////////////////////
+* {
+	box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	cursor: inherit;
+	// font-size-adjust: 0.55;
+	text-rendering: optimizeLegibility;	
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+html {
+	//	we might want to replace this with a css gradient or svg later
+	background: #04122a url(/images/gradient.png) no-repeat top center;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	color: #fff;
+	cursor: default;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: $medium;
+	font-weight: lighter;
+	height: 100%;
+	line-height: 1;
+	width: 100%;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+//	commonly occuring elements
+////////////////////////////////////////////////////////////////////////////////
+@mixin row($min-height: 0) {
+	display: block;
+	width: 100%;
+	min-height: $min-height;
+}
+
+//	header
+////////////////////////////////////////////////////////////////////////////////
+.header {
+	background: transparent url(/images/header.png) no-repeat center/100%;
+	height: $header-height;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+
+	.tracvision-logo {
+		background: transparent url(/images/tracvision-logo.svg) no-repeat center/90%;
+		height: 100%;
+		margin: auto;
+		width: 150px;
+	}
+
+	.status-btn {
+		float: left;
+		height: 100%;
+		width: $header-height;
+	}
+
+	.nav-btn {
+		float: right;
+		height: 100%;
+		width: $header-height;
+	}
+}
+
+// nav
+////////////////////////////////////////////////////////////////////////////////
+.nav {
+	background: #000;
+	height: $nav-height;
+	position: fixed;
+	top: $header-height;
+	width: 100%;
+	z-index: 1;
+
+	@include breakpoint($mobile) {
+		display: none;
+	}
+
+	$nav-btns:
+		home 17px,
+		sat 18px,
+		autoswitch 19px,
+		settings 17px,
+		updates 19px,
+		support 13px;
+
+	@each $nav-btn in $nav-btns {
+		$btn-name: nth($nav-btn, 1);
+		$icon-width: nth($nav-btn, 2);
+		.#{$btn-name}-btn {
+			background: transparent url(/images/#{$btn-name}-icon-grey.svg) no-repeat left 10px center/$icon-width 21px;
+			color: $bright-grey;
+			cursor: pointer;
+			display: inline-block;
+			height: 100%;
+			padding: 16px 15px 0 ($icon-width + 20px);
+
+			@if $btn-name == home {
+				background-position: left 20px center;
+				padding-left: ($icon-width + 30px);
+			}
+
+			&:hover,
+			&.\$sel {
+				background-image: url(/images/#{$btn-name}-icon-white.svg);
+				color: #fff;
+			}
+		}
+	}
+}
+
+//	major page components
+//	sidebar, view, popup, dropdown
+////////////////////////////////////////////////////////////////////////////////
+
+//	view header
+//	$desktop is standard .view-header
+//	$mobile is the black bar
+//	but i use this mixin instead of declaring them that way
+//	in the appropriate classes because we'll use the $mobile view-header
+//	for popups as well
+@mixin view-header($style) {
+	font-size: $large;
+	text-align: center;
+
+	@if $style == $desktop {
+		margin: 30px 0;
+	} @elseif $style == $mobile {
+		background-color: #000;
+		border-bottom: 1px solid $bright-blue;
+		line-height: $tall-row-height;
+		margin: 0 0 $tall-row-height;;
+	}
+}
+
+//	we're using .back-btn for all the close/back buttons
+//	.back-btn is different than .prev-btn
+//	use these mixins to switch between the different types (back vs close - one
+//	has an arrow pointing left, the other has an x icon)
+@mixin back-btn {
+	@include prev-icon-blue(left 10px);
+	cursor: pointer;
+	display: block;
+	height: $tall-row-height;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+@mixin close-btn {
+	@include x-icon-blue;
+	cursor: pointer;
+	display: block;
+	height: $tall-row-height;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: $tall-row-height;
+}
+
+.view {
+	bottom: 0;
+	display: none;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+
+	@include breakpoint($desktop) {
+		left: $sidebar-width;
+		max-width: $desktop-max-width;
+		right: 0;
+		top: $header-height + $nav-height;
+	}
+
+	@include breakpoint($crunch) {
+		max-width: $crunch-max-width;
+	}
+
+	@include breakpoint($mobile) {
+		top: $header-height;
+	}
+
+	.view-header {
+		@include breakpoint($desktop) {
+			@include view-header($desktop);
+		}
+
+		@include breakpoint($mobile) {
+			@include view-header($mobile);
+		}
+	}
+
+	.back-btn {
+		@include breakpoint($desktop) {
+			display: none;
+		}
+
+		@include breakpoint($mobile) {
+			@include back-btn;
+		}
+	}
+
+	.btn-tray {
+		display: inline-block;
+		width: 100%;
+
+		@include breakpoint($desktop) {
+			border-top: 1px solid $bright-blue;
+			padding: 30px 0 $tall-row-height;
+		}
+
+		@include breakpoint($mobile) {
+			background-color: #000;
+			bottom: 0;
+			padding: 10px;
+			position: fixed;
+		}
+
+		.block-btn {
+			float: right;
+			margin-left: 10px;
+			min-width: 130px;
+			text-align: center;
+		}
+	}
+}
+
+.sidebar {
+	@extend .view;
+
+	@include breakpoint($desktop) {
+		background: #000;
+		left: 0;
+		right: auto;
+		width: $sidebar-width;
+	}
+
+	.sidebar-chunk {
+		border-bottom: 1px solid $bright-blue;
+		padding: $sidebar-padding;
+		position: relative;
+
+		.sidebar-chunk-header {
+			color: $bright-grey;
+			padding-bottom: inherit;
+		}
+	}
+}
+
+.popup {
+	//	since .popup will always wrap .view
+	//	and we want to manage the visibility at .popup
+	//	we should have .view always display in a .popup
+	display: none;
+	.view {
+		display: block;
+	}
+
+	//	.sidebar doesn't affect .popup
+	//	so we don't have to deal with $crunch
+	@include breakpoint($crunch) {
+		.view {
+			max-width: $desktop-max-width;
+		}
+	}
+
+	@include breakpoint($desktop) {
+		background-color: transparentize(#000, .4);
+		height: 100%;
+		position: fixed;
+		width: 100%;
+		z-index: 2;
+
+		.view {
+			background-color: $grey-blue;
+			left: 50%;
+			margin: -300px -400px;
+			max-height: 600px;
+			top: 50%;
+
+			.view-header {
+				@include view-header($mobile);
+			}
+
+			.back-btn {
+				@include breakpoint($desktop) {
+					@include close-btn;
+				}
+			}
+
+			.btn-tray {
+				border: 0;
+				bottom: 0;
+				left: $tall-row-height;
+				position: absolute;
+				width: $desktop-max-width - $tall-row-height * 2;
+			}
+		}
+	}
+}
+
+//	smaller components that frequently appear
+////////////////////////////////////////////////////////////////////////////////
+
+//	fixed header tables:
+//	there is a javascript dependency here
+//	use divs, use css to build the table, make the column align
+//	by explicitly setting width on .table-col, which has overflow: hidden
+//	then make your .table-head position: absolute with a higher z-index than
+// 	.table-row and reposition the .table-head with js on scroll
+//	use .\\#table-head in js
+.table {
+	width: 100%;
+	position: relative;
+
+	//	i use this mixin for both .table-row and .table-head
+	//	so that i can customize the classes independently without having to use
+	//	:not(.table-head) or :not(.table-row)
+	@mixin table-row {
+		@include row($tall-row-height);
+		background-color: $light-blue;
+		border-bottom: 1px solid $bright-blue;
+		position: relative;
+		vertical-align: middle;	
+	}
+
+	//	customize .table-head in your custom table classes
+	.table-head {
+		@include table-row;
+		position: absolute;
+		z-index: 1;
+	}
+
+	//	and don't forget to adjust .table-row:first-child so that
+	//	it has a margin-top equal to the height of .table-head
+	//	(in your custom table classes)
+	.table-row {
+		@include table-row;
+	}
+
+	.table-col {
+		display: inline-block;
+		height: 100%;
+		overflow: hidden;
+		padding: 15px;
+		vertical-align: middle;
+	}
+}
+
+.input {
+	@include prefix(border-radius, 0);
+	background-color: $light-grey;
+	border: 1px solid #000;
+	color: inherit;
+	cursor: text;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 6px 10px;
+}
+
+.toggle-btn {
+	@include text-shadow;
+	cursor: pointer;
+	display: inline-block;
+
+	.on, .off {
+		float: left;
+		padding: 5px 10px;
+		text-align: center;
+		width: 50%;
+	}
+
+	//	on
+	&.\$on .on, .off {
+		background-color: $bright-blue;
+		border: 1px solid #fff;
+	}
+
+	//	off
+	&.\$on .off, .on {
+		border: 1px solid #000;
+		background-color: $light-grey;
+	}
+
+	//	when in the sidebar
+	.sidebar-chunk & {
+		width: 100%;
+	}
+}
+
+.block-btn {
+	@include text-shadow;
+	background-color: $bright-blue;
+	cursor: pointer;
+	display: inline-block;
+	padding: 12px 17px;
+	text-align: center;
+
+	.sidebar & {
+		display: block;
+		margin: $sidebar-padding;
+	}
+}

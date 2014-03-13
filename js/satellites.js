@@ -1,6 +1,62 @@
 "use strict";
 
+TVRO.SatellitesPage = function(jQ) {
+
+	return {
+		init: function() {
+			//	DEV
+			$(document.body).setClass('is-group at-satellite-group');
+
+			var groupTableView = satellites.GroupTableView($('.\\#group-table-view'));
+			satellites.getGroups().then(groupTableView.setGroups);
+
+			var groupView = satellites.GroupView($('.\\#group-view'));
+			satellites.getInstalledGroup().then(groupView.setGroup);
+			
+
+			// menuView = MenuView('[id ~= menu-view ]');
+			// groupView = GroupView('[id ~= satellite-group-view ]');
+			// editView = EditView('[id ~= edit-satellite-group-view ]');
+			// singleTableView = TableView('[id ~= satellites-table-view ]');
+			// groupTableView = TableView('[id ~= satellites-table-popup-view ]');
+			// infoView = InfoView('[id ~= satellite-info-view ]');
+
+			// webService.request('get_satellite_groups', function(response) {
+			// 	$('group', response).each(function() {
+			// 		groups.push(TVRO.Group(this));
+			// 	});
+
+			// 	webService.request('get_autoswitch_status', function(response) {
+			// 		var name = $('satellite_group', response).text(),
+			// 			slot = $('master sat', response).text();
+
+			// 		service = $('service', response).text();
+			// 		enable = $('enable:eq(0)', response).text();
+
+			// 		$(groups).each(function() {
+			// 			if (this.name === name) {
+			// 				selectedGroup = this;
+			// 				selectedSatellite = selectedGroup['satellite'+slot]
+			// 			}
+			// 		});
+
+			// 		menuView.refresh();
+			// 	});
+			// });
+
+			// webService.request('get_satellite_list', function(response) {
+			// 	// satellites = [];
+			// 	$('satellite', response).each(function(i, satellite) {
+			// 		satellites.push(TVRO.Satellite(satellite));
+			// 	});
+			// });
+		}
+	}
+}
+
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+
 
 TVRO.SatellitesPage = function() {
 	var
@@ -88,44 +144,6 @@ TVRO.SatellitesPage = function() {
 				groupRadio.setSelectedValue(groups.indexOf(selectedGroup));
 
 				satelliteTrackingView.refresh();
-
-				/*
-				webService.request('get_satellite_groups', function(response) {
-					groups = [];
-					$('group', response).each(function() {
-						groups.push(TVRO.Group(this));
-					});
-
-					webService.request('get_autoswitch_status', function(response) {
-						var groupName = $('satellite_group', response).text(),
-							selectedSlot = $('master sat', response).text(),
-							isSingle = $('satellites>*', response).filter(function() { return $(this).children().length; }).length === 1;
-
-						for (var i = 0; i < groups.length; i++) {
-							if (groups[i].name === groupName) {
-								selectedGroup = groups[i];
-								selectedSatellite = {
-									A: selectedGroup.satelliteA,
-									B: selectedGroup.satelliteB,
-									C: selectedGroup.satelliteC,
-									D: selectedGroup.satelliteD
-								}[selectedSlot] || {};
-								groupView.loadGroup(groups[i]);
-								groupTable.build(groups.length);
-								groupRadio.refresh();
-								groupRadio.setSelectedValue(i);
-							}
-						}
-
-						modeBtn.setOn(isSingle);
-						if (!singleRadio.selectedValue()) {
-							singleTableView.loadRegion('All');
-							singleRadio.setSelectedValue('All');
-						}
-						$(document.body).toggleClass('is-single', isSingle).toggleClass('is-group', !isSingle);
-					});
-				});
-				*/
 			}
 		});
 	},
@@ -277,7 +295,7 @@ TVRO.SatellitesPage = function() {
 					}, function() {
 						groups.splice(groups.indexOf(group), 1);
 						addGroup();
-					});					
+					});	
 				}
 
 				$(document.body).setClass('is-group at-satellite-group');
@@ -317,19 +335,6 @@ TVRO.SatellitesPage = function() {
 
 			table.build(sorted.length);
 			radio.refresh();
-
-			// webService.request('get_satellite_list', function(response) {
-			// 	satellites = [];
-			// 	$('satellite', response).each(function(i, satellite) {
-			// 		satellites.push(TVRO.Satellite(satellite));
-			// 	});
-
-			// 	filtered = $(satellites).filter(filter).toArray();
-			// 	sorted = filtered.slice().sort(sort);
-
-			// 	table.build(sorted.length);
-			// 	radio.refresh();
-			// });
 		}
 
 		radio.click(function(i) {
@@ -641,27 +646,6 @@ TVRO.SatellitesPage = function() {
 					});
 
 					menuView.refresh();
-
-					// isSingle = $('satellites>*', response).filter(function() { return $(this).children().length; }).length === 1;
-
-					// for (var i = 0; i < groups.length; i++) {
-					// 	if (groups[i].name === groupName) {
-					// 		selectedGroup = groups[i];
-					// 		selectedSatellite = {
-					// 			A: selectedGroup.satelliteA,
-					// 			B: selectedGroup.satelliteB,
-					// 			C: selectedGroup.satelliteC,
-					// 			D: selectedGroup.satelliteD
-					// 		}[selectedSlot] || {};
-					// 	}
-					// }
-
-					// modeBtn.setOn(isSingle);
-					// if (!singleRadio.selectedValue()) {
-					// 	singleTableView.loadRegion('All');
-					// 	singleRadio.setSelectedValue('All');
-					// }
-					// $(document.body).toggleClass('is-single', isSingle).toggleClass('is-group', !isSingle);
 				});
 			});
 
@@ -670,12 +654,6 @@ TVRO.SatellitesPage = function() {
 				$('satellite', response).each(function(i, satellite) {
 					satellites.push(TVRO.Satellite(satellite));
 				});
-
-				// filtered = $(satellites).filter(filter).toArray();
-				// sorted = filtered.slice().sort(sort);
-
-				// table.build(sorted.length);
-				// radio.refresh();
 			});
 		}
 	}
