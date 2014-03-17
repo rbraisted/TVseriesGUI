@@ -172,6 +172,8 @@ TVRO.WebService = (function() {
 		LIVE_WEBSERVICE_URL = '/webservice.php',
 		DEMO_WEBSERVICE_URL = '/demo/webservice.php';
 
+	LIVE_WEBSERVICE_URL = DEMO_WEBSERVICE_URL;
+
 	function jsonAsXml(json) {
 		var xml = '';
 		for (var key in json) {

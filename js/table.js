@@ -1,11 +1,5 @@
 "use strict";
 
-function indexOf(arr, x) {
-	var index = _.indexOf(arr, x);	//	check primitives
-	if (index < 0) index = _.findIndex(arr, x); //	check objs - for sats, groups, receivers, etc
-	return index;
-}
-
 (function(tvro) {
 	//	<jQ>
 	//		<table-head>
@@ -47,7 +41,7 @@ function indexOf(arr, x) {
 				} else {
 					var index = indexOf(vals, arg);
 					if (index != -1) {
-						selVal = arg;
+						selVal = vals[index];
 						$('.\\#table-row', jQ)
 						.removeClass('$sel')
 						.eq(index)

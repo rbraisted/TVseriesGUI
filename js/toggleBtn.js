@@ -1,21 +1,20 @@
 "use strict";
 
 (function(tvro) {
-	//	<jQ>
-	//		<table-head>
-	//		<table-row>
+
 	var toggleBtn = function(jQ) {
 		var
 		toggleBtn,
-		on = $(jQ).hasClass('$on'),
+		val = $(jQ).hasClass('$on'),
 		clickCb;
 
 		$(jQ).click(function() {
-			on = $(jQ).toggleClass('$on').hasClass('$on');
-			clickCb(on);
+			val = $(jQ).toggleClass('$on').hasClass('$on');
+			clickCb(val);
 		});
 
 		return toggleBtn = {
+			//	set call $ click(true||false)
 			click: function(arg) {
 				if (_.isFunction(arg)) {
 					clickCb = arg;
@@ -24,12 +23,13 @@
 				}
 				return toggleBtn;
 			},
-			on: function(arg) {
-				//	get isOn
+
+			//	get set .$on
+			val: function(arg) {
 				if (!arguments.length) {
-					return on;
+					return val;
 				} else {
-					on = $(jQ).toggleClass('$on', arg).hasClass('$on');
+					val = $(jQ).toggleClass('$on', Boolean(arg)).hasClass('$on');
 					return toggleBtn;
 				}
 			}

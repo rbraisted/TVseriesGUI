@@ -1,3 +1,11 @@
+@mixin bgimg($url, $pos: center center, $w: 21px, $h: 21px) {
+	background-image: url($url);
+	background-position: $pos;
+	background-repeat: no-repeat;
+	min-height: $w;
+	min-width: $h;
+}
+
 @mixin icon($x: center, $y: center, $w: 21px, $h: 21px) {
 	background: transparent no-repeat $x $y/$w $h;
 	min-height: $h;

@@ -1,62 +1,6 @@
 "use strict";
 
-TVRO.SatellitesPage = function(jQ) {
-
-	return {
-		init: function() {
-			//	DEV
-			$(document.body).setClass('is-group at-satellite-group');
-
-			var groupTableView = satellites.GroupTableView($('.\\#group-table-view'));
-			satellites.getGroups().then(groupTableView.setGroups);
-
-			var groupView = satellites.GroupView($('.\\#group-view'));
-			satellites.getInstalledGroup().then(groupView.setGroup);
-			
-
-			// menuView = MenuView('[id ~= menu-view ]');
-			// groupView = GroupView('[id ~= satellite-group-view ]');
-			// editView = EditView('[id ~= edit-satellite-group-view ]');
-			// singleTableView = TableView('[id ~= satellites-table-view ]');
-			// groupTableView = TableView('[id ~= satellites-table-popup-view ]');
-			// infoView = InfoView('[id ~= satellite-info-view ]');
-
-			// webService.request('get_satellite_groups', function(response) {
-			// 	$('group', response).each(function() {
-			// 		groups.push(TVRO.Group(this));
-			// 	});
-
-			// 	webService.request('get_autoswitch_status', function(response) {
-			// 		var name = $('satellite_group', response).text(),
-			// 			slot = $('master sat', response).text();
-
-			// 		service = $('service', response).text();
-			// 		enable = $('enable:eq(0)', response).text();
-
-			// 		$(groups).each(function() {
-			// 			if (this.name === name) {
-			// 				selectedGroup = this;
-			// 				selectedSatellite = selectedGroup['satellite'+slot]
-			// 			}
-			// 		});
-
-			// 		menuView.refresh();
-			// 	});
-			// });
-
-			// webService.request('get_satellite_list', function(response) {
-			// 	// satellites = [];
-			// 	$('satellite', response).each(function(i, satellite) {
-			// 		satellites.push(TVRO.Satellite(satellite));
-			// 	});
-			// });
-		}
-	}
-}
-
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-
-
 
 TVRO.SatellitesPage = function() {
 	var
@@ -128,7 +72,11 @@ TVRO.SatellitesPage = function() {
 
 		return $.extend({}, self, {
 			refresh: function() {
-				var isSingle = !!selectedGroup.satelliteA.antSatID + !!selectedGroup.satelliteB.antSatID + !!selectedGroup.satelliteC.antSatID + !!selectedGroup.satelliteD.antSatID === 1;
+				var isSingle =
+					(selectedGroup.satelliteA ? !!selectedGroup.satelliteA.antSatID : 0) +
+					(selectedGroup.satelliteB ? !!selectedGroup.satelliteB.antSatID : 0) +
+					(selectedGroup.satelliteC ? !!selectedGroup.satelliteC.antSatID : 0) +
+					(selectedGroup.satelliteD ? !!selectedGroup.satelliteD.antSatID : 0) === 1;
 
 				modeBtn.setOn(isSingle);
 				$(document.body).toggleClass('is-single', isSingle).toggleClass('is-group', !isSingle);
@@ -533,6 +481,8 @@ TVRO.SatellitesPage = function() {
 		$('[id ~= edit-btn]', self).click(function() {
 			$('[id ~= view ]', self).hide();
 			$('[id ~= edit ]', self).show();
+			
+			//	check for user defined
 			if (satellite.antSatID.substr(0, 4) !== 'USER') {
 				$('[id ~= name ]', self).toggle();
 				$('[id ~= region ], [id ~= region-btn ]', self).toggle();

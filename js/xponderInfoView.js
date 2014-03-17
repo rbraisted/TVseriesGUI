@@ -2,9 +2,9 @@
 
 (function(tvro){
 
-	var satInfoView = function(jQ) {
+	var xponderInfoView = function(jQ) {
 		var
-		satInfoView,
+		xponderInfoView,
 		favBtn = tvro.toggleBtn($('.\\#fav-btn', jQ))
 		.click(function(isFav) {
 			tvro.ws.setSatelliteIdentity({
@@ -14,7 +14,11 @@
 		}),
 		sat;
 
-		return satInfoView = {
+		$('.\\#edit-btn', jQ).click(function() {
+			if (satEditView) satEditView.sat(sat);
+		});
+
+		return xponderInfoView = {
 			sat: function(arg) {
 				if (!arguments.length) {
 					return sat;
@@ -32,8 +36,7 @@
 						$('.\\#sat-lnb', jQ).text('Linear');	//	TODO
 						$('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
 						$('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
-						
-						favBtn.val(sat.favorite);
+						favBtn.on(sat.favorite);
 
 						_.forEach(sat.xponders, function(xponder) {
 							var xponderJq = $({
@@ -54,13 +57,13 @@
 							$(jQ).toggleClass('$ins', sat.antSatID === insSat.antSatID);
 						});
 					});					
-					return satInfoView;
+					return xponderInfoView;
 				}
 			}
 		}
 	}
 
-	tvro.satInfoView = satInfoView;
+	tvro.xponderInfoView = xponderInfoView;
 
 }(window.tvro));
 //	??? invalid left hand assign ???

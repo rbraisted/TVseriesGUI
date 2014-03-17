@@ -49,6 +49,7 @@ sat = function(xml) {
 		//	get_satellite_list and get_satellite_params
 		listID: $('listID', xml).text(),
 		antSatID: $('antSatID', xml).text(),
+		predefined: $('antSatID', xml).text().indexOf('USER') < 0,
 		name: $('name', xml).text(),
 		region: $('region', xml).text(),
 		lon: Number($('lon', xml).text()),
@@ -97,7 +98,7 @@ tvro.data = {
 		});
 	},
 
-	installGroup: function(group) {
+	setInstalledGroup: function(group) {
 		return tvro.ws.getAutoswitchStatus()
 		.then(function(r) {
 			return tvro.ws.setAutoswitchService({
@@ -138,7 +139,14 @@ tvro.data = {
 		});
 	},
 
+	setInstalledSat: function(sat) {
+		return tvro.ws.selectSatellite({
+			antSatID: sat.antSatID
+		});
+	},
+
 	getSatParams: function(s) {
+		//	return the sat we get from getSatelliteParams in a promise
 		return tvro.ws.getSatelliteParams({antSatID:s.antSatID}, true).then(sat);
 	},
 

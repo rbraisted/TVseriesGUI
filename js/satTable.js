@@ -5,9 +5,34 @@
 	var satTable = function(jQ) {
 		var
 		satTable,
-		satInfoView,
 		region,
-		table = tvro.table($('.\\#sat-table-view', jQ))
+		sort,//	sort property or function _.sortBy(sats, sort)
+		reverse,// ascending or descending sort $asc $dsc
+		table = tvro.table(
+			$('.\\#sat-table-view', jQ)
+			.find('.\\#table-head .\\#sort-btn')
+			.click(function() {
+				var btn = $(this);
+				sort = undefined;
+				if (btn.is('.\\#name-btn')) sort = 'name';
+				else if (btn.is('.\\#lon-btn')) sort = 'lon';
+				else if (btn.is('.\\#region-btn')) sort = 'region';
+				else if (btn.is('.\\#fav-btn')) sort = function(sat) { return !sat.favorite; };
+
+				if (sort) {
+					if (btn.hasClass('$asc')) reverse = true;
+					else reverse = false;
+
+					$('.\\#table-head .\\#sort-btn', jQ).removeClass('$asc $dsc');
+					btn.toggleClass('$dsc', reverse).toggleClass('$asc', !reverse);
+				} else {
+					$('.\\#table-head .\\#sort-btn', jQ).removeClass('$asc $dsc');
+				}
+
+				satTable.region(region);
+			})
+			.end()
+		)
 		.build(function(row, sat) {
 			$('.\\#sat-name', row).text(sat.name || 'N/A');
 			$('.\\#sat-region', row).text(sat.region || 'N/A');
@@ -18,9 +43,12 @@
 			});
 
 			$('.\\#install-btn', row).click(function() {
-				tvro.data.setInstalledSat({antSatID:sat.antSatID});
-				$('.\\#sat-table-view', jQ).removeClass('$ins');
-				row.addClass('$ins');
+				if (confirm('Are you sure you want to install '+sat.name+'?')) {
+					tvro.data.setInstalledSat(sat).then(function() {
+						$('.\\#sat-table-view .\\#table-row', jQ).removeClass('$ins');
+						row.addClass('$ins');
+					});
+				}
 			});
 
 			$('.\\#fav-btn', row).click(function() {
@@ -30,32 +58,29 @@
 					favorite: row.hasClass('$fav')
 				});
 			});
+		}),
 
-			$('.\\#info-btn', row).click(function() {
-				if (satInfoView) satInfoView.sat(sat);
-			});			
+		built = tvro.data.getSats().then(function(sats) {
+			table.vals(sats).build();
 		});
 
 		return satTable = _.merge(table, {
 			sats: table.vals,
 			sat: table.val,
+			built: function() {
+				return built;
+			},
 			region: function(arg) {
 				if (!arguments.length) {
 					return region;
 				} else {
 					region = arg;
-					tvro.data.getSats().then(function(sats) {
+					built = tvro.data.getSats().then(function(sats) {
 						if (region !== 'All') sats = _.filter(sats, {region:region});
+						if (sort) sats = _.sortBy(sats, sort);
+						if (sort && reverse) sats.reverse();
 						table.vals(sats).build();
 					});
-					return satTable;
-				}
-			},
-			satInfoView: function(arg) {
-				if (!arguments.length) {
-					return satInfoView;
-				} else {
-					satInfoView = arg;
 					return satTable;
 				}
 			}

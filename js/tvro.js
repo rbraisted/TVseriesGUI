@@ -1,5 +1,8 @@
 "use strict";
 
+var decode = decodeURIComponent;
+var encode = encodeURIComponent;
+
 function indexOf(arr, x) {
 	var index = _.indexOf(arr, x);	//	check primitives
 	if (index < 0) index = _.findIndex(arr, x); //	check objs - for sats, groups, receivers, etc
@@ -9,7 +12,6 @@ function indexOf(arr, x) {
 (function(tvro) {
 
 var
-
 hash = window.location.hash.substring(1),
 hashCallbacks = [
 	function debug(hash) {
@@ -29,23 +31,10 @@ tvro.hash = function(arg) {
 	return this;
 }
 
-tvro.hash.toString = function() {
-	return hash;
-}
-
-tvro.hash.add = function(str) {
-	tvro.hash(hash+'#'+str);
-}
-
-tvro.hash.remove = function(str) {
-	tvro.hash(hash.replace(new RegExp('#'+str+'$'), ''));
-}
-
 window.onhashchange = function() {
 	if (hash !== window.location.hash.substring(1)) {
 		tvro.hash(window.location.hash.substring(1)).hash();
 	}
 }
-
 
 }(window.tvro = window.tvro || {}));

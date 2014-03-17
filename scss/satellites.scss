@@ -1,418 +1,616 @@
 @import "base.scss";
 
-@mixin slot-anchor {
-	@include row($short-row-height);
-	background-color: #000;
-	font-size: $small;
-	left: 0;
-	padding: 6px;
-	position: absolute;
-	text-align: center;
-}
-
-@mixin slot($style) {
-	//	$desktop style is the grey boxes
-	//	$mobile style is basically like a table-row
-
-	@if $style == $desktop {
-		background-color: $dark-grey;
-		display: inline-block;
-		margin: 0 0 30px;
-		padding: $short-row-height;
-		position: relative;
-		width: calc(50% - 15px);
-		&:nth-child(even) {
-			margin-left: 30px;
-		}
-
-		.slot-head {
-			@include slot-anchor;
-			top: 0;
-		}
-
-		.slot-foot {
-			@include slot-anchor;
-			bottom: 0;
-			color: #000;
-		}		
-	} @elseif $style == $mobile {
-		@include right-icon-blue(right 10px, center, 10px, 10px);
-		border-bottom: 1px solid $bright-blue;
-		cursor: pointer;
-		padding: 14px 0;
-		margin: auto;
-
-		@include breakpoint($desktop) {
-			width: $desktop-max-width - $tall-row-height * 2;	
-		}
-
-		@include breakpoint($mobile) {
-			//	$tall-row-height
-			//	for some reason sass won't use $var but this works:
-			width: calc(100% - 46px * 2);
-		}
-
-		&.first-slot {
-			border-top: 1px solid $bright-blue;
-			margin-top: $tall-row-height;
-		}
-
-		.label,
-		.sat-name {
-			margin-left: $tall-row-height/4;
-		}	
-	}
-}
-
-//	shared views
-////////////////////////////////////////////////////////////////////////////////
-
 .sat-icon {
-	@include sat-icon-white;
+	@include bgimg('sat-icon-white');
 	display: inline-block;
 	margin-right: 5px;
 	vertical-align: text-top;
 }
 
-.sat-status {
-	color: $light-grey;
-	position: absolute;
-	bottom: $sidebar-padding;
-}
-
-.sat-signal {
-	background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;
-	width: 100%;
-	height: 60px;
-	margin-top: -$sidebar-padding;
-
-	&.\$0 { background-image: url(/images/sat-signal-0.svg); }
-	&.\$1 { background-image: url(/images/sat-signal-1.svg); }
-	&.\$2 { background-image: url(/images/sat-signal-2.svg); }
-	&.\$3 { background-image: url(/images/sat-signal-3.svg); }
-	&.\$4 { background-image: url(/images/sat-signal-4.svg); }
-	&.\$5 { background-image: url(/images/sat-signal-5.svg); }
-}
-
-.sat-table {
-	@extend .table;
-	max-height: 600px;
-	overflow: auto;
-
-	.table-row {
-		font-size: $small;
-		&:nth-child(1) { margin-top: $short-row-height; }
-		&:nth-child(odd) { background-color: $light-grey; }
-		&:nth-child(even) { background-color: $dark-grey; }
-		&.\$ins { background-color: $bright-blue; }
-
-		.install-col,
-		.fav-col {
-			padding-top: 0;
-			padding-bottom: 0;
-		}
-	}
-
-	.table-head {
-		@include row($short-row-height);
-		font-size: $fine;
-		.table-col {
-			padding: 6px 15px;
-		}
-	}
-
-	.table-row,
-	.table-head {
-		.install-col {
-			padding-left: 0;
-			padding-right: 0;
-			text-align: center;
-			width: 9%;
-		}
-
-		.install-btn {
-			@include radio-unchecked;
-			cursor: pointer;
-		}
-
-		&.\$ins .install-btn  {
-			@include radio-checked;
-		}
-
-		.name-col {
-			width: 25%;
-		}
-
-		.orb-slot-col {
-			width: 16%;
-		}
-
-		.region-col {
-			width: 25%;
-		}
-
-		.fav-col {
-			width: 25%;
-		}
-
-		.fav-btn {
-			@include heart-icon-black;
-			cursor: pointer;
-			float: left;
-		}
-
-		&.\$fav .fav-btn { @include heart-icon-white; }
-
-		.info-btn {
-			@include info-icon;
-			cursor: pointer;
-			float: right;
-		}
-	}
-}
-
-.sat-info,
-.sat-edit {
-	margin-top: -450px !important;
-	max-height: 900px !important;
-
-	.input {
-		width: 100%;
-		margin-top: -10px;
-		margin-bottom: -7px;
-	}
-
-	@mixin block($fit) {
-		display: inline-block;
-		margin-bottom: $tall-row-height/2;
-		vertical-align: top;
-		width: ($desktop-max-width - $tall-row-height * 2)/$fit;
-		border-left: 1px solid $bright-blue;
-		padding: 0 $tall-row-height/2;
-	}
-
-	.label {
-		font-size: $small;
-		color: $bright-grey;
-		margin-bottom: $tall-row-height/4;
-	}
-
-	//	these blocks need to get a margin on desktop
-	.name-block,
-	.region-block,
-	.lnb-block {
-		margin-left: $tall-row-height;
-	}
-
-	.name-block {
-		@include block(1);
-		border: 0;
-	}
-
-	.fav-block {
-		position: absolute;
-		top: $tall-row-height*2;
-		right: $tall-row-height;
-
-		.label {
-			display: inline-block;
-			vertical-align: middle;
-		}
-
-		.heart-btn {
-			display: inline-block;
-			&.\$on .off, .on { display: none; }
-			&.\$on .on, .off { display: block; }
-			.on { @include heart-icon-white; }
-			.off { @include heart-icon-black; }
-			vertical-align: middle;
-		}
-
-		.favorite-btn {
-			margin: 0 10px;
-			vertical-align: middle;
-		}
-	}
-
-	.region-block,
-	.orb-slot-block,
-	.hemisphere-block,
-	.suffix-block,
-	.skew-block {
-		@include block(5);
-	}
-
-	.lnb-block,
-	.lo1-block,
-	.lo2-block {
-		@include block(3);
-	}
-
-	.slot {
-		@include slot($desktop);
-		padding-top: $short-row-height*2;
-		padding-bottom: $short-row-height - $tall-row-height/2;
-		//	$tall-row-height doesn't work here,
-		//	we'll have to hardcode it
-		width: calc(50% - 46px - 15px);
-		&:nth-child(odd) { margin-left: $tall-row-height; }
-
-		.xponder-block {
-			margin-bottom: $tall-row-height/2;
-			width: 50%;
-			&:nth-child(odd) { float: right; }
-			&:nth-child(even) { float: left; }
-		}
-	}
-}
-
-//	single views
-////////////////////////////////////////////////////////////////////////////////
-
 .region-table {
-	@extend .table;
+	@include blue-table;
 	.table-row {
 		cursor: pointer;
-		&:hover { background-color: $dark-blue; }
-		&.\$sel { background-color: $bright-blue; }
+	}
+
+	@include breakpoint($mobile) {
+		.table-row.\$sel {
+			background-color: $light-blue;
+		}
+
+		.table-row {
+			@include bgimg('right-icon-blue', right 15px center, $fine-icon);
+		}
 	}
 }
-
-//	group views
-////////////////////////////////////////////////////////////////////////////////
 
 .group-table {
 	@extend .region-table;
+
 	.table-row {
 		.install-btn {
-			@include radio-unchecked;
+			@include bgimg('radio-unchecked');
 			display: inline-block;
 			padding: 0;
 			margin-left: 15px;
 		}
 
 		&.\$ins .install-btn {
-			@include radio-checked;
+			@include bgimg('radio-checked');
 		}
 	}
 }
 
-.group-info {
-	.slot {
-		@include breakpoint($desktop) {
-			@include slot($desktop);
-			height: 140px;
-			text-align: center;
+//	sat table
+////////////////////////////////////////////////////////////////////////////////
 
-			.sat-name {
-				left: 0;
-				//	the default font-size is $medium
-				margin-top: $medium/-2;
-				position: absolute;
-				top: 50%;
-				width: 100%;
-			}
+.sat-table {
+	@include alt-table;
+	overflow: auto;
 
-			.install-btn {
-				left: 25px;
-				//	the default icon size is $large
-				margin-top: $large/-2;
-				position: absolute;
-				top: 50%;
-			}
+	.table-head {
+		background-color: $light-blue;
+		font-size: $fine-font;
+		min-height: $lil-bump;
 
-			.info-btn {
-				@include info-icon;
-				cursor: pointer;
-				margin-top: $large/-2;
-				position: absolute;
-				right: 25px;
-				top: 50%;
-			}
+		.table-col { padding: 7px 15px; }
+		.sort-btn { cursor: pointer; }
+		.sort-btn.\$asc { @include bgimg('up-icon-white'); }
+		.sort-btn.\$dsc { @include bgimg('down-icon-white'); }
+
+		.sort-btn.\$asc,
+		.sort-btn.\$dsc {
+			background-color: $bright-blue;
+			background-position: right 15px center;
+			background-size: 9px;
 		}
+	}
 
-		@include breakpoint($mobile) {
-			@include slot($mobile);
-			padding: 15px;
-			border-bottom: 1px solid $bright-blue;
+	//	for the fixed header
+	.table-head+.table-row {
+		margin-top: $lil-bump;
+	}
 
-			.slot-head,
-			.slot-foot {
-				display: none;
-			}
-
-			.sat-name,
-			.install-btn {
-				display: inline-block;
-			}
-		}
+	.table-row {
+		font-size: $small-font;
 
 		.install-btn {
-			@include radio-unchecked;
+			@include bgimg('radio-unchecked');
 			cursor: pointer;
-			display: none;
+			margin: auto;
+			width: 21px;
 		}
-	}
 
-	&.\$ins {
-		.slot .install-btn {
-			display: block;
+		.fav-btn {
+			@include bgimg('heart-icon-black');
+			cursor: pointer;
+			float: left;
+		}
 
-			@include breakpoint($mobile) {
-				float: left;
-				margin-top: -3px;
+		.info-btn {
+			@include bgimg('info-icon');
+			cursor: pointer;
+			float: right;
+		}
+
+		&.\$ins {
+			background-color: $bright-blue;
+			.install-btn  {
+				@include bgimg('radio-checked');
 			}
 		}
 
-		.slot.\$ins {
-			@include breakpoint($desktop) {
-				background-color: $light-blue;
-
-				.slot-head,
-				.slot-foot {
-					background-color: $bright-blue;
-					color: #fff;
-				}
-			}			
-
-			.install-btn {
-				@include radio-checked;
-			}
+		&.\$fav .fav-btn {
+			@include bgimg('heart-icon-white');
 		}
+
+	}
+	
+	.install-col {
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
 	}
 
-	&.\$ins .btn-tray .install-btn,
-	&.is-predefined .btn-tray .edit-btn,
-	&.is-predefined .btn-tray .delete-btn {
+	@include breakpoint($desktop) {
+		max-height: 600px;
+
+		.install-col { 	width: 9%; }
+		.name-col { 	width: 25%; }
+		.orb-slot-col { width: 16%; }
+		.region-col { 	width: 25%; }
+		.fav-col { 		width: 25%; }
+
+		.popup & { height: 100%; }
+	}
+
+	@include breakpoint($mobile) {
+		.table-head {
+			position: fixed;
+			top: $header-height + $big-bump;// view-head height
+		}
+
+		.install-col { 	width: 15%; }
+		.name-col { 	width: 50%; }
+		.orb-slot-col { width: 35%; }
+		.region-col { 	display: none; }
+		.fav-col { 		display: none; }
+	}
+
+	.popup & {
+		.table-row {
+			cursor: pointer;
+		}
+	}
+}
+
+//	mixins for group info/edit and sat info/edit
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin label {
+	font-size: $small-font;
+	color: $bright-grey;
+}
+
+@mixin thin-black-bar {
+	background-color: #000;
+	font-size: $small-font;
+	height: $lil-bump;
+	padding: ($lil-bump - $small-font)/2;
+	text-align: center;
+	width: 100%;
+}
+
+@mixin desktop-slot-head {
+}
+
+@mixin desktop-slot-foot {
+	@include thin-black-bar;
+	position: absolute;
+	bottom: 0;
+}
+
+@mixin desktop-slot($class: false) {
+	@include split(2, 30px, $class);
+	background-color: $dark-grey;
+	position: relative;	
+
+	.slot-head, .slot-foot {
+		@include thin-black-bar;
+		position: absolute;
+	}
+
+	.slot-head { top: 0; }
+	.slot-foot { bottom: 0; }
+}
+
+@mixin mobile-slot {
+	@include table-row;
+	width: calc(100% - #{$table-row-padding*4});
+	margin: auto;
+	padding: $table-row-padding;
+
+	&.name-block {
+		margin: $table-row-padding auto $table-row-padding * 2;
+		border-bottom: 0;
+	}
+
+	&.first {
+		border-top: 1px solid $bright-blue;
+	}
+
+	.slot-head,
+	.name-label {
+		@include label;
+		padding-bottom: $table-row-padding/2;
+	}
+
+	.info-btn,
+	.slot-foot {
 		display: none;
 	}
 }
 
+//	group info desktop
+////////////////////////////////////////////////////////////////////////////////
+
+.group-info {
+	@include breakpoint($desktop) {
+		.name-block {
+			display: none;
+		}
+
+		.slot {
+			@include desktop-slot('.slot');
+			height: 140px;
+
+			.slot-foot {
+				color: #000;
+			}
+
+			.install-btn, .info-btn, .sat-name {
+				position: absolute;
+				top: 50%;
+			}
+
+			.install-btn, .info-btn {
+				cursor: pointer;
+				margin-top: $medium-icon/-2;
+			}
+
+			.sat-name {
+				margin-top: $medium-font/-2;
+				text-align: center;
+				width: 100%;
+			}
+
+			.install-btn {
+				@include bgimg('radio-unchecked');
+				display: none;
+				left: 25px;
+			}
+
+			.info-btn {
+				@include bgimg('info-icon');
+				right: 25px;
+			}
+		}
+
+		//	if the group is installed
+		&.\$ins .slot {
+			.install-btn {
+				display: block;
+			}
+
+			//	if group installed and sat installed
+			&.\$ins {
+				background-color: $light-blue;
+				.slot-head, .slot-foot {
+					background-color: $bright-blue;
+					color: #fff;
+				}
+
+				.install-btn {
+					@include bgimg('radio-checked');
+				}
+			}
+		}
+	}
+}
+
+//	group info mobile
+//	group edit mobile
+//	they're very similar
+////////////////////////////////////////////////////////////////////////////////
+
+.group-edit,
+.group-info {
+	@include breakpoint($mobile) {
+		.name-block,
+		.slot {
+			@include mobile-slot;
+		}
+
+		.install-btn {
+			cursor: pointer;
+		}
+
+		.btn-tray {
+			.block-btn {
+				@include split(2, $btn-tray-padding, '.block-btn');
+				display: inline-block;
+				margin-bottom: 0;
+			}
+
+			.install-btn {
+				display: none;
+			}
+		}
+
+		&.\$ins .slot {
+			padding-left: ($table-row-padding * 2) + $medium-icon;
+			.install-btn {
+				@include bgimg('radio-unchecked');
+				position: absolute;
+				left: $table-row-padding;
+				top: 50%;
+				margin-top: $medium-icon/-2;
+			}
+
+			&.\$ins .install-btn {
+				@include bgimg('radio-checked');
+			}
+		}
+
+		&.\$pre .btn-tray {
+			display: none;
+		}
+
+		&.group-edit {
+			.group-name {
+				padding-left: 16px;
+				margin-left: -16px;
+				width: calc(100% + 32px);
+			}
+
+			.slot {
+				@include bgimg('right-icon-blue', right 15px center, $fine-icon);
+				cursor: pointer;
+			}
+		}
+	}
+
+	//	if the sat is n/a, don't show install/info btns
+	.slot.\$n\/a {
+		.install-btn, .info-btn{
+			display: none;
+		}
+	}
+
+	//	can't install if already installed
+	&.\$ins .btn-tray .install-btn {
+		display: none;
+	}
+
+	//	can't edit/delete if the group is predefined
+	&.\$pre .btn-tray {
+		.edit-btn, .delete-btn {
+			display: none;
+		}
+	}
+}
+
+//	group edit desktop
+//	they're very similar
+////////////////////////////////////////////////////////////////////////////////
+
 .group-edit {
+	@include breakpoint($desktop) {
+		&.popup-guts {
+			height: 540px;
+			margin-top: -270px;
+		}
+
+		.name-block,
+		.slot {
+			@include mobile-slot;
+		}
+
+		&.\$ins .slot {
+			padding-left: ($table-row-padding * 2) + $medium-icon;
+			.install-btn {
+				@include bgimg('radio-unchecked');
+				position: absolute;
+				left: $table-row-padding;
+				top: 50%;
+				margin-top: $medium-icon/-2;
+			}
+
+			&.\$ins .install-btn {
+				@include bgimg('radio-checked');
+			}
+		}
+
+		&.group-edit {
+			.group-name {
+				padding-left: 16px;
+				margin-left: -16px;
+				width: calc(50% + 16px);
+			}
+
+			.slot {
+				@include bgimg('right-icon-blue', right 15px center, $fine-icon);
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+//	sat info
+//	sat edit
+////////////////////////////////////////////////////////////////////////////////
+
+.sat-info,
+.sat-edit {
+	.value {
+		@include ellipsis;
+	}
+
 	.label {
-		color: $bright-grey;
-		display: block;
-		font-size: $small;
-		margin-bottom: 10px;
-		margin-left: $tall-row-height * 1.25;
+		@include label;
 	}
 
-	.name-input {
-		margin-left: $tall-row-height;
+	.value {
+		padding-top: 10px;
+	}
 
-		@include breakpoint($desktop) {
-			width: ($desktop-max-width - $tall-row-height * 4)/3;
+	.heart-btn {
+		cursor: pointer;		
+	}
+
+	@include breakpoint($mobile) {
+		&.popup-guts {
+			padding: 30px;
+		}
+		.btn-tray {
+			.edit-btn {
+				width: 100%;
+			}
+			
+			.save-btn,
+			.cancel-btn,
+			.reset-btn {
+				@include split(3, $btn-tray-padding, '.block-btn');
+				margin-bottom: 0;
+			}
 		}
 
-		@include breakpoint($mobile) {
-			//	$tall-row-height
-			//	for some reason sass won't use $var but this works:
-			width: calc(100% - 46px * 2);
+		.fav-block {
+			position: absolute;
+			top: 30px;
+			right: 30px;
+			.label,
+			.fav-btn {
+				display: none;
+			}
+
+			.heart-btn {
+				@include bgimg('heart-icon-blue', center center, 40px, 40px);
+				&.\$on { @include bgimg('heart-icon-white', center center, 40px, 40px); }
+			}
+		}
+
+		.name-block {
+			border-bottom: 1px solid $bright-blue;
+			padding: 0 20px 20px;
+		}
+
+		.region-block,
+		.orb-slot-block,
+		.hemisphere-block,
+		.suffix-block,
+		.skew-block,
+		.lnb-block,
+		.lo1-block,
+		.lo2-block {
+			@include split(2, 0px, '');
+			border-bottom: 1px solid $bright-blue;
+			padding: 20px 0;
+			.label, .value {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+			&:nth-child(odd) {
+				.label, .value { border-left: 1px solid $bright-blue; }
+			}
+		}
+
+		.xponder {
+			@include desktop-slot('.xponder');
+			display: block;
+			width: 100%;
+			margin: 20px 0;
+
+			.xponder-block {
+				padding: 20px;
+				border-top: 1px solid $bright-blue;
+			}
+
+			.freq-block {
+				padding-top: $lil-bump+20px;
+			}
 		}
 	}
 
-	.slot {
-		@include slot($mobile);
+	@include breakpoint($desktop) {
+		&.popup-guts {
+			padding: $big-bump+30px 30px 30px 30px;
+			height: 845px;
+			margin-top: -430px;
+		}
+
+		.label {
+			@include label;
+		}
+
+		.name-block {
+			margin-bottom: 25px;
+		}
+
+		.fav-block {
+			position: absolute;
+			right: 30px;
+			top: $big-bump+30px;
+			vertical-align: middle;
+
+			.label,
+			.fav-btn,
+			.heart-btn {
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: 10px;
+			}
+
+			.heart-btn {
+				@include bgimg('heart-icon-black');
+				&.\$on { @include bgimg('heart-icon-white'); }
+			}
+		}
+
+		.region-block,
+		.orb-slot-block,
+		.hemisphere-block,
+		.suffix-block,
+		.skew-block {
+			@include split(5, 0px, '');
+			border-left: 1px solid $bright-blue;
+			padding: 0 20px;
+			margin-bottom: 25px;
+		}
+
+		.lnb-block,
+		.lo1-block,
+		.lo2-block {
+			@include split(3, 0px, '');
+			border-left: 1px solid $bright-blue;
+			padding: 0 20px;
+			margin-bottom: 25px;
+		}
+
+		.xponder {
+			@include desktop-slot('.xponder');
+			padding: $lil-bump+20px 20px 0 20px;
+
+			.slot-head {
+				left: 0;
+			}
+
+			.xponder-block {
+				@include split(2, 0px, '.xponder-block');
+				margin-bottom: 20px;
+				vertical-align: top;
+			}
+		}
+
+		.btn-tray {
+			left: 0;
+		}
+	}
+}
+
+.sat-edit {
+	.input,
+	.dropdown-btn {
+		width: calc(100% - 5px);
+		margin: 4px -11px -6px;
+	}
+
+	@include breakpoint($mobile) {
+			.input,
+			.dropdown-btn {
+				width: calc(100% + 20px);
+			}				
+	}
+
+	@include breakpoint($desktop) {
+		.symRate-block,
+		.netID-block {
+			.input,
+			.dropdown-btn {
+				width: calc(100% + 20px);
+			}
+		}		
+	}
+
+	.\$pre & {
+		.input,
+		.dropdown-btn {
+			display: none;
+		}
+		.xponder .input,
+		.xponder .dropdown-btn {
+			display: inline-block;
+		}
 	}
 }
 
@@ -420,22 +618,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .\#region-table-view,
-.\#group-table-view {
+.\#group-table-view,
+.sidebar .\#new-btn {
 	display: none;
 }
-
 
 //	mobile
 @include breakpoint($mobile) {
 
 	//	single mode
-	.\/regions .sidebar, .\/regions .\#region-table-view,
+	.\/regions .sidebar,
+	.\/regions .\#region-table-view,
 	.\/regions\/region .\#single-sat-table-view,
 	.\/regions\/region\/sat .\#sat-info-view,
 	.\/regions\/region\/sat\/edit .\#sat-edit-view,
 
 	//	group mode
-	.\/groups  .sidebar, .\/groups  .\#group-table-view,
+	.\/groups .sidebar,
+	.\/groups .sidebar .\#new-btn,
+	.\/groups .\#group-table-view,
 	.\/groups\/group .\#group-info-view,
 	.\/groups\/group\/edit .\#group-edit-view,
 	.\/groups\/group\/sat .\#sat-info-view,
@@ -443,22 +644,6 @@
 	.\/groups\/group\/sat\/edit .\#sat-edit-view,
 	.\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
 	.\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
-		display: block;
-	}
-
-	// single mode
-	.at-region-table-view .sidebar,
-	.at-region-table-view .\#region-table-view,
-	.at-single-sat-table-view .\#single-sat-table-view,
-	.at-single-sat-info-view .\#single-sat-info-view,
-
-	// group mode
-	.at-group-table-view .sidebar,
-	.at-group-table-view .\#group-table-view,
-	.at-group-info-view .\#group-info-view,
-	.at-group-edit-view .\#group-edit-view,
-	.at-group-sat-table-view .\#group-sat-table-view,
-	.at-group-sat-info-view .\#group-sat-info-view {
 		display: block;
 	}
 }
@@ -485,7 +670,6 @@
 		display: block;
 	}
 
-
 	//	group mode
 	.\/groups,
 	.\/groups\/group,
@@ -496,7 +680,8 @@
 	.\/groups\/group\/edit\/sats\/sat,
 	.\/groups\/group\/edit\/sats\/sat\/edit {
 		.\#group-table-view,
-		.\#group-info-view {
+		.\#group-info-view,
+		.sidebar .\#new-btn, {
 			display: block;
 		}
 	}
@@ -509,57 +694,12 @@
 	.\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
 		display: block;
 	}
-
-	// single mode
-	.at-region-table-view,
-	.at-single-sat-table-view,
-	.at-single-sat-info-view {
-		.\#region-table-view,
-		.\#single-sat-table-view {
-			display: block;
-		}
-	}
-
-	.at-single-sat-info-view .\#single-sat-info-view {
-		display: block;
-	}
-
-	// group mode
-	.at-group-table-view {
-		.\#group-table-view,
-		.\#group-info-view {
-			display: block;
-		}		
-	}
-
-	.at-group-info-view {
-		.\#group-table-view,
-		.\#group-info-view {
-			display: block;
-		}		
-	}
-
-	.at-group-edit-view {
-		.\#group-table-view,
-		.\#group-info-view,
-		.\#group-edit-view {
-			display: block;
-		}
-	}
-
-	.at-group-sat-table-view {
-		.\#group-table-view,
-		.\#group-info-view,
-		.\#group-sat-table-view {
-			display: block;
-		}
-	}
-
-	.at-group-sat-info-view {
-		.\#group-table-view,
-		.\#group-info-view,
-		.\#group-sat-info-view {
-			display: block;
-		}
-	}
 }
+
+//	states:
+//	$sel	selected
+//	$ins	installed
+//	$pre	predefined
+// 	$fav	favorited
+//	$n/a	not available
+//	$on		on

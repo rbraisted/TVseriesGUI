@@ -9,23 +9,33 @@
 		slotToEdit,
 		group;
 
-		_.forEach(['a', 'b', 'c', 'd'], function(slot) {
-			$('.\\#sat-'+slot+'-view', jQ)
-			.click(function() {
-				if (satTableView && group[slot]) satTableView.val(group[slot]);
-			})
-			.find('.\\#install-btn')
-			.click(function() {
-				tvro.data.setInstalledSat(group[slot]).then(function() {
-					tvro.hash();
-				});
-			});
-		});
+		$('.\\#save-btn', jQ).click(function() {
+			var nu = {name: $('.\\#group-name', jQ).val()};
 
-		$(':not(.\\#sat-view) .\\#install-btn', jQ).click(function() {
-			tvro.data.setInstalledGroup(group).then(function() {
-				tvro.hash();
+			_.forEach(['a', 'b', 'c', 'd'], function(slot) {
+				if (group[slot]) nu[slot] = group[slot].antSatID;
 			});
+
+			if (!nu.name) {
+				return alert('You must give this group a name!');
+			}
+
+			if (confirm('Are you sure you want to save '+nu.name+'?')) {
+				// editing group
+				if (group.name) {
+					tvro.data.removeGroup({name:group.name}).then(function() {
+						return tvro.data.addGroup(nu);
+					}).then(function() {
+						tvro.hash();
+					});
+
+				// new group
+				} else {
+					tvro.data.addGroup(nu).then(function() {
+						groupEditView.group(nu);
+					});
+				}
+			}
 		});
 
 		return groupEditView = {
@@ -34,7 +44,7 @@
 					return group;
 				} else {
 					group = arg;
-					$('.\\#group-name', jQ).val(group.name || 'N/A');
+					$('.\\#group-name', jQ).val(group.name);
 
 					_.forEach(['a', 'b', 'c', 'd'], function(slot) {
 						$('.\\#sat-'+slot+'-view', jQ)
@@ -43,7 +53,6 @@
 						.end()
 						.click(function() {
 							slotToEdit = slot;
-							//	satTableView sat?
 						})
 					});
 

@@ -3,41 +3,38 @@
 (function(tvro){
 
 	var groupInfoView = function(jQ) {
-		var
-		groupInfoView,
-		groupEditView,
-		satInfoView,
-		group;
+		var group, groupInfoView;
 
+		//	install sat
 		_.forEach(['a', 'b', 'c', 'd'], function(slot) {
 			$('.\\#sat-'+slot+'-view', jQ)
 			.find('.\\#install-btn')
 			.click(function() {
-				tvro.data.setInstalledSat(group[slot]).then(function() {
-					tvro.hash();
-				});
+				if (confirm('Are you sure you want to install '+group[slot].name+'?')) {
+					tvro.data.setInstalledSat(group[slot]).then(function() {
+						tvro.hash();
+					});
+				}
 			})
 			.end()
-			.find('.\\#info-btn')
-			.click(function() {
-				if (satInfoView) satInfoView.sat(group[slot]);
-			});
 		});
 
+		//	install group
 		$(':not(.\\#sat-view) .\\#install-btn', jQ).click(function() {
-			tvro.data.setInstalledGroup(group).then(function() {
-				tvro.hash();
-			});
+			if (confirm('Are you sure you want to install '+group.name+'?')) {
+				tvro.data.setInstalledGroup(group).then(function() {
+					tvro.hash();
+				});
+			}
 		});
 
-		$('.\\#edit-btn', jQ).click(function() {
-			if (groupEditView) groupEditView.group(group);
-		});
-
+		//	delete group
 		$('.\\#delete-btn', jQ).click(function() {
-			tvro.data.removeGroup(group).then(function() {
-				tvro.hash();
-			});
+			if (confirm('Are you sure you want to delete '+group.name+'?')) {
+				tvro.data.removeGroup(group).then(function() {
+					tvro.hash();
+				});				
+			}
 		});
 
 		return groupInfoView = {
@@ -45,42 +42,34 @@
 				if (!arguments.length) {
 					return group;
 				} else {
+					//	here
+					//	we set .$ins, .$pre on jQ
+					//	we set .$ins, .$n/a on #sat-view
 					group = arg;
-					$('.\\#group-name', jQ).text(group.name || 'N/A');
+					$('.\\#group-name', jQ).text(group.name);
+					$(jQ).toggleClass('$pre', group.predefined);
 
-					_.forEach(['a', 'b', 'c', 'd'], function(slot) {
-						$('.\\#sat-'+slot+'-view', jQ)
-						.find('.\\#sat-name')
-						.text(group[slot] ? group[slot].name : 'N/A')
-						.end()
-						.find('.\\#info-btn')
-						.toggle(!_.isUndefined(group[slot]));
+					//	get installed group + sat
+					Promise.all(
+						tvro.data.getInstalledSat(),
+						tvro.data.getInstalledGroup()
+					).then(function(r) {
+						var insSat = r[0], insGroup = r[1];
+						$(jQ).toggleClass('$ins', group.name === insGroup.name); //	set jQ .$ins
+
+						_.forEach(['a', 'b', 'c', 'd'], function(slot) { //	go thru all the slots, sat $ins or $n/a
+							var sat = group[slot], ins = false;
+							if (sat) ins = (sat.antSatID === insSat.antSatID) && (group.name === insGroup.name);
+
+							$('.\\#sat-'+slot+'-view', jQ)
+							.toggleClass('$ins', ins) // set .$ins if installed & group is also installed
+							.toggleClass('$n/a', _.isUndefined(sat)) // set .$n/a is no sat
+							.find('.\\#sat-name')
+							.text(sat ? sat.name : 'N/A')
+							.end()
+						});
 					});
 
-					// xponderVHInfoCtrl.xponder(_.find(sat.xponders, {display:'Vertical High'}));
-					// xponderVLInfoCtrl.xponder(_.find(sat.xponders, {display:'Vertical Low'}));
-					// xponderHHInfoCtrl.xponder(_.find(sat.xponders, {display:'Horizontal High'}));
-					// xponderHLInfoCtrl.xponder(_.find(sat.xponders, {display:'Horizontal Low'}));
-					
-					tvro.data.getInstalledGroup().then(function(insGroup) {
-						$(jQ).toggleClass('$ins', group.name === insGroup.name);
-					});
-					return groupInfoView;
-				}
-			},
-			groupEditView: function(arg) {
-				if (!arguments.length) {
-					return groupEditView;
-				} else {
-					groupEditView = arg;
-					return groupInfoView;
-				}
-			},
-			satInfoView: function(arg) {
-				if (!arguments.length) {
-					return satInfoView;
-				} else {
-					satInfoView = arg;
 					return groupInfoView;
 				}
 			}
