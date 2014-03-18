@@ -1,7 +1,10 @@
 "use strict";
 
+<<<<<<< local
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
+=======
+>>>>>>> other
 TVRO.SatellitesPage = function() {
 	var
 	webService = TVRO.WebService(),
@@ -73,10 +76,17 @@ TVRO.SatellitesPage = function() {
 		return $.extend({}, self, {
 			refresh: function() {
 				var isSingle =
+<<<<<<< local
 					(selectedGroup.satelliteA ? !!selectedGroup.satelliteA.antSatID : 0) +
 					(selectedGroup.satelliteB ? !!selectedGroup.satelliteB.antSatID : 0) +
 					(selectedGroup.satelliteC ? !!selectedGroup.satelliteC.antSatID : 0) +
 					(selectedGroup.satelliteD ? !!selectedGroup.satelliteD.antSatID : 0) === 1;
+=======
+					(selectedGroup.satelliteA ? selectedGroup.satelliteA.antSatID : 0) +
+					(selectedGroup.satelliteB ? selectedGroup.satelliteB.antSatID : 0) +
+					(selectedGroup.satelliteC ? selectedGroup.satelliteC.antSatID : 0) +
+					(selectedGroup.satelliteD ? selectedGroup.satelliteD.antSatID : 0) === 1;
+>>>>>>> other
 
 				modeBtn.setOn(isSingle);
 				$(document.body).toggleClass('is-single', isSingle).toggleClass('is-group', !isSingle);
