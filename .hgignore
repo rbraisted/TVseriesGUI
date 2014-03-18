@@ -15,6 +15,7 @@ syntax: glob
 *.so
 android/bin
 android/gen
+.sass-cache
 
 # Packages #
 ############

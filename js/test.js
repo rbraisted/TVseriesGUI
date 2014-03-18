@@ -60,7 +60,7 @@ $(function() {
 				.end()
 	);
 
-//	single views
+//	single views 
 ////////////////////////////////////////////////////////////////////////////////
 
 	var regionTableView = tvro.table($('.\\#region-table-view'))

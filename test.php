@@ -155,7 +155,7 @@ and also .#group-table-view (group mode)
 			<div class="value #sat-lo2">N/A</div>
 		</div>
 		<div class="xponder first #xponder-hh-view">
-			<div class="slot-head">Horizontal High</div>
+			<div class="slot-head">Horizontal High</div> 
 			<div class="freq-block xponder-block">
 				<div class="label">Frequency (MHz)</div>
 				<div class="value #xponder-freq">N/A</div>
