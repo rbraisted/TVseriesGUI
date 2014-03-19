@@ -324,7 +324,7 @@ $(function() {
 					tvro.data.getInstalledGroup().then(function(group) {
 						//	figure out if we're single mode or not
 						//	and then set the mode switch to the right state
-						if (group.sats().length === 1) window.location.hash = '/regions';
+						if (!group || group.sats().length === 1) window.location.hash = '/regions';
 						else window.location.hash = '/groups';
 					});	
 				}

@@ -172,8 +172,6 @@ TVRO.WebService = (function() {
 		LIVE_WEBSERVICE_URL = '/webservice.php',
 		DEMO_WEBSERVICE_URL = '/demo/webservice.php';
 
-	LIVE_WEBSERVICE_URL = DEMO_WEBSERVICE_URL;
-
 	function jsonAsXml(json) {
 		var xml = '';
 		for (var key in json) {
@@ -236,32 +234,10 @@ TVRO.WebService = (function() {
 					url: requestUrl,
 					data: requestXml,
 					success: function(response) {
-						// console.log('\n------------------------------------------------------------');
 						console.log('~ '+requestName.toUpperCase());
 						// console.log($(requestXml).get(0));
 						var error = $(response).find('ipacu_response > message').attr('error');
-						// console.log(error === '0' ? 'success!' : 'error: '+error+{
-						// 	'-1': 'NOT_WRITTEN_YET',
-						// 	1: 'ERROR',
-						// 	2: 'INVALID_XML_MESSAGE',
-						// 	3: 'UNKNOWN_MESSAGE',
-						// 	4: 'MISSING_ELEMENT_ERROR',
-						// 	5: 'INVALID_ELEMENT_VALUE',
-						// 	6: 'MISSING_DATA',
-						// 	7: 'UNKNOWN_FILE_NAME_ERROR',
-						// 	8: 'FILE_NOT_FOUND_ERROR',
-						// 	9: 'FILE_UNREADABLE_ERROR',
-						// 	10: 'FILE_LOCKED_ERROR',
-						// 	11: 'FILE_UNWRITABLE_ERROR',
-						// 	12: 'EVENT_NOT_FOUND',
-						// 	13: 'TOO_MANY_EVENTS',
-						// 	14: 'DATASTORE_UNAVAILABLE',
-						// 	15: 'TIMEOUT',
-						// 	16: 'INVALID_UPDATE_FILE',
-						// 	17: 'DUPLICATE_DATA'
-						// }[error]);
 						// console.log($('ipacu_response', response).get(0));
-						// console.log('------------------------------------------------------------\n');
 
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);

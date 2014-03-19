@@ -1,0 +1,214 @@
+@import "base.scss";
+
+.menu-table {
+	@include blue-table;
+
+	.table-row {
+		cursor: pointer;
+	}
+
+	@include breakpoint($mobile) {
+		.table-row.\$sel {
+			background-color: $light-blue;
+		}
+
+		.table-row {
+			@include bgimg('right-icon-blue', right 15px center, $fine-icon);
+		}
+	}
+}
+
+.contact-header {
+	padding: $sidebar-padding;
+}
+
+.contact-region {
+	color: $bright-grey;
+	padding: 0 $sidebar-padding;
+}
+
+.operational-log,
+.event-log,
+.restart-system,
+.command-line {
+	p {
+		line-height: 1.6;
+		margin-top: $lil-bump/2;
+		margin-bottom: $lil-bump;
+	}
+
+	@include breakpoint($mobile) {
+		p {
+			padding: 0 $lil-bump;
+		}
+
+		.block-btn {
+			display: block;
+			margin: 0 auto $lil-bump/2;
+			width: calc(100% - #{$lil-bump*2});
+		}
+
+		&.view {
+			padding-top: $lil-bump;
+		}
+	}
+}
+
+.event-log {
+	.event-table {
+		@include alt-table;
+		height: 400px;
+		overflow: auto;
+		margin-bottom: 30px;
+
+		.table-head {
+			background-color: $light-blue;
+			font-size: $fine-font;
+			min-height: $lil-bump;
+
+			.table-col { padding: 7px 15px; }
+		}
+
+		.table-row {
+			font-size: $small-font;
+		}
+
+		.table-head+.table-row {
+			margin-top: $lil-bump;
+		}
+
+		.date-col {
+			width: 20%;
+		}
+
+		.message-col {
+			width: 80%;
+		}
+	}
+
+	@include breakpoint($mobile) {
+		p {
+			display: none;
+		}
+
+		.event-table {
+			bottom: 60px;
+			height: auto;
+			margin-bottom: 0;
+			position: absolute;
+			top: 0;
+		}
+
+		.btn-tray {
+			.save-btn {
+				display: none;
+			}
+
+			.email-btn {
+				width: 100%;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.restart-system {
+	@include breakpoint($mobile) {
+		.restart-hub-btn {
+			margin-top: $lil-bump/2;
+		}
+		
+	}
+	
+}
+
+.command-line {
+	p {
+		background-color: $red;
+		padding: $lil-bump/2;
+	}
+
+	iframe {
+		background-color: $light-grey;
+		width: 100%;
+		height: 300px;
+		margin-bottom: $lil-bump;
+	}
+
+	.btn-tray {
+		.input {
+			//	block btn is 130 min width
+			height: 40px;
+			display: inline-block;
+			width: calc(100% - 140px);
+			margin: 0;
+			vertical-align: top;
+		}
+
+		.block-btn {
+			display: inline-block;
+			float: right;
+			margin-left: 0;
+		}		
+	}
+
+	@include breakpoint($mobile) {
+		&.view {
+			padding-top: 0;
+		}
+
+		p {
+			// margin: 0;
+			display: none;
+		}
+
+		iframe {
+			height: calc(100% - 60px);
+			margin: 0;
+		}
+
+		.btn-tray {
+			.input {
+				width: calc(100% - 110px);
+			}
+
+			.block-btn {
+				width: 100px;
+				margin-bottom: 0;
+			}
+		}
+
+	}
+}
+
+//	routing
+////////////////////////////////////////////////////////////////////////////////
+
+//	mobile
+@include breakpoint($mobile) {
+	.sidebar,
+	.\/operational-log .\#operational-log-view,
+	.\/event-log .\#event-log-view,
+	.\/restart-system .\#restart-system-view,
+	.\/command-line .\#command-line-view {
+		display: block;
+	}
+
+	.\/operational-log .sidebar,
+	.\/event-log .sidebar,
+	.\/restart-system .sidebar,
+	.\/command-line .sidebar {
+		display: none;
+	}
+}
+
+//	desktop
+@include breakpoint($desktop)  {
+	.sidebar,
+	.\/operational-log .\#operational-log-view,
+	.\/event-log .\#event-log-view,
+	.\/restart-system .\#restart-system-view,
+	.\/command-line .\#command-line-view {
+		display: block;
+	}
+}

@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="/js/base.js"></script>
 
 		<script type="text/javascript" src="/js/lodash.min.js"></script>
-		<script src="http://www.promisejs.org/implementations/promise/promise-3.2.0.js"></script>
+		<script src="/js/promise-3.2.0.js"></script>
 
 		<script type="text/javascript" src="/js/tvro.js"></script>
 		<script type="text/javascript" src="/js/webservice.js"></script>

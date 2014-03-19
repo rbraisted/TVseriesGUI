@@ -12,7 +12,7 @@
 			});
 
 			//	it's getAntennaStatus(params:Obj, recache:Bool)
-			tvro.ws.getAntennaStatus(undefined, 1).then(function(r) {
+			tvro.ws.getAntennaStatus(undefined, true).then(function(r) {
 				$('.\\#ant-state', jQ).text($('antenna state', r).text());
 				$('.\\#ant-bars', jQ).removeClass([
 					'$0', '$1', '$2', '$3', '$4', '$5'

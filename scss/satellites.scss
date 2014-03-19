@@ -9,6 +9,7 @@
 
 .region-table {
 	@include blue-table;
+
 	.table-row {
 		cursor: pointer;
 	}

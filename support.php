@@ -1,230 +1,200 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-<link type="text/css" rel="stylesheet" href="/css/support.css">
-<script type="text/javascript" src="/js/support.js"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>KVH TVRO</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
 
-<div id="menu-view" class="view menu-view">
-	<h2>Help</h2>
-	<a id="about-the-app-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>About the App</label>
-	</a>
-	<a id="about-the-satellites-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>About the Satellites</label>
-	</a>
-	<a id="technical-definitions-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>Technical Definitions</label>
-	</a>
-	<a id="about-blockage-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>About Blockage</label>
-	</a>
+		<link type="text/css" rel="stylesheet" href="/css/support.css">
 
-	<h2>Advanced</h2>
-	<a id="diagnostic-log-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>Operational Log</label>
-	</a>
-	<a id="event-history-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>Event Log</label>
-	</a>
-	<a id="restart-system-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>Restart System</label>
-	</a>
-	<a id="command-line-btn menu-btn" class="btn menu-btn">
-		<img src="/images/img.gif">
-		<label>Command Line</label>
-	</a>
 
-	<h2>Technical Support</h2>
-	<h3>North/South America, Australia, New Zealand</h3>
-	<a href="mailto:support@kvh.com" class="btn basic-btn contact-btn email-btn">
-		<label>support@kvh.com</label>
-	</a>
-	<a href="tel:+1 (401) 847-3327" class="btn basic-btn contact-btn phone-btn">
-		<label>+1 401 847-3327</label>
-	</a>
-	<h3>Africa, Asia, Europe, Middle East</h3>
-	<a href="mailto:support@emea.kvh.com" class="btn basic-btn contact-btn email-btn">
-		<label>support@emea.kvh.com</label>
-	</a>
-	<a href="tel:+45 45 160 180" class="btn basic-btn contact-btn phone-btn">
-		<label>+45 45 160 180</label>
-	</a>
+		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/js/base.js"></script>
+
+		<script type="text/javascript" src="/js/lodash.min.js"></script>
+		<script src="/js/promise-3.2.0.js"></script>
+
+		<script type="text/javascript" src="/js/tvro.js"></script>
+		<script type="text/javascript" src="/js/webservice.js"></script>
+		<script type="text/javascript" src="/js/data.js"></script>
+		<script type="text/javascript" src="/js/table.js"></script>
+		<script type="text/javascript" src="/js/insSatView.js"></script>
+		<script type="text/javascript" src="/js/satTable.js"></script>
+		<script type="text/javascript" src="/js/satInfoView.js"></script>
+		<script type="text/javascript" src="/js/satEditView.js"></script>
+		<script type="text/javascript" src="/js/groupTable.js"></script>
+		<script type="text/javascript" src="/js/groupInfoView.js"></script>
+		<script type="text/javascript" src="/js/groupEditView.js"></script>
+		<script type="text/javascript" src="/js/toggleBtn.js"></script>
+		<script type="text/javascript" src="/js/dropdown.js"></script>
+
+		<script type="text/javascript" src="/js/RestartSystemView.js"></script>
+		<script type="text/javascript" src="/js/OperationalLogView.js"></script>
+		<script type="text/javascript" src="/js/CmdLineView.js"></script>
+		<script type="text/javascript" src="/js/EventLogView.js"></script>
+		<script type="text/javascript" src="/js/support.js"></script>
+
+	</head>
+
+	<body>
+
+<!-- header/nav
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="header #header">
+	<div class="status-btn #status-btn">Status</div>
+	<div class="nav-btn #nav-btn">Menu</div>
+	<div class="tracvision-logo"></div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="about-the-app-view" class="view main-view about-the-app-view">
-	<div class="copy view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>About the App</label>
-		</a>
-		<h1>About the App</h1>
-		<h2>Section title</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia iaculis nisl, sed posuere orci molestie a. Pellentesque eu iaculis nibh. Curabitur aliquam dolor quis dictum euismod. Donec aliquam massa et volutpat lacinia. Morbi ultrices auctor turpis, ac interdum lectus consequat sit amet. Nam dapibus a lectus id vulputate. Vivamus tincidunt blandit pretium. Duis aliquet porttitor magna a ultricies. Sed justo diam, ornare quis dictum viverra, tristique non est. Donec vel odio rhoncus, hendrerit nibh vitae, dapibus tortor. Morbi congue at risus ac suscipit. Nullam sed ultrices sem.</p>
-		<h2>Section title</h2>
-		<p>Vestibulum felis ligula, ornare ac fringilla a, semper eu nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis vel lorem non tortor porta blandit vitae eu nibh. Mauris luctus velit adipiscing libero consequat, in lobortis lectus consequat. Nunc varius odio lacus, eu rhoncus dui suscipit laoreet. Etiam quis leo at felis sagittis porta. Etiam placerat, lorem eget eleifend feugiat, mauris metus eleifend sem, nec adipiscing massa ante quis metus. Proin nec dui dolor. Curabitur non tempus tellus, ut tincidunt urna. Donec eget malesuada turpis, eu malesuada odio. Phasellus aliquam orci est, vel posuere justo blandit at.</p>
-		<h2>Section title</h2>
-		<p>Donec blandit vestibulum justo, sed vestibulum diam tempus at. Pellentesque at nisl non sem volutpat scelerisque ac non sapien. Aenean sapien tellus, blandit sit amet erat nec, vehicula elementum turpis. Phasellus laoreet odio mauris. Aliquam eleifend purus eget leo ultrices, ac porta massa vehicula. Nullam eget laoreet justo, sit amet suscipit nulla. Cras blandit scelerisque sapien, vel pharetra mauris. Aliquam faucibus metus tortor, sollicitudin adipiscing est semper sit amet. Pellentesque auctor ut odio a porttitor. Suspendisse porttitor congue ligula. Integer congue odio purus, quis eleifend mi commodo ac. Morbi a placerat quam, vitae viverra enim. Vestibulum ut ante eu est convallis feugiat. Nulla feugiat sollicitudin lobortis.</p>
-	</div>
+<div class="nav #nav">
+	<a href="/home.php" class="home-btn #home-btn">Home</a>
+	<a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
+	<a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
+	<a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
+	<a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
+	<a href="/support.php" class="support-btn #support-btn">Support</a>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- sidebar
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="about-the-satellites-view" class="view main-view about-the-satellites-view">
-	<div class="copy view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>About the Satellites</label>
-		</a>
-		<h1>About the Satellites</h1>
-		<h2>Section title</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia iaculis nisl, sed posuere orci molestie a. Pellentesque eu iaculis nibh. Curabitur aliquam dolor quis dictum euismod. Donec aliquam massa et volutpat lacinia. Morbi ultrices auctor turpis, ac interdum lectus consequat sit amet. Nam dapibus a lectus id vulputate. Vivamus tincidunt blandit pretium. Duis aliquet porttitor magna a ultricies. Sed justo diam, ornare quis dictum viverra, tristique non est. Donec vel odio rhoncus, hendrerit nibh vitae, dapibus tortor. Morbi congue at risus ac suscipit. Nullam sed ultrices sem.</p>
-		<h2>Section title</h2>
-		<p>Vestibulum felis ligula, ornare ac fringilla a, semper eu nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis vel lorem non tortor porta blandit vitae eu nibh. Mauris luctus velit adipiscing libero consequat, in lobortis lectus consequat. Nunc varius odio lacus, eu rhoncus dui suscipit laoreet. Etiam quis leo at felis sagittis porta. Etiam placerat, lorem eget eleifend feugiat, mauris metus eleifend sem, nec adipiscing massa ante quis metus. Proin nec dui dolor. Curabitur non tempus tellus, ut tincidunt urna. Donec eget malesuada turpis, eu malesuada odio. Phasellus aliquam orci est, vel posuere justo blandit at.</p>
-		<h2>Section title</h2>
-		<p>Donec blandit vestibulum justo, sed vestibulum diam tempus at. Pellentesque at nisl non sem volutpat scelerisque ac non sapien. Aenean sapien tellus, blandit sit amet erat nec, vehicula elementum turpis. Phasellus laoreet odio mauris. Aliquam eleifend purus eget leo ultrices, ac porta massa vehicula. Nullam eget laoreet justo, sit amet suscipit nulla. Cras blandit scelerisque sapien, vel pharetra mauris. Aliquam faucibus metus tortor, sollicitudin adipiscing est semper sit amet. Pellentesque auctor ut odio a porttitor. Suspendisse porttitor congue ligula. Integer congue odio purus, quis eleifend mi commodo ac. Morbi a placerat quam, vitae viverra enim. Vestibulum ut ante eu est convallis feugiat. Nulla feugiat sollicitudin lobortis.</p>	
-	</div>
-	</div>
-</div>
+<div class="sidebar">
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="technical-definitions-view" class="view main-view technical-definitions-view">
-	<div class="copy view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Technical Definitions</label>
-		</a>
-		<h1>Technical Definitions</h1>
-		<h2>Section title</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia iaculis nisl, sed posuere orci molestie a. Pellentesque eu iaculis nibh. Curabitur aliquam dolor quis dictum euismod. Donec aliquam massa et volutpat lacinia. Morbi ultrices auctor turpis, ac interdum lectus consequat sit amet. Nam dapibus a lectus id vulputate. Vivamus tincidunt blandit pretium. Duis aliquet porttitor magna a ultricies. Sed justo diam, ornare quis dictum viverra, tristique non est. Donec vel odio rhoncus, hendrerit nibh vitae, dapibus tortor. Morbi congue at risus ac suscipit. Nullam sed ultrices sem.</p>
-		<h2>Section title</h2>
-		<p>Vestibulum felis ligula, ornare ac fringilla a, semper eu nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis vel lorem non tortor porta blandit vitae eu nibh. Mauris luctus velit adipiscing libero consequat, in lobortis lectus consequat. Nunc varius odio lacus, eu rhoncus dui suscipit laoreet. Etiam quis leo at felis sagittis porta. Etiam placerat, lorem eget eleifend feugiat, mauris metus eleifend sem, nec adipiscing massa ante quis metus. Proin nec dui dolor. Curabitur non tempus tellus, ut tincidunt urna. Donec eget malesuada turpis, eu malesuada odio. Phasellus aliquam orci est, vel posuere justo blandit at.</p>
-		<h2>Section title</h2>
-		<p>Donec blandit vestibulum justo, sed vestibulum diam tempus at. Pellentesque at nisl non sem volutpat scelerisque ac non sapien. Aenean sapien tellus, blandit sit amet erat nec, vehicula elementum turpis. Phasellus laoreet odio mauris. Aliquam eleifend purus eget leo ultrices, ac porta massa vehicula. Nullam eget laoreet justo, sit amet suscipit nulla. Cras blandit scelerisque sapien, vel pharetra mauris. Aliquam faucibus metus tortor, sollicitudin adipiscing est semper sit amet. Pellentesque auctor ut odio a porttitor. Suspendisse porttitor congue ligula. Integer congue odio purus, quis eleifend mi commodo ac. Morbi a placerat quam, vitae viverra enim. Vestibulum ut ante eu est convallis feugiat. Nulla feugiat sollicitudin lobortis.</p>		
-	</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="about-blockage-view" class="view main-view about-blockage-view">
-	<div class="copy view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>About Blockage</label>
-		</a>
-		<h1>About Blockage</h1>
-		<h2>Section title</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia iaculis nisl, sed posuere orci molestie a. Pellentesque eu iaculis nibh. Curabitur aliquam dolor quis dictum euismod. Donec aliquam massa et volutpat lacinia. Morbi ultrices auctor turpis, ac interdum lectus consequat sit amet. Nam dapibus a lectus id vulputate. Vivamus tincidunt blandit pretium. Duis aliquet porttitor magna a ultricies. Sed justo diam, ornare quis dictum viverra, tristique non est. Donec vel odio rhoncus, hendrerit nibh vitae, dapibus tortor. Morbi congue at risus ac suscipit. Nullam sed ultrices sem.</p>
-		<h2>Section title</h2>
-		<p>Vestibulum felis ligula, ornare ac fringilla a, semper eu nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis vel lorem non tortor porta blandit vitae eu nibh. Mauris luctus velit adipiscing libero consequat, in lobortis lectus consequat. Nunc varius odio lacus, eu rhoncus dui suscipit laoreet. Etiam quis leo at felis sagittis porta. Etiam placerat, lorem eget eleifend feugiat, mauris metus eleifend sem, nec adipiscing massa ante quis metus. Proin nec dui dolor. Curabitur non tempus tellus, ut tincidunt urna. Donec eget malesuada turpis, eu malesuada odio. Phasellus aliquam orci est, vel posuere justo blandit at.</p>
-		<h2>Section title</h2>
-		<p>Donec blandit vestibulum justo, sed vestibulum diam tempus at. Pellentesque at nisl non sem volutpat scelerisque ac non sapien. Aenean sapien tellus, blandit sit amet erat nec, vehicula elementum turpis. Phasellus laoreet odio mauris. Aliquam eleifend purus eget leo ultrices, ac porta massa vehicula. Nullam eget laoreet justo, sit amet suscipit nulla. Cras blandit scelerisque sapien, vel pharetra mauris. Aliquam faucibus metus tortor, sollicitudin adipiscing est semper sit amet. Pellentesque auctor ut odio a porttitor. Suspendisse porttitor congue ligula. Integer congue odio purus, quis eleifend mi commodo ac. Morbi a placerat quam, vitae viverra enim. Vestibulum ut ante eu est convallis feugiat. Nulla feugiat sollicitudin lobortis.</p>		
-	</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="diagnostic-log-view" class="view main-view main-view diagnostic-log-view">
-	<div class="copy view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Operational Log</label>
-		</a>
-		<h1>Operational Log</h1>
-		<p>When initiated, the Operational Log records all messages generated by the antenna system.</p>
-		<a id="operational-btn" class="btn basic-btn">
-			<label>View Current Log</label>
-		</a>
-		<p>Choose this option to view the current Operational Log.</p>
-		<a id="start-btn" class="btn basic-btn">
-			<label>Start New Log</label>
-		</a>
-		<p>Choose this option to delete the current Operational Log and begin recording a new one.</p>
-		<a id="restart-btn" class="btn basic-btn">
-			<label>Restart System & Start New Log</label>
-		</a>
-		<p>Choose this option to delete the current Operational Log, restart the antenna, and begin recording a new Operational Log that includes startup self-test results. This information is very useful for diagnostics.</p>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="restart-system-view" class="view main-view restart-system-view">
-	<div class="copy view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Restart System</label>
-		</a>
-		<h1>Restart System</h1>
-		<a id="system-btn" class="btn basic-btn">
-			<label>Restart TV-Hub</label>
-		</a>
-		<p>Choose this option to restart just the TV-Hub.</p>
-		<a id="antenna-btn" class="btn basic-btn">
-			<label>Restart Antenna</label>
-		</a>
-		<p>Choose this option to restart just the antenna.</p>
-		<a id="all-btn" class="btn basic-btn">
-			<label>Restart All</label>
-		</a>
-		<p>Choose this option to restart the entire system, both TV-Hub and antenna.</p>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="event-history-view" class="view main-view event-history-view">
-	<div class="view-content main-content event-history-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Event Log</label>
-		</a>
-		<h1>Event Log</h1>
-		<p>The Event Log keeps a historical record of all major system events, including any error messages generated by the system.</p>
-		<div id="events-view" class="events">
-			<div id="event-view" class="event">
-				<span id="date-time" class="event-date-time"></span>
-				<span id="message" class="event-message"></span>
-			</div>
+	<div class="menu-table #menu-table-view">
+		<div class="table-row #table-row">
+			<div class="table-col #menu-item"></div>
 		</div>
-		<div class="tool-bar">
-			<a id="save-btn" class="btn basic-btn event-history-btn">
-				<label>Save Log</label>
-			</a>
-			<a id="email-btn" class="btn basic-btn event-history-btn">
-		 		<label>Email Log</label>
-		 	</a>
-	 	</div>
+	</div>
+
+	<div class="contact-header">Technical Support</div>
+
+	<div class="contact-region">North/South America, Australia, New Zealand</div>
+	<a href="mailto:support@kvh.com" class="block-btn">support@kvh.com</a>
+	<a href="tel:+1 (401) 847-3327" class="block-btn">+1 401 847-3327</a>
+
+	<div class="contact-region">Africa, Asia, Europe, Middle East</div>
+	<a href="mailto:support@emea.kvh.com" class="block-btn">support@emea.kvh.com</a>
+	<a href="tel:+45 45 160 180" class="block-btn">+45 45 160 180</a>
+
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="view operational-log #operational-log-view">
+	<div class="view-head">
+		Operational Log
+		<div class="back-btn #back-btn"></div>
+	</div>
+
+	<p>When initiated, the Operational Log records all messages generated by the
+	antenna system.</p>
+
+	<div class="block-btn view-curr-log-btn #view-btn">
+		View Current Log
+	</div>
+
+	<p>Choose this option to view the current Operational Log.</p>
+
+	<div class="block-btn start-new-log-btn #start-btn">
+		Start New Log
+	</div>
+
+	<p>Choose this option to delete the current Operational Log and begin
+	recording a new one.</p>
+
+	<div class="block-btn restart-btn #restart-btn">
+		Restart System & Start New Log
+	</div>
+
+	<p>Choose this option to delete the current Operational Log, restart the
+	antenna, and begin recording a new Operational Log that includes startup
+	self-test results. This information is very useful for diagnostics.</p>
+
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="command-line-view" class="view main-view command-line-view">
-	<div class="view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Command Line</label>
-		</a>
-		<h1>Command Line</h1>
-		<p class="copy warning">Improper use of antenna commands can directly impact performance. Only KVH-authorized technicians should use this interface.</p>
-		<iframe id="output" src="/print2screen.php" class="command-line-output"></iframe>
-		<input id="input" class="command-line-input"></input>
-		<a id="send-btn" class="btn basic-btn command-line-btn">
-			<label>Send</label>
-		</a>
+<div class="view event-log #event-log-view">
+	<div class="view-head">
+		Event Log
+		<div class="back-btn #back-btn"></div>
+	</div>
+
+	<p>The Event Log keeps a historical record of all major system events, including any error messages generated by the system.</p>
+
+	<div class="event-table #event-table-view">
+		<div class="table-head #table-head">
+			<div class="table-col date-col #event-date">Date/Time</div><!--
+		--><div class="table-col message-col message #event-message">Message</div>
+		</div>
+		<div class="table-row #table-row">
+			<div class="table-col date-col #event-date"></div><!--
+		--><div class="table-col message-col message #event-message"></div>
+		</div>
+	</div>
+
+	<div class="btn-tray">
+		<div id="" class="block-btn save-btn #save-btn">Save Log</div>
+		<div id="" class="block-btn email-btn #email-btn">Email Log</div>
+ 	</div>
+
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="view restart-system #restart-system-view">
+	<div class="view-head">
+		Restart System
+		<div class="back-btn #back-btn"></div>
+	</div>
+
+	<div class="block-btn restart-hub-btn #system-btn">
+		Restart TV-Hub
+	</div>
+
+	<p>Choose this option to restart just the TV-Hub.</p>
+
+	<div class="block-btn restart-ant-btn #antenna-btn">
+		Restart Antenna
+	</div>
+
+	<p>Choose this option to restart just the antenna.</p>
+
+	<div class="block-btn restart-all-btn #all-btn">
+		Restart All
+	</div>
+
+	<p>Choose this option to restart the entire system, both TV-Hub and antenna.</p>
+
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="view command-line #command-line-view">
+	<div class="view-head">
+		Command Line
+		<div class="back-btn #back-btn"></div>
+	</div>
+
+	<p>Improper use of antenna commands can directly impact performance.
+	Only KVH-authorized technicians should use this interface.</p>
+
+	<!-- src set in CmdLineView -->
+	<iframe src="" class="output #output"></iframe>
+	<div class="btn-tray">
+		<input placeholder="Enter your commands here." class="input #input" /><!--
+	--><div class="block-btn #send-btn">Send</div>
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</body>
+</html>

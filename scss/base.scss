@@ -3,7 +3,7 @@
 //	for debugging -
 ////////////////////////////////////////////////////////////////////////////////
 *:hover {
-	outline: 1px solid #faabcd;
+	// outline: 1px solid #faabcd;
 }
 
 //	media queries
@@ -103,6 +103,10 @@ html {
 	background: #04122a url(/images/gradient.png) no-repeat top center;
 	height: 100%;
 	width: 100%;
+
+	@include breakpoint($desktop) {
+		background-position: top left calc(50% + 120px);
+	}
 }
 
 body {

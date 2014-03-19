@@ -50,25 +50,35 @@
 					$(jQ).toggleClass('$pre', group.predefined);
 
 					//	get installed group + sat
-					Promise.all(
-						tvro.data.getInstalledSat(),
-						tvro.data.getInstalledGroup()
-					).then(function(r) {
-						var insSat = r[0], insGroup = r[1];
-						$(jQ).toggleClass('$ins', group.name === insGroup.name); //	set jQ .$ins
-
-						_.forEach(['a', 'b', 'c', 'd'], function(slot) { //	go thru all the slots, sat $ins or $n/a
-							var sat = group[slot], ins = false;
-							if (sat) ins = (sat.antSatID === insSat.antSatID) && (group.name === insGroup.name);
-
-							$('.\\#sat-'+slot+'-view', jQ)
-							.toggleClass('$ins', ins) // set .$ins if installed & group is also installed
+					//	rework this so that i don't depend on getInstalled*
+					//	to populate sat views
+					_.forEach(['a', 'b', 'c', 'd'], function(slot) { //	go thru all the slots, sat $ins or $n/a
+						var sat = group[slot];
+						$('.\\#sat-'+slot+'-view', jQ)
 							.toggleClass('$n/a', _.isUndefined(sat)) // set .$n/a is no sat
-							.find('.\\#sat-name')
-							.text(sat ? sat.name : 'N/A')
-							.end()
+								.find('.\\#sat-name')
+								.text(sat ? sat.name : 'N/A')
+					});
+
+					tvro.data.getInstalledGroup().then(function(insGroup) {
+						$(jQ).toggleClass('$ins', group.name === insGroup.name);
+						return tvro.data.getInstalledSat();
+					}).then(function(insSat) {
+						_.forEach(['a', 'b', 'c', 'd'], function(slot) {
+							var sat = group[slot];
+							if (!_.isUndefined(sat)) {
+								$('.\\#sat-'+slot+'-view', jQ).toggleClass('$ins', sat.antSatID === insSat.antSatID);
+							}
 						});
 					});
+
+					// Promise.all(
+					// 	tvro.data.getInstalledSat(),
+					// 	tvro.data.getInstalledGroup()
+					// ).then(function(r) {
+					// 	var insSat = r[0], insGroup = r[1];
+					// 	$(jQ).toggleClass('$ins', group.name === insGroup.name); //	set jQ .$ins
+
 
 					return groupInfoView;
 				}

@@ -1,714 +1,604 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-<link type="text/css" rel="stylesheet" href="/css/satellites.css">
-<script type="text/javascript" src="/js/satellites.js"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>v 0.2</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
 
-<div id="menu-view" class="view menu-view">
-	<div id="tracking-view">
-		<div id="details-view" class="details-view">
-			<h3>
-				<span id="name">Wheatly 1</span>
-				<span id="region">Middle East</span>
-			</h3>
-			<img id="signal" src="/images/img.gif" class="satellite-signal is-0">
-			<span id="status" class="satellite-status-label">Tracking...</span>
+		<link type="text/css" rel="stylesheet" href="/css/satellites.css">
+
+		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/js/base.js"></script>
+
+		<script type="text/javascript" src="/js/lodash.min.js"></script>
+		<script src="/js/promise-3.2.0.js"></script>
+
+		<script type="text/javascript" src="/js/tvro.js"></script>
+		<script type="text/javascript" src="/js/webservice.js"></script>
+		<script type="text/javascript" src="/js/data.js"></script>
+		<script type="text/javascript" src="/js/table.js"></script>
+		<script type="text/javascript" src="/js/insSatView.js"></script>
+		<script type="text/javascript" src="/js/satTable.js"></script>
+		<script type="text/javascript" src="/js/satInfoView.js"></script>
+		<script type="text/javascript" src="/js/satEditView.js"></script>
+		<script type="text/javascript" src="/js/groupTable.js"></script>
+		<script type="text/javascript" src="/js/groupInfoView.js"></script>
+		<script type="text/javascript" src="/js/groupEditView.js"></script>
+		<script type="text/javascript" src="/js/toggleBtn.js"></script>
+		<script type="text/javascript" src="/js/dropdown.js"></script>
+		<script type="text/javascript" src="/js/test.js"></script>
+	</head>
+
+	<body>
+
+<!-- header/nav
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<div class="header #header">
+			<div class="status-btn #status-btn">Status</div>
+			<div class="nav-btn #nav-btn">Menu</div>
+			<div class="tracvision-logo"></div>
 		</div>
+
+		<!-- <div id="status" class="view status-view"></div> -->
+
+		<div class="nav #nav">
+			<a href="/home.php" class="home-btn #home-btn">Home</a>
+			<a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
+			<a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
+			<a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
+			<a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
+			<a href="/support.php" class="support-btn #support-btn">Support</a>
+		</div>
+
+<!-- sidebar
+contains .#region-table-view (single mode)
+and also .#group-table-view (group mode)
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<div class="sidebar">
+	<div class="sidebar-chunk #ins-sat-view">
+		<div class="sidebar-chunk-head">
+			<span class="#sat-name">Satellite</span>
+			<span class="#sat-region"></span>
+		</div>
+		<div class="sat-signal #ant-bars $0"></div>
+		<span class="sat-status #ant-state"></span>
 	</div>
 	
-	<div id="mode-view" class="mode-view">
-		<h3>Satellite Mode</h3>
-		<a id="mode-btn" class="btn toggle-btn mode-btn">
-			<div class="on">Single</div>
-			<div class="off">Group</div>
-		</a>
-	</div>
-
-	<div id="single-view" class="single-view">
-		<a id="radio-option" value="Africa" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Africa</label>
-		</a>
-		<a id="radio-option" value="Asia" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Asia</label>
-		</a>
-		<a id="radio-option" value="Australia" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Australia / New Zealand</label>
-		</a>
-		<a id="radio-option" value="Central/South America" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Central / South America</label>
-		</a>
-		<a id="radio-option" value="Europe" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>Europe</label>
-		</a>
-		<a id="radio-option" value="North America" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>North America</label>
-		</a>
-		<a id="radio-option" value="All" class="btn menu-btn">
-			<img src="/images/img.gif">
-			<label>All</label>
-		</a>
-	</div>
-
-	<div id="group-view table" class="group-view">
-		<div id="table-rows">
-			<div id="radio-option table-row template" value="" class="btn dropdown-option group-menu-btn">
-				<a id="select-btn" class="group-menu-select-btn">
-					<img src="/images/img.gif">
-				</a>
-				<img src="/images/img.gif" class="menu-btn-image">
-				<label id="name">Preset Group 1</label>
-			</div>
+	<div class="sidebar-chunk">
+		<div class="sidebar-chunk-head">Satellite Mode</div>
+		<div class="toggle-btn #mode-toggle-btn">
+			<span class="on">Single</span>
+			<span class="off">Group</span>
 		</div>
-		<a id="new-btn" class="btn basic-btn new-btn">
-			<img src="/images/img.gif">
-			<label>Create New Group</label>
-		</a>
 	</div>
+
+	<div class="region-table #region-table-view">
+		<div class="table-row #table-row">
+			<span class="table-col #region-name"></span>
+		</div>
+	</div>
+
+	<div class="group-table #group-table-view">
+		<div class="table-row #table-row">
+			<span class="table-col install-btn #install-btn"></span><!--
+		 --><span class="table-col #group-name"></span>
+		</div>
+	</div>
+	<div class="block-btn #new-btn">Create New Group</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="satellite-group-view" class="view main-view satellite-group-view">
-	<div class="view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label id="name">Satellites</label>
-		</a>
-		<h1>
-			<img src="/images/img.gif">
-			<span id="name">Satellites</span>
-		</h1>
-		<div class="mobile">
-			<span class="satellite-group-name-label">Satellite Group Name</span>
-			<span id="name">Satellites</span>
+<!-- shared views (#sat-info-view, #sat-edit-view)
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<div class="popup #sat-info-view">
+	<div class="popup-guts sat-info">
+		<div class="view-head">
+			Satellite Details
+			<div class="back-btn #back-btn"></div>
 		</div>
-		<div id="slot-a-view slot-view" class="slot">
-			<div class="slot-label slot-letter-label">Slot A</div>
-			<div class="slot-label slot-installed-label">Installed</div>
-			<div class="slot-label slot-static-name-label">Satellite Name</div>
-			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-			<a id="select-btn" class="btn select-btn slot-select-btn">
-				<img src="/images/img.gif">
-			</a>
-			<a id="info-btn" class="btn info-btn slot-info-btn">
-				<img src="/images/img.gif">
-			</a>
-		</div><!--
-	 --><div id="slot-b-view slot-view" class="slot">
-			<div class="slot-label slot-letter-label">Slot B</div>
-			<div class="slot-label slot-installed-label">Installed</div>
-			<div class="slot-label slot-static-name-label">Satellite Name</div>
-			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-			<a id="select-btn" class="btn select-btn slot-select-btn">
-				<img src="/images/img.gif">
-			</a>
-			<a id="info-btn" class="btn info-btn slot-info-btn">
-				<img src="/images/img.gif">
-			</a>
-		</div><!--
-	 --><div id="slot-c-view slot-view" class="slot">
-			<div class="slot-label slot-letter-label">Slot C</div>
-			<div class="slot-label slot-installed-label">Installed</div>
-			<div class="slot-label slot-static-name-label">Satellite Name</div>
-			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-			<a id="select-btn" class="btn select-btn slot-select-btn">
-				<img src="/images/img.gif">
-			</a>
-			<a id="info-btn" class="btn info-btn slot-info-btn">
-				<img src="/images/img.gif">
-			</a>
-		</div><!--
-	 --><div id="slot-d-view slot-view" class="slot">
-			<div class="slot-label slot-letter-label">Slot D</div>
-			<div class="slot-label slot-installed-label">Installed</div>
-			<div class="slot-label slot-static-name-label">Satellite Name</div>
-			<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-			<a id="select-btn" class="btn select-btn slot-select-btn">
-				<img src="/images/img.gif">
-			</a>
-			<a id="info-btn" class="btn info-btn slot-info-btn">
-				<img src="/images/img.gif">
-			</a>
-		</div>
-		<div class="tool-bar">
-			<a id="delete-btn" class="btn basic-btn delete-btn">
-				<label>Delete Group</label>
-			</a>
-			<a id="edit-btn" class="btn basic-btn edit-btn">
-				<label>Edit Group</label>
-			</a>
-			<a id="install-btn" class="btn basic-btn install-btn">
-				<label>Install Group</label>
-			</a>
-		</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="satellites-table-view" class="view main-view satellites-table-view">
-	<div class="view-content main-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Satellites</label>
-		</a>
-		<h1>
-			<img src="/images/img.gif">
-			<span>Satellites</span>
-		</h1>
-
-		<table id="satellites-table" class="satellites-table">
-			<thead>
-				<tr>
-					<th class="installed-col">
-						<div>Installed</div>
-					</th>
-					<th class="name-col">
-						<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
-					</th>
-					<th class="orbital-slot-col">
-						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital Slot</div>
-					</th>
-					<th class="region-col">
-						<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
-					</th>
-					<th class="favorites-col">
-						<div id="favorites-btn sort-btn" class="btn sort-btn">Favorites</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody id="table-rows">
-				<tr id="template table-row">
-					<td class="installed-col">
-						<div id="select-btn" class="btn radio-icon"></div>
-					</td>
-					<td class="name-col">
-						<span id="name">Name</span>
-						<span id="region">Region</span>
-					</td>
-					<td class="orbital-slot-col">
-						<span id="orbital-slot">Orbital Slot</span>
-					</td>
-					<td class="region-col">
-						<span id="region">Region</span>
-					</td>
-					<td class="favorites-col">
-						<div id="favorite-btn" class="btn heart-icon"></div>
-						<div id="info-btn" class="btn info-icon"></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="edit-satellite-group-view" class="view popup-view edit-satellite-group-view">
-	<div class="view-content popup-content">
-		<a id="cancel-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Edit Satellite Group Details</label>
-		</a>
-		<h1>Edit Satellite Group Details</h1>
-		<div class="slot-btn">
-			<label class="group-name-label">Satellite Group Name</label>
-			<input id="name" type="text" class="group-name-input"/>
-		</div>
-		<a id="slot-a-btn slot-btn" class="btn slot-btn">
-			<img src="/images/img.gif">
-			<span class="slot-name-label">Slot A</span>
-			<span id="name" class="satellite-name-label"></span>
-		</a>
-		<a id="slot-b-btn slot-btn" class="btn slot-btn">
-			<img src="/images/img.gif">
-			<span class="slot-name-label">Slot B</span>
-			<span id="name" class="satellite-name-label"></span>
-		</a>
-		<a id="slot-c-btn slot-btn" class="btn slot-btn">
-			<img src="/images/img.gif">
-			<span class="slot-name-label">Slot C</span>
-			<span id="name" class="satellite-name-label"></span>
-		</a>
-		<a id="slot-d-btn slot-btn" class="btn slot-btn">
-			<img src="/images/img.gif">
-			<span class="slot-name-label">Slot D</span>
-			<span id="name" class="satellite-name-label"></span>
-		</a>
-		<div class="tool-bar">
-			<a id="cancel-btn" class="btn basic-btn cancel-btn">
-				<label>Cancel</label>
-			</a>
-			<a id="save-btn" class="btn basic-btn save-btn">
-				<label>Save</label>
-			</a>
-		</div>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="satellites-table-popup-view" class="view popup-view satellite-table-popup-view">
-	<div class="view-content popup-content">
-		<a id="cancel-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Edit Satellite Group Details</label>
-		</a>
-		<h1>Edit Satellite Group Details</h1>
-		<table id="satellites-table" class="satellites-table">
-			<thead>
-				<tr>
-					<th class="installed-col">
-						<div>Installed</div>
-					</th>
-					<th class="name-col">
-						<div id="name-btn sort-btn" class="btn sort-btn">Name</div>
-					</th>
-					<th class="orbital-slot-col">
-						<div id="orbital-slot-btn sort-btn" class="btn sort-btn">Orbital</div>
-					</th>
-					<th class="region-col">
-						<div id="region-btn sort-btn" class="btn sort-btn">Region</div>
-					</th>
-					<th class="favorites-col">
-						<div id="favorites-btn sort-btn" class="btn sort-btn">Favorites</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody id="table-rows">
-				<tr id="template table-row radio-option">
-					<td class="installed-col">
-						<div id="select-btn" class="btn radio-icon"></div>
-					</td>
-					<td class="name-col">
-						<span id="name">Name</span>
-						<span id="region">Region</span>
-					</td>
-					<td class="orbital-slot-col">
-						<span id="orbital-slot">Orbital Slot</span>
-					</td>
-					<td class="region-col">
-						<span id="region">Region</span>
-					</td>
-					<td class="favorites-col">
-						<div id="favorite-btn" class="btn heart-icon"></div>
-						<div id="info-btn" class="btn info-icon"></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="satellite-info-view" class="view popup-view satellite-info-view">
-	<div class="view-content popup-content">
-		<a id="back-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Satellite Details</label>
-		</a>
-		<h1>Satellite Details</h1>
-		<div class="detail name-container">
+		<div class="name-block">
 			<div class="label">Satellite Name</div>
-			<div id="name view" class="value"></div>
-			<input id="name edit">
-		</div>
-		<div class="detail favorite-container">
-			<div class="label">Add To Favorite</div>
-			<a id="favorite-btn" class="btn toggle-btn favorite-btn">
+			<div class="value #sat-name">N/A</div>
+		</div><!--
+ --><div class="fav-block">
+			<div class="label">Add To Favorites</div>
+			<div class="btn toggle-btn fav-btn #fav-btn">
 				<div class="on">On</div>
-				<div class="off">OFF</div>
-				<img src="/images/img.gif">
-			</a>
-		</div>
-		<div class="detail top-detail five-split">
+				<div class="off">Off</div>
+			</div>
+			<div class="heart-btn #fav-btn">
+				<div class="on"></div>
+				<div class="off"></div>				
+			</div>
+		</div><!--
+	 --><div class="region-block">
 			<div class="label">Region</div>
-			<div id="region view" class="value"></div>
-			<a id="region-btn edit" class="btn dropdown-btn">
-				<img src="/images/img.gif">
-				<label id="region edit"></label>
-			</a>
-		</div>
-		<div class="detail top-detail five-split">
+			<div class="value #sat-region">N/A</div>
+		</div><!--
+	 --><div class="orb-slot-block">
 			<div class="label">Orbital Slot</div>
-			<div id="orbital-slot" class="value"></div>
-			<!--
-			<div id="orbital-slot view" class="value"></div>
-			<input id="orbital-slot edit">
-			-->
-		</div>
-		<div class="detail top-detail five-split">
+			<div class="value #sat-antSatID">N/A</div>
+		</div><!--
+	 --><div class="hemisphere-block">
 			<div class="label">Hemisphere</div>
-			<div id="hemisphere view" class="value"></div>
-			<a id="hemisphere-btn edit" class="btn dropdown-btn">
-				<img src="/images/img.gif">
-				<label id="hemisphere edit"></label>
-			</a>
-		</div>
-		<div class="detail top-detail five-split">
+			<div class="value #sat-hemisphere">N/A</div>
+		</div><!--
+	 --><div class="suffix-block">
 			<div class="label">Suffix</div>
-			<div id="suffix view" class="value"></div>
-			<input id="suffix edit">
-		</div>
-		<div class="detail top-detail five-split">
+			<div class="value #sat-suffix">N/A</div>
+		</div><!--
+	 --><div class="skew-block">
 			<div class="label">Pre-Skew</div>
-			<div id="pre-skew view" class="value"></div>
-			<input id="pre-skew edit">
-		</div>
-		<div class="detail top-detail three-split">
+			<div class="value #sat-skew">N/A</div>
+		</div><!--
+	 --><div class="lnb-block">
 			<div class="label">LNB Type</div>
-			<div id="lnb-type view" class="value"></div>
-			<a id="lnb-type-btn edit" class="btn dropdown-btn">
-				<img src="/images/img.gif">
-				<label id="lnb-type edit"></label>
-			</a>
-		</div>
-		<div class="detail top-detail three-split">
+			<div class="value #sat-lnb">N/A</div>
+		</div><!--
+ --><div class="lo1-block">
 			<div class="label">Local Oscillator #1</div>
-			<div id="local-oscillator-1 view" class="value"></div>
-			<input id="local-oscillator-1 edit">
-		</div>
-		<div class="detail top-detail three-split">
+			<div class="value #sat-lo1">N/A</div>
+		</div><!--
+ --><div class="lo2-block">
 			<div class="label">Local Oscillator #2</div>
-			<div id="local-oscillator-2 view" class="value"></div>
-			<input id="local-oscillator-2 edit">
+			<div class="value #sat-lo2">N/A</div>
 		</div>
-
-		<div id="linear" class="linear">
-			<div id="xponder-1 linear" class="xponder">
-				<div class="xponder-header">Horizontal High</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency (MHz)</div>
-					<div id="frequency view" class="value"></div>
-					<input id="frequency edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate (Msym/s)</div>
-					<div id="symbol-rate view" class="value"></div>
-					<input id="symbol-rate edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">FEC Code</div>
-					<div id="fec-code view" class="value"></div>
-					<a id="fec-code-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="fec-code edit"></label>
-					</a>
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Satellite ID</div>
-					<div id="satellite-id view" class="value"></div>
-					<input id="satellite-id edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Decoder Type</div>
-					<div id="decoder-type view" class="value"></div>
-					<a id="decoder-type-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="decoder-type edit"></label>
-					</a>
-				</div>
+		<div class="xponder first #xponder-hh-view">
+			<div class="slot-head">Horizontal High</div> 
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<div class="value #xponder-freq">N/A</div>
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<div class="value #xponder-symRate">N/A</div>
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="value #xponder-fec">N/A</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<div class="value #xponder-netID">N/A</div>
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="value #xponder-modType">N/A</div>
 			</div>
-			<div id="xponder-3 linear" class="xponder">
-				<div class="xponder-header">Horizontal Low</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency (MHz)</div>
-					<div id="frequency view" class="value"></div>
-					<input id="frequency edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate (Msym/s)</div>
-					<div id="symbol-rate view" class="value"></div>
-					<input id="symbol-rate edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">FEC Code</div>
-					<div id="fec-code view" class="value"></div>
-					<a id="fec-code-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="fec-code edit"></label>
-					</a>
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Satellite ID</div>
-					<div id="satellite-id view" class="value"></div>
-					<input id="satellite-id edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Decoder Type</div>
-					<div id="decoder-type view" class="value"></div>
-					<a id="decoder-type-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="decoder-type edit"></label>
-					</a>
-				</div>
+		</div><!--
+	 --><div class="xponder #xponder-hl-view">
+			<div class="slot-head">Horizontal Low</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<div class="value #xponder-freq">N/A</div>
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<div class="value #xponder-symRate">N/A</div>
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="value #xponder-fec">N/A</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<div class="value #xponder-netID">N/A</div>
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="value #xponder-modType">N/A</div>
 			</div>
-			<div id="xponder-5 linear" class="xponder">
-				<div class="xponder-header">Vertical High</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency (MHz)</div>
-					<div id="frequency view" class="value"></div>
-					<input id="frequency edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate (Msym/s)</div>
-					<div id="symbol-rate view" class="value"></div>
-					<input id="symbol-rate edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">FEC Code</div>
-					<div id="fec-code view" class="value"></div>
-					<a id="fec-code-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="fec-code edit"></label>
-					</a>
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Satellite ID</div>
-					<div id="satellite-id view" class="value"></div>
-					<input id="satellite-id edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Decoder Type</div>
-					<div id="decoder-type view" class="value"></div>
-					<a id="decoder-type-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="decoder-type edit"></label>
-					</a>
-				</div>
+		</div><!--
+	 --><div class="xponder #xponder-vh-view">
+			<div class="slot-head">Vertical High</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<div class="value #xponder-freq">N/A</div>
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<div class="value #xponder-symRate">N/A</div>
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="value #xponder-fec">N/A</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<div class="value #xponder-netID">N/A</div>
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="value #xponder-modType">N/A</div>
 			</div>
-			<div id="xponder-7 linear" class="xponder">
-				<div class="xponder-header">Vertical Low</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Frequency (MHz)</div>
-					<div id="frequency view" class="value"></div>
-					<input id="frequency edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Symbol Rate (Msym/s)</div>
-					<div id="symbol-rate view" class="value"></div>
-					<input id="symbol-rate edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">FEC Code</div>
-					<div id="fec-code view" class="value"></div>
-					<a id="fec-code-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="fec-code edit"></label>
-					</a>
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Satellite ID</div>
-					<div id="satellite-id view" class="value"></div>
-					<input id="satellite-id edit">
-				</div>
-				<div class="detail xponder-detail two-split">
-					<div class="label">Decoder Type</div>
-					<div id="decoder-type view" class="value"></div>
-					<a id="decoder-type-btn edit" class="btn dropdown-btn">
-						<img src="/images/img.gif">
-						<label id="decoder-type edit"></label>
-					</a>
-				</div>
+		</div><!--
+	 --><div class="xponder #xponder-vl-view">
+			<div class="slot-head">Vertical Low</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<div class="value #xponder-freq">N/A</div>
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<div class="value #xponder-symRate">N/A</div>
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="value #xponder-fec">N/A</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<div class="value #xponder-netID">N/A</div>
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="value #xponder-modType">N/A</div>
 			</div>
 		</div>
-
-		<div class="tool-bar">
-			<a id="edit-btn view" class="btn basic-btn edit-btn">
-				<label>Edit Satellite Details</label>
-			</a>
-			<a id="reset-btn edit" class="btn basic-btn reset-btn">
-				<label>Reset To Factory Settings</label>
-			</a>
-			<a id="cancel-btn edit" class="btn basic-btn cancel-btn">
-				<label>Cancel</label>
-			</a>
-			<a id="save-btn edit" class="btn basic-btn save-btn">
-				<label>Save</label>
-			</a>
+		<div class="btn-tray">
+			<div class="block-btn edit-btn #edit-btn">Edit</div>
 		</div>
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="region-dropdown" class="view popup-view dropdown-view">
-	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Region</label>
-		</a>
-		<h1>Region</h1>
-		<a id="dropdown-option radio-option" value="Africa" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Africa</label>
-		</a>
-		<a id="dropdown-option radio-option" value="Asia" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Asia</label>
-		</a>
-		<a id="dropdown-option radio-option" value="Australia" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Australia / New Zealand</label>
-		</a>
-		<a id="dropdown-option radio-option" value="Central/South America" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Central / South America</label>
-		</a>
-		<a id="dropdown-option radio-option" value="Europe" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Europe</label>
-		</a>
-		<a id="dropdown-option radio-option" value="North America" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>North America</label>
-		</a>
+<div class="popup #sat-edit-view">
+	<div class="popup-guts sat-edit">
+		<div class="view-head">
+			Edit Satellite Details
+			<div class="back-btn #back-btn"></div>
+		</div>
+		<div class="name-block">
+			<div class="label">Satellite Name</div>
+			<div class="value #sat-name"></div>
+			<input class="input #sat-name" />
+		</div><!--
+	 --><div class="fav-block">
+			<div class="label">Add To Favorites</div>
+			<div class="btn toggle-btn fav-btn #fav-btn">
+				<div class="on">On</div>
+				<div class="off">Off</div>
+			</div>
+			<div class="heart-btn #fav-btn">
+				<div class="on"></div>
+				<div class="off"></div>
+			</div>
+		</div><!--
+	 --><div class="region-block">
+			<div class="label">Region</div>
+			<div class="value #sat-region"></div>
+			<div class="dropdown-btn #region-btn">
+				<div class="#sat-region"></div>
+				<div class="dropdown-icon"></div>
+			</div>
+		</div><!--
+	 --><div class="orb-slot-block">
+			<div class="label">Orbital Slot</div>
+			<div class="value #sat-antSatID"></div>
+			<input class="input #sat-antSatID" />
+		</div><!--
+	 --><div class="hemisphere-block">
+			<div class="label">Hemisphere</div>
+			<div class="value #sat-hemisphere"></div>
+			<div class="dropdown-btn #hemisphere-btn">
+				<div class="#sat-hemisphere"></div>
+				<div class="dropdown-icon"></div>
+			</div>
+		</div><!--
+	 --><div class="suffix-block">
+			<div class="label">Suffix</div>
+			<div class="value #sat-suffix"></div>
+			<input class="input #sat-suffix" />
+		</div><!--
+	 --><div class="skew-block">
+			<div class="label">Pre-Skew</div>
+			<div class="value #sat-skew"></div>
+			<input class="input #sat-skew" />
+		</div><!--
+	 --><div class="lnb-block">
+			<div class="label">LNB Type</div>
+			<div class="value #sat-lnb"></div>
+		</div><!--
+	 --><div class="lo1-block">
+			<div class="label">Local Oscillator #1</div>
+			<div class="value #sat-lo1"></div>
+			<input class="input #sat-lo1" />
+		</div><!--
+	 --><div class="lo2-block">
+			<div class="label">Local Oscillator #2</div>
+			<div class="value #sat-lo2"></div>
+			<input class="input #sat-lo2" />
+		</div>
+		<div class="xponder first #xponder-view #xponder-hh-view">
+			<div class="slot-head">Horizontal High</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<input class="input #xponder-freq" />
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<input class="input #xponder-symRate" />
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="dropdown-btn #fec-btn">
+					<div class="#xponder-fec"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<input class="input #xponder-netID" />
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="dropdown-btn #modType-btn">
+					<div class="#xponder-modType"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div>
+		</div><!--
+	 --><div class="xponder #xponder-view #xponder-hl-view">
+			<div class="slot-head">Horizontal Low</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<input class="input #xponder-freq" />
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<input class="input #xponder-symRate" />
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="dropdown-btn #fec-btn">
+					<div class="#xponder-fec"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<input class="input #xponder-netID" />
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="dropdown-btn #modType-btn">
+					<div class="#xponder-modType"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div>
+		</div><!--
+	 --><div class="xponder #xponder-view #xponder-vh-view">
+			<div class="slot-head">Vertical High</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<input class="input #xponder-freq" />
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<input class="input #xponder-symRate" />
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="dropdown-btn #fec-btn">
+					<div class="#xponder-fec"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<input class="input #xponder-netID" />
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="dropdown-btn #modType-btn">
+					<div class="#xponder-modType"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div>
+		</div><!--
+	 --><div class="xponder #xponder-view #xponder-vl-view">
+			<div class="slot-head">Vertical Low</div>
+			<div class="freq-block xponder-block">
+				<div class="label">Frequency (MHz)</div>
+				<input class="input #xponder-freq" />
+			</div><!--
+		--><div class="symRate-block xponder-block">
+				<div class="label">Symbol Rate (Msym/s)</div>
+				<input class="input #xponder-symRate" />
+			</div><!--
+		--><div class="fec-block xponder-block">
+				<div class="label">FEC Code</div>
+				<div class="dropdown-btn #fec-btn">
+					<div class="#xponder-fec"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div><!--
+		--><div class="netID-block xponder-block">
+				<div class="label">Satellite ID</div>
+				<input class="input #xponder-netID" />
+			</div><!--
+		--><div class="modType-block xponder-block">
+				<div class="label">Decoder Type</div>
+				<div class="dropdown-btn #modType-btn">
+					<div class="#xponder-modType"></div>
+					<div class="dropdown-icon"></div>
+				</div>
+			</div>
+		</div>
+		<div class="btn-tray">
+			<div class="block-btn first save-btn #save-btn">Save</div><!--
+		--><div class="block-btn cancel-btn #back-btn">Cancel</div><!--
+		--><div class="block-btn reset-btn #reset-btn">Reset</div>
+		</div>
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div id="hemisphere-dropdown" class="view popup-view dropdown-view">
-	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Hemisphere</label>
-		</a>
-		<h1>Hemisphere</h1>
-		<a id="dropdown-option radio-option" value="East" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>East</label>
-		</a>
-		<a id="dropdown-option radio-option" value="West" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>West</label>
-		</a>
+<div class="dropdown #sat-edit-dropdown">
+	<div class="view #dropdown-content">
+		<div class="view-head">
+			<span class="#dropdown-title"></span>
+			<div class="back-btn #close-btn"></div>
+		</div>
+		<div class="table #dropdown-table-view">
+			<div class="table-row #table-row">
+				<span class="table-col #dropdown-val"></span>
+			</div>
+		</div>
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="lnb-type-dropdown" class="view popup-view dropdown-view">
-	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Region</label>
-		</a>
-		<h1>Region</h1>
-		<a id="dropdown-option radio-option" value="Linear" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Linear</label>
-		</a>
-		<a id="dropdown-option radio-option" value="Circular" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Circular</label>
-		</a>
+<!-- single views
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<div class="view #single-sat-table-view">
+	<div class="view-head">
+		<span class="sat-icon"></span>
+		<span>Satellites</span>
+		<div class="back-btn #back-btn"></div>
+	</div>
+	<div class="sat-table #sat-table-view">
+		<div class="table-head #table-head">
+			<div class="table-col install-col">Installed</div><!--
+		 --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
+		 --><div class="table-col orb-slot-col sort-btn #sort-btn #lon-btn">Orbital Slot</div><!--
+		 --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div><!--
+		 --><div class="table-col fav-col sort-btn #sort-btn #fav-btn">Favorites</div>
+		</div>
+		<div class="table-row #table-row">
+			<div class="table-col install-col">
+				<div class="install-btn #install-btn"></div>
+			</div><!--
+		 --><div class="table-col name-col">
+		 		<span class="#sat-name"></span>
+		 		<span class="#sat-region"></span>
+			</div><!--
+		 --><div class="table-col orb-slot-col #sat-antSatID"></div><!--
+		 --><div class="table-col region-col #sat-region"></div><!--
+		 --><div class="table-col fav-col">
+		 		<div class="fav-btn #fav-btn"></div>
+		 		<div class="info-btn #info-btn"></div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+ -->
+<!-- group views
+- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div id="fec-code-dropdown" class="view popup-view dropdown-view">
-	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>FEC Code</label>
-		</a>
-		<h1>FEC Code</h1>
-		<a id="dropdown-option radio-option" value="1/2" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>1/2</label>
-		</a>
-		<a id="dropdown-option radio-option" value="2/3" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>2/3</label>
-		</a>
-		<a id="dropdown-option radio-option" value="3/4" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>3/4</label>
-		</a>
-		<a id="dropdown-option radio-option" value="3/5" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>3/5</label>
-		</a>
-		<a id="dropdown-option radio-option" value="4/5" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>4/5</label>
-		</a>
-		<a id="dropdown-option radio-option" value="5/6" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>5/6</label>
-		</a>
-		<a id="dropdown-option radio-option" value="5/11" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>5/11</label>
-		</a>
-		<a id="dropdown-option radio-option" value="6/7" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>6/7</label>
-		</a>
-		<a id="dropdown-option radio-option" value="7/8" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>7/8</label>
-		</a>
-		<a id="dropdown-option radio-option" value="8/9" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>8/9</label>
-		</a>
-		<a id="dropdown-option radio-option" value="9/9" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>9/9</label>
-		</a>
-		<a id="dropdown-option radio-option" value="9/10" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>9/10</label>
-		</a>
+<div class="view group-info #group-info-view">
+	<div class="view-head">
+		<span class="sat-icon"></span>
+		<span class="#group-name"></span>
+		<div class="back-btn #back-btn"></div>
+	</div>
+	<div class="name-block">
+		<div class="name-label">Satellite Group Name</div>
+		<div class="group-name #group-name"></div>
+	</div>
+	<div class="slot first #sat-view #sat-a-view">
+		<div class="slot-head">Slot A</div>
+		<div class="sat-name #sat-name"></div>
+		<div class="install-btn #install-btn"></div>
+		<div class="info-btn #info-btn"></div>
+		<div class="slot-foot">Installed</div>
+	</div><!--
+ --><div class="slot #sat-view #sat-b-view">
+		<div class="slot-head">Slot B</div>
+		<div class="sat-name #sat-name"></div>
+		<div class="install-btn #install-btn"></div>
+		<div class="info-btn #info-btn"></div>
+		<div class="slot-foot">Installed</div>
+	</div><!--
+ --><div class="slot #sat-view #sat-c-view">
+		<div class="slot-head">Slot C</div>
+		<div class="sat-name #sat-name"></div>
+		<div class="install-btn #install-btn"></div>
+		<div class="info-btn #info-btn"></div>
+		<div class="slot-foot">Installed</div>
+	</div><!--
+ --><div class="slot #sat-view #sat-d-view">
+		<div class="slot-head">Slot D</div>
+		<div class="sat-name #sat-name"></div>
+		<div class="install-btn #install-btn"></div>
+		<div class="info-btn #info-btn"></div>
+		<div class="slot-foot">Installed</div>
+	</div>
+	<div class="btn-tray">
+		<div class="block-btn first delete-btn #delete-btn">Delete Group</div><!--
+	 --><div class="block-btn edit-btn #edit-btn">Edit Group</div><!--
+	 --><div class="block-btn install-btn #install-btn">Install Group</div>
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<div class="popup #group-edit-view">
+	<div class="popup-guts group-edit">
+		<div class="view-head">
+			Edit Satellite Group
+			<div class="back-btn #back-btn"></div>
+		</div>
+		<div class="name-block">
+			<div class="name-label">Satellite Group Name</div>
+			<input type="text" class="input group-name #group-name" />
+		</div>
+		<div class="slot first #sat-view #sat-a-view">
+			<div class="slot-head">Slot A</div>
+			<div class="sat-name #sat-name"></div>
+		</div>
+		<div class="slot #sat-view #sat-b-view">
+			<div class="slot-head">Slot B</div>
+			<div class="sat-name #sat-name"></div>
+		</div>
+		<div class="slot #sat-view #sat-c-view">
+			<div class="slot-head">Slot C</div>
+			<div class="sat-name #sat-name"></div>
+		</div>
+		<div class="slot #sat-view #sat-d-view">
+			<div class="slot-head">Slot D</div>
+			<div class="sat-name #sat-name"></div>
+		</div>
+		<div class="btn-tray">
+			<div class="block-btn first save-btn #save-btn">Save</div><!--
+		 --><div class="block-btn cancel-btn #back-btn">Cancel</div>
+		</div>
+	</div>
+</div>
 
-<div id="decoder-type-dropdown" class="view popup-view dropdown-view">
-	<div id="dropdown-content" class="view-content popup-content dropdown-content">
-		<a id="close-btn" class="btn back-btn">
-			<img src="/images/img.gif">
-			<label>Decoder Type</label>
-		</a>
-		<h1>Decoder Type</h1>
-		<a id="dropdown-option radio-option" value="QDSS" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>DSS DTV</label>
-		</a>
-		<a id="dropdown-option radio-option" value="QDC2" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>DCII QPSK DigiCipher 2</label>
-		</a>
-		<a id="dropdown-option radio-option" value="QDVB" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>DVB QPSK</label>
-		</a>
-		<a id="dropdown-option radio-option" value="LQPSK" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>LDPC QPSK STD DVB-S2</label>
-		</a>
-		<a id="dropdown-option radio-option" value="L8PSK" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>LDPC 8PSK STD DVB-S2</label>
-		</a>
-		<a id="dropdown-option radio-option" value="TQPSK" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Turbo QPSK Dish</label>
-		</a>
-		<a id="dropdown-option radio-option" value="T8PSK" class="btn dropdown-option">
-			<img src="/images/img.gif">
-			<label>Turbo 8PSK Dish</label>
-		</a>
+<div class="popup #group-sat-table-view">
+	<div class="popup-guts">
+		<div class="view-head">
+			<span class="sat-icon"></span>
+			<span>Satellites</span>
+			<div class="back-btn #back-btn"></div>
+		</div>
+		<div class="sat-table #sat-table-view">
+			<div class="table-head #table-head">
+				<div class="table-col install-col">Installed</div><!--
+			 --><div class="table-col name-col sort-btn #name-sort-btn">Name</div><!--
+			 --><div class="table-col orb-slot-col sort-btn #antSatID-sort-btn">Orbital Slot</div><!--
+			 --><div class="table-col region-col sort-btn #region-sort-btn">Region</div><!--
+			 --><div class="table-col fav-col sort-btn #favorite-sort-btn">Favorites</div>
+			</div>
+			<div class="table-row #table-row">
+				<div class="table-col install-col">
+					<div class="install-btn #install-btn"></div>
+				</div><!--
+			 --><div class="table-col name-col">
+			 		<span class="#sat-name"></span>
+			 		<span class="#sat-region"></span>
+				</div><!--
+			 --><div class="table-col orb-slot-col #sat-antSatID"></div><!--
+			 --><div class="table-col region-col #sat-region"></div><!--
+			 --><div class="table-col fav-col">
+			 		<div class="fav-btn #fav-btn"></div>
+			 		<div class="info-btn #info-btn"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
