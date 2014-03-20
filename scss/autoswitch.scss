@@ -1,0 +1,158 @@
+@import "base.scss";
+
+.autoswitch-icon {
+	@include bgimg('autoswitch-icon-white');
+	display: inline-block;
+	margin-right: 5px;
+	vertical-align: text-top;
+}
+
+.manual-sat-table {
+	@include grey-table;
+
+	.table-row {
+
+		.install-btn {
+			@include bgimg('radio-unchecked');
+			display: inline-block;
+			padding: 0;
+			margin-left: 15px;
+			cursor: pointer;
+		}
+
+		&.\$ins {
+			background-color: $bright-blue;
+			.install-btn {
+				@include bgimg('radio-checked');
+			}
+		}
+	}
+}
+
+.automatic-sat-table {
+	.table-row+.table-row {
+		margin-top: $table-row-padding;
+	}
+}
+
+.receiver-table {
+	@include table;
+
+	.table-row {
+		@include table-row;
+		background-color: #000;
+		border-bottom: 0;
+		margin-bottom: 20px;
+
+		.table-col {
+			@include table-col;
+			padding: 20px;
+			width: 20%;
+		}
+
+		.label {
+			font-size: $small-font;
+			color: $bright-grey;
+		}
+
+		.status-col .label {
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 10px;
+		}
+
+		.name-col .label,
+		.id-col .label {
+			margin-bottom: 10px;
+		}
+
+		.status-icon {
+			@include bgimg('red-dot-icon', left center);
+			line-height: 21px;
+			padding-left: 35px;
+		}
+
+		.block-btn {
+			width: 100%;
+		}
+
+		.select-btn {
+			display: none;
+		}
+
+		.master-icon {
+			display: none;
+		}
+
+		&.\$active {
+			.status-icon {
+				@include bgimg('green-dot-icon', left center);
+			}
+
+			.select-btn {
+				display: block;
+			}
+		}
+
+		&.\$master {
+			background-color: $light-blue;
+
+			.select-btn {
+				display: none;
+			}
+
+			.master-icon {
+				@include bgimg('radio-checked', right center);
+				display: block;
+				line-height: 21px;
+				text-align: right;
+				padding-right: 35px;
+			}
+		}
+	}
+}
+
+//	routing
+////////////////////////////////////////////////////////////////////////////////
+
+//	mobile
+@include breakpoint($mobile) {
+
+//	manual
+//	automatic
+//	receiver info
+//	receiver edit
+//	receiver new
+
+	.sidebar,
+	.\/operational-log .\#operational-log-view,
+	.\/event-log .\#event-log-view,
+	.\/restart-system .\#restart-system-view,
+	.\/command-line .\#command-line-view {
+		display: block;
+	}
+
+	.\/operational-log .sidebar,
+	.\/event-log .sidebar,
+	.\/restart-system .sidebar,
+	.\/command-line .sidebar {
+		display: none;
+	}
+}
+
+//	desktop
+@include breakpoint($desktop)  {
+
+	.sidebar,
+	.\#receiver-table-view {
+		display: block;
+	}
+
+	// .sidebar,
+	// .\/operational-log .\#operational-log-view,
+	// .\/event-log .\#event-log-view,
+	// .\/restart-system .\#restart-system-view,
+	// .\/command-line .\#command-line-view {
+	// 	display: block;
+	// }
+}
