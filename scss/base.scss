@@ -3,7 +3,7 @@
 //	for debugging -
 ////////////////////////////////////////////////////////////////////////////////
 *:hover {
-	// outline: 1px solid #faabcd;
+	outline: 1px solid #faabcd;
 }
 
 //	media queries
@@ -272,10 +272,6 @@ a {
 		&.first { margin-left: 0; }
 		&#{$n} { margin-left: 0; }
 	}
-	// &.first+#{&*$count} { margin-left: 0 };	
-	// &:nth-child(#{$count}n+#{$count}) {
-	// 	margin-left: 0;
-	// }
 }
 
 //	fixed header tables:
@@ -320,12 +316,12 @@ a {
 
 	.table-head {
 		@include table-head;
-		background-color: $light-grey;
+		background-color: $dark-grey;
 	}
 
 	.table-row {
 		@include table-row;
-		background-color: $light-grey;
+		background-color: $dark-grey;
 	}
 
 	.table-col {
@@ -380,8 +376,8 @@ a {
 	cursor: pointer;
 	display: block;
 	height: $big-bump;
-	position: absolute;
 	left: 0;
+	position: absolute;
 	top: 0;
 	width: 100%;
 }
@@ -399,8 +395,8 @@ a {
 
 @mixin desktop-view-head {
 	font-size: $large-font;
-	text-align: center;
 	margin: 30px 0;
+	text-align: center;
 }
 
 @mixin mobile-view-head {
@@ -424,10 +420,10 @@ a {
 }
 
 @mixin desktop-btn-tray {
-	display: inline-block;
-	width: 100%;
 	border-top: 1px solid $bright-blue;
+	display: inline-block;
 	padding: 30px 0 $table-row-padding * 2;
+	width: 100%;
 
 	.block-btn {
 		float: right;
@@ -582,16 +578,16 @@ a {
 
 	//	for the installed sat view
 	.sat-status {
-		color: $light-grey;
-		position: absolute;
 		bottom: $sidebar-padding;
+		color: darken($bright-grey, 25%);
+		position: absolute;
 	}
 
 	.sat-signal {
 		background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;
-		width: 100%;
 		height: 60px;
 		margin-top: -$sidebar-padding;
+		width: 100%;
 
 		&.\$0 { background-image: url(/images/sat-signal-0.svg); }
 		&.\$1 { background-image: url(/images/sat-signal-1.svg); }

@@ -1,6 +1,72 @@
+$(function() {
+	"use strict";
+
+	var insSatView = tvro.insSatView($('.\\#ins-sat-view')).update(3000);
+
+	//	satellite switching mode (manual|automatic)
+	//	not the same as the mode-tog-btn on satellites page
+	var modeTogBtn = tvro.toggleBtn('.\\#mode-tog-btn')
+		.click(function(isManual) {
+			if (isManual) window.location.hash = '/manual';
+			else window.location.hash = '/automatic';
+		});
+
+	var manualSatTableView = tvro.table($('.\\#manual-sat-table-view'))
+		.build(function(row, sat) {
+			$('.\\#sat-name', row).text(sat.name);
+			$('.\\#install-btn', row).click(function() {
+				tvro.data.setInstalledSat(sat);
+				manualSatTableView.build();
+			});
+			tvro.data.getInstalledSat().then(function(insSat) {
+				row.toggleClass('$ins', insSat.antSatID === sat.antSatID);
+			});
+		});
+
+	var automaticSatTableView = tvro.table($('.\\#automatic-sat-table-view'))
+		.build(function(row, sat) {
+			$('.\\#sat-name', row).text(sat.name);
+		});
+
+	var receiverTableView = ReceiverTableView(
+		$('.\\#receiver-table-view')
+			.find('.\\#edit-btn')
+				.click(function() {
+					var receiver = encode(receiverTableView.receivers()[$('.\\#receiver-table-view .\\#edit-btn').index(this)].id);
+					window.location.hash = '/automatic/'+receiver+'/edit';
+				})
+				.end()
+	);
+
+	// var receiverInfoView
+
+	// var receiverEditView
+
+	tvro.hash(function(hash) {
+			tvro.data.getInstalledGroup().then(function(group) {
+				manualSatTableView.vals(group.sats()).build();
+				automaticSatTableView.vals(group.sats()).build();
+			});
+
+			tvro.ws.getAutoswitchStatus().then(function(xml) {
+				var service = $('service', xml).text();
+				var receiverType = 'IP Autoswitch';
+				if (service === 'DIRECTV') receiverType = 'Receiver';
+				$('.\\#receiver-type').text(receiverType);
+			});
+	});
+
+	tvro.hash();
+});
+
+
+
+/*
+
+
 "use strict";
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 
 TVRO.AutoswitchPage = function() {
 	var 
@@ -231,8 +297,8 @@ TVRO.AutoswitchPage = function() {
 	}
 }
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
 
 TVRO.page = TVRO.AutoswitchPage();
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+*/

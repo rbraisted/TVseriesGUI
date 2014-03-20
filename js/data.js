@@ -189,6 +189,17 @@ tvro.data = {
 		});
 	},
 
+	setMaster: function(hub) {
+		return tvro.ws.getAutoswitchStatus().then(function(xml) {
+			var service = $('service', xml).text();
+			var receiverIdType = 'sn';
+			var newMaster = {};
+			if (service === 'DIRECTV') receiverIdType = 'ip_address';
+			newMaster[receiverIdType] = hub.id;
+			return tvro.ws.setAutoswitchMaster(newMaster);
+		});
+	},
+
 	getHub: function() {
 		return tvro.ws.getAutoswitchStatus().then(function(r) {
 			return _.find(_.map($('autoswitch', r), receiver), { name: 'TV-Hub' });

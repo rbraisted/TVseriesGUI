@@ -5,10 +5,14 @@ $(function() {
 	//	installed sat view
 	var insSatView = tvro.insSatView($('.\\#ins-sat-view')).update(3000);
 
+	//	note that in autoswitch and home pages we also have a mode-tog-btn
+	//	but there it refers to satellite switching mode (manual|automatic)
+	//	and here it refers to an artificial (single|group) mode that does
+	//	not exist on the backend but is in here to simplify the ui
 	var modeToggleBtn = tvro.toggleBtn('.\\#mode-toggle-btn')
 		.click(function(isSingle) {
-			if (isSingle) window.location.hash = '/regions'
-			else window.location.hash = '/groups'
+			if (isSingle) window.location.hash = '/regions';
+			else window.location.hash = '/groups';
 		});
 
 	var satEditDropdown = tvro.dropdown($('.\\#sat-edit-dropdown'));
@@ -112,7 +116,7 @@ $(function() {
 					window.location.hash = '/groups/'+encode(groupTable.group().name)+'/edit'
 				})
 				.end()
-			.find('.\\#table-row .\\#info-btn')
+			.find('.\\#info-btn')
 				.click(function(e) {
 					e.stopPropagation();
 					var sat = encode(groupSatTableView.sats()[$('.\\#group-sat-table-view .\\#info-btn').index(this)].antSatID);

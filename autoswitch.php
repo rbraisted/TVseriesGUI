@@ -1,8 +1,187 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
-<link type="text/css" rel="stylesheet" href="/css/autoswitch.css">
-<script type="text/javascript" src="/js/autoswitch.js"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>v 0.3</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+
+		<link type="text/css" rel="stylesheet" href="/css/autoswitch.css">
+
+
+		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/js/base.js"></script>
+
+		<script type="text/javascript" src="/js/lodash.min.js"></script>
+		<script src="/js/promise-3.2.0.js"></script>
+
+		<script type="text/javascript" src="/js/tvro.js"></script>
+		<script type="text/javascript" src="/js/webservice.js"></script>
+		<script type="text/javascript" src="/js/data.js"></script>
+		<script type="text/javascript" src="/js/table.js"></script>
+		<script type="text/javascript" src="/js/insSatView.js"></script>
+		<script type="text/javascript" src="/js/satTable.js"></script>
+		<script type="text/javascript" src="/js/satInfoView.js"></script>
+		<script type="text/javascript" src="/js/satEditView.js"></script>
+		<script type="text/javascript" src="/js/groupTable.js"></script>
+		<script type="text/javascript" src="/js/groupInfoView.js"></script>
+		<script type="text/javascript" src="/js/groupEditView.js"></script>
+		<script type="text/javascript" src="/js/toggleBtn.js"></script>
+		<script type="text/javascript" src="/js/dropdown.js"></script>
+
+		<script type="text/javascript" src="/js/ReceiverTableView.js"></script>
+
+		<script type="text/javascript" src="/js/autoswitch.js"></script>
+
+	</head>
+
+	<body>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<div class="header #header">
+			<div class="status-btn #status-btn">Status</div>
+			<div class="nav-btn #nav-btn">Menu</div>
+			<div class="tracvision-logo"></div>
+		</div>
+
+		<!-- <div id="status" class="view status-view"></div> -->
+
+		<div class="nav #nav">
+			<a href="/home.php" class="home-btn #home-btn">Home</a>
+			<a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
+			<a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
+			<a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
+			<a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
+			<a href="/support.php" class="support-btn #support-btn">Support</a>
+		</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="sidebar">
+	<div class="sidebar-chunk">
+		<div class="sidebar-chunk-head">Satellite Switching</div>
+		<div class="toggle-btn #mode-tog-btn">
+			<span class="on">Manual</span>
+			<span class="off">Automatic</span>
+		</div>
+	</div>
+
+	<div class="sidebar-chunk #ins-sat-view">
+		<div class="sidebar-chunk-head">
+			<span class="#sat-name"></span>
+			<span class="#sat-region"></span>
+		</div>
+		<div class="sat-signal #ant-bars $0"></div>
+		<span class="sat-status #ant-state"></span>
+	</div>
+
+	<div class="manual-sat-table #manual-sat-table-view">
+		<div class="table-row #table-row">
+			<span class="table-col install-btn #install-btn"></span><!--
+		 --><span class="table-col #sat-name"></span>
+		</div>
+	</div>
+
+	<div class="sidebar-chunk">
+		<div class="sidebar-chunk-head">Installed Satellites</div>
+		<div class="automatic-sat-table #automatic-sat-table-view">
+			<div class="table-row #table-row">
+				<span class="table-col #sat-name"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="block-btn #new-btn">
+		Add
+		<span class="#receiver-type"></span>
+	</div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="view #receiver-table-view">
+	<div class="view-head">
+		<span class="autoswitch-icon"></span>
+		<span class="#receiver-type"></span>
+		<div class="back-btn #back-btn"></div>
+	</div>
+
+<!-- 
+		<div id="not-directv" class="copy">
+			The following IP AutoSwitch(es) have been found or were previously
+			configured on your network. The receiver connected to the master IP
+			AutoSwitch controls satellite selection in automatic satellite
+			switching mode. You may choose the master by selecting it below or
+			by pressing the Master Select button on the IP AutoSwitch itself,
+			provided it is currently active on the network (status is green).
+			Assign a unique name to each IP AutoSwitch so you can easily identify
+			it later.
+
+			<span class="white">
+				Hint: To determine the location of an IP AutoSwitch, press its
+				Master Select button. That IP AutoSwitch will then become the
+				master in the list below.
+			</span>
+
+		</div>
+
+		<div id="directv" class="copy">
+			The following receivers have been set up for automatic satellite
+			switching. The master receiver controls satellite selection. You may
+			choose the master by selecting it below. To add a receiver to the 
+			list, enter its IP address and assign it a unique name (location).
+
+			<a href="#">
+				(Find your receiver’s IP address.)
+			</a>
+
+			<span class="white">
+				Note: Receiver must be activated to view its IP address. The 
+				receiver also must be set up to allow external access before it 
+				will communicate with the TV-Hub. 
+				
+				<a href="#">
+					Learn how to enable external access on your DIRECTV receiver.
+				</a>
+
+			</span>
+
+		</div>
+ -->
+
+	<div class="receiver-table #receiver-table">
+		<div class="table-row #table-row">
+			<div class="table-col status-col">
+				<div class="status-icon label">Status</div>
+			</div><!--
+		--><div class="table-col name-col">
+				<div class="label #receiver-name-label"></div>
+				<div class="#receiver-name"></div>
+			</div><!--
+		--><div class="table-col id-col">
+				<div class="label #receiver-id-label"></div>
+				<div class="#receiver-id"></div>
+			</div><!--
+		--><div class="table-col edit-col">
+				<div class="block-btn edit-btn #edit-btn">Edit</div>
+			</div><!--
+		--><div class="table-col select-col">
+				<div class="block-btn select-btn #select-btn">Select</div>
+				<div class="master-icon label">Master</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--
+
 
 <div id="menu-view" class="view menu-view">
 	<div id="satellite-view" class="menu-sub-view satellite-view">
@@ -61,8 +240,6 @@
 		<label id="directv">Add Receiver</label>
 	</a>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="autoswitches-view" class="view main-view autoswitches-view">
 	<div class="view-content main-content">
@@ -149,8 +326,6 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
 <div id="autoswitch-view" class="view main-view autoswitch-view">
 	<div class="view-content main-content">
 		<a id="back-btn" class="btn back-btn">
@@ -191,8 +366,6 @@
 		</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="edit-view" class="view popup-view edit-view">
 	<div class="view-content popup-content">
@@ -248,4 +421,7 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+-->
+
+	</body>
+</html>

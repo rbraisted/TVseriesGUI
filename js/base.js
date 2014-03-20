@@ -235,9 +235,10 @@ TVRO.WebService = (function() {
 					data: requestXml,
 					success: function(response) {
 						console.log('~ '+requestName.toUpperCase());
-						// console.log($(requestXml).get(0));
+						console.log($(requestXml).get(0));
+						console.log($('ipacu_response', response).get(0));
+
 						var error = $(response).find('ipacu_response > message').attr('error');
-						// console.log($('ipacu_response', response).get(0));
 
 						if (error === '0' && successCallback) successCallback($(response));
 						else if (error !== '0' && errorCallback) errorCallback(error);
@@ -261,6 +262,13 @@ TVRO.WebService = (function() {
 						// TIMEOUT                 	15	Ttl was not specified or 0, or requested button was not pressed
 						// INVALID_UPDATE_FILE     	16	The name you provided doesn't start with "HD11-" and end with ".kvh".
 						// DUPLICATE_DATA          	17	data value already in use
+						// -Paul
+						
+						// I have added a new error code for TV-HUB messages.
+						// 18 means configuration error, specifically for
+						// TV-HUB this means the LNB is not configured. This
+						// should never be a problem after we start production
+						// because the factory will always install and configure the LNB.
 						// -Paul
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
