@@ -13,13 +13,88 @@
     });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
-      tvro.ws.setWlan({
-        mode: $('.\\#wlan-mode', jQ).text(),
-        ip: $('.\\#wlan-ip', jQ).val(),
-        netmask: $('.\\#wlan-netmask', jQ).val(),
-        gateway: $('.\\#wlan-gateway', jQ).val(),
-        broadcast: $('.\\#wlan-broadcast', jQ).val()
-      }).then(refresh);
+
+      var params = {
+        mode: $('.\\#wlan-mode', jQ).text()
+      };
+
+      var networkModeParams = {
+        mode: $('.\\#wlan-network-mode', jQ).text(),
+        essid: $('.\\#wlan-essid', jQ).val(),
+        security: {
+          mode: $('.\\#wlan-security-mode', jQ).text()
+        }
+      }
+
+      if (networkModeParams.security.mode !== 'OFF') {
+        networkModeParams.security.key = $('.\\#wlan-security-key', jQ).val();
+      }
+
+      if (params.mode === 'IF') {
+        if (networkModeParams.mode === 'DYNAMIC') {
+          params = _.merge(params, {
+            if_mode: networkModeParams
+          });
+        } else {
+          params = _.merge(params, {
+            if_mode: _.merge(networkModeParams, {
+              ip: $('.\\#wlan-ip', jQ).val(),
+              netmask: $('.\\#wlan-netmask', jQ).val(),
+              gateway: $('.\\#wlan-gateway', jQ).val(),
+              broadcast: $('.\\#wlan-broadcast', jQ).val()            
+            })
+          });
+        }    
+      } else if (params.mode === 'AP') {
+        params = _.merge(params, {
+          ap_mode: networkModeParams
+        })
+      }
+
+      tvro.ws.setWlan(params).then(refresh);
+
+//  <message name="set_wlan" />
+//      <channel>11</channel>
+//      <band>b|g</band>
+//       <mode>OFF | ADHOC | IF | AP</mode>   NOTE: no ADHOC or IF on VSAT IPACU
+//      <adhoc_mode>     NOTE: used on HD11 only
+//       <security>
+//        <mode>OFF | WEP</mode>
+//        <key></key>
+// </security>
+//       <ip>169.254.100.1</ip>
+//      </adhoc_mode>
+//      <if_mode>     NOTE: used on HD11 only
+//       <mode> STATIC | DYNAMIC</mode>
+//       <essid>ipacu</essid>
+//       <security>
+//        <mode>
+//         OFF | WPA_PSK | WPA2_PSK | WEP_1
+//        </mode>
+//        <algorithm>
+//         TKIP | AES | WEP_64 | WEP_128
+//        </algorithm>
+//        <key></key>
+//       </security>
+//       <ip>192.168.1.3</ip>
+//       <netmask>255.255.255.0</netmask>
+//       <gateway>192.168.1.1</gateway>
+//       <broadcast>192.168.1.255</broadcast>
+//      </if_mode>
+//      <ap_mode>     NOTE: used on VSAT only
+//       <essid>ipacu</essid>
+//       <security>
+//        <mode>
+//         OFF | WPA_PSK | WPA2_PSK | WEP
+//        </mode>
+//        <algorithm>
+//         TKIP | AES | WEP_64 | WEP_128
+//        </algorithm>
+//        <key>asbn235bsdjhw4fedfe</key>
+//       </security>
+//      </ap_mode>
+
+
     });
 
 
