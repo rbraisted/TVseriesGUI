@@ -3,7 +3,7 @@
 //	for debugging -
 ////////////////////////////////////////////////////////////////////////////////
 *:hover {
-	outline: 1px solid #faabcd;
+	// outline: 1px solid #faabcd;
 }
 
 //	media queries
@@ -71,8 +71,7 @@ $bright-blue: #4f7abd;
 $light-blue: #243774;
 $dark-blue: #1c335d;
 
-$grey-blue: #101f30;
-
+$grey: #cbcaca;
 $bright-grey: #bac7da;
 $light-grey: #4c5269;
 $dark-grey: #293147;
@@ -519,8 +518,10 @@ a {
 	top: 0;
 	z-index: $popup-index;
 
-	.popup-guts {
-		background-color: $grey-blue;
+	.popup-guts,
+  .dropdown-guts {
+    //  idk i didnt like the color name
+		background-color: #101f30;
 		box-shadow: 0 0 100px #000;
 		display: block;
 		height: 600px;
@@ -616,6 +617,46 @@ a {
 	@include breakpoint($mobile) {
 		@include mobile-view;
 	}
+}
+
+.dropdown {
+  @include popup-view;
+
+  .dropdown-guts {    
+    height: auto;
+    min-height: auto;
+    min-width: 280px;
+    width: auto;
+  }
+
+  .table { @include blue-table; }
+  .table-col { @include table-col; }
+  .table-row {
+    @include table-row;
+    cursor: pointer;
+    
+    .dropdown-icon {
+      @include bgimg('radio-unchecked');
+      display: inline-block;
+      padding: 0;
+      margin-left: 15px;
+    }
+
+    &.\$sel .dropdown-icon {
+      @include bgimg('radio-checked');
+    }
+  }
+
+  @include breakpoint($mobile) {
+    .dropdown-guts {
+      bottom: 0 !important;
+      left: 0 !important;
+      margin: 0 !important;
+      min-width: 0 !important;
+      right: 0 !important;
+      top: auto !important;
+    }
+  }
 }
 
 //	this turned out to be really strange

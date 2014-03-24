@@ -1,0 +1,252 @@
+@import "base.scss";
+
+.menu-table {
+	@include blue-table;
+
+	.table-row {
+		cursor: pointer;
+	}
+
+	@include breakpoint($mobile) {
+		.table-row.\$sel {
+			background-color: $light-blue;
+		}
+
+		.table-row {
+			@include bgimg('right-icon-blue', right 15px center, $fine-icon);
+		}
+	}
+}
+
+.label,
+.value {
+  width: 50%;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.label {
+  color: $grey;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.value {
+  padding-left: 10px;
+}
+
+.edit-btn {
+  width: 130px;
+  float: right;
+  margin-right: calc(50% - 135px);
+  // margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+
+@include breakpoint($desktop) {
+  .network-settings {
+    >.view-head {
+      display: none;
+    }
+
+    .ethernet-settings,
+    .wireless-settings {
+      @include clearfix;
+    }
+  }
+}
+
+@include breakpoint($mobile) {
+  .network-settings {
+    .ethernet-settings,
+    .wireless-settings {
+      @include clearfix;
+    }
+
+    .ethernet-settings,
+    .wireless-settings {
+      .view-head {
+        //  undo all of @include mobile-view-head
+        background: transparent;
+        border: 0;
+        left: 0;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        position: static;
+        top: 0;
+        //  make it a desktop-view-head
+        @include desktop-view-head;
+      }
+    }
+  }
+}
+
+.network-settings,
+.popup {
+  &.\$eth-off,
+  &.\$eth-dynamic {
+    .ethernet-settings {
+      .ip-label, .ip-value, .ip-input,
+      .subnet-label, .subnet-value, .subnet-input,
+      .gateway-label, .gateway-value, .gateway-input,
+      .broadcast-label, .broadcast-value, .broadcast-input {
+        display: none;
+      }      
+    }
+  }
+
+  &.\$eth-off {
+    .wireless-settings {
+      display: none;
+    }
+  }
+
+  &.\$wlan-off {
+    .wireless-settings {
+      .network-label, .network-value, .network-dropdown-btn,
+      .ssid-label, .ssid-value, .ssid-input,
+      .ip-label, .ip-value, .ip-input,
+      .subnet-label, .subnet-value, .subnet-input,
+      .gateway-label, .gateway-value, .gateway-input,
+      .broadcast-label, .broadcast-value, .broadcast-input,
+      .security-label, .security-value, .security-dropdown-btn,
+      .password-label, .password-value, .password-input {
+        display: none;
+      }
+    }
+  }
+
+  &.\$wlan-dynamic {
+    .wireless-settings {
+      .ip-label, .ip-value, .ip-input,
+      .subnet-label, .subnet-value, .subnet-input,
+      .gateway-label, .gateway-value, .gateway-input,
+      .broadcast-label, .broadcast-value, .broadcast-input {
+        display: none;
+      }
+    }    
+  }
+
+  &.\$wlan-sec-off {
+    .wireless-settings {
+      .password-label, .password-value, .password-input {
+        display: none;
+      }
+    }
+  }
+}
+
+.popup {
+  @include breakpoint($desktop) {
+    .popup-guts {
+      padding-top: $big-bump*2;
+    }
+
+    .btn-tray {
+      left: 0;
+    }
+  }
+
+  @include breakpoint($mobile) {
+    .popup-guts {
+      padding-top: $big-bump;
+    }
+
+    .label {
+      width: 45%;
+    }
+
+    .btn-tray {
+      .cancel-btn {
+        display: none;
+      }
+
+      .save-btn,
+      .reset-btn {
+        @include split(2, 10px, '.block-btn');
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .input,
+  .dropdown-btn {
+    display: inline-block;
+    width: 180px;
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: 440px) {
+    .input,
+    .dropdown-btn,
+    .label {
+      display: block;
+      width: calc(100% - 20px);
+    }
+
+
+    .label {
+      text-align: left;
+      margin-top: 25px;
+      margin-left: 10px;
+    }
+
+    .mode-label {
+      margin-top: 0;
+    }
+
+    .popup-guts {
+      padding-left: 20px;
+    }
+  }
+}
+
+//	routing
+////////////////////////////////////////////////////////////////////////////////
+
+//	mobile
+@include breakpoint($mobile) {
+  .sidebar,
+  .\/general .\#general-settings-view,
+  .\/advanced .\#advanced-settings-view,
+  .\/network .\#network-settings-view,
+  .\/network\/ethernet .\#ethernet-settings-view,
+  .\/network\/wireless .\#wireless-settings-view {
+    display: block;
+  }
+
+  .\/general .sidebar,
+  .\/advanced .sidebar,
+  .\/network .sidebar,
+  .\/network\/ethernet .sidebar,
+  .\/network\/wireless .sidebar {
+    display: none;
+  }
+}
+
+//	desktop
+@include breakpoint($desktop)  {
+	.sidebar,
+	.\/general .\#general-settings-view,
+  .\/advanced .\#advanced-settings-view,
+  .\/network .\#network-settings-view,
+  .\/network\/ethernet .\#ethernet-settings-view,
+  .\/network\/wireless .\#wireless-settings-view {
+		display: block;
+	}
+
+  .\/network\/ethernet,
+  .\/network\/wireless {
+    .\#network-settings-view {
+      display: block;
+    }
+  }
+}
+
+//	nothing/splash
+//	/general
+//	/network/ethernet
+//	/network/wireless
+//	/advanced

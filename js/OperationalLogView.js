@@ -21,7 +21,7 @@
 			}
 		});
 
-		return self = {}
+		return self = {};
 	}
 
 	exports.OperationalLogView = OperationalLogView;

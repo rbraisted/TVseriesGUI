@@ -41,10 +41,7 @@
 				$('.\\#event-message', row).text(event.message);
 			});
 
-		var saveBtn = $('.\\#save-btn', jQ);
-		var emailBtn = $('.\\#email-btn', jQ);
-
-		saveBtn.click(function() {
+		var saveBtn = $('.\\#save-btn', jQ).click(function() {
 			tvro.ws.getEventHistoryLog(undefined, true).then(function(xml) {
 				var content = $('content', xml)[0].innerHTML;
 				var date = new Date();
@@ -65,7 +62,7 @@
 			});
 		});
 
-		emailBtn.click(function() {
+    var emailBtn = $('.\\#email-btn', jQ).click(function() {
 			tvro.ws.getEventHistoryLog(undefined, true).then(function(xml) {
 				var content = $('content', xml)[0].innerHTML;
 				window.open("mailto:?subject=TVRO Event Log&body="+content);

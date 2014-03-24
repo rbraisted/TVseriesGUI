@@ -3,14 +3,13 @@
 (function(tvro) {
 
 	var toggleBtn = function(jQ) {
-		var
-		toggleBtn,
-		val = $(jQ).hasClass('$on'),
-		clickCb;
+		var toggleBtn;
+		var val = $(jQ).hasClass('$on');
+		var clickCb;
 
 		$(jQ).click(function() {
 			val = $(jQ).toggleClass('$on').hasClass('$on');
-			clickCb(val);
+			if (clickCb) clickCb.call(toggleBtn, val);
 		});
 
 		return toggleBtn = {
