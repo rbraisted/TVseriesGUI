@@ -203,6 +203,29 @@
   }
 }
 
+.general-settings,
+.advanced-settings {
+  max-width: 600px;
+
+  .heading {
+    line-height: 1.6;
+  }
+
+  p {
+    color: $grey;
+    line-height: 1.6;
+  }
+
+  .toggle-btn {
+    .on, .off {
+      margin-top: 16px;
+      margin-bottom: 32px;
+      padding: 7px 10px;
+      min-width: 50px;
+    }
+  }
+}
+
 //	routing
 ////////////////////////////////////////////////////////////////////////////////
 
