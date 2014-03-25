@@ -20,7 +20,7 @@ get = function(msg) {
 set = function(msg, resaves) {
 	return function(params) {
 		return Promise(request(msg, params)).then(function(r) {
-			_.invoke(resaves, 'call', null, undefined, true);
+			return Promise.all(_.invoke(resaves, 'call', null, undefined, true));
 		});
 	}
 };

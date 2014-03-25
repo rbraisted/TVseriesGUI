@@ -102,7 +102,7 @@ tvro.data = {
 		return tvro.ws.getAutoswitchStatus()
 		.then(function(r) {
 			return tvro.ws.setAutoswitchService({
-				enable: $('enabled', r).first().text(),
+				enable: $('enable', r).first().text(),
 				service: $('service', r).first().text(),
 				satellite_group: group.name
 			});

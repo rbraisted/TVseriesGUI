@@ -9,17 +9,20 @@
 		.build(function(row, group) {
 			$('.\\#group-name', row).text(group.name);
 
-			$('.\\#install-btn', row).click(function(e) {
-				e.stopPropagation();
-				if (confirm('Are you sure you want to install '+group.name+'?')) {
-					tvro.data.setInstalledGroup(group).then(function() {
-						tvro.hash();
-					});
-				}
-			});
-
 			tvro.data.getInstalledGroup().then(function(insGroup) {
-				row.toggleClass('$ins', insGroup.name === group.name);
+        var isInsGroup = insGroup.name === group.name
+				row.toggleClass('$ins', isInsGroup);
+
+        if (!isInsGroup) {
+          $('.\\#install-btn', row).click(function(e) {
+            e.stopPropagation();
+            if (confirm('Are you sure you want to install '+group.name+'?')) {
+              tvro.data.setInstalledGroup(group).then(function() {
+                tvro.hash();
+              });
+            }
+          });
+        }
 			});
 		}),
 

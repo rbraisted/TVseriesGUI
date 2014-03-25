@@ -3,7 +3,7 @@
 $(function() {
 
 	//	installed sat view
-	var insSatView = tvro.insSatView($('.\\#ins-sat-view')).update(3000);
+	var insSatView = tvro.insSatView($('.\\#ins-sat-view'));//.update(3000);
 
 	//	note that in autoswitch and home pages we also have a mode-tog-btn
 	//	but there it refers to satellite switching mode (manual|automatic)
