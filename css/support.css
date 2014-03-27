@@ -53,6 +53,9 @@ a {
     float: right;
     height: 100%;
     width: 50px; }
+    @media screen and (max-width: 880px) {
+      .header .nav-btn {
+        display: none; } }
 
 .nav {
   background: #000;

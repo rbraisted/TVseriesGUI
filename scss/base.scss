@@ -152,12 +152,24 @@ a {
 		float: left;
 		height: 100%;
 		width: $header-height;
+
+    .power-status {
+
+    }
+
+    .antenna-status {
+
+    }
 	}
 
 	.nav-btn {
 		float: right;
 		height: 100%;
 		width: $header-height;
+
+    @include breakpoint($mobile) {
+      display: none;
+    }
 	}
 }
 
