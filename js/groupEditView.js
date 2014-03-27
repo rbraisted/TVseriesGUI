@@ -1,81 +1,83 @@
-"use strict";
+!function(TVRO){
+  "use strict";
 
-(function(tvro){
+  var GroupEditView = function(jQ) {
+    var
+    GroupEditView,
+    satTableView,
+    slotToEdit,
+    group;
 
-	var groupEditView = function(jQ) {
-		var
-		groupEditView,
-		satTableView,
-		slotToEdit,
-		group;
+    $('.\\#save-btn', jQ).click(function() {
+      var nu = {name: $('.\\#group-name', jQ).val()};
 
-		$('.\\#save-btn', jQ).click(function() {
-			var nu = {name: $('.\\#group-name', jQ).val()};
+      _.forEach(['a', 'b', 'c', 'd'], function(slot) {
+        if (group[slot]) nu[slot] = group[slot].antSatID;
+      });
 
-			_.forEach(['a', 'b', 'c', 'd'], function(slot) {
-				if (group[slot]) nu[slot] = group[slot].antSatID;
-			});
+      if (!nu.name) {
+        return alert('You must give this group a name!');
+      }
 
-			if (!nu.name) {
-				return alert('You must give this group a name!');
-			}
+      if (confirm('Are you sure you want to save '+nu.name+'?')) {
+        // editing group
+        if (group.name) {
+          TVRO.data.removeGroup({name:group.name}).then(function() {
+            return TVRO.data.addGroup(nu);
+          }).then(function() {
+            TVRO.hash();
+          });
 
-			if (confirm('Are you sure you want to save '+nu.name+'?')) {
-				// editing group
-				if (group.name) {
-					tvro.data.removeGroup({name:group.name}).then(function() {
-						return tvro.data.addGroup(nu);
-					}).then(function() {
-						tvro.hash();
-					});
+        // new group
+        } else {
+          TVRO.data.addGroup(nu).then(function() {
+            GroupEditView.group(nu);
+          });
+        }
+      }
+    });
 
-				// new group
-				} else {
-					tvro.data.addGroup(nu).then(function() {
-						groupEditView.group(nu);
-					});
-				}
-			}
-		});
+    var reload = function() {
+      $('.\\#group-name', jQ).val(group.name);
 
-		return groupEditView = {
-			group: function(arg) {
-				if (!arguments.length) {
-					return group;
-				} else {
-					group = arg;
-					$('.\\#group-name', jQ).val(group.name);
+      _.forEach(['a', 'b', 'c', 'd'], function(slot) {
+        $('.\\#sat-'+slot+'-view', jQ)
+        .find('.\\#sat-name')
+        .text(group['sat'+slot.toUpperCase()] ? group['sat'+slot.toUpperCase()].name : 'N/A')
+        .end()
+        .click(function() {
+          slotToEdit = slot;
+        })
+      });
+    };
 
-					_.forEach(['a', 'b', 'c', 'd'], function(slot) {
-						$('.\\#sat-'+slot+'-view', jQ)
-						.find('.\\#sat-name')
-						.text(group[slot] ? group[slot].name : 'N/A')
-						.end()
-						.click(function() {
-							slotToEdit = slot;
-						})
-					});
+    return GroupEditView = {
+      setGroup: function(arg) {
+        TVRO.getGroups().then(function(groups) {
+          group = _.find(groups, arg);
+          reload();
+        });
+      },
 
-					return groupEditView;
-				}
-			},
-			satTableView: function(arg) {
-				if (!arguments.length) {
-					return satTableView;
-				} else {
-					satTableView = arg;
-					satTableView.click(function(row, sat) {
-						group[slotToEdit] = sat;
-						$('.\\#sat-'+slotToEdit+'-view .\\#sat-name', jQ).text(group[slotToEdit] ? group[slotToEdit].name : 'N/A');
-					});
-					return groupEditView;
-				}
-			}
-		}
-	}
+      getGroup: function() {
+        return group;
+      },
 
-	tvro.groupEditView = groupEditView;
+      satTableView: function(arg) {
+        if (!arguments.length) {
+          return satTableView;
+        } else {
+          satTableView = arg;
+          satTableView.onClick(function(sat) {
+            group['sat'+slotToEdit.toUpperCase()] = sat;
+            $('.\\#sat-'+slotToEdit+'-view .\\#sat-name', jQ).text(group['sat'+slotToEdit.toUpperCase()] ? group['sat'+slotToEdit.toUpperCase()].name : 'N/A');
+          });
+          return GroupEditView;
+        }
+      }
+    };
+  };
 
-}(window.tvro));
-//	??? invalid left hand assign ???
-// }(window.tvro || window.tvro = {}));
+  TVRO.GroupEditView = GroupEditView;
+
+}(window.TVRO);

@@ -1,61 +1,13 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>v 0.3</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
-		<meta http-equiv="cache-control" content="max-age=0" />
-		<meta http-equiv="cache-control" content="no-cache" />
-		<meta http-equiv="expires" content="0" />
-		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-		<meta http-equiv="pragma" content="no-cache" />
+<script type="text/javascript" src="/js/GeneralSettingsView.js"></script>
+<script type="text/javascript" src="/js/NetworkSettingsView.js"></script>
+<script type="text/javascript" src="/js/AdvancedSettingsView.js"></script>
+<script type="text/javascript" src="/js/EthernetSettingsView.js"></script>
+<script type="text/javascript" src="/js/WirelessSettingsView.js"></script>
 
-		<link type="text/css" rel="stylesheet" href="/css/settings.css">
+<script type="text/javascript" src="/js/SettingsPage.js"></script>
 
-
-		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="/js/base.js"></script>
-
-		<script type="text/javascript" src="/js/lodash.min.js"></script>
-		<script src="/js/promise-3.2.0.js"></script>
-
-		<script type="text/javascript" src="/js/tvro.js"></script>
-		<script type="text/javascript" src="/js/webservice.js"></script>
-		<script type="text/javascript" src="/js/data.js"></script>
-		<script type="text/javascript" src="/js/table.js"></script>
-		<script type="text/javascript" src="/js/toggleBtn.js"></script>
-		<script type="text/javascript" src="/js/dropdown.js"></script>
-
-		<script type="text/javascript" src="/js/GeneralSettingsView.js"></script>
-		<script type="text/javascript" src="/js/NetworkSettingsView.js"></script>
-		<script type="text/javascript" src="/js/AdvancedSettingsView.js"></script>
-    <script type="text/javascript" src="/js/EthernetSettingsView.js"></script>
-    <script type="text/javascript" src="/js/WirelessSettingsView.js"></script>
-
-		<script type="text/javascript" src="/js/settings.js"></script>
-
-	</head>
-
-	<body>
-
-<!-- header/nav
-- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div class="header #header">
-	<div class="status-btn #status-btn">Status</div>
-	<div class="nav-btn #nav-btn">Menu</div>
-	<div class="tracvision-logo"></div>
-</div>
-
-<div class="nav #nav">
-	<a href="/home.php" class="home-btn #home-btn">Home</a>
-	<a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
-	<a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
-	<a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
-	<a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
-	<a href="/support.php" class="support-btn #support-btn">Support</a>
-</div>
 
 <!-- sidebar
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -63,7 +15,10 @@
 <div class="sidebar">
 	<div class="menu-table #menu-table-view">
 		<div class="table-row #table-row">
-			<div class="table-col #menu-item"></div>
+			<div class="table-col">
+        <span class="#menu-item"></span>
+        Settings
+      </div>
 		</div>
 	</div>
 </div>
@@ -77,22 +32,22 @@
 	</div>
 
 	<div class="heading">Technician Mode</div>
-	<p>Info about Technician Mode: Nulla feugiat vestibulum egestas.
-		Integer porttitor est turpis, at convallis nisi tristique ac.
-		Vestibulum ac est a quam pellentesque porta. Nunc id pulvinar
-		metus. Etiam commodo faucibus augue, id placerat elit aliquet
-		non. Sed ac diam enim. Phasellus vitae interdum magna.
+	<p>
+    Turn on Technician mode to view software updates for all TracVision
+    system models.
 	</p>
-	<div class="toggle-btn #tech-tog-btn">
+	<div class="toggle-btn #tech-mode-btn">
 		<div class="on">On</div>
 		<div class="off">Off</div>
 	</div>
 
 	<div class="heading">Demo Mode</div>
-	<p>Turn on Demo mode to browse the capabilities of the app and 
-		the TracVision system without making any actual changes.
+	<p>
+    Turn on Demo mode to browse the capabilities of the app and the TracVision
+    system without making any actual changes. Not all functionality is
+    available in demo mode.
 	</p>
-	<div class="toggle-btn #demo-tog-btn">
+	<div class="toggle-btn #demo-mode-btn">
 		<div class="on">On</div>
 		<div class="off">Off</div>
 	</div>
@@ -107,20 +62,23 @@
 	</div>
 
 	<div class="heading">Sleep Mode</div>
-	<p>Sleep mode locks the antenna in place to conserve power whenever the 
-		<span class="#vessel-type"></span>is stationary and holds its position
-		for one minute. Sleep mode is enabled by default.
+	<p>
+    Sleep mode locks the antenna in place to conserve power whenever the 
+		<span class="#vessel-type"></span> is stationary and holds its position for
+    one minute. Sleep mode is enabled by default.
 	</p>
-	<div class="toggle-btn #sleep-tog-btn">
+	<div class="toggle-btn #sleep-mode-btn">
 		<div class="on">On</div>
 		<div class="off">Off</div>
 	</div>
 
 	<div class="heading">Sidelobe Mode</div>
-	<p>Turn on Demo mode to browse the capabilities of the app and 
-		the TracVision system without making any actual changes.
+	<p>
+    Side Lobe mode ensures the antenna is always tracking the main beam of the
+    satellite, and not on a weaker side lobe. For optimum performance, keep Side
+    Lobe mode enabled unless directed otherwise by KVH Technical Support.
 	</p>
-	<div class="toggle-btn #sidelobe-tog-btn">
+	<div class="toggle-btn #sidelobe-mode-btn">
 		<div class="on">On</div>
 		<div class="off">Off</div>
 	</div>
@@ -186,16 +144,16 @@
   </div>
 </div>
 
-<div class="dropdown #eth-mode-dropdown">
+<div class="dropdown #eth-mode-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
       <span class="#dropdown-title">Mode</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table #dropdown-table-view">
+    <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-val"></span>
+      --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>
@@ -242,46 +200,46 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="dropdown #wlan-mode-dropdown">
+<div class="dropdown #wlan-mode-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
       <span class="#dropdown-title">Mode</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table #dropdown-table-view">
+    <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-val"></span>
+      --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="dropdown #wlan-network-mode-dropdown">
+<div class="dropdown #wlan-network-mode-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
       <span class="#dropdown-title">Network Mode</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table #dropdown-table-view">
+    <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-val"></span>
+      --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="dropdown #wlan-security-mode-dropdown">
+<div class="dropdown #wlan-security-mode-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
       <span class="#dropdown-title">Security Mode</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table #dropdown-table-view">
+    <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-val"></span>
+      --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>

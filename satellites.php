@@ -1,68 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>v 0.3</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
-		<meta http-equiv="cache-control" content="max-age=0" />
-		<meta http-equiv="cache-control" content="no-cache" />
-		<meta http-equiv="expires" content="0" />
-		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-		<meta http-equiv="pragma" content="no-cache" />
+<script type="text/javascript" src="/js/InstalledSatView.js"></script>
+<script type="text/javascript" src="/js/SatTableView.js"></script>
+<script type="text/javascript" src="/js/SatInfoView.js"></script>
+<script type="text/javascript" src="/js/SatEditView.js"></script>
+<script type="text/javascript" src="/js/GroupTableView.js"></script>
+<script type="text/javascript" src="/js/GroupInfoView.js"></script>
+<script type="text/javascript" src="/js/GroupEditView.js"></script>
 
-		<link type="text/css" rel="stylesheet" href="/css/satellites.css">
-
-		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="/js/base.js"></script>
-
-		<script type="text/javascript" src="/js/lodash.min.js"></script>
-		<script src="/js/promise-3.2.0.js"></script>
-
-		<script type="text/javascript" src="/js/tvro.js"></script>
-		<script type="text/javascript" src="/js/webservice.js"></script>
-		<script type="text/javascript" src="/js/data.js"></script>
-		<script type="text/javascript" src="/js/table.js"></script>
-		<script type="text/javascript" src="/js/insSatView.js"></script>
-		<script type="text/javascript" src="/js/satTable.js"></script>
-		<script type="text/javascript" src="/js/satInfoView.js"></script>
-		<script type="text/javascript" src="/js/satEditView.js"></script>
-		<script type="text/javascript" src="/js/groupTable.js"></script>
-		<script type="text/javascript" src="/js/groupInfoView.js"></script>
-		<script type="text/javascript" src="/js/groupEditView.js"></script>
-		<script type="text/javascript" src="/js/toggleBtn.js"></script>
-		<script type="text/javascript" src="/js/dropdown.js"></script>
-		<script type="text/javascript" src="/js/test.js"></script>
-	</head>
-
-	<body>
-
-<!-- header/nav
-- -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-		<div class="header #header">
-			<div class="status-btn #status-btn">Status</div>
-			<div class="nav-btn #nav-btn">Menu</div>
-			<div class="tracvision-logo"></div>
-		</div>
-
-		<!-- <div id="status" class="view status-view"></div> -->
-
-		<div class="nav #nav">
-			<a href="/home.php" class="home-btn #home-btn">Home</a>
-			<a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
-			<a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
-			<a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
-			<a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
-			<a href="/support.php" class="support-btn #support-btn">Support</a>
-		</div>
+<script type="text/javascript" src="/js/SatellitesPage.js"></script>
 
 <!-- sidebar
 contains .#region-table-view (single mode)
 and also .#group-table-view (group mode)
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <div class="sidebar">
-	<div class="sidebar-chunk #ins-sat-view">
+
+	<div class="sidebar-chunk #installed-sat-view">
 		<div class="sidebar-chunk-head">
 			<span class="#sat-name">Satellite</span>
 			<span class="#sat-region"></span>
@@ -73,7 +27,7 @@ and also .#group-table-view (group mode)
 	
 	<div class="sidebar-chunk">
 		<div class="sidebar-chunk-head">Satellite Mode</div>
-		<div class="toggle-btn #mode-toggle-btn">
+		<div class="toggle-btn #sat-mode-btn">
 			<span class="on">Single</span>
 			<span class="off">Group</span>
 		</div>
@@ -86,12 +40,16 @@ and also .#group-table-view (group mode)
 	</div>
 
 	<div class="group-table #group-table-view">
-		<div class="table-row #table-row">
-			<span class="table-col install-btn #install-btn"></span><!--
-		 --><span class="table-col #group-name"></span>
+    <div class="#table-view">
+  		<div class="table-row #table-row">
+  			<span class="table-col install-btn #install-btn"></span><!--
+  		 --><span class="table-col #group-name"></span>
+      </div>
 		</div>
 	</div>
+
 	<div class="block-btn #new-btn">Create New Group</div>
+
 </div>
 
 <!-- shared views (#sat-info-view, #sat-edit-view)
@@ -461,7 +419,7 @@ and also .#group-table-view (group mode)
 		<span>Satellites</span>
 		<div class="back-btn #back-btn"></div>
 	</div>
-	<div class="sat-table #sat-table-view">
+	<div class="sat-table #table-view">
 		<div class="table-head #table-head">
 			<div class="table-col install-col">Installed</div><!--
 		 --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
@@ -576,7 +534,7 @@ and also .#group-table-view (group mode)
 			<span>Satellites</span>
 			<div class="back-btn #back-btn"></div>
 		</div>
-		<div class="sat-table #sat-table-view">
+		<div class="sat-table #table-view">
 			<div class="table-head #table-head">
 				<div class="table-col install-col">Installed</div><!--
 			 --><div class="table-col name-col sort-btn #name-sort-btn">Name</div><!--

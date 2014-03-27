@@ -1,34 +1,45 @@
-!function(exports) {
+!function(TVRO) {
+  "use strict";
+
 	var AdvancedSettingsView = function(jQ) {
 		var self;
 
-		var modeToggle = function(mode) {
-			return function(isEnabled) {
-				var params = {};
-				params[mode] = (isEnabled ? 'ON' : 'OFF');
-				tvro.ws.setAntennaConfig(params).then(updateTogBtns);
-			}
-		}
 
-		var refresh = function() {
-			tvro.ws.getAntennaConfig().then(function(xml) {
-				var sleepModeEnabled = $('sleep', xml).text() === 'ON';
-				var sidelobeModeEnabled = $('sidelobe', xml).text() === 'ON';
-				sleepTogBtn.val(sleepModeEnabled);
-				sidelobeTogBtn.val(sidelobeModeEnabled);
+		var reload = function() {
+			TVRO.getAntennaConfig().then(function(xml) {
+				var sleepModeOn = $('sleep', xml).text() === 'ON';
+				var sidelobeModeOn = $('sidelobe', xml).text() === 'ON';
+				sleepTogBtn.setOn(sleepModeEnabled);
+				sidelobeTogBtn.setOn(sidelobeModeEnabled);
 			});
-		}
 
-		var sleepTogBtn = tvro.toggleBtn(jQ.find('.\\#sleep-tog-btn'))
-			.click(modeToggle('sleep'));
+      TVRO.getAntennaVersions().then(function(xml) {
+        var antModel = $('au model', xml).text();
+        //  if match RV, it's a vehicle
+        var vesselType = /RV/.exec(antModel) ? 'vehicle' : 'vessel';  
+        $('.\\#vessel-type', jQ).text(vesselType);
+      });
+		};
 
-		var sidelobeTogBtn = tvro.toggleBtn(jQ.find('.\\#sidelobe-tog-btn'))
-			.click(modeToggle('sidelobe'));
+    var setMode = function(mode) {
+      return function(isEnabled) {
+        var params = {};
+        params[mode] = isEnabled ? 'ON' : 'OFF';
+        TVRO.setAntennaConfig(params).then(reload);
+      };
+    };
+
+		var sleepModeBtn = TVRO.ToggleBtn(jQ.find('.\\#sleep-mode-btn'))
+			.onClick(setMode('sleep'));
+
+		var sidelobeModeBtn = TVRO.ToggleBtn(jQ.find('.\\#sidelobe-mode-btn'))
+			.onClick(setMode('sidelobe'));
 
 		return self = {
-      refresh: refresh
-    }
-	}
+      reload: reload
+    };
+	};
 
-	exports.AdvancedSettingsView = AdvancedSettingsView;
-}(window);
+	TVRO.AdvancedSettingsView = AdvancedSettingsView;
+
+}(window.TVRO);

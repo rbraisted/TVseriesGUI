@@ -57,6 +57,7 @@
 .event-log {
 	.event-table {
 		@include alt-table;
+    background-color: $light-grey;
 		height: 400px;
 		overflow: auto;
 		margin-bottom: 30px;
@@ -114,12 +115,10 @@
 
 .restart-system {
 	@include breakpoint($mobile) {
-		.restart-hub-btn {
+		.restart-ant-btn {
 			margin-top: $lil-bump/2;
 		}
-		
 	}
-	
 }
 
 .command-line {

@@ -1,197 +1,180 @@
-!function(exports) {
+!function(TVRO) {
   "use strict";
 
 	var WirelessSettingsView = function(jQ) {
 		var self;
 
-    /*** button tray ***/
+    //  button tray
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
-      if (confirm('Are you sure you want to reset the ethernet settings?')) {
-        tvro.ws.setWlanFactory().then(refresh);
-      }
+      var confirmed = confirm('Are you sure you want to reset the ethernet settings?');
+      if (confirmed) TVRO.setWlanFactory().then(reload);
     });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
+      var mode = $('.\\#wlan-mode', jQ).text();
+      var essid = $('.\\#wlan-essid', jQ).val();
+      var ip = $('.\\#wlan-ip', jQ).val();
+      var netmask = $('.\\#wlan-netmask', jQ).val();
+      var gateway = $('.\\#wlan-gateway', jQ).val();
+      var broadcast = $('.\\#wlan-broadcast', jQ).val();
+
+      //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
+      var networkMode = $('.\\#wlan-network-mode', jQ).text();
+      var securityMode = $('.\\#wlan-security-mode', jQ).text();
+      var securityKey = $('.\\#wlan-security-key', jQ).text();
 
       var params = {
-        mode: $('.\\#wlan-mode', jQ).text()
+        mode: mode,
+
+        if_mode: {
+          mode: networkMode,
+          essid: essid,
+          ip: ip,
+          netmask: netmask,
+          gateway: gateway,
+          broadcast: broadcast,
+
+          security: {
+            mode: securityMode,
+            key: securityKey,
+          }          
+        }
       };
 
-      var networkModeParams = {
-        mode: $('.\\#wlan-network-mode', jQ).text(),
-        essid: $('.\\#wlan-essid', jQ).val(),
-        security: {
-          mode: $('.\\#wlan-security-mode', jQ).text()
-        }
+      if (mode === 'AP') {
+        params.ap_mode = params.if_mode;
+        delete params.if_mode;
       }
 
-      if (networkModeParams.security.mode !== 'OFF') {
-        networkModeParams.security.key = $('.\\#wlan-security-key', jQ).val();
-      }
-
-      if (params.mode === 'IF') {
-        if (networkModeParams.mode === 'DYNAMIC') {
-          params = _.merge(params, {
-            if_mode: networkModeParams
-          });
-        } else {
-          params = _.merge(params, {
-            if_mode: _.merge(networkModeParams, {
-              ip: $('.\\#wlan-ip', jQ).val(),
-              netmask: $('.\\#wlan-netmask', jQ).val(),
-              gateway: $('.\\#wlan-gateway', jQ).val(),
-              broadcast: $('.\\#wlan-broadcast', jQ).val()            
-            })
-          });
-        }    
-      } else if (params.mode === 'AP') {
-        params = _.merge(params, {
-          ap_mode: networkModeParams
-        })
-      }
-
-      tvro.ws.setWlan(params).then(refresh);
-
-//  <message name="set_wlan" />
-//      <channel>11</channel>
-//      <band>b|g</band>
-//       <mode>OFF | ADHOC | IF | AP</mode>   NOTE: no ADHOC or IF on VSAT IPACU
-//      <adhoc_mode>     NOTE: used on HD11 only
-//       <security>
-//        <mode>OFF | WEP</mode>
-//        <key></key>
-// </security>
-//       <ip>169.254.100.1</ip>
-//      </adhoc_mode>
-//      <if_mode>     NOTE: used on HD11 only
-//       <mode> STATIC | DYNAMIC</mode>
-//       <essid>ipacu</essid>
-//       <security>
-//        <mode>
-//         OFF | WPA_PSK | WPA2_PSK | WEP_1
-//        </mode>
-//        <algorithm>
-//         TKIP | AES | WEP_64 | WEP_128
-//        </algorithm>
-//        <key></key>
-//       </security>
-//       <ip>192.168.1.3</ip>
-//       <netmask>255.255.255.0</netmask>
-//       <gateway>192.168.1.1</gateway>
-//       <broadcast>192.168.1.255</broadcast>
-//      </if_mode>
-//      <ap_mode>     NOTE: used on VSAT only
-//       <essid>ipacu</essid>
-//       <security>
-//        <mode>
-//         OFF | WPA_PSK | WPA2_PSK | WEP
-//        </mode>
-//        <algorithm>
-//         TKIP | AES | WEP_64 | WEP_128
-//        </algorithm>
-//        <key>asbn235bsdjhw4fedfe</key>
-//       </security>
-//      </ap_mode>
-
-
+      TVRO.setWlan(params).then(reload);
     });
 
+    // var saveBtn = $('.\\#save-btn', jQ).click(function() {
+    //   var params = {
+    //     mode: $('.\\#wlan-mode', jQ).text()
+    //   };
 
-    /*** mode ***/
+    //   var networkModeParams = {
+    //     mode: $('.\\#wlan-network-mode', jQ).text(),
+    //     essid: $('.\\#wlan-essid', jQ).val(),
+    //     security: {
+    //       mode: $('.\\#wlan-security-mode', jQ).text()
+    //     }
+    //   }
 
-    var modeDropdown = tvro.dropdown('.\\#wlan-mode-dropdown')
-      .vals([
+    //   if (networkModeParams.security.mode !== 'OFF') {
+    //     networkModeParams.security.key = $('.\\#wlan-security-key', jQ).val();
+    //   }
+
+    //   if (params.mode === 'IF') {
+    //     if (networkModeParams.mode === 'DYNAMIC') {
+    //       params = _.merge(params, {
+    //         if_mode: networkModeParams
+    //       });
+    //     } else {
+    //       params = _.merge(params, {
+    //         if_mode: _.merge(networkModeParams, {
+    //           ip: $('.\\#wlan-ip', jQ).val(),
+    //           netmask: $('.\\#wlan-netmask', jQ).val(),
+    //           gateway: $('.\\#wlan-gateway', jQ).val(),
+    //           broadcast: $('.\\#wlan-broadcast', jQ).val()            
+    //         })
+    //       });
+    //     }    
+    //   } else if (params.mode === 'AP') {
+    //     params = _.merge(params, {
+    //       ap_mode: networkModeParams
+    //     })
+    //   }
+
+    //   TVRO.setWlan(params).then(reload);
+    // });
+
+
+
+    //  mode
+
+    var setMode = function(mode) {
+      $('.\\#wlan-mode', jQ).text(mode);
+      modeDropdownView.setValue(mode);
+      jQ.toggleClass('$wlan-off', mode === 'OFF');
+
+      var networkModeDropdownValues;
+      if (mode === 'IF') networkModeDropdownValues = ifDropdownVals;
+      else if (mode === 'AP') networkModeDropdownValues = apDropdownVals;
+      else return setNetworkMode('OFF');
+
+      networkModeDropdownView
+        .setValues(networkModeDropdownValues)
+        .setValue(networkModeDropdownValues[0])
+        .build();
+
+      setNetworkMode(networkModeDropdownValues[0]);
+    };
+
+    var modeBtn = $('.\\#wlan-mode-btn').click(function() {
+      modeDropdownView.show(modeBtn.offset());
+    });
+
+    var modeDropdownView = TVRO.DropdownView($('.\\#wlan-mode-dropdown-view'))
+      .setValues([
         'OFF',
         'IF',
         'AP'
       ])
-      .click(function(row, mode) {
-        setMode(mode);
-      })
-      .build(function(row, mode) {
-        $('.\\#dropdown-val', row).text(mode);
-      })
+      .onClick(setMode)
       .build();
 
-    var modeBtn = $('.\\#wlan-mode-btn').click(function() {
-      modeDropdown.show().offset($(this).offset());
-    });
-
-    var setMode = function(mode) {
-      $('.\\#wlan-mode', jQ).text(mode);
-      modeDropdown.val(mode);
-      $(jQ).toggleClass('$wlan-off', mode === 'OFF');
-
-      if (mode === 'IF') {
-        networkModeDropdown.vals(ipDropdownVals).build().click(ipDropdownVals[0]);
-
-      } else if (mode === 'AP') {
-        networkModeDropdown.vals(apDropdownVals).build().click(apDropdownVals[0]);
-      }
-    };
 
 
-    /*** network mode ***/
-
-    var ipDropdownVals = [
-        'STATIC',
-        'DYNAMIC'
-      ];
-
-    var apDropdownVals = [
-        'BRIDGED'
-      ];
-
-    var networkModeDropdown = tvro.dropdown('.\\#wlan-network-mode-dropdown')
-      .click(function(row, networkMode) {
-        setNetworkMode(networkMode);
-      })
-      .build(function(row, networkMode) {
-        $('.\\#dropdown-val', row).text(networkMode);
-      })
-      .build();
-
-    var networkModeBtn = $('.\\#wlan-network-mode-btn').click(function() {
-      networkModeDropdown.show().offset($(this).offset());
-    });
+    //  network mode
 
     var setNetworkMode = function(networkMode) {
       $('.\\#wlan-network-mode', jQ).text(networkMode);
-      networkModeDropdown.val(networkMode);
-      $(jQ).toggleClass('$wlan-bridged', networkMode === 'BRIDGED');
-      $(jQ).toggleClass('$wlan-static', networkMode === 'STATIC'); 
-      $(jQ).toggleClass('$wlan-dynamic', networkMode === 'DYNAMIC');
+      networkModeDropdownView.setValue(networkMode);
+      jQ.toggleClass('$wlan-bridged', networkMode === 'BRIDGED');
+      jQ.toggleClass('$wlan-static', networkMode === 'STATIC'); 
+      jQ.toggleClass('$wlan-dynamic', networkMode === 'DYNAMIC');
     };
 
+    var networkModeBtn = $('.\\#wlan-network-mode-btn').click(function() {
+      networkModeDropdownView.show(networkModeBtn.offset());
+    });
 
-    /*** security mode ***/
-
-    var securityModeDropdown = tvro.dropdown('.\\#wlan-security-mode-dropdown')
-      .vals([
-        'OFF',
-        'WPA_PSK'
-      ])
-      .click(function(row, securityMode) {
-        setSecurityMode(securityMode);
-      })
-      .build(function(row, securityMode) {
-        $('.\\#dropdown-val', row).text(securityMode);
-      })
+    var networkModeDropdownView = TVRO.DropdownView($('.\\#wlan-network-mode-dropdown-view'))
+      .onClick(setNetworkMode)
       .build();
 
-    var securityModeBtn = $('.\\#wlan-security-mode-btn').click(function() {
-      securityModeDropdown.show().offset($(this).offset());
-    });
+    var ifDropdownVals = ['STATIC', 'DYNAMIC'];
+    var apDropdownVals = ['BRIDGED'];
+
+
+
+    //  security mode
 
     var setSecurityMode = function(securityMode) {
       $('.\\#wlan-security-mode', jQ).text(securityMode);
-      securityModeDropdown.val(securityMode);
-      $(jQ).toggleClass('$wlan-sec-off', securityMode === 'OFF');
+      securityModeDropdownView.setValue(securityMode);
+      jQ.toggleClass('$wlan-sec-off', securityMode === 'OFF');
     };
 
-    var refresh = function() {
-      tvro.ws.getWlan().then(function(xml) {
+    var securityModeBtn = $('.\\#wlan-security-mode-btn').click(function() {
+      securityModeDropdownView.show(securityModeBtn.offset());
+    });
+
+    var securityModeDropdownView = TVRO.DropdownView($('.\\#wlan-security-mode-dropdown-view'))
+      .setValues([
+        'OFF',
+        'WPA_PSK'
+      ])
+      .onClick(setSecurityMode)
+      .build();
+
+
+
+    var reload = function() {
+      TVRO.getWlan().then(function(xml) {
         //  note: .eq(0)
         var mode = $('mode', xml).eq(0).text();
         var essid = $('essid', xml).text();
@@ -216,12 +199,13 @@
         $('.\\#wlan-broadcast', jQ).val(broadcast);
         $('.\\#wlan-security-key', jQ).val(securityKey);
       }); 
-    }
+    };
 
 		return self = {
-      refresh: refresh
-    }
-	}
+      reload: reload
+    };
+	};
 
-	exports.WirelessSettingsView = WirelessSettingsView;
-}(window);
+	TVRO.WirelessSettingsView = WirelessSettingsView;
+
+}(window.TVRO);

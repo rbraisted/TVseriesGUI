@@ -1,79 +1,81 @@
-!function(exports) {
-	var EventLogView = function(jQ) {
-		var self;
+!function(TVRO) {
+  "use strict";
 
-		var events = [];
-		var eventsLoading = false;
-		var loadEvents = function() {
-			if (eventsLoading) return;
-			eventsLoading = true;
+  var EventLogView = function(jQ) {
+    var self;
 
-			tvro.ws.getRecentEventHistory({
-				'begin_at_event': events.length,
-				'how_many_events' : 15
-			}).then(function(xml) {
-				var newEvents =	_.map($('event', xml), function(event) {
-					var text = $(event).text();
-					return {
-						date: text.substr(0, text.indexOf('::')),
-						message: text.substr(text.indexOf('::')+2)
-					}
-				});
+    var events = [];
+    var eventsLoading = false;
+    var loadEvents = function() {
+      if (eventsLoading) return;
+      eventsLoading = true;
 
-				events = events.concat(newEvents);
-				eventTable.vals(events).build();
-				eventsLoading = false;
-			});
-		}
+      TVRO.getRecentEventHistory({
+        'begin_at_event': events.length,
+        'how_many_events' : 15
+      }).then(function(xml) {
+        var newEvents = _.map($('event', xml), function(event) {
+          var text = $(event).text();
+          return {
+            date: text.substr(0, text.indexOf('::')),
+            message: text.substr(text.indexOf('::')+2)
+          }
+        });
 
-		var eventTable = tvro.table(
-			$('.\\#event-table-view', jQ)
-				.scroll(function() {
-					var tableView = $(this);
-					//	if scroll to the bottom
-					if (tableView[0].scrollHeight - tableView.scrollTop() == tableView.outerHeight()) {
-						// load more events
-						loadEvents();
-					}
-				})
-			).build(function(row, event) {
-				$('.\\#event-date', row).text(event.date);
-				$('.\\#event-message', row).text(event.message);
-			});
+        events = events.concat(newEvents);
+        eventTableView.setValues(events).build();
+        eventsLoading = false;
+      });
+    };
 
-		var saveBtn = $('.\\#save-btn', jQ).click(function() {
-			tvro.ws.getEventHistoryLog(undefined, true).then(function(xml) {
-				var content = $('content', xml)[0].innerHTML;
-				var date = new Date();
-				var time = date.getTime();
-				var logFile = "logs/log"+time+".txt";
+    var eventTableView = TVRO.TableView(
+      $('.\\#event-table-view', jQ)
+        .scroll(function() {
+          var tableView = $(this);
+          //  if scroll to the bottom
+          if (tableView[0].scrollHeight - tableView.scrollTop() == tableView.outerHeight()) {
+            // load more events
+            loadEvents();
+          }
+        })
+    ).onBuild(function(row, event) {
+      $('.\\#event-date', row).text(event.date);
+      $('.\\#event-message', row).text(event.message);
+    });
 
-				$.ajax({
-					url: 'save.php',
-					data: {
-						text: content,
-						file:logFile
-					},
-					type: 'post',
-					success: function() {
-						document.location = logFile;
-					}
-				});			
-			});
-		});
+    var saveBtn = $('.\\#save-btn', jQ).click(function() {
+      TVRO.getEventHistoryLog(undefined, true).then(function(xml) {
+        var content = $('content', xml)[0].innerHTML;
+        var date = new Date();
+        var time = date.getTime();
+        var logFile = 'logs/log' + time + '.txt';
+
+        $.ajax({
+          url: 'save.php',
+          data: {
+            text: content,
+            file:logFile
+          },
+          type: 'post',
+          success: function() {
+            window.document.location = logFile;
+          }
+        });     
+      });
+    });
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
-			tvro.ws.getEventHistoryLog(undefined, true).then(function(xml) {
-				var content = $('content', xml)[0].innerHTML;
-				window.open("mailto:?subject=TVRO Event Log&body="+content);
-			});
-		});
+      TVRO.getEventHistoryLog({}, 1).then(function(xml) {
+        var content = $('content', xml)[0].innerHTML;
+        window.open("mailto:?subject=TVRO Event Log&body="+content);
+      });
+    });
 
-		loadEvents();
+    return self = {
+      loadEvents: loadEvents
+    };
+  };
 
-		return self = {}
-	}
+  TVRO.EventLogView = EventLogView;
 
-	exports.EventLogView = EventLogView;
-
-}(window);
+}(window.TVRO);

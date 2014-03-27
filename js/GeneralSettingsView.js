@@ -1,29 +1,25 @@
-!function(exports) {
+!function(TVRO) {
+  "use strict";
+
 	var GeneralSettingsView = function(jQ) {
 		var self;
 
-		var cookieToggle = function(cookie) {
-			return function(isEnabled) {
-				if (isEnabled) TVRO.CookieManager().setCookie(cookie);
-				else TVRO.CookieManager().removeCookie(cookie);				
-			}
-		}
+		var techModeBtn = TVRO.ToggleBtn(jQ.find('.\\#tech-mode-btn'))
+			.onClick(TVRO.setTechMode);
 
-		var techTogBtn = tvro.toggleBtn(jQ.find('.\\#tech-tog-btn'))
-			.click(cookieToggle(TVRO.TECH_MODE));
+		var demoModeBtn = TVRO.ToggleBtn(jQ.find('.\\#demo-mode-btn'))
+			.onClick(TVRO.setDemoMode);
 
-		var demoTogBtn = tvro.toggleBtn(jQ.find('.\\#demo-tog-btn'))
-			.click(cookieToggle(TVRO.DEMO_MODE));
-
-    var refresh = function() {
-      techTogBtn.val(TVRO.CookieManager().hasCookie(TVRO.TECH_MODE));
-      demoTogBtn.val(TVRO.CookieManager().hasCookie(TVRO.DEMO_MODE));
-    }
+    var reload = function() {
+      techModeBtn.setOn(TVRO.getTechMode());
+      demoModeBtn.setOn(TVRO.getDemoMode());
+    };
 
 		return self = {
-      refresh: refresh
-    }
-	}
+      reload: reload
+    };
+	};
 
-	exports.GeneralSettingsView = GeneralSettingsView;
-}(window);
+	TVRO.GeneralSettingsView = GeneralSettingsView;
+
+}(window.TVRO);

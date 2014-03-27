@@ -1,30 +1,29 @@
-!function(exports) {
-	var RestartSystemView = function(jQ) {
-		var self;
-		var systemBtn = $('.\\#system-btn', jQ);
-		var antennaBtn = $('.\\#antenna-btn', jQ);
-		var allBtn = $('.\\#all-btn', jQ);
+!function(TVRO) {
+  "use strict";
 
-		systemBtn.click(function() {
-			if (confirm('Are you sure you want to restart the system?')) {
-				tvro.ws.reboot({'sys':'SBC'});
-			}
-		});
+  var RestartSystemView = function(jQ) {
+    var self;
 
-		antennaBtn.click(function() {
-			if (confirm('Are you sure you want to restart the antenna?')) {
-				tvro.ws.reboot({'sys':'ANT'});
-			}
-		});
+    //  this may come back one day
+    
+    // var systemBtn = $('.\\#system-btn', jQ).click(function() {
+    //   var confirmed = confirm('Are you sure you want to restart the system?');
+    //   if (confirmed) TVRO.reboot({ sys: 'SBC' });
+    // });
 
-		allBtn.click(function() {
-			if (confirm('Are you sure you want to restart the system and the antenna?')) {
-				tvro.ws.reboot({'sys':'ALL'});
-			}
-		});
+    var antennaBtn = $('.\\#antenna-btn', jQ).click(function() {
+      var confirmed = confirm('Are you sure you want to restart the antenna?');
+      if (confirmed) TVRO.reboot({ sys: 'ANT' });
+    });
 
-		return self = {}
-	}
+    var allBtn = $('.\\#all-btn', jQ).click(function() {
+      var confirmed = confirm('Are you sure you want to restart the system and the antenna?');
+      if (confirmed) TVRO.reboot({ sys: 'ALL' });
+    });
 
-	exports.RestartSystemView = RestartSystemView;
-}(window);
+    return self = {};
+  };
+
+  TVRO.RestartSystemView = RestartSystemView;
+
+}(window.TVRO);

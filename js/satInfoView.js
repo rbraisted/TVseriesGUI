@@ -1,67 +1,63 @@
-"use strict";
+!function(TVRO){
+  "use strict";
 
-(function(tvro){
+	var SatInfoView = function(jQ) {
+		var self;
 
-	var satInfoView = function(jQ) {
-		var
-		satInfoView,
-		favBtn = tvro.toggleBtn($('.\\#fav-btn', jQ))
-		.click(function(isFav) {
-			tvro.ws.setSatelliteIdentity({
-				antSatID: sat.antSatID,
-				favorite: (isFav ? 'TRUE' : 'FALSE')
-			});
-		}),
-		sat;
+		var sat;
 
-		return satInfoView = {
-			sat: function(arg) {
-				if (!arguments.length) {
-					return sat;
-				} else {
-					sat = arg;
-					tvro.data.getSatParams(arg).then(function(s) {
-						sat = s;
+    var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
+      .onClick(function(isFav) {
+        TVRO.setSatelliteIdentity({
+          antSatID: sat.antSatID,
+          favorite: isFav ? 'TRUE' : 'FALSE'
+        });
+      });
 
-						$('.\\#sat-name', jQ).text(sat.name || 'N/A');
-						$('.\\#sat-region', jQ).text(sat.region || 'N/A');
-						$('.\\#sat-antSatID', jQ).text(sat.antSatID || 'N/A');
-						$('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
-						$('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
-						$('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
-						$('.\\#sat-lnb', jQ).text('Linear');	//	TODO
-						$('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
-						$('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
-						
-						favBtn.val(sat.favorite);
+		return self = {
+      setSat: function(arg) {
+        TVRO.getSatParams(arg).then(function(arg) {
+          sat = arg;
 
-						_.forEach(sat.xponders, function(xponder) {
-							var xponderJq = $({
-								'Vertical High': '.\\#xponder-vh-view',
-								'Vertical Low': '.\\#xponder-vl-view',
-								'Horizontal High': '.\\#xponder-hl-view',
-								'Horizontal Low': '.\\#xponder-hh-view'
-							}[xponder.display], jQ);
+          $('.\\#sat-name', jQ).text(sat.name || 'N/A');
+          $('.\\#sat-region', jQ).text(sat.region || 'N/A');
+          $('.\\#sat-antSatID', jQ).text(sat.antSatID || 'N/A');
+          $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
+          $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
+          $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
+          $('.\\#sat-lnb', jQ).text('Linear');  //  TODO: get lnb and display once on this page
+          $('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
+          $('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
 
-							$('.\\#xponder-freq', xponderJq).text(xponder.freq || 'N/A');
-							$('.\\#xponder-symRate', xponderJq).text(xponder.symRate || 'N/A');
-							$('.\\#xponder-fec', xponderJq).text(xponder.fec || 'N/A');
-							$('.\\#xponder-netID', xponderJq).text(xponder.netID || 'N/A');
-							$('.\\#xponder-modType', xponderJq).text(xponder.modType || 'N/A');
-						});
-						
-						tvro.data.getInstalledSat().then(function(insSat) {
-							$(jQ).toggleClass('$ins', sat.antSatID === insSat.antSatID);
-						});
-					});					
-					return satInfoView;
-				}
-			}
-		}
-	}
+          favBtn.val(sat.favorite);
 
-	tvro.satInfoView = satInfoView;
+          _.forEach(sat.xponders, function(xponder) {
+            var xponderJq = $({
+              'Vertical High': '.\\#xponder-vh-view',
+              'Vertical Low': '.\\#xponder-vl-view',
+              'Horizontal High': '.\\#xponder-hl-view',
+              'Horizontal Low': '.\\#xponder-hh-view'
+            }[xponder.display], jQ);
 
-}(window.tvro));
-//	??? invalid left hand assign ???
-// }(window.tvro || window.tvro = {}));
+            $('.\\#xponder-freq', xponderJq).text(xponder.freq || 'N/A');
+            $('.\\#xponder-symRate', xponderJq).text(xponder.symRate || 'N/A');
+            $('.\\#xponder-fec', xponderJq).text(xponder.fec || 'N/A');
+            $('.\\#xponder-netID', xponderJq).text(xponder.netID || 'N/A');
+            $('.\\#xponder-modType', xponderJq).text(xponder.modType || 'N/A');
+          });
+          
+          tvro.data.getInstalledSat().then(function(insSat) {
+            $(jQ).toggleClass('$ins', sat.antSatID === insSat.antSatID);
+          });
+        });
+      },
+
+      getSat: function() {
+        return sat;
+      }
+		};
+	};
+
+	TVRO.SatInfoView = SatInfoView;
+
+}(window.TVRO);

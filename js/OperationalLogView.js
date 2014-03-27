@@ -1,29 +1,25 @@
-!function(exports) {	
+!function(TVRO) {	
 	"use strict";
 
 	var OperationalLogView = function(jQ) {
 		var self;
-		var viewBtn = $('.\\#view-btn', jQ);
-		var startBtn = $('.\\#start-btn', jQ);
-		var restartBtn = $('.\\#restart-btn', jQ);
 
-		viewBtn.click(function() {
+		var viewBtn = $('.\\#view-btn', jQ).click(function() {
 			window.location.href = 'logfile.php?file=IPACU.serial.log';
 		});
 
-		startBtn.click(function() {
-			tvro.ws.startSerialLog({'restart':'N'});
+		var startBtn = $('.\\#start-btn', jQ).click(function() {
+			TVRO.startSerialLog({'restart':'N'});
 		});
 
-		restartBtn.click(function() {
-			if (confirm('Are you sure you want to restart the antenna?')) {
-				tvro.ws.startSerialLog({'restart':'Y'});
-			}
+		var restartBtn = $('.\\#restart-btn', jQ).click(function() {
+      var confirmed = confirm('Are you sure you want to restart the antenna?');
+			if (confirmed) TVRO.startSerialLog({'restart':'Y'});
 		});
 
 		return self = {};
-	}
+	};
 
-	exports.OperationalLogView = OperationalLogView;
+	TVRO.OperationalLogView = OperationalLogView;
 	
-}(window);
+}(window.TVRO);

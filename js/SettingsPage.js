@@ -1,20 +1,20 @@
 $(function() {
 
-	var menu = tvro.table($('.\\#menu-table-view'))
-		.vals([
+	var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
+		.setValues([
 			'General',
 			'Network',
 			'Advanced'
 		])
-		.click(function(row, val) {
-			window.location.hash = '/' + val.toLowerCase();
+		.onClick(function(value) {
+			window.location.hash = '/' + value.toLowerCase();
 		})
-		.build(function(row, val) {
-			$('.\\#menu-item', row).text(val + ' Settings');
+		.onBuild(function(row, value) {
+			$('.\\#menu-item', row).text(value);
 		})
 		.build();
 
-	var generalSettingsView = GeneralSettingsView(
+	var generalSettingsView = TVRO.GeneralSettingsView(
 		$('.\\#general-settings-view')
 			.find('.\\#back-btn')
 				.click(function() {
@@ -23,7 +23,7 @@ $(function() {
 				.end()
 	);
 
-	var advancedSettingsView = AdvancedSettingsView(
+	var advancedSettingsView = TVRO.AdvancedSettingsView(
 		$('.\\#advanced-settings-view')
 			.find('.\\#back-btn')
 				.click(function() {
@@ -32,7 +32,7 @@ $(function() {
 				.end()
 	);
 
-  var networkSettingsView = NetworkSettingsView(
+  var networkSettingsView = TVRO.NetworkSettingsView(
     $('.\\#network-settings-view')
       .find('.\\#back-btn')
         .click(function() {
@@ -51,7 +51,7 @@ $(function() {
         .end()
   );
 
-  var ethernetSettingsView = EthernetSettingsView(
+  var ethernetSettingsView = TVRO.EthernetSettingsView(
     $('.\\#ethernet-settings-view')
       .find('.\\#back-btn')
         .click(function() {
@@ -60,7 +60,7 @@ $(function() {
         .end()
   );
 
-  var wirelessSettingsView = WirelessSettingsView(
+  var wirelessSettingsView = TVRO.WirelessSettingsView(
     $('.\\#wireless-settings-view')
       .find('.\\#back-btn')
         .click(function() {
@@ -69,25 +69,34 @@ $(function() {
         .end()
   );
 
-	tvro.hash(function(hash) {
-    if (hash.match(/\/general/)) {
-      menu.val('General');
-      generalSettingsView.refresh();
+  //  pretty simple routing
+  //  /general
+  //  /advanced
+  //  /network
+  //  /network/ethernet
+  //  /network/wireless
+
+	TVRO.onHashChange(function(hash) {
+    if (!hash) {
+
+    } else if (hash.match(/\/general/)) {
+      menuTableView.setValue('General');
+      generalSettingsView.reload();
 
     } else if (hash.match(/\/advanced/)) {
-      menu.val('Advanced');
-      advancedSettingsView.refresh();
+      menuTableView.setValue('Advanced');
+      advancedSettingsView.reload();
 
     } else if (hash.match(/\/network/)) {
-      menu.val('Network');
-      networkSettingsView.refresh();
+      menuTableView.setValue('Network');
+      networkSettingsView.reload();
 
-      if (hash.match(/\/ethernet/)) ethernetSettingsView.refresh();
-      else if (hash.match(/\/wireless/)) wirelessSettingsView.refresh();
+      if (hash.match(/\/ethernet/)) ethernetSettingsView.reload();
+      else if (hash.match(/\/wireless/)) wirelessSettingsView.reload();
     }
 
-		$(document.body).setClass(hash);
+		document.body.className = hash;
 	});
 
-	tvro.hash();
+	TVRO.reload();
 });

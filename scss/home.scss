@@ -1,0 +1,130 @@
+@import "base.scss";
+
+.sidebar,
+.\#vessel-view {
+  display: block;
+}
+
+.sidebar-chunk {
+  .label+.label {
+    margin-top: 10px;
+  }
+}
+
+.sat-table {
+  @include grey-table;
+
+  .table-row {
+
+    .install-btn {
+      @include bgimg('radio-unchecked');
+      display: inline-block;
+      padding: 0;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+
+    &.\$installed {
+      background-color: $bright-blue;
+      .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
+  }
+}
+
+.vessel-view {
+  @include bgimg('vessel-animation-bg', center, 360px, 360px);
+  background-position: top 140px center;
+  overflow: hidden;
+
+  .demo-mode {
+    @extend .block-btn;
+    background-color: $red;
+    cursor: default;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
+
+  .vessel-heading {
+    font-size: $large-font;
+    margin-top: 60px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .vessel-name {
+    color: $bright-grey;
+    text-align: center;
+    width: 100%;
+  }
+
+  .vessel-animation {
+    @include bgimg('vessel-animation-green', center, 460px, 460px);
+
+    &.\$warning {
+      background-image: url(/images/vessel-animation-orange.svg);
+    }
+
+    &.\$error {
+      background-image: url(/images/vessel-animation-red.svg);
+    }
+  }
+}
+
+@include breakpoint($mobile) {
+  .sidebar {
+    background-color: #000;
+  }
+
+  .sidebar,
+  .vessel-view {
+    position: relative;
+    top: $header-height;
+  }
+
+  .vessel-view {
+    background-position: top 100px center;
+
+    .vessel-heading {
+      margin-top: 30px;
+    }
+
+    .vessel-name {
+      margin-bottom: 30px;
+    }
+
+    .vessel-animation {
+
+    }
+  }
+}
+
+@include breakpoint('screen and (max-width: 600px)') {
+  .vessel-view {
+    padding-bottom: 30px;
+    .demo-mode {
+      bottom: 10px;
+      left: 30px;
+      top: auto;
+    }      
+  }
+}
+
+@include breakpoint('screen and (max-width: 460px)') {
+  .vessel-view {
+    background-position: top 85px center;
+    background-size: 60% 60%;
+    min-width: 0;
+    min-height: 0;
+
+    .vessel-animation {
+      background-size: contain;
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      padding-bottom: 100%;
+    }
+  }
+}
