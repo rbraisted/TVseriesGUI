@@ -1,10 +1,10 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
+<script type="text/javascript" src="/js/SystemInfoView.js"></script>
 <script type="text/javascript" src="/js/OperationalLogView.js"></script>
 <script type="text/javascript" src="/js/EventLogView.js"></script>
 <script type="text/javascript" src="/js/RestartSystemView.js"></script>
 <script type="text/javascript" src="/js/CommandLineView.js"></script>
-<script type="text/javascript" src="/js/SystemVersionsView.js"></script>
 
 <script type="text/javascript" src="/js/SupportPage.js"></script>
 
@@ -29,6 +29,43 @@
 	<a href="mailto:support@emea.kvh.com" class="block-btn">support@emea.kvh.com</a>
 	<a href="tel:+45 45 160 180" class="block-btn">+45 45 160 180</a>
 
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="view system-info #system-info-view">
+  <div class="view-head">
+    System Info
+    <div class="back-btn #back-btn"></div>
+  </div>
+
+  <div class="tv-hub">
+    <div class="view-head">TV-Hub</div>
+    <span class="label">S/N</span><span class="value #hub-sn"></span>
+    <span class="label">Version</span><span class="value #hub-ver"></span>
+    <span class="label">Sat Library Version</span><span class="value #sat-ver"></span>
+    <span class="label">Sat Service</span><span class="value #sat-service"></span>
+    <span class="label">Support IP</span><span class="value #gprs-ip"></span>
+  </div>
+  
+  <div class="antenna-unit">
+    <div class="view-head">Antenna Unit</div>
+    <span class="label">Model</span><span class="value #ant-model"></span>
+    <span class="label">S/N</span><span class="value #ant-sn"></span>
+    <span class="label">Main Version</span><span class="value #ant-ver"></span>
+    <span class="label">RF Version</span><span class="value #rf-ver"></span>
+    <span class="label">FPGA Version</span><span class="value #fpga-ver"></span>
+    <span class="label">AZEL Version</span><span class="value #az-ver"></span>
+    <span class="label">SKEW/XAZ Version</span><span class="value #skew-ver"></span>
+    <span class="label">LNB Type</span><span class="value #lnb-name"></span>
+    <span class="label">LNB Version</span><span class="value #lnb-ver"></span>
+  </div>
+  
+  <div class="sensor">
+    <div class="view-head">Sensor</div>
+    <span class="label">S/N</span><span class="value #sensor-sn"></span>
+    <span class="label">Version</span><span class="value #sensor-ver"></span>
+  </div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

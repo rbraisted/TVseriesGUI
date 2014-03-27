@@ -2,6 +2,7 @@ $(function() {
 
 	var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
 		.setValues([
+      'System Info',
 			'Operational Log',
 			'Event Log',
 			'Restart System',
@@ -14,6 +15,15 @@ $(function() {
       window.location.hash = '/' + /^\S*/.exec(value.toLowerCase());
     })
 		.build();
+
+  var systemInfoView = TVRO.SystemInfoView(
+    $('.\\#system-info-view')
+      .find('.\\#back-btn')
+        .click(function() {
+          window.location.hash = '';
+        })
+        .end()
+  ).reload();
 
 	var operationalLogView = TVRO.OperationalLogView(
 		$('.\\#operational-log-view')
@@ -31,7 +41,7 @@ $(function() {
 					window.location.hash = '';
 				})
 				.end()
-	).loadEvents();
+	).reload();
 
 	var restartSystemView = TVRO.RestartSystemView(
 		$('.\\#restart-system-view')
@@ -58,6 +68,7 @@ $(function() {
 		}
 
     var paths = {};
+    paths['system'] = '/system-info';
     paths['operational'] = '/operational-log';
     paths['event'] = '/event-log';
     paths['restart'] = '/restart-system';
@@ -65,6 +76,7 @@ $(function() {
 		document.body.className = paths[hash];
 
     menuTableView.setValue({
+      system: 'System Info',
       operational: 'Operational Log',
       event: 'Event Log',
       restart: 'Restart System',

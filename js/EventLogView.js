@@ -71,8 +71,14 @@
       });
     });
 
+    var reload = function() {
+      events = [];
+      eventsLoading = false;
+      loadEvents();
+    };
+
     return self = {
-      loadEvents: loadEvents
+      reload: reload
     };
   };
 

@@ -27,6 +27,55 @@
 	padding: 0 $sidebar-padding;
 }
 
+.system-info {
+  @include breakpoint($desktop) {
+    >.view-head {
+      display: none;
+    }
+  }
+
+  @include breakpoint($mobile) {
+    .tv-hub,
+    .antenna-unit,
+    .sensor {
+      .view-head {
+        //  undo all of @include mobile-view-head
+        background: transparent;
+        border: 0;
+        left: 0;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        position: static;
+        top: 0;
+        //  make it a desktop-view-head
+        @include desktop-view-head;
+      }
+    }
+  }
+
+  .label,
+  .value {
+    width: 50%;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .label {
+    color: $grey;
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  .value {
+    padding-left: 10px;
+  }
+
+  .sensor {
+    margin-bottom: 30px;
+  }
+}
+
 .operational-log,
 .event-log,
 .restart-system,
@@ -186,6 +235,7 @@
 //	mobile
 @include breakpoint($mobile) {
 	.sidebar,
+  .\/system-info .\#system-info-view,
 	.\/operational-log .\#operational-log-view,
 	.\/event-log .\#event-log-view,
 	.\/restart-system .\#restart-system-view,
@@ -193,6 +243,7 @@
 		display: block;
 	}
 
+  .\/system-info .sidebar,
 	.\/operational-log .sidebar,
 	.\/event-log .sidebar,
 	.\/restart-system .sidebar,
@@ -204,6 +255,7 @@
 //	desktop
 @include breakpoint($desktop)  {
 	.sidebar,
+  .\/system-info .\#system-info-view,
 	.\/operational-log .\#operational-log-view,
 	.\/event-log .\#event-log-view,
 	.\/restart-system .\#restart-system-view,

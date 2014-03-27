@@ -21,13 +21,17 @@
     }
   };
 
-
-
-
-
-  TVRO.getDemoMode = get('tvro-demo-mode');
   TVRO.setDemoMode = set('tvro-demo-mode');
-  TVRO.getTechMode = get('tvro-tech-mode');
   TVRO.setTechMode = set('tvro-tech-mode');
+
+  //  return as bool
+  TVRO.getDemoMode = function() {
+    return !!get('tvro-demo-mode')();
+  };
+
+  TVRO.getTechMode = function() {
+    return !!get('tvro-tech-mode')();
+  };
+
 
 }(window.TVRO);

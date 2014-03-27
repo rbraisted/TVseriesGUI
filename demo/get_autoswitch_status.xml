@@ -18,7 +18,7 @@
 	<!-- DISH and DISEQC services -->
 	
 	<service>DISH</service>
-	<service_subtype>NORTH_AMERICA</service_subtype>
+	<service_subtype></service_subtype>
 	<master>
 		<sn>333333333</sn>
 		<name>Kitchen</name>

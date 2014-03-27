@@ -6,7 +6,7 @@
     var self;
 
     var reload = function() {
-      $('.\\#demo-mode-indicator', jQ).toggle(!!TVRO.getDemoMode());
+      $('.\\#demo-mode-indicator', jQ).toggle(TVRO.getDemoMode());
 
       TVRO.getAntennaStatus().then(function(xml) {
         var heading = Number($('antenna brst hdg', xml).text()).toFixed(1);
