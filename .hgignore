@@ -16,6 +16,7 @@ syntax: glob
 android/bin
 android/gen
 .sass-cache
+*-ck.js
 
 # Packages #
 ############

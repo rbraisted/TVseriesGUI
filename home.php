@@ -9,7 +9,7 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="view vessel-view #vessel-view">
-  <div class="demo-mode">DEMO MODE</div>
+  <div class="demo-mode #demo-mode-indicator">DEMO MODE</div>
   <div class="vessel-heading #vessel-heading"></div>
   <div class="vessel-animation-bg"></div>
   <div class="vessel-animation #vessel-animation"></div>

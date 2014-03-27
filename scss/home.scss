@@ -42,6 +42,7 @@
     @extend .block-btn;
     background-color: $red;
     cursor: default;
+    display: none;
     position: absolute;
     right: 30px;
     top: 30px;
