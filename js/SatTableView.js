@@ -38,7 +38,8 @@
         $('.\\#sat-name', row).text(sat.name || 'N/A');
         $('.\\#sat-region', row).text(sat.region || 'N/A');
         
-        $('.\\#sat-antSatID', row).text(TVRO.formatLongitude(sat.lon, 2));
+        // $('.\\#sat-antSatID', row).text(TVRO.formatLongitude(sat.lon, 2));
+        $('.\\#sat-antSatID', row).text(sat.antSatID || 'N/A');
         row.toggleClass('$fav', sat.favorite);
 
         TVRO.getInstalledSat().then(function(installedSat) {
