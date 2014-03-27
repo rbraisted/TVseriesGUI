@@ -15,7 +15,7 @@
 	}
 
 	@include breakpoint($mobile) {
-		.table-row.\$sel {
+		.table-row.\$selected {
 			background-color: $light-blue;
 		}
 
@@ -56,11 +56,11 @@
 
 		.table-col { padding: 7px 15px; }
 		.sort-btn { cursor: pointer; }
-		.sort-btn.\$asc { @include bgimg('up-icon-white'); }
-		.sort-btn.\$dsc { @include bgimg('down-icon-white'); }
+		.sort-btn.\$ascending { @include bgimg('up-icon-white'); }
+		.sort-btn.\$descending { @include bgimg('down-icon-white'); }
 
-		.sort-btn.\$asc,
-		.sort-btn.\$dsc {
+		.sort-btn.\$ascending,
+		.sort-btn.\$descending {
 			background-color: $bright-blue;
 			background-position: right 15px center;
 			background-size: 9px;
@@ -94,14 +94,14 @@
 			float: right;
 		}
 
-		&.\$ins {
+		&.\$installed {
 			background-color: $bright-blue;
 			.install-btn  {
 				@include bgimg('radio-checked');
 			}
 		}
 
-		&.\$fav .fav-btn {
+		&.\$favorite .fav-btn {
 			@include bgimg('heart-icon-white');
 		}
 
@@ -258,13 +258,13 @@
 		}
 
 		//	if the group is installed
-		&.\$ins .slot {
+		&.\$installed .slot {
 			.install-btn {
 				display: block;
 			}
 
 			//	if group installed and sat installed
-			&.\$ins {
+			&.\$installed {
 				background-color: $light-blue;
 				.slot-head, .slot-foot {
 					background-color: $bright-blue;
@@ -308,7 +308,7 @@
 			}
 		}
 
-		&.\$ins .slot {
+		&.\$installed .slot {
 			padding-left: ($table-row-padding * 2) + $medium-icon;
 			.install-btn {
 				@include bgimg('radio-unchecked');
@@ -318,12 +318,12 @@
 				margin-top: $medium-icon/-2;
 			}
 
-			&.\$ins .install-btn {
+			&.\$installed .install-btn {
 				@include bgimg('radio-checked');
 			}
 		}
 
-		&.\$pre .btn-tray {
+		&.\$predefined .btn-tray {
 			display: none;
 		}
 
@@ -349,12 +349,12 @@
 	}
 
 	//	can't install if already installed
-	&.\$ins .btn-tray .install-btn {
+	&.\$installed .btn-tray .install-btn {
 		display: none;
 	}
 
 	//	can't edit/delete if the group is predefined
-	&.\$pre .btn-tray {
+	&.\$predefined .btn-tray {
 		.edit-btn, .delete-btn {
 			display: none;
 		}
@@ -377,7 +377,7 @@
 			@include mobile-slot;
 		}
 
-		&.\$ins .slot {
+		&.\$installed .slot {
 			padding-left: ($table-row-padding * 2) + $medium-icon;
 			.install-btn {
 				@include bgimg('radio-unchecked');
@@ -387,7 +387,7 @@
 				margin-top: $medium-icon/-2;
 			}
 
-			&.\$ins .install-btn {
+			&.\$installed .install-btn {
 				@include bgimg('radio-checked');
 			}
 		}
@@ -603,7 +603,7 @@
 		}		
 	}
 
-	.\$pre & {
+	.\$predefined & {
 		.input,
 		.dropdown-btn {
 			display: none;
@@ -696,11 +696,3 @@
 		display: block;
 	}
 }
-
-//	states:
-//	$sel	selected
-//	$ins	installed
-//	$pre	predefined
-// 	$fav	favorited
-//	$n/a	not available
-//	$on		on

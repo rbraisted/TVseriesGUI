@@ -23,11 +23,11 @@
         else if (sortBtn.is('.\\#fav-btn')) sortFilter = function(sat) { return !sat.favorite; };
 
         if (sortFilter) {
-          sortReverse = sortBtn.hasClass('$asc');
-          sortBtns.removeClass('$asc $dsc');
-          sortBtn.toggleClass('$dsc', sortReverse).toggleClass('$asc', !sortReverse);
+          sortReverse = sortBtn.hasClass('$ascending');
+          sortBtns.removeClass('$ascending $descending');
+          sortBtn.toggleClass('$descending', sortReverse).toggleClass('$ascending', !sortReverse);
         } else {
-          sortBtns.removeClass('$asc $dsc');
+          sortBtns.removeClass('$ascending $descending');
         }
 
         reload();
@@ -40,24 +40,24 @@
         
         // $('.\\#sat-antSatID', row).text(TVRO.formatLongitude(sat.lon, 2));
         $('.\\#sat-antSatID', row).text(sat.antSatID || 'N/A');
-        row.toggleClass('$fav', sat.favorite);
+        row.toggleClass('$favorite', sat.favorite);
 
         TVRO.getInstalledSat().then(function(installedSat) {
-          row.toggleClass('$ins', installedSat.antSatID === sat.antSatID);
+          row.toggleClass('$installed', installedSat.antSatID === sat.antSatID);
         });
 
         $('.\\#install-btn', row).click(function() {
-          var installed = row.hasClass('$ins');
+          var installed = row.hasClass('$installed');
           //  if installed, ask for confirmation
           var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + '?');
           if (confirmed) TVRO.setInstalledSat(sat).then(TVRO.reload);
         });
 
         $('.\\#fav-btn', row).click(function() {
-          row.toggleClass('$fav');
+          row.toggleClass('$favorite');
           TVRO.setSatelliteIdentity({
             antSatID:sat.antSatID,
-            favorite: row.hasClass('$fav') ? 'TRUE' : 'FALSE'
+            favorite: row.hasClass('$favorite') ? 'TRUE' : 'FALSE'
           });
         });
       });

@@ -76,7 +76,7 @@ a {
     padding: 16px 15px 0 37px;
     background-position: left 20px center;
     padding-left: 47px; }
-    .nav .home-btn:hover, .nav .home-btn.\$sel {
+    .nav .home-btn:hover, .nav .home-btn.\$selected {
       background-image: url(/images/home-icon-white.svg);
       color: #fff; }
   .nav .sat-btn {
@@ -86,7 +86,7 @@ a {
     display: inline-block;
     height: 100%;
     padding: 16px 15px 0 38px; }
-    .nav .sat-btn:hover, .nav .sat-btn.\$sel {
+    .nav .sat-btn:hover, .nav .sat-btn.\$selected {
       background-image: url(/images/sat-icon-white.svg);
       color: #fff; }
   .nav .autoswitch-btn {
@@ -96,7 +96,7 @@ a {
     display: inline-block;
     height: 100%;
     padding: 16px 15px 0 39px; }
-    .nav .autoswitch-btn:hover, .nav .autoswitch-btn.\$sel {
+    .nav .autoswitch-btn:hover, .nav .autoswitch-btn.\$selected {
       background-image: url(/images/autoswitch-icon-white.svg);
       color: #fff; }
   .nav .settings-btn {
@@ -106,7 +106,7 @@ a {
     display: inline-block;
     height: 100%;
     padding: 16px 15px 0 37px; }
-    .nav .settings-btn:hover, .nav .settings-btn.\$sel {
+    .nav .settings-btn:hover, .nav .settings-btn.\$selected {
       background-image: url(/images/settings-icon-white.svg);
       color: #fff; }
   .nav .updates-btn {
@@ -116,7 +116,7 @@ a {
     display: inline-block;
     height: 100%;
     padding: 16px 15px 0 39px; }
-    .nav .updates-btn:hover, .nav .updates-btn.\$sel {
+    .nav .updates-btn:hover, .nav .updates-btn.\$selected {
       background-image: url(/images/updates-icon-white.svg);
       color: #fff; }
   .nav .support-btn {
@@ -126,7 +126,7 @@ a {
     display: inline-block;
     height: 100%;
     padding: 16px 15px 0 33px; }
-    .nav .support-btn:hover, .nav .support-btn.\$sel {
+    .nav .support-btn:hover, .nav .support-btn.\$selected {
       background-image: url(/images/support-icon-white.svg);
       color: #fff; }
 
@@ -477,7 +477,7 @@ a {
       position: relative;
       vertical-align: middle;
       background-color: #243774; }
-      .dropdown .table .table-row.\$sel {
+      .dropdown .table .table-row.\$selected {
         background-color: #4f7abd; }
     .dropdown .table .table-col {
       display: inline-block;
@@ -509,7 +509,7 @@ a {
       display: inline-block;
       padding: 0;
       margin-left: 15px; }
-    .dropdown .table-row.\$sel .dropdown-icon {
+    .dropdown .table-row.\$selected .dropdown-icon {
       background-image: url(/images/radio-checked.svg);
       background-position: center center;
       background-repeat: no-repeat;
@@ -610,7 +610,7 @@ a {
     position: relative;
     vertical-align: middle;
     background-color: #243774; }
-    .menu-table .table-row.\$sel {
+    .menu-table .table-row.\$selected {
       background-color: #4f7abd; }
   .menu-table .table-col {
     display: inline-block;

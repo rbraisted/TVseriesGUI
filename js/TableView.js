@@ -40,8 +40,8 @@
         
         value = arg;
 
-        tableRows.removeClass('$sel');
-        if (index != -1) tableRows.eq(index).addClass('$sel');
+        tableRows.removeClass('$selected');
+        if (index != -1) tableRows.eq(index).addClass('$selected');
 
         return self;
       },
