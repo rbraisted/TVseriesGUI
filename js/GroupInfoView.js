@@ -6,8 +6,9 @@
     var sat;
 
     var installBtn = $('.\\#install-btn', jQ).click(function() {
-      var confirmed = confirm('Are you sure you want to install ' + group.name + '?');
-      if (confirmed) TVRO.setInstalledGroup(group).then(TVRO.reload);
+      var installed = jQ.hasClass('$installed');
+      var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + '?');
+      if (confirmed) TVRO.setInstalledSat(sat).then(TVRO.reload);
     });
 
     return self = {
@@ -29,55 +30,46 @@
     };
   };
 
-
-
   var GroupInfoView = function(jQ) {
     var self;
     var group;
 
-    var installSat = function(sat) {
-      var confirmed = confirm('Are you sure you want to install ' + sat.name + '?');
-      if (confirmed) TVRO.setInstalledSat(sat).then(TVRO.reload);
-    };
-
     //  install sat
-    var satAView = SatView($('.\\#sat-a-view'));
-    var satBView = SatView($('.\\#sat-b-view'));
-    var satCView = SatView($('.\\#sat-c-view'));
-    var satDView = SatView($('.\\#sat-d-view'));
+    var satAView = SatView($('.\\#sat-a-view', jQ));
+    var satBView = SatView($('.\\#sat-b-view', jQ));
+    var satCView = SatView($('.\\#sat-c-view', jQ));
+    var satDView = SatView($('.\\#sat-d-view', jQ));
 
     //  install group
     var installBtn = $(':not(.\\#sat-view) .\\#install-btn', jQ).click(function() {
-      var confirmed = confirm('Are you sure you want to install ' + group.name + '?');
+      var installed = jQ.hasClass('$installed');
+      //  if !installed, ask for confirmation
+      var confirmed = installed ? false : confirm('Are you sure you want to install ' + group.name + '?');
       if (confirmed) TVRO.setInstalledGroup(group).then(TVRO.reload);
     });
 
     var deleteBtn = $('.\\#delete-btn', jQ).click(function() {
-      var confirmed = confirm('Are you sure you want to delete ' + group.name + '?');
+      //  if !predefined, ask for confirmatiomn
+      var confirmed = group.predefined ? false : confirm('Are you sure you want to delete ' + group.name + '?');
       if (confirmed) TVRO.removeGroup(group).then(TVRO.reload);
     });
-
-    var reload = function() {
-      $('.\\#group-name', jQ).text(group.name);
-      jQ.toggleClass('$predefined', group.predefined);
-
-      satAView.setSat(group.satA);
-      satBView.setSat(group.satB);
-      satCView.setSat(group.satC);
-      satDView.setSat(group.satD);
-
-      TVRO.getInstalledGroup().then(function(installedGroup) {
-        var groupInstalled = installedGroup.name === group.name;
-        jQ.toggleClass('$installed', groupInstalled);
-      });
-    };
 
     return self = {
       setGroup: function(arg) {
         TVRO.getGroups().then(function(groups) {
           group = _.find(groups, arg);
-          reload();
+          $('.\\#group-name', jQ).text(group.name);
+          jQ.toggleClass('$predefined', group.predefined);
+
+          satAView.setSat(group.satA);
+          satBView.setSat(group.satB);
+          satCView.setSat(group.satC);
+          satDView.setSat(group.satD);
+
+        }).then(TVRO.getInstalledGroup).then(function(installedGroup) {
+          jQ.toggleClass('$installed', installedGroup.name === group.name);
         });
+        
         return self;
       },
 

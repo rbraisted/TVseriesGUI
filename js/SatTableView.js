@@ -48,7 +48,7 @@
 
         $('.\\#install-btn', row).click(function() {
           var installed = row.hasClass('$installed');
-          //  if installed, ask for confirmation
+          //  if not installed, ask for confirmation
           var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + '?');
           if (confirmed) TVRO.setInstalledSat(sat).then(TVRO.reload);
         });

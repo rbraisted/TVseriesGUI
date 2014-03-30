@@ -57,6 +57,8 @@
           group = _.find(groups, arg);
           reload();
         });
+
+        return self;
       },
 
       getGroup: function() {

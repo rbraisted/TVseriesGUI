@@ -1406,6 +1406,27 @@ a {
     .sat-edit .lo1-block.first + + +,
     .sat-edit .lo2-block.first + + + {
       margin-left: 0; }
+  .sat-info .region-block,
+  .sat-info .orb-slot-block,
+  .sat-info .hemisphere-block,
+  .sat-info .suffix-block,
+  .sat-info .skew-block,
+  .sat-info .lnb-block,
+  .sat-info .lo1-block,
+  .sat-info .lo2-block,
+  .sat-edit .region-block,
+  .sat-edit .orb-slot-block,
+  .sat-edit .hemisphere-block,
+  .sat-edit .suffix-block,
+  .sat-edit .skew-block,
+  .sat-edit .lnb-block,
+  .sat-edit .lo1-block,
+  .sat-edit .lo2-block {
+    vertical-align: top; }
+  .sat-info .name-block .input, .sat-info .name-block .dropdown-btn,
+  .sat-edit .name-block .input,
+  .sat-edit .name-block .dropdown-btn {
+    width: 50%; }
   .sat-info .xponder,
   .sat-edit .xponder {
     display: inline-block;
@@ -1479,6 +1500,16 @@ a {
 .\$predefined .sat-edit .xponder .input, .\$predefined .sat-edit .xponder .dropdown-btn,
 .\$predefined .sat-edit .xponder .dropdown-btn {
   display: inline-block; }
+
+.popup:not(.\$predefined) .sat-edit .name-block .value,
+.popup:not(.\$predefined) .sat-edit .region-block .value,
+.popup:not(.\$predefined) .sat-edit .orb-slot-block .value,
+.popup:not(.\$predefined) .sat-edit .hemisphere-block .value,
+.popup:not(.\$predefined) .sat-edit .suffix-block .value,
+.popup:not(.\$predefined) .sat-edit .skew-block .value,
+.popup:not(.\$predefined) .sat-edit .lo1-block .value,
+.popup:not(.\$predefined) .sat-edit .lo2-block .value {
+  display: none; }
 
 .\#region-table-view,
 .\#group-table-view,

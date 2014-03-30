@@ -1,9 +1,63 @@
 !function(TVRO){
   "use strict";
 
+  var XponderView = function(jQ) {
+    var self;
+    var xponder;
+    var fecDropdownView;
+    var modTypeDropdownView;
+
+    $('.\\#fec-btn', jQ).click(function() {
+      var fec = $('.\\#xponder-fec', jQ).text();
+      if (fecDropdownView) {
+        fecDropdownView.onClick(function(fec) {
+          $('.\\#xponder-fec', jQ).text(fec);
+        }).setValue(fec)
+          .show($(this).offset());
+      }
+    });
+
+    $('.\\#modType-btn', jQ).click(function() {
+      var modType = $('.\\#xponder-modType', jQ).text();
+      if (modTypeDropdownView) {
+        modTypeDropdownView.setValue(modType).show($(this).offset());
+      }
+    });
+
+    return self = {
+      setXponder: function(arg) {
+        xponder = arg;
+        $('.\\#xponder-freq', jQ).val(xponder.freq);
+        $('.\\#xponder-symRate', jQ).val(xponder.symRate);
+        $('.\\#xponder-fec', jQ).text(xponder.fec || 'N/A');
+        $('.\\#xponder-netID', jQ).val(xponder.netID);
+        $('.\\#xponder-modType', jQ).text(xponder.modType || 'N/A');
+        return self;
+      },
+
+      getXponder: function() {
+        xponder.freq = $('.\\#xponder-freq', jQ).val();
+        xponder.symRate = $('.\\#xponder-symRate', jQ).val();
+        xponder.fec = $('.\\#xponder-fec', jQ).text();
+        xponder.netID = $('.\\#xponder-netID', jQ).val();
+        xponder.modType = $('.\\#xponder-modType', jQ).text();
+        return xponder;
+      },
+
+      setFecDropdownView: function(arg) {
+        fecDropdownView = arg;
+        return self;
+      },
+
+      setModTypeDropdownView: function(arg) {
+        modTypeDropdownView = arg;
+        return self;
+      }
+    };
+  };
+
 	var SatEditView = function(jQ) {
 		var self;
-
     var sat;
 
 		var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
@@ -23,97 +77,71 @@
       if (confirmed) TVRO.resetSatelliteParams({ antSatID: sat.antSatID }).then(TVRO.reload);
     });
 
+    var regionDropdownView = TVRO.DropdownView($('.\\#sat-edit-region-dropdown-view'))
+      .setValues([
+        'Africa',
+        'Asia',
+        'Australia',
+        'Central/South America',
+        'Europe',
+        'North America'
+      ]).build();
 
-		// dropdown,
-		// regions = [
-		// 	'Africa',
-		// 	'Asia',
-		// 	'Australia',
-		// 	'Central/South America',
-		// 	'Europe',
-		// 	'North America'
-		// ],
-		// hemispheres = [
-		// 	'East',
-		// 	'west'
-		// ],
-		// fecs = [
-		// 	'1/2',
-		// 	'2/3',
-		// 	'3/4',
-		// 	'3/5',
-		// 	'4/5',
-		// 	'5/6',
-		// 	'5/11',
-		// 	'6/7',
-		// 	'7/8',
-		// 	'8/9',
-		// 	'9/9',
-		// 	'9/10'
-		// ],
-		// modTypes = [
-		// 	{'QDSS': 'DSS DTV'},
-		// 	{'QDC2': 'DCII QPSK DigiCipher 2'},
-		// 	{'QDVB': 'DVB QPSK'},
-		// 	{'LQPSK': 'LDPC QPSK STD DVB-S2'},
-		// 	{'L8PSK': 'LDPC 8PSK STD DVB-S2'},
-		// 	{'TQPSK': 'Turbo QPSK Dish'},
-		// 	{'T8PSK': 'Turbo 8PSK Dish'}
-		// ];
+    var hemisphereDropdownView = TVRO.DropdownView($('.\\#sat-edit-hemisphere-dropdown-view'))
+      .setValues([
+        'East',
+        'West'
+      ]).build();
 
-		//	hook up the xponder dropdown btns
-		// _.forEach($('.\\#xponder-view', jQ), function(xponderJq) {
-		// 	$('.\\#fec-btn', xponderJq).click(function() {
-		// 		if (dropdown) {
-		// 			dropdown
-		// 			.title('FEC Code')
-		// 			.build(function(row, data) {
-		// 				$('.\\#dropdown-val', row).text(data);
-		// 			})
-		// 			.click(function(row, data) {
-		// 				$('.\\#xponder-fec', xponderJq).text(data);
-		// 			})
-		// 			.vals(fecs)
-		// 			.build()
-		// 			.val($('.\\#xponder-fec', xponderJq).text())
-		// 			.show()
-		// 			.offset($(this).offset());
-		// 		}
-		// 	})
+    var fecDropdownView = TVRO.DropdownView($('.\\#sat-edit-fec-dropdown-view'))
+      .setValues([
+  			'1/2',
+  			'2/3',
+  			'3/4',
+  			'3/5',
+  			'4/5',
+  			'5/6',
+  			'5/11',
+  			'6/7',
+  			'7/8',
+  			'8/9',
+  			'9/9',
+  			'9/10'
+  		]).build();
 
-		// 	$('.\\#modType-btn', xponderJq).click(function() {
-		// 		if (dropdown) {
-		// 			dropdown
-		// 			.title('Decoder Type')
-		// 			.build(function(row, data) {
-		// 				$('.\\#dropdown-val', row).text(data[$('.\\#xponder-modType', xponderJq).text()]);
-		// 			})
-		// 			.click(function(row, data) {
-		// 				for (prop in data) break;
-		// 				$('.\\#xponder-modType', xponderJq).text(prop);
-		// 			})
-		// 			.vals(modTypes)
-		// 			.build()
-		// 			.val($('.\\#xponder-modType', xponderJq).text())
-		// 			.show()
-		// 			.offset($(this).offset())
-		// 		}
-		// 	});
-		// });
-    var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
-      .onClick(function(isFav) {
-        TVRO.setSatelliteIdentity({
-          antSatID: sat.antSatID,
-          favorite: isFav ? 'TRUE' : 'FALSE'
-        });
-      });
+    var modTypeDropdownView = TVRO.DropdownView($('.\\#sat-edit-modType-dropdown-view'))
+      .setValues([
+        'QDSS',
+        'QDC2',
+        'QDVB',
+        'LQPSK',
+        'L8PSK',
+        'TQPSK',
+        'T8PSK'
+  		]).build();
+
+    var xponderVHView = XponderView($('.\\#xponder-vh-view', jQ))
+      .setFecDropdownView(fecDropdownView)
+      .setModTypeDropdownView(modTypeDropdownView);
+
+    var xponderVLView = XponderView($('.\\#xponder-vl-view', jQ))
+      .setFecDropdownView(fecDropdownView)
+      .setModTypeDropdownView(modTypeDropdownView);
+
+    var xponderHHView = XponderView($('.\\#xponder-hh-view', jQ))
+      .setFecDropdownView(fecDropdownView)
+      .setModTypeDropdownView(modTypeDropdownView);
+
+    var xponderHLView = XponderView($('.\\#xponder-hl-view', jQ))
+      .setFecDropdownView(fecDropdownView)
+      .setModTypeDropdownView(modTypeDropdownView);      
 
     return self = {
       setSat: function(arg) {
         TVRO.getSatParams(arg).then(function(arg) {
           sat = arg;
-
-          jQ.toggleClass('$pre', sat.predefined);
+          favBtn.setOn(sat.favorite);
+          jQ.toggleClass('$predefined', sat.predefined);
 
           //  inputs
           $('.\\#sat-name', jQ).val(sat.name);
@@ -122,42 +150,28 @@
           $('.\\#sat-hemisphere', jQ).val(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).val(sat.suffix);
           $('.\\#sat-skew', jQ).val(sat.skew);
-          $('.\\#sat-lnb', jQ).val('Linear'); //  TODO
+          $('.\\#sat-lnb', jQ).val(sat.lnbType);
           $('.\\#sat-lo1', jQ).val(sat.lo1);
           $('.\\#sat-lo2', jQ).val(sat.lo2);
 
           //  plain ol text, dropdown btns
-          $('.\\#sat-name', jQ).text(sat.name);
-          $('.\\#sat-region', jQ).text(sat.region);
-          $('.\\#sat-antSatID', jQ).text(sat.antSatID);
+          $('.\\#sat-name', jQ).text(sat.name || 'N/A');
+          $('.\\#sat-region', jQ).text(sat.region || 'N/A');
+          $('.\\#sat-antSatID', jQ).text(sat.antSatID || 'N/A');
           $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
-          $('.\\#sat-suffix', jQ).text(sat.suffix);
-          $('.\\#sat-skew', jQ).text(sat.skew);
-          $('.\\#sat-lnb', jQ).text('Linear');  //  TODO
-          $('.\\#sat-lo1', jQ).text(sat.lo1);
-          $('.\\#sat-lo2', jQ).text(sat.lo2);
+          $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
+          $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
+          $('.\\#sat-lnb', jQ).text(sat.lnbType || 'N/A');
+          $('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
+          $('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
 
-          favBtn.val(sat.favorite);
-
-          _.forEach(sat.xponders, function(xponder) {
-            var xponderJq = $({
-              'Vertical High': '.\\#xponder-vh-view',
-              'Vertical Low': '.\\#xponder-vl-view',
-              'Horizontal High': '.\\#xponder-hl-view',
-              'Horizontal Low': '.\\#xponder-hh-view'
-            }[xponder.display], jQ);
-
-            $('.\\#xponder-freq', xponderJq).text(xponder.freq || 'N/A');
-            $('.\\#xponder-symRate', xponderJq).text(xponder.symRate || 'N/A');
-            $('.\\#xponder-fec', xponderJq).text(xponder.fec || 'N/A');
-            $('.\\#xponder-netID', xponderJq).text(xponder.netID || 'N/A');
-            $('.\\#xponder-modType', xponderJq).text(xponder.modType || 'N/A');
-          });
-          
-          tvro.data.getInstalledSat().then(function(insSat) {
-            $(jQ).toggleClass('$ins', sat.antSatID === insSat.antSatID);
-          });
+          xponderVHView.setXponder(sat.xponderVH);
+          xponderVLView.setXponder(sat.xponderVL);
+          xponderHHView.setXponder(sat.xponderHH);
+          xponderHLView.setXponder(sat.xponderHL);
         });
+
+        return self;
       },
 
       getSat: function() {

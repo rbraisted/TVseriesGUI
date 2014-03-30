@@ -176,11 +176,10 @@ $(function() {
         .end()
   );
 
-  $('.\\#new-btn', '.sidebar')
+  var createGroupBtn = $('.\\#new-btn', '.sidebar')
     .click(function() {
       window.location.hash = '/groups/new';
     });
-
 
 //  routing
 ////////////////////////////////////////////////////////////////////////////////
@@ -249,12 +248,6 @@ $(function() {
           groupTableView.reload();
           groupTableView.setValue({ name: decode(split[1]) });
           groupEditView.setGroup(groupTableView.getValue());
-
-          // groupTableView.built().then(function() {
-          //   groupTableView.group({name:decode(split[1])});
-          //   groupInfoView.group(groupTableView.group());
-          // });
-
           satInfoView.sat({ antSatID: decode(split[4]) });
         }
       }, {

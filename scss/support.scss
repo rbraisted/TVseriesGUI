@@ -8,7 +8,7 @@
 	}
 
 	@include breakpoint($mobile) {
-		.table-row.\$sel {
+		.table-row.\$selected {
 			background-color: $light-blue;
 		}
 

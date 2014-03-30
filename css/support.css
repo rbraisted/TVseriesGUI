@@ -621,7 +621,7 @@ a {
   .menu-table .table-row {
     cursor: pointer; }
   @media screen and (max-width: 880px) {
-    .menu-table .table-row.\$sel {
+    .menu-table .table-row.\$selected {
       background-color: #243774; }
     .menu-table .table-row {
       background-image: url(/images/right-icon-blue.svg);

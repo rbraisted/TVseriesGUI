@@ -8,7 +8,7 @@
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to reset the ethernet settings?');
-      if (confirmed) TVRO.setWlanFactory().then(reload);
+      if (confirmed) TVRO.setWlanFactory().then(TVRO.reload);
     });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
@@ -47,50 +47,8 @@
         delete params.if_mode;
       }
 
-      TVRO.setWlan(params).then(reload);
+      TVRO.setWlan(params).then(TVRO.reload);
     });
-
-    // var saveBtn = $('.\\#save-btn', jQ).click(function() {
-    //   var params = {
-    //     mode: $('.\\#wlan-mode', jQ).text()
-    //   };
-
-    //   var networkModeParams = {
-    //     mode: $('.\\#wlan-network-mode', jQ).text(),
-    //     essid: $('.\\#wlan-essid', jQ).val(),
-    //     security: {
-    //       mode: $('.\\#wlan-security-mode', jQ).text()
-    //     }
-    //   }
-
-    //   if (networkModeParams.security.mode !== 'OFF') {
-    //     networkModeParams.security.key = $('.\\#wlan-security-key', jQ).val();
-    //   }
-
-    //   if (params.mode === 'IF') {
-    //     if (networkModeParams.mode === 'DYNAMIC') {
-    //       params = _.merge(params, {
-    //         if_mode: networkModeParams
-    //       });
-    //     } else {
-    //       params = _.merge(params, {
-    //         if_mode: _.merge(networkModeParams, {
-    //           ip: $('.\\#wlan-ip', jQ).val(),
-    //           netmask: $('.\\#wlan-netmask', jQ).val(),
-    //           gateway: $('.\\#wlan-gateway', jQ).val(),
-    //           broadcast: $('.\\#wlan-broadcast', jQ).val()            
-    //         })
-    //       });
-    //     }    
-    //   } else if (params.mode === 'AP') {
-    //     params = _.merge(params, {
-    //       ap_mode: networkModeParams
-    //     })
-    //   }
-
-    //   TVRO.setWlan(params).then(reload);
-    // });
-
 
 
     //  mode

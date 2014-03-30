@@ -638,9 +638,9 @@ a {
     padding: 0;
     margin-left: 15px;
     cursor: pointer; }
-  .manual-sat-table .table-row.\$ins {
+  .manual-sat-table .table-row.\$installed {
     background-color: #4f7abd; }
-    .manual-sat-table .table-row.\$ins .install-btn {
+    .manual-sat-table .table-row.\$installed .install-btn {
       background-image: url(/images/radio-checked.svg);
       background-position: center center;
       background-repeat: no-repeat;

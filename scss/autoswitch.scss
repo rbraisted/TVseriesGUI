@@ -20,7 +20,7 @@
 			cursor: pointer;
 		}
 
-		&.\$ins {
+		&.\$installed {
 			background-color: $bright-blue;
 			.install-btn {
 				@include bgimg('radio-checked');

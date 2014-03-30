@@ -46,7 +46,13 @@
       return undefined;
     }
 
-    return {
+    var self;
+    var preferredPolarity = $('preferredPolarity', xml).text();
+    var lnbType = '';
+    if (preferredPolarity === 'L' || preferredPolarity === 'R') lnbType = 'Circular';
+    else if (preferredPolarity === 'H' || preferredPolarity === 'V') lnbType = 'Linear';
+
+    return self = {
       //  these values can be retrieved from both
       //  get_satellite_list and get_satellite_params
       listID: $('listID', xml).text(),
@@ -63,13 +69,24 @@
       lo1: $('lo1', xml).text(),
       lo2: $('lo2', xml).text(),
       kumode: $('kumode', xml).text(),
-      preferredPolarity: $('preferredPolarity', xml).text(),
-      xponders: _.map($('xponder', xml), Xponder)
+      preferredPolarity: preferredPolarity,
+      lnbType: lnbType,
+      xponderVH: Xponder($('xponder:contains("Vertical High")', xml)),
+      xponderVL: Xponder($('xponder:contains("Vertical Low")', xml)),
+      xponderHH: Xponder($('xponder:contains("Horizontal High")', xml)),
+      xponderHL: Xponder($('xponder:contains("Horizontal Low")', xml)),
+      getXponders: function() {
+        return _.compact([self.xponderVH, self.xponderVL, self.xponderHH, self.xponderHL]);
+      }
     };
   };
 
   //  satellite transponder (xponder, satellite params)
   var Xponder = function(xml) {
+    if (!$('id', xml).text()) {
+      return undefined;
+    }
+
     return {
       id: $('id', xml).text(),
       display: $('display', xml).text(),
@@ -91,6 +108,8 @@
   TVRO.Group = Group;
   TVRO.Sat = Sat;
   TVRO.Xponder = Xponder;
+
+  //  abstractions of the web service into our model classes
 
   TVRO.getGroups = function() {
     return TVRO.getSatelliteGroups().then(function(xml) {
