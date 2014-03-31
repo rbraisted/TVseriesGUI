@@ -91,4 +91,10 @@
 		<ver>100</ver>￼
 		<sn>S0207102202AA-00000</sn>
 	</commbox>
+  <diseqc>
+    <ver>1.00</ver>
+  </diseqc>
+  <ipautosw>
+    <ver>1.00</ver>
+  </ipautosw>
 </ipacu_response>

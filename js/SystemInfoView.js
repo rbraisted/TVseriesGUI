@@ -10,6 +10,9 @@
         var hubVer = $('acu ver', xml).text();
         var satVer = $('sat_list ver', xml).text();
         var gprsIp = $('gprs ip', xml).text();
+        var diseqcVer = $('diseqc ver', xml).text();
+        var ipautoswVer = $('ipautosw ver', xml).text();
+
         var antModel = $('au model', xml).text();
         var antSn = $('au sn', xml).text();
         var antVer = $('au ver', xml).text();
@@ -24,6 +27,9 @@
         $('.\\#hub-ver', jQ).text(hubVer);
         $('.\\#sat-ver', jQ).text(satVer);
         $('.\\#gprs-ip', jQ).text(gprsIp);
+        $('.\\#diseqc-ver', jQ).text(diseqcVer);
+        $('.\\#ipautosw-ver', jQ).text(ipautoswVer);
+
         $('.\\#ant-model', jQ).text(antModel);
         $('.\\#ant-sn', jQ).text(antSn);
         $('.\\#ant-ver', jQ).text(antVer);
@@ -37,6 +43,11 @@
         var service = $('service', xml).text();
         var subType = $('service_subtype', xml).text();
         $('.\\#sat-service', jQ).text(service + ' ' + subType);
+      }).then(TVRO.getAntennaStatus).then(function(xml) {
+        var dateTime = $('gps dt', xml).text();
+        $('.\\#date-time', jQ).text(dateTime);
+      }).then(TVRO.getWebUIVersion).then(function(txt) {
+        $('.\\#webui-ver', jQ).text(txt);
       });
     };
 

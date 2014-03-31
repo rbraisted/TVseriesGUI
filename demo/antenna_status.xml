@@ -5,7 +5,7 @@
 		<state>ACQUIRED</state><!-- ACQUIRED | ACQUIRING | ERROR | MANUAL -->
 		<lat>41.312934</lat>
 		<lon>-71.175168</lon>
-		<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
+		<dt>2013-03-04 23:11:23 UTC</dt>
 	</gps>
 	<acu>
 		<state>OK</state><!-- OK | FLASHING | CALGYRO | ERROR -->

@@ -312,6 +312,22 @@
     return get(msg)(url, 1);
   };
 
+  //  custom call to get web ui version from version.txt
+  TVRO.getWebUIVersion = function() {
+    if (cache['get_web_ui_version']) {
+      return cache['get_web_ui_version'];
+    } else {
+      return cache['get_web_ui_version'] = Promise(function(resolve, reject) {
+        $.ajax({
+          url: '/version.txt',
+          success: function(txt) {
+            resolve(txt.replace('tvserieswebapp=', ''));
+          },
+          error: reject
+        });
+      });
+    }
+  };
 
   //  it's easier to just keep getting antenna_status here
   //  we need it to be updated on all the main gui pages

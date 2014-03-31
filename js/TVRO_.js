@@ -20,7 +20,7 @@
 
 
   var TVRO = {
-    debug: 0
+    debug: 2
   };
 
 
