@@ -55,17 +55,11 @@
     <span class="label">Main Version</span><span class="value #ant-ver"></span>
     <span class="label">RF Version</span><span class="value #rf-ver"></span>
     <span class="label">FPGA Version</span><span class="value #fpga-ver"></span>
-    <span class="label">AZEL Version</span><span class="value #az-ver"></span>
-    <span class="label">SKEW/XAZ Version</span><span class="value #skew-ver"></span>
+    <span class="label">AZ/EL Version</span><span class="value #az-ver"></span>
+    <span class="label">SKEW Version</span><span class="value #skew-ver"></span>
     <span class="label">LNB Type</span><span class="value #lnb-name"></span>
     <span class="label">LNB Version</span><span class="value #lnb-ver"></span>
-  </div>
-  
-  <div class="sensor">
-    <div class="view-head">Sensor</div>
-    <span class="label">S/N</span><span class="value #sensor-sn"></span>
-    <span class="label">Version</span><span class="value #sensor-ver"></span>
-  </div>
+  </div>  
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
