@@ -61,11 +61,15 @@ $(function() {
   }
 
   TVRO.onHashChange(function(hash) {    
+    if (!menuTableView.getValues()) {
+      
+    }
+
     if (hash) {
       var update = hash.substr(1);
       menuTableView.setValue(update);
       updateView.setUpdate(update);
-      document.body.className = '/update';      
+      document.body.className = '/update';
     } else {
       document.body.className = '';
     }

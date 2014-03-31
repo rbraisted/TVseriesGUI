@@ -75,9 +75,9 @@
       </div>
     </div>
   </div>
-
 </div>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="dropdown #master-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
@@ -93,18 +93,5 @@
     </div>
   </div>
 </div>
-
-<!-- 
-
-	<div id="autoswitch-view" class="menu-sub-view autoswitch-view">
-		<h3>Master</h3>
-		<img src="/images/img.gif">
-		<span id="master" class="autoswitch-master-label"></span>
-		<a id="autoswitch-btn" class="btn basic-btn autoswitch-change-btn">
-			<label>Change</label>
-		</a>
-	</div>
-
--->
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
