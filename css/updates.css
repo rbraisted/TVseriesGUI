@@ -727,6 +727,17 @@ a {
     height: 26px;
     width: 26px; }
 
+.updates-icon {
+  background-image: url(/images/updates-icon-white.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 21px 21px;
+  min-height: 21px;
+  min-width: 21px;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: text-top; }
+
 .menu-table {
   width: 100%;
   position: relative; }
@@ -760,47 +771,84 @@ a {
     cursor: pointer; }
   .menu-table .update-label {
     text-shadow: 0 2px #000;
-    display: inline-block; }
+    display: inline; }
   .menu-table .connected-label {
     text-shadow: 0 2px #000;
     color: #acd038;
-    display: inline-block; }
+    display: none; }
+  .menu-table .\$connected .connected-label {
+    display: inline; }
   .menu-table .version-label {
     color: #bac7da;
     font-size: 13px;
     margin-top: .5em;
     white-space: nowrap; }
+  .menu-table .antenna-version-label {
+    display: none; }
+  .menu-table .\$connected .antenna-version-label {
+    display: block; }
+  .menu-table .\$sat-library .antenna-version-label {
+    display: block; }
   .menu-table .device-version-label {
     display: none; }
 
 .update .section {
-  height: 100px;
-  position: relative; }
-  .update .section + .section {
-    margin-top: 80px; }
+  position: relative;
+  padding: 30px 0;
+  margin-bottom: 80px; }
   .update .section .bg {
     position: fixed;
     left: 0;
+    margin-top: -30px;
     background: #fff;
     height: 100px;
     opacity: 0.07;
     width: 100%;
     border-bottom: 3px solid #bbb; }
-  .update .section .label {
-    font-size: 21px;
-    padding-top: 30px; }
+  .update .section .desktop-version .bg {
+    height: 75px;
+    background: falugalob; }
   .update .section .version {
     color: #bac7da;
-    padding-top: .5em; }
-  .update .section .download-btn,
-  .update .section .install-btn {
-    background: transparent url(/images/download-button.png) no-repeat center center;
-    height: 95px;
-    margin-top: -20px;
-    position: absolute;
-    top: 100%;
-    width: 95px;
-    z-index: 1; }
+    padding-top: 8px; }
+  .update .section .cta {
+    bottom: -30px;
+    color: #acd038;
+    left: 110px;
+    position: absolute; }
+.update .download-btn,
+.update .install-btn {
+  background-image: url(/images/download.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  min-height: 80px;
+  min-width: 80px;
+  cursor: pointer;
+  position: absolute;
+  bottom: -65px;
+  left: 15px;
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+  border-radius: 100%; }
+  .update .download-btn input,
+  .update .install-btn input {
+    cursor: pointer;
+    height: 100%;
+    opacity: 0.01;
+    width: 100%; }
+.update .mobile-version,
+.update .system-version,
+.update .device-version .cta,
+.update .device-version .install-btn {
+  display: none; }
+.update.\$connected .system-version,
+.update.\$connected .device-version .cta,
+.update.\$connected .device-version .install-btn, .update.\$sat-library .system-version,
+.update.\$sat-library .device-version .cta,
+.update.\$sat-library .device-version .install-btn {
+  display: block; }
 
 @media screen and (max-width: 880px) {
   .sidebar,

@@ -10,9 +10,9 @@
     <div class="table-row #table-row">
       <div class="table-col">
         <div class="update-label #update-name"></div>
-        <div class="connected-label #connected-label">CONNECTED</div>
+        <div class="connected-label">CONNECTED</div>
 
-        <div class="version-label antenna-version-label #system-ver-label">
+        <div class="version-label antenna-version-label">
           Antenna S/W Version:
           <span class="version #system-ver">N/A</span>
         </div>
@@ -35,7 +35,9 @@
 
 <div class="view update #update-view">
   <div class="view-head">
+    <span class="updates-icon"></span>
     <span class="#update-name"></span>
+    Update
     <div class="back-btn #back-btn"></div>
   </div>
 
@@ -52,17 +54,24 @@
   </div>
 
   <div class="section device-version">
-    <div class="bg"></div>
-    <div class="desktop">
+    <div class="desktop-version #desktop">
+      <div class="bg"></div>
       <div class="label">My Computer</div>
     </div>
-<!--<div class="mobile-version">
+
+    <div class="mobile-version #mobile">
+      <div class="bg"></div>
       <div class="label">On Device</div>
-      <div class="version">Software Version <span id="version"></span> ready to install</div>
-    </div> -->
-    <a class="install-btn #install-btn">
+      <div class="version">
+        Software Version
+        <span class="#device-ver"></span>
+        ready to install
+      </div>
+    </div>
+
+    <div class="install-btn #install-btn">
       <input id="upload" type="file" class="upload-btn">
-    </a>
+    </div>
     <div class="cta">Install Update</div>
   </div>
 

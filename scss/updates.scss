@@ -1,5 +1,12 @@
 @import "base.scss";
 
+.updates-icon {
+  @include bgimg('updates-icon-white');
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: text-top;
+}
+
 .menu-table {
   @include blue-table;
 
@@ -9,13 +16,17 @@
 
   .update-label {
     @include text-shadow;
-    display: inline-block;
+    display: inline;
   }
 
   .connected-label {
     @include text-shadow;
     color: $green;
-    display: inline-block;
+    display: none;
+  }
+
+  .\$connected .connected-label {
+    display: inline;
   }
 
   .version-label {
@@ -25,6 +36,18 @@
     white-space: nowrap;
   }
 
+  .antenna-version-label {
+    display: none;
+  }
+
+  .\$connected .antenna-version-label {
+    display: block;
+  }
+
+  .\$sat-library .antenna-version-label {
+    display: block;
+  }
+
   .device-version-label {
     display: none;
   }
@@ -32,42 +55,71 @@
 
 .update {
   .section {
-    height: 100px;
     position: relative;
-
-    &+.section {
-      margin-top: 80px;
-    }
+    padding: 30px 0;
+    margin-bottom: 80px;
 
     .bg {
       position: fixed;
       left: 0;
+      margin-top: -30px;
       background: #fff;
       height: 100px;
       opacity: 0.07;
       width: 100%;
       border-bottom: 3px solid #bbb;
     }
-
-    .label {
-      font-size: $large-font;
-      padding-top: 30px;
+ 
+    .desktop-version .bg {
+      height: 75px;
+      background: falugalob;
     }
 
     .version {
       color: $bright-grey;
-      padding-top: .5em;
+      padding-top: 8px;
     }
 
-    .download-btn,
-    .install-btn {
-      background: transparent url(/images/download-button.png) no-repeat center center;
-      height: 95px;
-      margin-top: -20px;
+    .cta {
+      bottom: -30px;
+      color: $green;
+      left: 110px;
       position: absolute;
-      top: 100%;
-      width: 95px;
-      z-index: 1;
+    }
+  }
+
+  .download-btn,
+  .install-btn {
+    @include bgimg('download', center, 80px, 80px);
+    cursor: pointer;
+    position: absolute;
+    bottom: -65px;
+    left: 15px;
+    height: 80px;
+    width: 80px;
+    z-index: 1;
+    border-radius: 100%;
+
+    input {
+      cursor: pointer;
+      height: 100%;
+      opacity: 0.01;
+      width: 100%;
+    }
+  }
+
+  .mobile-version,
+  .system-version,
+  .device-version .cta,
+  .device-version .install-btn {
+    display: none;
+  }
+
+  &.\$connected, &.\$sat-library {
+    .system-version,
+    .device-version .cta,
+    .device-version .install-btn {
+      display: block;
     }
   }
 }

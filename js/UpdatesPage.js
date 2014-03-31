@@ -2,22 +2,35 @@ $(function() {
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
   var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
+    .setValues([
+      'SatLibrary',
+      'TV1',
+      'TV3',
+      'TV5',
+      'TV6',
+      'RV1'
+    ])
     .onBuild(function(row, update) {
+      var techMode = TVRO.getTechMode();
       var antUpdate = update !== 'SatLibrary';
       var updateName = antUpdate ? update : 'Satellite Library';
       $('.\\#update-name', row).text(updateName);
 
       //  get the system version (the currently installed version)
       TVRO.getAntennaVersions().then(function(xml) {
+        var connectedAnt = $('au model', xml).text();
+        var connected = update === connectedAnt;
+        var systemVersion = $('au ver', xml).text();
+
         if (antUpdate) {
-          var connectedAnt = $('au model', xml).text();
-          var systemVersion = $('au ver', xml).text();
-          $('.\\#connected-label, .\\#system-ver-label', row).toggle(update === connectedAnt);
+          row.addClass('$antenna');
+          row.toggle(techMode || connected);
+          row.toggleClass('$connected', connected);
           $('.\\#system-ver', row).text(systemVersion);
         } else {
-          var satVer = $('sat_list ver', xml).text();
-          $('.\\#connected-label', row).hide();
-          $('.\\#system-ver', row).text(satVer);
+          row.addClass('$sat-library');
+          systemVersion = $('sat_list ver', xml).text();
+          $('.\\#system-ver', row).text(systemVersion);
         }
       });
 
@@ -29,48 +42,26 @@ $(function() {
     })
     .onClick(function(update) {
       window.location.hash = '/' + update;
-    });
+    })
+    .build();
 
   var updateView = TVRO.UpdateView($('.\\#update-view'));
 
   //  initializations
 
-  if (TVRO.getTechMode()) {
-    //  tech mode sees all
-    menuTableView
-      .setValues([
-        'TV1',
-        'TV3',
-        'TV5',
-        'TV6',
-        'RV1',
-        'SatLibrary'
-      ])
-      .build();
-
-  } else {
-    //  everybody else sees just their connected ant and sat library
-    TVRO.getAntennaVersions().then(function(xml) {
-      menuTableView
-        .setValues([
-          $('au model', xml).text(),
-          'SatLibrary'
-        ])
-        .build();
-    });
-  }
-
-  TVRO.onHashChange(function(hash) {    
-    if (!menuTableView.getValues()) {
-      
-    }
-
+  TVRO.onHashChange(function(hash) {
     if (hash) {
       var update = hash.substr(1);
       menuTableView.setValue(update);
       updateView.setUpdate(update);
       document.body.className = '/update';
     } else {
+      TVRO.getAntennaVersions().then(function(xml) {
+        var update = $('au model', xml).text();
+        if (!update) update = 'SatLibrary';
+        menuTableView.setValue(update);
+        updateView.setValue(update);
+      });
       document.body.className = '';
     }
   });
