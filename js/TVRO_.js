@@ -20,7 +20,7 @@
 
 
   var TVRO = {
-    debug: 2
+    debug: 0
   };
 
 
@@ -79,21 +79,6 @@
       TVRO.reload();
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   window.TVRO = TVRO;
 

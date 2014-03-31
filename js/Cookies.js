@@ -23,7 +23,6 @@
 
   TVRO.setDemoMode = set('tvro-demo-mode');
   TVRO.setTechMode = set('tvro-tech-mode');
-  TVRO.setSatSwitchMode = set('tvro-sat-switch-mode');
 
   //  return as bool
   TVRO.getDemoMode = function() {
@@ -33,9 +32,4 @@
   TVRO.getTechMode = function() {
     return !!get('tvro-tech-mode')();
   };
-
-  TVRO.getSatSwitchMode = function() {
-    return !!get('tvro-sat-switch-mode')();
-  };
-
 }(window.TVRO);

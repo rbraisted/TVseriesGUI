@@ -36,7 +36,9 @@
             '-webkit-transform': 'rotate(' + azBow + 'deg)'
           });
         }
-      }).then(TVRO.getProductRegistration).then(function(xml) {
+      });
+
+      TVRO.getProductRegistration().then(function(xml) {
         var vesselName = $('vessel_name', xml).text();
         $('.\\#vessel-name', jQ).text(vesselName);
       });

@@ -39,14 +39,20 @@
         $('.\\#skew-ver', jQ).text(skewVer);
         $('.\\#lnb-name', jQ).text(lnbName);
         $('.\\#lnb-ver', jQ).text(lnbVer);
-      }).then(TVRO.getAutoswitchStatus).then(function(xml) {
+      })
+
+      TVRO.getAutoswitchStatus().then(function(xml) {
         var service = $('service', xml).text();
         var subType = $('service_subtype', xml).text();
         $('.\\#sat-service', jQ).text(service + ' ' + subType);
-      }).then(TVRO.getAntennaStatus).then(function(xml) {
+      });
+      
+      TVRO.getAntennaStatus().then(function(xml) {
         var dateTime = $('gps dt', xml).text();
         $('.\\#date-time', jQ).text(dateTime);
-      }).then(TVRO.getWebUIVersion).then(function(txt) {
+      });
+      
+      TVRO.getWebUIVersion().then(function(txt) {
         $('.\\#webui-ver', jQ).text(txt);
       });
     };

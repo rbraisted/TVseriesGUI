@@ -242,4 +242,45 @@
     });
   };
 
+  TVRO.getAutoswitchAvailable = function() {
+    return TVRO.getAutoswitchStatus().then(function(xml) {
+      var available = $('available:first', xml).text() === 'Y';
+      return available;
+    });
+  };
+
+  TVRO.getAutoswitchEnabled = function() {
+    return TVRO.getAutoswitchStatus().then(function(xml) {
+      var available = $('available:first', xml).text() === 'Y';
+      var enabled = available ? $('enable:first', xml).text() === 'Y' : false;
+      return enabled;
+    });
+  };
+
+  TVRO.setAutoswitchEnabled = function(enabled) {
+    return TVRO.getAutoswitchStatus()
+      .then(function(xml) {
+        return TVRO.setAutoswitchService({
+          enable: enabled ? 'Y' : 'N',
+          service: $('service:first', xml).text(),
+          satellite_group: $('satellite_group', xml).text()
+        });
+      });
+  };
+
+  TVRO.getService = function() {
+    return TVRO.getAutoswitchStatus().then(function(xml) {
+      var service = $('service:first', xml).text();
+      return service;
+    });
+  };
+
+  TVRO.getReceiverType = function() {
+    return TVRO.getAutoswitchStatus().then(function(xml) {
+      var service = $('service:first', xml).text();
+      if (service === 'DIRECTV') return 'Receiver';
+      else return 'IP Autoswitch';
+    });    
+  };
+
 }(window.TVRO);

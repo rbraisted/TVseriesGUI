@@ -18,15 +18,12 @@
       });
 
     var reload = function() {
-      TVRO.getAutoswitchStatus().then(function(xml) {
-        var available = $('available:first', xml).text() === 'Y';
-        var enabled = available ? $('enable:first', xml).text() === 'Y' : false;
-        var service = $('service', xml).text();
-        var receiverType = 'IP Autoswitch';
-
+      TVRO.getAutoswitchEnabled().then(function(enabled) {
         jQ.toggle(enabled);
-        if (service === 'DIRECTV') receiverType = 'Receiver';
-        $('.\\#receiver-type').text(receiverType);
+      });
+
+      TVRO.getReceiverType().then(function(receiverType) {
+        $('.\\#receiver-type', jQ).text(receiverType);
       });
 
       TVRO.getMasterReceiver().then(function(master) {
@@ -36,7 +33,6 @@
 
       TVRO.getReceivers().then(function(receivers) {
         masterDropdownView.setValues(receivers).build();
-        console.log(masterDropdownView.getValues());
       });
     };
 
