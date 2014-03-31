@@ -27,7 +27,7 @@
     <script type="text/javascript" src="/js/ToggleBtn_.js"></script>
     <script type="text/javascript" src="/js/TableView.js"></script>
     <script type="text/javascript" src="/js/DropdownView.js"></script>
-    
+
     <script type="text/javascript" src="/js/HeaderView.js"></script>
 
   </head>
@@ -39,9 +39,9 @@
 
 <div class="header #header-view">
   <div class="status-btn #status-btn">
-    <div class="status-light"></div><!--
- --><div class="status-light"></div><!--
- --><div class="status-light"></div>
+    <div class="status-light power-status #power-status"></div><!--
+ --><div class="status-light acu-status #acu-status"></div><!--
+ --><div class="status-light antenna-status #antenna-status"></div>
     Status
   </div>
 
@@ -59,9 +59,18 @@
 </div>
 
 <div class="status #status-view">
-  <div class=""></div>
-  <div class=""></div>
-  <div class=""></div>
+  <div class="status-label">
+    Power: 
+    <span class="power-status #power-status">OK</span>
+  </div><!--
+--><div class="status-label">
+    Control Unit: 
+    <span class="acu-status #acu-status">OK</span>
+  </div><!--
+--><div class="status-label">
+    Antenna Status: 
+    <span class="antenna-status #antenna-status">OK</span>
+  </div>
 </div>
 
 <div class="nav #nav-view">

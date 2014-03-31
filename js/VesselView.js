@@ -20,12 +20,12 @@
         var animation = $('.\\#vessel-animation', jQ)
           .removeClass('$warning $error')
           .addClass({
-            TRACKING: '',
-            INITIALIZING: '$warning',
-            SEARCHING: '$warning',
-            IDLE: '$warning',
+            'TRACKING': '',
+            'INITIALIZING': '$warning',
+            'SEARCHING': '$warning',
+            'IDLE': '$warning',
             'CABLE UNWRAP': '$warning',
-            ERROR: '$error'
+            'ERROR': '$error'
           }[state]);
 
         if (!isNaN(azBow) && azBow !== 999) {

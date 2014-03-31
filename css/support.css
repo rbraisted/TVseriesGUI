@@ -58,6 +58,10 @@ a {
       height: 22px;
       margin: 7px 3px 2px 0;
       width: 10px; }
+      .header .status-btn .status-light.\$warning {
+        background-color: #e76d24; }
+      .header .status-btn .status-light.\$error {
+        background-color: #c51313; }
   .header .nav-btn {
     cursor: pointer;
     font-size: 13px;
@@ -76,6 +80,35 @@ a {
       width: 10px; }
     .header .nav-btn .nav-light:nth-child(n+3) {
       margin-top: 0; }
+
+.status {
+  background-color: #000;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 4;
+  transition: height .3s; }
+  .status.\$expanded {
+    height: 45px; }
+  .status .status-label {
+    display: inline-block;
+    margin: 15px; }
+    .status .status-label:first-child {
+      margin-left: 15px; }
+  .status .antenna-status,
+  .status .power-status,
+  .status .acu-status {
+    color: #acd038; }
+    .status .antenna-status.\$warning,
+    .status .power-status.\$warning,
+    .status .acu-status.\$warning {
+      color: #e76d24; }
+    .status .antenna-status.\$error,
+    .status .power-status.\$error,
+    .status .acu-status.\$error {
+      color: #c51313; }
 
 @media screen and (max-width: 880px) {
   .nav {

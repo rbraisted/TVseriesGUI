@@ -167,6 +167,9 @@ a {
       height: 22px;
       margin: 7px 3px 2px 0;
       width: 10px;
+
+      &.\$warning { background-color: $orange; }
+      &.\$error { background-color: $red; }
     }
 	}
 
@@ -190,6 +193,40 @@ a {
       margin-top: 0;
     }
 	}
+}
+
+//  status
+////////////////////////////////////////////////////////////////////////////////
+.status {
+  background-color: #000;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: $header-height;
+  width: 100%;
+  z-index: $header-index;
+  transition: height .3s;
+
+  &.\$expanded {
+    height: $nav-height;
+  }
+
+  .status-label {
+    display: inline-block;
+    margin: 15px;
+
+    &:first-child {
+      margin-left: 15px;
+    }
+  }
+
+  .antenna-status,
+  .power-status,
+  .acu-status {
+    color: $green;
+    &.\$warning { color: $orange; }
+    &.\$error { color: $red; }
+  }
 }
 
 // nav
