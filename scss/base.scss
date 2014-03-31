@@ -65,6 +65,7 @@ $table-head-index: 1;
 //	the one exception is html/body background color which follows
 ////////////////////////////////////////////////////////////////////////////////
 $green: #acd038;
+$orange: #e76d24;
 $red: #c51313;
 
 $bright-blue: #4f7abd;
@@ -148,27 +149,45 @@ a {
 		width: 150px;
 	}
 
+  @mixin header-btn {
+    cursor: pointer;
+    font-size: $small-font;
+    height: 100%;
+    text-align: center;
+    width: $header-height;
+  }
+
 	.status-btn {
-		float: left;
-		height: 100%;
-		width: $header-height;
+    @include header-btn;
+    float: left;
 
-    .power-status {
-
-    }
-
-    .antenna-status {
-
+    .status-light {
+      background-color: $green;
+      display: inline-block;
+      height: 22px;
+      margin: 7px 3px 2px 0;
+      width: 10px;
     }
 	}
 
 	.nav-btn {
-		float: right;
-		height: 100%;
-		width: $header-height;
+    @include header-btn;
+    float: right;
 
-    @include breakpoint($mobile) {
+    @include breakpoint($desktop) {
       display: none;
+    }
+
+    .nav-light {
+      background-color: #fff;
+      display: inline-block;
+      height: 10px;
+      margin: 7px 3px 2px 0;
+      width: 10px;
+    }
+
+    .nav-light:nth-child(n+3) {
+      margin-top: 0;
     }
 	}
 }
@@ -176,48 +195,77 @@ a {
 // nav
 ////////////////////////////////////////////////////////////////////////////////
 .nav {
-	background: #000;
-	height: $nav-height;
-	position: fixed;
-	top: $header-height;
-	width: 100%;
-	z-index: $nav-index;
+  $nav-btns:
+    home 17px,
+    sat 18px,
+    autoswitch 19px,
+    settings 17px,
+    updates 19px,
+    support 13px;
 
-	@include breakpoint($mobile) {
-		display: none;
-	}
+  @include breakpoint($mobile) {
+    background-color: #000;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 0%;
+    position: fixed;
+    top: $header-height;
+    transition: padding .3s;
+    width: 100%;
+    z-index: $nav-index;
 
-	$nav-btns:
-		home 17px,
-		sat 18px,
-		autoswitch 19px,
-		settings 17px,
-		updates 19px,
-		support 13px;
+    &.\$expanded {
+      padding-bottom: 66%;
+    }
 
-	@each $nav-btn in $nav-btns {
-		$btn-name: nth($nav-btn, 1);
-		$icon-width: nth($nav-btn, 2);
-		.#{$btn-name}-btn {
-			background: transparent url(/images/#{$btn-name}-icon-grey.svg) no-repeat left 10px center/$icon-width $medium-icon;
-			color: $bright-grey;
-			cursor: pointer;
-			display: inline-block;
-			height: 100%;
-			padding: 16px 15px 0 ($icon-width + 20px);
+    @each $nav-btn in $nav-btns {
+      $btn-name: nth($nav-btn, 1);
+      $icon-width: unquote(nth($nav-btn, 2)/21px*50+'%');
+      .#{$btn-name}-btn {
+        background: transparent url(/images/#{$btn-name}-icon-white.svg) no-repeat top 35% center/$icon-width;
+        cursor: pointer;
+        display: inline-block;
+        margin-left: 1%;
+        overflow: hidden;
+        padding: 22% 0 6%;
+        text-align: center;
+        width: 32%;
+      }
+    }
+  }
 
-			@if $btn-name == home {
-				background-position: left 20px center;
-				padding-left: ($icon-width + 30px);
-			}
+  @include breakpoint($desktop) {
+  	background: #000;
+  	height: $nav-height;
+  	position: fixed;
+  	top: $header-height;
+  	width: 100%;
+  	z-index: $nav-index;
 
-			&:hover,
-			&.\$selected {
-				background-image: url(/images/#{$btn-name}-icon-white.svg);
-				color: #fff;
-			}
-		}
-	}
+  	@each $nav-btn in $nav-btns {
+  		$btn-name: nth($nav-btn, 1);
+  		$icon-width: nth($nav-btn, 2);
+  		.#{$btn-name}-btn {
+  			background: transparent url(/images/#{$btn-name}-icon-grey.svg) no-repeat left 10px center/$icon-width $medium-icon;
+  			color: $bright-grey;
+  			cursor: pointer;
+  			display: inline-block;
+  			height: 100%;
+  			padding: 16px 15px 0 ($icon-width + 20px);
+
+  			@if $btn-name == home {
+  				background-position: left 20px center;
+  				padding-left: ($icon-width + 30px);
+  			}
+
+  			&:hover,
+  			&.\$selected {
+  				background-image: url(/images/#{$btn-name}-icon-white.svg);
+  				color: #fff;
+  			}
+  		}
+  	}    
+  }
 }
 
 //	base mixins

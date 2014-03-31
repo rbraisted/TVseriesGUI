@@ -1,5 +1,7 @@
 $(function() {
 
+  var headerView = TVRO.HeaderView($('.\\#header-view'));
+
   //  no routing on this page
   
   var vesselView = TVRO.VesselView($('.\\#vessel-view'));

@@ -1,5 +1,7 @@
 $(function() {
 
+  var headerView = TVRO.HeaderView($('.\\#header-view'));
+
 	var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
 		.setValues([
 			'General',

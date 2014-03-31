@@ -21,6 +21,10 @@
       var modType = $('.\\#xponder-modType', jQ).text();
       if (modTypeDropdownView) {
         modTypeDropdownView.setValue(modType).show($(this).offset());
+        modTypeDropdownView.onClick(function(fec) {
+          $('.\\#xponder-fec', jQ).text(fec);
+        }).setValue(fec)
+          .show($(this).offset());
       }
     });
 

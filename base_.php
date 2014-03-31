@@ -27,6 +27,8 @@
     <script type="text/javascript" src="/js/ToggleBtn_.js"></script>
     <script type="text/javascript" src="/js/TableView.js"></script>
     <script type="text/javascript" src="/js/DropdownView.js"></script>
+    
+    <script type="text/javascript" src="/js/HeaderView.js"></script>
 
   </head>
 
@@ -35,17 +37,38 @@
 <!-- header/nav
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="header #header">
-  <div class="status-btn #status-btn">Status</div>
-  <div class="nav-btn #nav-btn">Menu</div>
+<div class="header #header-view">
+  <div class="status-btn #status-btn">
+    <div class="status-light"></div><!--
+ --><div class="status-light"></div><!--
+ --><div class="status-light"></div>
+    Status
+  </div>
+
+  <div class="nav-btn #nav-btn">
+    <div class="nav-light"></div><!--
+ --><div class="nav-light"></div><!--
+ --><div class="nav-light"></div><!--
+ --><div class="nav-light"></div><!--
+ --><div class="nav-light"></div><!--
+ --><div class="nav-light"></div>
+    Menu
+  </div>
+
   <div class="tracvision-logo"></div>
 </div>
 
-<div class="nav #nav">
-  <a href="/home.php" class="home-btn #home-btn">Home</a>
-  <a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
-  <a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
-  <a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
-  <a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
-  <a href="/support.php" class="support-btn #support-btn">Support</a>
+<div class="status #status-view">
+  <div class=""></div>
+  <div class=""></div>
+  <div class=""></div>
+</div>
+
+<div class="nav #nav-view">
+  <a href="/home.php" class="home-btn #home-btn">Home</a><!--
+--><a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a><!--
+--><a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a><!--
+--><a href="/settings.php" class="settings-btn #settings-btn">Settings</a><!--
+--><a href="/updates.php" class="updates-btn #updates-btn">Updates</a><!--
+--><a href="/support.php" class="support-btn #support-btn">Support</a>
 </div>

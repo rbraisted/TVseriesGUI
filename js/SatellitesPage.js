@@ -1,5 +1,7 @@
 $(function() {
 
+  var headerView = TVRO.HeaderView($('.\\#header-view'));
+
   var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view')).reload();
 
   // setInterval(function() {

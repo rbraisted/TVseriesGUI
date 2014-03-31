@@ -46,89 +46,174 @@ a {
     margin: auto;
     width: 150px; }
   .header .status-btn {
-    float: left;
+    cursor: pointer;
+    font-size: 13px;
     height: 100%;
-    width: 50px; }
+    text-align: center;
+    width: 50px;
+    float: left; }
+    .header .status-btn .status-light {
+      background-color: #acd038;
+      display: inline-block;
+      height: 22px;
+      margin: 7px 3px 2px 0;
+      width: 10px; }
   .header .nav-btn {
-    float: right;
+    cursor: pointer;
+    font-size: 13px;
     height: 100%;
-    width: 50px; }
-    @media screen and (max-width: 880px) {
+    text-align: center;
+    width: 50px;
+    float: right; }
+    @media screen and (min-width: 881px) {
       .header .nav-btn {
         display: none; } }
+    .header .nav-btn .nav-light {
+      background-color: #fff;
+      display: inline-block;
+      height: 10px;
+      margin: 7px 3px 2px 0;
+      width: 10px; }
+    .header .nav-btn .nav-light:nth-child(n+3) {
+      margin-top: 0; }
 
-.nav {
-  background: #000;
-  height: 45px;
-  position: fixed;
-  top: 50px;
-  width: 100%;
-  z-index: 3; }
-  @media screen and (max-width: 880px) {
-    .nav {
-      display: none; } }
-  .nav .home-btn {
-    background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px 21px;
-    color: #bac7da;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 15px 0 37px;
-    background-position: left 20px center;
-    padding-left: 47px; }
-    .nav .home-btn:hover, .nav .home-btn.\$selected {
-      background-image: url(/images/home-icon-white.svg);
-      color: #fff; }
-  .nav .sat-btn {
-    background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px 21px;
-    color: #bac7da;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 15px 0 38px; }
-    .nav .sat-btn:hover, .nav .sat-btn.\$selected {
-      background-image: url(/images/sat-icon-white.svg);
-      color: #fff; }
-  .nav .autoswitch-btn {
-    background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px 21px;
-    color: #bac7da;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 15px 0 39px; }
-    .nav .autoswitch-btn:hover, .nav .autoswitch-btn.\$selected {
-      background-image: url(/images/autoswitch-icon-white.svg);
-      color: #fff; }
-  .nav .settings-btn {
-    background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px 21px;
-    color: #bac7da;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 15px 0 37px; }
-    .nav .settings-btn:hover, .nav .settings-btn.\$selected {
-      background-image: url(/images/settings-icon-white.svg);
-      color: #fff; }
-  .nav .updates-btn {
-    background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px 21px;
-    color: #bac7da;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 15px 0 39px; }
-    .nav .updates-btn:hover, .nav .updates-btn.\$selected {
-      background-image: url(/images/updates-icon-white.svg);
-      color: #fff; }
-  .nav .support-btn {
-    background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px 21px;
-    color: #bac7da;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    padding: 16px 15px 0 33px; }
-    .nav .support-btn:hover, .nav .support-btn.\$selected {
-      background-image: url(/images/support-icon-white.svg);
-      color: #fff; }
+@media screen and (max-width: 880px) {
+  .nav {
+    background-color: #000;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 0%;
+    position: fixed;
+    top: 50px;
+    transition: padding .3s;
+    width: 100%;
+    z-index: 3; }
+    .nav.\$expanded {
+      padding-bottom: 66%; }
+    .nav .home-btn {
+      background: transparent url(/images/home-icon-white.svg) no-repeat top 35% center/40.47619%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 22% 0 6%;
+      text-align: center;
+      width: 32%; }
+    .nav .sat-btn {
+      background: transparent url(/images/sat-icon-white.svg) no-repeat top 35% center/42.85714%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 22% 0 6%;
+      text-align: center;
+      width: 32%; }
+    .nav .autoswitch-btn {
+      background: transparent url(/images/autoswitch-icon-white.svg) no-repeat top 35% center/45.2381%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 22% 0 6%;
+      text-align: center;
+      width: 32%; }
+    .nav .settings-btn {
+      background: transparent url(/images/settings-icon-white.svg) no-repeat top 35% center/40.47619%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 22% 0 6%;
+      text-align: center;
+      width: 32%; }
+    .nav .updates-btn {
+      background: transparent url(/images/updates-icon-white.svg) no-repeat top 35% center/45.2381%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 22% 0 6%;
+      text-align: center;
+      width: 32%; }
+    .nav .support-btn {
+      background: transparent url(/images/support-icon-white.svg) no-repeat top 35% center/30.95238%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 22% 0 6%;
+      text-align: center;
+      width: 32%; } }
+@media screen and (min-width: 881px) {
+  .nav {
+    background: #000;
+    height: 45px;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 3; }
+    .nav .home-btn {
+      background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 37px;
+      background-position: left 20px center;
+      padding-left: 47px; }
+      .nav .home-btn:hover, .nav .home-btn.\$selected {
+        background-image: url(/images/home-icon-white.svg);
+        color: #fff; }
+    .nav .sat-btn {
+      background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 38px; }
+      .nav .sat-btn:hover, .nav .sat-btn.\$selected {
+        background-image: url(/images/sat-icon-white.svg);
+        color: #fff; }
+    .nav .autoswitch-btn {
+      background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 39px; }
+      .nav .autoswitch-btn:hover, .nav .autoswitch-btn.\$selected {
+        background-image: url(/images/autoswitch-icon-white.svg);
+        color: #fff; }
+    .nav .settings-btn {
+      background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 37px; }
+      .nav .settings-btn:hover, .nav .settings-btn.\$selected {
+        background-image: url(/images/settings-icon-white.svg);
+        color: #fff; }
+    .nav .updates-btn {
+      background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 39px; }
+      .nav .updates-btn:hover, .nav .updates-btn.\$selected {
+        background-image: url(/images/updates-icon-white.svg);
+        color: #fff; }
+    .nav .support-btn {
+      background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 33px; }
+      .nav .support-btn:hover, .nav .support-btn.\$selected {
+        background-image: url(/images/support-icon-white.svg);
+        color: #fff; } }
 
 .sidebar,
 .view,
