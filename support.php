@@ -43,8 +43,8 @@
     <div class="view-head">TV-Hub</div>
     <span class="label">S/N</span><span class="value #hub-sn"></span>
     <span class="label">Version</span><span class="value #hub-ver"></span>
-    <span class="label">Sat Library Version</span><span class="value #sat-ver"></span>
-    <span class="label">Sat Service</span><span class="value #sat-service"></span>
+    <span class="label">Satellite Library Version</span><span class="value #sat-ver"></span>
+    <span class="label">Satellite Service</span><span class="value #sat-service"></span>
     <span class="label">Support IP</span><span class="value #gprs-ip"></span>
   </div>
   

@@ -13,75 +13,75 @@
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="sidebar">
-	<div class="menu-table #menu-table-view">
-		<div class="table-row #table-row">
-			<div class="table-col">
+  <div class="menu-table #menu-table-view">
+    <div class="table-row #table-row">
+      <div class="table-col">
         <span class="#menu-item"></span>
         Settings
       </div>
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="view general-settings #general-settings-view">
-	<div class="view-head">
-		General Settings
-		<div class="back-btn #back-btn"></div>
-	</div>
+  <div class="view-head">
+    General Settings
+    <div class="back-btn #back-btn"></div>
+  </div>
 
-	<div class="heading">Technician Mode</div>
-	<p>
+  <div class="heading">Technician Mode</div>
+  <p>
     Turn on Technician mode to view software updates for all TracVision
     system models.
-	</p>
-	<div class="toggle-btn #tech-mode-btn">
-		<div class="on">On</div>
-		<div class="off">Off</div>
-	</div>
+  </p>
+  <div class="toggle-btn #tech-mode-btn">
+    <div class="on">On</div>
+    <div class="off">Off</div>
+  </div>
 
-	<div class="heading">Demo Mode</div>
-	<p>
+  <div class="heading">Demo Mode</div>
+  <p>
     Turn on Demo mode to browse the capabilities of the app and the TracVision
     system without making any actual changes. Not all functionality is
     available in demo mode.
-	</p>
-	<div class="toggle-btn #demo-mode-btn">
-		<div class="on">On</div>
-		<div class="off">Off</div>
-	</div>
+  </p>
+  <div class="toggle-btn #demo-mode-btn">
+    <div class="on">On</div>
+    <div class="off">Off</div>
+  </div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="view advanced-settings #advanced-settings-view">
-	<div class="view-head">
-		Advanced Settings
-		<div class="back-btn #back-btn"></div>
-	</div>
+  <div class="view-head">
+    Advanced Settings
+    <div class="back-btn #back-btn"></div>
+  </div>
 
-	<div class="heading">Sleep Mode</div>
-	<p>
+  <div class="heading">Sleep Mode</div>
+  <p>
     Sleep mode locks the antenna in place to conserve power whenever the 
-		<span class="#vessel-type"></span> is stationary and holds its position for
+    <span class="#vessel-type"></span> is stationary and holds its position for
     one minute. Sleep mode is enabled by default.
-	</p>
-	<div class="toggle-btn #sleep-mode-btn">
-		<div class="on">On</div>
-		<div class="off">Off</div>
-	</div>
+  </p>
+  <div class="toggle-btn #sleep-mode-btn">
+    <div class="on">On</div>
+    <div class="off">Off</div>
+  </div>
 
-	<div class="heading">Sidelobe Mode</div>
-	<p>
+  <div class="heading">Sidelobe Mode</div>
+  <p>
     Side Lobe mode ensures the antenna is always tracking the main beam of the
     satellite, and not on a weaker side lobe. For optimum performance, keep Side
     Lobe mode enabled unless directed otherwise by KVH Technical Support.
-	</p>
-	<div class="toggle-btn #sidelobe-mode-btn">
-		<div class="on">On</div>
-		<div class="off">Off</div>
-	</div>
+  </p>
+  <div class="toggle-btn #sidelobe-mode-btn">
+    <div class="on">On</div>
+    <div class="off">Off</div>
+  </div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

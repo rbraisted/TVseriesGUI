@@ -254,11 +254,6 @@
 
 	TVRO.getEventHistoryCount = get('get_event_history_count');
 
-
-	//	upload_software
-	//	upload_software
-	//	upload_software
-
 	TVRO.installSoftware = set('install_software');
 
 	TVRO.getSatelliteGroups = get('get_satellite_groups');
@@ -304,6 +299,19 @@
 	TVRO.setWizardStatus = set('set_wizard_status', [
 		get('get_wizard_status')
 	]);
+
+  //  custom calls for updates page
+
+  //  upload_software
+  //  upload_software
+  //  upload_software
+
+  TVRO.getLatestSoftware = function(update) {
+    var msg = update === 'SatLibrary' ? 'latest_sat_library' : 'latest_software';
+    var url = 'http://www.kvhupdate.com/TVRO/'+update+'/portalMain.php/'+msg;
+    return get(msg)(url, 1);
+  };
+
 
   //  it's easier to just keep getting antenna_status here
   //  we need it to be updated on all the main gui pages

@@ -1,0 +1,36 @@
+@import "base.scss";
+
+.sidebar,
+.\#update-view {
+  display: block;
+}
+
+.menu-table {
+  @include blue-table;
+
+  .table-row {
+    cursor: pointer;
+  }
+
+  .update-label {
+    @include text-shadow;
+    display: inline-block;
+  }
+
+  .connected-label {
+    @include text-shadow;
+    color: $green;
+    display: inline-block;
+  }
+
+  .version-label {
+    color: $bright-grey;
+    font-size: $small-font;
+    margin-top: .5em;
+    white-space: nowrap;
+  }
+
+  .device-version-label {
+    display: none;
+  }
+}
