@@ -1,5 +1,6 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/js/UpdateView.js"></script>
 <script type="text/javascript" src="/js/UpdatesPage.js"></script>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -32,11 +33,52 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="view #update-view">
+<div class="view update #update-view">
   <div class="view-head">
-    <span class="#ant-model"></span>
+    <span class="#update-name"></span>
     <div class="back-btn #back-btn"></div>
   </div>
+
+  <div class="section portal-version">
+    <div class="bg"></div>
+    <div class="label">Latest Software Available</div>
+    <div class="version">
+      Software Version
+      <span class="#portal-ver"></span>
+      available to download
+    </div>
+    <div class="download-btn #download-btn"></div>
+    <div class="cta">Download Update</div>
+  </div>
+
+  <div class="section device-version">
+    <div class="bg"></div>
+    <div class="desktop">
+      <div class="label">My Computer</div>
+    </div>
+<!--<div class="mobile-version">
+      <div class="label">On Device</div>
+      <div class="version">Software Version <span id="version"></span> ready to install</div>
+    </div> -->
+    <a class="install-btn #install-btn">
+      <input id="upload" type="file" class="upload-btn">
+    </a>
+    <div class="cta">Install Update</div>
+  </div>
+
+  <div class="section system-version">
+    <div class="bg"></div>
+    <div class="label">
+      My
+      <span class="#update-name"></span>
+      Antenna Software
+    </div>
+    <div class="version">
+      Software Version
+      <span class="#system-ver"></span>
+      installed
+    </div>  
+  </div>  
 </div>
 
 

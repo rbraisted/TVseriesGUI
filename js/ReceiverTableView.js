@@ -1,26 +1,26 @@
-!function(exports) {
+!function(TVRO) {
 	"use strict";
 
 	var ReceiverTableView = function(jQ) {
 		var self;
 
-		var table = tvro.table($('.\\#receiver-table', jQ))
-			.build(function(row, receiver) {
+		var tableView = TVRO.TableView($('.\\#table-view', jQ))
+			.onBuild(function(row, receiver) {
 				$('.\\#receiver-name', row).text(receiver.name);
 				$('.\\#receiver-id', row).text(receiver.id);
 				row.toggleClass('$active', receiver.active);
 
 				$('.\\#select-btn', row).click(function() {
 					if (confirm('Are you sure you want to make '+receiver.name+' master?')) {
-						tvro.data.setMaster(receiver).then(function() {
-							return built = tvro.data.getReceivers();
+						TVRO.setMaster(receiver).then(function() {
+							return built = TVRO.getReceivers();
 						}).then(function(receivers) {
-							table.vals(receivers).build();
+							tableView.setValues(receivers).build();
 						});
 					}
 				});
 
-				tvro.ws.getAutoswitchStatus().then(function(xml) {
+				TVRO.getAutoswitchStatus().then(function(xml) {
 					var service = $('service', xml).text();
 					var receiverType = 'IP Autoswitch';
 					var receiverIdType = 'Serial #';
@@ -30,29 +30,27 @@
 					}
 					$('.\\#receiver-name-label', row).text(receiverType);
 					$('.\\#receiver-id-label', row).text(receiverIdType);
-					return tvro.data.getHub();
+					return TVRO.getHubReceiver();
 				}).then(function(hub) {
 					if (receiver.id === hub.id) $('.\\#receiver-name-label', row).text('TV-Hub');
 					row.toggleClass('$hub', receiver.id === hub.id);
-					return tvro.data.getMaster();
+					return TVRO.getMasterReceiver();
 				}).then(function(master) {
 					row.toggleClass('$master', receiver.id === master.id);
 				});
 			});
 
-		var built = tvro.data.getReceivers().then(function(receivers) {
-			table.vals(receivers).build();
-		});
+    var reload = function() {
+      TVRO.getReceivers().then(function(receivers) {
+        tableView.setValues(receivers).build();
+      });
+    };
 
-		return self = _.merge(table, {
-			receivers: table.vals,
-			receiver: table.val,
-			built: function() {
-				return built;
-			}
-		});
-	}
+    return self = _.merge(tableView, {
+      reload: reload
+    });
+	};
 
-	exports.ReceiverTableView = ReceiverTableView;
+	TVRO.ReceiverTableView = ReceiverTableView;
 
-}(window);
+}(window.TVRO);

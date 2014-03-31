@@ -21,26 +21,17 @@ $(function() {
         }
       });
 
-
       //  get the portal version (latest/avail to download)
       TVRO.getLatestSoftware(update).then(function(xml) {
         var portalVersion = $('software_version', xml).text() || $('version', xml).text();
         $('.\\#portal-ver', row).text(portalVersion);
       });
-      // 'latest_software', 'http://www.kvhupdate.com/TVRO/'+String(this).toUpperCase()+'/portalMain.php/latest_software', function(response) {
-      // antType.portalUrl = response.find('url').text();
-      //     antType.portalVersion = response.find('software_version').text();
-      //     menuView.refresh();
-      //     updateView.re
-      //   var antType = this;
-      //   webService.request(
-
-      //  get the device version
-
     })
     .onClick(function(update) {
-      
+      window.location.hash = '/' + update;
     });
+
+  var updateView = TVRO.UpdateView($('.\\#update-view'));
 
   //  initializations
 
@@ -68,6 +59,19 @@ $(function() {
         .build();
     });
   }
+
+  TVRO.onHashChange(function(hash) {    
+    if (hash) {
+      var update = hash.substr(1);
+      menuTableView.setValue(update);
+      updateView.setUpdate(update);
+      document.body.className = '/update';      
+    } else {
+      document.body.className = '';
+    }
+  });
+
+  TVRO.reload();
 });
 
 

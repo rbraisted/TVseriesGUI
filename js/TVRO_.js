@@ -20,7 +20,7 @@
 
 
   var TVRO = {
-    debug: 2
+    debug: 1
   };
 
 
@@ -50,7 +50,7 @@
   var hashCallbacks = [];
 
   hashCallbacks.push(function(hash) {
-    console.log("-> #: "+hash);
+    if (TVRO.debug) console.log("-> #: "+hash);
   });
 
   TVRO.onHashChange = function(arg) {
@@ -68,7 +68,8 @@
   };
 
   TVRO.reload = function() {
-    console.log("-> #: reloading...");
+    if (TVRO.debug) console.log("-> #: reloading...");
+
     hash = window.location.hash.substring(1);
     _.invoke(hashCallbacks, 'call', null, hash);
   };

@@ -738,10 +738,10 @@ a {
   margin-right: 5px;
   vertical-align: text-top; }
 
-.manual-sat-table {
+.sat-table {
   width: 100%;
   position: relative; }
-  .manual-sat-table .table-head {
+  .sat-table .table-head {
     display: block;
     width: 100%;
     min-height: 46px;
@@ -751,7 +751,7 @@ a {
     position: absolute;
     z-index: 1;
     background-color: #293147; }
-  .manual-sat-table .table-row {
+  .sat-table .table-row {
     display: block;
     width: 100%;
     min-height: 46px;
@@ -759,13 +759,13 @@ a {
     position: relative;
     vertical-align: middle;
     background-color: #293147; }
-  .manual-sat-table .table-col {
+  .sat-table .table-col {
     display: inline-block;
     height: 100%;
     overflow: hidden;
     padding: 15px;
     vertical-align: middle; }
-  .manual-sat-table .table-row .install-btn {
+  .sat-table .table-row .install-btn {
     background-image: url(/images/radio-unchecked.svg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -776,18 +776,15 @@ a {
     padding: 0;
     margin-left: 15px;
     cursor: pointer; }
-  .manual-sat-table .table-row.\$installed {
+  .sat-table .table-row.\$installed {
     background-color: #4f7abd; }
-    .manual-sat-table .table-row.\$installed .install-btn {
+    .sat-table .table-row.\$installed .install-btn {
       background-image: url(/images/radio-checked.svg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
       min-height: 21px;
       min-width: 21px; }
-
-.automatic-sat-table .table-row + .table-row {
-  margin-top: 15px; }
 
 .receiver-table {
   width: 100%;

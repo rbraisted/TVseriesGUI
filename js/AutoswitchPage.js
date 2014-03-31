@@ -1,49 +1,66 @@
 $(function() {
-	"use strict";
+  var headerView = TVRO.HeaderView($('.\\#header-view'));
 
-	var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view'));
+  //  no routing on this page
 
   var groupMode;
 
-	//	satellite switching mode (manual|automatic)
-	//	not the same as the mode-tog-btn on satellites page
-	var modeTogBtn = TVRO.ToggleBtn($('.\\#mode-tog-btn'))
-		.onClick(function(isManual) {
-			if (isManual) window.location.hash = '/manual';
-			else window.location.hash = '/automatic';
-		});
+  //  $on === isManual
+  var satSwitchingBtn = TVRO.ToggleBtn($('.\\#sat-switching-btn'))
+    .onClick(function(isManual) {
+      TVRO.setSatSwitchMode(isManual);
+      $('.\\#manual-installed-group-view').toggle(isManual);
+      reload();
+    });
 
+  var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view'));
   var manualInstalledGroupView = TVRO.InstalledGroupView($('.\\#manual-installed-group-view'));
   var automaticInstalledGroupView = TVRO.InstalledGroupView($('.\\#automatic-installed-group-view'));
 
-	var receiverTableView = TVRO.ReceiverTableView(
-		$('.\\#receiver-table-view')
-			.find('.\\#edit-btn')
-				.click(function() {
-					var receiver = encode(receiverTableView.receivers()[$('.\\#receiver-table-view .\\#edit-btn').index(this)].id);
-					window.location.hash = '/automatic/'+receiver+'/edit';
-				})
-				.end()
-	);
+  var receiverTableView = TVRO.ReceiverTableView(
+    $('.\\#receiver-table-view')
+      .find('.\\#edit-btn')
+        .click(function() {
+          var index = $('.\\#receiver-table-view .\\#edit-btn').index(this);
+          var receiver = encode(receiverTableView.getValues()[index].id);
+          window.location.hash = '/' + receiver;
+        })
+        .end()
+  );
 
-	// var receiverInfoView
-
-	// var receiverEditView
-
-	TVRO.onHashChange(function(hash) {
+  var reload = function() {
     installedSatView.reload();
-    manualInstalledGroupView.reload();
-    automaticInstalledGroupView.reload();
 
-		TVRO.getAutoswitchStatus().then(function(xml) {
-			var service = $('service', xml).text();
-			var receiverType = 'IP Autoswitch';
-			if (service === 'DIRECTV') receiverType = 'Receiver';
-			$('.\\#receiver-type').text(receiverType);
-		});
-	});
+    if (groupMode) {
+      var satSwitchMode = TVRO.getSatSwitchMode();
+      $('.\\#manual-installed-group-view').toggle(satSwitchMode);
+      satSwitchingBtn.setOn(satSwitchMode);
 
-	TVRO.reload();
+      manualInstalledGroupView.reload();
+      automaticInstalledGroupView.reload();
+    }
+  };
+
+  // initialization
+
+  receiverTableView.reload();
+
+  TVRO.getInstalledGroup().then(function(group) {
+    //  if group mode, show sat switching, autoswitch master, installed group
+    groupMode = group && group.getSats().length > 1;
+    $('.\\#sat-switching-view').toggle(groupMode);
+    $('.\\#manual-installed-group-view').toggle(groupMode);
+    $('.\\#automatic-installed-group-view').toggle(groupMode);
+    setInterval(reload, 3000);
+    reload();
+  });
+
+  TVRO.getAutoswitchStatus().then(function(xml) {
+    var service = $('service', xml).text();
+    var receiverType = 'IP Autoswitch';
+    if (service === 'DIRECTV') receiverType = 'Receiver';
+    $('.\\#receiver-type').text(receiverType);
+  });
 });
 
 

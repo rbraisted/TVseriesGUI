@@ -7,32 +7,26 @@
 	vertical-align: text-top;
 }
 
-.manual-sat-table {
-	@include grey-table;
+.sat-table {
+  @include grey-table;
 
-	.table-row {
+  .table-row {
 
-		.install-btn {
-			@include bgimg('radio-unchecked');
-			display: inline-block;
-			padding: 0;
-			margin-left: 15px;
-			cursor: pointer;
-		}
+    .install-btn {
+      @include bgimg('radio-unchecked');
+      display: inline-block;
+      padding: 0;
+      margin-left: 15px;
+      cursor: pointer;
+    }
 
-		&.\$installed {
-			background-color: $bright-blue;
-			.install-btn {
-				@include bgimg('radio-checked');
-			}
-		}
-	}
-}
-
-.automatic-sat-table {
-	.table-row+.table-row {
-		margin-top: $table-row-padding;
-	}
+    &.\$installed {
+      background-color: $bright-blue;
+      .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
+  }
 }
 
 .receiver-table {

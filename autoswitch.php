@@ -1,101 +1,47 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>v 0.3</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
-		<meta http-equiv="cache-control" content="max-age=0" />
-		<meta http-equiv="cache-control" content="no-cache" />
-		<meta http-equiv="expires" content="0" />
-		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-		<meta http-equiv="pragma" content="no-cache" />
+<script type="text/javascript" src="/js/InstalledSatView.js"></script>
+<script type="text/javascript" src="/js/InstalledGroupView.js"></script>
+<script type="text/javascript" src="/js/ReceiverTableView.js"></script>
 
-		<link type="text/css" rel="stylesheet" href="/css/autoswitch.css">
+<script type="text/javascript" src="/js/AutoswitchPage.js"></script>
 
-
-		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="/js/base.js"></script>
-
-		<script type="text/javascript" src="/js/lodash.min.js"></script>
-		<script src="/js/promise-3.2.0.js"></script>
-
-		<script type="text/javascript" src="/js/tvro.js"></script>
-		<script type="text/javascript" src="/js/webservice.js"></script>
-		<script type="text/javascript" src="/js/data.js"></script>
-		<script type="text/javascript" src="/js/table.js"></script>
-		<script type="text/javascript" src="/js/insSatView.js"></script>
-		<script type="text/javascript" src="/js/satTable.js"></script>
-		<script type="text/javascript" src="/js/satInfoView.js"></script>
-		<script type="text/javascript" src="/js/satEditView.js"></script>
-		<script type="text/javascript" src="/js/groupTable.js"></script>
-		<script type="text/javascript" src="/js/groupInfoView.js"></script>
-		<script type="text/javascript" src="/js/groupEditView.js"></script>
-		<script type="text/javascript" src="/js/toggleBtn.js"></script>
-		<script type="text/javascript" src="/js/dropdown.js"></script>
-
-		<script type="text/javascript" src="/js/ReceiverTableView.js"></script>
-
-		<script type="text/javascript" src="/js/autoswitch.js"></script>
-
-	</head>
-
-	<body>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-		<div class="header #header">
-			<div class="status-btn #status-btn">Status</div>
-			<div class="nav-btn #nav-btn">Menu</div>
-			<div class="tracvision-logo"></div>
-		</div>
-
-		<!-- <div id="status" class="view status-view"></div> -->
-
-		<div class="nav #nav">
-			<a href="/home.php" class="home-btn #home-btn">Home</a>
-			<a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a>
-			<a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a>
-			<a href="/settings.php" class="settings-btn #settings-btn">Settings</a>
-			<a href="/updates.php" class="updates-btn #updates-btn">Updates</a>
-			<a href="/support.php" class="support-btn #support-btn">Support</a>
-		</div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="sidebar">
-	<div class="sidebar-chunk">
-		<div class="sidebar-chunk-head">Satellite Switching</div>
-		<div class="toggle-btn #mode-tog-btn">
-			<span class="on">Manual</span>
-			<span class="off">Automatic</span>
-		</div>
-	</div>
+  <div class="sidebar-chunk #sat-switching-view">
+    <div class="sidebar-chunk-head">Satellite Switching</div>
+    <div class="toggle-btn #sat-switching-btn">
+      <span class="on">Manual</span>
+      <span class="off">Automatic</span>
+    </div>
+  </div>
 
-	<div class="sidebar-chunk #ins-sat-view">
-		<div class="sidebar-chunk-head">
-			<span class="#sat-name"></span>
-			<span class="#sat-region"></span>
-		</div>
-		<div class="sat-signal #ant-bars $0"></div>
-		<span class="sat-status #ant-state"></span>
-	</div>
+  <div class="sidebar-chunk #installed-sat-view">
+    <div class="sidebar-chunk-head">
+      <span class="#sat-name"></span>
+      <span class="#sat-region"></span>
+    </div>
+    <div class="sat-signal #ant-bars $0"></div>
+    <span class="sat-status #ant-state"></span>
+  </div>
 
-	<div class="manual-sat-table #manual-sat-table-view">
-		<div class="table-row #table-row">
-			<span class="table-col install-btn #install-btn"></span><!--
-		 --><span class="table-col #sat-name"></span>
-		</div>
-	</div>
+  <div class="#manual-installed-group-view">
+    <div class="sat-table #sat-table-view">
+      <div class="table-row #table-row">
+        <span class="table-col install-btn #install-btn"></span><!--
+      --><span class="table-col #sat-name"></span>
+      </div>
+    </div>
+  </div>
 
-	<div class="sidebar-chunk">
-		<div class="sidebar-chunk-head">Installed Satellites</div>
-		<div class="automatic-sat-table #automatic-sat-table-view">
-			<div class="table-row #table-row">
-				<span class="table-col #sat-name"></span>
-			</div>
-		</div>
-	</div>
+  <div class="sidebar-chunk #automatic-installed-group-view">
+    <div class="sidebar-chunk-head">Installed Satellites</div>
+    <div class="#sat-table-view">
+      <div class="label #table-row">
+        <span class="#sat-name"></span>
+      </div>
+    </div>
+  </div>
 
 	<div class="block-btn #new-btn">
 		Add
@@ -155,7 +101,7 @@
 		</div>
  -->
 
-	<div class="receiver-table #receiver-table">
+	<div class="receiver-table #table-view">
 		<div class="table-row #table-row">
 			<div class="table-col status-col">
 				<div class="status-icon label">Status</div>
