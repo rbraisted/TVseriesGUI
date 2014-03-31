@@ -668,11 +668,35 @@ a {
 		padding: $sidebar-padding;
 		position: relative;
 
+    .label+.label {
+      margin-top: 10px;
+    }
+
 		.sidebar-chunk-head {
 			color: $bright-grey;
 			padding-bottom: inherit;
 		}
 	}
+
+  //  autoswitch sidebar view for home/autoswitch pages
+  .master-chunk {
+    .label {
+      @include bgimg('autoswitch-icon-white', left center);
+      padding: 4px 30px 0;
+      margin-top: -6px;
+      margin-bottom: 4px;
+    }
+
+    .master-btn {
+      bottom: 0;
+      display: inline-block;
+      font-size: $small-font;
+      padding: 6px 10px;
+      position: absolute;
+      right: 0;
+      width: auto;
+    }    
+  }
 
 	//	for the installed sat view
 	.sat-status {

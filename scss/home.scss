@@ -5,12 +5,6 @@
   display: block;
 }
 
-.sidebar-chunk {
-  .label+.label {
-    margin-top: 10px;
-  }
-}
-
 .sat-table {
   @include grey-table;
 

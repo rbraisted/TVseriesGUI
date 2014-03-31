@@ -68,7 +68,7 @@
     <span class="acu-status #acu-status">OK</span>
   </div><!--
 --><div class="status-label">
-    Antenna Status: 
+    Antenna: 
     <span class="antenna-status #antenna-status">OK</span>
   </div>
 </div>

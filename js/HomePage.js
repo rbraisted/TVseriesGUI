@@ -3,53 +3,61 @@ $(function() {
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
   //  no routing on this page
-  
-  var vesselView = TVRO.VesselView($('.\\#vessel-view'));
+
+  var groupMode;
 
   //  $on === isManual
   var satSwitchingBtn = TVRO.ToggleBtn($('.\\#sat-switching-btn'))
     .onClick(function(isManual) {
-      TVRO.setAutoswitchService({
-        enable: isManual ? 'N' : 'Y'
-      }).then(function() {
-        $('.\\#manual-installed-group-view').toggle(isManual);
-        reload();
-      });
+      TVRO.setSatSwitchMode(isManual);
+      $('.\\#manual-installed-group-view').toggle(isManual);
+      reload();
     });
 
   var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view'));
+  var masterView = TVRO.MasterView($('.\\#master-view'));
   var manualInstalledGroupView = TVRO.InstalledGroupView($('.\\#manual-installed-group-view'));
   var automaticInstalledGroupView = TVRO.InstalledGroupView($('.\\#automatic-installed-group-view'));
+  var vesselView = TVRO.VesselView($('.\\#vessel-view'));
 
   var reload = function() {
-    //  force recache
-    //  it's getAntennaStatus(params:Obj, recache:Bool)
-    TVRO.getAntennaStatus({}, 1).then(function(xml) {
+    installedSatView.reload();
+    vesselView.reload();
+
+    TVRO.getAntennaStatus().then(function(xml) {
       var latitude = $('gps lat', xml).text();
-      var longitude = $('gps lon', xml).text();
+      var longitude = $('gps lon', xml).text();      
       $('.\\#gps-latitude').text(TVRO.formatLatitude(latitude, 3));
       $('.\\#gps-longitude').text(TVRO.formatLongitude(longitude, 3));
+    });
 
-      vesselView.reload();
-      installedSatView.reload();
+    if (groupMode) {
+      var satSwitchMode = TVRO.getSatSwitchMode();
+      $('.\\#manual-installed-group-view').toggle(satSwitchMode);
+      satSwitchingBtn.setOn(satSwitchMode);
+
+      masterView.reload();
       manualInstalledGroupView.reload();
       automaticInstalledGroupView.reload();
-    });
+    }
   };
 
-
-  // initialization
+  // initialization stuff
 
   TVRO.getAntennaVersions().then(function(xml) {
-    var isManual = $('autoswitch enable', xml).text() === 'Y';
+    //  set the ant model name ie TV1, TV3, etc
     var antModel = $('au model', xml).text();
-
-    satSwitchingBtn.setOn(isManual);
-    $('.\\#manual-installed-group-view').toggle(isManual);
     $('.\\#ant-model').text(antModel);
   });
 
-  setInterval(reload, 3000);
-  reload();
-  
+  TVRO.getInstalledGroup().then(function(group) {
+    //  if group mode, show sat switching, autoswitch master, installed group
+    groupMode = group && group.getSats().length > 1;
+    $('.\\#sat-switching-view').toggle(groupMode);
+    $('.\\#master-view').toggle(groupMode);
+    $('.\\#manual-installed-group-view').toggle(groupMode);
+    $('.\\#automatic-installed-group-view').toggle(groupMode);
+    setInterval(reload, 3000);
+    reload();
+  });
 });

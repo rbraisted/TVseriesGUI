@@ -1,6 +1,7 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
 <script type="text/javascript" src="/js/InstalledSatView.js"></script>
+<script type="text/javascript" src="/js/MasterView.js"></script>
 <script type="text/javascript" src="/js/InstalledGroupView.js"></script>
 <script type="text/javascript" src="/js/VesselView.js"></script>
 
@@ -20,7 +21,7 @@
 
 <div class="sidebar">
 
-  <div class="sidebar-chunk">
+  <div class="sidebar-chunk #sat-switching-view">
     <div class="sidebar-chunk-head">Satellite Switching</div>
     <div class="toggle-btn #sat-switching-btn">
       <span class="on">Manual</span>
@@ -37,20 +38,20 @@
     <span class="sat-status #ant-state"></span>
   </div>
 
+  <div class="sidebar-chunk master-chunk #master-view">
+    <div class="sidebar-chunk-head">
+      Master
+      <span class="#receiver-type"></span>
+    </div>
+    <div class="label #master-name">Kitchen</div>
+    <div class="block-btn master-btn #master-btn">Change</div>
+  </div>
+
   <div class="#manual-installed-group-view">
     <div class="sat-table #sat-table-view">
       <div class="table-row #table-row">
         <span class="table-col install-btn #install-btn"></span><!--
       --><span class="table-col #sat-name"></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="sidebar-chunk #automatic-installed-group-view">
-    <div class="sidebar-chunk-head">Installed Satellites</div>
-    <div class="#sat-table-view">
-      <div class="label #table-row">
-        <span class="#sat-name"></span>
       </div>
     </div>
   </div>
@@ -66,6 +67,31 @@
     <div class="label #gps-longitude"></div>
   </div>
 
+  <div class="sidebar-chunk #automatic-installed-group-view">
+    <div class="sidebar-chunk-head">Installed Satellites</div>
+    <div class="#sat-table-view">
+      <div class="label #table-row">
+        <span class="#sat-name"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="dropdown #master-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">Select Master</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table #table-view">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+      --><span class="table-col #dropdown-value"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- 

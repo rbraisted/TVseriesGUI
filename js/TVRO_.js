@@ -19,7 +19,9 @@
 
 
 
-  var TVRO = {};
+  var TVRO = {
+    debug: 2
+  };
 
 
   //  for formatting longitude/latitude for display

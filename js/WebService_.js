@@ -89,9 +89,13 @@
       url: requestUrl,
       data: requestXml,
       success: function(response) {
-        console.log('~ '+requestName.toUpperCase());
-        console.log($(requestXml).get(0));
-        console.log($('ipacu_response', response).get(0));
+        if (TVRO.debug) {
+          console.log('~ '+requestName.toUpperCase());
+          if (TVRO.debug > 1) {
+            console.log($(requestXml).get(0));
+            console.log($('ipacu_response', response).get(0));
+          }
+        }
 
         var error = $(response).find('ipacu_response > message').attr('error');
 
@@ -127,11 +131,13 @@
         // -Paul
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log('\n~ ! ~');
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-        console.log('\n');
+        if (TVRO.debug) {
+          console.log('\n~ ! ~');
+          console.log(jqXHR);
+          console.log(textStatus);
+          console.log(errorThrown);
+          console.log('\n');
+        }
       }
     });
   }, 3);
@@ -298,5 +304,12 @@
 	TVRO.setWizardStatus = set('set_wizard_status', [
 		get('get_wizard_status')
 	]);
+
+  //  it's easier to just keep getting antenna_status here
+  //  we need it to be updated on all the main gui pages
+  setInterval(function() {
+    //  it's call(params, forceRecache)
+    TVRO.getAntennaStatus({}, 1);
+  }, 3000);
 
 }(window.TVRO);

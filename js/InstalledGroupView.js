@@ -10,7 +10,7 @@
         $('.\\#sat-name', row).text(sat.name);
 
         $('.\\#install-btn', row).click(function() {
-          if (!row.is('$installed')) {
+          if (!row.hasClass('$installed')) {
             TVRO.setInstalledSat(sat)
               .then(TVRO.reload);
           }

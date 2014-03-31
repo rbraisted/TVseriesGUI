@@ -188,10 +188,10 @@
       //  get the active receivers
       //  get all receivers
       //  go through all receivers and set receive.active
-      var recievers = _.map($('autoswitch', xmls[1]), Receiver);
+      var receivers = _.map($('autoswitch', xmls[1]), Receiver);
       var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);
-      return _.forEach(receivers, function(reciver) {
-        reciver.active = !!_.find(activeReceivers, { id: reciver.id });
+      return _.forEach(receivers, function(receiver) {
+        receiver.active = !!_.find(activeReceivers, { id: receiver.id });
       });
     });
   };
@@ -214,13 +214,15 @@
     });
   };
 
-  TVRO.getMaster = function() {
+  TVRO.getMasterReceiver = function() {
     return TVRO.getAutoswitchStatus().then(function(xml) {
-      return Receiver($('master', xml));
+      var master = Receiver($('master', xml));
+      master.active = true;
+      return master;
     });
   };
 
-  TVRO.setMaster = function(hub) {
+  TVRO.setMasterReceiver = function(hub) {
     return TVRO.getAutoswitchStatus().then(function(xml) {
       var service = $('service', xml).text();
       var receiverIdType = 'sn';
@@ -231,10 +233,12 @@
     });
   };
 
-  TVRO.getHub = function() {
+  TVRO.getHubReceiver = function() {
     return TVRO.getAutoswitchStatus().then(function(xml) {
       var receivers = _.map($('autoswitch', xml), Receiver);
-      return _.find(receivers, { name: 'TV-Hub' });
+      var hub = _.find(receivers, { name: 'TV-Hub' });
+      hub.active = true;
+      return hub;
     });
   };
 
