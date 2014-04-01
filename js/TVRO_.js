@@ -20,9 +20,9 @@
 
 
   var TVRO = {
-    debug: 0
+    debug: 0,
+    shell: false
   };
-
 
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc

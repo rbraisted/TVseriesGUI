@@ -18,6 +18,12 @@
 
     var statusJq = $('.\\#status-view');
     var statusBtn = $('.\\#status-btn', jQ).click(function() {
+      reload();
+      navJq.removeClass('$expanded');
+      statusJq.toggleClass('$expanded');
+    });
+
+    var reload = function() {
       TVRO.getAntennaStatus().then(function(xml) {
         var powerStatus = 'OK';
         var acuStatus = $('acu state', xml).text();
@@ -55,13 +61,12 @@
         $('.\\#power-status', statusJq).text(powerStatus);
         $('.\\#acu-status', statusJq).text(acuStatus);
         $('.\\#antenna-status', statusJq).text(antennaStatus);
-      });        
+      });
+    };
 
-      navJq.removeClass('$expanded');
-      statusJq.toggleClass('$expanded');
-    });
-
-    return self = {};
+    return self = {
+      reload: reload
+    };
   };
 
   TVRO.HeaderView = HeaderView;

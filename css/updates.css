@@ -769,6 +769,16 @@ a {
     vertical-align: middle; }
   .menu-table .table-row {
     cursor: pointer; }
+  @media screen and (max-width: 880px) {
+    .menu-table .table-row.\$selected {
+      background-color: #243774; }
+    .menu-table .table-row {
+      background-image: url(/images/right-icon-blue.svg);
+      background-position: right 15px center;
+      background-repeat: no-repeat;
+      background-size: 7px 21px;
+      min-height: 7px;
+      min-width: 21px; } }
   .menu-table .update-label {
     text-shadow: 0 2px #000;
     display: inline; }
@@ -853,7 +863,10 @@ a {
 @media screen and (max-width: 880px) {
   .sidebar,
   .\/update .\#update-view {
-    display: block; } }
+    display: block; }
+
+  .\/update .sidebar {
+    display: none; } }
 @media screen and (min-width: 881px) {
   .sidebar {
     z-index: 1; }

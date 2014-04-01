@@ -10,7 +10,7 @@
     var tableRowTemplate = $('.\\#table-row', jQ).detach();
 
     var values = [];  //  store values to be iterated over in buildCallback
-    var value;  //  currently selected value
+    var value = '';  //  currently selected value
 
     var clickCallback = function(value) {}; //  call when a tableRow is clicked - see self.build
     var buildCallback = function(row, value) {};  //  call when a tableRow is built - see self.build
@@ -35,10 +35,10 @@
 
       //  this is where we set $sel
       setValue: function(arg) {
+        value = arg;
+
         var index = indexOf(values, arg);
         var tableRows = $('.\\#table-row', jQ);
-        
-        value = arg;
 
         tableRows.removeClass('$selected');
         if (index != -1) tableRows.eq(index).addClass('$selected');

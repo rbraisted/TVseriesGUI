@@ -2,6 +2,10 @@ $(function() {
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
+  setInterval(function() {
+    headerView.reload();
+  }, 3000);
+
   var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view')).reload();
 
   // setInterval(function() {
@@ -105,6 +109,8 @@ $(function() {
 
   var groupTableView = TVRO.GroupTableView($('.\\#group-table-view'))
     .onClick(function(group) {
+      console.log('groupTableView.getValue()');
+      console.log(groupTableView.getValue());
       window.location.hash = '/groups/' + encode(group.name);
     });
 
@@ -187,6 +193,8 @@ $(function() {
 ////////////////////////////////////////////////////////////////////////////////
 
   TVRO.onHashChange(function(hash) {
+    headerView.reload();
+
     //  regex - to check
     //  class - to set document.body
     //  function - to call
@@ -316,7 +324,14 @@ $(function() {
         f: function() {
           satModeBtn.setOn(false);
           groupTableView.reload();
-          groupInfoView.setGroup(groupTableView.getValue());
+          console.log(groupTableView.getValue());
+          if (groupTableView.getValue()) {
+            groupInfoView.setGroup(groupTableView.getValue());
+          } else {
+            TVRO.getInstalledGroup().then(function(installedGroup) {
+              groupInfoView.setGroup(installedGroup);
+            });
+          }
         }
       }, {
         r: /^$/,

@@ -986,6 +986,9 @@ a {
   .\/network\/wireless .sidebar {
     display: none; } }
 @media screen and (min-width: 881px) {
+  body[class=''] .\#general-settings-view {
+    display: block; }
+
   .sidebar,
   .\/general .\#general-settings-view,
   .\/advanced .\#advanced-settings-view,

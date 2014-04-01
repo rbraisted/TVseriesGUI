@@ -1,6 +1,10 @@
 $(function() {
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
+  setInterval(function() {
+    headerView.reload();
+  }, 3000);
+
   var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
     .setValues([
       'SatLibrary',
@@ -45,11 +49,20 @@ $(function() {
     })
     .build();
 
-  var updateView = TVRO.UpdateView($('.\\#update-view'));
+  var updateView = TVRO.UpdateView(
+    $('.\\#update-view')
+      .find('.\\#back-btn')
+        .click(function() {
+          window.location.hash = '';
+        })
+        .end()
+  );
 
   //  initializations
 
   TVRO.onHashChange(function(hash) {
+    headerView.reload();
+    
     if (hash) {
       var update = hash.substr(1);
       menuTableView.setValue(update);
@@ -60,7 +73,7 @@ $(function() {
         var update = $('au model', xml).text();
         if (!update) update = 'SatLibrary';
         menuTableView.setValue(update);
-        updateView.setValue(update);
+        updateView.setUpdate(update);
       });
       document.body.className = '';
     }

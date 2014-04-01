@@ -13,7 +13,7 @@
 		<line2>Bar</line2>
 	</acu>
 	<antenna>
-		<state>TRACKING</state><!-- INITIALIZING | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP -->
+		<state>SEARCHING</state><!-- INITIALIZING | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP -->
 		<rf>
 			<snr>7</snr>
 			<bars>4</bars>

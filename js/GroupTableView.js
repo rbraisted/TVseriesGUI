@@ -20,12 +20,22 @@
           if (confirmed) TVRO.setInstalledGroup(group).then(TVRO.reload);
           else event.stopPropagation(); // prevent rows from being selected
         });
+
+        row.click(function() {
+          console.log(group);
+        });
   		});
 
     var reload = function() {
       TVRO.getGroups().then(function(groups) {
         tableView.setValues(groups).build();
       });
+
+      if (!tableView.getValue()) {
+        TVRO.getInstalledGroup().then(function(installedGroup) {
+          tableView.setValue({ name: installedGroup.name });
+        });
+      }
     };
 
 		return self = _.merge(tableView, {

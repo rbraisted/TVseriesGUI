@@ -57,7 +57,7 @@
     return self = {
       setGroup: function(arg) {
         TVRO.getGroups().then(function(groups) {
-          group = _.find(groups, arg);
+          group = _.find(groups, { name: arg.name });
           $('.\\#group-name', jQ).text(group.name);
           jQ.toggleClass('$predefined', group.predefined);
 

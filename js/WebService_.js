@@ -309,15 +309,21 @@
   TVRO.getLatestSoftware = function(update) {
     var msg = update === 'SatLibrary' ? 'latest_sat_library' : 'latest_software';
     var url = 'http://www.kvhupdate.com/TVRO/'+update+'/portalMain.php/'+msg;
-    return get(msg)(url, 1);
+    var cacheName = 'update_' + update;
+    if (cache[cacheName]) {
+        return cache[cacheName];
+    } else {
+      return cache[cacheName] = get(msg)(url, 1);
+    }
   };
 
   //  custom call to get web ui version from version.txt
   TVRO.getWebUIVersion = function() {
-    if (cache['get_web_ui_version']) {
-      return cache['get_web_ui_version'];
+    var cacheKey = 'get_web_ui_version';
+    if (cache[cacheKey]) {
+      return cache[cacheKey];
     } else {
-      return cache['get_web_ui_version'] = Promise(function(resolve, reject) {
+      return cache[cacheKey] = Promise(function(resolve, reject) {
         $.ajax({
           url: '/version.txt',
           success: function(txt) {

@@ -2,6 +2,10 @@ $(function() {
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
+  setInterval(function() {
+    headerView.reload();
+  }, 3000);
+
 	var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
 		.setValues([
       'System Info',
@@ -14,7 +18,7 @@ $(function() {
 			$('.\\#menu-item', row).text(value);
 		})
     .onClick(function(value) {
-      window.location.hash = '/' + /^\S*/.exec(value.toLowerCase());
+      window.location.hash = '/' + value.toLowerCase().replace(' ', '-');
     })
 		.build();
 
@@ -64,28 +68,19 @@ $(function() {
 	);
 
 	TVRO.onHashChange(function(hash) {
-		//	not sure, but eventually move this into tvro.js ??
-		if (hash.charAt(0) === '/') {
-			hash = hash.substr(1);
-		}
-
-    var paths = {};
-    paths['system'] = '/system-info';
-    paths['operational'] = '/operational-log';
-    paths['event'] = '/event-log';
-    paths['restart'] = '/restart-system';
-    paths['command'] = '/command-line';
-		document.body.className = paths[hash];
+    headerView.reload();
 
     menuTableView.setValue({
-      system: 'System Info',
-      operational: 'Operational Log',
-      event: 'Event Log',
-      restart: 'Restart System',
-      command: 'Command Line'
+      '/system-info': 'System Info',
+      '/operational-log': 'Operational Log',
+      '/event-log': 'Event Log',
+      '/restart-system': 'Restart System',
+      '/command-line': 'Command Line'
     }[hash]);
 
-		if (hash === 'command') commandLineView.startOutput();
+    document.body.className = hash;
+
+		if (hash === '/command-line') commandLineView.startOutput();
 		else commandLineView.stopOutput();
 	});
 

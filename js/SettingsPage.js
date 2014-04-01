@@ -2,6 +2,10 @@ $(function() {
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
+  setInterval(function() {
+    headerView.reload();
+  }, 3000);
+
 	var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
 		.setValues([
 			'General',
@@ -79,7 +83,11 @@ $(function() {
   //  /network/wireless
 
 	TVRO.onHashChange(function(hash) {
+    headerView.reload();
+    
     if (!hash) {
+      menuTableView.setValue('General');
+      generalSettingsView.reload();
 
     } else if (hash.match(/\/general/)) {
       menuTableView.setValue('General');
@@ -97,7 +105,7 @@ $(function() {
       else if (hash.match(/\/wireless/)) wirelessSettingsView.reload();
     }
 
-		document.body.className = hash;
+		document.body.className = hash; 
 	});
 
 	TVRO.reload();

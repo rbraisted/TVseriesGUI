@@ -19,6 +19,7 @@ $(function() {
   var vesselView = TVRO.VesselView($('.\\#vessel-view'));
 
   var reload = function() {
+    headerView.reload();
     installedSatView.reload();
     vesselView.reload();
 

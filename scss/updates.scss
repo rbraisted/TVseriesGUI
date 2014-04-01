@@ -14,6 +14,16 @@
     cursor: pointer;
   }
 
+  @include breakpoint($mobile) {
+    .table-row.\$selected {
+      background-color: $light-blue;
+    }
+
+    .table-row {
+      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+    }
+  }
+
   .update-label {
     @include text-shadow;
     display: inline;
@@ -128,6 +138,10 @@
   .sidebar,
   .\/update .\#update-view {
     display: block;
+  }
+
+  .\/update .sidebar {
+    display: none;
   }
 }
 

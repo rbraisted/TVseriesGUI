@@ -28,6 +28,7 @@ $(function() {
   );
 
   var reload = function() {
+    headerView.reload();
     installedSatView.reload();
 
     if (groupMode) {
