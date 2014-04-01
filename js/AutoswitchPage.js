@@ -1,4 +1,5 @@
 $(function() {
+
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
   //  no routing on this page
@@ -8,9 +9,7 @@ $(function() {
   //  $on === isManual
   var satSwitchingBtn = TVRO.ToggleBtn($('.\\#sat-switching-btn'))
     .onClick(function(isManual) {
-      TVRO.setSatSwitchMode(isManual);
-      $('.\\#manual-installed-group-view').toggle(isManual);
-      reload();
+      TVRO.setAutoswitchEnabled(!isManual).then(reload);
     });
 
   var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view'));
@@ -32,9 +31,10 @@ $(function() {
     installedSatView.reload();
 
     if (groupMode) {
-      var satSwitchMode = TVRO.getSatSwitchMode();
-      $('.\\#manual-installed-group-view').toggle(satSwitchMode);
-      satSwitchingBtn.setOn(satSwitchMode);
+      TVRO.getAutoswitchEnabled().then(function(enabled) {
+        $('.\\#manual-installed-group-view').toggle(!enabled);
+        satSwitchingBtn.setOn(!enabled);
+      });
 
       manualInstalledGroupView.reload();
       automaticInstalledGroupView.reload();
@@ -45,6 +45,10 @@ $(function() {
 
   receiverTableView.reload();
 
+  TVRO.getReceiverType().then(function(receiverType) {
+    $('.\\#receiver-type').text(receiverType);
+  });
+
   TVRO.getInstalledGroup().then(function(group) {
     //  if group mode, show sat switching, autoswitch master, installed group
     groupMode = group && group.getSats().length > 1;
@@ -54,16 +58,7 @@ $(function() {
     setInterval(reload, 3000);
     reload();
   });
-
-  TVRO.getAutoswitchStatus().then(function(xml) {
-    var service = $('service', xml).text();
-    var receiverType = 'IP Autoswitch';
-    if (service === 'DIRECTV') receiverType = 'Receiver';
-    $('.\\#receiver-type').text(receiverType);
-  });
 });
-
-
 
 /*
 
