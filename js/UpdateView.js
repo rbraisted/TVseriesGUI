@@ -16,21 +16,29 @@
         } else {
           window.location = portalUrl;
         }
+
+
+        jQ.removeClass('$not-available');
       });
     });
 
-    var uploadBtn = $('.\\#upload-btn', jQ).click(function() {
+    var uploadBtn = $('.\\#upload-btn', jQ).click(function(event) {
+      if (!jQ.hasClass('$connected')) {
+        return;
+      }
+
       if (TVRO.shell) {
         window.location = 'tvro://updates/upload/'+update;
       } else {
         $.ajaxFileUpload({
-          url: '/xmlservices.php/upload_software',
+          //  note: used to be xmlservices.php
+          url: '/webservices.php/upload_software',
           secureuri: false,
           fileElementId: 'upload',
           dataType: 'xml',
           success: function(response) {
             var filename = $('file_name', response).text();
-            var confirmed = confirm('Do you wish to install this update?');
+            var confirmed = confirm('Do you want to install this update?');
             if (confirmed) {
               TVRO.installSoftware({
                 install: 'Y',
@@ -39,37 +47,12 @@
             }
           }
         });
-
       }
     });
 
     var installBtn = $('.\\#install-btn', jQ).click(function() {
       console.log('installBtn');
     });
-
-    // $('[id ~= upload-btn ]', self).click(function() {
-    //   console.log('tvro://updates/upload/'+antType);
-    //   //  the uploading and installing process for native apps
-    //   //  is handled entirely by native code
-    //   if (TVRO.MOBILE_APP) {
-    //     window.location = 'tvro://updates/upload/'+antType;
-    //   } else {
-    //     $.ajaxFileUpload({
-    //       url : '/xmlservices.php/upload_software',
-    //       secureuri : false,
-    //       fileElementId : 'upload',
-    //       dataType : 'xml',
-    //       success : function(response) {
-    //         if (confirm('Do you wish to install this update?')) {
-    //           webService.request('install_software', {
-    //             install: 'Y',
-    //             filename: $('file_name', response).text()
-    //           });
-    //         }
-    //       }
-    //     });
-    //   }
-    // });
 
     return self = {
       setUpdate: function(arg) {
@@ -90,7 +73,7 @@
             jQ.toggleClass('$connected', connected);
             $('.\\#system-ver', jQ).text(systemVersion);
           } else {
-            jQ.addClass('$sat-library');
+            jQ.addClass('$sat-library $connected');
             systemVersion = $('sat_list ver', xml).text();
             $('.\\#system-ver', jQ).text(systemVersion);
           }
@@ -99,6 +82,10 @@
         TVRO.getLatestSoftware(update).then(function(xml) {
           var portalVersion = $('software_version', xml).text() || $('version', xml).text();
           $('.\\#portal-ver', jQ).text(portalVersion);
+
+          jQ.removeClass('$not-available');
+        }, function() {
+          jQ.addClass('$not-available');
         });
       }
     };

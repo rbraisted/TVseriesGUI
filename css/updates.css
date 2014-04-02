@@ -826,14 +826,25 @@ a {
     color: #acd038;
     left: 110px;
     position: absolute; }
-.update .download-btn,
-.update .install-btn {
+  .update .section .not-connected-label,
+  .update .section .not-available-label {
+    color: #c51313; }
+.update .download-btn {
   background-image: url(/images/download.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 80px 80px;
   min-height: 80px;
-  min-width: 80px;
+  min-width: 80px; }
+.update .install-btn {
+  background-image: url(/images/no-download.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  min-height: 80px;
+  min-width: 80px; }
+.update .download-btn,
+.update .install-btn {
   cursor: pointer;
   position: absolute;
   bottom: -65px;
@@ -847,18 +858,28 @@ a {
     cursor: pointer;
     height: 100%;
     opacity: 0.01;
-    width: 100%; }
-.update .mobile-version,
-.update .system-version,
-.update .device-version .cta,
-.update .device-version .install-btn {
+    width: 100%;
+    display: none; }
+.update .mobile-version {
   display: none; }
-.update.\$connected .system-version,
-.update.\$connected .device-version .cta,
-.update.\$connected .device-version .install-btn, .update.\$sat-library .system-version,
-.update.\$sat-library .device-version .cta,
-.update.\$sat-library .device-version .install-btn {
+.update .connected-label,
+.update .not-available-label {
+  display: none; }
+.update.\$connected .connected-label,
+.update.\$connected .system-version {
   display: block; }
+.update.\$connected .not-connected-label {
+  display: none; }
+.update.\$connected .install-btn {
+  background-image: url(/images/download.svg); }
+  .update.\$connected .install-btn input {
+    display: block; }
+.update.\$not-available .available-label {
+  display: none; }
+.update.\$not-available .not-available-label {
+  display: block; }
+.update.\$not-available .download-btn {
+  background-image: url(/images/no-download.svg); }
 
 @media screen and (max-width: 880px) {
   .sidebar,

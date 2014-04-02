@@ -96,11 +96,23 @@
       left: 110px;
       position: absolute;
     }
+
+    .not-connected-label,
+    .not-available-label {
+      color: $red;
+    }
+  }
+
+  .download-btn {
+    @include bgimg('download', center, 80px, 80px);
+  }
+
+  .install-btn {
+    @include bgimg('no-download', center, 80px, 80px);
   }
 
   .download-btn,
   .install-btn {
-    @include bgimg('download', center, 80px, 80px);
     cursor: pointer;
     position: absolute;
     bottom: -65px;
@@ -115,21 +127,48 @@
       height: 100%;
       opacity: 0.01;
       width: 100%;
+      display: none;
     }
   }
 
-  .mobile-version,
-  .system-version,
-  .device-version .cta,
-  .device-version .install-btn {
+  .mobile-version {
     display: none;
   }
 
-  &.\$connected, &.\$sat-library {
-    .system-version,
-    .device-version .cta,
-    .device-version .install-btn {
+  .connected-label,
+  .not-available-label {
+    display: none;
+  }
+
+  &.\$connected {
+    .connected-label,
+    .system-version {
       display: block;
+    }
+    
+    .not-connected-label {
+      display: none;
+    }
+
+    .install-btn {
+      background-image: url(/images/download.svg);
+      input {
+        display: block;
+      }
+    }
+  }
+
+  &.\$not-available {
+    .available-label {
+      display: none;
+    }
+
+    .not-available-label {
+      display: block;
+    }
+
+    .download-btn {
+      background-image: url(/images/no-download.svg);
     }
   }
 }

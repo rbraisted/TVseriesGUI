@@ -61,6 +61,9 @@
     var successCallback;
     var errorCallback;
 
+    var liveUrl = '/webservice.php';
+    var demoUrl = '/demo/webservice.php';
+
     for (var index in arguments) {
       var argument = arguments[index];
       if (typeof argument === 'object') requestJson = argument;
@@ -72,8 +75,8 @@
 
     if (!requestUrl) {
       contentType = 'text/xml';
-      if (TVRO.getDemoMode()) requestUrl = '/demo/webservice.php';
-      else requestUrl = '/webservice.php';
+      if (TVRO.getDemoMode()) requestUrl = demoUrl;
+      else requestUrl = liveUrl;
 
     } else {
       contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
@@ -137,6 +140,10 @@
           console.log(textStatus);
           console.log(errorThrown);
           console.log('\n');
+        }
+
+        if (requestUrl !== liveUrl || requestUrl !== demoUrl) {
+          errorCallback(errorThrown);
         }
       }
     });
