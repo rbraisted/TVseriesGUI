@@ -880,6 +880,16 @@ a {
   display: block; }
 .update.\$not-available .download-btn {
   background-image: url(/images/no-download.svg); }
+@media screen and (max-width: 880px) {
+  .update {
+    padding: 0 20px; }
+    .update .portal-version {
+      margin-top: 40px; }
+    .update .section .bg {
+      position: absolute;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      height: 100%; } }
 
 @media screen and (max-width: 880px) {
   .sidebar,

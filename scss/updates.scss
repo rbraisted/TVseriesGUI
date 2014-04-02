@@ -171,6 +171,21 @@
       background-image: url(/images/no-download.svg);
     }
   }
+
+  @include breakpoint($mobile) {
+    padding: 0 20px;
+
+    .portal-version {
+      margin-top: 40px;
+    }
+
+    .section .bg {
+      position: absolute;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      height: 100%;
+    }
+  }
 }
 
 @include breakpoint($mobile) {
