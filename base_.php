@@ -55,7 +55,7 @@
     Menu
   </div>
 
-  <div class="tracvision-logo"></div>
+  <div class="tracvision-logo #home-btn"></div>
 </div>
 
 <div class="status #status-view">

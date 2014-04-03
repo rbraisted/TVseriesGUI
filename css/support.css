@@ -54,7 +54,8 @@ a {
     width: 50px;
     float: left; }
     .header .status-btn .status-light {
-      background-color: #cbcaca;
+      background-color: #4c5269;
+      box-shadow: 0 0 5px 1px;
       display: inline-block;
       height: 22px;
       margin: 7px 3px 2px 0;
@@ -69,9 +70,8 @@ a {
         background-color: #c51313;
         color: #c51313; }
       .header .status-btn .status-light.\$off {
-        background-color: #cbcaca; }
-      .header .status-btn .status-light:not(.\$off) {
-        box-shadow: 0 0 5px; }
+        background-color: #4c5269;
+        box-shadow: none; }
   .header .nav-btn {
     cursor: pointer;
     font-size: 13px;

@@ -1,11 +1,12 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 <script type="text/javascript">
-	TVRO.WebService().request('get_wizard_status', function(response) {
-		if ($('status', response).text() === 'SUCCESS') {
-			window.location = '/home.php';
-		} else {
-			window.location = '/wizard';
-		}
+  TVRO.getWizardStatus().then(function(xml) {
+    var status = $('status', xml).text();
+    if (status === 'SUCCESS') {
+      window.location = '/home.php';
+    } else {
+      window.location = '/wizard';
+    }
 	});
 </script>
 
