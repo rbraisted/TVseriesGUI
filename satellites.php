@@ -473,7 +473,6 @@ and also .#group-table-view (group mode)
   </div>
 </div>
 
- -->
 <!-- group views
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 

@@ -148,6 +148,7 @@ a {
 		height: 100%;
 		margin: auto;
 		width: 150px;
+    cursor: pointer;
 	}
 
   @mixin header-btn {
@@ -169,10 +170,26 @@ a {
       margin: 7px 3px 2px 0;
       width: 10px;
 
-      &.\$green { background-color: $green; }
-      &.\$orange { background-color: $orange; }
-      &.\$red { background-color: $red; }
+      &.\$green {
+        background-color: $green;
+        color: $green;
+      }
+
+      &.\$orange {
+        background-color: $orange;
+        color: $orange;
+      }
+
+      &.\$red {
+        background-color: $red;
+        color: $red;
+      }
+
       &.\$off { background-color: $grey; }
+
+      &:not(.\$off) {
+        box-shadow: 0 0 5px;
+      }
     }
 	}
 
