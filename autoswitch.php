@@ -1,13 +1,13 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
-<script type="text/javascript" src="/js/InstalledSatView.js"></script>
+<script type="text/javascript" src="/js/InstalledSatView.js"></script>  
 <script type="text/javascript" src="/js/InstalledGroupView.js"></script>
 <script type="text/javascript" src="/js/ReceiverTableView.js"></script>
 <script type="text/javascript" src="/js/ReceiverInfoView.js"></script>
 <script type="text/javascript" src="/js/ReceiverEditView.js"></script>
-
 <script type="text/javascript" src="/js/AutoswitchPage.js"></script>
 
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="sidebar">
   <div class="sidebar-chunk #sat-switching-view">
@@ -101,11 +101,11 @@
 			</div><!--
 		--><div class="table-col name-col">
 				<div class="label #receiver-name-label"></div>
-				<div class="#receiver-name"></div>
+				<div class="value #receiver-name"></div>
 			</div><!--
 		--><div class="table-col id-col">
 				<div class="label #receiver-id-label"></div>
-				<div class="#receiver-id"></div>
+				<div class="value #receiver-id"></div>
 			</div><!--
 		--><div class="table-col edit-col">
 				<div class="block-btn edit-btn #edit-btn">Edit</div>

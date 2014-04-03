@@ -34,9 +34,10 @@
 
 	.table-row {
 		@include table-row;
-		background-color: #000;
-		border-bottom: 0;
-		margin-bottom: 20px;
+    background-color: #000;
+    border-bottom: 0;
+    margin-bottom: 20px;
+    border: 1px solid $red;
 
 		.table-col {
 			@include table-col;
@@ -47,7 +48,12 @@
 		.label {
 			font-size: $small-font;
 			color: $bright-grey;
+      white-space: nowrap;
 		}
+
+    .value {
+      white-space: nowrap;
+    }
 
 		.status-col .label {
 			display: inline-block;
@@ -79,6 +85,8 @@
 		}
 
 		&.\$active {
+      border-color: $green;
+
 			.status-icon {
 				@include bgimg('green-dot-icon', left center);
 			}
@@ -90,6 +98,7 @@
 
 		&.\$master {
 			background-color: $light-blue;
+      border-color: $light-blue;
 
 			.select-btn {
 				display: none;

@@ -4,7 +4,6 @@
 	var AdvancedSettingsView = function(jQ) {
 		var self;
 
-
 		var reload = function() {
 			TVRO.getAntennaConfig().then(function(xml) {
 				var sleepModeOn = $('sleep', xml).text() === 'ON';

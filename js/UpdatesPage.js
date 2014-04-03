@@ -69,12 +69,14 @@ $(function() {
       updateView.setUpdate(update);
       document.body.className = '/update';
     } else {
-      TVRO.getAntennaVersions().then(function(xml) {
-        var update = $('au model', xml).text();
-        if (!update) update = 'SatLibrary';
-        menuTableView.setValue(update);
-        updateView.setUpdate(update);
-      });
+      menuTableView.setValue('SatLibrary');
+      updateView.setUpdate('SatLibrary');
+      // TVRO.getAntennaVersions().then(function(xml) {
+      //   var update = $('au model', xml).text();
+      //   if (!update) update = 'SatLibrary';
+      //   menuTableView.setValue(update);
+      //   updateView.setUpdate(update);
+      // });
       document.body.className = '';
     }
   });

@@ -74,10 +74,10 @@
 </div>
 
 <div class="nav #nav-view">
-  <a href="/home.php" class="home-btn #home-btn">Home</a><!--
---><a href="/satellites.php" class="sat-btn #sat-btn">Satellites</a><!--
---><a href="/autoswitch.php" class="autoswitch-btn #autoswitch-btn">Autoswitch</a><!--
---><a href="/settings.php" class="settings-btn #settings-btn">Settings</a><!--
---><a href="/updates.php" class="updates-btn #updates-btn">Updates</a><!--
---><a href="/support.php" class="support-btn #support-btn">Support</a>
+  <a href="/home.php" class="home-btn #nav-btn #home-btn">Home</a><!--
+--><a href="/satellites.php" class="sat-btn #nav-btn #satellites-btn">Satellites</a><!--
+--><a href="/autoswitch.php" class="autoswitch-btn #nav-btn #autoswitch-btn">Autoswitch</a><!--
+--><a href="/settings.php" class="settings-btn #nav-btn #settings-btn">Settings</a><!--
+--><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
+--><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a>
 </div>

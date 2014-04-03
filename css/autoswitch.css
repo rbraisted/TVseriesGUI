@@ -55,7 +55,6 @@ a {
     float: left; }
     .header .status-btn .status-light {
       background-color: #4c5269;
-      box-shadow: 0 0 5px 1px;
       display: inline-block;
       height: 22px;
       margin: 7px 3px 2px 0;
@@ -70,8 +69,7 @@ a {
         background-color: #c51313;
         color: #c51313; }
       .header .status-btn .status-light.\$off {
-        background-color: #4c5269;
-        box-shadow: none; }
+        background-color: #4c5269; }
   .header .nav-btn {
     cursor: pointer;
     font-size: 13px;
@@ -809,7 +807,8 @@ a {
     vertical-align: middle;
     background-color: #000;
     border-bottom: 0;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    border: 1px solid #c51313; }
     .receiver-table .table-row .table-col {
       display: inline-block;
       height: 100%;
@@ -820,7 +819,10 @@ a {
       width: 20%; }
     .receiver-table .table-row .label {
       font-size: 13px;
-      color: #bac7da; }
+      color: #bac7da;
+      white-space: nowrap; }
+    .receiver-table .table-row .value {
+      white-space: nowrap; }
     .receiver-table .table-row .status-col .label {
       display: inline-block;
       vertical-align: middle;
@@ -843,17 +845,20 @@ a {
       display: none; }
     .receiver-table .table-row .master-icon {
       display: none; }
-    .receiver-table .table-row.\$active .status-icon {
-      background-image: url(/images/green-dot-icon.svg);
-      background-position: left center;
-      background-repeat: no-repeat;
-      background-size: 21px 21px;
-      min-height: 21px;
-      min-width: 21px; }
-    .receiver-table .table-row.\$active .select-btn {
-      display: block; }
+    .receiver-table .table-row.\$active {
+      border-color: #acd038; }
+      .receiver-table .table-row.\$active .status-icon {
+        background-image: url(/images/green-dot-icon.svg);
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: 21px 21px;
+        min-height: 21px;
+        min-width: 21px; }
+      .receiver-table .table-row.\$active .select-btn {
+        display: block; }
     .receiver-table .table-row.\$master {
-      background-color: #243774; }
+      background-color: #243774;
+      border-color: #243774; }
       .receiver-table .table-row.\$master .select-btn {
         display: none; }
       .receiver-table .table-row.\$master .master-icon {

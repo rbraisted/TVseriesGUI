@@ -11,9 +11,14 @@
 		<state>OK</state><!-- OK | FLASHING | CALGYRO | ERROR -->
 		<line1>Foo</line1>
 		<line2>Bar</line2>
+    <led_power>
+      <color>GREEN</color><!-- GREEN | ORANGE | RED -->
+      <state>ON</state><!-- OFF | ON | FLASH -->
+      <message>POWER: HUB INPUT POWER NORMAL</message>
+    </led_power>
     <led_acu>
-      <color>RED</color><!-- GREEN | ORANGE | RED -->
-      <state>FLASH</state><!-- OFF | ON | FLASH -->
+      <color>ORANGE</color><!-- GREEN | ORANGE | RED -->
+      <state>ON</state><!-- OFF | ON | FLASH -->
       <message>ERROR 106: TV HUB UNABLE TO COMMUNICATE WITH ANTENNA. CHECK RF1 BETWEEN ANTENNA AND TV HUB</message>
     </led_acu>
     <led_antenna>
@@ -21,11 +26,6 @@
       <state>FLASH</state><!-- OFF | ON | FLASH -->
       <message>ERROR 100: ANTENNA DC POWER OPEN. CHECK RF1 CABLE BETWEEN ANTENNA AND TV HUB</message>
     </led_antenna>
-    <led_power>
-      <color>GREEN</color><!-- GREEN | ORANGE | RED -->
-      <state>ON</state><!-- OFF | ON | FLASH -->
-      <message>POWER: HUB INPUT POWER NORMAL</message>
-    </led_power>
 	</acu>
 	<antenna>
 		<state>SEARCHING</state><!-- INITIALIZING | SEARCHING | TRACKING | IDLE | ERROR | CABLE UNWRAP -->

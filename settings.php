@@ -51,6 +51,12 @@
     <div class="on">On</div>
     <div class="off">Off</div>
   </div>
+
+  <div class="heading">Setup Wizard</div>
+  <p>
+    Placeholder text placeholder text placeholder text placeholder text
+  </p>
+  <div class="block-btn #wizard-btn">Setup Wizard</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

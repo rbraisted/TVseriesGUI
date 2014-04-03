@@ -51,6 +51,11 @@
       });
     }, 500);
 
+    //  do once
+
+    var pathname = window.location.pathname.replace('/', '').replace('.php', '');
+    $('.\\#' + pathname + '-btn', navJq).addClass('$selected');
+
     return self = {
       reload: reload
     };
