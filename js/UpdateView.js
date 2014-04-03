@@ -17,7 +17,6 @@
           window.location = portalUrl;
         }
 
-
         jQ.removeClass('$not-available');
       });
     });

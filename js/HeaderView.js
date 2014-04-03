@@ -25,44 +25,31 @@
 
     var reload = function() {
       TVRO.getAntennaStatus().then(function(xml) {
-        var powerStatus = 'OK';
-        var acuStatus = $('acu state', xml).text();
-        var antennaStatus = $('antenna state', xml).text();
+        var types = ['power', 'acu', 'antenna'];
+        _.forEach(types, function(type) {
+          var color = $('led_' + type + ' color', xml).text();
+          var state = $('led_' + type + ' state', xml).text();
+          var message = $('led_' + type + ' message', xml).text();
 
-        //  applied to all in document,
-        //  so #status-btn and #status-view
-        $('.\\#power-status')
-          .removeClass('$warning $error')
-          .addClass({
-            'OK': ''
-          }[powerStatus]);
+          $('.\\#' + type + '-status')
+            .removeClass('$green $orange $red')
+            .addClass('$' + color.toLowerCase())
+            .removeClass('$on $off $flash')
+            .addClass('$' + state.toLowerCase());
 
-        $('.\\#acu-status')
-          .removeClass('$warning $error')
-          .addClass({
-            'OK': '',
-            'FLASHING': '$warning',
-            'CALGYRO': '$warning',
-            'ERROR': '$error'
-          }[acuStatus]);
-
-        $('.\\#antenna-status')
-          .removeClass('$warning $error')
-          .addClass({
-            'TRACKING': '',
-            'INITIALIZING': '$warning',
-            'SEARCHING': '$warning',
-            'IDLE': '$warning',
-            'CABLE UNWRAP': '$warning',
-            'ERROR': '$error'
-          }[antennaStatus]);
-
-        //  just the #status-view
-        $('.\\#power-status', statusJq).text(powerStatus);
-        $('.\\#acu-status', statusJq).text(acuStatus);
-        $('.\\#antenna-status', statusJq).text(antennaStatus);
+          $('.\\#' + type + '-status', statusJq)
+            .text(message);
+        });
       });
     };
+
+    var flashInteral = setInterval(function() {
+      var types = ['power', 'acu', 'antenna'];
+      _.forEach(types, function(type) {
+        var light = $('.\\#' + type + '-status', jQ);
+        if (light.hasClass('$flash')) light.toggleClass('$off');
+      });
+    }, 500);
 
     return self = {
       reload: reload

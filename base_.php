@@ -61,15 +61,15 @@
 <div class="status #status-view">
   <div class="status-label">
     Power: 
-    <span class="power-status #power-status">OK</span>
+    <span class="power-status #power-status">...</span>
   </div><!--
 --><div class="status-label">
     Control Unit: 
-    <span class="acu-status #acu-status">OK</span>
+    <span class="acu-status #acu-status">...</span>
   </div><!--
 --><div class="status-label">
     Antenna: 
-    <span class="antenna-status #antenna-status">OK</span>
+    <span class="antenna-status #antenna-status">...</span>
   </div>
 </div>
 

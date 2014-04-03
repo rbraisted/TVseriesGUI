@@ -135,6 +135,7 @@ a {
 
 //	header
 ////////////////////////////////////////////////////////////////////////////////
+
 .header {
 	background: transparent url(/images/header.png) no-repeat center/100%;
 	height: $header-height;
@@ -162,14 +163,16 @@ a {
     float: left;
 
     .status-light {
-      background-color: $green;
+      background-color: $grey;
       display: inline-block;
       height: 22px;
       margin: 7px 3px 2px 0;
       width: 10px;
 
-      &.\$warning { background-color: $orange; }
-      &.\$error { background-color: $red; }
+      &.\$green { background-color: $green; }
+      &.\$orange { background-color: $orange; }
+      &.\$red { background-color: $red; }
+      &.\$off { background-color: $grey; }
     }
 	}
 
@@ -197,35 +200,32 @@ a {
 
 //  status
 ////////////////////////////////////////////////////////////////////////////////
+
 .status {
   background-color: #000;
-  height: 0;
-  overflow: hidden;
   position: fixed;
   top: $header-height;
   width: 100%;
   z-index: $header-index;
-  transition: height .3s;
+  padding: 15px 20px;
+  display: none;
+  line-height: 1.4;
 
   &.\$expanded {
-    height: $nav-height;
+    display: block;
   }
 
-  .status-label {
-    display: inline-block;
-    margin: 15px;
-
-    &:first-child {
-      margin-left: 15px;
-    }
+  .status-label+.status-label {
+    margin-top: .7em;
   }
 
   .antenna-status,
   .power-status,
   .acu-status {
-    color: $green;
-    &.\$warning { color: $orange; }
-    &.\$error { color: $red; }
+    color: $grey;
+    &.\$green { color: $green; }
+    &.\$orange { color: $orange; }
+    &.\$red { color: $red; }
   }
 }
 

@@ -3,6 +3,8 @@
 <script type="text/javascript" src="/js/InstalledSatView.js"></script>
 <script type="text/javascript" src="/js/InstalledGroupView.js"></script>
 <script type="text/javascript" src="/js/ReceiverTableView.js"></script>
+<script type="text/javascript" src="/js/ReceiverInfoView.js"></script>
+<script type="text/javascript" src="/js/ReceiverEditView.js"></script>
 
 <script type="text/javascript" src="/js/AutoswitchPage.js"></script>
 
@@ -58,48 +60,39 @@
 		<div class="back-btn #back-btn"></div>
 	</div>
 
-<!-- 
-		<div id="not-directv" class="copy">
-			The following IP AutoSwitch(es) have been found or were previously
-			configured on your network. The receiver connected to the master IP
-			AutoSwitch controls satellite selection in automatic satellite
-			switching mode. You may choose the master by selecting it below or
-			by pressing the Master Select button on the IP AutoSwitch itself,
-			provided it is currently active on the network (status is green).
-			Assign a unique name to each IP AutoSwitch so you can easily identify
-			it later.
-
-			<span class="white">
-				Hint: To determine the location of an IP AutoSwitch, press its
-				Master Select button. That IP AutoSwitch will then become the
-				master in the list below.
-			</span>
-
+	<div class="copy #ip-autoswitch">
+		The following IP AutoSwitch(es) have been found or were previously
+		configured on your network. The receiver connected to the master IP
+		AutoSwitch controls satellite selection in automatic satellite
+		switching mode. You may choose the master by selecting it below or
+		by pressing the Master Select button on the IP AutoSwitch itself,
+		provided it is currently active on the network (status is green).
+		Assign a unique name to each IP AutoSwitch so you can easily identify
+		it later.
+		<div class="note">
+			Hint: To determine the location of an IP AutoSwitch, press its
+			Master Select button. That IP AutoSwitch will then become the
+			master in the list below.
 		</div>
+	</div>
 
-		<div id="directv" class="copy">
-			The following receivers have been set up for automatic satellite
-			switching. The master receiver controls satellite selection. You may
-			choose the master by selecting it below. To add a receiver to the 
-			list, enter its IP address and assign it a unique name (location).
-
-			<a href="#">
-				(Find your receiver’s IP address.)
-			</a>
-
-			<span class="white">
-				Note: Receiver must be activated to view its IP address. The 
-				receiver also must be set up to allow external access before it 
-				will communicate with the TV-Hub. 
-				
-				<a href="#">
-					Learn how to enable external access on your DIRECTV receiver.
-				</a>
-
-			</span>
-
+	<div class="copy #direct-tv">
+		The following receivers have been set up for automatic satellite
+		switching. The master receiver controls satellite selection. You may
+		choose the master by selecting it below. To add a receiver to the 
+		list, enter its IP address and assign it a unique name.
+		<a class="link">
+			Find your receiver’s IP address.
+		</a>
+		<div class="note">
+			Note: Receiver must be activated to view its IP address. The 
+			receiver also must be set up to allow external access before it 
+			will communicate with the TV-Hub. 
+      <a class="link">
+        Learn how to enable external access on your DIRECTV receiver.
+      </a>
 		</div>
- -->
+	</div>
 
 	<div class="receiver-table #table-view">
 		<div class="table-row #table-row">

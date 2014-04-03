@@ -1,8 +1,7 @@
 $(function() {
+  TVRO.debug = 2;
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
-
-  //  no routing on this page
 
   var groupMode;
 
@@ -25,7 +24,29 @@ $(function() {
           window.location.hash = '/' + receiver;
         })
         .end()
+  ).onClick(function(receiver) {
+    window.location.hash = '/' + encode(receiver.id);
+  });
+
+  var receiverInfoView = TVRO.ReceiverInfoView(
+    $('.\\receiver-info-view')
+      .find('.\\#back-btn')
+        .click(function() {
+          window.location.hash = '';
+        })
+        .end()
   );
+
+  var receiverEditView = TVRO.ReceiverEditView(
+    $('.\\receiver-edit-view')
+      .find('.\\#back-btn')
+        .click(function() {
+          var receiver = encode(receiverEditView.getReceiver() ? '/' + receiverEditView.getReceiver().id : '');
+          window.location.hash = receiver;
+        })
+        .end()
+  );
+
 
   var reload = function() {
     headerView.reload();
@@ -59,6 +80,36 @@ $(function() {
     setInterval(reload, 3000);
     reload();
   });
+
+
+  //  routing
+
+  TVRO.onHashChange(function(hash) {
+
+    //  ''
+    //  /TVHUB
+    //  /new
+    //  /TVHUB/edit
+
+    if (!hash) {
+      document.body.className = '';
+
+    } else if (hash.match(/\/.*\/edit/)) {
+      receiverEditView.setReceiver({});
+      document.body.className = '/receiver/edit';
+
+    } else if (hash.match(/\/new/)) {
+      receiverEditView.setReceiver({});
+      document.body.className = '/receiver/edit';
+
+    } else if (hash.match(/\/.*/)) {
+      receiverInfoView.setReceiver({});
+      document.body.className = '/receiver';
+
+    }
+  });
+
+  TVRO.reload();
 });
 
 /*

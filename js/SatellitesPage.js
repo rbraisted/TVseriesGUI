@@ -143,13 +143,13 @@ $(function() {
     $('.\\#group-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var group = encode(groupEditView.getGroup().name);
-          window.location.hash = '/groups/' + group;
+          var group = encode(groupEditView.getGroup() ? '/' + groupEditView.getGroup().name : '');
+          window.location.hash = '/groups' + group;
         })
         .end()
       .find('.\\#sat-view')
         .click(function() {
-          var group = encode(groupEditView.getGroup().name);
+          var group = encode(groupEditView.getGroup() ? groupEditView.getGroup().name : 'new');
           window.location.hash = '/groups/' + group + '/edit/sats';
         })
         .end()
@@ -305,9 +305,15 @@ $(function() {
         c: '/groups/group/edit',
         f: function() {
           satModeBtn.setOn(false);
-          groupTableView.built().then(function() {
-            groupEditView.group({name:''});
-          });
+          groupTableView.reload();
+          groupEditView.setGroup({name:''});
+          if (groupTableView.getValue()) {
+            groupInfoView.setGroup(groupTableView.getValue());
+          } else {
+            TVRO.getInstalledGroup().then(function(installedGroup) {
+              groupInfoView.setGroup(installedGroup);
+            });
+          }
         }
       }, {
         r: /\/groups\/.*/,

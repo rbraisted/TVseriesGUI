@@ -106,6 +106,24 @@
 	}
 }
 
+.copy {
+  display: none;
+  font-size: $small-font;
+  line-height: 1.4;
+  margin-bottom: 1.4em;
+
+  .note,
+  .link {
+    margin: 1.4em 0;
+  }
+
+  .link {
+    color: $bright-grey;
+    text-decoration: underline;
+  }
+}
+
+
 //	routing
 ////////////////////////////////////////////////////////////////////////////////
 

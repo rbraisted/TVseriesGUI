@@ -53,15 +53,19 @@ a {
     width: 50px;
     float: left; }
     .header .status-btn .status-light {
-      background-color: #acd038;
+      background-color: #cbcaca;
       display: inline-block;
       height: 22px;
       margin: 7px 3px 2px 0;
       width: 10px; }
-      .header .status-btn .status-light.\$warning {
+      .header .status-btn .status-light.\$green {
+        background-color: #acd038; }
+      .header .status-btn .status-light.\$orange {
         background-color: #e76d24; }
-      .header .status-btn .status-light.\$error {
+      .header .status-btn .status-light.\$red {
         background-color: #c51313; }
+      .header .status-btn .status-light.\$off {
+        background-color: #cbcaca; }
   .header .nav-btn {
     cursor: pointer;
     font-size: 13px;
@@ -83,31 +87,32 @@ a {
 
 .status {
   background-color: #000;
-  height: 0;
-  overflow: hidden;
   position: fixed;
   top: 50px;
   width: 100%;
   z-index: 4;
-  transition: height .3s; }
+  padding: 15px 20px;
+  display: none;
+  line-height: 1.4; }
   .status.\$expanded {
-    height: 45px; }
-  .status .status-label {
-    display: inline-block;
-    margin: 15px; }
-    .status .status-label:first-child {
-      margin-left: 15px; }
+    display: block; }
+  .status .status-label + .status-label {
+    margin-top: .7em; }
   .status .antenna-status,
   .status .power-status,
   .status .acu-status {
-    color: #acd038; }
-    .status .antenna-status.\$warning,
-    .status .power-status.\$warning,
-    .status .acu-status.\$warning {
+    color: #cbcaca; }
+    .status .antenna-status.\$green,
+    .status .power-status.\$green,
+    .status .acu-status.\$green {
+      color: #acd038; }
+    .status .antenna-status.\$orange,
+    .status .power-status.\$orange,
+    .status .acu-status.\$orange {
       color: #e76d24; }
-    .status .antenna-status.\$error,
-    .status .power-status.\$error,
-    .status .acu-status.\$error {
+    .status .antenna-status.\$red,
+    .status .power-status.\$red,
+    .status .acu-status.\$red {
       color: #c51313; }
 
 @media screen and (max-width: 880px) {

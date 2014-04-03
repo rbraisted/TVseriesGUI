@@ -11,31 +11,20 @@
 				row.toggleClass('$active', receiver.active);
 
 				$('.\\#select-btn', row).click(function() {
-					if (confirm('Are you sure you want to make '+receiver.name+' master?')) {
-						TVRO.setMaster(receiver).then(function() {
-							return built = TVRO.getReceivers();
-						}).then(function(receivers) {
-							tableView.setValues(receivers).build();
-						});
-					}
+          var confirmed = confirm('Are you sure you want to make ' + receiver.name + ' master?');
+					if (confirmed) TVRO.setMasterReceiver(receiver).then(reload);
 				});
 
-				TVRO.getAutoswitchStatus().then(function(xml) {
-					var service = $('service', xml).text();
-					var receiverType = 'IP Autoswitch';
-					var receiverIdType = 'Serial #';
-					if (service === 'DIRECTV') {
-						receiverType = 'Receiver';
-						receiverIdType = 'IP Address';
-					}
-					$('.\\#receiver-name-label', row).text(receiverType);
-					$('.\\#receiver-id-label', row).text(receiverIdType);
-					return TVRO.getHubReceiver();
-				}).then(function(hub) {
+        TVRO.getReceiverType().then(function(receiverType) {
+          var receiverIdType = receiverType === 'Receiver' ? 'IP Address' : 'Serial #';
+          $('.\\#receiver-name-label', row).text(receiverType);
+          $('.\\#receiver-id-label', row).text(receiverIdType);
+        }).then(TVRO.getHubReceiver).then(function(hub) {
 					if (receiver.id === hub.id) $('.\\#receiver-name-label', row).text('TV-Hub');
 					row.toggleClass('$hub', receiver.id === hub.id);
-					return TVRO.getMasterReceiver();
-				}).then(function(master) {
+				});
+
+        TVRO.getMasterReceiver().then(function(master) {
 					row.toggleClass('$master', receiver.id === master.id);
 				});
 			});
@@ -43,6 +32,11 @@
     var reload = function() {
       TVRO.getReceivers().then(function(receivers) {
         tableView.setValues(receivers).build();
+      });
+
+      TVRO.getService().then(function(service) {
+        $('.\\#direct-tv', jQ).toggle(service === 'DIRECTV');
+        $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');
       });
     };
 
