@@ -30,89 +30,128 @@
 }
 
 .receiver-table {
-	@include table;
+  @include breakpoint($mobile) {
+    @include grey-table;
 
-	.table-row {
-		@include table-row;
-    background-color: #000;
-    border-bottom: 0;
-    margin-bottom: 20px;
-    border: 1px solid $red;
+    .table-row {
+      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+      cursor: pointer;
 
-		.table-col {
-			@include table-col;
-			padding: 20px;
-			width: 20%;
-		}
+      .label,
+      .status-col,
+      .id-col,
+      .edit-col,
+      .select-col {
+        display: none;
+      }
 
-		.label {
-			font-size: $small-font;
-			color: $bright-grey;
-      white-space: nowrap;
-		}
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        display: inline-block;
+        padding: 0;
+        margin-left: 15px;
+        cursor: pointer;
+      }
 
-    .value {
-      white-space: nowrap;
-    }
+      &.\$master {
+        background-color: $bright-blue;
+        background-image: url(/images/right-icon-white.svg);
+        .install-btn {
+          @include bgimg('radio-checked');
+        }
+      }
+    }    
+  }
 
-		.status-col .label {
-			display: inline-block;
-			vertical-align: middle;
-			margin-left: 10px;
-		}
+  @include breakpoint($desktop) {
+  	@include table;
 
-		.name-col .label,
-		.id-col .label {
-			margin-bottom: 10px;
-		}
+  	.table-row {
+  		@include table-row;
+      background-color: #000;
+      border-bottom: 0;
+      margin-bottom: 20px;
+      border: 1px solid $red;
 
-		.status-icon {
-			@include bgimg('red-dot-icon', left center);
-			line-height: 21px;
-			padding-left: 35px;
-		}
+  		.table-col {
+  			@include table-col;
+  			padding: 20px;
+  			width: 20%;
+  		}
 
-		.block-btn {
-			width: 100%;
-		}
+      .install-btn {
+        display: none;
+      }
 
-		.select-btn {
-			display: none;
-		}
+  		.label {
+  			font-size: $small-font;
+  			color: $bright-grey;
+        white-space: nowrap;
+  		}
 
-		.master-icon {
-			display: none;
-		}
+      .value {
+        white-space: nowrap;
+      }
 
-		&.\$active {
-      border-color: $green;
+  		.status-col .label {
+  			display: inline-block;
+  			vertical-align: middle;
+  			margin-left: 10px;
+  		}
 
-			.status-icon {
-				@include bgimg('green-dot-icon', left center);
-			}
+  		.name-col .label,
+  		.id-col .label {
+  			margin-bottom: 10px;
+  		}
 
-			.select-btn {
-				display: block;
-			}
-		}
+  		.status-icon {
+  			@include bgimg('red-dot-icon', left center);
+  			line-height: 21px;
+  			padding-left: 35px;
+  		}
 
-		&.\$master {
-			background-color: $light-blue;
-      border-color: $light-blue;
+  		.block-btn {
+  			width: 100%;
+  		}
 
-			.select-btn {
-				display: none;
-			}
+  		.select-btn {
+  			display: none;
+  		}
 
-			.master-icon {
-				@include bgimg('radio-checked', right center);
-				display: block;
-				line-height: 21px;
-				text-align: right;
-				padding-right: 35px;
-			}
-		}
-	}
+  		.master-icon {
+  			display: none;
+  		}
+
+  		&.\$active {
+        border-color: $green;
+
+  			.status-icon {
+  				@include bgimg('green-dot-icon', left center);
+  			}
+
+  			.select-btn {
+  				display: block;
+  			}
+  		}
+
+  		&.\$master {
+  			background-color: $light-blue;
+        border-color: $light-blue;
+
+  			.select-btn {
+  				display: none;
+  			}
+
+  			.master-icon {
+  				@include bgimg('radio-checked', right center);
+  				display: block;
+  				line-height: 21px;
+  				text-align: right;
+  				padding-right: 35px;
+  			}
+  		}
+  	}
+  }
 }
 
 .copy {
@@ -130,6 +169,14 @@
     color: $bright-grey;
     text-decoration: underline;
   }
+
+  @include breakpoint($mobile) {
+    margin: 1.4em;
+  }
+}
+
+.receiver-info {
+
 }
 
 
@@ -145,19 +192,10 @@
 //	receiver edit
 //	receiver new
 
-	.sidebar,
-	.\/operational-log .\#operational-log-view,
-	.\/event-log .\#event-log-view,
-	.\/restart-system .\#restart-system-view,
-	.\/command-line .\#command-line-view {
+  body[class=''] .\#receiver-table-view,
+  .\/receiver .\#receiver-info-view,
+  .\/receiver\/edit .\#receiver-edit-view {
 		display: block;
-	}
-
-	.\/operational-log .sidebar,
-	.\/event-log .sidebar,
-	.\/restart-system .sidebar,
-	.\/command-line .sidebar {
-		display: none;
 	}
 }
 
@@ -165,15 +203,8 @@
 @include breakpoint($desktop)  {
 
 	.sidebar,
-	.\#receiver-table-view {
+	.\#receiver-table-view,
+  .\/receiver\/edit .\#receiver-edit-view {
 		display: block;
 	}
-
-	// .sidebar,
-	// .\/operational-log .\#operational-log-view,
-	// .\/event-log .\#event-log-view,
-	// .\/restart-system .\#restart-system-view,
-	// .\/command-line .\#command-line-view {
-	// 	display: block;
-	// }
 }

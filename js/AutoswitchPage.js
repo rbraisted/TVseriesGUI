@@ -29,16 +29,22 @@ $(function() {
   });
 
   var receiverInfoView = TVRO.ReceiverInfoView(
-    $('.\\receiver-info-view')
+    $('.\\#receiver-info-view')
       .find('.\\#back-btn')
         .click(function() {
           window.location.hash = '';
         })
         .end()
+      .find('.\\#edit-btn')
+        .click(function() {
+          var receiver = encode(receiverEditView.getReceiver().id);
+          window.location.hash = '/' + receiver + '/edit';
+        })
+        .end()
   );
 
   var receiverEditView = TVRO.ReceiverEditView(
-    $('.\\receiver-edit-view')
+    $('.\\#receiver-edit-view')
       .find('.\\#back-btn')
         .click(function() {
           var receiver = encode(receiverEditView.getReceiver() ? '/' + receiverEditView.getReceiver().id : '');

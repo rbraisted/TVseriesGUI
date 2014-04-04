@@ -257,11 +257,8 @@
 //	desktop
 @include breakpoint($desktop)  {
 
-  body[class=''] .\#general-settings-view {
-    display: block;
-  }
-
-	.sidebar,
+  .sidebar,
+  body[class=''] .\#general-settings-view,
 	.\/general .\#general-settings-view,
   .\/advanced .\#advanced-settings-view,
   .\/network .\#network-settings-view,

@@ -958,10 +958,8 @@ a {
   .\/command-line .sidebar {
     display: none; } }
 @media screen and (min-width: 881px) {
-  body[class=''] .\#system-info-view {
-    display: block; }
-
   .sidebar,
+  body[class=''] .\#system-info-view,
   .\/system-info .\#system-info-view,
   .\/operational-log .\#operational-log-view,
   .\/event-log .\#event-log-view,

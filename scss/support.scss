@@ -256,11 +256,8 @@
 //	desktop
 @include breakpoint($desktop)  {
 
-  body[class=''] .\#system-info-view {
-    display: block;
-  }
-
-	.sidebar,
+  .sidebar,
+  body[class=''] .\#system-info-view,
   .\/system-info .\#system-info-view,
 	.\/operational-log .\#operational-log-view,
 	.\/event-log .\#event-log-view,

@@ -64,6 +64,10 @@
 }
 
 .update {
+  @include breakpoint($desktop) {
+    max-width: 600px;
+  }
+  
   .section {
     position: relative;
     padding: 30px 0;
