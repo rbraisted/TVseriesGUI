@@ -954,6 +954,58 @@ a {
     .copy {
       margin: 1.4em; } }
 
+.receiver-info {
+  padding: 20px; }
+  .receiver-info .edit-btn,
+  .receiver-info .select-btn {
+    display: inline-block;
+    width: calc(50% - 5px);
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-bottom: 0; }
+    .receiver-info .edit-btn.first,
+    .receiver-info .select-btn.first {
+      margin-left: 0; }
+    .receiver-info .edit-btn.first + .block-btn + .block-btn,
+    .receiver-info .select-btn.first + .block-btn + .block-btn {
+      margin-left: 0; }
+  .receiver-info .label {
+    color: #bac7da;
+    font-size: 13px;
+    margin: 0 0 10px 10px; }
+  .receiver-info .value {
+    margin: 0 0 30px 10px; }
+  .receiver-info .status-icon {
+    background-image: url(/images/red-dot-icon.svg);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+    min-height: 21px;
+    min-width: 21px;
+    border-bottom: 1px solid #4f7abd;
+    border-top: 1px solid #4f7abd;
+    line-height: 21px;
+    margin: 0;
+    padding: 13px 35px; }
+  .receiver-info .master-icon {
+    display: none; }
+  .\$master .receiver-info .select-btn {
+    display: none; }
+  .\$master .receiver-info .master-icon {
+    background-image: url(/images/radio-checked.svg);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+    min-height: 21px;
+    min-width: 21px;
+    display: block;
+    line-height: 21px;
+    padding-right: 35px;
+    position: absolute;
+    right: 10px;
+    text-align: right;
+    top: 20px; }
+
 @media screen and (max-width: 880px) {
   body[class=''] .\#receiver-table-view,
   .\/receiver .\#receiver-info-view,

@@ -11,10 +11,10 @@
 		<div class="tac mb3 mt3 dfs21 mfs16 dlh1.2 mlh1.6">
 			System Detected:<br class="mobile">
 			<span class="dfs26 mfs21">
-				Tracvision <span id="">XX-X</span>
+				Tracvision <span class="#ant-model">XX-X</span>
 				<span class="desktop">with</span>
 				<br class="mobile">
-				<span id="">XXXXX</span> LNB
+				<span class="#ant-lnb">XXXXX</span> LNB
 			</span>
 		</div>
 
@@ -90,3 +90,14 @@
 		top: 10px;
 	}
 </style>
+
+<script type="text/javascript">
+  $(function() {
+    TVRO.getAntennaVersions().then(function(xml) {
+      var antModel = $('au model', xml).text();
+      var antLnb = $('lnb name', xml).text();
+      $('.\\#ant-model').text(antModel);
+      $('.\\#ant-lnb').text(antLnb);
+    });
+  });
+</script>

@@ -14,9 +14,21 @@
 		<link type="text/css" rel="stylesheet" href="/css/base.css">
 		<link type="text/css" rel="stylesheet" href="/css/wizard.css">
 
-		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <!--
+ 		<script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="/js/base.js"></script>
-		
+    -->		
+
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/lodash.min.js"></script>
+    <script src="/js/promise-3.2.0.js"></script>
+
+    <script type="text/javascript" src="/js/TVRO_.js"></script>
+
+    <script type="text/javascript" src="/js/Cookies.js"></script>
+    <script type="text/javascript" src="/js/WebService_.js"></script>
+    <script type="text/javascript" src="/js/Models.js"></script>
+
 	</head>
 	<body class="at-splash">
 

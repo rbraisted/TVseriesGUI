@@ -57,7 +57,6 @@
 	<div class="view-head">
 		<span class="autoswitch-icon"></span>
 		<span class="#receiver-type"></span>
-		<div class="back-btn #back-btn"></div>
 	</div>
 
 	<div class="copy #ip-autoswitch">
@@ -125,6 +124,7 @@
 <div class="popup #receiver-info-view">
   <div class="popup-guts receiver-info">
     <div class="view-head">
+      <span class="autoswitch-icon"></span>
       <span class="#ip-autoswitch">IP Autoswitch</span>
       <span class="#direct-tv">Receiver</span>
       <div class="back-btn #back-btn"></div>
@@ -139,9 +139,9 @@
     <div class="status-icon label">Status</div>
 
     <div class="btn-tray">
-      <div class="block-btn edit-btn #edit-btn">Edit</div>
-      <div class="block-btn select-btn #select-btn">Select</div>
-      <div class="master-icon label">Master</div>
+      <div class="block-btn first edit-btn #edit-btn">Edit</div><!--
+   --><div class="block-btn select-btn #select-btn">Select</div><!--
+   --><div class="master-icon label">Master</div>
     </div>
   </div>
 </div>
@@ -151,6 +151,7 @@
 <div class="popup #receiver-edit-view">
   <div class="popup-guts receiver-edit">
     <div class="view-head">
+      <span class="autoswitch-icon"></span>
       <span class="#ip-autoswitch">IP Autoswitch</span>
       <span class="#direct-tv">Receiver</span>
       <div class="back-btn #back-btn"></div>
