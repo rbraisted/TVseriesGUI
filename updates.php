@@ -74,7 +74,7 @@
     </div>
 
     <div class="install-btn #install-btn">
-      <input id="upload" type="file" class="upload-btn">
+      <input type="file" id="fileToUpload" name="fileToUpload" class="upload-btn #upload-btn" />
     </div>
     <div class="cta connected-label">Install Update</div>
     <div class="cta not-connected-label">Not connected</div>

@@ -21,7 +21,7 @@
       });
     });
 
-    var uploadBtn = $('.\\#upload-btn', jQ).click(function(event) {
+    var uploadBtn = $('.\\#upload-btn', jQ).change(function() {
       if (!jQ.hasClass('$connected')) {
         return;
       }
@@ -30,27 +30,37 @@
         window.location = 'tvro://updates/upload/'+update;
       } else {
         $.ajaxFileUpload({
-          //  note: used to be xmlservices.php
-          url: '/webservices.php/upload_software',
+          url: 'xmlservices.php/set_config_file',
           secureuri: false,
-          fileElementId: 'upload',
+          fileElementId: 'fileToUpload',
           dataType: 'xml',
-          success: function(response) {
-            var filename = $('file_name', response).text();
-            var confirmed = confirm('Do you want to install this update?');
+          success: function(xml) {
+            if (TVRO.debug) {
+              console.log('~ SET_CONFIG_FILE');
+              console.log($('#fileToUpload').val());
+              console.log($(xml).get(0));
+            }
+            
+            var filename = $('file_name', xml).text();
+            var confirmed = filename ? confirm('Do you want to install this update?') : false;
             if (confirmed) {
               TVRO.installSoftware({
                 install: 'Y',
                 filename: filename
               }).then(TVRO.reload);
             }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            if (TVRO.debug) {            
+              console.log('\n~ ! ~');
+              console.log(jqXHR);
+              console.log(textStatus);
+              console.log(errorThrown);
+              console.log('\n');
+            }
           }
         });
       }
-    });
-
-    var installBtn = $('.\\#install-btn', jQ).click(function() {
-      console.log('installBtn');
     });
 
     return self = {
