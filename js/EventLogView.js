@@ -65,9 +65,18 @@
     });
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
-      TVRO.getEventHistoryLog({}, 1).then(function(xml) {
-        var content = $('content', xml)[0].innerHTML;
-        window.open("mailto:?subject=TVRO Event Log&body="+content);
+      Promise.all(
+        TVRO.getAntennaVersions(),
+        TVRO.getAntennaStatus(),
+        TVRO.getEventHistoryLog()
+      ).then(function(xmls) {
+        var email = '';
+        var antModel = $('au model', xmls[0]).text();
+        var serialNumber = $('au sn', xmls[0]).text();
+        var dateTime = $('gps dt', xmls[1]).text();
+        var subject = [antModel, serialNumber, dateTime].join(' ');
+        var body = $('content', xmls[2]).text();
+        window.location = 'mailto:' + email + '?subject=' + subject + '?body=' + body;
       });
     });
 

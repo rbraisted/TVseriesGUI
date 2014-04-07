@@ -22,12 +22,12 @@
 	<div class="contact-header">Technical Support</div>
 
 	<div class="contact-region">North/South America, Australia, New Zealand</div>
-	<a href="mailto:support@kvh.com" class="block-btn">support@kvh.com</a>
-	<a href="tel:+1 (401) 847-3327" class="block-btn">+1 401 847-3327</a>
+	<div class="block-btn #email-support-btn">support@kvh.com</div>
+	<div class="block-btn #call-support-btn">+1 401 847-3327</div>
 
 	<div class="contact-region">Africa, Asia, Europe, Middle East</div>
-	<a href="mailto:support@emea.kvh.com" class="block-btn">support@emea.kvh.com</a>
-	<a href="tel:+45 45 160 180" class="block-btn">+45 45 160 180</a>
+	<div class="block-btn #email-support-btn">support@emea.kvh.com</div>
+	<div class="block-btn #call-support-btn">+45 45 160 180</div>
 
 </div>
 
@@ -134,8 +134,8 @@
 	</div>
 
 	<div class="btn-tray">
-		<div id="" class="block-btn save-btn #save-btn">Save Log</div>
-		<div id="" class="block-btn email-btn #email-btn">Email Log</div>
+		<div class="block-btn save-btn #save-btn">Save Log</div>
+		<div class="block-btn email-btn #email-btn">Email Log</div>
  	</div>
 
 </div>

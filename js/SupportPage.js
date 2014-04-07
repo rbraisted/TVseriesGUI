@@ -67,6 +67,26 @@ $(function() {
 				.end()
 	);
 
+  //  contacts
+  var callBtn = $('.\\#call-support-btn').click(function() {
+    var number = $(this).text();
+    window.location = 'tel:' + number;
+  });
+
+  var emailBtn = $('.\\#email-support-btn').click(function() {
+    var email = $(this).text();
+    Promise.all(
+      TVRO.getAntennaVersions(),
+      TVRO.getAntennaStatus()
+    ).then(function(xmls) {
+      var antModel = $('au model', xmls[0]).text();
+      var serialNumber = $('au sn', xmls[0]).text();
+      var dateTime = $('gps dt', xmls[1]).text();
+      var subject = [antModel, serialNumber, dateTime].join(' ');
+      window.location = 'mailto:' + email + '?subject=' + subject;
+    });
+  });
+
 	TVRO.onHashChange(function(hash) {
     headerView.reload();
 
