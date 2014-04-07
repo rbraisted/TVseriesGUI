@@ -1,98 +1,72 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php'; ?>
+<?
+$wiz = true;
+include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
+?>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="view main-view wiz-view">
-	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">
-			Welcome to The <span class="desktop">TracVision Setup </span>Wizard
-		</div>
+<div class="view wizard-index">
+	<div class="view-head">
+		Welcome to The <span class="desktop">TracVision Setup </span>Wizard
+	</div>
 
-		<div class="tac mb3 mt3 dfs21 mfs16 dlh1.2 mlh1.6">
-			System Detected:<br class="mobile">
-			<span class="dfs26 mfs21">
-				Tracvision <span class="#ant-model">XX-X</span>
-				<span class="desktop">with</span>
-				<br class="mobile">
-				<span class="#ant-lnb">XXXXX</span> LNB
-			</span>
-		</div>
+	<div class="system-detected">
+		System Detected:<br>
+		<span class="copy">
+			Tracvision <span class="#ant-model">XX-X</span>
+			<span class="desktop">with</span>
+			<br class="mobile">
+			<span class="#ant-lnb">XXXXX</span> LNB
+		</span>
+	</div>
 
-		<div class="d2col dlh1.2 mlh1.6 mb2">
-			<div class="tac mb1 dfs21 mfs16">
-				Before you start the Wizard,<br>
-				please do the following:
-			</div>
-			<div class="step step-1 bb dfs16 mfs13">
-				Identify the desired service provider<br>
-				& associated satellite(s)
-				<div class="bullet tac dfs21 mfs16">1</div>
-			</div>
-			<div class="step step-2 bb dfs16 mfs13">
-				Download the latest antenna software
-				<div class="bullet tac dfs21 mfs16">2</div>
-			</div>
-			<div class="step step-3 bb dfs16 mfs13">
-				Connect all system components for<br>
-				your particular configuration
-				<div class="bullet tac dfs21 mfs16">3</div>
-			</div>
-		</div><!--
-	 --><div class="d2col dlh1.2 mlh1.6">
-			<div class="tac mb1 dfs21 mfs16">
-				I have everything I need.<br>
-				Let's get started!
-			</div>
-			<div class="tac dfs13 mfs13">
-				Please note that the setup process might<br>
-				take up to 30 minutes to complete.
-			</div>
-			<div class="tac mt2">
-				<a href="/wizard/registration.php" class="btn basic-btn">
-					<label>Proceed with Setup Wizard</label>
-				</a>
-			</div>
+	<div class="col first">
+		<div class="headline">
+			Before you start the Wizard,<br>
+			please do the following:
 		</div>
+		<div class="step step-1">
+			Identify the desired service provider<br>
+			& associated satellite(s)
+			<div class="bullet">1</div>
+		</div>
+		<div class="step step-2">
+			Download the latest antenna software
+			<div class="bullet">2</div>
+		</div>
+		<div class="step step-3">
+			Connect all system components for<br>
+			your particular configuration
+			<div class="bullet">3</div>
+		</div>
+	</div><!--
+--><div class="col">
+		<div class="headline">
+			I have everything I need.<br>
+			Let's get started!
+		</div>
+		<div class="copy">
+			Please note that the setup process might<br>
+			take up to 30 minutes to complete.
+		</div>
+		<a href="/wizard/registration.php" class="block-btn">
+			Proceed with Setup Wizard
+		</a>
 	</div>
 </div>
 
 <div class="bottom-bar">
-	<a href="/home.php" class="btn exit-btn exit-icon fl">Exit</a>
-	<a href="/wizard/registration.php" class="btn next-btn next-icon fr">Next</a>
+	<a href="/home.php" class="exit-btn">Exit</a>
+	<a href="/wizard/registration.php" class="next-btn">Next</a>
 </div>
 
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<style type="text/css">
-	.wiz-view {
-		display: block;
-	}
-
-	.step {
-		height: 65px;
-		margin: auto 15px auto 75px;
-		position: relative;
-	}
-
-	@media screen and (max-width: 880px) {
-		.step { margin: auto 20px auto 75px; }
-	}
-
-	.step-1,
-	.step-3 { padding-top: 12px; }
-
-	.step-2 { padding-top: 22px; }
-
-	.bullet {
-		left: -60px;
-		position: absolute;
-		top: 10px;
-	}
-</style>
-
 <script type="text/javascript">
   $(function() {
+    var headerView = TVRO.HeaderView($('.\\#header-view'));
+
     TVRO.getAntennaVersions().then(function(xml) {
       var antModel = $('au model', xml).text();
       var antLnb = $('lnb name', xml).text();

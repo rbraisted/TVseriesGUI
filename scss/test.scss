@@ -1,393 +1,177 @@
-@import "reset.css";
-@import "images.scss";
+@import "base.scss";
 
-//	media queries
-//	@mixin breakpoint($desktop) {
-//		desktop styles go here!
-//	}
-//	i stole this from guff
-////////////////////////////////////////////////////////////////////////////////
-$mobile: "screen and (max-width : 880px)";
-$desktop: "screen and (min-width : 881px)";
-@mixin breakpoint($querystring) {
-	@media #{$querystring} {
-		@content;
-	}
-}
-
-//	fonts
-////////////////////////////////////////////////////////////////////////////////
-$large: 21px;
-$medium: 16px;
-$small: 13px;
-$fine: 11px;
-
-//	colors
-//	these turn up a lot
-//	avoiding using colors other than the ones listed below, #fff, and #000
-//	the one exception is html/body background color which follows
-////////////////////////////////////////////////////////////////////////////////
-$green: #acd038;
-$red: #c51313;
-
-$bright-blue: #4f7abd;
-$light-blue: #243774;
-$dark-blue: #1c335d;
-
-$grey-blue: #101f30;
-
-$bright-grey: #bac7da;
-$light-grey: #4c5269;
-$dark-grey: #293147;
-
-//	base
-////////////////////////////////////////////////////////////////////////////////
-* {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	cursor: inherit;
-	// font-size-adjust: 0.55;
-	text-rendering: optimizeLegibility;	
-	user-select: none;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+*:hover {
+  outline: 1px solid red;
 }
 
 html {
-	background: #04122a url(/images/gradient.png) no-repeat top center;
-	height: 100%;
-	width: 100%;
+  background-position: top center;
 }
-
-body {
-	color: #fff;
-	cursor: default;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: $medium;
-	font-weight: lighter;
-	height: 100%;
-	line-height: 1;
-	width: 100%;
-}
-
-a {
-	color: inherit;
-	text-decoration: inherit;
-}
-
-//	commonly occuring elements
-////////////////////////////////////////////////////////////////////////////////
-@mixin btn {
-	cursor: pointer;
-	text-shadow: 0 2px #000;
-}
-
-@mixin black-bar {
-	background-color: #000;
-	display: block;
-	width: 100%;
-}
-
-//	this shows up a lot as min-height/height/line-height
-$bar-height: 46px;
-
-
-//	header
-////////////////////////////////////////////////////////////////////////////////
-$header-height: 50px;
 
 .header {
-	background: transparent url(/images/header.png) no-repeat center/100%;
-	height: $header-height;
-	position: fixed;
-	width: 100%;
-	z-index: 1;
+  .status-btn,
+  .nav-btn {
+    display: none;
+  }
 
-	.tracvision-logo {
-		@include tracvision-logo;
-		display: block;
-		height: $header-height;
-		margin: auto;
-		width: 150px;
-	}
-
-	.status-btn {
-		float: left;
-		height: inherit;
-		width: $header-height;
-	}
-
-	.nav-btn {
-		float: right;
-		height: inherit;
-		width: $header-height;
-	}
+  .tracvision-logo {
+    margin: 0;
+  }
 }
-
-// nav
-////////////////////////////////////////////////////////////////////////////////
-$nav-height: 45px;
 
 .nav {
-	@include black-bar;
-	height: $nav-height;
-	position: fixed;
-	top: $header-height;
-	width: 100%;
-	z-index: 1;
-
-	@mixin nav-btn($left: 40px) {
-		@include btn;
-		color: $bright-grey;
-		display: inline-block;
-		height: $nav-height;
-		padding: 15px 10px 0 $left;
-		&:hover, &.is-selected { color: #fff; }
-	}
-
-	.home-btn {
-		@include nav-btn;
-		@include home-icon-grey(10px, center);
-		&:hover, &.is-selected { @include home-icon-white(10px, center); }
-	}
-
-	.sat-btn {
-		@include sat-icon-grey(10px, center);
-		&:hover, &.is-selected { @include sat-icon-white(10px, center); }
-		@include nav-btn;
-	}
-
-	.autoswitch-btn {
-		@include autoswitch-icon-grey(10px, center);
-		&:hover, &.is-selected { @include autoswitch-icon-white(10px, center); }
-		@include nav-btn;
-	}
-
-	.settings-btn {
-		@include settings-icon-grey(10px, center);
-		&:hover, &.is-selected { @include settings-icon-white(10px, center); }
-		@include nav-btn;
-	}
-
-	.updates-btn {
-		@include updates-icon-grey(10px, center);
-		&:hover, &.is-selected { @include updates-icon-white(10px, center); }
-		@include nav-btn;
-	}
-
-	.support-btn {
-		@include support-icon-grey(10px, center);
-		&:hover, &.is-selected { @include support-icon-white(10px, center); }
-		@include nav-btn;
-	}
+  display: none;
 }
-
-//	things that appear a lot
-////////////////////////////////////////////////////////////////////////////////
-.input {
-	background-color: $light-grey;
-	border: 1px solid #000;
-	border-radius: 0;
-	-webkit-border-radius: 0;
-	color: inherit;
-	cursor: text;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	margin: 0;
-	outline: 0;
-	padding: 6px 10px;
-}
-
-.toggle-btn {
-	@include btn;
-	display: inline-block;
-
-	.on, .off {
-		float: left;
-		padding: 5px 10px;
-		text-align: center;
-		width: 50%;
-	}
-
-	//	on
-	&.is-on .on, .off {
-		background-color: $bright-blue;
-		border: 1px solid #fff;
-	}
-
-	//	off
-	&.is-on .off, .on {
-		border: 1px solid #000;
-		background-color: $light-grey;
-	}
-}
-
-.menu-btn {
-	@include btn;
-	background-color: $light-blue;
-	border-bottom: 1px solid $bright-blue;
-	min-height: $bar-height;
-	padding: 15px;
-
-	&:hover { background-color: $dark-blue; }
-	&.is-selected { background-color: $bright-blue; }
-
-	.install-btn {
-		@include radio-unchecked;
-		margin: -5px 5px -5px -5px;
-		display: inline-block;
-	}
-
-	&.is-installed .install-btn {
-		@include radio-checked;
-	}
-}
-
-.block-btn {
-	@include btn;
-	padding: 12px 17px;
-	background-color: $bright-blue;
-	display: inline-block;
-}
-
-.info-btn,
-.install-btn {
-	@include btn;
-}
-
-//	major page components
-////////////////////////////////////////////////////////////////////////////////
-$sidebar-width: 240px;
 
 .view {
-	bottom: 0;
-	display: none;
-	left: 0;
-	margin: auto;
-	position: absolute;
-	right: 0;
-	top: $header-height + $nav-height;
+  @include breakpoint($desktop) {
+    max-width: 800px;
+    left: 0;
 
-	@media #{$desktop} {
-		left: $sidebar-width;
-		max-width: 800px;
-		right: 0;
-	}
-
-	.view-header {
-		font-size: $large;
-		margin: 30px 0;
-		text-align: center;
-
-		.icon {
-			background-size: $large;
-			display: inline-block;
-			height: $large;
-			margin-right: 10px;
-			vertical-align: text-top;
-			width: $large;
-		}
-	}
-
-	.btn-tray {
-		border-top: 1px solid $bright-blue;
-		display: inline-block;
-		padding: 30px 0 $bar-height;
-		width: 100%;
-
-		.block-btn {
-			float: right;
-			margin-left: 10px;
-			min-width: 130px;
-			text-align: center;
-		}
-	}	
+    .view-head {
+      border-bottom: 1px solid $bright-blue;
+      font-size: 26px;
+      margin: 0 0 30px 0;
+      padding: 30px 0;
+    }
+  }
 }
 
-.sidebar {
-	@extend .view;
-	background: #000;
-
-	@media #{$desktop} {
-		left: 0;
-		right: auto;
-		width: $sidebar-width;
-	}
-
-	.sidebar-chunk {
-		border-bottom: 1px solid $bright-blue;
-		padding: 15px;
-
-		.sidebar-chunk-header {
-			color: $bright-grey;
-			padding-bottom: 15px;
-		}
-	}
-
-	.toggle-btn {
-		width: 100%;
-	}
-
-	.block-btn {
-		margin: 15px;
-		text-align: center;
-		width: calc(100% - 30px);
-	}
+.mobile {
+  @include breakpoint($desktop) {
+    display: none;
+  }
 }
 
-.popup {
-	display: none;
-	z-index: 2;
+.desktop {
+  @include breakpoint($mobile) {
+    display: none;
+  }
+}
 
-	.view {
-		display: block;
-	}
+.bottom-bar {
+  @include mobile-view-head;
+  bottom: 0;
+  margin: 0;
+  top: auto;
+  border: 0;
 
-	@media #{$desktop} {
-		background-color: transparentize(#000, .4);
-		height: 100%;
-		position: fixed;
-		width: 100%;
+  .next-btn,
+  .prev-btn,
+  .exit-btn {
+    cursor: pointer;
+    font-size: $medium-font;
+  }
 
-		.view {
-			background-color: $grey-blue;
-			left: 50%;
-			margin: -300px -400px;
-			max-height: 600px;
-			padding: ($bar-height*2) $bar-height $bar-height;
-			top: 50%;
+  .next-btn {
+    @include bgimg('next-icon-white', center right 10px);
+    float: right;
+    padding: 0 40px 0 20px;
+  }
 
-			.view-header {
-				@include black-bar;
-				border-bottom: 1px solid $bright-blue;
-				left: 0;
-				line-height: $bar-height;
-				margin: 0;
-				position: absolute;
-				top: 0;
-			}
+  .prev-btn {
+    @include bgimg('prev-icon-white', center left 10px);
+    float: left;
+    padding: 0 40px 0 20px;
+  }
 
-			.back-btn {
-				@include btn;
-				@include x-icon-blue;
-				height: $bar-height;
-				position: absolute;
-				right: 0;
-				top: 0;
-				width: $bar-height;
-			}
+  .exit-btn {
+    @include bgimg('x-icon-white', center left 15px);
+    float: left;
+    padding: 0 20px 0 50px;
+  }
+}
 
-			.btn-tray {
-				border: 0;
-				bottom: 0;
-				left: $bar-height;
-				position: absolute;
-				width: 800px - ($bar-height * 2);
-			}
-		}
-	}
+.wizard-index {
+  display: block;
+  line-height: 1.2;
+
+  .system-detected {
+    font-size: $large-font;
+    text-align: center;
+    line-height: 1.4;
+
+    @include breakpoint($mobile) {
+      margin: 30px 0;
+      font-size: $medium-font;
+    }
+
+    @include breakpoint($desktop) {
+      margin: 60px 0;
+    }
+
+    .copy {
+      font-size: 26px;
+    }
+  }
+
+  .col {
+    text-align: center;
+
+    .headline {
+      font-size: $large-font;
+      margin-bottom: 15px;
+    }
+
+    .copy {
+      line-height: 1.4;
+      font-size: $small-font;
+      margin: 30px 0;
+    }
+
+    @include breakpoint($desktop) {
+      @include split(2, 0px, '.col');
+      vertical-align: top;
+      margin-bottom: $big-bump * 1.5;
+    }
+
+    @include breakpoint($mobile) {
+      &:not(.first) {
+        margin-top: 30px;
+        margin-bottom: $big-bump * 1.5;
+      }
+
+      .headline {
+        font-size: $medium-font;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .step {
+    border-bottom: 1px solid $bright-blue;
+    height: 65px;
+    margin: auto 15px auto 75px;
+    position: relative;
+    text-align: left;
+
+    @include breakpoint($mobile) {
+      & { margin: auto 20px auto 75px; }
+      font-size: $small-font;
+      line-height: 1.6;
+    }
+
+    &.step-1,
+    &.step-3 {
+      padding-top: 12px;
+    }
+
+    &.step-2 {
+      padding-top: 22px;
+    }
+  }
+
+  .bullet {
+    @include text-shadow;
+    background-color: $bright-blue;
+    border-radius: 100%;
+    font-size: $large-font;
+    height: 45px;
+    left: -60px;
+    line-height: 45px;
+    position: absolute;
+    text-align: center;
+    top: 10px;
+    width: 45px;
+  }
 }

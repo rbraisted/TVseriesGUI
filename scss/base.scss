@@ -100,9 +100,13 @@ $dark-grey: #293147;
 
 html {
 	//	we might want to replace this with a css gradient or svg later
-	background: #04122a url(/images/gradient.png) no-repeat top center;
+	background: #04122a url(/images/gradient.png) no-repeat;
 	height: 100%;
 	width: 100%;
+
+  @include breakpoint($mobile) {
+    background-position: top center;
+  }
 
 	@include breakpoint($desktop) {
 		background-position: top left calc(50% + 120px);

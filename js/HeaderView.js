@@ -54,7 +54,9 @@
     //  do once
 
     var pathname = window.location.pathname.replace('/', '').replace('.php', '');
-    $('.\\#' + pathname + '-btn', navJq).addClass('$selected');
+    if (pathname.indexOf('wizard') === -1) {
+      $('.\\#' + pathname + '-btn', navJq).addClass('$selected');
+    }
 
     return self = {
       reload: reload

@@ -4,6 +4,8 @@ html {
 
 *:hover { outline: 1px solid #f5aacb; }
 
+.header-view { display: block; }
+
 .header-view .tracvision-logo { margin: 0; }
 
 .cp { cursor: pointer; }

@@ -12,7 +12,11 @@
     <meta http-equiv="pragma" content="no-cache" />
 
     <!-- for codekit, since we must include css in head or codekit live reload doesnt work -->
-    <link type="text/css" rel="stylesheet" href="/css/<?=basename($_SERVER['SCRIPT_FILENAME'], '.php')?>.css">
+    <? if ($wiz): ?>
+      <link type="text/css" rel="stylesheet" href="/css/test.css">
+    <? else: ?>
+      <link type="text/css" rel="stylesheet" href="/css/<?=basename($_SERVER['SCRIPT_FILENAME'], '.php')?>.css">
+    <? endif; ?>
 
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/js/lodash.min.js"></script>

@@ -13,9 +13,12 @@
   -ms-user-select: none; }
 
 html {
-  background: #04122a url(/images/gradient.png) no-repeat top center;
+  background: #04122a url(/images/gradient.png) no-repeat;
   height: 100%;
   width: 100%; }
+  @media screen and (max-width: 880px) {
+    html {
+      background-position: top center; } }
   @media screen and (min-width: 881px) {
     html {
       background-position: top left calc(50% + 120px); } }
