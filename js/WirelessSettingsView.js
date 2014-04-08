@@ -150,12 +150,12 @@
         setNetworkMode(networkMode);
         setSecurityMode(securityMode);
 
-        $('.\\#wlan-essid', jQ).val(essid);
-        $('.\\#wlan-ip', jQ).val(ip);
-        $('.\\#wlan-netmask', jQ).val(netmask);
-        $('.\\#wlan-gateway', jQ).val(gateway);
-        $('.\\#wlan-broadcast', jQ).val(broadcast);
-        $('.\\#wlan-security-key', jQ).val(securityKey);
+        $('.\\#wlan-essid', jQ).val(essid).text(essid);
+        $('.\\#wlan-ip', jQ).val(ip).text(ip);
+        $('.\\#wlan-netmask', jQ).val(netmask).text(netmask);
+        $('.\\#wlan-gateway', jQ).val(gateway).text(gateway);
+        $('.\\#wlan-broadcast', jQ).val(broadcast).text(broadcast);
+        $('.\\#wlan-security-key', jQ).val(securityKey).text(securityKey);
       }); 
     };
 

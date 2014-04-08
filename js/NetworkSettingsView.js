@@ -34,6 +34,8 @@
 
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
         var networkMode = $((mode === 'AP' ? 'ap_mode' : 'if_mode') + ' mode', xml).eq(0).text();
+        console.log('networkMode');
+        console.log(networkMode);
         var securityMode = $('security mode', xml).text();
         var securityKey = $('security key', xml).text();
 

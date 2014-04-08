@@ -2,11 +2,9 @@
 <ipacu_response>
 	<message error="0" name="get_wlan"/>
 	<mode>IF</mode><!-- OFF | AP | IF -->
-	<!-- the docs also mention an ADHOC mode but i've been told that is no longer
-		  	an option. -->
-
-	<if_mode><!-- or ap_mode -->
-		<mode>STATIC</mode><!-- STATIC | DYNAMIC if mode is IF, BRIDGED if mode is AP -->
+  <!-- <ap_mode> -->
+	<if_mode>
+		<mode>DYNAMIC</mode><!-- STATIC | DYNAMIC if mode is IF, BRIDGED if mode is AP -->
 		<essid>ipacu</essid>
 		<security>
 			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
@@ -17,6 +15,7 @@
 		<netmask>255.255.255.0</netmask>
 		<gateway>192.168.1.1</gateway>
 		<broadcast>192.168.1.255</broadcast>
+  <!-- </ap_mode> -->
 	</if_mode>
 	<channel>11</channel>
 	<band>b</band><!-- b | g -->

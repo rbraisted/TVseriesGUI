@@ -10,12 +10,17 @@
     });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
+      var mode = $('.\\#eth-mode', jQ).text();
+      var ip = $('.\\#eth-ip', jQ).val();
+      var netmask = $('.\\#eth-netmask', jQ).val();
+      var gateway = $('.\\#eth-gateway', jQ).val();
+      var broadcast = $('.\\#eth-broadcast', jQ).val();
       TVRO.setEth({
-        mode: $('.\\#eth-mode', jQ).text(),
-        ip: $('.\\#eth-ip', jQ).val(),
-        netmask: $('.\\#eth-netmask', jQ).val(),
-        gateway: $('.\\#eth-gateway', jQ).val(),
-        broadcast: $('.\\#eth-broadcast', jQ).val()
+        mode: mode,
+        ip: ip,
+        netmask: netmask,
+        gateway: gateway,
+        broadcast: broadcast
       }).then(reload);
     });
 
@@ -49,10 +54,10 @@
         var broadcast = $('broadcast', xml).text();
 
         setMode(mode);
-        $('.\\#eth-ip', jQ).val(ip);
-        $('.\\#eth-netmask', jQ).val(netmask);
-        $('.\\#eth-gateway', jQ).val(gateway);
-        $('.\\#eth-broadcast', jQ).val(broadcast);
+        $('.\\#eth-ip', jQ).val(ip).text(ip);
+        $('.\\#eth-netmask', jQ).val(netmask).text(netmask);
+        $('.\\#eth-gateway', jQ).val(gateway).text(gateway);
+        $('.\\#eth-broadcast', jQ).val(broadcast).text(broadcast);
       });
     };
 

@@ -875,37 +875,9 @@ a {
 .network-settings.\$eth-off .ethernet-settings .ip-label, .network-settings.\$eth-off .ethernet-settings .ip-value, .network-settings.\$eth-off .ethernet-settings .ip-input,
 .network-settings.\$eth-off .ethernet-settings .subnet-label, .network-settings.\$eth-off .ethernet-settings .subnet-value, .network-settings.\$eth-off .ethernet-settings .subnet-input,
 .network-settings.\$eth-off .ethernet-settings .gateway-label, .network-settings.\$eth-off .ethernet-settings .gateway-value, .network-settings.\$eth-off .ethernet-settings .gateway-input,
-.network-settings.\$eth-off .ethernet-settings .broadcast-label, .network-settings.\$eth-off .ethernet-settings .broadcast-value, .network-settings.\$eth-off .ethernet-settings .broadcast-input, .network-settings.\$eth-dynamic .ethernet-settings .ip-label, .network-settings.\$eth-dynamic .ethernet-settings .ip-value, .network-settings.\$eth-dynamic .ethernet-settings .ip-input,
-.network-settings.\$eth-dynamic .ethernet-settings .subnet-label, .network-settings.\$eth-dynamic .ethernet-settings .subnet-value, .network-settings.\$eth-dynamic .ethernet-settings .subnet-input,
-.network-settings.\$eth-dynamic .ethernet-settings .gateway-label, .network-settings.\$eth-dynamic .ethernet-settings .gateway-value, .network-settings.\$eth-dynamic .ethernet-settings .gateway-input,
-.network-settings.\$eth-dynamic .ethernet-settings .broadcast-label, .network-settings.\$eth-dynamic .ethernet-settings .broadcast-value, .network-settings.\$eth-dynamic .ethernet-settings .broadcast-input,
-.popup.\$eth-off .ethernet-settings .ip-label,
-.popup.\$eth-off .ethernet-settings .ip-value,
-.popup.\$eth-off .ethernet-settings .ip-input,
-.popup.\$eth-off .ethernet-settings .subnet-label,
-.popup.\$eth-off .ethernet-settings .subnet-value,
-.popup.\$eth-off .ethernet-settings .subnet-input,
-.popup.\$eth-off .ethernet-settings .gateway-label,
-.popup.\$eth-off .ethernet-settings .gateway-value,
-.popup.\$eth-off .ethernet-settings .gateway-input,
-.popup.\$eth-off .ethernet-settings .broadcast-label,
-.popup.\$eth-off .ethernet-settings .broadcast-value,
-.popup.\$eth-off .ethernet-settings .broadcast-input,
-.popup.\$eth-dynamic .ethernet-settings .ip-label,
-.popup.\$eth-dynamic .ethernet-settings .ip-value,
-.popup.\$eth-dynamic .ethernet-settings .ip-input,
-.popup.\$eth-dynamic .ethernet-settings .subnet-label,
-.popup.\$eth-dynamic .ethernet-settings .subnet-value,
-.popup.\$eth-dynamic .ethernet-settings .subnet-input,
-.popup.\$eth-dynamic .ethernet-settings .gateway-label,
-.popup.\$eth-dynamic .ethernet-settings .gateway-value,
-.popup.\$eth-dynamic .ethernet-settings .gateway-input,
-.popup.\$eth-dynamic .ethernet-settings .broadcast-label,
-.popup.\$eth-dynamic .ethernet-settings .broadcast-value,
-.popup.\$eth-dynamic .ethernet-settings .broadcast-input {
+.network-settings.\$eth-off .ethernet-settings .broadcast-label, .network-settings.\$eth-off .ethernet-settings .broadcast-value, .network-settings.\$eth-off .ethernet-settings .broadcast-input {
   display: none; }
-.network-settings.\$eth-off .wireless-settings,
-.popup.\$eth-off .wireless-settings {
+.network-settings.\$eth-off .wireless-settings {
   display: none; }
 .network-settings.\$wlan-off .wireless-settings .network-label, .network-settings.\$wlan-off .wireless-settings .network-value, .network-settings.\$wlan-off .wireless-settings .network-dropdown-btn,
 .network-settings.\$wlan-off .wireless-settings .ssid-label, .network-settings.\$wlan-off .wireless-settings .ssid-value, .network-settings.\$wlan-off .wireless-settings .ssid-input,
@@ -914,53 +886,41 @@ a {
 .network-settings.\$wlan-off .wireless-settings .gateway-label, .network-settings.\$wlan-off .wireless-settings .gateway-value, .network-settings.\$wlan-off .wireless-settings .gateway-input,
 .network-settings.\$wlan-off .wireless-settings .broadcast-label, .network-settings.\$wlan-off .wireless-settings .broadcast-value, .network-settings.\$wlan-off .wireless-settings .broadcast-input,
 .network-settings.\$wlan-off .wireless-settings .security-label, .network-settings.\$wlan-off .wireless-settings .security-value, .network-settings.\$wlan-off .wireless-settings .security-dropdown-btn,
-.network-settings.\$wlan-off .wireless-settings .password-label, .network-settings.\$wlan-off .wireless-settings .password-value, .network-settings.\$wlan-off .wireless-settings .password-input,
-.popup.\$wlan-off .wireless-settings .network-label,
-.popup.\$wlan-off .wireless-settings .network-value,
-.popup.\$wlan-off .wireless-settings .network-dropdown-btn,
-.popup.\$wlan-off .wireless-settings .ssid-label,
-.popup.\$wlan-off .wireless-settings .ssid-value,
-.popup.\$wlan-off .wireless-settings .ssid-input,
-.popup.\$wlan-off .wireless-settings .ip-label,
-.popup.\$wlan-off .wireless-settings .ip-value,
-.popup.\$wlan-off .wireless-settings .ip-input,
-.popup.\$wlan-off .wireless-settings .subnet-label,
-.popup.\$wlan-off .wireless-settings .subnet-value,
-.popup.\$wlan-off .wireless-settings .subnet-input,
-.popup.\$wlan-off .wireless-settings .gateway-label,
-.popup.\$wlan-off .wireless-settings .gateway-value,
-.popup.\$wlan-off .wireless-settings .gateway-input,
-.popup.\$wlan-off .wireless-settings .broadcast-label,
-.popup.\$wlan-off .wireless-settings .broadcast-value,
-.popup.\$wlan-off .wireless-settings .broadcast-input,
-.popup.\$wlan-off .wireless-settings .security-label,
-.popup.\$wlan-off .wireless-settings .security-value,
-.popup.\$wlan-off .wireless-settings .security-dropdown-btn,
-.popup.\$wlan-off .wireless-settings .password-label,
-.popup.\$wlan-off .wireless-settings .password-value,
-.popup.\$wlan-off .wireless-settings .password-input {
+.network-settings.\$wlan-off .wireless-settings .password-label, .network-settings.\$wlan-off .wireless-settings .password-value, .network-settings.\$wlan-off .wireless-settings .password-input {
   display: none; }
-.network-settings.\$wlan-dynamic .wireless-settings .ip-label, .network-settings.\$wlan-dynamic .wireless-settings .ip-value, .network-settings.\$wlan-dynamic .wireless-settings .ip-input,
-.network-settings.\$wlan-dynamic .wireless-settings .subnet-label, .network-settings.\$wlan-dynamic .wireless-settings .subnet-value, .network-settings.\$wlan-dynamic .wireless-settings .subnet-input,
-.network-settings.\$wlan-dynamic .wireless-settings .gateway-label, .network-settings.\$wlan-dynamic .wireless-settings .gateway-value, .network-settings.\$wlan-dynamic .wireless-settings .gateway-input,
-.network-settings.\$wlan-dynamic .wireless-settings .broadcast-label, .network-settings.\$wlan-dynamic .wireless-settings .broadcast-value, .network-settings.\$wlan-dynamic .wireless-settings .broadcast-input,
-.popup.\$wlan-dynamic .wireless-settings .ip-label,
-.popup.\$wlan-dynamic .wireless-settings .ip-value,
+
+.popup.\$eth-off .ethernet-settings .ip-label, .popup.\$eth-off .ethernet-settings .ip-value, .popup.\$eth-off .ethernet-settings .ip-input,
+.popup.\$eth-off .ethernet-settings .subnet-label, .popup.\$eth-off .ethernet-settings .subnet-value, .popup.\$eth-off .ethernet-settings .subnet-input,
+.popup.\$eth-off .ethernet-settings .gateway-label, .popup.\$eth-off .ethernet-settings .gateway-value, .popup.\$eth-off .ethernet-settings .gateway-input,
+.popup.\$eth-off .ethernet-settings .broadcast-label, .popup.\$eth-off .ethernet-settings .broadcast-value, .popup.\$eth-off .ethernet-settings .broadcast-input {
+  display: none; }
+.popup.\$eth-static .ethernet-settings .ip-value,
+.popup.\$eth-static .ethernet-settings .subnet-value,
+.popup.\$eth-static .ethernet-settings .gateway-value,
+.popup.\$eth-static .ethernet-settings .broadcast-value {
+  display: none; }
+.popup.\$eth-dynamic .ethernet-settings .ip-input,
+.popup.\$eth-dynamic .ethernet-settings .subnet-input,
+.popup.\$eth-dynamic .ethernet-settings .gateway-input,
+.popup.\$eth-dynamic .ethernet-settings .broadcast-input {
+  display: none; }
+.popup.\$wlan-off .wireless-settings .network-label, .popup.\$wlan-off .wireless-settings .network-value, .popup.\$wlan-off .wireless-settings .network-dropdown-btn,
+.popup.\$wlan-off .wireless-settings .ssid-label, .popup.\$wlan-off .wireless-settings .ssid-value, .popup.\$wlan-off .wireless-settings .ssid-input,
+.popup.\$wlan-off .wireless-settings .ip-label, .popup.\$wlan-off .wireless-settings .ip-value, .popup.\$wlan-off .wireless-settings .ip-input,
+.popup.\$wlan-off .wireless-settings .subnet-label, .popup.\$wlan-off .wireless-settings .subnet-value, .popup.\$wlan-off .wireless-settings .subnet-input,
+.popup.\$wlan-off .wireless-settings .gateway-label, .popup.\$wlan-off .wireless-settings .gateway-value, .popup.\$wlan-off .wireless-settings .gateway-input,
+.popup.\$wlan-off .wireless-settings .broadcast-label, .popup.\$wlan-off .wireless-settings .broadcast-value, .popup.\$wlan-off .wireless-settings .broadcast-input,
+.popup.\$wlan-off .wireless-settings .security-label, .popup.\$wlan-off .wireless-settings .security-value, .popup.\$wlan-off .wireless-settings .security-dropdown-btn,
+.popup.\$wlan-off .wireless-settings .password-label, .popup.\$wlan-off .wireless-settings .password-value, .popup.\$wlan-off .wireless-settings .password-input {
+  display: none; }
+.popup.\$wlan-bridged .wireless-settings .value, .popup.\$wlan-static .wireless-settings .value {
+  display: none; }
 .popup.\$wlan-dynamic .wireless-settings .ip-input,
-.popup.\$wlan-dynamic .wireless-settings .subnet-label,
-.popup.\$wlan-dynamic .wireless-settings .subnet-value,
 .popup.\$wlan-dynamic .wireless-settings .subnet-input,
-.popup.\$wlan-dynamic .wireless-settings .gateway-label,
-.popup.\$wlan-dynamic .wireless-settings .gateway-value,
 .popup.\$wlan-dynamic .wireless-settings .gateway-input,
-.popup.\$wlan-dynamic .wireless-settings .broadcast-label,
-.popup.\$wlan-dynamic .wireless-settings .broadcast-value,
 .popup.\$wlan-dynamic .wireless-settings .broadcast-input {
   display: none; }
-.network-settings.\$wlan-sec-off .wireless-settings .password-label, .network-settings.\$wlan-sec-off .wireless-settings .password-value, .network-settings.\$wlan-sec-off .wireless-settings .password-input,
-.popup.\$wlan-sec-off .wireless-settings .password-label,
-.popup.\$wlan-sec-off .wireless-settings .password-value,
-.popup.\$wlan-sec-off .wireless-settings .password-input {
+.popup.\$wlan-sec-off .wireless-settings .password-label, .popup.\$wlan-sec-off .wireless-settings .password-value, .popup.\$wlan-sec-off .wireless-settings .password-input {
   display: none; }
 
 @media screen and (min-width: 881px) {

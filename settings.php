@@ -133,14 +133,26 @@
     </div>
 
     <span class="label mode-label">Mode</span><!--
-  --><div class="dropdown-btn mode-dropdown-btn #eth-mode-btn">
+ --><div class="dropdown-btn mode-dropdown-btn #eth-mode-btn">
         <div class="#eth-mode"></div>
         <div class="dropdown-icon"></div>
     </div>
-    <span class="label ip-label">IP Address</span><input class="input ip-input #eth-ip" />
-    <span class="label subnet-label">Subnet</span><input class="input subnet-input #eth-netmask" />
-    <span class="label gateway-label">Gateway</span><input class="input gateway-input #eth-gateway" />
-    <span class="label broadcast-label">Broadcast</span><input class="input broadcast-input #eth-broadcast" />
+
+    <span class="label ip-label">IP Address</span><!--
+ --><input class="input ip-input #eth-ip" /><!--
+ --><span class="value ip-value #eth-ip"></span>
+
+    <span class="label subnet-label">Subnet</span><!--
+ --><input class="input subnet-input #eth-netmask" /><!--
+ --><span class="value subnet-value #eth-netmask"></span>
+
+    <span class="label gateway-label">Gateway</span><!--
+ --><input class="input gateway-input #eth-gateway" /><!--
+ --><span class="value gateway-value #eth-gateway"></span>
+
+    <span class="label broadcast-label">Broadcast</span><!--
+ --><input class="input broadcast-input #eth-broadcast" /><!--
+ --><span class="value broadcast-value #eth-broadcast"></span>
 
     <div class="btn-tray">
       <div class="block-btn cancel-btn #back-btn">Cancel</div><!--
@@ -175,31 +187,47 @@
     </div>
 
     <span class="label mode-label">Mode</span><!--
-  --><div class="dropdown-btn mode-dropdown-btn #wlan-mode-btn">
-        <div class="#wlan-mode"></div>
-        <div class="dropdown-icon"></div>
+ --><div class="dropdown-btn mode-dropdown-btn #wlan-mode-btn">
+      <div class="#wlan-mode"></div>
+      <div class="dropdown-icon"></div>
     </div>
+
     <span class="label network-label">Network Mode</span><!--
-  --><div class="dropdown-btn network-dropdown-btn #wlan-network-mode-btn">
-        <div class="#wlan-network-mode"></div>
-        <div class="dropdown-icon"></div>
+ --><div class="dropdown-btn network-dropdown-btn #wlan-network-mode-btn">
+      <div class="#wlan-network-mode"></div>
+      <div class="dropdown-icon"></div>
     </div><!--
-  --><span class="label ssid-label">SSID</span><input class="input ssid-input #wlan-essid" />
-    <span class="label ip-label">IP Address</span><input class="input ip-input #wlan-ip" />
-    <span class="label subnet-label">Subnet</span><input class="input subnet-input #wlan-netmask" />
-    <span class="label gateway-label">Gateway</span><input class="input gateway-input #wlan-gateway" />
-    <span class="label broadcast-label">Broadcast</span><input class="input broadcast-input #wlan-broadcast" />
+
+ --><span class="label ssid-label">SSID</span><!--
+ --><input class="input ssid-input #wlan-essid" />
+
+    <span class="label ip-label">IP Address</span><!--
+ --><input class="input ip-input #wlan-ip" /><!--
+ --><span class="value ip-value #wlan-ip"></span>
+
+    <span class="label subnet-label">Subnet</span><!--
+ --><input class="input subnet-input #wlan-netmask" /><!--
+ --><span class="value subnet-value #wlan-netmask"></span>
+
+    <span class="label gateway-label">Gateway</span><!--
+ --><input class="input gateway-input #wlan-gateway" /><!--
+ --><span class="value gateway-value #wlan-gateway"></span>
+
+    <span class="label broadcast-label">Broadcast</span><!--
+ --><input class="input broadcast-input #wlan-broadcast" /><!--
+ --><span class="value broadcast-value #wlan-broadcast"></span>
+
     <span class="label security-label">Security Mode</span><!--
-  --><div class="dropdown-btn security-dropdown-btn #wlan-security-mode-btn">
-        <div class="#wlan-security-mode"></div>
-        <div class="dropdown-icon"></div>
+ --><div class="dropdown-btn security-dropdown-btn #wlan-security-mode-btn">
+      <div class="#wlan-security-mode"></div>
+      <div class="dropdown-icon"></div>
     </div>
     <span class="label password-label">Password</span><input class="input password-input #wlan-security-key" />
 
     <div class="btn-tray">
       <div class="block-btn cancel-btn #back-btn">Cancel</div><!--
-    --><div class="block-btn save-btn first #save-btn">Save</div><!--
-    --><div class="block-btn reset-btn #reset-btn">Reset</div>
+   --><div class="block-btn save-btn first #save-btn">Save</div><!--
+   --><div class="block-btn reset-btn #reset-btn">Reset</div>
     </div>
   </div>
 </div>
@@ -215,7 +243,7 @@
     <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-value"></span>
+     --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>
@@ -230,7 +258,7 @@
     <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-value"></span>
+     --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>
@@ -245,7 +273,7 @@
     <div class="table #table-view">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
-      --><span class="table-col #dropdown-value"></span>
+     --><span class="table-col #dropdown-value"></span>
       </div>
     </div>
   </div>
