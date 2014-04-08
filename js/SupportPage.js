@@ -82,8 +82,16 @@ $(function() {
       var antModel = $('au model', xmls[0]).text();
       var serialNumber = $('au sn', xmls[0]).text();
       var dateTime = $('gps dt', xmls[1]).text();
-      var subject = [antModel, serialNumber, dateTime].join(' ');
-      window.location = 'mailto:' + email + '?subject=' + subject;
+
+      var subject = [antModel,
+                     serialNumber,
+                     dateTime].join(' ');
+
+      var body = ['Model: ' + antModel,
+                  'Serial #: ' + serialNumber,
+                  'Date/Time: ' + dateTime].join('\n');
+
+      window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + encode(body);
     });
   });
 
