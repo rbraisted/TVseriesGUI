@@ -32,7 +32,7 @@ html {
       border-bottom: 1px solid $bright-blue;
       font-size: 26px;
       margin: 0 0 30px 0;
-      padding: 30px 0;
+      padding: 20px 0;
     }
   }
 }
@@ -140,7 +140,7 @@ html {
     }
 
     @include breakpoint($desktop) {
-      margin: 60px 0;
+      margin-bottom: 60px;
     }
 
     .copy {
@@ -237,7 +237,7 @@ html {
   .form {
     max-width: 440px;
     margin: auto;
-    padding: 20px;
+    padding: 0px 20px;
   }
 
   .label {
@@ -249,7 +249,7 @@ html {
     font-size: $medium-font;
     width: 100%;
     margin: 0;
-    padding: 7px 10px;
+    padding: 6px 10px;
   }
 
   .note {

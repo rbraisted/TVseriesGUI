@@ -63,7 +63,7 @@
           },
           user: {
             name: $('.\\#owner', jQ).val(),
-            contact_name: $('.\\#contact', jQ).val(),
+            contact: $('.\\#contact', jQ).val(),
             phone: $('.\\#phone', jQ).val(),
             email: $('.\\#email', jQ).val()
           }
@@ -78,7 +78,7 @@
     TVRO.getProductRegistration().then(function(xml) {
       var vessel = $('product vessel_name', xml).text();
       var owner = $('user name', xml).text();
-      var contact = $('user contact_name', xml).text();
+      var contact = $('user contact', xml).text();
       var phone = $('user phone', xml).text();
       var email = $('user email', xml).text();
       $('.\\#vessel', jQ).val(vessel);
@@ -130,6 +130,8 @@
             installer_email: $('.\\#email', jQ).val()
           }
         });
+
+        window.location = '/wizard/gps.php';
       }
     });
 

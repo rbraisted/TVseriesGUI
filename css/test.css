@@ -784,7 +784,7 @@ html {
       border-bottom: 1px solid #4f7abd;
       font-size: 26px;
       margin: 0 0 30px 0;
-      padding: 30px 0; } }
+      padding: 20px 0; } }
 
 @media screen and (min-width: 881px) {
   .mobile {
@@ -915,7 +915,7 @@ html {
         font-size: 16px; } }
     @media screen and (min-width: 881px) {
       .wizard-index .system-detected {
-        margin: 60px 0; } }
+        margin-bottom: 60px; } }
     .wizard-index .system-detected .copy {
       font-size: 26px; }
   .wizard-index .col {
@@ -990,7 +990,7 @@ html {
 .installer-info .form {
   max-width: 440px;
   margin: auto;
-  padding: 20px; }
+  padding: 0px 20px; }
 .cdt-vessel-info .label,
 .diy-vessel-info .label,
 .installer-info .label {
@@ -1004,7 +1004,7 @@ html {
   font-size: 16px;
   width: 100%;
   margin: 0;
-  padding: 7px 10px; }
+  padding: 6px 10px; }
 .cdt-vessel-info .note,
 .diy-vessel-info .note,
 .installer-info .note {
