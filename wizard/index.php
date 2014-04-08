@@ -13,10 +13,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 	<div class="system-detected">
 		System Detected:<br>
 		<span class="copy">
-			Tracvision <span class="#ant-model">XX-X</span>
+			Tracvision <span class="#ant-model"></span>
 			<span class="desktop">with</span>
 			<br class="mobile">
-			<span class="#ant-lnb">XXXXX</span> LNB
+			<span class="#ant-lnb"></span> LNB
 		</span>
 	</div>
 

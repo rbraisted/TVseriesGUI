@@ -1,7 +1,9 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php'; ?>
-<script type="text/javascript" src="/js/wizard/gps.js"></script>
+<?
+$wiz = true;
+include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
+?>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<script type="text/javascript" src="/js/wizard/gps.js"></script>
 
 <!-- 6 -->
 
@@ -87,8 +89,6 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
 <!-- 7 -->
 
 <div id="backup-gps-source-view" class="view main-view wiz-view backup-gps-source-view">
@@ -123,8 +123,6 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
 <!-- 8 -->
 
 <div id="heading-source-view" class="view main-view wiz-view heading-source-view">
@@ -151,30 +149,3 @@
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<style type="text/css">
-	body.at-splash .vessel-location-view,
-	body.at-vessel-location-view .vessel-location-view,
-	body.at-backup-gps-source-view .backup-gps-source-view, 
-	body.at-heading-source-view .heading-source-view {
-		display: block;
-	}
-
-	@media screen and (min-width: 880px) {
-		body.at-coordinates-view .vessel-location-view {
-			display: block;
-		}
-	}
-
-	@media screen and (max-width: 880px) {
-		body.at-coordinates-view .coordinates-view {
-			display: block;
-		}
-
-		.coordinates-view input {
-			width: 100%;
-		}
-	}
-</style>

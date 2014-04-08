@@ -169,31 +169,18 @@ a {
 
     .status-light {
       background-color: $light-grey;
-      // box-shadow: 0 0 5px 1px;
+      font-size: $fine-font;
       display: inline-block;
       height: 22px;
-      margin: 7px 3px 2px 0;
+      margin: 7px 3px 4px 0;
+      text-align: center;
+      vertical-align: top;
       width: 10px;
 
-      &.\$green {
-        background-color: $green;
-        color: $green;
-      }
-
-      &.\$orange {
-        background-color: $orange;
-        color: $orange;
-      }
-
-      &.\$red {
-        background-color: $red;
-        color: $red;
-      }
-
-      &.\$off {
-        background-color: $light-grey;
-        // box-shadow: none;
-      }
+      &.\$green { background-color: $green; }
+      &.\$orange { background-color: $orange; }
+      &.\$red { background-color: $red; }
+      &.\$off { background-color: $light-grey; }    
     }
 	}
 

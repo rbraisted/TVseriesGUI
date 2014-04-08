@@ -58,19 +58,19 @@ a {
     float: left; }
     .header .status-btn .status-light {
       background-color: #4c5269;
+      font-size: 11px;
       display: inline-block;
       height: 22px;
-      margin: 7px 3px 2px 0;
+      margin: 7px 3px 4px 0;
+      text-align: center;
+      vertical-align: top;
       width: 10px; }
       .header .status-btn .status-light.\$green {
-        background-color: #acd038;
-        color: #acd038; }
+        background-color: #acd038; }
       .header .status-btn .status-light.\$orange {
-        background-color: #e76d24;
-        color: #e76d24; }
+        background-color: #e76d24; }
       .header .status-btn .status-light.\$red {
-        background-color: #c51313;
-        color: #c51313; }
+        background-color: #c51313; }
       .header .status-btn .status-light.\$off {
         background-color: #4c5269; }
   .header .nav-btn {
@@ -1029,6 +1029,10 @@ a {
   .advanced-settings .block-btn {
     margin-top: 16px;
     margin-bottom: 32px; }
+  @media screen and (max-width: 880px) {
+    .general-settings,
+    .advanced-settings {
+      padding: 20px; } }
 
 @media screen and (max-width: 880px) {
   .sidebar,

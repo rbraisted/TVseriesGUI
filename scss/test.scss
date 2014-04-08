@@ -266,3 +266,28 @@ body[class=''] .\#installer-id-view,
 .\/installer-info .\#installer-info-view {
   display: block;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+body.at-splash .vessel-location-view,
+body.at-vessel-location-view .vessel-location-view,
+body.at-backup-gps-source-view .backup-gps-source-view, 
+body.at-heading-source-view .heading-source-view {
+  display: block;
+}
+
+// @media screen and (min-width: 880px) {
+//   body.at-coordinates-view .vessel-location-view {
+//     display: block;
+//   }
+// }
+
+// @media screen and (max-width: 880px) {
+//   body.at-coordinates-view .coordinates-view {
+//     display: block;
+//   }
+
+//   .coordinates-view input {
+//     width: 100%;
+//   }
+// }

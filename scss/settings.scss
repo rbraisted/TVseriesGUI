@@ -229,6 +229,10 @@
     margin-top: 16px;
     margin-bottom: 32px;
   }
+
+  @include breakpoint($mobile) {
+    padding: 20px;
+  }
 }
 
 //	routing

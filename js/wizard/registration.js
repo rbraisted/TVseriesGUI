@@ -34,12 +34,12 @@
         $('input', jQ).each(function() {
           var input = $(this);
           if (this.hasAttribute('required') && !this.value) {
-            if (input.hasClass('.\\#vessel')) alert('You must enter a vessel name to continue.');
-            if (input.hasClass('.\\#company')) alert('You must enter a company name to continue.');
-            if (input.hasClass('.\\#owner')) alert('You must enter an owner name to continue.');
-            if (input.hasClass('.\\#contact')) alert('You must enter a contact name to continue.');
-            if (input.hasClass('.\\#phone')) alert('You must enter a phone number to continue.');
-            if (input.hasClass('.\\#email')) alert('You must enter an email address to continue.');
+            if (input.hasClass('#vessel')) alert('You must enter a vessel name to continue.');
+            else if (input.hasClass('#company')) alert('You must enter a company name to continue.');
+            else if (input.hasClass('#owner')) alert('You must enter an owner name to continue.');
+            else if (input.hasClass('#contact')) alert('You must enter a contact name to continue.');
+            else if (input.hasClass('#phone')) alert('You must enter a phone number to continue.');
+            else if (input.hasClass('#email')) alert('You must enter an email address to continue.');
             isValid = false;
             return false;
           }
@@ -54,22 +54,6 @@
 
   var VesselInfoView = function(jQ) {
     var self = InfoView(jQ);
-
-    var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      if (self.isValid()) {
-        TVRO.setProductRegistration({
-          product: {
-            vessel_name: $('.\\#name', jQ).val()
-          },
-          user: {
-            name: $('.\\#owner', jQ).val(),
-            contact: $('.\\#contact', jQ).val(),
-            phone: $('.\\#phone', jQ).val(),
-            email: $('.\\#email', jQ).val()
-          }
-        });
-      }
-    });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       window.location.hash = '';
@@ -88,7 +72,27 @@
       $('.\\#email', jQ).val(email);
     });
 
-    return self;
+    return _.merge(self, {
+      setVesselInfo: function() {
+        var vessel = $('.\\#vessel', jQ).val();
+        var owner = $('.\\#owner', jQ).val();
+        var contact = $('.\\#contact', jQ).val();
+        var phone = $('.\\#phone', jQ).val();
+        var email = $('.\\#email', jQ).val();
+
+        return TVRO.setProductRegistration({
+          product: {
+            vessel_name: vessel
+          },
+          user: {
+            name: owner,
+            contact: contact,
+            phone: phone,
+            email: email
+          }
+        });
+      }
+    });
   };
 
 
@@ -97,7 +101,10 @@
     var self = VesselInfoView(jQ);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      if (self.isValid()) window.location.hash = '/installer-info';
+      if (!self.isValid()) return;
+      self.setVesselInfo().then(function() {
+        window.location.hash = '/installer-info';
+      });
     });
 
     return self;
@@ -109,7 +116,13 @@
     var self = VesselInfoView(jQ);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      if (self.isValid()) window.location = '/wizard/gps.php';
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (!self.isValid()) return;
+      self.setVesselInfo().then(function() {
+        window.location.hash = '/wizard/gps.php';
+      });
+    });
+
     });
 
     return self;
@@ -121,18 +134,17 @@
     var self = InfoView(jQ);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      if (self.isValid()) {
-        TVRO.setProductRegistration({
-          dealer: {
-            company: $('.\\#company', jQ).val(),
-            installer_name: $('.\\#contact', jQ).val(),
-            installer_phone: $('.\\#phone', jQ).val(),
-            installer_email: $('.\\#email', jQ).val()
-          }
-        });
-
+      if (!self.isValid()) return;
+      TVRO.setProductRegistration({
+        dealer: {
+          company: $('.\\#company', jQ).val(),
+          installer_name: $('.\\#contact', jQ).val(),
+          installer_phone: $('.\\#phone', jQ).val(),
+          installer_email: $('.\\#email', jQ).val()
+        }
+      }).then(function() {
         window.location = '/wizard/gps.php';
-      }
+      });
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {

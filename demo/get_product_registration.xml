@@ -4,31 +4,27 @@
 	<edit_dt>YYYY-MM-DDTHH:MM:SSZ</edit_dt>
 	<reg_dt>YYYY-MM-DDTHH:MM:SSZ</reg_dt>
 	<user>
-		<firstname>Miky</firstname>
-		<lastname>Ma</lastname>
-		<name>Miky Ma</name><!-- not in docs -->
+		<name>Rosalind</name>
 		<salutation></salutation>
-		<title>Developer</title>
-		<email>miky@vainmedia.com</email>
-		<company>Vain Media</company>
-		<addr1>724 S Spring St</addr1>
-		<addr2>Ste 503</addr2>
-		<city>Los Angeles</city>
-		<state>California</state>
-		<country>United States</country>
-		<zip>90014</zip>
-		<phone>1234567890</phone>
-		<mobile>1234567890</mobile>
-		<fax>1234567890</fax>
-		<contact_name>Miky</contact_name>
+		<title></title>
+		<email>user@email.com</email>
+		<company></company>
+		<addr1></addr1>
+		<addr2></addr2>
+		<city></city>
+		<state></state>
+		<country></country>
+		<zip></zip>
+		<phone>1 (555) 345 6789</phone>
+		<contact>Elena</contact>
 	</user>
 	<dealer>
-		<company>Installer Co.</company>
+		<company>Lane</company>
 		<state/>
 		<country/>
-		<installer_name>Installer Name</installer_name>
-		<installer_email>installer@installerco.com</installer_email>
-		<installer_phone>1 (555) 467-8255</installer_phone>
+		<installer_name>Wheatley</installer_name>
+		<installer_email>installer@email.com</installer_email>
+		<installer_phone>1 (555) 123-4567</installer_phone>
 	</dealer>
 	<product>
 		<acu_model>TVRO-IPACU</acu_model><!-- VSAT-IPACU | TVRO-IPACU -->
@@ -39,8 +35,8 @@
 		<sector/>
 		<line/>
 		<platform/>
-		<purch_date>YYYY-MM-DD</purch_date>
-		<vessel_name>SS Vain</vessel_name>
+		<purch_date></purch_date>
+		<vessel_name>Olivia</vessel_name>
 		<vessel_length/>
 		<vessel_year/>
 	</product>
