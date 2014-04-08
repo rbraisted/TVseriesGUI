@@ -617,6 +617,28 @@ a {
       position: relative;
       vertical-align: middle;
       position: absolute;
+      z-index: 1; }
+    .dropdown .table .table-row {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      border-bottom: 1px solid #4f7abd;
+      position: relative;
+      vertical-align: middle; }
+    .dropdown .table .table-col {
+      display: inline-block;
+      height: 100%;
+      overflow: hidden;
+      padding: 15px;
+      vertical-align: middle; }
+    .dropdown .table .table-head {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      border-bottom: 1px solid #4f7abd;
+      position: relative;
+      vertical-align: middle;
+      position: absolute;
       z-index: 1;
       background-color: #243774; }
     .dropdown .table .table-row {
@@ -746,6 +768,28 @@ a {
 .sat-table {
   width: 100%;
   position: relative; }
+  .sat-table .table-head {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle;
+    position: absolute;
+    z-index: 1; }
+  .sat-table .table-row {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle; }
+  .sat-table .table-col {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    vertical-align: middle; }
   .sat-table .table-head {
     display: block;
     width: 100%;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>v 0.3</title>
+    <title>KVH TracVision</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
@@ -36,7 +36,7 @@
 
   </head>
 
-  <body>
+  <body class>
 
 <!-- header/nav
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

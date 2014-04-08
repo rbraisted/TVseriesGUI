@@ -617,6 +617,28 @@ a {
       position: relative;
       vertical-align: middle;
       position: absolute;
+      z-index: 1; }
+    .dropdown .table .table-row {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      border-bottom: 1px solid #4f7abd;
+      position: relative;
+      vertical-align: middle; }
+    .dropdown .table .table-col {
+      display: inline-block;
+      height: 100%;
+      overflow: hidden;
+      padding: 15px;
+      vertical-align: middle; }
+    .dropdown .table .table-head {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      border-bottom: 1px solid #4f7abd;
+      position: relative;
+      vertical-align: middle;
+      position: absolute;
       z-index: 1;
       background-color: #243774; }
     .dropdown .table .table-row {
@@ -750,6 +772,28 @@ a {
     position: relative;
     vertical-align: middle;
     position: absolute;
+    z-index: 1; }
+  .menu-table .table-row {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle; }
+  .menu-table .table-col {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    vertical-align: middle; }
+  .menu-table .table-head {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle;
+    position: absolute;
     z-index: 1;
     background-color: #243774; }
   .menu-table .table-row {
@@ -853,6 +897,28 @@ a {
   height: 400px;
   overflow: auto;
   margin-bottom: 30px; }
+  .event-log .event-table .table-head {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle;
+    position: absolute;
+    z-index: 1; }
+  .event-log .event-table .table-row {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle; }
+  .event-log .event-table .table-col {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    vertical-align: middle; }
   .event-log .event-table .table-head {
     display: block;
     width: 100%;

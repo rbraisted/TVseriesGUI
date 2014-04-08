@@ -401,6 +401,18 @@ a {
 @mixin table {
 	width: 100%;
 	position: relative;
+
+  .table-head {
+    @include table-head;
+  }
+
+  .table-row {
+    @include table-row;
+  }
+
+  .table-col {
+    @include table-col;
+  }
 }
 
 //	don't forget to adjust table-row so that

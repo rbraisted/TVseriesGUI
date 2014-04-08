@@ -617,6 +617,28 @@ a {
       position: relative;
       vertical-align: middle;
       position: absolute;
+      z-index: 1; }
+    .dropdown .table .table-row {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      border-bottom: 1px solid #4f7abd;
+      position: relative;
+      vertical-align: middle; }
+    .dropdown .table .table-col {
+      display: inline-block;
+      height: 100%;
+      overflow: hidden;
+      padding: 15px;
+      vertical-align: middle; }
+    .dropdown .table .table-head {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      border-bottom: 1px solid #4f7abd;
+      position: relative;
+      vertical-align: middle;
+      position: absolute;
       z-index: 1;
       background-color: #243774; }
     .dropdown .table .table-row {
@@ -810,7 +832,7 @@ html {
     min-height: 21px;
     min-width: 21px;
     float: left;
-    padding: 0 40px 0 20px; }
+    padding: 0 20px 0 40px; }
   .bottom-bar .exit-btn {
     background-image: url(/images/x-icon-white.svg);
     background-position: center left 15px;
@@ -820,6 +842,65 @@ html {
     min-width: 21px;
     float: left;
     padding: 0 20px 0 50px; }
+
+.clear-table {
+  width: 100%;
+  position: relative; }
+  .clear-table .table-head {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle;
+    position: absolute;
+    z-index: 1; }
+  .clear-table .table-row {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle; }
+  .clear-table .table-col {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    vertical-align: middle; }
+  @media screen and (min-width: 881px) {
+    .clear-table {
+      max-width: 680px;
+      margin: auto; }
+      .clear-table .table-col {
+        font-size: 16px;
+        padding: 22.5px; } }
+  @media screen and (max-width: 880px) {
+    .clear-table {
+      margin: 0 20px;
+      width: calc(100% - 40px); }
+      .clear-table .table-col {
+        font-size: 13px;
+        padding: 15px; } }
+  .clear-table .table-row {
+    cursor: pointer; }
+    .clear-table .table-row .install-btn {
+      background-image: url(/images/radio-unchecked.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 21px 21px;
+      min-height: 21px;
+      min-width: 21px;
+      display: inline-block;
+      padding: 0;
+      cursor: pointer; }
+    .clear-table .table-row.\$selected .install-btn {
+      background-image: url(/images/radio-checked.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 21px 21px;
+      min-height: 21px;
+      min-width: 21px; }
 
 .wizard-index {
   display: block;
@@ -893,3 +974,47 @@ html {
     text-align: center;
     top: 10px;
     width: 45px; }
+
+.installer-id .headline {
+  text-align: center;
+  margin: 60px 0 30px; }
+  @media screen and (max-width: 880px) {
+    .installer-id .headline {
+      font-size: 16px; } }
+  @media screen and (min-width: 881px) {
+    .installer-id .headline {
+      font-size: 21px; } }
+
+.cdt-vessel-info .form,
+.diy-vessel-info .form,
+.installer-info .form {
+  max-width: 440px;
+  margin: auto;
+  padding: 20px; }
+.cdt-vessel-info .label,
+.diy-vessel-info .label,
+.installer-info .label {
+  font-size: 13px;
+  margin: 20px 0 10px 10px; }
+.cdt-vessel-info .input, .cdt-vessel-info .dropdown-btn,
+.diy-vessel-info .input,
+.diy-vessel-info .dropdown-btn,
+.installer-info .input,
+.installer-info .dropdown-btn {
+  font-size: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 7px 10px; }
+.cdt-vessel-info .note,
+.diy-vessel-info .note,
+.installer-info .note {
+  font-size: 13px;
+  float: right;
+  margin-top: 30px; }
+
+body[class=''] .\#installer-id-view,
+.\/installer-id .\#installer-id-view,
+.\/cdt-vessel-info .\#cdt-vessel-info-view,
+.\/diy-vessel-info .\#diy-vessel-info-view,
+.\/installer-info .\#installer-info-view {
+  display: block; }

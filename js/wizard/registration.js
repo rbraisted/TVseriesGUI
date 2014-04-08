@@ -1,149 +1,182 @@
-"use strict";
+!function(TVRO) {
+  "use strict";
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+  var InstallerIdView = function(jQ) {
+    var self = TVRO.TableView($('.\\#table-view', jQ))
+      .setValues(['CDT', 'DIY'])
+      .onBuild(function(row, value) {
+        if (value === 'CDT') $('.\\#value', row).text('Certified Dealer Technician');
+        if (value === 'DIY') $('.\\#value', row).text('System Owner (do-it-yourself install)');
+      })
+      .build();
 
-TVRO.RegistrationPage = function() {
-	var
-	webService = TVRO.WebService(),
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var value = self.getValue();
+      if (!value) alert('You must select an option to continue.');
+      else if (value === 'CDT') window.location.hash = '/cdt-vessel-info';
+      else if (value === 'DIY') window.location.hash = '/diy-vessel-info';
+    });
 
-	installerIdentificationView,
-	InstallerIdentificationView = function() {
-		var self = $.apply($, arguments),
-			radio = TVRO.Radio(self);
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location = '/wizard';
+    });
 
-		$('[id ~= next-btn ]', self).click(function() {
-			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to continue.'); 
-			else if (selectedValue === 'CDT') $(document.body).setClass('at-cdt-vessel-info-view');
-			else if (selectedValue === 'DIY') $(document.body).setClass('at-diy-vessel-info-view');
-		});
+    return self;
+  };
 
-		return $.extend({}, self, {});
-	},
 
-	//	base class for VesselInfoView and InstallerInfoView
-	InfoView = function() {
-		var self = $.apply($, arguments);
 
-		return $.extend({}, self, {
-			//	check if any <input> has a required attr and no value entered
-			//	if so, show the appropriate alert and return false
-			//	if not, return true - the form is valid
-			isValid: function() {
-				var isValid = true;
-				$('input', self).each(function() {
-					if (this.hasAttribute('required') && !this.value) {
-						alert({
-							vessel: 'You must enter a vessel name to continue.',
-							company: 'You must enter a company name to continue.',
-							owner: 'You must enter an owner name to continue.',
-							contact: 'You must enter a contact name to continue.',
-							phone: 'You must enter a phone number to continue.',
-							email: 'You must enter an email address to continue.'
-						}[this.id]);
-						isValid = false;
-						return false;
-					}
-				});
-				return isValid;
-			}
-		});
-	},
+  var InfoView = function(jQ) {
+    return {
+      isValid: function() {
+        var isValid = true;
 
-	cdtVesselInfoView,
-	diyVesselInfoView,
-	VesselInfoView = function() {
-		var self = InfoView.apply({}, arguments);
+        $('input', jQ).each(function() {
+          var input = $(this);
+          if (this.hasAttribute('required') && !this.value) {
+            if (input.hasClass('.\\#vessel')) alert('You must enter a vessel name to continue.');
+            if (input.hasClass('.\\#company')) alert('You must enter a company name to continue.');
+            if (input.hasClass('.\\#owner')) alert('You must enter an owner name to continue.');
+            if (input.hasClass('.\\#contact')) alert('You must enter a contact name to continue.');
+            if (input.hasClass('.\\#phone')) alert('You must enter a phone number to continue.');
+            if (input.hasClass('.\\#email')) alert('You must enter an email address to continue.');
+            isValid = false;
+            return false;
+          }
+        });
 
-		$('[id ~= next-btn ]', self).click(function() {
-			if (self.isValid()) {
-				webService.request('set_product_registration', {
-					product: {
-						vessel_name: $('#name', self).val()
-					},
-					user: {
-						name: $('#owner', self).val(),
-						contact_name: $('#contact', self).val(),
-						phone: $('#phone', self).val(),
-						email: $('#email', self).val()
-					}
-				});
+        return isValid;
+      }
+    };
+  };
 
-				if (self.is(cdtVesselInfoView)) $(document.body).setClass('at-installer-info-view');
-				else if (self.is(diyVesselInfoView)) window.location = '/wizard/gps.php';
-			}
-		});
 
-		$('[id ~= prev-btn ]', self).click(function() {
-			$(document.body).setClass('at-installer-identification-view');
-		});
 
-		return $.extend({}, self, {
-			loadData: function(data) {
-				$('[id ~= vessel ]', self).val($('product vessel_name', data).text());
-				$('[id ~= owner ]', self).val($('user name', data).text());
-				$('[id ~= contact ]', self).val($('user contact_name', data).text());
-				$('[id ~= phone ]', self).val($('user phone', data).text());
-				$('[id ~= email ]', self).val($('user email', data).text());					
-			}
-		});
-	},
+  var VesselInfoView = function(jQ) {
+    var self = InfoView(jQ);
 
-	installerInfoView,
-	InstallerInfoView = function() {
-		var self = InfoView.apply({}, arguments),
-			toggle = TVRO.Toggle('#toggle', self);
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (self.isValid()) {
+        TVRO.setProductRegistration({
+          product: {
+            vessel_name: $('.\\#name', jQ).val()
+          },
+          user: {
+            name: $('.\\#owner', jQ).val(),
+            contact_name: $('.\\#contact', jQ).val(),
+            phone: $('.\\#phone', jQ).val(),
+            email: $('.\\#email', jQ).val()
+          }
+        });
+      }
+    });
 
-		toggle.click(function(isOn) {
-			toggle.toggleClass('is-selected', isOn);
-			//	set a good cookie
-		});
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location.hash = '';
+    });
 
-		$('[id ~= next-btn ]', self).click(function() {
-			if (self.isValid()) {
-				webService.request('set_product_registration', {
-					dealer: {
-						company: $('#company', self).val(),
-						installer_name: $('#contact', self).val(),
-						installer_phone: $('#phone', self).val(),
-						installer_email: $('#email', self).val()
-					}
-				});
+    TVRO.getProductRegistration().then(function(xml) {
+      var vessel = $('product vessel_name', xml).text();
+      var owner = $('user name', xml).text();
+      var contact = $('user contact_name', xml).text();
+      var phone = $('user phone', xml).text();
+      var email = $('user email', xml).text();
+      $('.\\#vessel', jQ).val(vessel);
+      $('.\\#owner', jQ).val(owner);
+      $('.\\#contact', jQ).val(contact);
+      $('.\\#phone', jQ).val(phone);
+      $('.\\#email', jQ).val(email);
+    });
 
-				window.location = '/wizard/gps.php';
-			}
-		});
+    return self;
+  };
 
-		$('[id ~= prev-btn ]', self).click(function() {
-			$(document.body).setClass('at-cdt-vessel-info-view');
-		});
 
-		return $.extend({}, self, {
-			loadData: function(data) {
-				$('#company', self).val($('dealer company', data).text());
-				$('#contact', self).val($('dealer installer_name', data).text());
-				$('#phone', self).val($('dealer installer_phone', data).text());
-				$('#email', self).val($('dealer installer_email', data).text());
-			}
-		});
-	};
 
-	return {
-		init: function() {
-			installerIdentificationView = InstallerIdentificationView('#installer-identification-view');
-			cdtVesselInfoView = VesselInfoView('#cdt-vessel-info-view');
-			diyVesselInfoView = VesselInfoView('#diy-vessel-info-view');
-			installerInfoView = InstallerInfoView('#installer-info-view');
+  var CdtVesselInfoView = function(jQ) {
+    var self = VesselInfoView(jQ);
 
-			webService.request('get_product_registration', function(response) {
-				cdtVesselInfoView.loadData(response);
-				diyVesselInfoView.loadData(response);
-				installerInfoView.loadData(response);
-			});
-		}
-	}
-};
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (self.isValid()) window.location.hash = '/installer-info';
+    });
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+    return self;
+  };
 
-TVRO.page = TVRO.RegistrationPage();
+
+
+  var DiyVesselInfoView = function(jQ) {
+    var self = VesselInfoView(jQ);
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (self.isValid()) window.location = '/wizard/gps.php';
+    });
+
+    return self;
+  };
+
+
+
+  var InstallerInfoView = function(jQ) {
+    var self = InfoView(jQ);
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (self.isValid()) {
+        TVRO.setProductRegistration({
+          dealer: {
+            company: $('.\\#company', jQ).val(),
+            installer_name: $('.\\#contact', jQ).val(),
+            installer_phone: $('.\\#phone', jQ).val(),
+            installer_email: $('.\\#email', jQ).val()
+          }
+        });
+      }
+    });
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location.hash = '/cdt-vessel-info';
+    });
+
+    TVRO.getProductRegistration().then(function(xml) {
+      var company = $('dealer company', xml).text();
+      var contact = $('dealer installer_name', xml).text();
+      var phone = $('dealer installer_phone', xml).text();
+      var email = $('dealer installer_email', xml).text();
+      $('.\\#company', jQ).val(company);
+      $('.\\#contact', jQ).val(contact);
+      $('.\\#phone', jQ).val(phone);
+      $('.\\#email', jQ).val(email);
+    });
+
+    return self;
+  };
+
+  TVRO.InstallerIdView = InstallerIdView;
+  TVRO.CdtVesselInfoView = CdtVesselInfoView;
+  TVRO.DiyVesselInfoView = DiyVesselInfoView;
+  TVRO.InstallerInfoView = InstallerInfoView;
+
+}(window.TVRO);
+
+
+
+$(function() {
+  var installerIdView = TVRO.InstallerIdView($('.\\#installer-id-view'));
+  var cdtVesselInfoView = TVRO.CdtVesselInfoView($('.\\#cdt-vessel-info-view'));
+  var diyVesselInfoView = TVRO.DiyVesselInfoView($('.\\#diy-vessel-info-view'));
+  var installerInfoView = TVRO.InstallerInfoView($('.\\#installer-info-view'));
+
+  TVRO.onHashChange(function(hash) {
+    if (hash === '/cdt-vessel-info') {
+      installerIdView.setValue('CDT');
+    } else if (hash === '/diy-vessel-info') {
+      installerIdView.setValue('DIY');
+    } else if (hash === '/installer-info') {
+      installerIdView.setValue('CDT');
+    }
+
+    document.body.className = hash;
+  });
+
+  TVRO.reload();
+});
