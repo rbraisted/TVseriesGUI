@@ -121,6 +121,21 @@ html {
   }
 }
 
+.headline {
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 15px;
+
+  @include breakpoint($desktop) {
+    font-size: $large-font;
+  }
+
+  @include breakpoint($mobile) {
+    font-size: $medium-font;
+    margin-top: 30px;
+    padding: 0 20px;
+  }
+}
 
 //  index
 ////////////////////////////////////////////////////////////////////////////////
@@ -151,11 +166,6 @@ html {
   .col {
     text-align: center;
 
-    .headline {
-      font-size: $large-font;
-      margin-bottom: 15px;
-    }
-
     .copy {
       line-height: 1.4;
       font-size: $small-font;
@@ -172,11 +182,6 @@ html {
       &:not(.first) {
         margin-top: 30px;
         margin-bottom: $big-bump * 1.5;
-      }
-
-      .headline {
-        font-size: $medium-font;
-        line-height: 1.6;
       }
     }
   }
@@ -222,12 +227,9 @@ html {
 //  registration
 ////////////////////////////////////////////////////////////////////////////////
 
-.installer-id {
+.installer-id {  
   .headline {
-    text-align: center;
-    margin: 60px 0 30px;
-    @include breakpoint($mobile) { font-size: $medium-font; }
-    @include breakpoint($desktop) { font-size: $large-font; }
+    @include breakpoint($desktop) { margin: 60px 0 30px; }
   }
 }
 
@@ -260,7 +262,6 @@ html {
 }
 
 body[class=''] .\#installer-id-view,
-.\/installer-id .\#installer-id-view,
 .\/cdt-vessel-info .\#cdt-vessel-info-view, 
 .\/diy-vessel-info .\#diy-vessel-info-view, 
 .\/installer-info .\#installer-info-view {
@@ -269,25 +270,51 @@ body[class=''] .\#installer-id-view,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-body.at-splash .vessel-location-view,
-body.at-vessel-location-view .vessel-location-view,
-body.at-backup-gps-source-view .backup-gps-source-view, 
-body.at-heading-source-view .heading-source-view {
+.vessel-location,
+.backup-gps-source,
+.heading-source {
+  .headline {
+    @include breakpoint($desktop) { margin: 60px 0 30px; }
+  }
+
+  .note {
+    line-height: 1.6;
+    margin-top: 30px;
+    text-align: center;
+
+    @include breakpoint($mobile) {
+      font-size: $small-font;
+      padding: 0 20px;
+    }
+
+    @include breakpoint($desktop) {
+      font-size: $medium-font;
+    }
+  }
+}
+
+.backup-gps-source .headline.desktop {
+  white-space: nowrap;
+}
+
+.\/vessel-location .\#vessel-location-view,
+.\/backup-gps-source .\#backup-gps-source-view, 
+.\/heading-source .\#heading-source-view {
   display: block;
 }
 
-// @media screen and (min-width: 880px) {
-//   body.at-coordinates-view .vessel-location-view {
-//     display: block;
-//   }
-// }
+@include breakpoint($mobile) {
+  .\/coordinates .\#coordinates-view {
+    display: block;
+  }
 
-// @media screen and (max-width: 880px) {
-//   body.at-coordinates-view .coordinates-view {
-//     display: block;
-//   }
+  .coordinates-view input {
+    width: 100%;
+  }
+}
 
-//   .coordinates-view input {
-//     width: 100%;
-//   }
-// }
+@include breakpoint($desktop) {
+  .\/coordinates .\#vessel-location-view {
+    display: block;
+  }
+}

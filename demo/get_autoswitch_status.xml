@@ -2,7 +2,7 @@
 	<message name="get_autoswitch_status" error="0" />
 	<output>out1</output><!-- out1 | out2 | out3 -->
 	<available>Y</available><!-- Y | N -->
-	<enable>N</enable><!-- Y | N -->
+	<enable>Y</enable><!-- Y | N -->
 
 	<!--
 	<service> DIRECTV | DISH | DISEQC | OTHER

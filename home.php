@@ -40,8 +40,7 @@
 
   <div class="sidebar-chunk master-chunk #master-view">
     <div class="sidebar-chunk-head">
-      Master
-      <span class="#receiver-type"></span>
+      Master Receiver
     </div>
     <div class="label #master-name">Kitchen</div>
     <div class="block-btn master-btn #master-btn">Change</div>

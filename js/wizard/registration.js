@@ -116,13 +116,10 @@
     var self = VesselInfoView(jQ);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-    var nextBtn = $('.\\#next-btn', jQ).click(function() {
       if (!self.isValid()) return;
       self.setVesselInfo().then(function() {
-        window.location.hash = '/wizard/gps.php';
+        window.location = '/wizard/gps.php';
       });
-    });
-
     });
 
     return self;
@@ -181,14 +178,9 @@ $(function() {
   var installerInfoView = TVRO.InstallerInfoView($('.\\#installer-info-view'));
 
   TVRO.onHashChange(function(hash) {
-    if (hash === '/cdt-vessel-info') {
-      installerIdView.setValue('CDT');
-    } else if (hash === '/diy-vessel-info') {
-      installerIdView.setValue('DIY');
-    } else if (hash === '/installer-info') {
-      installerIdView.setValue('CDT');
-    }
-
+    if (hash === '/cdt-vessel-info') installerIdView.setValue('CDT');
+    else if (hash === '/diy-vessel-info') installerIdView.setValue('DIY');
+    else if (hash === '/installer-info') installerIdView.setValue('CDT');
     document.body.className = hash;
   });
 

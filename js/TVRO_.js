@@ -18,11 +18,19 @@
 
 
 
-
-  var TVRO = {
-    debug: 0,
-    shell: false
-  };
+  if (window['TVRO'] != undefined) {
+    var TVRO = {
+      debug: window.TVRO.debug || 0,
+      shell: window.TVRO.shell || false,
+      satFinder: window.TVRO.satFinder || false
+    };
+  } else {
+    var TVRO = {
+      debug: 0,
+      shell: false,
+      satFinder: false
+    };
+  }
 
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc
