@@ -942,6 +942,15 @@ a {
   display: block; }
 .update.\$not-available .download-btn {
   background-image: url(/images/no-download.svg); }
+.update .up-to-date-label {
+  display: none; }
+.update.\$up-to-date .install-btn {
+  background-image: url(/images/up-to-date.svg); }
+.update.\$up-to-date .not-up-to-date-label {
+  display: none; }
+.update.\$up-to-date .up-to-date-label {
+  display: block;
+  color: #cbcaca; }
 @media screen and (max-width: 880px) {
   .update {
     padding: 0 20px; }

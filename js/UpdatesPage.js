@@ -24,14 +24,12 @@ $(function() {
       TVRO.getAntennaVersions().then(function(xml) {
         var connectedAnt = $('au model', xml).text();
         var connected = update === connectedAnt;
-        var connectedVersion = $('current:first', xml).text();
-        var systemVersion = $('au ver', xml).text();
+        var systemVersion = $('current', xml).text();
 
         if (antUpdate) {
           row.addClass('$antenna');
           row.toggle(techMode || connected);
           row.toggleClass('$connected', connected);
-          
           $('.\\#system-ver', row).text(systemVersion);
         } else {
           row.addClass('$sat-library');

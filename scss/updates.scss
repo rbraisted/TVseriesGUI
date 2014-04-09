@@ -181,6 +181,25 @@
     }
   }
 
+  .up-to-date-label {
+    display: none;
+  }
+
+  &.\$up-to-date {
+    .install-btn {
+      background-image: url(/images/up-to-date.svg);
+    }
+
+    .not-up-to-date-label {
+      display: none;
+    }
+
+    .up-to-date-label {
+      display: block;
+      color: $grey;
+    }
+  }
+
   @include breakpoint($mobile) {
     padding: 0 20px;
 

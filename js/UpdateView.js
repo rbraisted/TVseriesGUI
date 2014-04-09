@@ -70,10 +70,10 @@
         var updateName = antUpdate ? update : 'Satellite Library';
         $('.\\#update-name', jQ).text(updateName);
 
-        TVRO.getAntennaVersions().then(function(xml) {
+        var getSystemVersion = TVRO.getAntennaVersions().then(function(xml) {
           var connectedAnt = $('au model', xml).text();
           var connected = update === connectedAnt;
-          var systemVersion = $('au ver', xml).text();
+          var systemVersion = $('current', xml).text();
 
           jQ.removeClass('$antenna $sat-library $connected');
 
@@ -86,16 +86,29 @@
             systemVersion = $('sat_list ver', xml).text();
             $('.\\#system-ver', jQ).text(systemVersion);
           }
+
+          if (jQ.hasClass('$connected')) return systemVersion;
+          else return -1;
         });
 
-        TVRO.getLatestSoftware(update).then(function(xml) {
+        var getPortalVersion = TVRO.getLatestSoftware(update).then(function(xml) {
           var portalVersion = $('software_version', xml).text() || $('version', xml).text();
           $('.\\#portal-ver', jQ).text(portalVersion);
 
           jQ.removeClass('$not-available');
+          return portalVersion;
         }, function() {
           jQ.addClass('$not-available');
+          return -1;
         });
+
+        Promise.all(getSystemVersion, getPortalVersion).then(function(versions) {
+          var systemVersion = versions[0];
+          var portalVersion = versions[1];
+          console.log(systemVersion, portalVersion);
+          jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
+        });
+
       }
     };
   };

@@ -12,13 +12,8 @@
         <div class="update-label #update-name"></div>
         <div class="connected-label">CONNECTED</div>
 
-        <div class="version-label connected-version-label">
-          Installed Version:
-          <span class="version #connected-ver">N/A</span>
-        </div>
-
         <div class="version-label antenna-version-label">
-          Antenna Version:
+          Installed Version:
           <span class="version #system-ver">N/A</span>
         </div>
 
@@ -81,7 +76,10 @@
     <div class="install-btn #install-btn">
       <input type="file" id="fileToUpload" name="fileToUpload" class="upload-btn #upload-btn" />
     </div>
-    <div class="cta connected-label">Install Update</div>
+    <div class="cta connected-label">
+      <span class="not-up-to-date-label">Install Update</span>
+      <span class="up-to-date-label">Latest Version installed</span>
+    </div>
     <div class="cta not-connected-label">Not connected</div>
   </div>
 

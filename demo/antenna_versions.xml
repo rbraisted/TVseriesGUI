@@ -3,7 +3,7 @@
 	<message error="0" name="antenna_versions"/>
 	<system>TVRO</system>
 	<part>04-1234</part>
-	<current>102</current>
+	<current>041114</current>
 	<icm>Y</icm><!-- Y | N -->
 	<acu>
 		<model>TVRO-IPACU</model>
@@ -16,7 +16,7 @@
 		<model>TV5</model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
 		<part>04-1234</part>
 		<rev>A</rev>
-		<ver>1.00</ver>
+		<ver>040914</ver>
 		<sn>1.00987654321</sn>
 	</au>
 	<rf>
@@ -45,7 +45,7 @@
 	<sat_list>
 		<part>04-1234</part>
 		<rev>A</rev>
-		<ver>1.00</ver>
+		<ver>3.2</ver>
 	</sat_list>
 	<fpga>
 		<part>04-1234</part>
