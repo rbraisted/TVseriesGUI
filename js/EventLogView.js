@@ -72,11 +72,17 @@
       ).then(function(xmls) {
         var email = '';
         var antModel = $('au model', xmls[0]).text();
-        var serialNumber = $('au sn', xmls[0]).text();
+        var antSn = $('au sn', xmls[0]).text();
+        var hubSn = $('acu sn', xmls[0]).text();
         var dateTime = $('gps dt', xmls[1]).text();
-        var subject = [antModel, serialNumber, dateTime].join(' ');
+
+        var subject = 'TV-Hub: ' + antModel + ' ' + hubSn +
+          ' Antenna Unit S/N: ' + antSn +
+          ' Date/Time: ' + dateTime;
+
         var body = $('content', xmls[2]).text();
-        window.location = 'mailto:' + email + '?subject=' + subject + '?body=' + body;
+
+        window.location = 'mailto:' + email + '?subject=' + subject + '&?body=' + body;
       });
     });
 
