@@ -21,15 +21,20 @@
       });
     });
 
-    var uploadBtn = $('.\\#upload-btn', jQ).change(function() {
-      console.log("change!")
-      if (!jQ.hasClass('$connected')) {
-        return;
-      }
+    var clearInput = function() {
+      $('#fileToUpload').wrap('<form>').closest('form').get(0).reset();
+      $('#fileToUpload').unwrap();
+      $('#fileToUpload').change(onChange);
+    };
+
+    var onChange = function() {
+      if (!jQ.hasClass('$connected')) return;
 
       if (TVRO.shell) {
         window.location = 'tvro://updates/upload/'+update;
+
       } else {
+        console.log("starting upload...");
         $.ajaxFileUpload({
           url: 'xmlservices.php/set_config_file',
           secureuri: false,
@@ -38,24 +43,22 @@
           success: function(xml) {
             if (TVRO.debug) {
               console.log('~ SET_CONFIG_FILE');
-              console.log($('#fileToUpload').val());
               console.log($(xml).get(0));
             }
-            
+
+            clearInput();
+
             var filename = $('file_name', xml).text();
             var confirmed = filename ? confirm('Do you want to install this update?') : false;
             if (confirmed) {
               TVRO.installSoftware({
                 install: 'Y',
                 filename: filename
-              }).then(function() {
-                $('#fileToUpload').val('');
-                TVRO.reload();
-              });
+              }).then(TVRO.reload);
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            $('#fileToUpload').val('');
+            clearInput();
             if (TVRO.debug) {            
               console.log('\n~ ! ~');
               console.log(jqXHR);
@@ -66,7 +69,11 @@
           }
         });
       }
-    });
+    };
+
+    $('#fileToUpload').change(onChange);
+
+    // var input = $('#fileToUpload').change(onChange);
 
     return self = {
       setUpdate: function(arg) {
@@ -112,7 +119,6 @@
           var portalVersion = versions[1];
           jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
         });
-
       }
     };
   };
