@@ -17,14 +17,8 @@
       //  otherwise registration.php#/diy-vessel-info
       TVRO.getProductRegistration().then(function(xml) {
         var company = $('dealer company', xml).text();
-        var contact = $('dealer installer_name', xml).text();
-        var phone = $('dealer installer_phone', xml).text();
-        var email = $('dealer installer_email', xml).text();
-        if (company && contact && phone && email) {
-          window.location = '/wizard/registration.php#/installer-info';
-        } else {
-          window.location = '/wizard/registration.php#/diy-vessel-info';
-        }
+        if (company) window.location = '/wizard/registration.php#/installer-info';
+        else window.location = '/wizard/registration.php#/diy-vessel-info';
       });
     });
 

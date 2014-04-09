@@ -30,12 +30,18 @@
           var color = $('led_' + type + ' color', xml).text();
           var state = $('led_' + type + ' state', xml).text();
           var message = $('led_' + type + ' message', xml).text();
+          // var title = {
+          //   'power': 'Power: ',
+          //   'acu' : 'TV-Hub: ',
+          //   'antenna' : 'Antenna: '
+          // }[type] + message;
 
           $('.\\#' + type + '-status')
             .removeClass('$green $orange $red')
             .addClass('$' + color.toLowerCase())
             .removeClass('$on $off $flash')
             .addClass('$' + state.toLowerCase());
+            // .attr('title', title);
 
           $('.\\#' + type + '-status', statusJq)
             .text(message);

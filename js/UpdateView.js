@@ -22,6 +22,7 @@
     });
 
     var uploadBtn = $('.\\#upload-btn', jQ).change(function() {
+      console.log("change!")
       if (!jQ.hasClass('$connected')) {
         return;
       }
@@ -47,10 +48,14 @@
               TVRO.installSoftware({
                 install: 'Y',
                 filename: filename
-              }).then(TVRO.reload);
+              }).then(function() {
+                $('#fileToUpload').val('');
+                TVRO.reload();
+              });
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
+            $('#fileToUpload').val('');
             if (TVRO.debug) {            
               console.log('\n~ ! ~');
               console.log(jqXHR);
@@ -105,7 +110,6 @@
         Promise.all(getSystemVersion, getPortalVersion).then(function(versions) {
           var systemVersion = versions[0];
           var portalVersion = versions[1];
-          console.log(systemVersion, portalVersion);
           jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
         });
 

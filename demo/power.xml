@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message error="0" name="power"/>
-	<acu>
-		<input50v>48.0</input50v>
-		<input24v>24.0</input24v>
-		<five>4.8</five>
-		<three_three>3.3</three_three>
-		<output50v>48.0</output50v>
-		<output24v>24.0</output24v>
-	</acu>
-	<au>
-		<dc>48.0</dc>
-		<motor>32</motor>
-		<thirteen>13</thirteen>
-		<twelve>12</twelve>
-		<ten>10</ten>
-		<five>5</five>
-		<two_five>2.5</two_five>
-		<one_eight>1.8</one_eight>
-		<one_five>1.5</one_five>
-		<one_two>1.2</one_two>
-		<lnb>5</lnb>
-		<buc>25.3 VDC | off</buc>
-	</au>
+   <acu>
+    <inputsupplyv>15.0</inputsupplyv>
+    <input42v>43.0</input42v>
+    <input24v>24.0</input24v>
+    <eight>8.1</eight>
+    <five>4.8</five>
+    <three_three>3.3</three_three>
+    <output42v>43.0</output42v>
+    <output24v>24.0</output24v>
+    <temp_celsius>32.4</temp_celsius>
+  </acu>
+  <au>
+    <dc>48.0</dc>
+    <motor>32</motor>
+    <thirteen>13</thirteen> Note: V11 only
+    <twelve>12</twelve> Note: HD11 and V11 only
+    <ten>10</ten> Note: V7IPACU only
+    <five>5</five>
+    <two_five>2.5</two_five> Note: HD11 and V11 only
+    <one_eight>1.8</one_eight> Note: V7IPACU only
+    <one_five>1.5</one_five> Note: V7IPACU only
+    <one_two>1.2</one_two> Note: HD11 only
+    <lnb>5</lnb>
+  </au>
 </ipacu_response>

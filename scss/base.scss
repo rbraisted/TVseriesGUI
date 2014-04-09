@@ -77,6 +77,10 @@ $bright-grey: #bac7da;
 $light-grey: #4c5269;
 $dark-grey: #293147;
 
+@mixin text-shadow {
+  text-shadow: 0 1px #000;
+}
+
 //	base
 //	note that first things we do:
 //	1. border-box,
@@ -168,10 +172,12 @@ a {
     float: left;
 
     .status-light {
+      @include text-shadow;
       background-color: $light-grey;
-      font-size: $fine-font;
       display: inline-block;
+      font-size: $fine-font * 0.75;
       height: 22px;
+      line-height: 23px;
       margin: 7px 3px 4px 0;
       text-align: center;
       vertical-align: top;
@@ -352,10 +358,6 @@ a {
 	background-size: $w $h;
 	min-height: $w;
 	min-width: $h;
-}
-
-@mixin text-shadow {
-	text-shadow: 0 2px #000;
 }
 
 //	we rely on display: inline-block for this

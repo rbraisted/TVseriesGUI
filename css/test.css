@@ -57,10 +57,12 @@ a {
     width: 50px;
     float: left; }
     .header .status-btn .status-light {
+      text-shadow: 0 1px #000;
       background-color: #4c5269;
-      font-size: 11px;
       display: inline-block;
+      font-size: 8.25px;
       height: 22px;
+      line-height: 23px;
       margin: 7px 3px 4px 0;
       text-align: center;
       vertical-align: top;
@@ -715,7 +717,7 @@ a {
   padding: 4px 10px; }
 
 .toggle-btn {
-  text-shadow: 0 2px #000;
+  text-shadow: 0 1px #000;
   cursor: pointer;
   display: inline-block; }
   .toggle-btn .on, .toggle-btn .off {
@@ -733,7 +735,7 @@ a {
     width: 100%; }
 
 .block-btn {
-  text-shadow: 0 2px #000;
+  text-shadow: 0 1px #000;
   background-color: #4f7abd;
   cursor: pointer;
   display: inline-block;
@@ -970,7 +972,7 @@ html {
     .wizard-index .step.step-2 {
       padding-top: 22px; }
   .wizard-index .bullet {
-    text-shadow: 0 2px #000;
+    text-shadow: 0 1px #000;
     background-color: #4f7abd;
     border-radius: 100%;
     font-size: 21px;
