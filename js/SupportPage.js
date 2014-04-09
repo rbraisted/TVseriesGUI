@@ -75,21 +75,62 @@ $(function() {
 
   var emailBtn = $('.\\#email-support-btn').click(function() {
     var email = $(this).text();
+
+    //  see SystemInfoView.js and support.php
     Promise.all(
       TVRO.getAntennaVersions(),
-      TVRO.getAntennaStatus()
+      TVRO.getAutoswitchStatus(),
+      TVRO.getAntennaStatus(),
+      TVRO.getWebUIVersion()
     ).then(function(xmls) {
+      var hubSn = $('acu sn', xmls[0]).text();
+      var hubVer = $('acu ver', xmls[0]).text();
+      var satVer = $('sat_list ver', xmls[0]).text();
+      var gprsIp = $('gprs ip', xmls[0]).text();
+      var diseqcVer = $('diseqc ver', xmls[0]).text();
+      var ipautoswVer = $('ipautosw ver', xmls[0]).text();
       var antModel = $('au model', xmls[0]).text();
-      var serialNumber = $('au sn', xmls[0]).text();
-      var dateTime = $('gps dt', xmls[1]).text();
+      var antSn = $('au sn', xmls[0]).text();
+      var antVer = $('au ver', xmls[0]).text();
+      var rfVer = $('rf ver', xmls[0]).text();
+      var fpgaVer = $('fpga:first ver', xmls[0]).text(); //  fpga was coming back twice so i just added :first
+      var azVer = $('az_el ver', xmls[0]).text();
+      var skewVer = $('skew_xaz ver', xmls[0]).text();
+      var lnbName = $('lnb name', xmls[0]).text();
+      var lnbVer = $('lnb ver', xmls[0]).text();
 
-      var subject = [antModel,
-                     serialNumber,
-                     dateTime].join(' ');
+      var service = $('service', xmls[1]).text();
+      var subType = $('service_subtype', xmls[1]).text();
 
-      var body = ['Model: ' + antModel,
-                  'Serial #: ' + serialNumber,
-                  'Date/Time: ' + dateTime].join('\n');
+      var dateTime = $('gps dt', xmls[2]).text();
+
+      var webUIVersion = xmls[3];
+
+      var subject = 'TV-Hub: ' + antModel + ' ' + hubSn +
+        ' Antenna Unit S/N: ' + antSn +
+        ' Date/Time: ' + dateTime;
+
+      var body = 'TV-Hub' +
+        '\nS/N: ' + hubSn +
+        '\nDate/Time: ' + dateTime +
+        '\nVersion: ' + hubVer +
+        '\nWeb UI Version: ' + webUIVersion +
+        '\nSatellite Library Version: ' + satVer +
+        '\nSatellite Service: ' + service + ' ' + subType +
+        '\nSupport IP: ' + gprsIp +
+        '\nDiSEqC Version: ' + diseqcVer +
+        '\nIP Autoswitch Version: ' + ipautoswVer +
+        '\n' +
+        '\nAntenna Unit' +
+        '\n Model: ' + antModel +
+        '\n S/N: ' + antSn +
+        '\n Main Version: ' + antVer +
+        '\n RF Version: ' + rfVer +
+        '\n FPGA Version: ' + fpgaVer +
+        '\n AZ/EL Version: ' + azVer +
+        '\n SKEW Version: ' + skewVer +
+        '\n LNB Type: ' + lnbName +
+        '\n LNB Version: ' + lnbVer;
 
       window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + encode(body);
     });
