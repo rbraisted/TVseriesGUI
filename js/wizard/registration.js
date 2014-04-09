@@ -21,7 +21,7 @@
     });
 
     TVRO.getProductRegistration().then(function(xml) {
-      var vessel = $('dealer company', xml).text();
+      var vessel = $('product vessel_name', xml).text();
       var company = $('dealer company', xml).text();
       if (company) self.setValue('CDT'); //  if installer company set, we last chose CDT
       else if (vessel) self.setValue('DIY'); //  else if vessel name set, we last chose DIY
