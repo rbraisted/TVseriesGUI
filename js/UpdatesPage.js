@@ -24,12 +24,14 @@ $(function() {
       TVRO.getAntennaVersions().then(function(xml) {
         var connectedAnt = $('au model', xml).text();
         var connected = update === connectedAnt;
+        var connectedVersion = $('current:first', xml).text();
         var systemVersion = $('au ver', xml).text();
 
         if (antUpdate) {
           row.addClass('$antenna');
           row.toggle(techMode || connected);
           row.toggleClass('$connected', connected);
+          
           $('.\\#system-ver', row).text(systemVersion);
         } else {
           row.addClass('$sat-library');
@@ -69,14 +71,18 @@ $(function() {
       updateView.setUpdate(update);
       document.body.className = '/update';
     } else {
+      //  set sat lib as default view
       menuTableView.setValue('SatLibrary');
       updateView.setUpdate('SatLibrary');
+
+      //  set connected ant as view
       // TVRO.getAntennaVersions().then(function(xml) {
       //   var update = $('au model', xml).text();
       //   if (!update) update = 'SatLibrary';
       //   menuTableView.setValue(update);
       //   updateView.setUpdate(update);
       // });
+
       document.body.className = '';
     }
   });

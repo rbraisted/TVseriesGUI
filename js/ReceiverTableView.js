@@ -35,7 +35,7 @@
       });
 
       TVRO.getService().then(function(service) {
-        $('.\\#direct-tv', jQ).toggle(service === 'DIRECTV');
+        $('.\\#directv', jQ).toggle(service === 'DIRECTV');
         $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');
       });
     };

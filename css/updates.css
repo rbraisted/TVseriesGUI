@@ -849,9 +849,12 @@ a {
     font-size: 13px;
     margin-top: .5em;
     white-space: nowrap; }
-  .menu-table .antenna-version-label {
+  .menu-table .antenna-version-label,
+  .menu-table .connected-version-label {
     display: none; }
   .menu-table .\$connected .antenna-version-label {
+    display: block; }
+  .menu-table .\$antenna.\$connected .connected-version-label {
     display: block; }
   .menu-table .\$sat-library .antenna-version-label {
     display: block; }

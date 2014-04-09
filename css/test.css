@@ -1059,3 +1059,55 @@ body[class=''] .\#installer-id-view,
 @media screen and (min-width: 881px) {
   .\/coordinates .\#vessel-location-view {
     display: block; } }
+@media screen and (min-width: 881px) {
+  .service-provider .headline,
+  .local-channels .headline,
+  .directv .headline,
+  .dish-network .headline {
+    margin: 60px 0 30px; } }
+.service-provider .note,
+.local-channels .note,
+.directv .note,
+.dish-network .note {
+  text-align: center;
+  line-height: 1.6; }
+  @media screen and (max-width: 880px) {
+    .service-provider .note,
+    .local-channels .note,
+    .directv .note,
+    .dish-network .note {
+      padding: 30px 20px; } }
+  @media screen and (min-width: 881px) {
+    .service-provider .note,
+    .local-channels .note,
+    .directv .note,
+    .dish-network .note {
+      margin: 0 auto;
+      max-width: 680px;
+      padding: 30px 0; } }
+.service-provider .link,
+.local-channels .link,
+.directv .link,
+.dish-network .link {
+  line-height: 1.6;
+  color: #4f7abd;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-decoration: underline;
+  padding: 0 20px;
+  display: inline-block; }
+
+.local-channels,
+.dish-network {
+  text-align: center; }
+  .local-channels .clear-table,
+  .dish-network .clear-table {
+    text-align: left; }
+
+body[class=''] .\#service-provider-view,
+.\/local-channels .\#local-channels-view,
+.\/directv .\#directv-view,
+.\/dish-network .\#dish-network-view,
+.\/spinner .\#spinner-view {
+  display: block; }

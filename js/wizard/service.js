@@ -1,225 +1,173 @@
-"use strict";
+!function(TVRO) {
+  "use strict";
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+  var ServiceProviderView = function(jQ) {
+    var self = TVRO.TableView($('.\\#table-view', jQ))
+      .setValues([
+        'DIRECTV',
+        'DISH',
+        'OTHER'
+      ])
+      .onBuild(function(row, value) {
+        if (value === 'DIRECTV') $('.\\#value', row).text('DIRECTV');
+        if (value === 'DISH') $('.\\#value', row).text('DISH Network');
+        if (value === 'OTHER') $('.\\#value', row).text('Other');
+      })
+      .build();
 
-TVRO.ServicePage = function() {
-	var
-	webService = TVRO.WebService(),
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var value = self.getValue();
+      if (!value) alert('You must select an option to continue.');
 
-	serviceProviderView,
-	ServiceProviderView = function() {
-		var self = TVRO.Radio.apply({}, arguments);
+      else if (value === 'DISH') 
+        window.location.hash = '/dish-network';
 
-		$('[id ~= next-btn ]', self).click(function() {
-			var selectedValue = self.selectedValue();
-			if (!selectedValue) alert('You must select an option to continue.');
-			else if (selectedValue === 'DISH') $(document.body).setClass('at-dish-network-view');
-			else if (selectedValue === 'DIRECTV') {
-				$(document.body).setClass('at-spinner-view');
-				webService.request('set_autoswitch_service', {
-					enable: 'Y',
-					service: 'DIRECTV',
-					satellite_group: 'DIRECTV-USA'
-				}, function() {
-					$(document.body).setClass('at-local-channels-view');
-				});			
-			} else if (selectedValue === 'OTHER') {
-				webService.request('set_autoswitch_service', {
-					enable: 'Y',
-					service: 'OTHER'
-				});
-				window.location = '/wizard/satellites.php';
-			} else if (selectedValue === 'BELL') {
-				$(document.body).setClass('at-spinner-view');
-				webService.request('set_autoswitch_service', {
-					enable: 'Y',
-					service: 'BELL',
-					satellite_group: 'BELL'
-				}, function() {
-					window.location = '/wizard/system.php';
-				});
-			}
-		});
+      else if (value === 'DIRECTV')
+        TVRO.setAutoswitchService({
+          service: 'DIRECTV'
+        }).then(function() {
+          window.location.hash = '/local-channels';
+        });
 
-		$('[id ~= prev-btn ]', self).click(function() {
-			window.location = '/wizard/gps.php';
-		});
+      else if (value === 'OTHER')
+        TVRO.setAutoswitchService({
+          service: 'OTHER'
+        }).then(function() {
+          window.location = '/wizard/system.php';
+        });
+    });
 
-		return $.extend({}, self, {});
-	},
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location = '/wizard/gps.php#/heading-source';
+    });
 
-	localChannelsView,
-	LocalChannelsView = function() {
-		var self = $.apply($, arguments);
+    TVRO.getService().then(function(service) {
+      console.log(service);
+      self.setValue(service);
+    });
 
-		$('[id ~= install-btn ]', self).click(function() {
-			$(document.body).setClass('at-spinner-view');
-			webService.request('select_satellite', {
-				antSatID: '119WD'
-			}, function() {
-				$(document.body).setClass('at-directv-view');
-			});
-		});
+    return self;
+  };
 
-		$('[id ~= next-btn ]', self).click(function() {
-			$(document.body).setClass('at-directv-view');
-		});
-		
-		$('[id ~= prev-btn ]', self).click(function() {
-			$(document.body).setClass('at-service-provider-view');
-		});
 
-		return $.extend({}, self, {});
-	},
 
-	directvView,
-	DirectvView = function() {
-		var self = TVRO.Radio.apply({}, arguments),
-			triAmericas = false;
+  var LocalChannelsView = function(jQ) {
+    var self;
 
-		webService.request('antenna_versions', function(response) {
-			triAmericas = $('lnb name', response).text() === 'Tri-Americas';
-		});
+    var installBtn = $('.\\#install-btn', jQ).click(function() {
+      TVRO.setInstalledSat({
+        antSatID: '119WD'
+      }).then(function() {
+        window.location.hash = '/directv';
+      });
+    });
 
-		$('[id ~= next-btn ]', self).click(function() {
-			var selectedValue = self.selectedValue();
-			if (!selectedValue) alert('You must select an option to continue.');
-			else if (selectedValue === 'AUTOMATIC') window.location = '/wizard/autoswitch.php';
-			else if (selectedValue === 'SINGLE') {
-				webService.request('select_satellite', { antSatID: '101W' });
-				if (triAmericas) $(document.body).setClass('at-service-subtype-view');
-				else window.location = '/wizard/end.php';
-			} else if (selectedValue === 'MANUAL') {
-				webService.request('set_autoswitch_service', {
-					enable: 'N',
-					service: 'DIRECTV',
-					satellite_group: 'DIRECTV-USA'
-				});
-				if (triAmericas) $(document.body).setClass('at-service-subtype-view');
-				else window.location = '/wizard/end.php';
-			}
-		});
-		
-		$('[id ~= prev-btn ]', self).click(function() {
-			$(document.body).setClass('at-local-channels-view');
-		});
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      window.location.hash = '/directv';
+    });
+    
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location.hash = '';
+    });
 
-		return $.extend({}, self, {});
-	},
+    return self;
+  };
 
-	serviceSubtypeView,
-	ServiceSubtypeView = function() {
-		var	self = $.apply($, arguments),
-			radio = TVRO.Radio(self);
 
-		$('[id ~= next-btn ]', self).click(function() {
-			var selectedValue = self.selectedValue();
-			if (!selectedValue) alert('You must select an option to continue.');
-			else {
-				webService.request('set_autoswitch_service', {
-					service_subtype: selectedValue
-				});
-				window.location = '/wizard/end.php';
-			}
-		});
 
-		$('[id ~= prev-btn ]', self).click(function() {
-			$(document.body).setClass('at-directv-view');
-		});
+  var DirectvView = function(jQ) {
+    var self;
+    return self;
+  };
 
-		return $.extend({}, self, {});
-	},
 
-	dishNetworkView,
-	DishNetworkView = function() {
-		var	self = $.apply($, arguments),
-			groupTable = TVRO.Table('#group', self),
-			singleTable = TVRO.Table('#single', self),
-			groupRadio = TVRO.Radio('#group', self),
-			singleRadio = TVRO.Radio('#single', self);
 
-		//	make a webService call here to get the single sats
-		//	and sat groups and then populate the tables
+  var DishNetworkView = function(jQ) {
+    var self;
 
-		singleRadio.hide();
+    var onBuild = function(row, value) {
+      $('.\\#value', row).text(value);
+    };
 
-		groupRadio.click(function(value) {
-			if (value === 'OTHER') {
-				groupRadio.hide();
-				groupRadio.setSelectedValue();
-				singleRadio.setSelectedValue();
-				singleRadio.show();
-			}
-		});
+    var onClick = function(value) {
+      if (value === 'Other') {
+        satsTableView.setValue('');
+        groupsTableView.setValue('');
+        satsView.toggle();
+        groupsView.toggle();        
+      }
+    };
 
-		singleRadio.click(function(value) {
-			if (value === 'OTHER') {
-				singleRadio.hide();
-				singleRadio.setSelectedValue();
-				groupRadio.setSelectedValue();
-				groupRadio.show();
-			}
-		});
+    var groupsView = $('.\\#groups-view', jQ).show();
+    var groupsTableView = TVRO.TableView($('.\\#table-view', groupsView))
+      .setValues([
+        'WESTERN ARC',
+        'LEGACY ARC',
+        'DUAL ARC',
+        '72-GROUP',
+        'Other'
+      ])
+      .onClick(onClick)
+      .onBuild(onBuild)
+      .build();
 
-		$('[id ~= next-btn ]', self).click(function() {
-			var singleValue = singleRadio.selectedValue(),
-				groupValue = groupRadio.selectedValue();
-			if (singleValue) {
-				$(document.body).setClass('at-spinner-view');
-				webService.request('select_satellite', {
-					antSatID: singleValue
-				}, function() {
-					window.location = '/wizard/system.php';
-				});
-			} else if (groupValue) {
-				$(document.body).setClass('at-spinner-view');
-				webService.request('set_autoswitch_service', {
-					satellite_group: groupValue
-				}, function() {
-					window.location = '/wizard/system.php';
-				});
-			} else {
-				alert('You must select an option to continue.');
-			}
-		});
-		
-		$('[id ~= prev-btn ]', self).click(function() {
-			$(document.body).setClass('at-service-provider-view');
-		});
+    var satsView = $('.\\#sats-view', jQ).hide();
+    var satsTableView = TVRO.TableView($('.\\#table-view', satsView))
+      .onClick(onClick)
+      .onBuild(onBuild)
+      .build();
 
-		return $.extend({}, self, {});
-	},
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (groupsView.is(':visible')) {
 
-	spinnerView,
-	SpinnerView = function() {
-		var self = $.apply($, arguments),
-			spinner = $('#spinner', self),
-			rotation = 0;
+      } else {
 
-		setInterval(function() {
-			rotation -= 45;
-			spinner.css({
-				'transform': 'rotate('+rotation+'deg)',
-				'-moz-transform': 'rotate('+rotation+'deg)',
-				'-ms-transform': 'rotate('+rotation+'deg)',
-				'-webkit-transform': 'rotate('+rotation+'deg)'
-			});
-		}, 125);
+      }
+    });
+    
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      if (groupsView.is(':visible')) {
+        window.location.hash = '';
+      } else {
+        groupsView.show();
+        satsView.hide();
+      }
+    });
 
-		return $.extend({}, self, {});
-	};
+    return self;
+  };
 
-	return {
-		init: function() {
-			serviceProviderView = ServiceProviderView('#service-provider-view');
-			localChannelsView = LocalChannelsView('#local-channels-view');
-			directvView = DirectvView('#directv-view');
-			dishNetworkView = DishNetworkView('#dish-network-view');
-			spinnerView = SpinnerView('#spinner-view')
-		}
-	}
-};
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
-TVRO.page = TVRO.ServicePage();
+  var SpinnerView = function(jQ) {
+    var self;
+    return self;
+  };
+
+
+  TVRO.ServiceProviderView = ServiceProviderView;
+  TVRO.LocalChannelsView = LocalChannelsView;
+  TVRO.DirectvView = DirectvView;
+  TVRO.DishNetworkView = DishNetworkView;
+  TVRO.SpinnerView = SpinnerView;
+
+}(window.TVRO);
+
+
+$(function() {
+  var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
+  var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
+  var dishNetworkView = TVRO.DishNetworkView($('.\\#dish-network-view'));
+  // var cdtVesselInfoView = TVRO.CdtVesselInfoView($('.\\#cdt-vessel-info-view'));
+  // var diyVesselInfoView = TVRO.DiyVesselInfoView($('.\\#diy-vessel-info-view'));
+  // var installerInfoView = TVRO.InstallerInfoView($('.\\#installer-info-view'));
+
+  TVRO.onHashChange(function(hash) {
+    // if (hash === '/local-channels') installerIdView.setValue('CDT');
+    // else if (hash === '/diy-vessel-info') installerIdView.setValue('DIY');
+    // else if (hash === '/installer-info') installerIdView.setValue('CDT');
+    document.body.className = hash;
+  });
+
+  TVRO.reload();
+});

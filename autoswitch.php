@@ -75,7 +75,7 @@
 		</div>
 	</div>
 
-	<div class="copy #direct-tv">
+	<div class="copy #directv">
 		The following receivers have been set up for automatic satellite
 		switching. The master receiver controls satellite selection. You may
 		choose the master by selecting it below. To add a receiver to the 
@@ -126,7 +126,7 @@
     <div class="view-head">
       <span class="autoswitch-icon"></span>
       <span class="#ip-autoswitch">IP Autoswitch</span>
-      <span class="#direct-tv">Receiver</span>
+      <span class="#directv">Receiver</span>
       <div class="back-btn #back-btn"></div>
     </div>
 
@@ -153,7 +153,7 @@
     <div class="view-head">
       <span class="autoswitch-icon"></span>
       <span class="#ip-autoswitch">IP Autoswitch</span>
-      <span class="#direct-tv">Receiver</span>
+      <span class="#directv">Receiver</span>
       <div class="back-btn #back-btn"></div>
     </div>
 

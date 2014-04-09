@@ -12,18 +12,23 @@
         <div class="update-label #update-name"></div>
         <div class="connected-label">CONNECTED</div>
 
+        <div class="version-label connected-version-label">
+          Installed Version:
+          <span class="version #connected-ver">N/A</span>
+        </div>
+
         <div class="version-label antenna-version-label">
-          Antenna S/W Version:
+          Antenna Version:
           <span class="version #system-ver">N/A</span>
         </div>
 
         <div class="version-label portal-version-label">
-          Latest Available S/W Version:
+          Latest Available Version:
           <span class="version #portal-ver">N/A</span>
         </div>
 
         <div class="version-label device-version-label">
-          Downloaded S/W Version:
+          Downloaded Version:
           <span class="version #device-ver">N/A</span>
         </div>
       </div>

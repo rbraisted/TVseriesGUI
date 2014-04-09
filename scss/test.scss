@@ -268,6 +268,7 @@ body[class=''] .\#installer-id-view,
   display: block;
 }
 
+//  gps
 ////////////////////////////////////////////////////////////////////////////////
 
 .vessel-location,
@@ -317,4 +318,59 @@ body[class=''] .\#installer-id-view,
   .\/coordinates .\#vessel-location-view {
     display: block;
   }
+}
+
+//  service
+////////////////////////////////////////////////////////////////////////////////
+
+.service-provider,
+.local-channels,
+.directv,
+.dish-network {
+  .headline {
+    @include breakpoint($desktop) { margin: 60px 0 30px; }
+  }
+
+  .note {
+    text-align: center;
+    line-height: 1.6;
+
+    @include breakpoint($mobile) {
+      padding: 30px 20px;
+    }
+
+    @include breakpoint($desktop) {
+      margin: 0 auto;
+      max-width: 680px;
+      padding: 30px 0;
+    }
+  }
+
+  .link {
+    line-height: 1.6;
+    color: $bright-blue;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+    padding: 0 20px;
+    display: inline-block;
+  }
+}
+
+.local-channels,
+.dish-network {
+  text-align: center;
+
+  .clear-table {
+    text-align: left;
+  }
+}
+
+body[class=''] .\#service-provider-view,
+.\/local-channels .\#local-channels-view,
+.\/directv .\#directv-view,
+.\/dish-network .\#dish-network-view,
+.\/spinner .\#spinner-view {
+  display: block;
 }

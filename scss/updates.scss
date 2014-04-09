@@ -46,11 +46,16 @@
     white-space: nowrap;
   }
 
-  .antenna-version-label {
+  .antenna-version-label,
+  .connected-version-label {
     display: none;
   }
 
   .\$connected .antenna-version-label {
+    display: block;
+  }
+
+  .\$antenna.\$connected .connected-version-label {
     display: block;
   }
 

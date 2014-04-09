@@ -17,7 +17,7 @@
 
 	<!-- DISH and DISEQC services -->
 	
-	<service>BELL</service>
+	<service>DISH</service>
 	<service_subtype></service_subtype>
 	<master>
 		<sn>TVHUB</sn>
