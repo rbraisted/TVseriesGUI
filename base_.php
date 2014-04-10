@@ -43,8 +43,8 @@
 
 <div class="header #header-view">
   <div class="status-btn #status-btn">
-    <div title="Antenna" class="status-light antenna-status #antenna-status">A</div><!--
- --><div title="TV-Hub" class="status-light acu-status #acu-status">H</div><!--
+    <div title="TV-Hub" class="status-light acu-status #acu-status">H</div><!--
+ --><div title="Antenna" class="status-light antenna-status #antenna-status">A</div><!--
  --><div title="Power" class="status-light power-status #power-status">P</div>
     Status
   </div>
