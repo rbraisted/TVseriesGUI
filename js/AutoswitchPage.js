@@ -1,5 +1,4 @@
 $(function() {
-  TVRO.debug = 2;
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
@@ -18,10 +17,11 @@ $(function() {
   var receiverTableView = TVRO.ReceiverTableView(
     $('.\\#receiver-table-view')
       .find('.\\#edit-btn')
-        .click(function() {
+        .click(function(event) {
+          event.stopPropagation();
           var index = $('.\\#receiver-table-view .\\#edit-btn').index(this);
           var receiver = encode(receiverTableView.getValues()[index].id);
-          window.location.hash = '/' + receiver;
+          window.location.hash = '/' + receiver + '/edit';
         })
         .end()
   ).onClick(function(receiver) {
@@ -104,6 +104,7 @@ $(function() {
 
     } else if (hash.match(/\/.*\/edit/)) {
       receiverEditView.setReceiver({ id: split[0] });
+      receiverInfoView.setReceiver({ id: split[0] });
       document.body.className = '/receiver/edit';
 
     } else if (hash.match(/\/new/)) {

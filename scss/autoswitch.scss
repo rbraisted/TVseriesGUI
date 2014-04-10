@@ -183,11 +183,18 @@
     //  only appears on mobile
     padding: 20px;
 
-
     .edit-btn,
-    .select-btn {
+    .select-btn,
+    .cancel-btn,
+    .save-btn {
       @include split(2, $btn-tray-padding, '.block-btn');
       margin-bottom: 0;
+    }
+
+    .remove-btn {
+      width: 100%;
+      margin-top: 30px;
+      background-color: $red;
     }
 
     .label {
@@ -198,6 +205,12 @@
 
     .value {
       margin: 0 0 30px 10px;
+    }
+
+    .input {
+      margin-bottom: 25px;
+      margin-left: 0;
+      width: 100%;
     }
 
     .status-icon {

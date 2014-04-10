@@ -1053,8 +1053,12 @@ a {
     padding: 20px; }
     .receiver-info .edit-btn,
     .receiver-info .select-btn,
+    .receiver-info .cancel-btn,
+    .receiver-info .save-btn,
     .receiver-edit .edit-btn,
-    .receiver-edit .select-btn {
+    .receiver-edit .select-btn,
+    .receiver-edit .cancel-btn,
+    .receiver-edit .save-btn {
       display: inline-block;
       width: calc(50% - 5px);
       margin-bottom: 10px;
@@ -1062,14 +1066,27 @@ a {
       margin-bottom: 0; }
       .receiver-info .edit-btn.first,
       .receiver-info .select-btn.first,
+      .receiver-info .cancel-btn.first,
+      .receiver-info .save-btn.first,
       .receiver-edit .edit-btn.first,
-      .receiver-edit .select-btn.first {
+      .receiver-edit .select-btn.first,
+      .receiver-edit .cancel-btn.first,
+      .receiver-edit .save-btn.first {
         margin-left: 0; }
       .receiver-info .edit-btn.first + .block-btn + .block-btn,
       .receiver-info .select-btn.first + .block-btn + .block-btn,
+      .receiver-info .cancel-btn.first + .block-btn + .block-btn,
+      .receiver-info .save-btn.first + .block-btn + .block-btn,
       .receiver-edit .edit-btn.first + .block-btn + .block-btn,
-      .receiver-edit .select-btn.first + .block-btn + .block-btn {
+      .receiver-edit .select-btn.first + .block-btn + .block-btn,
+      .receiver-edit .cancel-btn.first + .block-btn + .block-btn,
+      .receiver-edit .save-btn.first + .block-btn + .block-btn {
         margin-left: 0; }
+    .receiver-info .remove-btn,
+    .receiver-edit .remove-btn {
+      width: 100%;
+      margin-top: 30px;
+      background-color: #c51313; }
     .receiver-info .label,
     .receiver-edit .label {
       color: #bac7da;
@@ -1078,6 +1095,12 @@ a {
     .receiver-info .value,
     .receiver-edit .value {
       margin: 0 0 30px 10px; }
+    .receiver-info .input, .receiver-info .dropdown-btn,
+    .receiver-edit .input,
+    .receiver-edit .dropdown-btn {
+      margin-bottom: 25px;
+      margin-left: 0;
+      width: 100%; }
     .receiver-info .status-icon,
     .receiver-edit .status-icon {
       background-image: url(/images/red-dot-icon.svg);
