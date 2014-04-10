@@ -47,8 +47,8 @@ $(function() {
     $('.\\#receiver-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var receiver = encode(receiverEditView.getReceiver() ? '/' + receiverEditView.getReceiver().id : '');
-          window.location.hash = receiver;
+          var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
+          window.location.hash = (receiver ? '/' + receiver : '');
         })
         .end()
   );

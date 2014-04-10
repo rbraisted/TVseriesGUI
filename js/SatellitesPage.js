@@ -143,8 +143,8 @@ $(function() {
     $('.\\#group-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var group = encode(groupEditView.getGroup() ? '/' + groupEditView.getGroup().name : '');
-          window.location.hash = '/groups' + group;
+          var group = encode(groupEditView.getGroup() ? groupEditView.getGroup().name : '');
+          window.location.hash = '/groups' + (group ? '/' + group : '');
         })
         .end()
       .find('.\\#sat-view')
