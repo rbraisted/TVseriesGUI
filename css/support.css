@@ -865,6 +865,10 @@ a {
   padding-left: 10px; }
 .system-info .sensor {
   margin-bottom: 30px; }
+.system-info .power-label {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px; }
 
 .operational-log p,
 .event-log p,

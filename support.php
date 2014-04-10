@@ -50,6 +50,17 @@
     <span class="label">Support IP</span><span class="value #gprs-ip"></span>
     <span class="label">DiSEqC Version</span><span class="value #diseqc-ver"></span>
     <span class="label">IP Autoswitch Version</span><span class="value #ipautosw-ver"></span>
+    <span class="label">Web UI Version</span><span class="value #webui-ver"></span>
+    <div class="label power-label">TV-Hub Power</div>
+    <span class="label">Input Supply Voltage</span><span class="value #hub-inputsupplyv"></span>
+    <span class="label">Input 42 Voltage</span><span class="value #hub-input42v"></span>
+    <span class="label">Input 24 Voltage</span><span class="value #hub-input24v"></span>
+    <span class="label">Eight</span><span class="value #hub-eight"></span>
+    <span class="label">Five</span><span class="value #hub-five"></span>
+    <span class="label">Three Three</span><span class="value #hub-three-three"></span>
+    <span class="label">Output 42 Voltage</span><span class="value #hub-output42v"></span>
+    <span class="label">Output 24 Voltage</span><span class="value #hub-output24v"></span>
+    <span class="label">Temperature (Celsius)</span><span class="value #hub-temp-celsius"></span>
   </div>
   
   <div class="antenna-unit">
@@ -63,6 +74,12 @@
     <span class="label">SKEW Version</span><span class="value #skew-ver"></span>
     <span class="label">LNB Type</span><span class="value #lnb-name"></span>
     <span class="label">LNB Version</span><span class="value #lnb-ver"></span>
+    <div class="label power-label">Antenna Power</div>
+    <span class="label">DC</span><span class="value #ant-dc"></span>
+    <span class="label">Motor</span><span class="value #ant-motor"></span>
+    <span class="label">Eight</span><span class="value #ant-eight"></span>
+    <span class="label">Five</span><span class="value #ant-five"></span>
+    <span class="label">LNB</span><span class="value #ant-lnb"></span>
   </div>  
 </div>
 

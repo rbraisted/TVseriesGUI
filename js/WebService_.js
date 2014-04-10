@@ -223,7 +223,9 @@
 
 	TVRO.getHeadingConfig = get('get_heading_config');
 
-	TVRO.reboot = set('reboot');
+  TVRO.reboot = set('reboot');
+
+  TVRO.getPower = get('power');
 
 	TVRO.getLnbList = get('get_lnb_list');
 
