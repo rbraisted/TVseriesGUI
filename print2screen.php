@@ -33,6 +33,15 @@
 
 </head>
 <body onunload="pageClosing()" onload="pageScroll()">
+  <style type="text/css">
+    body {
+      color: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: lighter;
+      line-height: 1.4;
+    }
+  </style>
 	<form name="myTelnet" method="POST" action="#"> 
         <input type="hidden" name="exitingPage" />
         <div id="tnet" style='height:96%; width:98%; position:absolute' >
