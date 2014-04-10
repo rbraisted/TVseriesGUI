@@ -76,61 +76,34 @@ $(function() {
   var emailBtn = $('.\\#email-support-btn').click(function() {
     var email = $(this).text();
 
-    //  see SystemInfoView.js and support.php
-    Promise.all(
-      TVRO.getAntennaVersions(),
-      TVRO.getAutoswitchStatus(),
-      TVRO.getAntennaStatus(),
-      TVRO.getWebUIVersion()
-    ).then(function(xmls) {
-      var hubSn = $('acu sn', xmls[0]).text();
-      var hubVer = $('acu ver', xmls[0]).text();
-      var satVer = $('sat_list ver', xmls[0]).text();
-      var gprsIp = $('gprs ip', xmls[0]).text();
-      var diseqcVer = $('diseqc ver', xmls[0]).text();
-      var ipautoswVer = $('ipautosw ver', xmls[0]).text();
-      var antModel = $('au model', xmls[0]).text();
-      var antSn = $('au sn', xmls[0]).text();
-      var antVer = $('au ver', xmls[0]).text();
-      var rfVer = $('rf ver', xmls[0]).text();
-      var fpgaVer = $('fpga:first ver', xmls[0]).text(); //  fpga was coming back twice so i just added :first
-      var azVer = $('az_el ver', xmls[0]).text();
-      var skewVer = $('skew_xaz ver', xmls[0]).text();
-      var lnbName = $('lnb name', xmls[0]).text();
-      var lnbVer = $('lnb ver', xmls[0]).text();
+    TVRO.getSystemInfo().then(function(systemInfo) {
+      var subject =
+        'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
+        ' Antenna Unit S/N: ' + systemInfo.antSn +
+        ' Date/Time: ' + systemInfo.dateTime;
 
-      var service = $('service', xmls[1]).text();
-      var subType = $('service_subtype', xmls[1]).text();
-
-      var dateTime = $('gps dt', xmls[2]).text();
-
-      var webUIVersion = xmls[3];
-
-      var subject = 'TV-Hub: ' + antModel + ' ' + hubSn +
-        ' Antenna Unit S/N: ' + antSn +
-        ' Date/Time: ' + dateTime;
-
-      var body = 'TV-Hub' +
-        '\nS/N: ' + hubSn +
-        '\nDate/Time: ' + dateTime +
-        '\nVersion: ' + hubVer +
-        '\nWeb UI Version: ' + webUIVersion +
-        '\nSatellite Library Version: ' + satVer +
-        '\nSatellite Service: ' + service + ' ' + subType +
-        '\nSupport IP: ' + gprsIp +
-        '\nDiSEqC Version: ' + diseqcVer +
-        '\nIP Autoswitch Version: ' + ipautoswVer +
+      var body =
+        'TV-Hub' +
+        '\nS/N: ' + systemInfo.hubSn +
+        '\nDate/Time: ' + systemInfo.dateTime +
+        '\nVersion: ' + systemInfo.hubVer +
+        '\nWeb UI Version: ' + systemInfo.webUIVersion +
+        '\nSatellite Library Version: ' + systemInfo.satVer +
+        '\nSatellite Service: ' + systemInfo.service +
+        '\nSupport IP: ' + systemInfo.gprsIp +
+        '\nDiSEqC Version: ' + systemInfo.diseqcVer +
+        '\nIP Autoswitch Version: ' + systemInfo.ipautoswVer +
         '\n' +
         '\nAntenna Unit' +
-        '\n Model: ' + antModel +
-        '\n S/N: ' + antSn +
-        '\n Main Version: ' + antVer +
-        '\n RF Version: ' + rfVer +
-        '\n FPGA Version: ' + fpgaVer +
-        '\n AZ/EL Version: ' + azVer +
-        '\n SKEW Version: ' + skewVer +
-        '\n LNB Type: ' + lnbName +
-        '\n LNB Version: ' + lnbVer;
+        '\n Model: ' + systemInfo.antModel +
+        '\n S/N: ' + systemInfo.antSn +
+        '\n Main Version: ' + systemInfo.antVer +
+        '\n RF Version: ' + systemInfo.rfVer +
+        '\n FPGA Version: ' + systemInfo.fpgaVer +
+        '\n AZ/EL Version: ' + systemInfo.azVer +
+        '\n SKEW Version: ' + systemInfo.skewVer +
+        '\n LNB Type: ' + systemInfo.lnbName +
+        '\n LNB Version: ' + systemInfo.lnbVer;
 
       window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + encode(body);
     });

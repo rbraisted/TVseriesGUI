@@ -283,4 +283,34 @@
     });    
   };
 
+  TVRO.getSystemInfo = function() {
+    return Promise.all(
+      TVRO.getAntennaVersions(),
+      TVRO.getAutoswitchStatus(),
+      TVRO.getAntennaStatus(),
+      TVRO.getWebUIVersion()
+    ).then(function(xmls) {
+      var systemInfo = {};
+      systemInfo.hubSn = $('acu sn', xmls[0]).text();
+      systemInfo.hubVer = $('acu ver', xmls[0]).text();
+      systemInfo.satVer = $('sat_list ver', xmls[0]).text();
+      systemInfo.gprsIp = $('gprs ip', xmls[0]).text();
+      systemInfo.diseqcVer = $('diseqc ver', xmls[0]).text();
+      systemInfo.ipautoswVer = $('ipautosw ver', xmls[0]).text();
+      systemInfo.antModel = $('au model', xmls[0]).text();
+      systemInfo.antSn = $('au sn', xmls[0]).text();
+      systemInfo.antVer = $('au ver', xmls[0]).text();
+      systemInfo.rfVer = $('rf ver', xmls[0]).text();
+      systemInfo.fpgaVer = $('fpga:first ver', xmls[0]).text(); //  fpga was coming back twice so i just added :first
+      systemInfo.azVer = $('az_el ver', xmls[0]).text();
+      systemInfo.skewVer = $('skew_xaz ver', xmls[0]).text();
+      systemInfo.lnbName = $('lnb name', xmls[0]).text();
+      systemInfo.lnbVer = $('lnb ver', xmls[0]).text();
+      systemInfo.service = $('service', xmls[1]).text() + ' ' + $('service_subtype', xmls[1]).text();
+      systemInfo.dateTime = $('gps dt', xmls[2]).text();
+      systemInfo.webUIVer = xmls[3];
+      return systemInfo;
+    });
+  };
+
 }(window.TVRO);

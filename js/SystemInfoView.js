@@ -5,55 +5,25 @@
 		var self;
 
     var reload = function() {
-      TVRO.getAntennaVersions().then(function(xml) {
-        var hubSn = $('acu sn', xml).text();
-        var hubVer = $('acu ver', xml).text();
-        var satVer = $('sat_list ver', xml).text();
-        var gprsIp = $('gprs ip', xml).text();
-        var diseqcVer = $('diseqc ver', xml).text();
-        var ipautoswVer = $('ipautosw ver', xml).text();
-
-        var antModel = $('au model', xml).text();
-        var antSn = $('au sn', xml).text();
-        var antVer = $('au ver', xml).text();
-        var rfVer = $('rf ver', xml).text();
-        var fpgaVer = $('fpga:first ver', xml).text(); //  fpga was coming back twice so i just added :first
-        var azVer = $('az_el ver', xml).text();
-        var skewVer = $('skew_xaz ver', xml).text();
-        var lnbName = $('lnb name', xml).text();
-        var lnbVer = $('lnb ver', xml).text();
-
-        $('.\\#hub-sn', jQ).text(hubSn);
-        $('.\\#hub-ver', jQ).text(hubVer);
-        $('.\\#sat-ver', jQ).text(satVer);
-        $('.\\#gprs-ip', jQ).text(gprsIp);
-        $('.\\#diseqc-ver', jQ).text(diseqcVer);
-        $('.\\#ipautosw-ver', jQ).text(ipautoswVer);
-
-        $('.\\#ant-model', jQ).text(antModel);
-        $('.\\#ant-sn', jQ).text(antSn);
-        $('.\\#ant-ver', jQ).text(antVer);
-        $('.\\#rf-ver', jQ).text(rfVer);
-        $('.\\#fpga-ver', jQ).text(fpgaVer);
-        $('.\\#az-ver', jQ).text(azVer);
-        $('.\\#skew-ver', jQ).text(skewVer);
-        $('.\\#lnb-name', jQ).text(lnbName);
-        $('.\\#lnb-ver', jQ).text(lnbVer);
-      })
-
-      TVRO.getAutoswitchStatus().then(function(xml) {
-        var service = $('service', xml).text();
-        var subType = $('service_subtype', xml).text();
-        $('.\\#sat-service', jQ).text(service + ' ' + subType);
-      });
-      
-      TVRO.getAntennaStatus().then(function(xml) {
-        var dateTime = $('gps dt', xml).text();
-        $('.\\#date-time', jQ).text(dateTime);
-      });
-      
-      TVRO.getWebUIVersion().then(function(txt) {
-        $('.\\#webui-ver', jQ).text(txt);
+      TVRO.getSystemInfo().then(function(systemInfo) {
+        $('.\\#hub-sn', jQ).text(systemInfo.hubSn);
+        $('.\\#hub-ver', jQ).text(systemInfo.hubVer);
+        $('.\\#sat-ver', jQ).text(systemInfo.satVer);
+        $('.\\#gprs-ip', jQ).text(systemInfo.gprsIp);
+        $('.\\#diseqc-ver', jQ).text(systemInfo.diseqcVer);
+        $('.\\#ipautosw-ver', jQ).text(systemInfo.ipautoswVer);
+        $('.\\#ant-model', jQ).text(systemInfo.antModel);
+        $('.\\#ant-sn', jQ).text(systemInfo.antSn);
+        $('.\\#ant-ver', jQ).text(systemInfo.antVer);
+        $('.\\#rf-ver', jQ).text(systemInfo.rfVer);
+        $('.\\#fpga-ver', jQ).text(systemInfo.fpgaVer);
+        $('.\\#az-ver', jQ).text(systemInfo.azVer);
+        $('.\\#skew-ver', jQ).text(systemInfo.skewVer);
+        $('.\\#lnb-name', jQ).text(systemInfo.lnbName);
+        $('.\\#lnb-ver', jQ).text(systemInfo.lnbVer);
+        $('.\\#sat-service', jQ).text(systemInfo.service);
+        $('.\\#date-time', jQ).text(systemInfo.dateTime);
+        $('.\\#webui-ver', jQ).text(systemInfo.webUIVer);
       });
     };
 
