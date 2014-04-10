@@ -49,6 +49,10 @@
             clearInput();
 
             var filename = $('file_name', xml).text();
+
+            console.log('filename');
+            console.log(filename);
+
             var confirmed = filename ? confirm('Do you want to install this update?') : false;
             if (confirmed) {
               TVRO.installSoftware({

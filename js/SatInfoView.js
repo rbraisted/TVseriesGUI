@@ -34,6 +34,7 @@
     var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
       .onClick(function(isFav) {
         TVRO.setSatelliteIdentity({
+          listID: sat.listID,
           antSatID: sat.antSatID,
           favorite: isFav ? 'TRUE' : 'FALSE'
         });

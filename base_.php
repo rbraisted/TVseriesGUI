@@ -12,7 +12,7 @@
     <meta http-equiv="pragma" content="no-cache" />
 
     <!-- for codekit, since we must include css in head or codekit live reload doesnt work -->
-    <? if ($wiz): ?>
+    <? if (isset($wiz)): ?>
       <link type="text/css" rel="stylesheet" href="/css/test.css">
     <? else: ?>
       <link type="text/css" rel="stylesheet" href="/css/<?=basename($_SERVER['SCRIPT_FILENAME'], '.php')?>.css">

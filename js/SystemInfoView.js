@@ -6,24 +6,24 @@
 
     var reload = function() {
       TVRO.getSystemInfo().then(function(systemInfo) {
-        $('.\\#hub-sn', jQ).text(systemInfo.hubSn);
-        $('.\\#hub-ver', jQ).text(systemInfo.hubVer);
-        $('.\\#sat-ver', jQ).text(systemInfo.satVer);
-        $('.\\#gprs-ip', jQ).text(systemInfo.gprsIp);
-        $('.\\#diseqc-ver', jQ).text(systemInfo.diseqcVer);
-        $('.\\#ipautosw-ver', jQ).text(systemInfo.ipautoswVer);
-        $('.\\#ant-model', jQ).text(systemInfo.antModel);
-        $('.\\#ant-sn', jQ).text(systemInfo.antSn);
-        $('.\\#ant-ver', jQ).text(systemInfo.antVer);
-        $('.\\#rf-ver', jQ).text(systemInfo.rfVer);
-        $('.\\#fpga-ver', jQ).text(systemInfo.fpgaVer);
-        $('.\\#az-ver', jQ).text(systemInfo.azVer);
-        $('.\\#skew-ver', jQ).text(systemInfo.skewVer);
-        $('.\\#lnb-name', jQ).text(systemInfo.lnbName);
-        $('.\\#lnb-ver', jQ).text(systemInfo.lnbVer);
-        $('.\\#sat-service', jQ).text(systemInfo.service);
-        $('.\\#date-time', jQ).text(systemInfo.dateTime);
-        $('.\\#webui-ver', jQ).text(systemInfo.webUIVer);
+        $('.\\#hub-sn', jQ).text(systemInfo.hubSn || 'N/A');
+        $('.\\#hub-ver', jQ).text(systemInfo.hubVer || 'N/A');
+        $('.\\#sat-ver', jQ).text(systemInfo.satVer || 'N/A');
+        $('.\\#gprs-ip', jQ).text(systemInfo.gprsIp || 'N/A');
+        $('.\\#diseqc-ver', jQ).text(systemInfo.diseqcVer || 'N/A');
+        $('.\\#ipautosw-ver', jQ).text(systemInfo.ipautoswVer || 'N/A');
+        $('.\\#ant-model', jQ).text(systemInfo.antModel || 'N/A');
+        $('.\\#ant-sn', jQ).text(systemInfo.antSn || 'N/A');
+        $('.\\#ant-ver', jQ).text(systemInfo.antVer || 'N/A');
+        $('.\\#rf-ver', jQ).text(systemInfo.rfVer || 'N/A');
+        $('.\\#fpga-ver', jQ).text(systemInfo.fpgaVer || 'N/A');
+        $('.\\#az-ver', jQ).text(systemInfo.azVer || 'N/A');
+        $('.\\#skew-ver', jQ).text(systemInfo.skewVer || 'N/A');
+        $('.\\#lnb-name', jQ).text(systemInfo.lnbName || 'N/A');
+        $('.\\#lnb-ver', jQ).text(systemInfo.lnbVer || 'N/A');
+        $('.\\#sat-service', jQ).text(systemInfo.service || 'N/A');
+        $('.\\#date-time', jQ).text(systemInfo.dateTime || 'N/A');
+        $('.\\#webui-ver', jQ).text(systemInfo.webUIVer || 'N/A');
       });
 
       TVRO.getPower().then(function(xml) {
@@ -43,21 +43,21 @@
         var antFive = $('au five', xml).text();
         var antLnb = $('au lnb', xml).text();
 
-        $('.\\#hub-inputsupplyv', jQ).text(hubInputSupplyV);
-        $('.\\#hub-input42v', jQ).text(hubInput42V);
-        $('.\\#hub-input24v', jQ).text(hubInput24V);
-        $('.\\#hub-eight', jQ).text(hubEight);
-        $('.\\#hub-five', jQ).text(hubFive);
-        $('.\\#hub-three-three', jQ).text(hubThreeThree);
-        $('.\\#hub-output42v', jQ).text(hubOutput42V);
-        $('.\\#hub-output24v', jQ).text(hubOutput24V);
-        $('.\\#hub-temp-celsius', jQ).text(hubTempCelsius);
+        $('.\\#hub-inputsupplyv', jQ).text(hubInputSupplyV || 'N/A');
+        $('.\\#hub-input42v', jQ).text(hubInput42V || 'N/A');
+        $('.\\#hub-input24v', jQ).text(hubInput24V || 'N/A');
+        $('.\\#hub-eight', jQ).text(hubEight || 'N/A');
+        $('.\\#hub-five', jQ).text(hubFive || 'N/A');
+        $('.\\#hub-three-three', jQ).text(hubThreeThree || 'N/A');
+        $('.\\#hub-output42v', jQ).text(hubOutput42V || 'N/A');
+        $('.\\#hub-output24v', jQ).text(hubOutput24V || 'N/A');
+        $('.\\#hub-temp-celsius', jQ).text(hubTempCelsius || 'N/A');
 
-        $('.\\#ant-dc', jQ).text(antDc);
-        $('.\\#ant-motor', jQ).text(antMotor);
-        $('.\\#ant-eight', jQ).text(antEight);
-        $('.\\#ant-five', jQ).text(antFive);
-        $('.\\#ant-lnb', jQ).text(antLnb);
+        $('.\\#ant-dc', jQ).text(antDc || 'N/A');
+        $('.\\#ant-motor', jQ).text(antMotor || 'N/A');
+        $('.\\#ant-eight', jQ).text(antEight || 'N/A');
+        $('.\\#ant-five', jQ).text(antFive || 'N/A');
+        $('.\\#ant-lnb', jQ).text(antLnb || 'N/A');
       });
     };
 

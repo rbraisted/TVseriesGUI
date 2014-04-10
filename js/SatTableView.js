@@ -56,7 +56,8 @@
         $('.\\#fav-btn', row).click(function() {
           row.toggleClass('$favorite');
           TVRO.setSatelliteIdentity({
-            antSatID:sat.antSatID,
+            listID: sat.listID,
+            antSatID: sat.antSatID,
             favorite: row.hasClass('$favorite') ? 'TRUE' : 'FALSE'
           });
         });
