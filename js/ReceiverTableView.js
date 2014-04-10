@@ -11,7 +11,7 @@
 				row.toggleClass('$active', receiver.active);
 
 				$('.\\#select-btn', row).click(function() {
-          var confirmed = confirm('Are you sure you want to make ' + receiver.name + ' master?');
+          var confirmed = receiver.active ? confirm('Are you sure you want to make ' + receiver.name + ' master?') : false;
 					if (confirmed) TVRO.setMasterReceiver(receiver).then(reload);
 				});
 

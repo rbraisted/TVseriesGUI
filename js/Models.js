@@ -199,18 +199,18 @@
   TVRO.removeReceiver = function(receiver) {
     return TVRO.setAutoswitchConfiguredNames({
       command: 'DELETE',
-      name: receiver.name,
-      sn: receiver.sn,
-      ip_address: receiver.ip
+      name: receiver.name || '',
+      sn: receiver.sn || '',
+      ip_address: receiver.ip || ''
     });
   };
 
   TVRO.addReceiver = function(receiver) {
     return TVRO.setAutoswitchConfiguredNames({
       command: 'ADD',
-      name: receiver.name,
-      sn: receiver.sn,
-      ip_address: receiver.ip
+      name: receiver.name || '',
+      sn: receiver.sn || '',
+      ip_address: receiver.ip || ''
     });
   };
 

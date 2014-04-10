@@ -317,7 +317,8 @@ a {
       padding: 10px;
       position: fixed;
       left: 0;
-      right: 0; } }
+      right: 0;
+      height: 60px; } }
 .sidebar .sidebar-chunk {
   border-bottom: 1px solid #4f7abd;
   padding: 16px;
@@ -435,7 +436,8 @@ a {
       padding: 10px;
       position: fixed;
       left: 0;
-      right: 0; } }
+      right: 0;
+      height: 60px; } }
 
 @media screen and (min-width: 881px) {
   .popup {
@@ -539,7 +541,8 @@ a {
       padding: 10px;
       position: fixed;
       left: 0;
-      right: 0; } }
+      right: 0;
+      height: 60px; } }
 
 .dropdown {
   background-color: rgba(0, 0, 0, 0.5);
@@ -909,7 +912,7 @@ a {
       .receiver-table .table-row .select-col {
         display: none; }
       .receiver-table .table-row .install-btn {
-        background-image: url(/images/radio-unchecked.svg);
+        background-image: url(/images/red-dot-icon.svg);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: 21px 21px;
@@ -919,6 +922,13 @@ a {
         padding: 0;
         margin-left: 15px;
         cursor: pointer; }
+      .receiver-table .table-row.\$active .install-btn {
+        background-image: url(/images/green-dot-icon.svg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 21px 21px;
+        min-height: 21px;
+        min-width: 21px; }
       .receiver-table .table-row.\$master {
         background-color: #4f7abd;
         background-image: url(/images/right-icon-white.svg); }
@@ -1004,6 +1014,8 @@ a {
         display: none; }
       .receiver-table .table-row .master-icon {
         display: none; }
+      .receiver-table .table-row.\$hub .edit-btn {
+        display: none; }
       .receiver-table .table-row.\$active {
         border-color: #acd038; }
         .receiver-table .table-row.\$active .status-icon {
@@ -1051,6 +1063,17 @@ a {
   .receiver-info,
   .receiver-edit {
     padding: 20px; }
+    .receiver-info .wizard,
+    .receiver-edit .wizard {
+      border-bottom: 1px solid #4f7abd;
+      text-align: center;
+      margin-bottom: 20px; }
+      .receiver-info .wizard .wizard-copy,
+      .receiver-edit .wizard .wizard-copy {
+        line-height: 1.6; }
+      .receiver-info .wizard .wizard-btn,
+      .receiver-edit .wizard .wizard-btn {
+        margin: 20px 0 30px; }
     .receiver-info .edit-btn,
     .receiver-info .select-btn,
     .receiver-info .cancel-btn,
@@ -1082,6 +1105,9 @@ a {
       .receiver-edit .cancel-btn.first + .block-btn + .block-btn,
       .receiver-edit .save-btn.first + .block-btn + .block-btn {
         margin-left: 0; }
+    .receiver-info .select-btn,
+    .receiver-edit .select-btn {
+      display: none; }
     .receiver-info .remove-btn,
     .receiver-edit .remove-btn {
       width: 100%;
@@ -1117,6 +1143,15 @@ a {
     .receiver-info .master-icon,
     .receiver-edit .master-icon {
       display: none; }
+    .\$active .receiver-info .status-icon, .\$active
+    .receiver-edit .status-icon {
+      background-image: url(/images/green-dot-icon.svg); }
+    .\$active .receiver-info .select-btn, .\$active
+    .receiver-edit .select-btn {
+      display: inline-block; }
+    .\$hub .receiver-info .edit-btn, .\$hub
+    .receiver-edit .edit-btn {
+      display: none; }
     .\$master .receiver-info .select-btn, .\$master
     .receiver-edit .select-btn {
       display: none; }
@@ -1132,9 +1167,77 @@ a {
       line-height: 21px;
       padding-right: 35px;
       position: absolute;
-      right: 10px;
+      right: 20px;
       text-align: right;
       top: 20px; } }
+@media screen and (min-width: 881px) {
+  .receiver-info,
+  .receiver-edit {
+    max-width: 700px;
+    max-height: 400px;
+    margin-left: -350px !important;
+    margin-top: -200px !important; }
+    .receiver-info .btn-tray,
+    .receiver-edit .btn-tray {
+      margin: 26px;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      border-top: 1px solid #4f7abd;
+      width: 648px; }
+    .receiver-info .label,
+    .receiver-info .input,
+    .receiver-info .dropdown-btn,
+    .receiver-edit .label,
+    .receiver-edit .input,
+    .receiver-edit .dropdown-btn {
+      width: 310px;
+      position: absolute; }
+    .receiver-info .label,
+    .receiver-edit .label {
+      color: #bac7da;
+      padding-left: 11px;
+      top: 200px; }
+    .receiver-info .input, .receiver-info .dropdown-btn,
+    .receiver-edit .input,
+    .receiver-edit .dropdown-btn {
+      top: 230px;
+      margin: 0; }
+    .receiver-info .name-input,
+    .receiver-info .name-label,
+    .receiver-edit .name-input,
+    .receiver-edit .name-label {
+      left: 26px; }
+    .receiver-info .id-input,
+    .receiver-info .id-label,
+    .receiver-edit .id-input,
+    .receiver-edit .id-label {
+      right: 26px; }
+    .receiver-info .status-icon,
+    .receiver-edit .status-icon {
+      display: none; }
+    .receiver-info .remove-btn,
+    .receiver-edit .remove-btn {
+      background-color: #c51313;
+      position: absolute;
+      bottom: 26px;
+      left: 26px;
+      width: 130px;
+      z-index: 1; }
+    .receiver-info .wizard,
+    .receiver-edit .wizard {
+      position: relative;
+      margin: 26px;
+      border-bottom: 1px solid #4f7abd; }
+      .receiver-info .wizard .wizard-btn,
+      .receiver-edit .wizard .wizard-btn {
+        position: absolute;
+        top: 17px; }
+      .receiver-info .wizard .wizard-copy,
+      .receiver-edit .wizard .wizard-copy {
+        line-height: 1.6;
+        padding-left: 220px;
+        padding-bottom: 26px; } }
 
 @media screen and (max-width: 880px) {
   body[class=''] .\#receiver-table-view,

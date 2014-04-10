@@ -48,11 +48,15 @@
       }
 
       .install-btn {
-        @include bgimg('radio-unchecked');
+        @include bgimg('red-dot-icon');
         display: inline-block;
         padding: 0;
         margin-left: 15px;
         cursor: pointer;
+      }
+
+      &.\$active .install-btn {
+        @include bgimg('green-dot-icon');
       }
 
       &.\$master {
@@ -124,6 +128,12 @@
   			display: none;
   		}
 
+      &.\$hub {
+        .edit-btn {
+          display: none;
+        }
+      }
+
   		&.\$active {
         border-color: $green;
 
@@ -183,12 +193,30 @@
     //  only appears on mobile
     padding: 20px;
 
+    .wizard {
+      border-bottom: 1px solid $bright-blue;
+      text-align: center;
+      margin-bottom: 20px;
+
+      .wizard-copy {
+        line-height: 1.6;
+      }
+
+      .wizard-btn {
+        margin: 20px 0 30px;
+      }
+    }
+
     .edit-btn,
     .select-btn,
     .cancel-btn,
     .save-btn {
       @include split(2, $btn-tray-padding, '.block-btn');
       margin-bottom: 0;
+    }
+
+    .select-btn {
+      display: none;
     }
 
     .remove-btn {
@@ -224,6 +252,20 @@
 
     .master-icon { display: none; }
 
+    .\$active & {
+      .status-icon {
+        background-image: url(/images/green-dot-icon.svg);
+      }
+
+      .select-btn {
+        display: inline-block;
+      }
+    }
+
+    .\$hub & .edit-btn {
+      display: none;
+    }
+
     .\$master & {
       .select-btn { display: none; }
 
@@ -233,15 +275,84 @@
         line-height: 21px;
         padding-right: 35px;
         position: absolute;
-        right: $btn-tray-padding;
+        right: $btn-tray-padding * 2;
         text-align: right;
         top: 20px;
       }
-    }    
+    }
   }
 
   @include breakpoint($desktop) {
-    
+    max-width: 700px;
+    max-height: 400px;
+    margin-left: -350px !important;
+    margin-top: -200px !important;
+
+    .btn-tray {
+      margin: $lil-bump;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      border-top: 1px solid $bright-blue;
+      width: 648px;
+    }
+
+    .label,
+    .input {
+      width: 310px;
+      position: absolute;
+    }
+
+    .label {
+      color: $bright-grey;
+      padding-left: 11px;
+      top: 200px;
+    }
+
+    .input {
+      top: 230px;
+      margin: 0;
+    }
+
+    .name-input,
+    .name-label {
+      left: $lil-bump;
+    }
+
+    .id-input,
+    .id-label {
+      right: $lil-bump;
+    }
+
+    .status-icon {
+      display: none;
+    }
+
+    .remove-btn {
+      background-color: $red;
+      position: absolute;
+      bottom: $lil-bump;
+      left: $lil-bump;
+      width: 130px;
+      z-index: 1;
+    }
+
+    .wizard {
+      position: relative;
+      margin: $lil-bump;
+      border-bottom: 1px solid $bright-blue;
+
+      .wizard-btn {
+        position: absolute;
+        top: 17px;
+      }
+
+      .wizard-copy {
+        line-height: 1.6;
+        padding-left: 220px;
+        padding-bottom: $lil-bump;
+      }
+    }
   }
 }
 

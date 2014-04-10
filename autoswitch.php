@@ -157,11 +157,19 @@
       <div class="back-btn #back-btn"></div>
     </div>
 
-    <div class="label #receiver-name-label"></div>
-    <input class="input #receiver-name" />
+    <div class="wizard">
+      <div class="wizard-copy">
+        KVH recommends that you run the Setup Wizard whenever you change your
+        system's configuration by adding or removing devices.
+      </div>
+      <div class="block-btn wizard-btn #wizard-btn">Launch Setup Wizard</div>
+    </div>
 
-    <div class="label #receiver-id-label"></div>
-    <input class="input #receiver-id" />
+    <div class="label name-label #receiver-name-label"></div>
+    <input class="input name-input #receiver-name" />
+
+    <div class="label id-label #receiver-id-label"></div>
+    <input class="input id-input #receiver-id" />
 
     <div class="status-icon label">Status</div>
     <div class="block-btn remove-btn #delete-btn">Remove</div>

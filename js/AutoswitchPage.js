@@ -53,6 +53,10 @@ $(function() {
         .end()
   );
 
+  var newBtn = $('.\\#new-btn').click(function(argument) {
+    window.location.hash = '/new';
+  });
+
 
   var reload = function() {
     headerView.reload();

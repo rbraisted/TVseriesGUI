@@ -317,7 +317,8 @@ a {
       padding: 10px;
       position: fixed;
       left: 0;
-      right: 0; } }
+      right: 0;
+      height: 60px; } }
 .sidebar .sidebar-chunk {
   border-bottom: 1px solid #4f7abd;
   padding: 16px;
@@ -435,7 +436,8 @@ a {
       padding: 10px;
       position: fixed;
       left: 0;
-      right: 0; } }
+      right: 0;
+      height: 60px; } }
 
 @media screen and (min-width: 881px) {
   .popup {
@@ -539,7 +541,8 @@ a {
       padding: 10px;
       position: fixed;
       left: 0;
-      right: 0; } }
+      right: 0;
+      height: 60px; } }
 
 .dropdown {
   background-color: rgba(0, 0, 0, 0.5);
