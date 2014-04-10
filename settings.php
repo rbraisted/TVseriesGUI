@@ -62,7 +62,7 @@
   <p class="#shell">
     Placeholder text placeholder text placeholder text placeholder text
   </p>
-  <div class="block-btn #wizard-btn #shell">Setup Wizard</div>
+  <div class="block-btn #hostname-btn #shell">Change Hostname</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
