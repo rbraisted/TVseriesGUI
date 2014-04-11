@@ -20,8 +20,12 @@
 
   <div class="sidebar-chunk #installed-sat-view">
     <div class="sidebar-chunk-head">
+      <div class="#sat-region"></div>
+      <div>
       <span class="#sat-name"></span>
-      <span class="#sat-region"></span>
+      <span> - </span>
+      <span class="#sat-longitude"></span>
+      </div>
     </div>
     <div class="sat-signal #ant-bars $0"></div>
     <span class="sat-status #ant-state"></span>
