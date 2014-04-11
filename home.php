@@ -81,7 +81,7 @@
 <div class="dropdown #master-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
-      <span class="#dropdown-title">Select Master</span>
+      <span class="#dropdown-title">Select Master Receiver</span>
       <div class="back-btn #close-btn"></div>
     </div>
     <div class="table #table-view">
