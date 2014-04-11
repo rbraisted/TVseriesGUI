@@ -78,7 +78,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="dropdown #master-dropdown-view">
+<div class="dropdown master-dropdown #master-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
       <span class="#dropdown-title">Select Master Receiver</span>

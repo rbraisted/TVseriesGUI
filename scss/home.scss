@@ -27,6 +27,12 @@
   }
 }
 
+.master-dropdown .dropdown-guts {
+  @include breakpoint($desktop) {
+    min-width: 340px;
+  }
+}
+
 .vessel-view {
   @include bgimg('vessel-animation-bg', center, 360px, 360px);
   background-position: top 140px center;

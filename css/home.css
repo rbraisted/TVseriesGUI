@@ -840,6 +840,10 @@ a {
       min-height: 21px;
       min-width: 21px; }
 
+@media screen and (min-width: 881px) {
+  .master-dropdown .dropdown-guts {
+    min-width: 340px; } }
+
 .vessel-view {
   background-image: url(/images/vessel-animation-bg.svg);
   background-position: center;
