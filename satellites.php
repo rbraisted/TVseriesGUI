@@ -107,8 +107,8 @@ and also .#group-table-view (group mode)
       <div class="label">Local Oscillator #2</div>
       <div class="value #sat-lo2">N/A</div>
     </div>
-    <div class="xponder first #xponder-hh-view">
-      <div class="slot-head">Horizontal High</div> 
+    <div class="xponder first #xponder-1-view">
+      <div class="slot-head #xponder-display"></div> 
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -130,8 +130,8 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-modType">N/A</div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-hl-view">
-      <div class="slot-head">Horizontal Low</div>
+   --><div class="xponder #xponder-2-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -153,8 +153,8 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-modType">N/A</div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-vh-view">
-      <div class="slot-head">Vertical High</div>
+   --><div class="xponder #xponder-3-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -176,8 +176,8 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-modType">N/A</div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-vl-view">
-      <div class="slot-head">Vertical Low</div>
+   --><div class="xponder #xponder-4-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -272,8 +272,8 @@ and also .#group-table-view (group mode)
       <div class="value #sat-lo2"></div>
       <input class="input #sat-lo2" />
     </div>
-    <div class="xponder first #xponder-view #xponder-hh-view">
-      <div class="slot-head">Horizontal High</div>
+    <div class="xponder first #xponder-1-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -301,8 +301,8 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-view #xponder-hl-view">
-      <div class="slot-head">Horizontal Low</div>
+   --><div class="xponder #xponder-2-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -330,8 +330,8 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-view #xponder-vh-view">
-      <div class="slot-head">Vertical High</div>
+   --><div class="xponder #xponder-3-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -359,8 +359,8 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-view #xponder-vl-view">
-      <div class="slot-head">Vertical Low</div>
+   --><div class="xponder #xponder-4-view">
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />

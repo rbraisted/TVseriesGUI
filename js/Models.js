@@ -71,13 +71,14 @@
       kumode: $('kumode', xml).text(),
       preferredPolarity: preferredPolarity,
       lnbType: lnbType,
-      xponderVH: Xponder($('xponder:contains("Vertical High")', xml)),
-      xponderVL: Xponder($('xponder:contains("Vertical Low")', xml)),
-      xponderHH: Xponder($('xponder:contains("Horizontal High")', xml)),
-      xponderHL: Xponder($('xponder:contains("Horizontal Low")', xml)),
-      getXponders: function() {
-        return _.compact([self.xponderVH, self.xponderVL, self.xponderHH, self.xponderHL]);
-      }
+      xponders: _.sortBy(_.map($('xponder', xml), Xponder), 'id')
+      // xponderVH: Xponder($('xponder:contains("Vertical High")', xml)),
+      // xponderVL: Xponder($('xponder:contains("Vertical Low")', xml)),
+      // xponderHH: Xponder($('xponder:contains("Horizontal High")', xml)),
+      // xponderHL: Xponder($('xponder:contains("Horizontal Low")', xml)),
+      // getXponders: function() {
+      //   return _.compact([self.xponderVH, self.xponderVL, self.xponderHH, self.xponderHL]);
+      // }
     };
   };
 
@@ -178,6 +179,12 @@
   TVRO.getSatParams = function(sat) {
     //  return the sat we get from getSatelliteParams in a promise
     return TVRO.getSatelliteParams({antSatID:sat.antSatID}, true).then(Sat);
+  };
+
+  TVRO.setSatParams = function(sat) {
+    //  return the sat we get from getSatelliteParams in a promise
+    return TVRO.setSatelliteIdentity(sat, 1)
+      .then(TVRO.setSatelliteParams(sat, 1));
   };
 
   TVRO.getReceivers = function() {

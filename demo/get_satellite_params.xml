@@ -30,7 +30,7 @@
 		<modType>QDVB</modType>
 	</xponder>
 	<xponder>
-		<id>3</id>
+		<id>2</id>
 		<display>Vertical High</display>
 		<pol>V</pol>
 		<band>H</band>
@@ -41,7 +41,7 @@
 		<modType>QDVB</modType>
 	</xponder>
 	<xponder>
-		<id>5</id>
+		<id>3</id>
 		<display>Horizontal High</display>
 		<pol>H</pol>
 		<band>H</band>
@@ -52,7 +52,7 @@
 		<modType>QDSS</modType>
 	</xponder>
 	<xponder>
-		<id>7</id>
+		<id>4</id>
 		<display>Horizontal Low</display>
 		<pol>H</pol>
 		<band>L</band>

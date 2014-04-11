@@ -4,6 +4,7 @@
 
   var DropdownView = function(jQ) {
     var self;
+    var content = $('.\\#dropdown-content', jQ);
 
     var tableView = TVRO.TableView(
       $('.\\#table-view', jQ)
@@ -29,7 +30,15 @@
 
       show: function(offset) {
         jQ.show();
-        if (offset) $('.\\#dropdown-content', jQ).offset(offset);
+        if (offset) {
+          var contentHeight = content.height();
+          var windowHeight = $(window).height();
+
+          if (contentHeight + offset.top > windowHeight)
+            offset.top = windowHeight - contentHeight - 80;
+
+          content.offset(offset);
+        }
         return self;
       },
 
