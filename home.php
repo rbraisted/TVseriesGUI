@@ -42,7 +42,7 @@
     <div class="sidebar-chunk-head">
       Master Receiver
     </div>
-    <div class="label #master-name">Kitchen</div>
+    <div class="label #master-name"></div>
     <div class="block-btn master-btn #master-btn">Change</div>
   </div>
 
