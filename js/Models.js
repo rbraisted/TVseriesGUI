@@ -176,8 +176,11 @@
 
   TVRO.setSatParams = function(sat) {
     //  return the sat we get from getSatelliteParams in a promise
-    return TVRO.setSatelliteIdentity(sat, 1)
-      .then(TVRO.setSatelliteParams(sat, 1));
+    var noXponders = _.omit(sat, 'xponders');
+    var onlyXponders = _.pick(sat, 'xponders', 'listID', 'antSatID');
+
+    return TVRO.setSatelliteIdentity(noXponders, 1)
+      .then(TVRO.setSatelliteParams(onlyXponders, 1));
   };
 
   TVRO.getReceivers = function() {

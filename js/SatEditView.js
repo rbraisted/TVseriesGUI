@@ -110,7 +110,8 @@
   		});
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
-      var sat = {
+      TVRO.setSatParams({
+        listID: sat.listID,
         name: $('.\\#sat-name', jQ).val(),
         region: $('.\\#sat-region', jQ).val(),
         antSatID: $('.\\#sat-antSatID', jQ).val(),
@@ -121,9 +122,7 @@
         lo1: $('.\\#sat-lo1', jQ).val(),
         lo2: $('.\\#sat-lo2', jQ).val(),
         xponders: _.invoke(xponderViews, 'getXponder')
-      };
-
-      TVRO.setSatParams(sat).then(TVRO.reload);
+      }).then(TVRO.reload);
     });
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {

@@ -35,7 +35,7 @@ class Kvhservice extends Mc
 	
 	function index($data=array())
 	{
-		$data['extrahead']= parent::js('/js/jquery.js') .
+		$data['extrahead']= parent::js('/js/jquery-1.10.2.min.js') .
 							parent::js('/js/error_key.js') .
 							parent::js('/js/kvhservice.js');
 		
