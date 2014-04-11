@@ -192,13 +192,13 @@
       <div class="back-btn #back-btn"></div>
     </div>
 
-    <span class="label mode-label">Mode</span><!--
+    <span class="label mode-label">Network Mode</span><!--
  --><div class="dropdown-btn mode-dropdown-btn #wlan-mode-btn">
       <div class="#wlan-mode"></div>
       <div class="dropdown-icon"></div>
     </div>
 
-    <span class="label network-label">Network Mode</span><!--
+    <span class="label network-label">Mode</span><!--
  --><div class="dropdown-btn network-dropdown-btn #wlan-network-mode-btn">
       <div class="#wlan-network-mode"></div>
       <div class="dropdown-icon"></div>
