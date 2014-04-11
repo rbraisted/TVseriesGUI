@@ -4,10 +4,6 @@
   var fecDropdownView;
   var modTypeDropdownView;
 
-  console.log(modTypeDropdownView);
-
-
-
   var XponderView = function(jQ) {
     var self;
     var xponder;

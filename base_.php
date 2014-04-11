@@ -64,16 +64,16 @@
 
 <div class="status #status-view">
   <div class="status-label">
-    Power: 
-    <span class="power-status #power-status">...</span>
-  </div><!--
---><div class="status-label">
     TV-Hub: 
     <span class="acu-status #acu-status">...</span>
   </div><!--
 --><div class="status-label">
     Antenna: 
     <span class="antenna-status #antenna-status">...</span>
+  </div><!--
+--><div class="status-label">
+    Power: 
+    <span class="power-status #power-status">...</span>
   </div>
 </div>
 

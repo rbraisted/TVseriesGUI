@@ -72,13 +72,6 @@
       preferredPolarity: preferredPolarity,
       lnbType: lnbType,
       xponders: _.sortBy(_.map($('xponder', xml), Xponder), 'id')
-      // xponderVH: Xponder($('xponder:contains("Vertical High")', xml)),
-      // xponderVL: Xponder($('xponder:contains("Vertical Low")', xml)),
-      // xponderHH: Xponder($('xponder:contains("Horizontal High")', xml)),
-      // xponderHL: Xponder($('xponder:contains("Horizontal Low")', xml)),
-      // getXponders: function() {
-      //   return _.compact([self.xponderVH, self.xponderVL, self.xponderHH, self.xponderHL]);
-      // }
     };
   };
 

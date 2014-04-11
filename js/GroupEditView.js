@@ -12,7 +12,6 @@
       var nu = {name: $('.\\#group-name', jQ).val()};
 
       _.forEach(['satA', 'satB', 'satC', 'satD'], function(slot) {
-        console.log(group);
         if (group[slot]) nu[slot] = group[slot].antSatID;
       });
 
