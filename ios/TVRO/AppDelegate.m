@@ -17,7 +17,7 @@
     [self.window makeKeyAndVisible];
 	
 	NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"technician-mode"]);
-	BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
+	BonjourViewController* bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourView" bundle:nil];
 	self.window.rootViewController = bonjourViewController;
 
     return YES;

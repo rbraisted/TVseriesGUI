@@ -258,7 +258,7 @@ $(function() {
           groupTableView.reload();
           groupTableView.setValue({ name: decode(split[1]) });
           groupEditView.setGroup(groupTableView.getValue());
-          satInfoView.sat({ antSatID: decode(split[4]) });
+          satInfoView.setSat({ antSatID: decode(split[4]) });
         }
       }, {
         r: /\/groups\/.*\/edit\/sats/,

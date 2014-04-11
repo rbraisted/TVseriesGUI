@@ -9,8 +9,9 @@
 @interface BonjourViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
 	NSNetServiceBrowser* netServiceBrowser;
 	NSMutableArray* netServices;
-	UITableView* tableView;
-	UITextField* textField;
+    
+    UIImage* cellBGImageDark;
+    UIImage* cellBGImageLight;
 }
 
 @end
