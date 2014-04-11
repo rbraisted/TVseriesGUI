@@ -32,7 +32,8 @@
       });
 
       TVRO.getReceivers().then(function(receivers) {
-        masterDropdownView.setValues(receivers).build();
+        var activeReceivers = _.where(receivers, 'active');
+        masterDropdownView.setValues(activeReceivers).build();
       });
     };
 

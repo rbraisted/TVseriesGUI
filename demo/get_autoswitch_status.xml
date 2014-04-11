@@ -28,22 +28,26 @@
 		<voltage>H</voltage>
 	</master>
 	<active_list>
-		<autoswitch>
-			<sn>TVHUB</sn>
-			<name>TV-Hub</name>
-		</autoswitch>
-		<autoswitch>
-			<sn>111111111</sn>
-			<name>Boudoir</name>
-		</autoswitch>
-		<autoswitch>
-			<sn>333333333</sn>
-			<name>Kitchen</name>
-		</autoswitch>
-		<autoswitch>
-			<sn>444444444</sn>
-			<name>Salon</name>
-		</autoswitch>
+    <autoswitch>
+      <sn>TVHUB</sn>
+      <name>TV-Hub</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>148674490</sn>
+      <name>Galley</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>126342782</sn>
+      <name>Salon</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>167458938</sn>
+      <name>Bridge</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>169335122</sn>
+      <name>Master Stateroom</name>
+    </autoswitch>
 	</active_list>
 
 	<!-- DIRECTV services -->
