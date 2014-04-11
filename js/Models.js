@@ -293,6 +293,7 @@
       var systemInfo = {};
       systemInfo.hubSn = $('acu sn', xmls[0]).text();
       systemInfo.hubVer = $('acu ver', xmls[0]).text();
+      systemInfo.dateTime = $('acu date', xmls[0]).text();
       systemInfo.satVer = $('sat_list ver', xmls[0]).text();
       systemInfo.gprsIp = $('gprs ip', xmls[0]).text();
       systemInfo.diseqcVer = $('diseqc ver', xmls[0]).text();
@@ -307,7 +308,6 @@
       systemInfo.lnbName = $('lnb name', xmls[0]).text();
       systemInfo.lnbVer = $('lnb ver', xmls[0]).text();
       systemInfo.service = $('service', xmls[1]).text() + ' ' + $('service_subtype', xmls[1]).text();
-      systemInfo.dateTime = $('gps dt', xmls[2]).text();
       systemInfo.webUIVer = xmls[3];
       return systemInfo;
     });

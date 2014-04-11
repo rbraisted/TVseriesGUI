@@ -116,8 +116,8 @@
 
   <div class="wireless-settings">
     <div class="view-head">Wireless Settings</div>
-    <span class="label mode-label">Mode</span><span class="value #wlan-mode"></span>
-    <span class="label network-label">Network Mode</span><span class="value network-value #wlan-network-mode"></span>
+    <span class="label mode-label">Network Mode</span><span class="value #wlan-mode"></span>
+    <span class="label network-label">Mode</span><span class="value network-value #wlan-network-mode"></span>
     <span class="label ssid-label">SSID</span><span class="value ssid-value #wlan-essid"></span>
     <span class="label ip-label">IP Address</span><span class="value ip-value #wlan-ip"></span>
     <span class="label subnet-label">Subnet</span><span class="value subnet-value #wlan-netmask"></span>
