@@ -19,6 +19,7 @@
       }).then(function(installedSat) {
         $('.\\#sat-name', jQ).text(installedSat.name);
         $('.\\#sat-region', jQ).text(installedSat.region);
+        $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(installedSat.lon,0));
       });
 
     };

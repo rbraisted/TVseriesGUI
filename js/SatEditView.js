@@ -96,18 +96,18 @@
 
 
 
-	var SatEditView = function(jQ) {
-		var self;
+  var SatEditView = function(jQ) {
+    var self;
     var sat;
 
-		var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
-  		.onClick(function(isFav) {
-  			TVRO.setSatelliteIdentity({
+    var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
+      .onClick(function(isFav) {
+        TVRO.setSatelliteIdentity({
           listID: sat.listID,
-  				antSatID: sat.antSatID,
-  				favorite: isFav ? 'TRUE' : 'FALSE'
-  			});
-  		});
+          antSatID: sat.antSatID,
+          favorite: isFav ? 'TRUE' : 'FALSE'
+        });
+      });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
       TVRO.setSatParams({
@@ -193,6 +193,6 @@
     };
   };
 
-	TVRO.SatEditView = SatEditView;
+  TVRO.SatEditView = SatEditView;
 
 }(window.TVRO);

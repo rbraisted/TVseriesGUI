@@ -18,8 +18,12 @@ and also .#group-table-view (group mode)
 
   <div class="sidebar-chunk #installed-sat-view">
     <div class="sidebar-chunk-head">
-      <span class="#sat-name">Satellite</span>
-      <span class="#sat-region"></span>
+      <div class="#sat-region"></div>
+      <div>
+      <span class="#sat-name"></span>
+      <span> - </span>
+      <span class="#sat-longitude"></span>
+      </div>
     </div>
     <div class="sat-signal #ant-bars $0"></div>
     <span class="sat-status #ant-state"></span>
@@ -463,7 +467,7 @@ and also .#group-table-view (group mode)
         <span class="#sat-name"></span>
         <span class="#sat-region"></span>
       </div><!--
-     --><div class="table-col orb-slot-col #sat-antSatID"></div><!--
+     --><div class="table-col orb-slot-col #sat-longitude"></div><!--
      --><div class="table-col region-col #sat-region"></div><!--
      --><div class="table-col fav-col">
         <div class="fav-btn #fav-btn"></div>
