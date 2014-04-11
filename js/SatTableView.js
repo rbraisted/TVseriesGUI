@@ -37,9 +37,7 @@
       .onBuild(function(row, sat) {
         $('.\\#sat-name', row).text(sat.name || 'N/A');
         $('.\\#sat-region', row).text(sat.region || 'N/A');
-        
-        // $('.\\#sat-antSatID', row).text(TVRO.formatLongitude(sat.lon, 2));
-        $('.\\#sat-antSatID', row).text(sat.antSatID || 'N/A');
+        $('.\\#sat-longitude', row).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
         row.toggleClass('$favorite', sat.favorite);
 
         TVRO.getInstalledSat().then(function(installedSat) {
@@ -56,8 +54,7 @@
         $('.\\#fav-btn', row).click(function() {
           row.toggleClass('$favorite');
           TVRO.setSatelliteIdentity({
-            listID: sat.listID,
-            antSatID: sat.antSatID,
+            antSatID:sat.antSatID,
             favorite: row.hasClass('$favorite') ? 'TRUE' : 'FALSE'
           });
         });
