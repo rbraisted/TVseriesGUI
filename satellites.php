@@ -18,8 +18,12 @@ and also .#group-table-view (group mode)
 
   <div class="sidebar-chunk #installed-sat-view">
     <div class="sidebar-chunk-head">
-      <span class="#sat-name">Satellite</span>
-      <span class="#sat-region"></span>
+      <div class="#sat-region"></div>
+      <div>
+      <span class="#sat-name"></span>
+      <span> - </span>
+      <span class="#sat-longitude"></span>
+      </div>
     </div>
     <div class="sat-signal #ant-bars $0"></div>
     <span class="sat-status #ant-state"></span>
@@ -81,7 +85,7 @@ and also .#group-table-view (group mode)
     </div><!--
    --><div class="orb-slot-block">
       <div class="label">Orbital Slot</div>
-      <div class="value #sat-antSatID">N/A</div>
+      <div class="value #sat-longitude">N/A</div>
     </div><!--
    --><div class="hemisphere-block">
       <div class="label">Hemisphere</div>
@@ -107,8 +111,8 @@ and also .#group-table-view (group mode)
       <div class="label">Local Oscillator #2</div>
       <div class="value #sat-lo2">N/A</div>
     </div>
-    <div class="xponder first #xponder-1-view">
-      <div class="slot-head #xponder-display"></div> 
+    <div class="xponder first #xponder-hh-view">
+      <div class="slot-head">Horizontal High</div> 
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -130,8 +134,8 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-modType">N/A</div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-2-view">
-      <div class="slot-head #xponder-display"></div>
+   --><div class="xponder #xponder-hl-view">
+      <div class="slot-head">Horizontal Low</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -153,8 +157,8 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-modType">N/A</div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-3-view">
-      <div class="slot-head #xponder-display"></div>
+   --><div class="xponder #xponder-vh-view">
+      <div class="slot-head">Vertical High</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -176,8 +180,8 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-modType">N/A</div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-4-view">
-      <div class="slot-head #xponder-display"></div>
+   --><div class="xponder #xponder-vl-view">
+      <div class="slot-head">Vertical Low</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -237,8 +241,8 @@ and also .#group-table-view (group mode)
     </div><!--
    --><div class="orb-slot-block">
       <div class="label">Orbital Slot</div>
-      <div class="value #sat-antSatID"></div>
-      <input class="input #sat-antSatID" />
+      <div class="value #sat-longitude"></div>
+      <input class="input #sat-longitude" />
     </div><!--
    --><div class="hemisphere-block">
       <div class="label">Hemisphere</div>
@@ -272,8 +276,8 @@ and also .#group-table-view (group mode)
       <div class="value #sat-lo2"></div>
       <input class="input #sat-lo2" />
     </div>
-    <div class="xponder first #xponder-1-view">
-      <div class="slot-head #xponder-display"></div>
+    <div class="xponder first #xponder-view #xponder-hh-view">
+      <div class="slot-head">Horizontal High</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -301,8 +305,8 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-2-view">
-      <div class="slot-head #xponder-display"></div>
+   --><div class="xponder #xponder-view #xponder-hl-view">
+      <div class="slot-head">Horizontal Low</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -330,8 +334,8 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-3-view">
-      <div class="slot-head #xponder-display"></div>
+   --><div class="xponder #xponder-view #xponder-vh-view">
+      <div class="slot-head">Vertical High</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -359,8 +363,8 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div><!--
-   --><div class="xponder #xponder-4-view">
-      <div class="slot-head #xponder-display"></div>
+   --><div class="xponder #xponder-view #xponder-vl-view">
+      <div class="slot-head">Vertical Low</div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <input class="input #xponder-freq" />
@@ -463,7 +467,7 @@ and also .#group-table-view (group mode)
         <span class="#sat-name"></span>
         <span class="#sat-region"></span>
       </div><!--
-     --><div class="table-col orb-slot-col #sat-antSatID"></div><!--
+     --><div class="table-col orb-slot-col #sat-longitude"></div><!--
      --><div class="table-col region-col #sat-region"></div><!--
      --><div class="table-col fav-col">
         <div class="fav-btn #fav-btn"></div>

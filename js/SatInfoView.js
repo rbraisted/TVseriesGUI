@@ -8,7 +8,6 @@
     return self = {
       setXponder: function(arg) {
         xponder = arg;
-        $('.\\#xponder-display', jQ).text(xponder.display || 'N/A');
         $('.\\#xponder-freq', jQ).text(xponder.freq || 'N/A');
         $('.\\#xponder-symRate', jQ).text(xponder.symRate || 'N/A');
         $('.\\#xponder-fec', jQ).text(xponder.fec || 'N/A');
@@ -23,21 +22,18 @@
     };
   };
 
-
-
-
   var SatInfoView = function(jQ) {
     var self;
     var sat;
 
-    var xponderViews = _.times(4, function (i) {
-      return XponderView($('.\\#xponder-' + (i + 1) + '-view', jQ));
-    });
+    var xponderVHView = XponderView($('.\\#xponder-vh-view', jQ));
+    var xponderVLView = XponderView($('.\\#xponder-vl-view', jQ));
+    var xponderHHView = XponderView($('.\\#xponder-hh-view', jQ));
+    var xponderHLView = XponderView($('.\\#xponder-hl-view', jQ));
 
     var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
       .onClick(function(isFav) {
         TVRO.setSatelliteIdentity({
-          listID: sat.listID,
           antSatID: sat.antSatID,
           favorite: isFav ? 'TRUE' : 'FALSE'
         });
@@ -47,11 +43,10 @@
       setSat: function(arg) {
         TVRO.getSatParams(arg).then(function(arg) {
           sat = arg;
-
           favBtn.setOn(sat.favorite);
           $('.\\#sat-name', jQ).text(sat.name || 'N/A');
           $('.\\#sat-region', jQ).text(sat.region || 'N/A');
-          $('.\\#sat-antSatID', jQ).text(sat.antSatID || 'N/A');
+          $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
           $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
@@ -59,9 +54,10 @@
           $('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
           $('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
 
-          for (var i = 0; i < sat.xponders.length; i++) {
-            xponderViews[i].setXponder(sat.xponders[i]);
-          }
+          xponderVHView.setXponder(sat.xponderVH);
+          xponderVLView.setXponder(sat.xponderVL);
+          xponderHHView.setXponder(sat.xponderHH);
+          xponderHLView.setXponder(sat.xponderHL);
         });
 
         return self;
