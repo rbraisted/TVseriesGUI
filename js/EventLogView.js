@@ -44,24 +44,7 @@
     });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
-      TVRO.getEventHistoryLog(undefined, true).then(function(xml) {
-        var content = $('content', xml)[0].innerHTML;
-        var date = new Date();
-        var time = date.getTime();
-        var logFile = 'logs/log' + time + '.txt';
-
-        $.ajax({
-          url: 'save.php',
-          data: {
-            text: content,
-            file:logFile
-          },
-          type: 'post',
-          success: function() {
-            window.document.location = logFile;
-          }
-        });     
-      });
+      window.document.location = 'logfile.php?file=majorError.log';
     });
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
@@ -76,7 +59,8 @@
         var hubSn = $('acu sn', xmls[0]).text();
         var dateTime = $('gps dt', xmls[1]).text();
 
-        var subject = 'TV-Hub: ' + antModel + ' ' + hubSn +
+        var subject =
+          'TV-Hub: ' + antModel + ' ' + hubSn +
           ' Antenna Unit S/N: ' + antSn +
           ' Date/Time: ' + dateTime;
 
