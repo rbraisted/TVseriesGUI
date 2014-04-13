@@ -20,14 +20,7 @@ $(function() {
     $('.\\#sat-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var region = encode(regionTableView.getValue());
-          var group = encode(groupTableView.getValue() ? groupTableView.getValue().name : '');
-          var sat = encode(satEditView.getSat() ? satEditView.getSat().antSatID : '');
-          var paths = {};
-          paths['/regions/region/sat/edit'] = '/regions/' + region + '/' + sat;
-          paths['/groups/group/sat/edit'] = '/groups/' + group + '/' + sat;
-          paths['/groups/group/edit/sats/sat/edit'] = '/groups/' + group + '/edit/sats/' + sat;
-          window.location.hash = paths[document.body.className];
+          window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
         })
         .end()
   );
@@ -36,25 +29,12 @@ $(function() {
     $('.\\#sat-info-view')
       .find('.\\#back-btn')
         .click(function() {
-          var region = encode(regionTableView.getValue());
-          var group = encode(groupTableView.getValue() ? groupTableView.getValue().name : '');
-          var paths = {};
-          paths['/regions/region/sat'] = '/regions/' + region;
-          paths['/groups/group/sat'] = '/groups/' + group;
-          paths['/groups/group/edit/sats/sat'] = '/groups/' + group + '/edit/sats';
-          window.location.hash = paths[document.body.className];
+          window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
         })
         .end()
       .find('.\\#edit-btn')
         .click(function() {
-          var region = encode(regionTableView.getValue());
-          var group = encode(groupTableView.getValue() ? groupTableView.getValue().name : '');
-          var sat = encode(satInfoView.getSat() ? satInfoView.getSat().antSatID : '');
-          var paths = {};
-          paths['/regions/region/sat'] = '/regions/' + region + '/' + sat + '/edit';
-          paths['/groups/group/sat'] = '/groups/' + group + '/' + sat + '/edit';
-          paths['/groups/group/edit/sats/sat'] = '/groups/' + group + '/edit/sats/' + sat + '/edit';
-          window.location.hash = paths[document.body.className];
+          window.location.hash = window.location.hash + '/edit';
         })
         .end()
   );
@@ -110,7 +90,7 @@ $(function() {
     $('.\\#group-sat-table-view')
       .find('.\\#back-btn')
         .click(function() {
-          var group = encode(groupTableView.getValue() ? groupTableView.getValue().name : '');
+          var group = window.location.hash.split('/')[2];
           window.location.hash = '/groups/' + group + '/edit';
         })
         .end()
@@ -119,15 +99,11 @@ $(function() {
           event.stopPropagation();
           var index = $('.\\#group-sat-table-view .\\#info-btn').index(this);
           var sat = encode(groupSatTableView.getValues()[index].antSatID);
-          var group  = encode(groupTableView.getValue().name);
-          window.location.hash = '/groups/' + group + '/edit/sats/'+sat;
+          var group = window.location.hash.split('/')[2];
+          var slot = window.location.hash.slice(-1);
+          window.location.hash = '/groups/' + group + '/edit/' + slot + '/' + sat;
         })
         .end()
-      .find('.\\#table-row')
-        .click(function() {
-        })
-        .end()
-
   ).onClick(function(sat) {
     var slot = window.location.hash.slice(-1);
     var group = window.location.hash.split('/')[2];
@@ -180,7 +156,7 @@ $(function() {
           else if (btn.is('.\\#sat-b-view .\\#info-btn')) sat = encode(group.satB.antSatID);
           else if (btn.is('.\\#sat-c-view .\\#info-btn')) sat = encode(group.satC.antSatID);
           else if (btn.is('.\\#sat-d-view .\\#info-btn')) sat = encode(group.satD.antSatID);
-          window.location.hash = '/groups/'+encode(group.name)+'/'+sat;
+          window.location.hash = '/groups/' + encode(group.name) + '/' + sat;
         })
         .end()
   );
@@ -252,18 +228,21 @@ $(function() {
    
           //  /groups/GroupName/edit/Slot (A, B, C, D)
           if (split.length > 3) {
-            // var slot = split[3];
-            // groupSatTableView.setValue();
             groupSatTableView.reload();
             className += '/sats';
           }
 
+          //  /groups/GroupName/edit/Slot/AntSatId
           if (split.length > 4) {
-            //  /groups/GroupName/edit/Slot/AntSatId
+            sat = { antSatID: decode(split[4]) };
+            satInfoView.setSat(sat);
+            className += '/sat';
           }
 
+          //  /groups/GroupName/edit/Slot/AntSatId/edit
           if (split.length > 5) {
-            //  /groups/GroupName/edit/Slot/AntSatId/edit
+            satEditView.setSat(sat);
+            className += '/edit';
           }
 
         //  /groups/GroupName/AntSatId
@@ -351,31 +330,8 @@ $(function() {
           groupInfoView.setGroup(groupTableView.getValue());
           satInfoView.setSat({antSatID: decode(split[2])});
         }
-      }, {
-        r: /\/groups\/new/,
-        c: '/groups/group/edit',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupEditView.createNew();
-          if (groupTableView.getValue()) {
-            groupInfoView.setGroup(groupTableView.getValue());
-          } else {
-            TVRO.getInstalledGroup().then(function(installedGroup) {
-              groupInfoView.setGroup(installedGroup);
-            });
-          }
-        }
       }
     ];
-
-    // _.forEach(routes, function(route) {
-    //   if (route.r.exec(hash)) {
-    //     route.f();
-    //     document.body.className = route.c;
-    //     return false;
-    //   }
-    // });
   });
 
   TVRO.reload();
