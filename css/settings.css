@@ -894,6 +894,9 @@ a {
 .network-settings.\$wlan-off .wireless-settings .password-label, .network-settings.\$wlan-off .wireless-settings .password-value, .network-settings.\$wlan-off .wireless-settings .password-input {
   display: none; }
 
+.popup .ethernet-settings,
+.popup .wireless-settings {
+  padding-bottom: 106px; }
 .popup.\$eth-off .ethernet-settings .ip-label, .popup.\$eth-off .ethernet-settings .ip-value, .popup.\$eth-off .ethernet-settings .ip-input,
 .popup.\$eth-off .ethernet-settings .subnet-label, .popup.\$eth-off .ethernet-settings .subnet-value, .popup.\$eth-off .ethernet-settings .subnet-input,
 .popup.\$eth-off .ethernet-settings .gateway-label, .popup.\$eth-off .ethernet-settings .gateway-value, .popup.\$eth-off .ethernet-settings .gateway-input,

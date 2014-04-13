@@ -115,6 +115,11 @@
 //  ethernet-settings-view
 //  wireless-settings-view
 .popup {
+  .ethernet-settings,
+  .wireless-settings {
+    padding-bottom: 106px;
+  }
+
   &.\$eth-off .ethernet-settings {
     .ip-label, .ip-value, .ip-input,
     .subnet-label, .subnet-value, .subnet-input,
