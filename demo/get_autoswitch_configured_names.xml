@@ -4,29 +4,29 @@
 	<available>Y</available><!-- Y | N -->
 	<enable>Y</enable><!-- Y | N -->
 	<autoswitch_list>
-		<autoswitch>
-			<sn>TVHUB</sn>
-			<name>TV-Hub</name>
-		</autoswitch>
-		<autoswitch>
-			<sn>148674490</sn>
-			<name>Galley</name>
-		</autoswitch>
+    <autoswitch>
+      <sn>TVHUB</sn>
+      <name>TV-Hub</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>148674490</sn>
+      <name>Bedroom</name>
+    </autoswitch>
     <autoswitch>
       <sn>126342782</sn>
-      <name>Salon</name>
+      <name>Kitchen</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>167458938</sn>
+      <name>Living Room</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>169335122</sn>
+      <name>Patio</name>
     </autoswitch>
     <autoswitch>
       <sn>178548390</sn>
       <name>Kitchen</name>
     </autoswitch>
-		<autoswitch>
-			<sn>167458938</sn>
-			<name>Bridge</name>
-		</autoswitch>
-		<autoswitch>
-			<sn>169335122</sn>
-			<name>Master Stateroom</name>
-		</autoswitch>
 	</autoswitch_list>
 </ipacu_response>

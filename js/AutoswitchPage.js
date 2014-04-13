@@ -53,8 +53,8 @@ $(function() {
         .end()
   );
 
-  var newBtn = $('.\\#new-btn').click(function(argument) {
-    window.location.hash = '/new';
+  var createReceiverBtn = $('.\\#new-btn').click(function(argument) {
+    window.location.hash = '/new/edit';
   });
 
 
@@ -96,23 +96,17 @@ $(function() {
 
   TVRO.onHashChange(function(hash) {
 
-    //  ''
-    //  /TVHUB
-    //  /new
-    //  /TVHUB/edit
-
     var split = _.rest(hash.split('/'));
 
     if (!hash) {
       document.body.className = '';
 
-    } else if (hash.match(/\/.*\/edit/)) {
-      receiverEditView.setReceiver({ id: split[0] });
-      receiverInfoView.setReceiver({ id: split[0] });
-      document.body.className = '/receiver/edit';
-
     } else if (hash.match(/\/new/)) {
       receiverEditView.createNew();
+      document.body.className = '/receiver/edit';
+
+    } else if (hash.match(/\/edit/)) {
+      receiverEditView.setReceiver({ id: split[0] });
       document.body.className = '/receiver/edit';
 
     } else if (hash.match(/\/.*/)) {

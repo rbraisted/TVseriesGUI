@@ -30,6 +30,8 @@
     };
   };
 
+
+
   var GroupInfoView = function(jQ) {
     var self;
     var group;
@@ -60,12 +62,10 @@
           group = _.find(groups, { name: arg.name });
           $('.\\#group-name', jQ).text(group.name);
           jQ.toggleClass('$predefined', group.predefined);
-
           satAView.setSat(group.satA);
           satBView.setSat(group.satB);
           satCView.setSat(group.satC);
           satDView.setSat(group.satD);
-
         }).then(TVRO.getInstalledGroup).then(function(installedGroup) {
           jQ.toggleClass('$installed', installedGroup.name === group.name);
         });

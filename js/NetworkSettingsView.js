@@ -26,6 +26,10 @@
       TVRO.getWlan().then(function(xml) {
         //  note: .eq(0)
         var mode = $('mode', xml).eq(0).text();
+
+        if (mode === 'AP') xml = xml.find('ap_mode');
+        if (mode === 'IF') xml = xml.find('if_mode');
+
         var essid = $('essid', xml).text();
         var ip = $('ip', xml).text();
         var netmask = $('netmask', xml).text();
@@ -33,9 +37,7 @@
         var broadcast = $('broadcast', xml).text();
 
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
-        var networkMode = $((mode === 'AP' ? 'ap_mode' : 'if_mode') + ' mode', xml).eq(0).text();
-        console.log('networkMode');
-        console.log(networkMode);
+        var networkMode = $('mode:first', xml).text();
         var securityMode = $('security mode', xml).text();
         var securityKey = $('security key', xml).text();
 

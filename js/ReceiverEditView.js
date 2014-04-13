@@ -18,7 +18,7 @@
       if (!name || !id) return alert('You must fill out all fields.');
 
       TVRO.getReceiverType().then(function(receiverType) {
-        var newReceiver = { name: name }
+        var newReceiver = { name: name };
         if (receiverType === 'Receiver') newReceiver.ip = id;
         else newReceiver.sn = id;
 
@@ -59,7 +59,6 @@
 
       setReceiver: function(arg) {
         isNew = false;
-
         TVRO.getReceivers().then(function(receivers) {
           receiver = _.find(receivers, { id: arg.id });
           $('.\\#receiver-name', jQ).val(receiver.name);

@@ -488,32 +488,32 @@ and also .#group-table-view (group mode)
   </div>
   <div class="name-block">
     <div class="name-label">Satellite Group Name</div>
-    <div class="group-name #group-name"></div>
+    <div class="group-name #group-name">N/A</div>
   </div>
-  <div class="slot first #sat-view #sat-a-view">
+  <div class="slot first #sat-view #sat-a-view $n/a">
     <div class="slot-head">Slot A</div>
-    <div class="sat-name #sat-name"></div>
+    <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
     <div class="slot-foot">Installed</div>
   </div><!--
- --><div class="slot #sat-view #sat-b-view">
+ --><div class="slot #sat-view #sat-b-view $n/a">
     <div class="slot-head">Slot B</div>
-    <div class="sat-name #sat-name"></div>
+    <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
     <div class="slot-foot">Installed</div>
   </div><!--
- --><div class="slot #sat-view #sat-c-view">
+ --><div class="slot #sat-view #sat-c-view $n/a">
     <div class="slot-head">Slot C</div>
-    <div class="sat-name #sat-name"></div>
+    <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
     <div class="slot-foot">Installed</div>
   </div><!--
- --><div class="slot #sat-view #sat-d-view">
+ --><div class="slot #sat-view #sat-d-view $n/a">
     <div class="slot-head">Slot D</div>
-    <div class="sat-name #sat-name"></div>
+    <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
     <div class="slot-foot">Installed</div>
@@ -535,21 +535,21 @@ and also .#group-table-view (group mode)
       <div class="name-label">Satellite Group Name</div>
       <input type="text" class="input group-name #group-name" />
     </div>
-    <div class="slot first #sat-view #sat-a-view">
+    <div class="slot first #sat-view #sat-a-view $n/a">
       <div class="slot-head">Slot A</div>
-      <div class="sat-name #sat-name"></div>
+      <div class="sat-name #sat-name">N/A</div>
     </div>
-    <div class="slot #sat-view #sat-b-view">
+    <div class="slot #sat-view #sat-b-view $n/a">
       <div class="slot-head">Slot B</div>
-      <div class="sat-name #sat-name"></div>
+      <div class="sat-name #sat-name">N/A</div>
     </div>
-    <div class="slot #sat-view #sat-c-view">
+    <div class="slot #sat-view #sat-c-view $n/a">
       <div class="slot-head">Slot C</div>
-      <div class="sat-name #sat-name"></div>
+      <div class="sat-name #sat-name">N/A</div>
     </div>
-    <div class="slot #sat-view #sat-d-view">
+    <div class="slot #sat-view #sat-d-view $n/a">
       <div class="slot-head">Slot D</div>
-      <div class="sat-name #sat-name"></div>
+      <div class="sat-name #sat-name">N/A</div>
     </div>
     <div class="btn-tray">
       <div class="block-btn first save-btn #save-btn">Save</div><!--

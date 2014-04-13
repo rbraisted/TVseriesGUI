@@ -8,12 +8,6 @@ $(function() {
 
   var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view')).reload();
 
-  // setInterval(function() {
-  //   //  force the webservice to recache antenna_status
-  //   TVRO.getAntennaStatus({}, 1)
-  //     .then(installedSatView.reload);
-  // }, 3000);
-
   //  views shared between single/group mode
 
   var satModeBtn = TVRO.ToggleBtn($('.\\#sat-mode-btn'))
@@ -109,8 +103,6 @@ $(function() {
 
   var groupTableView = TVRO.GroupTableView($('.\\#group-table-view'))
     .onClick(function(group) {
-      console.log('groupTableView.getValue()');
-      console.log(groupTableView.getValue());
       window.location.hash = '/groups/' + encode(group.name);
     });
 
@@ -133,11 +125,15 @@ $(function() {
         .end()
       .find('.\\#table-row')
         .click(function() {
-          var group  = encode(groupTableView.getValue().name);
-          window.location.hash = '/groups/' + group + '/edit';
         })
         .end()
-  ).setRegion('All');
+
+  ).onClick(function(sat) {
+    var slot = window.location.hash.slice(-1);
+    var group = window.location.hash.split('/')[2];
+    groupEditView.setSat(slot, sat);
+    window.location.hash = '/groups/' + group + '/edit';
+  }).setRegion('All');
 
   var groupEditView = TVRO.GroupEditView(
     $('.\\#group-edit-view')
@@ -149,12 +145,17 @@ $(function() {
         .end()
       .find('.\\#sat-view')
         .click(function() {
-          var group = encode(groupEditView.getGroup() ? groupEditView.getGroup().name : 'new');
-          window.location.hash = '/groups/' + group + '/edit/sats';
+          var group = window.location.hash.split('/')[2];
+          var satView = $(this);
+          var slot;
+          if (satView.is('.\\#sat-a-view')) slot = 'A';
+          if (satView.is('.\\#sat-b-view')) slot = 'B';
+          if (satView.is('.\\#sat-c-view')) slot = 'C';
+          if (satView.is('.\\#sat-d-view')) slot = 'D';
+          window.location.hash = '/groups/' + group + '/edit/' + slot;
         })
         .end()
-  )
-  .satTableView(groupSatTableView);
+  );
 
   var groupInfoView = TVRO.GroupInfoView(
     $('.\\#group-info-view')
@@ -186,7 +187,7 @@ $(function() {
 
   var createGroupBtn = $('.\\#new-btn', '.sidebar')
     .click(function() {
-      window.location.hash = '/groups/new';
+      window.location.hash = '/groups/new/edit';
     });
 
 //  routing
@@ -195,52 +196,102 @@ $(function() {
   TVRO.onHashChange(function(hash) {
     headerView.reload();
 
-    //  regex - to check
-    //  class - to set document.body
-    //  function - to call
-    //  order them deepest first
-
     var split = _.rest(hash.split('/'));
+    var className = '';
+
+    if (hash.match(/\/regions/)) {
+      satModeBtn.setOn(true);
+      className = '/regions';
+
+      //  /regions/RegionName
+      if (split.length > 1) {
+        regionTableView.setValue(decode(split[1]));
+        className += '/region';
+      }
+
+      singleSatTableView.setRegion(regionTableView.getValue());
+      singleSatTableView.reload();
+
+      //  /regions/RegionName/AntSatId
+      if (split.length > 2) {
+        satInfoView.setSat({ antSatID: decode(split[2]) });
+        className += '/sat';
+      }
+
+      //  /regions/RegionName/AntSatId/edit
+      if (split.length > 3) {
+        satEditView.setSat({ antSatID: decode(split[2]) });
+        className += '/edit';
+      }
+
+
+    } else if (hash.match(/\/groups/)) {
+      satModeBtn.setOn(false);
+      className = '/groups';
+
+      var group, sat;
+
+      //  /groups/GROUP_NAME
+      if (split.length > 1) {
+        group = { name: decode(split[1]) };
+        if (group.name !== 'new') groupTableView.setValue(group);
+        className += '/group';
+      }
+
+      groupTableView.reload();
+      if (groupTableView.getValue()) groupInfoView.setGroup(groupTableView.getValue());
+      else TVRO.getInstalledGroup().then(groupInfoView.setGroup);
+
+      if (split.length > 2) {
+        //  /groups/new/edit
+        //  /groups/GroupName/edit
+        if (split[2] === 'edit') {
+          if (group.name === 'new') groupEditView.createNew();
+          else groupEditView.setGroup(group);
+          className += '/edit';
+   
+          //  /groups/GroupName/edit/Slot (A, B, C, D)
+          if (split.length > 3) {
+            // var slot = split[3];
+            // groupSatTableView.setValue();
+            groupSatTableView.reload();
+            className += '/sats';
+          }
+
+          if (split.length > 4) {
+            //  /groups/GroupName/edit/Slot/AntSatId
+          }
+
+          if (split.length > 5) {
+            //  /groups/GroupName/edit/Slot/AntSatId/edit
+          }
+
+        //  /groups/GroupName/AntSatId
+        } else {
+          sat = { antSatID: decode(split[2]) };
+          className += '/sat';
+
+          //  /groups/GroupName/AntSatId/edit
+          if (split.length > 3) {
+            satEditView.setSat(sat);
+            className += '/edit';
+          } else {
+            satInfoView.setSat(sat);
+          }
+        }       
+      }
+    } else {
+      TVRO.getInstalledGroup().then(function(group) {
+        //  redirect to single (regions) or group view
+        if (!group || group.getSats().length === 1) 
+          window.location.hash = '/regions';
+        else window.location.hash = '/groups';
+      });
+    }
+
+    document.body.className = className;
 
     var routes = [{
-        r: /\/regions\/.*\/.*\/edit/,
-        c: '/regions/region/sat/edit',
-        f: function() {
-          satModeBtn.setOn(true);
-          regionTableView.setValue(decode(split[1]));
-          singleSatTableView.setRegion(regionTableView.getValue());
-          singleSatTableView.reload();
-          satEditView.setSat({ antSatID: decode(split[2]) });
-        }
-      }, {
-        r: /\/regions\/.*\/.*/,
-        c: '/regions/region/sat',
-        f: function() {
-          satModeBtn.setOn(true);
-          regionTableView.setValue(decode(split[1]));
-          singleSatTableView.setRegion(regionTableView.getValue());
-          singleSatTableView.reload();
-          satInfoView.setSat({ antSatID: decode(split[2]) });
-        }
-      }, {
-        r: /\/regions\/.*/,
-        c: '/regions/region',
-        f: function() {
-          satModeBtn.setOn(true);
-          regionTableView.setValue(decode(split[1]));
-          singleSatTableView.setRegion(regionTableView.getValue());
-          singleSatTableView.reload();
-        }
-      }, {
-        r: /\/regions/,
-        c: '/regions',
-        f: function() {
-          satModeBtn.setOn(true);
-          if (!regionTableView.getValue()) regionTableView.setValue('All');
-          singleSatTableView.setRegion(regionTableView.getValue());
-          singleSatTableView.reload();
-        }
-      }, {
         r: /\/groups\/.*\/edit\/sats\/.*\/edit/,
         c: '/groups/group/edit/sats/sat/edit',
         f: function() {
@@ -306,7 +357,7 @@ $(function() {
         f: function() {
           satModeBtn.setOn(false);
           groupTableView.reload();
-          groupEditView.setGroup({name:''});
+          groupEditView.createNew();
           if (groupTableView.getValue()) {
             groupInfoView.setGroup(groupTableView.getValue());
           } else {
@@ -314,52 +365,17 @@ $(function() {
               groupInfoView.setGroup(installedGroup);
             });
           }
-        }
-      }, {
-        r: /\/groups\/.*/,
-        c: '/groups/group',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupInfoView.setGroup(groupTableView.getValue());
-        }
-      }, {
-        r: /\/groups/,
-        c: '/groups',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          console.log(groupTableView.getValue());
-          if (groupTableView.getValue()) {
-            groupInfoView.setGroup(groupTableView.getValue());
-          } else {
-            TVRO.getInstalledGroup().then(function(installedGroup) {
-              groupInfoView.setGroup(installedGroup);
-            });
-          }
-        }
-      }, {
-        r: /^$/,
-        c: '',
-        f: function() {
-          TVRO.getInstalledGroup().then(function(group) {
-            //  figure out if we're single mode or not
-            //  and then set the mode switch to the right state
-            if (!group || group.getSats().length === 1) window.location.hash = '/regions';
-            else window.location.hash = '/groups';
-          });
         }
       }
     ];
 
-    _.forEach(routes, function(route) {
-      if (route.r.exec(hash)) {
-        route.f();
-        document.body.className = route.c;
-        return false;
-      }
-    });
+    // _.forEach(routes, function(route) {
+    //   if (route.r.exec(hash)) {
+    //     route.f();
+    //     document.body.className = route.c;
+    //     return false;
+    //   }
+    // });
   });
 
   TVRO.reload();

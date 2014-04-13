@@ -144,10 +144,10 @@
     return TVRO.setSatelliteGroup({
       command: 'ADD',
       group_name: group.name,
-      A: group.a ? group.a.antSatID : '',
-      B: group.b ? group.b.antSatID : '',
-      C: group.c ? group.c.antSatID : '',
-      D: group.d ? group.d.antSatID : ''
+      A: group.satA ? group.satA.antSatID : '',
+      B: group.satB ? group.satB.antSatID : '',
+      C: group.satC ? group.satC.antSatID : '',
+      D: group.satD ? group.satD.antSatID : ''
     });
   };
 

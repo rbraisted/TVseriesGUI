@@ -20,8 +20,8 @@
 	<service>DISH</service>
 	<service_subtype></service_subtype>
 	<master>
-		<sn>126342782</sn>
-		<name>Salon</name>
+		<sn>167458938</sn>
+		<name>Living Room</name>
 		<valid>Y</valid>
 		<sat>A</sat>
 		<tone>Y</tone>
@@ -34,19 +34,19 @@
     </autoswitch>
     <autoswitch>
       <sn>148674490</sn>
-      <name>Galley</name>
+      <name>Bedroom</name>
     </autoswitch>
     <autoswitch>
       <sn>126342782</sn>
-      <name>Salon</name>
+      <name>Kitchen</name>
     </autoswitch>
     <autoswitch>
       <sn>167458938</sn>
-      <name>Bridge</name>
+      <name>Living Room</name>
     </autoswitch>
     <autoswitch>
       <sn>169335122</sn>
-      <name>Master Stateroom</name>
+      <name>Patio</name>
     </autoswitch>
 	</active_list>
 
