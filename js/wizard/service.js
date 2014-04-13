@@ -77,6 +77,30 @@
 
   var DirectvView = function(jQ) {
     var self;
+
+    var singleOption = {
+      title: 'Single Satellite',
+      copy: 'For programming on the 101 satellite, you are ready to activate your system!'
+    };
+
+    var manualOption = {
+      title: 'Manual Switching',
+      copy: 'For programming on the 101 satellite, you are ready to activate your system!'
+    };
+
+    var automaticOption = {
+      title: 'Automatic Switching',
+      copy: 'For programming on the 101 & 119 satellites with automatic switching between them, you need to set up the system for automatic switching.'
+    };
+
+    var tableView = TVRO.TableView($('.\\#table-view', jQ))
+      .setValues([singleOption, manualOption, automaticOption])
+      .onBuild(function(row, option) {
+        $('.\\#title', row).text(option.title);
+        $('.\\#copy', row).text(option.copy);
+      })
+      .build();
+
     return self;
   };
 
@@ -158,14 +182,9 @@ $(function() {
   var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
   var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
   var dishNetworkView = TVRO.DishNetworkView($('.\\#dish-network-view'));
-  // var cdtVesselInfoView = TVRO.CdtVesselInfoView($('.\\#cdt-vessel-info-view'));
-  // var diyVesselInfoView = TVRO.DiyVesselInfoView($('.\\#diy-vessel-info-view'));
-  // var installerInfoView = TVRO.InstallerInfoView($('.\\#installer-info-view'));
+  var directvView = TVRO.DirectvView($('.\\#directv-view'));
 
   TVRO.onHashChange(function(hash) {
-    // if (hash === '/local-channels') installerIdView.setValue('CDT');
-    // else if (hash === '/diy-vessel-info') installerIdView.setValue('DIY');
-    // else if (hash === '/installer-info') installerIdView.setValue('CDT');
     document.body.className = hash;
   });
 

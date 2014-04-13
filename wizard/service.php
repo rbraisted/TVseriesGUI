@@ -50,8 +50,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <div class="view directv #directv-view">
     <div class="view-head">DIRECTV</div>
-    <div class="tac dfs21 mfs16 mlh1.6 mt3 mb3">Success! You’re now setup for all your DIRECTV programming!</div>
+    <div class="headline">Success! You’re now setup for all your DIRECTV programming!</div>
 
+    <div class="grey-box-table #table-view">
+      <div class="table-row #table-row">
+        <div class="title #title"></div>
+        <div class="copy #copy"></div>
+        <div class="radio-icon"></div>
+      </div>
+    </div>
+
+    <!--
     <div class="tac">
       <div id="radio-option" value="SINGLE" class="wiz-opt cp">
         <div class="dfs21 mfs11 wiz-opt-title">Single Satellite</div>
@@ -60,16 +69,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
           your system!
         </div>
         <div class="radio-icon wiz-opt-radio"></div>
-      </div><!--
-     --><div id="radio-option" value="MANUAL" class="wiz-opt cp">
+      </div>
+      <div id="radio-option" value="MANUAL" class="wiz-opt cp">
         <div class="dfs21 mfs11 wiz-opt-title">Manual Switching</div>
         <div class="tal dfs13 mfs13 dlh1.6 mlh1.6 wiz-opt-copy">
           For programming on the 101 & 119 satellites with manual switching
           between them, you are ready to activate your system!
         </div>
         <div class="radio-icon wiz-opt-radio"></div>
-      </div><!--
-     --><div id="radio-option" value="AUTOMATIC" class="wiz-opt cp">
+      </div>
+      <div id="radio-option" value="AUTOMATIC" class="wiz-opt cp">
         <div class="dfs21 mfs11 wiz-opt-title">Automatic Switching</div>
         <div class="tal dfs13 mfs13 dlh1.6 mlh1.6 wiz-opt-copy">
           For programming on the 101 & 119 satellites with automatic switching
@@ -78,6 +87,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
         <div class="radio-icon wiz-opt-radio"></div>
       </div>
     </div>
+    -->
 
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>

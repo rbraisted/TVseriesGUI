@@ -121,6 +121,92 @@ html {
   }
 }
 
+.grey-box-table {
+  .table-row {
+    @include text-shadow;
+    background-color: $dark-grey;
+    cursor: pointer;
+    position: relative;
+
+    &.\$selected { background-color: $bright-blue; }
+  }
+
+  @include breakpoint($mobile) {
+    margin-bottom: $big-bump * 2;
+
+    .title {
+      background-color: #000;
+      font-size: $small-font;
+      line-height: $lil-bump;
+      text-align: center;
+      width: 100%;
+    }
+
+    .\$selected .title {
+      background-color: $light-blue;
+    }
+
+    .copy {
+      padding: 20px;
+      font-size: $small-font;
+      line-height: 1.6;
+    }
+
+    .radio-icon {
+      display: none;
+    }
+  }
+
+  @include breakpoint($desktop) {
+    text-align: center;
+
+    .table-row+.table-row {
+      margin-left: 30px;
+    }
+
+    .table-row {
+      display: inline-block;
+      min-height: 200px;
+      vertical-align: top;
+      width: 245px;
+      margin-bottom: 96px;
+    }
+
+    .title,
+    .copy {
+      margin: 0 auto;
+      padding: 20px 0;
+      width: calc(100% - 40px);
+    }
+
+    .title {
+      border-bottom: 1px solid #fff;
+      font-size: $large-font;      
+      text-align: center;
+    }
+
+    .copy {
+      line-height: 1.6;
+      font-size: $small-font;
+      text-align: left;
+    }
+
+    .radio-icon {
+      @include bgimg('radio-unchecked');
+      bottom: -35px;
+      cursor: pointer;
+      left: 50%;
+      margin-left: -10px;
+      padding: 0;
+      position: absolute;
+    }
+
+    &.\$selected .radio-icon {
+      @include bgimg('radio-checked');
+    }    
+  }
+}
+
 .headline {
   text-align: center;
   line-height: 1.6;
@@ -325,7 +411,6 @@ body[class=''] .\#installer-id-view,
 
 .service-provider,
 .local-channels,
-.directv,
 .dish-network {
   .headline {
     @include breakpoint($desktop) { margin: 60px 0 30px; }
@@ -356,6 +441,13 @@ body[class=''] .\#installer-id-view,
     padding: 0 20px;
     display: inline-block;
   }
+}
+
+.directv {
+  .headline {
+    @include breakpoint($mobile) { margin: 30px 0; }
+    @include breakpoint($desktop) { margin: 60px 0; }
+  }  
 }
 
 .local-channels,
