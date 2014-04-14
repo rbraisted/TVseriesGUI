@@ -158,9 +158,22 @@
   };
 
   TVRO.getInstalledSat = function() {
-    return TVRO.getAntennaStatus().then(function(xml) {
-      return Sat($('satellite', xml));
+    //  antenna_status doesn't always seem to have full sat
+    //  info on the installed sat - but it usually has the antSatID
+    //  let's just pull the data by matching antSatID with the sat
+    //  from get_satellite_list
+    return Promise.all(
+      TVRO.getAntennaStatus(),
+      TVRO.getSatelliteList()
+    ).then(function(xmls) {
+      var antSatID = $('satellite antSatID', xmls[0]).text();
+      return Sat($('satellite', xmls[1]).filter(function() {
+        return $('antSatID', this).text() === antSatID;
+      }));
     });
+    // return TVRO.getAntennaStatus().then(function(xml) {
+    //   return Sat($('satellite', xml));
+    // });
   };
 
   TVRO.setInstalledSat = function(sat) {

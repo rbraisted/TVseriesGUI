@@ -79,7 +79,36 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   </div>
 </div>
 
+<div class="single-view">
+  <div class="region-table #region-table-view">
+    <div class="table-row #table-row">
+      <span class="table-col #region-name"></span>
+    </div>
+  </div>
+</div>
 
+<div class="view group-view #group-view">
+  <div class="view-head">
+    Select a Satellite
+  </div>
+  
+  <div class="copy">
+    Select a region. Then choose a satellite in that region.
+  </div>
+
+  <div class="group-table #group-table-view">
+    <div class="#table-view">
+      <div class="table-row #table-row">
+        <span class="table-col install-btn #install-btn"></span><!--
+       --><span class="table-col #group-name"></span>
+      </div>
+    </div>
+  </div>
+
+    <div class="container">
+    </div>
+  </div>
+</div>
 
 <!--
 

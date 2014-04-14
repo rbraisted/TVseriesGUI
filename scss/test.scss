@@ -513,3 +513,96 @@ body[class=''] .\#service-provider-view,
 .\/tv5-manual-options .\#tv5-manual-options-view {
   display: block;
 }
+
+//  mobile
+@include breakpoint($mobile) {
+
+  //  single mode
+  .\/regions .sidebar,
+  .\/regions .\#region-table-view,
+  .\/regions\/region .\#single-sat-table-view,
+  .\/regions\/region\/sat .\#sat-info-view,
+  .\/regions\/region\/sat\/edit .\#sat-edit-view,
+
+  //  group mode
+  .\/groups .sidebar,
+  .\/groups .sidebar .\#new-btn,
+  .\/groups .\#group-table-view,
+  .\/groups\/group .\#group-info-view,
+  .\/groups\/group\/edit .\#group-edit-view,
+  .\/groups\/group\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
+  .\/groups\/group\/sat\/edit .\#sat-edit-view,
+  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+    display: block;
+  }
+}
+
+//  desktop
+@include breakpoint($desktop)  {
+  .sidebar {
+    display: block;
+  }
+
+  //  single mode
+  .\/regions,
+  .\/regions\/region,
+  .\/regions\/region\/sat,
+  .\/regions\/region\/sat\/edit {
+    .\#region-table-view,
+    .\#single-sat-table-view {
+      display: block;
+    }
+  }
+  
+  .\/regions\/region\/sat .\#sat-info-view,
+  .\/regions\/region\/sat\/edit .\#sat-edit-view {
+    display: block;
+  }
+
+  //  group mode
+  .\/groups,
+  .\/groups\/group,
+  .\/groups\/group\/edit,
+  .\/groups\/group\/sat,
+  .\/groups\/group\/edit\/sats,
+  .\/groups\/group\/sat\/edit,
+  .\/groups\/group\/edit\/sats\/sat,
+  .\/groups\/group\/edit\/sats\/sat\/edit {
+    .\#group-table-view,
+    .\#group-info-view,
+    .sidebar .\#new-btn, {
+      display: block;
+    }
+  }
+
+  .\/groups\/group\/edit .\#group-edit-view,
+  .\/groups\/group\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
+  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+  .\/groups\/group\/sat\/edit .\#sat-edit-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+    display: block;
+  }
+
+
+
+  .\/regions\/region\/sat,
+  .\/regions\/region\/sat\/edit,
+  .\/groups\/group\/sat,
+  .\/groups\/group\/sat\/edit,
+  .\/groups\/group\/edit\/sats\/sat,
+  .\/groups\/group\/edit\/sats\/sat\/edit {
+    .popup {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 844px;
+    }
+  }
+}

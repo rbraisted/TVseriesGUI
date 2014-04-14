@@ -20,9 +20,9 @@ and also .#group-table-view (group mode)
     <div class="sidebar-chunk-head">
       <div class="#sat-region"></div>
       <div>
-      <span class="#sat-name"></span>
-      <span> - </span>
-      <span class="#sat-longitude"></span>
+        <span class="#sat-name"></span>
+        <span> - </span>
+        <span class="#sat-longitude"></span>
       </div>
     </div>
     <div class="sat-signal #ant-bars $0"></div>

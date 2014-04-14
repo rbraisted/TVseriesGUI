@@ -1217,3 +1217,87 @@ body[class=''] .\#service-provider-view,
 .\/circular-options .\#circular-options-view,
 .\/tv5-manual-options .\#tv5-manual-options-view {
   display: block; }
+
+@media screen and (max-width: 880px) {
+  .\/regions .sidebar,
+  .\/regions .\#region-table-view,
+  .\/regions\/region .\#single-sat-table-view,
+  .\/regions\/region\/sat .\#sat-info-view,
+  .\/regions\/region\/sat\/edit .\#sat-edit-view,
+  .\/groups .sidebar,
+  .\/groups .sidebar .\#new-btn,
+  .\/groups .\#group-table-view,
+  .\/groups\/group .\#group-info-view,
+  .\/groups\/group\/edit .\#group-edit-view,
+  .\/groups\/group\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
+  .\/groups\/group\/sat\/edit .\#sat-edit-view,
+  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+    display: block; } }
+@media screen and (min-width: 881px) {
+  .sidebar {
+    display: block; }
+
+  .\/regions .\#region-table-view,
+  .\/regions .\#single-sat-table-view,
+  .\/regions\/region .\#region-table-view,
+  .\/regions\/region .\#single-sat-table-view,
+  .\/regions\/region\/sat .\#region-table-view,
+  .\/regions\/region\/sat .\#single-sat-table-view,
+  .\/regions\/region\/sat\/edit .\#region-table-view,
+  .\/regions\/region\/sat\/edit .\#single-sat-table-view {
+    display: block; }
+
+  .\/regions\/region\/sat .\#sat-info-view,
+  .\/regions\/region\/sat\/edit .\#sat-edit-view {
+    display: block; }
+
+  .\/groups .\#group-table-view,
+  .\/groups .\#group-info-view,
+  .\/groups .sidebar .\#new-btn,
+  .\/groups\/group .\#group-table-view,
+  .\/groups\/group .\#group-info-view,
+  .\/groups\/group .sidebar .\#new-btn,
+  .\/groups\/group\/edit .\#group-table-view,
+  .\/groups\/group\/edit .\#group-info-view,
+  .\/groups\/group\/edit .sidebar .\#new-btn,
+  .\/groups\/group\/sat .\#group-table-view,
+  .\/groups\/group\/sat .\#group-info-view,
+  .\/groups\/group\/sat .sidebar .\#new-btn,
+  .\/groups\/group\/edit\/sats .\#group-table-view,
+  .\/groups\/group\/edit\/sats .\#group-info-view,
+  .\/groups\/group\/edit\/sats .sidebar .\#new-btn,
+  .\/groups\/group\/sat\/edit .\#group-table-view,
+  .\/groups\/group\/sat\/edit .\#group-info-view,
+  .\/groups\/group\/sat\/edit .sidebar .\#new-btn,
+  .\/groups\/group\/edit\/sats\/sat .\#group-table-view,
+  .\/groups\/group\/edit\/sats\/sat .\#group-info-view,
+  .\/groups\/group\/edit\/sats\/sat .sidebar .\#new-btn,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#group-table-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#group-info-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .sidebar .\#new-btn {
+    display: block; }
+
+  .\/groups\/group\/edit .\#group-edit-view,
+  .\/groups\/group\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
+  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+  .\/groups\/group\/sat\/edit .\#sat-edit-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+    display: block; }
+
+  .\/regions\/region\/sat .popup,
+  .\/regions\/region\/sat\/edit .popup,
+  .\/groups\/group\/sat .popup,
+  .\/groups\/group\/sat\/edit .popup,
+  .\/groups\/group\/edit\/sats\/sat .popup,
+  .\/groups\/group\/edit\/sats\/sat\/edit .popup {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 844px; } }
