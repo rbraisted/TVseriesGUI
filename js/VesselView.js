@@ -9,11 +9,13 @@
       $('.\\#demo-mode-indicator', jQ).toggle(TVRO.getDemoMode());
 
       TVRO.getAntennaStatus().then(function(xml) {
-        var heading = Number($('antenna brst hdg', xml).text()).toFixed(1);
         var state = $('antenna state', xml).text();
         var azBow = Math.round(parseFloat($('az_bow', xml).text(), 10));
 
-        $('.\\#vessel-heading', jQ).text(heading+'˚');
+        var heading = $('antenna brst hdg', xml).text();
+        heading = heading === '' ? '---' : Number(heading).toFixed(1) + '˚';
+
+        $('.\\#vessel-heading', jQ).text(heading);
 
         //  changes the animation imagery
         //  based on antenna state

@@ -36,7 +36,7 @@
 			<hazard_zone>NOTSET</hazard_zone><!-- NOTSET | ZONE1 | ZONE2 | ZONE1 and ZONE2 | NONE | IGNORED -->
 		</rf>
 		<brst>
-			<hdg>123.6</hdg>
+			<hdg></hdg><!-- 123.6 -->
 			<az_bow>40.0</az_bow>
 			<az>190.0</az>
 			<el>89.1</el>
