@@ -18,7 +18,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   <div class="grey-box-table #table-view">
     <div class="table-row #table-row">
       <div class="title #title"></div>
-      <div class="image"></div>
+      <div class="image #image"></div>
       <div class="radio-icon"></div>
     </div>
   </div>
@@ -33,11 +33,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <div class="view circular-options #circular-options-view">
   <div class="view-head">Satellite Selection</div>
-  <div class="headline">
+  <div class="copy">
     Note: While you may choose any combination of DIRECTV, DISH Network, &/or
     any other circular satellites you will be limited to manual satellite
     switching. If you wish to enable automatic switching, go back &
-    <span class="link #service-btn">
+    <span class="link #prev-btn">
       choose the desired service provider instead.
     </span>
   </div>
@@ -45,7 +45,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   <div class="grey-box-table #table-view">
     <div class="table-row #table-row">
       <div class="title #title"></div>
-      <div class="image"></div>
+      <div class="image #image"></div>
       <div class="radio-icon"></div>
     </div>
   </div>
@@ -60,7 +60,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <div class="view tv5-manual-options #tv5-manual-options-view">
   <div class="view-head">Satellite Selection</div>
-  <div class="headline">
+  <div class="copy">
     * You will have the opportunity to create your own group if one of
     the preset groups doesn’t meet your needs.
   </div>
@@ -68,7 +68,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   <div class="grey-box-table #table-view">
     <div class="table-row #table-row">
       <div class="title #title"></div>
-      <div class="image"></div>
+      <div class="image #image"></div>
       <div class="radio-icon"></div>
     </div>
   </div>
@@ -82,95 +82,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 
 <!--
-
-<div id="options-view" class="view main-view wiz-view options-view">
-	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
-		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 wiz-instructions"><br></div>
-		<div class="tac">
-			<div id="radio-option" value="SINGLE" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
-				<div class="wiz-opt-single-satellite-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		  <div id="radio-option" value="PRESET" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Preset Group of Satellites</div>
-				<div class="wiz-opt-preset-group-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		  <div id="radio-option" value="NEW" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
-				<div class="wiz-opt-new-group-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		</div>
-	</div>
-	<div class="bottom-bar">
-		<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
-		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
-	</div>
-</div>
-
-<div id="circular-options-view" class="view main-view wiz-view circular-options-view">
-	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
-		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 wiz-instructions">
-			Note: While you may choose any combination of DIRECTV, DISH Network,
-			Bell TV, &/or any other circular satellites you will be limited to
-			manual satellite switching. If you wish to enable automatic
-			switching, go back &
-			<a href="/wizard/9.php" class="wiz-link">choose the desired
-			service provider instead.</a>
-		</div>
-		<div class="tac">
-			<div id="radio-option" value="SINGLE" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
-				<div class="wiz-opt-single-satellite-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		  <div id="radio-option" value="NEW" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
-				<div class="wiz-opt-new-group-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		</div>
-	</div>
-	<div class="bottom-bar">
-		<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
-		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
-	</div>
-</div>
-
-<div id="tv5-manual-options-view" class="view main-view wiz-view tv5-manual-options-view">
-	<div class="view-content main-content wiz-content">
-		<div class="wiz-title-view tac bb dfs26 mfs21">Satellite Selection</div>
-		<div class="tac i dfs13 mfs13 dlh1.6 mlh1.6 mt3 mb3 wiz-instructions">
-			* You will have the opportunity to create your own group if one of
-			the preset groups doesn’t meet your needs.
-		</div>
-		<div class="tac">
-			<div id="radio-option" value="SINGLE" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
-				<div class="wiz-opt-single-satellite-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		  <div id="radio-option" value="PRESET" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Preset Group of Satellites</div>
-				<div class="wiz-opt-preset-group-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		  <div id="radio-option" value="NEW" class="wiz-opt cp">
-				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
-				<div class="wiz-opt-new-group-img"></div>
-				<div class="radio-icon wiz-opt-radio"></div>
-			</div>
-		</div>
-	</div>
-	<div class="bottom-bar">
-		<a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
-		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
-	</div>
-</div>
 
 <div id="single-view" class="view main-view wiz-view single-view">
 	<div class="view-content main-content wiz-content">

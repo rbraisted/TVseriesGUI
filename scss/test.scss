@@ -182,12 +182,20 @@ html {
     .title {
       border-bottom: 1px solid #fff;
       font-size: $large-font;      
+      line-height: 1.2;
       text-align: center;
     }
 
+    .image {
+      background: transparent no-repeat center center/100% 100%;
+      height: 70px;
+      margin: 20px 0;
+      width: 100%;
+    }
+
     .copy {
-      line-height: 1.6;
       font-size: $small-font;
+      line-height: 1.6;
       text-align: left;
     }
 
@@ -221,6 +229,12 @@ html {
     margin-top: 30px;
     padding: 0 20px;
   }
+}
+
+.link {
+  color: $bright-blue;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 
@@ -437,11 +451,8 @@ body[class=''] .\#installer-id-view,
 
   .link {
     line-height: 1.6;
-    color: $bright-blue;
-    cursor: pointer;
     margin-top: 30px;
     margin-bottom: 30px;
-    text-decoration: underline;
     padding: 0 20px;
     display: inline-block;
   }
@@ -474,6 +485,28 @@ body[class=''] .\#service-provider-view,
 
 //  satellites
 ////////////////////////////////////////////////////////////////////////////////
+
+.options .view-head {
+  margin-bottom: 100px;
+}
+
+.options,
+.circular-options,
+.tv5-manual-options {
+  .copy {
+    line-height: 1.4;
+    margin: 0 auto 40px;
+    max-width: 680px;
+    text-align: center;
+  }
+
+  @include breakpoint($mobile) {
+    .copy {
+      padding: 0 20px;
+      margin: 20px auto;
+    }
+  }
+}
 
 .\/options .\#options-view,
 .\/circular-options .\#circular-options-view,
