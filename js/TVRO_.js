@@ -35,6 +35,9 @@
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc
   var formatCoordinate = function(type, coordinate, places) {
+    if (_.isNaN(coordinate) || coordinate == '')
+      return 'N/A';
+
     var posStr, negStr;
     if (type === 'latitude') {
       posStr = 'N';
