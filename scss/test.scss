@@ -223,6 +223,7 @@ html {
   }
 }
 
+
 //  index
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -310,6 +311,7 @@ html {
   }
 }
 
+
 //  registration
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -353,6 +355,7 @@ body[class=''] .\#installer-id-view,
 .\/installer-info .\#installer-info-view {
   display: block;
 }
+
 
 //  gps
 ////////////////////////////////////////////////////////////////////////////////
@@ -405,6 +408,7 @@ body[class=''] .\#installer-id-view,
     display: block;
   }
 }
+
 
 //  service
 ////////////////////////////////////////////////////////////////////////////////
@@ -464,5 +468,15 @@ body[class=''] .\#service-provider-view,
 .\/directv .\#directv-view,
 .\/dish-network .\#dish-network-view,
 .\/spinner .\#spinner-view {
+  display: block;
+}
+
+
+//  satellites
+////////////////////////////////////////////////////////////////////////////////
+
+.\/options .\#options-view,
+.\/circular-options .\#circular-options-view,
+.\/tv5-manual-options .\#tv5-manual-options-view {
   display: block;
 }

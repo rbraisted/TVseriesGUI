@@ -1,7 +1,87 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php'; ?>
+<?
+$wiz = true;
+include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
+?>
+
+<script type="text/javascript" src="/js/SatTableView.js"></script>
+<script type="text/javascript" src="/js/SatInfoView.js"></script>
+<script type="text/javascript" src="/js/SatEditView.js"></script>
+<script type="text/javascript" src="/js/GroupTableView.js"></script>
+<script type="text/javascript" src="/js/GroupInfoView.js"></script>
+<script type="text/javascript" src="/js/GroupEditView.js"></script>
+
 <script type="text/javascript" src="/js/wizard/satellites.js"></script>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<div class="view options #options-view">
+  <div class="view-head">Satellite Selection</div>
+
+  <div class="grey-box-table #table-view">
+    <div class="table-row #table-row">
+      <div class="title #title"></div>
+      <div class="image"></div>
+      <div class="radio-icon"></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
+</div>
+
+
+
+<div class="view circular-options #circular-options-view">
+  <div class="view-head">Satellite Selection</div>
+  <div class="headline">
+    Note: While you may choose any combination of DIRECTV, DISH Network, &/or
+    any other circular satellites you will be limited to manual satellite
+    switching. If you wish to enable automatic switching, go back &
+    <span class="link #service-btn">
+      choose the desired service provider instead.
+    </span>
+  </div>
+
+  <div class="grey-box-table #table-view">
+    <div class="table-row #table-row">
+      <div class="title #title"></div>
+      <div class="image"></div>
+      <div class="radio-icon"></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
+</div>
+
+
+
+<div class="view tv5-manual-options #tv5-manual-options-view">
+  <div class="view-head">Satellite Selection</div>
+  <div class="headline">
+    * You will have the opportunity to create your own group if one of
+    the preset groups doesn’t meet your needs.
+  </div>
+
+  <div class="grey-box-table #table-view">
+    <div class="table-row #table-row">
+      <div class="title #title"></div>
+      <div class="image"></div>
+      <div class="radio-icon"></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
+</div>
+
+
+
+<!--
 
 <div id="options-view" class="view main-view wiz-view options-view">
 	<div class="view-content main-content wiz-content">
@@ -12,13 +92,13 @@
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
 				<div class="wiz-opt-single-satellite-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
-			</div><!--
-		 --><div id="radio-option" value="PRESET" class="wiz-opt cp">
+			</div>
+		  <div id="radio-option" value="PRESET" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Preset Group of Satellites</div>
 				<div class="wiz-opt-preset-group-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
-			</div><!--
-		 --><div id="radio-option" value="NEW" class="wiz-opt cp">
+			</div>
+		  <div id="radio-option" value="NEW" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
 				<div class="wiz-opt-new-group-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
@@ -30,8 +110,6 @@
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="circular-options-view" class="view main-view wiz-view circular-options-view">
 	<div class="view-content main-content wiz-content">
@@ -49,8 +127,8 @@
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
 				<div class="wiz-opt-single-satellite-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
-			</div><!--
-		 --><div id="radio-option" value="NEW" class="wiz-opt cp">
+			</div>
+		  <div id="radio-option" value="NEW" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
 				<div class="wiz-opt-new-group-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
@@ -62,8 +140,6 @@
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="tv5-manual-options-view" class="view main-view wiz-view tv5-manual-options-view">
 	<div class="view-content main-content wiz-content">
@@ -77,13 +153,13 @@
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Single Satellite</div>
 				<div class="wiz-opt-single-satellite-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
-			</div><!--
-		 --><div id="radio-option" value="PRESET" class="wiz-opt cp">
+			</div>
+		  <div id="radio-option" value="PRESET" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Choose a Preset Group of Satellites</div>
 				<div class="wiz-opt-preset-group-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
-			</div><!--
-		 --><div id="radio-option" value="NEW" class="wiz-opt cp">
+			</div>
+		  <div id="radio-option" value="NEW" class="wiz-opt cp">
 				<div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Create a New Group of Satellites</div>
 				<div class="wiz-opt-new-group-img"></div>
 				<div class="radio-icon wiz-opt-radio"></div>
@@ -95,8 +171,6 @@
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="single-view" class="view main-view wiz-view single-view">
 	<div class="view-content main-content wiz-content">
@@ -190,8 +264,6 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
 <div id="group-view" class="view main-view wiz-view group-view">
 	<div class="view-content main-content wiz-content">
 		<div class="wiz-title-view tac bb dfs26 mfs21">
@@ -237,20 +309,20 @@
 					<div class="slot-label slot-installed-label">Installed</div>
 					<div class="slot-label slot-static-name-label">Satellite Name</div>
 					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-				</div><!--
-			 --><div id="slot-b-view slot-view" class="slot">
+				</div>
+			  <div id="slot-b-view slot-view" class="slot">
 					<div class="slot-label slot-letter-label">Slot B</div>
 					<div class="slot-label slot-installed-label">Installed</div>
 					<div class="slot-label slot-static-name-label">Satellite Name</div>
 					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-				</div><!--
-			 --><div id="slot-c-view slot-view" class="slot">
+				</div>
+			  <div id="slot-c-view slot-view" class="slot">
 					<div class="slot-label slot-letter-label">Slot C</div>
 					<div class="slot-label slot-installed-label">Installed</div>
 					<div class="slot-label slot-static-name-label">Satellite Name</div>
 					<div id="name" class="slot-label slot-dynamic-name-label">DirecTV 1R</div>
-				</div><!--
-			 --><div id="slot-d-view slot-view" class="slot">
+				</div>
+			  <div id="slot-d-view slot-view" class="slot">
 					<div class="slot-label slot-letter-label">Slot D</div>
 					<div class="slot-label slot-installed-label">Installed</div>
 					<div class="slot-label slot-static-name-label">Satellite Name</div>
@@ -267,8 +339,6 @@
 		<a id="next-btn" class="btn next-btn next-icon fr">Next</a>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div id="group-edit-view" class="view popup-view group-edit-view">
 	<div class="view-content popup-content">
@@ -322,8 +392,6 @@
 	</div>
 </div>
 
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
 <div id="group-sats-view" class="view popup-view group-sats-view">
 	<div class="view-content popup-content">
 		<a id="cancel-btn" class="btn back-btn">
@@ -370,8 +438,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <style type="text/css">
 	body.at-splash .single-view,
@@ -688,3 +754,5 @@
 		width: 100%;
 	}
 </style>
+
+-->

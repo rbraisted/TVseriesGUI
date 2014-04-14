@@ -175,6 +175,7 @@ $(function() {
     var split = _.rest(hash.split('/'));
     var className = '';
 
+    //  single mode - regions
     if (hash.match(/\/regions/)) {
       satModeBtn.setOn(true);
       className = '/regions';
@@ -201,6 +202,7 @@ $(function() {
       }
 
 
+    //  group mode
     } else if (hash.match(/\/groups/)) {
       satModeBtn.setOn(false);
       className = '/groups';
@@ -259,79 +261,21 @@ $(function() {
           }
         }       
       }
+
+
+    //  when we first come to the page and the user
+    //  hasn't chosen a route that is in group or single mode
+    //  find out if they have a group or a single sat installed
+    //  and redirect
     } else {
       TVRO.getInstalledGroup().then(function(group) {
-        //  redirect to single (regions) or group view
-        if (!group || group.getSats().length === 1) 
-          window.location.hash = '/regions';
+        var isSingle = !group || group.getSats().length === 1;
+        if (isSingle) window.location.hash = '/regions';
         else window.location.hash = '/groups';
       });
     }
 
     document.body.className = className;
-
-    var routes = [{
-        r: /\/groups\/.*\/edit\/sats\/.*\/edit/,
-        c: '/groups/group/edit/sats/sat/edit',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupEditView.setGroup(groupTableView.getValue());
-          satEditView.sat({ antSatID: decode(split[4]) });
-        }
-      }, {
-        r: /\/groups\/.*\/edit\/sats\/.*/,
-        c: '/groups/group/edit/sats/sat',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupEditView.setGroup(groupTableView.getValue());
-          satInfoView.setSat({ antSatID: decode(split[4]) });
-        }
-      }, {
-        r: /\/groups\/.*\/edit\/sats/,
-        c: '/groups/group/edit/sats',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupEditView.setGroup(groupTableView.getValue());
-          groupSatTableView.reload();
-          //  sat table??
-        }
-      }, {
-        r: /\/groups\/.*\/.*\/edit/,
-        c: '/groups/group/sat/edit',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupInfoView.setGroup(groupTableView.getValue());
-          satEditView.setSat({antSatID: decode(split[2])});
-        }
-      }, {
-        r: /\/groups\/.*\/edit/,
-        c: '/groups/group/edit',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupEditView.setGroup(groupTableView.getValue());
-        }
-      }, {
-        r: /\/groups\/.*\/.*/,
-        c: '/groups/group/sat',
-        f: function() {
-          satModeBtn.setOn(false);
-          groupTableView.reload();
-          groupTableView.setValue({ name: decode(split[1]) });
-          groupInfoView.setGroup(groupTableView.getValue());
-          satInfoView.setSat({antSatID: decode(split[2])});
-        }
-      }
-    ];
   });
 
   TVRO.reload();
