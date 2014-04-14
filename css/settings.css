@@ -921,7 +921,7 @@ a {
 .popup.\$wlan-off .wireless-settings .security-label, .popup.\$wlan-off .wireless-settings .security-value, .popup.\$wlan-off .wireless-settings .security-dropdown-btn,
 .popup.\$wlan-off .wireless-settings .password-label, .popup.\$wlan-off .wireless-settings .password-value, .popup.\$wlan-off .wireless-settings .password-input {
   display: none; }
-.popup.\$wlan-bridged .wireless-settings .value, .popup.\$wlan-static .wireless-settings .value {
+.popup.\$wlan-bridged .wireless-settings .value, .popup.\$wlan-end-point .wireless-settings .value, .popup.\$wlan-static .wireless-settings .value {
   display: none; }
 .popup.\$wlan-dynamic .wireless-settings .ip-input,
 .popup.\$wlan-dynamic .wireless-settings .subnet-input,

@@ -92,6 +92,7 @@
       $('.\\#wlan-network-mode', jQ).text(networkMode);
       networkModeDropdownView.setValue(networkMode);
       jQ.toggleClass('$wlan-bridged', networkMode === 'BRIDGED');
+      jQ.toggleClass('$wlan-end-point', networkMode === 'END_POINT');
       jQ.toggleClass('$wlan-static', networkMode === 'STATIC'); 
       jQ.toggleClass('$wlan-dynamic', networkMode === 'DYNAMIC');
     };
@@ -105,7 +106,7 @@
       .build();
 
     var ifDropdownVals = ['STATIC', 'DYNAMIC'];
-    var apDropdownVals = ['BRIDGED'];
+    var apDropdownVals = ['BRIDGED', 'END_POINT'];
 
 
 

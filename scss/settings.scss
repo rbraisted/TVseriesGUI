@@ -161,6 +161,7 @@
   }
 
   &.\$wlan-bridged,
+  &.\$wlan-end-point,
   &.\$wlan-static {
     .wireless-settings .value {
       display: none;

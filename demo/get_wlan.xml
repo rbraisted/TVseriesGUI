@@ -3,7 +3,7 @@
 	<message error="0" name="get_wlan"/>
 	<mode>AP</mode><!-- OFF | AP | IF -->
   <ap_mode>
-    <mode>BRIDGED</mode><!-- STATIC | DYNAMIC if mode is IF, BRIDGED if mode is AP -->
+    <mode>END_POINT</mode><!-- BRIDGED | END_POINT -->
     <essid>ipacu</essid>
     <security>
       <mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
@@ -16,7 +16,7 @@
     <broadcast>192.168.1.255</broadcast>
   </ap_mode>
 	<if_mode>
-		<mode>DYNAMIC</mode><!-- STATIC | DYNAMIC if mode is IF, BRIDGED if mode is AP -->
+		<mode>DYNAMIC</mode><!-- STATIC | DYNAMIC -->
 		<essid>ipacu</essid>
 		<security>
 			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
