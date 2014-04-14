@@ -480,7 +480,7 @@ and also .#group-table-view (group mode)
 <!-- group views
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="view group-info #group-info-view">
+<div class="view group-info #group-info-view $installed $predefined">
   <div class="view-head">
     <span class="sat-icon"></span>
     <span class="#group-name"></span>

@@ -94,15 +94,6 @@
 				<enable>TRUE</enable>
 				<favorite>TRUE</favorite>
 			</A>
-			<!-- <B>
- 				<listID>65</listID>
-				<antSatID>40E</antSatID>
-				<name>BADR-6</name>
-				<region>North America</region>
-				<lon>40.000</lon>
-				<enable>TRUE</enable>
-				<favorite>FALSE</favorite>
-			</B> -->
 			<C>
 				<listID>66</listID>
 				<antSatID>33E</antSatID>

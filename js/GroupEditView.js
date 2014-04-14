@@ -61,17 +61,11 @@
 
     return self = {
       createNew: function() {
-        console.log("~ 1 ~");
         if (isNew) return;
-        console.log("~ 2 ~");
         isNew = true;
-        console.log("~ 3 ~");
         group = undefined;
-        console.log("~ 4 ~");
         $('.\\#group-name', jQ).val('');
-        console.log("~ 5 ~");
         satAView.setSat(undefined);
-        console.log("~ 6 ~");
         satBView.setSat(undefined);
         satCView.setSat(undefined);
         satDView.setSat(undefined);
