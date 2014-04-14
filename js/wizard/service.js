@@ -37,7 +37,7 @@
         TVRO.setAutoswitchService({
           service: 'OTHER'
         }).then(function() {
-          window.location = '/wizard/system.php';
+          window.location = '/wizard/satellites.php';
         });
     });
 
@@ -79,8 +79,6 @@
 
 
   var DirectvView = function(jQ) {
-    var self;
-
     var singleOption = {
       title: 'Single Satellite',
       copy: 'For programming on the 101 satellite, you are ready to activate your system!'
@@ -96,13 +94,39 @@
       copy: 'For programming on the 101 & 119 satellites with automatic switching between them, you need to set up the system for automatic switching.'
     };
 
-    var tableView = TVRO.TableView($('.\\#table-view', jQ))
+    var self = TVRO.TableView($('.\\#table-view', jQ))
       .setValues([singleOption, manualOption, automaticOption])
       .onBuild(function(row, option) {
         $('.\\#title', row).text(option.title);
         $('.\\#copy', row).text(option.copy);
       })
       .build();
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var option = self.getValue();
+      if (!option) alert('You must select an option to continue.');
+
+      else if (option === singleOption)
+        TVRO.setInstalledSat({
+          antSatID: '101W'
+        }).then(function() {
+
+        });
+
+      else if (option === manualOption)
+        TVRO.setInstalledGroup({
+          name: 'DIRECTV-USA'
+        }).then(function() {
+
+        });
+
+      else if (option === automaticOption)
+        window.location = '/wizard/autoswitch.php';
+    });
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location.hash = '/local-channels';
+    });
 
     return self;
   };
@@ -145,11 +169,24 @@
       .build();
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      if (groupsView.is(':visible')) {
+      var isGroup = groupsView.is(':visible');
+      var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
 
-      } else {
+      if (!value) alert('You must select an option to continue.');
 
-      }
+      else if (isGroup)
+        TVRO.setInstalledSat({
+          antSatID: value
+        }).then(function() {
+          window.location = '/wizard/system.php';
+        });
+
+      else
+        TVRO.setInstalledGroup({
+          name: value
+        }).then(function() {
+          window.location = '/wizard/system.php';
+        });
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -165,18 +202,10 @@
   };
 
 
-
-  var SpinnerView = function(jQ) {
-    var self;
-    return self;
-  };
-
-
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
   TVRO.DishNetworkView = DishNetworkView;
-  TVRO.SpinnerView = SpinnerView;
 
 }(window.TVRO);
 

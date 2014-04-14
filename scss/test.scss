@@ -201,7 +201,7 @@ html {
       position: absolute;
     }
 
-    &.\$selected .radio-icon {
+    .\$selected .radio-icon {
       @include bgimg('radio-checked');
     }    
   }
