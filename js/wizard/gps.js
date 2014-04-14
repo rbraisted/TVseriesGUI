@@ -96,7 +96,6 @@
       });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      console.log("!");
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
       else {

@@ -20,7 +20,11 @@
       if (!value) alert('You must select an option to continue.');
 
       else if (value === 'DISH') 
-        window.location.hash = '/dish-network';
+        TVRO.setAutoswitchService({
+          service: 'DISH'
+        }).then(function() {
+          window.location.hash = '/dish-network';
+        });
 
       else if (value === 'DIRECTV')
         TVRO.setAutoswitchService({
@@ -42,7 +46,6 @@
     });
 
     TVRO.getService().then(function(service) {
-      console.log(service);
       self.setValue(service);
     });
 
