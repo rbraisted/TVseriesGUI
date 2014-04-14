@@ -112,10 +112,18 @@
   };
 
   TVRO.getInstalledGroup = function() {
+    //  note: check for autoswitch enabled first
+    //  a group may still be set but autoswitch
+    //  may not be available or enabled
     return Promise.all(
       TVRO.getAutoswitchStatus(),
       TVRO.getSatelliteGroups()
     ).then(function(xmls) {
+      var available = $('available:first', xmls[0]).text() === 'Y';
+      var enabled = available ? $('enable:first', xmls[0]).text() === 'Y' : false;
+      if (!enabled) return undefined;
+
+      //  but if it is enabled, return the correct group
       var groups = _.map($('group', xmls[1]), Group);
       var installedGroupName = $('satellite_group', xmls[0]).text();
       return _.find(groups, { name: installedGroupName });
