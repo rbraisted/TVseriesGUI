@@ -75,9 +75,9 @@
 
   <div class="heading">Sleep Mode</div>
   <p>
-    Sleep mode locks the antenna in place to conserve power whenever the 
-    <span class="#vessel-type"></span> is stationary and holds its position for
-    one minute. Sleep mode is enabled by default.
+    Sleep mode locks the antenna in place to conserve power whenever you are
+    stationary and the antenna is pointing in the same direction for one minute.
+    Sleep mode is enabled by default.
   </p>
   <div class="toggle-btn #sleep-mode-btn">
     <div class="on">On</div>
