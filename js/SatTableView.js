@@ -41,7 +41,7 @@
         row.toggleClass('$favorite', sat.favorite);
 
         TVRO.getInstalledSat().then(function(installedSat) {
-          row.toggleClass('$installed', installedSat.antSatID === sat.antSatID);
+          row.toggleClass('$ins2talled', installedSat.antSatID === sat.antSatID);
         });
 
         $('.\\#install-btn', row).click(function() {

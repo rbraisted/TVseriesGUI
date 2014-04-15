@@ -107,12 +107,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
           <div class="table-col install-col">
             <div class="install-btn #install-btn"></div>
           </div><!--
-         --><div class="table-col name-col">
+       --><div class="table-col name-col">
             <span class="#sat-name"></span>
-            <span class="#sat-region"></span>
           </div><!--
-         --><div class="table-col orb-slot-col #sat-longitude"></div><!--
-         --><div class="table-col region-col #sat-region"></div>
+       --><div class="table-col orb-slot-col #sat-longitude"></div><!--
+       --><div class="table-col region-col #sat-region"></div>
         </div>
       </div>
     </div>
