@@ -508,6 +508,158 @@ body[class=''] .\#service-provider-view,
   }
 }
 
+.region-table {
+  @include blue-table;
+  width: $sidebar-width;
+
+  .table-row {
+    cursor: pointer;
+  }
+
+  @include breakpoint($mobile) {
+    .table-row.\$selected {
+      background-color: $light-blue;
+    }
+
+    .table-row {
+      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+    }
+  }
+}
+
+.group-table {
+  @extend .region-table;
+
+  .table-row {
+    .install-btn {
+      @include bgimg('radio-unchecked');
+      display: inline-block;
+      padding: 0;
+      margin-left: 15px;
+    }
+
+    &.\$installed .install-btn {
+      @include bgimg('radio-checked');
+    }
+  }
+}
+
+.sat-table {
+  @include alt-table;
+  overflow: auto;
+
+  .table-head {
+    background-color: $light-blue;
+    font-size: $fine-font;
+    min-height: $lil-bump;
+
+    .table-col { padding: 7px 15px; }
+    .sort-btn { cursor: pointer; }
+    .sort-btn.\$ascending { @include bgimg('up-icon-white'); }
+    .sort-btn.\$descending { @include bgimg('down-icon-white'); }
+
+    .sort-btn.\$ascending,
+    .sort-btn.\$descending {
+      background-color: $bright-blue;
+      background-position: right 15px center;
+      background-size: 9px;
+    }
+  }
+
+  //  for the fixed header
+  .table-head+.table-row {
+    margin-top: $lil-bump;
+  }
+
+  .table-row {
+    font-size: $small-font;
+
+    .install-btn {
+      @include bgimg('radio-unchecked');
+      cursor: pointer;
+      margin: auto;
+      width: 21px;
+    }
+
+    &.\$installed {
+      background-color: $bright-blue;
+    }
+  }
+  
+  .install-col {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+
+  @include breakpoint($desktop) {
+    width: 800px - $sidebar-width;
+
+    .install-col {  width: 11%; }
+    .name-col {   width: 29%; }
+    .orb-slot-col { width: 28%; }
+    .region-col {   width: 32%; }
+
+    .popup & { height: 100%; }
+  }
+
+  @include breakpoint($mobile) {
+    .table-head {
+      position: fixed;
+      top: $header-height + $big-bump;// view-head height
+    }
+
+    .install-col {  width: 15%; }
+    .name-col {   width: 50%; }
+    .orb-slot-col { width: 35%; }
+    .region-col {   display: none; }
+    .fav-col {    display: none; }
+  }
+
+  .popup & {
+    .table-row {
+      cursor: pointer;
+    }
+  }
+}
+
+.single-view,
+.group-view {
+  .container {
+    background-color: $grey;
+    position: relative;
+
+    .container-head {
+      @include mobile-view-head;
+      @include breakpoint($mobile) { display: none; }
+
+      display: inline-block;
+      margin-bottom: 0;
+      position: relative;
+      top: 0;
+    }
+
+    .region-table-head,
+    .group-table-head {
+      width: $sidebar-width;
+    }
+
+    .sat-table-head,
+    .group-info-head {
+      width: $sidebar-width;
+    }
+  }
+
+  .single-sat-table {
+    width: 520px;
+    display: inline-block;
+  }
+
+  .region-table {
+    display: inline-block;
+  }
+}
+
 .\/options .\#options-view,
 .\/circular-options .\#circular-options-view,
 .\/tv5-manual-options .\#tv5-manual-options-view {
@@ -516,93 +668,45 @@ body[class=''] .\#service-provider-view,
 
 //  mobile
 @include breakpoint($mobile) {
-
   //  single mode
-  .\/regions .sidebar,
   .\/regions .\#region-table-view,
   .\/regions\/region .\#single-sat-table-view,
-  .\/regions\/region\/sat .\#sat-info-view,
-  .\/regions\/region\/sat\/edit .\#sat-edit-view,
 
   //  group mode
-  .\/groups .sidebar,
-  .\/groups .sidebar .\#new-btn,
   .\/groups .\#group-table-view,
   .\/groups\/group .\#group-info-view,
   .\/groups\/group\/edit .\#group-edit-view,
-  .\/groups\/group\/sat .\#sat-info-view,
-  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
-  .\/groups\/group\/sat\/edit .\#sat-edit-view,
-  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
-  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view {
     display: block;
   }
 }
 
 //  desktop
-@include breakpoint($desktop)  {
-  .sidebar {
-    display: block;
-  }
-
+@include breakpoint($desktop) {
   //  single mode
   .\/regions,
-  .\/regions\/region,
-  .\/regions\/region\/sat,
-  .\/regions\/region\/sat\/edit {
+  .\/regions\/region {
+    .\#single-view,
     .\#region-table-view,
     .\#single-sat-table-view {
       display: block;
     }
   }
   
-  .\/regions\/region\/sat .\#sat-info-view,
-  .\/regions\/region\/sat\/edit .\#sat-edit-view {
-    display: block;
-  }
-
   //  group mode
   .\/groups,
   .\/groups\/group,
   .\/groups\/group\/edit,
-  .\/groups\/group\/sat,
-  .\/groups\/group\/edit\/sats,
-  .\/groups\/group\/sat\/edit,
-  .\/groups\/group\/edit\/sats\/sat,
-  .\/groups\/group\/edit\/sats\/sat\/edit {
+  .\/groups\/group\/edit\/sats {
+    .\#group-view,
     .\#group-table-view,
-    .\#group-info-view,
-    .sidebar .\#new-btn, {
+    .\#group-info-view {
       display: block;
     }
   }
 
   .\/groups\/group\/edit .\#group-edit-view,
-  .\/groups\/group\/sat .\#sat-info-view,
-  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
-  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
-  .\/groups\/group\/sat\/edit .\#sat-edit-view,
-  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view {
     display: block;
-  }
-
-
-
-  .\/regions\/region\/sat,
-  .\/regions\/region\/sat\/edit,
-  .\/groups\/group\/sat,
-  .\/groups\/group\/sat\/edit,
-  .\/groups\/group\/edit\/sats\/sat,
-  .\/groups\/group\/edit\/sats\/sat\/edit {
-    .popup {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      min-height: 844px;
-    }
   }
 }

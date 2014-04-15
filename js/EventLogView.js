@@ -11,24 +11,24 @@
       eventsLoading = true;
 
       TVRO.getEventHistoryCount().then(function(xml){
-          var event_count = $('event_count',xml).text();
+        var event_count = $('event_count',xml).text();
 
-          TVRO.getRecentEventHistory({
-              'begin_at_event': 1,
-              'how_many_events' : event_count
-            }).then(function(xml) {
-              var newEvents = _.map($('event', xml), function(event) {
-                var text = $(event).text();
-                return {
-                  date: text.substr(0, text.indexOf('::')),
-                  message: text.substr(text.indexOf('::')+2)
-                }
-              });
-              events = events.concat(newEvents);
-              events.reverse();
-              eventTableView.setValues(events).build();
-              eventsLoading = false;
-            });   	  
+        TVRO.getRecentEventHistory({
+          'begin_at_event': 1,
+          'how_many_events' : event_count
+        }).then(function(xml) {
+          var newEvents = _.map($('event', xml), function(event) {
+            var text = $(event).text();
+            return {
+              date: text.substr(0, text.indexOf('::')),
+              message: text.substr(text.indexOf('::')+2)
+            }
+          });
+          events = events.concat(newEvents);
+          events.reverse();
+          eventTableView.setValues(events).build();
+          eventsLoading = false;
+        });
       });
     };
 

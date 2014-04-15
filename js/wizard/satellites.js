@@ -24,7 +24,7 @@
       .build();
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      var option = radio.getValue();
+      var option = self.getValue();
       if (!option) alert('You must select an option to continue.');
       else if (option === singleSat) window.location.hash = '/regions';
       else if (option === presetGroup) window.location.hash = '/groups';

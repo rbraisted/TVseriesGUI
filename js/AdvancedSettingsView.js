@@ -12,12 +12,12 @@
 				sidelobeTogBtn.setOn(sidelobeModeEnabled);
 			});
 
-      TVRO.getAntennaVersions().then(function(xml) {
-        var antModel = $('au model', xml).text();
-        //  if match RV, it's a vehicle
-        var vesselType = /RV/.exec(antModel) ? 'vehicle' : 'vessel';  
-        $('.\\#vessel-type', jQ).text(vesselType);
-      });
+      // TVRO.getAntennaVersions().then(function(xml) {
+      //   var antModel = $('au model', xml).text();
+      //   //  if match RV, it's a vehicle
+      //   var vesselType = /RV/.exec(antModel) ? 'vehicle' : 'vessel';  
+      //   $('.\\#vessel-type', jQ).text(vesselType);
+      // });
 		};
 
     var setMode = function(mode) {

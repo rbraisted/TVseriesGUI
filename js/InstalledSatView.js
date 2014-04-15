@@ -6,7 +6,8 @@
 
     var reload = function() {
       return TVRO.getAntennaStatus().then(function(xml) {
-        var antState = $('antenna state', xml).text();
+        var acuState = $('acu state:first', xml).text();
+        var antState = acuState === 'OK' ? $('antenna state', xml).text() : acuState;
         var antBars = '$' + $('antenna bars', xml).text();
 
         $('.\\#ant-state', jQ).text(antState);
@@ -21,7 +22,6 @@
         $('.\\#sat-region', jQ).text(installedSat.region);
         $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(installedSat.lon,0));
       });
-
     };
 
 		return self = {
