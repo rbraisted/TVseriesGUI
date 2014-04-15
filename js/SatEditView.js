@@ -160,7 +160,7 @@
           //  inputs
           $('.\\#sat-name', jQ).val(sat.name);
           $('.\\#sat-region', jQ).val(sat.region);
-          $('.\\#sat-antSatID', jQ).val(sat.antSatID);
+          $('.\\#sat-longitude', jQ).val(TVRO.formatLongitude(sat.lon, 0));
           $('.\\#sat-hemisphere', jQ).val(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).val(sat.suffix);
           $('.\\#sat-skew', jQ).val(sat.skew);
@@ -171,7 +171,7 @@
           //  plain ol text, dropdown btns
           $('.\\#sat-name', jQ).text(sat.name || 'N/A');
           $('.\\#sat-region', jQ).text(sat.region || 'N/A');
-          $('.\\#sat-antSatID', jQ).text(sat.antSatID || 'N/A');
+          $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
           $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');

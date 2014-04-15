@@ -51,7 +51,7 @@
           favBtn.setOn(sat.favorite);
           $('.\\#sat-name', jQ).text(sat.name || 'N/A');
           $('.\\#sat-region', jQ).text(sat.region || 'N/A');
-          $('.\\#sat-antSatID', jQ).text(sat.antSatID || 'N/A');
+          $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
           $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');

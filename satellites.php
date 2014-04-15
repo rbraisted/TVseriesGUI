@@ -85,7 +85,7 @@ and also .#group-table-view (group mode)
     </div><!--
    --><div class="orb-slot-block">
       <div class="label">Orbital Slot</div>
-      <div class="value #sat-antSatID">N/A</div>
+      <div class="value #sat-longitude">N/A</div>
     </div><!--
    --><div class="hemisphere-block">
       <div class="label">Hemisphere</div>
@@ -241,8 +241,8 @@ and also .#group-table-view (group mode)
     </div><!--
    --><div class="orb-slot-block">
       <div class="label">Orbital Slot</div>
-      <div class="value #sat-antSatID"></div>
-      <input class="input #sat-antSatID" />
+      <div class="value #sat-longitude"></div>
+      <input class="input #sat-longitude" />
     </div><!--
    --><div class="hemisphere-block">
       <div class="label">Hemisphere</div>
