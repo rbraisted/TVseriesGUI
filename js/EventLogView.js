@@ -10,34 +10,30 @@
       if (eventsLoading) return;
       eventsLoading = true;
 
-      TVRO.getRecentEventHistory({
-        'begin_at_event': events.length,
-        'how_many_events' : 15
-      }).then(function(xml) {
-        var newEvents = _.map($('event', xml), function(event) {
-          var text = $(event).text();
-          return {
-            date: text.substr(0, text.indexOf('::')),
-            message: text.substr(text.indexOf('::')+2)
-          }
-        });
+      TVRO.getEventHistoryCount().then(function(xml){
+          var event_count = $('event_count',xml).text();
 
-        events = events.concat(newEvents);
-        eventTableView.setValues(events).build();
-        eventsLoading = false;
+          TVRO.getRecentEventHistory({
+              'begin_at_event': 1,
+              'how_many_events' : event_count
+            }).then(function(xml) {
+              var newEvents = _.map($('event', xml), function(event) {
+                var text = $(event).text();
+                return {
+                  date: text.substr(0, text.indexOf('::')),
+                  message: text.substr(text.indexOf('::')+2)
+                }
+              });
+              events = events.concat(newEvents);
+              events.reverse();
+              eventTableView.setValues(events).build();
+              eventsLoading = false;
+            });   	  
       });
     };
 
     var eventTableView = TVRO.TableView(
       $('.\\#event-table-view', jQ)
-        .scroll(function() {
-          var tableView = $(this);
-          //  if scroll to the bottom
-          if (tableView[0].scrollHeight - tableView.scrollTop() == tableView.outerHeight()) {
-            // load more events
-            loadEvents();
-          }
-        })
     ).onBuild(function(row, event) {
       $('.\\#event-date', row).text(event.date);
       $('.\\#event-message', row).text(event.message);
