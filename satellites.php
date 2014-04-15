@@ -464,8 +464,7 @@ and also .#group-table-view (group mode)
         <div class="install-btn #install-btn"></div>
       </div><!--
      --><div class="table-col name-col">
-        <span class="#sat-name"></span>
-        <span class="#sat-region"></span>
+        <div class="#sat-name"></div>
       </div><!--
      --><div class="table-col orb-slot-col #sat-longitude"></div><!--
      --><div class="table-col region-col #sat-region"></div><!--
