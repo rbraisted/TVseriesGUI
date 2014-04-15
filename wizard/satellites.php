@@ -79,34 +79,67 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   </div>
 </div>
 
-<div class="single-view">
-  <div class="region-table #region-table-view">
-    <div class="table-row #table-row">
-      <span class="table-col #region-name"></span>
+
+
+<div class="view single-view #single-view">
+  <div class="view-head">Select a Satellite</div>
+  <div class="copy">Select a region. Then choose a satellite in that region.</div>
+
+  <div class="container">
+    
+    <div class="container-head sat-table-head">Satellites</div>
+
+    <div class="region-table #region-table-view">
+      <div class="table-row #table-row">
+        <span class="table-col #region-name"></span>
+      </div>
     </div>
+
+    <div class="single-sat-table #single-sat-table-view">
+      <div class="sat-table #table-view">
+        <div class="table-head #table-head">
+          <div class="table-col install-col">Installed</div><!--
+         --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
+         --><div class="table-col orb-slot-col sort-btn #sort-btn #lon-btn">Orbital Slot</div><!--
+         --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div>
+        </div>
+        <div class="table-row #table-row">
+          <div class="table-col install-col">
+            <div class="install-btn #install-btn"></div>
+          </div><!--
+         --><div class="table-col name-col">
+            <span class="#sat-name"></span>
+            <span class="#sat-region"></span>
+          </div><!--
+         --><div class="table-col orb-slot-col #sat-longitude"></div><!--
+         --><div class="table-col region-col #sat-region"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <div class="view group-view #group-view">
   <div class="view-head">
-    Select a Satellite
+    Select a Satellite Group
   </div>
-  
   <div class="copy">
-    Select a region. Then choose a satellite in that region.
+    Select a group name to view its included satellites.
   </div>
 
-  <div class="group-table #group-table-view">
-    <div class="#table-view">
-      <div class="table-row #table-row">
-        <span class="table-col install-btn #install-btn"></span><!--
-       --><span class="table-col #group-name"></span>
+  <div class="container">
+    <div class="group-table #group-table-view">
+      <div class="view-head desktop">Groups</div>
+      <div class="#table-view">
+        <div class="table-row #table-row">
+          <span class="table-col install-btn #install-btn"></span><!--
+         --><span class="table-col #group-name"></span>
+        </div>
       </div>
     </div>
-  </div>
 
-    <div class="container">
-    </div>
+
   </div>
 </div>
 
