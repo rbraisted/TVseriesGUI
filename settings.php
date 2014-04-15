@@ -89,9 +89,9 @@
 
   <div class="heading">Sidelobe Mode</div>
   <p>
-    Side Lobe mode ensures the antenna is always tracking the main beam of the
-    satellite, and not on a weaker side lobe. For optimum performance, keep Side
-    Lobe mode enabled unless directed otherwise by KVH Technical Support.
+    Sidelobe Mode ensures the antenna is always tracking the main beam of the
+    satellite, and not on a weaker sidelobe. For optimum performance, keep
+    Sidelobe Mode enabled unless directed otherwise by KVH Technical Support.
   </p>
   <div class="toggle-btn #sidelobe-mode-btn">
     <div class="on">On</div>
