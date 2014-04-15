@@ -33,8 +33,8 @@
 
   <div class="heading">Technician Mode</div>
   <p>
-    Turn on Technician mode to view software updates for all TracVision
-    system models.
+    Turn on Technician mode to view the software updates for all TracVision
+    system models. Keep Technician mode set to off for normal operation.
   </p>
   <div class="toggle-btn #tech-mode-btn">
     <div class="on">On</div>
@@ -43,9 +43,9 @@
 
   <div class="heading">Demo Mode</div>
   <p>
-    Turn on Demo mode to browse the capabilities of the app and the TracVision
-    system without making any actual changes. Not all functionality is
-    available in demo mode.
+    Turn on Demo mode to browse the capabilities of the web interface and the
+    TracVision system without making any actual changes. Not all functionality
+    is available in Demo mode. Keep Demo mode set to off for normal operation.
   </p>
   <div class="toggle-btn #demo-mode-btn">
     <div class="on">On</div>
@@ -54,7 +54,10 @@
 
   <div class="heading">Setup Wizard</div>
   <p>
-    Placeholder text placeholder text placeholder text placeholder text
+    The Setup Wizard guides you through setting up the system, step by step.
+    The Setup Wizard should be run after initial installation and repeated
+    whenever you make a change to your system’s configuration, such as adding
+    or removing devices.
   </p>
   <div class="block-btn #wizard-btn">Setup Wizard</div>
 
