@@ -26,10 +26,12 @@
 
   //  return as bool
   TVRO.getDemoMode = function() {
-    return !!get('tvro-demo-mode')();
+    if (TVRO.shell) window.location = 'tvro://get-demo-mode';
+    else return !!get('tvro-demo-mode')();
   };
 
   TVRO.getTechMode = function() {
-    return !!get('tvro-tech-mode')();
+    if (TVRO.shell) window.location = 'tvro://get-tech-mode';
+    else return !!get('tvro-tech-mode')();
   };
 }(window.TVRO);

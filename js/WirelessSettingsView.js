@@ -54,6 +54,33 @@
     //  mode
 
     var setMode = function(mode) {
+      TVRO.getWlan().then(function(xml) {
+        if (mode === 'AP') xml = xml.find('ap_mode');
+        else if (mode === 'IF') xml = xml.find('if_mode');
+        else return;
+
+        var essid = $('essid', xml).text();
+        var ip = $('ip', xml).text();
+        var netmask = $('netmask', xml).text();
+        var gateway = $('gateway', xml).text();
+        var broadcast = $('broadcast', xml).text();
+
+        //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
+        var networkMode = $('mode:first', xml).text();
+        var securityMode = $('security mode', xml).text();
+        var securityKey = $('security key', xml).text();
+
+        setNetworkMode(networkMode);
+        setSecurityMode(securityMode);
+
+        $('.\\#wlan-essid', jQ).val(essid).text(essid);
+        $('.\\#wlan-ip', jQ).val(ip).text(ip);
+        $('.\\#wlan-netmask', jQ).val(netmask).text(netmask);
+        $('.\\#wlan-gateway', jQ).val(gateway).text(gateway);
+        $('.\\#wlan-broadcast', jQ).val(broadcast).text(broadcast);
+        $('.\\#wlan-security-key', jQ).val(securityKey).text(securityKey);
+      });
+
       $('.\\#wlan-mode', jQ).text(mode);
       modeDropdownView.setValue(mode);
       jQ.toggleClass('$wlan-off', mode === 'OFF');
@@ -68,7 +95,7 @@
         .setValue(networkModeDropdownValues[0])
         .build();
 
-      setNetworkMode(networkModeDropdownValues[0]);
+      // setNetworkMode(networkModeDropdownValues[0]);
     };
 
     var modeBtn = $('.\\#wlan-mode-btn').click(function() {
@@ -134,34 +161,9 @@
 
     var reload = function() {
       TVRO.getWlan().then(function(xml) {
-        //  note: .eq(0)
         var mode = $('mode:first', xml).text();
-
-        if (mode === 'AP') xml = xml.find('ap_mode');
-        if (mode === 'IF') xml = xml.find('if_mode');
-
-        var essid = $('essid', xml).text();
-        var ip = $('ip', xml).text();
-        var netmask = $('netmask', xml).text();
-        var gateway = $('gateway', xml).text();
-        var broadcast = $('broadcast', xml).text();
-
-        //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
-        var networkMode = $('mode:first', xml).text();
-        var securityMode = $('security mode', xml).text();
-        var securityKey = $('security key', xml).text();
-
         setMode(mode);
-        setNetworkMode(networkMode);
-        setSecurityMode(securityMode);
-
-        $('.\\#wlan-essid', jQ).val(essid).text(essid);
-        $('.\\#wlan-ip', jQ).val(ip).text(ip);
-        $('.\\#wlan-netmask', jQ).val(netmask).text(netmask);
-        $('.\\#wlan-gateway', jQ).val(gateway).text(gateway);
-        $('.\\#wlan-broadcast', jQ).val(broadcast).text(broadcast);
-        $('.\\#wlan-security-key', jQ).val(securityKey).text(securityKey);
-      }); 
+      });
     };
 
 		return self = {

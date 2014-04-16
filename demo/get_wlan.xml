@@ -8,9 +8,9 @@
     <security>
       <mode>OFF</mode><!-- OFF | WPA_PSK -->
       <algorithm>TKIP</algorithm>
-      <key>wlanpassword</key>
+      <key>letmein</key>
     </security>
-    <ip>192.168.1.3</ip>
+    <ip>192.168.1.123</ip>
     <netmask>255.255.255.0</netmask>
     <gateway>192.168.1.1</gateway>
     <broadcast>192.168.1.255</broadcast>
@@ -21,9 +21,9 @@
 		<security>
 			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
 			<algorithm>TKIP</algorithm>
-			<key>wlanpassword</key>
+			<key>trustno1</key>
 		</security>
-		<ip>192.168.1.3</ip>
+		<ip>192.168.1.456</ip>
 		<netmask>255.255.255.0</netmask>
 		<gateway>192.168.1.1</gateway>
 		<broadcast>192.168.1.255</broadcast>
