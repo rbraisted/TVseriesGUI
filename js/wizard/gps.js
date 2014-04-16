@@ -152,13 +152,12 @@ $(function() {
   var headingSourceView = TVRO.HeadingSourceView($('.\\#heading-source-view'));
 
   TVRO.onHashChange(function(hash) {
-    if (!hash) {
+    if (!hash)
       TVRO.getAntennaVersions().then(function(xml) {
         var antModel = $('au model', xml).text();
         if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/backup-gps-source';
         else window.location.hash = '/vessel-location';
       });
-    }
 
     document.body.className = hash;
   });

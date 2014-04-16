@@ -63,7 +63,7 @@
     var self = InfoView(jQ);
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '';
+      window.location.hash = '/installed-id';
     });
 
     TVRO.getProductRegistration().then(function(xml) {
@@ -185,9 +185,19 @@ $(function() {
   var installerInfoView = TVRO.InstallerInfoView($('.\\#installer-info-view'));
 
   TVRO.onHashChange(function(hash) {
-    if (hash === '/cdt-vessel-info') installerIdView.setValue('CDT');
+    //  TV5 & 6 go to diy vessel info
+    //  everybody else goes to installer-id
+    if (!hash)
+      TVRO.getAntennaVersions().then(function(xml) {
+        var antModel = $('au model', xml).text();
+        if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/diy-vessel-info';
+        else window.location.hash = '/installer-id';
+      });
+
+    else if (hash === '/cdt-vessel-info') installerIdView.setValue('CDT');
     else if (hash === '/diy-vessel-info') installerIdView.setValue('DIY');
     else if (hash === '/installer-info') installerIdView.setValue('CDT');
+
     document.body.className = hash;
   });
 

@@ -65,8 +65,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <script type="text/javascript">
   $(function() {
-    var headerView = TVRO.HeaderView($('.\\#header-view'));
-
     TVRO.getAntennaVersions().then(function(xml) {
       var antModel = $('au model', xml).text();
       var antLnb = $('lnb name', xml).text();
