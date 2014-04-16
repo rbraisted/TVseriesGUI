@@ -6,7 +6,7 @@
     <mode>END_POINT</mode><!-- BRIDGED | END_POINT -->
     <essid>ipacu</essid>
     <security>
-      <mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
+      <mode>OFF</mode><!-- OFF | WPA_PSK -->
       <algorithm>TKIP</algorithm>
       <key>wlanpassword</key>
     </security>

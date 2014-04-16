@@ -39,7 +39,6 @@
   width: 130px;
   float: right;
   margin-right: calc(50% - 135px);
-  // margin-top: 10px;
   margin-bottom: 15px;
 }
 
@@ -84,32 +83,8 @@
 }
 
 //  network-settings-view
-.network-settings {
-  &.\$eth-off .ethernet-settings {
-    .ip-label, .ip-value, .ip-input,
-    .subnet-label, .subnet-value, .subnet-input,
-    .gateway-label, .gateway-value, .gateway-input,
-    .broadcast-label, .broadcast-value, .broadcast-input {
-      display: none;
-    }    
-  }
-
-  &.\$eth-off .wireless-settings {
-    display: none;
-  }
-
-  &.\$wlan-off .wireless-settings {
-    .network-label, .network-value, .network-dropdown-btn,
-    .ssid-label, .ssid-value, .ssid-input,
-    .ip-label, .ip-value, .ip-input,
-    .subnet-label, .subnet-value, .subnet-input,
-    .gateway-label, .gateway-value, .gateway-input,
-    .broadcast-label, .broadcast-value, .broadcast-input,
-    .security-label, .security-value, .security-dropdown-btn,
-    .password-label, .password-value, .password-input {
-      display: none;
-    }
-  }
+.network-settings.\$eth-off .wireless-settings {
+  display: none;
 }
 
 //  ethernet-settings-view
@@ -118,15 +93,6 @@
   .ethernet-settings,
   .wireless-settings {
     padding-bottom: 106px;
-  }
-
-  &.\$eth-off .ethernet-settings {
-    .ip-label, .ip-value, .ip-input,
-    .subnet-label, .subnet-value, .subnet-input,
-    .gateway-label, .gateway-value, .gateway-input,
-    .broadcast-label, .broadcast-value, .broadcast-input {
-      display: none;
-    }
   }
 
   &.\$eth-static .ethernet-settings {
@@ -147,19 +113,6 @@
     }
   }
 
-  &.\$wlan-off .wireless-settings {
-    .network-label, .network-value, .network-dropdown-btn,
-    .ssid-label, .ssid-value, .ssid-input,
-    .ip-label, .ip-value, .ip-input,
-    .subnet-label, .subnet-value, .subnet-input,
-    .gateway-label, .gateway-value, .gateway-input,
-    .broadcast-label, .broadcast-value, .broadcast-input,
-    .security-label, .security-value, .security-dropdown-btn,
-    .password-label, .password-value, .password-input {
-      display: none;
-    }
-  }
-
   &.\$wlan-bridged,
   &.\$wlan-end-point,
   &.\$wlan-static {
@@ -167,22 +120,56 @@
       display: none;
     }
   }
+}
 
-  &.\$wlan-dynamic .wireless-settings {
-    .ip-input,
-    .subnet-input,
-    .gateway-input,
-    .broadcast-input {
-      display: none;
-    }
-  }
-
-  &.\$wlan-sec-off .wireless-settings {
-    .password-label, .password-value, .password-input {
-      display: none;
-    }
+.\$eth-off .ethernet-settings {
+  .ip-label, .ip-value, .ip-input,
+  .subnet-label, .subnet-value, .subnet-input,
+  .gateway-label, .gateway-value, .gateway-input,
+  .broadcast-label, .broadcast-value, .broadcast-input {
+    display: none;
   }
 }
+
+.\$wlan-off .wireless-settings {
+  .network-label, .network-value, .network-dropdown-btn,
+  .ssid-label, .ssid-value, .ssid-input,
+  .ip-label, .ip-value, .ip-input,
+  .subnet-label, .subnet-value, .subnet-input,
+  .gateway-label, .gateway-value, .gateway-input,
+  .broadcast-label, .broadcast-value, .broadcast-input,
+  .security-label, .security-value, .security-dropdown-btn,
+  .password-label, .password-value, .password-input {
+    display: none;
+  }
+}
+
+.\$wlan-bridged,
+.\$wlan-end-point {
+  .wireless-settings {
+    .network-label, .network-value, .network-dropdown-btn,
+    .broadcast-label, .broadcast-value, .broadcast-input,
+    .gateway-label, .gateway-value, .gateway-input {
+      display: none;
+    }    
+  }
+}
+
+.\$wlan-dynamic .wireless-settings {
+  .ip-input,
+  .subnet-input,
+  .gateway-input,
+  .broadcast-input {
+    display: none;
+  }
+}
+
+.\$wlan-sec-off .wireless-settings {
+  .password-label, .password-value, .password-input {
+    display: none;
+  }
+}
+
 
 .popup {
   @include breakpoint($desktop) {

@@ -135,7 +135,7 @@
     var reload = function() {
       TVRO.getWlan().then(function(xml) {
         //  note: .eq(0)
-        var mode = $('mode', xml).eq(0).text();
+        var mode = $('mode:first', xml).text();
 
         if (mode === 'AP') xml = xml.find('ap_mode');
         if (mode === 'IF') xml = xml.find('if_mode');
