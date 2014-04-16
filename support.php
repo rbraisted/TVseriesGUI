@@ -49,7 +49,7 @@
     <span class="label">Satellite Service</span><span class="value #sat-service"></span>
     <span class="label">Support IP</span><span class="value #gprs-ip"></span>
     <span class="label">DiSEqC Version</span><span class="value #diseqc-ver"></span>
-    <span class="label">IP Autoswitch Version</span><span class="value #ipautosw-ver"></span>
+    <span class="label">IP AutoSwitch Version</span><span class="value #ipautosw-ver"></span>
     <div class="label power-label">TV-Hub Power</div>
     <span class="label">Input Supply Voltage</span><span class="value #hub-inputsupplyv"></span>
     <span class="label">42 VDC Input</span><span class="value #hub-input42v"></span>
