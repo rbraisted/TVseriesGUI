@@ -303,7 +303,7 @@
     return TVRO.getAutoswitchStatus().then(function(xml) {
       var service = $('service:first', xml).text();
       if (service === 'DIRECTV') return 'Receiver';
-      else return 'IP Autoswitch';
+      else return 'IP AutoSwitch';
     });    
   };
 

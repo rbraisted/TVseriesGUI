@@ -129,7 +129,7 @@
   <div class="popup-guts receiver-info">
     <div class="view-head">
       <span class="autoswitch-icon"></span>
-      <span class="#ip-autoswitch">IP Autoswitch</span>
+      <span class="#ip-autoswitch">IP AutoSwitch</span>
       <span class="#directv">Receiver</span>
       <div class="back-btn #back-btn"></div>
     </div>
@@ -156,7 +156,7 @@
   <div class="popup-guts receiver-edit">
     <div class="view-head">
       <span class="autoswitch-icon"></span>
-      <span class="#ip-autoswitch">IP Autoswitch</span>
+      <span class="#ip-autoswitch">IP AutoSwitch</span>
       <span class="#directv">Receiver</span>
       <div class="back-btn #back-btn"></div>
     </div>
@@ -202,7 +202,7 @@
     </h1>
 
     <div class="label receiver-label">
-      <span id="not-directv">IP Autoswitch</span>
+      <span id="not-directv">IP AutoSwitch</span>
       <span id="directv">Receiver</span>
     </div>
     <div id="name" class="value receiver-value"></div>
@@ -236,14 +236,14 @@
       <label>
         <span id="new">Add</span>
         <span id="old">Edit</span>
-        <span id="not-directv">IP Autoswitch</span>
+        <span id="not-directv">IP AutoSwitch</span>
         <span id="directv">Receiver</span>
       </label>
     </a>
     <h1>
       <span id="new">Add</span>
       <span id="old">Edit</span>
-      <span id="not-directv">IP Autoswitch</span>
+      <span id="not-directv">IP AutoSwitch</span>
       <span id="directv">Receiver</span>
     </h1>
 
@@ -257,7 +257,7 @@
     
     <div class="guts">
       <div class="label receiver-label">
-        <span id="not-directv">IP Autoswitch</span>
+        <span id="not-directv">IP AutoSwitch</span>
         <span id="directv">Receiver</span>
       </div>
       <input id="name" type="text" class="value receiver-value">
