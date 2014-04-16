@@ -20,11 +20,11 @@
  *  DATE STARTED: 20111201
  *
  ******************************************************************************/
-define("UPLOAD_SW_DIR", "/temp/software");
-define("INSTALL_SW_DIR", "/temp/software");
+define("UPLOAD_SW_DIR", "/run/shm/temp/software");
+define("INSTALL_SW_DIR", "/run/shm/temp/software");
 define("TOUCH_SW_FILE", INSTALL_SW_DIR."/web_flash");
-define("UPLOAD_OS_DIR", "/temp/os");
-define("INSTALL_OS_DIR", "/temp/os");
+define("UPLOAD_OS_DIR", "/run/shm/temp/os");
+define("INSTALL_OS_DIR", "/run/shm/temp/os");
 define("TOUCH_OS_FILE", INSTALL_OS_DIR."/flash_os");
 define("CONF_DIR", "/kvh/conf");
 
@@ -204,8 +204,7 @@ class TVROuploadsoftware
 		  
 		 $pos = strrpos($fname, ".kvh");
 		 
-         if ( ($fname=="560255.xml")||
-		 	 ($fname=="acuservices.conf") ||
+         if ( ($fname=="acuservices.conf") ||
 			 ($fname=="acuservices.conf.prev") ||
 			 ($fname=="acuservices.factory.conf") ||
 			 ($fname=="lighttpd.conf") ||
@@ -216,6 +215,9 @@ class TVROuploadsoftware
 			
          } else if ( ($fname=="eth.conf")||($fname=="wlan.conf") ) {
             copy($_FILES['fileToUpload']['tmp_name'], CONF_DIR."/network/".$fname);
+
+         } else if ( ($fname=="560255.xml") ) {
+            copy($_FILES['fileToUpload']['tmp_name'], UPLOAD_SW_DIR."/".$fname);
 			
 		 } else if ( (false !== $pos) ) {
             copy($_FILES['fileToUpload']['tmp_name'], UPLOAD_SW_DIR."/".$fname);

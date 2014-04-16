@@ -120,37 +120,37 @@
         function set_wlan($mode, $adhocsecmode, $adhocseckey, $adhocip, $ifmode, $ifessid, $ifsecmode, $ifsalg, $ifseckey, $ifip, $ifnetmask, $ifgateway, $ifbroadcast)
         {
             echo "set_wlan";
-			
+            
             $extra  = "<mode>".$mode."</mode>";
             
-			if ( "ADHOC" == $mode ) {
-				$extra .= "<adhoc_mode>";
-				$extra .= "<security>";
-				$extra .= "<mode>".$adhocsecmode."</mode>";
-				$extra .= "<key>".$adhocseckey."</key>";
-				$extra .= "</security>";
-				$extra .= "<ip>".$adhocip."</ip>";
-				$extra .= "</adhoc_mode>";
+            if ( "ADHOC" == $mode ) {
+                $extra .= "<adhoc_mode>";
+                $extra .= "<security>";
+                $extra .= "<mode>".$adhocsecmode."</mode>";
+                $extra .= "<key>".$adhocseckey."</key>";
+                $extra .= "</security>";
+                $extra .= "<ip>".$adhocip."</ip>";
+                $extra .= "</adhoc_mode>";
             
-			} else if ( "IF" == $mode ) {
-				$extra .= "<if_mode>";
-				$extra .= "<mode>".$ifmode."</mode>";
-				$extra .= "<essid><![CDATA[".$ifessid."]]></essid>";
-				$extra .= "<security>";
-				$extra .= "<mode>".$ifsecmode."</mode>";
-				$extra .= "<algorithm>".$ifsalg."</algorithm>";
-				$extra .= "<key><![CDATA[".$ifseckey."]]></key>";
-				$extra .= "</security>";
-				$extra .= "<ip>".$ifip."</ip>";
-				$extra .= "<netmask>".$ifnetmask."</netmask>";
-				$extra .= "<gateway>".$ifgateway."</gateway>";
-				$extra .= "<broadcast>".$ifbroadcast."</broadcast>";
-				$extra .= "</if_mode>";
-    		
-			} else {
-				// WiFi is OFF
-			}
-			
+            } else if ( "IF" == $mode ) {
+                $extra .= "<if_mode>";
+                $extra .= "<mode>".$ifmode."</mode>";
+                $extra .= "<essid><![CDATA[".$ifessid."]]></essid>";
+                $extra .= "<security>";
+                $extra .= "<mode>".$ifsecmode."</mode>";
+                $extra .= "<algorithm>".$ifsalg."</algorithm>";
+                $extra .= "<key><![CDATA[".$ifseckey."]]></key>";
+                $extra .= "</security>";
+                $extra .= "<ip>".$ifip."</ip>";
+                $extra .= "<netmask>".$ifnetmask."</netmask>";
+                $extra .= "<gateway>".$ifgateway."</gateway>";
+                $extra .= "<broadcast>".$ifbroadcast."</broadcast>";
+                $extra .= "</if_mode>";
+            
+            } else {
+                // WiFi is OFF
+            }
+            
             return($this->_doSimple(__FUNCTION__, $extra));
         }
     
@@ -353,7 +353,7 @@
             $fpath = urldecode($fpath);
     
             $filecontent = '';
-            $dest_path = '/temp/software';
+            $dest_path = '/run/shm/temp/software';
             $url = $fpath;
     
             if ( !file_exists($dest_path) ) {
