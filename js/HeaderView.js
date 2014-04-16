@@ -45,6 +45,10 @@
 
           $('.\\#' + type + '-status', statusJq)
             .text(message);
+
+          $('.\\#' + type + '-status', statusJq)
+            .text('TVRO.shell is: ' + TVRO.shell);
+
         });
       });
     };

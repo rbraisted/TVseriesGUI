@@ -2,14 +2,14 @@
 <style type="text/css">body{display:none;}</style>
 <script type="text/javascript">
   $(function() {
-    TVRO.getWizardStatus().then(function(xml) {
-      var status = $('status', xml).text();
-      if (status === 'SUCCESS') {
+    // TVRO.getWizardStatus().then(function(xml) {
+    //   var status = $('status', xml).text();
+    //   if (status === 'SUCCESS') {
         window.location = '/home.php';
-      } else {
-        window.location = '/wizard';
-      }
-    });
+    //   } else {
+    //     window.location = '/wizard';
+    //   }
+    // });
   });
 </script>
 

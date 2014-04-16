@@ -1,7 +1,6 @@
 !function(window) {
   "use strict";
 
-  //  don't know if this really helps
   var decode = decodeURIComponent;
   var encode = encodeURIComponent;
 
@@ -16,21 +15,17 @@
   window.decode = decode;
   window.indexOf = indexOf;
 
-
-
-  if (window['TVRO'] != undefined) {
-    var TVRO = {
-      debug: window.TVRO.debug || 0,
-      shell: window.TVRO.shell || false,
-      satFinder: window.TVRO.satFinder || false
-    };
-  } else {
-    var TVRO = {
-      debug: 0,
-      shell: false,
-      satFinder: false
-    };
+  if (typeof TVRO === 'undefined') {
+    var TVRO = {};
   }
+
+  TVRO = {
+    debug: TVRO.debug || 0,
+    shell: TVRO.shell || false,
+    satFinder: TVRO.satFinder || false,
+    demoMode: TVRO.demoMode || false,
+    techMode: TVRO.techMode || false
+  };
 
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc

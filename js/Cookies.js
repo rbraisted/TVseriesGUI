@@ -21,17 +21,32 @@
     }
   };
 
-  TVRO.setDemoMode = set('tvro-demo-mode');
-  TVRO.setTechMode = set('tvro-tech-mode');
+  TVRO.setDemoMode = function(value) {
+    if (TVRO.shell) {
+      TVRO.demoMode = value;
+      window.location = 'tvro://set-demo-mode/' + value;
+    } else {
+      set('tvro-demo-mode');
+    }
+  }
+
+  TVRO.setTechMode = function(value) {
+    if (TVRO.shell) {
+      TVRO.techMode = value;
+      window.location = 'tvro://set-tech-mode/' + value;
+    } else {
+      set('tvro-tech-mode');
+    }
+  }
 
   //  return as bool
   TVRO.getDemoMode = function() {
-    if (TVRO.shell) window.location = 'tvro://get-demo-mode';
+    if (TVRO.shell) return TVRO.demoMode;
     else return !!get('tvro-demo-mode')();
   };
 
   TVRO.getTechMode = function() {
-    if (TVRO.shell) window.location = 'tvro://get-tech-mode';
+    if (TVRO.shell) return TVRO.techMode;
     else return !!get('tvro-tech-mode')();
   };
 }(window.TVRO);

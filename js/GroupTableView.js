@@ -20,10 +20,6 @@
           if (confirmed) TVRO.setInstalledGroup(group).then(TVRO.reload);
           else event.stopPropagation(); // prevent rows from being selected
         });
-
-        row.click(function() {
-          console.log(group);
-        });
   		});
 
     var reload = function() {
