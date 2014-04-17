@@ -91,7 +91,14 @@
 
     self.getNmeaSources()
       .then(self.setValues)
-      .then(self.build);
+      .then(self.build)
+      .then(function() {
+        var values = self.getValues();
+        var value = _.find(values, 'selected') || _.find(values, { display: 'None' });
+        self.setValue(value);
+        // we don't expect more than 1 one of the options from get_gps_config
+        // to have <selected>Y</selected>
+      });
 
     return self;
   };
@@ -180,7 +187,14 @@
       var headingSources = nmea0183Sources.concat(nmea2000Sources);
       headingSources.push({ display: 'None' });
       self.setValues(headingSources).build();
+    }).then(function() {
+      var values = self.getValues();
+      var value = _.find(values, 'selected') || _.find(values, { display: 'None' });
+      self.setValue(value);
+      // don't expect more than 1 option from get_heading_config
+      // to be <selected>Y</selected>
     });
+
 
     return self;
   };

@@ -15,8 +15,6 @@
   window.decode = decode;
   window.indexOf = indexOf;
 
-  var g = document.getElementById('debugger');
-  console.log(g);
 
   var TVRO = typeof window['TVRO'] !== 'undefined' ? window.TVRO : {};
 
