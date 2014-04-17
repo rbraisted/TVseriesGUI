@@ -137,22 +137,17 @@
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
       else setSource(TVRO.setHeadingConfig, value)
-        .then(Promise.all(
-          TVRO.getAntennaVersions(),
-          TVRO.getAutoswitchStatus()
-        ))
+        .then(function() {
+          return Promise.all(
+            TVRO.getAntennaVersions(),
+            TVRO.getAutoswitchStatus()
+          );
+        })
         .then(function(xmls) {
           var antModel = $('au model', xmls[0]).text();
           var lnbType = $('lnb polarization', xmls[0]).text();
           var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
           var isManual = $('available:first', xmls[1]).text() === 'N';
-
-          console.log(antModel);
-          console.log(lnbType);
-          console.log(isTriAmericas);
-          console.log(isManual);
-
-          return;
 
           // CIRCULAR LNB -> select service (service.php)
           if (lnbType === 'CIRCULAR') window.location = '/wizard/service.php';
