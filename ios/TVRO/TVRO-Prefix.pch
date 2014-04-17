@@ -1,0 +1,28 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+#endif
+
+#define degreesToRadians(x) (M_PI * x / 180.0)
+#define radiansToDegrees(x) (x * (180.0/M_PI))
+#define isNaN(x) (x != x)
+
+//	NOTE: this camera info is pretty old
+//	camera fov stuff
+#define vfov 53
+#define hfov 39.5 // << but this is what i got using a ruler etc 3gs
+//	camera view - doesnt take entire screen
+#define camviewwidth 320.0
+#define camviewheight 426.0
