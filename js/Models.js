@@ -329,5 +329,4 @@
       return systemInfo;
     });
   };
-
 }(window.TVRO);
