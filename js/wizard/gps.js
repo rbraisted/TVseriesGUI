@@ -1,8 +1,6 @@
 !function(TVRO) {
   "use strict";
 
-  TVRO.debug = 2;
-
   //  getSources('nmea0183', xml)
   //  can use for gps and heading sources
   var getSources = function(type, xml) {
@@ -26,29 +24,27 @@
 
   //  setSource(TVRO.setGpsConfig)
   //  setSource(TVRO.setHeadingConfig)
-  var setSource = function(webServiceCall) {
-    return function(source) {
-      //  default - the 'None' option
-      var params = {
-        nmea0183: { enable: 'N', nmea_source: '' },
-        nmea2000: { enable: 'N', nmea_source: '' }
-      };
-
-      if (source['type']) {
-        params[source.type].enable = 'Y';
-        params[source.type].nmea_source = source.source;
-      }
-
-      return webServiceCall(params);
+  //  setSource(TVRO.setHeadingConfig, source)
+  var setSource = _.curry(function(webServiceCall, source) {
+    //  default - the 'None' option
+    var params = {
+      nmea0183: { enable: 'N', nmea_source: '' },
+      nmea2000: { enable: 'N', nmea_source: '' }
     };
-  };
+
+    if (source['type']) {
+      params[source.type].enable = 'Y';
+      params[source.type].nmea_source = source.source;
+    }
+
+    return webServiceCall(params);
+  });
+
+
 
   var GpsSourceView = function(jQ) {
     //  use as base for BackupGpsView + VesselLocationView
-    var self = TVRO.TableView($('.\\#table-view', jQ))
-      .onBuild(function(row, value) {
-        $('.\\#value', row).text(value.display);
-      });
+    var self = TVRO.TableView($('.\\#table-view', jQ));
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       //  getProductRegistration - if installer info exists,
@@ -80,7 +76,10 @@
   
 
   var BackupGpsSourceView = function(jQ) {
-    var self = GpsSourceView(jQ);
+    var self = GpsSourceView(jQ)
+      .onBuild(function(row, value) {
+        $('.\\#value', row).text(value.display);
+      });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
@@ -137,21 +136,15 @@
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else {
-        // if (nmea0183Sources.indexOf(headingSources[value]) !== -1) {
-        //   webService.request('set_heading_config', {
-        //     nmea0183: { enable: 'Y', nmea_source: headingSources[value].source },
-        //     nmea2000: { enable: 'N' }
-        //   });
-        // } else if (nmea2000Sources.indexOf(headingSources[value]) !== -1) {
-        //   webService.request('set_heading_config', {
-        //     nmea0183: { enable: 'N' },
-        //     nmea2000: { enable: 'Y', nmea_source: headingSources[value].source }
-        //   });
-        // }
-        window.location = '/wizard/service.php';
-      }
+      else setSource(TVRO.setHeadingConfig, value).then(function() {
+        //  redirect depending on:
+        // • CIRCULAR LNB -> select service (service.php)
+        // • TV5 + MANUAL -> select satellites (satellites.php)
+        // • LINEAR LNB TV5/6 -> select satellites (satellites.php)
+        // • TRI AMERICAS -> directv (service.php)
+      });
     });
+
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       TVRO.getAntennaVersions().then(function(xml) {
