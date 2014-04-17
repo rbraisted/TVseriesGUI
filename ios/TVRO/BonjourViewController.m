@@ -21,6 +21,12 @@
 
 @implementation BonjourViewController
 
+@synthesize tableView = _tableView;
+@synthesize textField = _textField;
+@synthesize refreshButton = _refreshButton;
+@synthesize connectButton = _connectButton;
+@synthesize scrollView = _scrollView;
+
 #pragma mark - UIViewController methods
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,11 +51,15 @@
 
 	[self.tableView setDelegate:self];
 	[self.tableView setDataSource:self];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BonjourTableViewCell" bundle:nil] forCellReuseIdentifier:@"BonjourTableCell"];
     
     [self registerForKeyboardNotifications];
     
     cellBGImageDark  =  [UIImage imageNamed:@"tableCellBGDark.png"];
     cellBGImageLight =  [UIImage imageNamed:@"tableCellBGLight.png"];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
 	
     [super viewDidLoad];
 }
@@ -84,12 +94,36 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    else
+    {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+
+
 #pragma mark - NSNetServiceBrowserDelegate protocol methods
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
 {
 	NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
 	[netService setDelegate:self];
+    [netService resolveWithTimeout:5];
 	[netServices addObject:netService];
 	[self.tableView reloadData];
 }
@@ -112,8 +146,7 @@
 - (void)netServiceDidResolveAddress:(NSNetService *)netService
 {
 	NSLog(@"netServiceDidResolveAddress:%@", netService);
-	WebViewController* webViewController = [[WebViewController alloc] initWithHostName:netService.hostName];
-	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+	[self.tableView reloadData];
 }
 
 - (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorDict
@@ -146,7 +179,9 @@
     else
     {
 		NSNetService* netService = [netServices objectAtIndex:row];
-		[netService resolveWithTimeout:5];
+		//[netService resolveWithTimeout:5];
+        WebViewController* webViewController = [[WebViewController alloc] initWithHostName:netService.hostName];
+        [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 	}
 }
 
@@ -165,15 +200,15 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BonjourTableCell";
-	
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    BonjourTableViewCell *cell = (BonjourTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    NSString *CellIdentifier = @"BonjourTableCell";
+   
+    BonjourTableViewCell *cell = (BonjourTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
 	if (cell == nil)
 	{
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BonjourTableCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BonjourTableViewCell" owner:self options:nil];
+        
         cell = [nib objectAtIndex:0];
 	}
 
@@ -181,15 +216,15 @@
     
     if(row % 2 == 0)
     {
-        [cell.backgroundImage setImage: cellBGImageLight];
+        [cell setUnselectedBackgroundImage: cellBGImageLight];
     }
     else
     {
-        [cell.backgroundImage setImage: cellBGImageDark];
+        [cell setUnselectedBackgroundImage: cellBGImageDark];
     }
 	
     NSNetService* netService = [netServices objectAtIndex:row];
-    [cell.hubLabel setText:netService.name];
+    [cell  setHubName:netService.name];
     
     //Now extract the ip address and set the ip label
     
@@ -205,32 +240,31 @@
         struct sockaddr_in6 ipv6;
     } ip_socket_address;
     
+    if([netService.addresses count] == 0)
+        return cell;
     
-//    ip_socket_address *socketAddress = (ip_socket_address *)[[netService.addresses objectAtIndex: 0] bytes];
-//    
-//    if (socketAddress && (socketAddress->sa.sa_family == AF_INET || socketAddress->sa.sa_family == AF_INET6))
-//    {
-//        const char *addressStr = inet_ntop(
-//                                            socketAddress->sa.sa_family,
-//                                            (socketAddress->sa.sa_family == AF_INET ? (void *)&(socketAddress->ipv4.sin_addr) : (void *)&(socketAddress->ipv6.sin6_addr)),
-//                                            addressBuffer,
-//                                            sizeof(addressBuffer));
-//            
-//        //int port = ntohs(socketAddress->sa.sa_family == AF_INET ? socketAddress->ipv4.sin_port : socketAddress->ipv6.sin6_port);
-//            
-//        [cell.ipLabel setText:[[NSString alloc] initWithUTF8String:addressStr]];
-//    }
+    
+    ip_socket_address *socketAddress = (ip_socket_address *)[[netService.addresses objectAtIndex: 0] bytes];
+    
+    if (socketAddress && (socketAddress->sa.sa_family == AF_INET || socketAddress->sa.sa_family == AF_INET6))
+    {
+        const char *addressStr = inet_ntop(
+                                            socketAddress->sa.sa_family,
+                                            (socketAddress->sa.sa_family == AF_INET ? (void *)&(socketAddress->ipv4.sin_addr) : (void *)&(socketAddress->ipv6.sin6_addr)),
+                                            addressBuffer,
+                                            sizeof(addressBuffer));
+            
+        //int port = ntohs(socketAddress->sa.sa_family == AF_INET ? socketAddress->ipv4.sin_port : socketAddress->ipv6.sin6_port);
+            
+        [cell setIPLabel:[[NSString alloc] initWithUTF8String:addressStr]];
+    }
     
     return cell;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//	return @"Select your BDU";
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSLog(@"tableView numberOfRowsInSection return:%d", [netServices count]);
+//	NSLog(@"tableView numberOfRowsInSection return:%d", [netServices count]);
 	return [netServices count];
 }
 
@@ -238,20 +272,25 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	NSLog(@"textFieldShouldReturn");
+//	NSLog(@"textFieldShouldReturn");
+    
+    [self.scrollView setContentOffset:svos animated:YES];
+    [textField resignFirstResponder];
+    
+    
 	[textField endEditing:YES];
 	return NO;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-	NSLog(@"textFieldShouldEndEditing");
+//	NSLog(@"textFieldShouldEndEditing");
 	return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	NSLog(@"textFieldDidEndEditing");
+//	NSLog(@"textFieldDidEndEditing");
 }
 
 #pragma mark - UIButton actions
@@ -268,34 +307,44 @@
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
+- (IBAction)viewUpdatesButtonPressed:(id)sender
+{
+    //TODO: Connect to the Updates website
+}
+
 #pragma mark - Keyboard notifications
+
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGFloat kbHeight = 0.0f;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    
-    if (!CGRectContainsPoint(aRect, self.textField.frame.origin) )
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        [self.scrollView scrollRectToVisible:self.textField.frame animated:YES];
+        kbHeight = kbSize.width;
     }
+    else
+    {
+        kbHeight = kbSize.height;
+    }
+    
+    svos = self.scrollView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [self.textField bounds];
+    rc = [self.textField convertRect:rc toView:self.scrollView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y -= kbHeight;
+    [self.scrollView setContentOffset:pt animated:YES];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
+    [self.scrollView setContentOffset:svos animated:YES];
+    [self.textField resignFirstResponder];
 }
 
 @end

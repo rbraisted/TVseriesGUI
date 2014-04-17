@@ -12,6 +12,8 @@
     
     UIImage* cellBGImageDark;
     UIImage* cellBGImageLight;
+    
+    CGPoint svos;
 }
 
 @end

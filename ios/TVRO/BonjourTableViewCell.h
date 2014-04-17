@@ -10,6 +10,7 @@
 
 @interface BonjourTableViewCell : UITableViewCell
 {
+    UIImage* unselectedBG;
     UIImage* selectedBG;
     UIImage* selectedArrow;
     UIImage* unselectedArrow;
@@ -19,5 +20,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *ipLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *arrowImage;
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImage;
+
+- (void) setHubName: (NSString*)hubNameText;
+- (void) setIPLabel: (NSString*)ipAddress;
+- (void) setUnselectedBackgroundImage: (UIImage*)unselectedBGImage;
 
 @end

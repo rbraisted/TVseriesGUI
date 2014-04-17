@@ -8,6 +8,10 @@
 
 #import "BonjourTableViewCell.h"
 
+@interface BonjourTableViewCell()
+
+@end
+
 @implementation BonjourTableViewCell
 
 @synthesize hubLabel = _hubLabel;
@@ -18,15 +22,30 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+    {
         // Initialization code
     }
     return self;
 }
 
+- (void) setHubName: (NSString*)hubNameText
+{
+    [self.hubLabel setText:hubNameText];
+}
+
+- (void) setIPLabel: (NSString*)ipAddress
+{
+    [self.ipLabel setText:ipAddress];
+}
+
+- (void) setUnselectedBackgroundImage: (UIImage*)unselectedBGImage
+{
+    unselectedBG = unselectedBGImage;
+}
+
 - (void)awakeFromNib
 {
-    // Initialization code
     selectedBG       =  [UIImage imageNamed:@"tableCellBGSelected.png"];
     selectedArrow    =  [UIImage imageNamed:@"tableCellArrowSelected.png"];
     unselectedArrow  =  [UIImage imageNamed:@"tableCellArrow.png"];
@@ -51,6 +70,7 @@
     }
     else
     {
+        [_backgroundImage setImage: unselectedBG];
         [_arrowImage setImage: unselectedArrow];
     }
 }

@@ -6,6 +6,7 @@
 
 #import "WebViewController.h"
 #import "UpdatesManager.h"
+#import "BonjourViewController.h"
 
 @interface WebViewController ()
 
@@ -15,17 +16,12 @@
 
 #pragma mark - UIViewController methods
 
-- (void) initView: withNibName {
-    
-}
-
 - (void)viewDidLoad {
-    
-    
 	webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
 	[webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 	[webView.scrollView setDelaysContentTouches:NO];
 	[webView setDelegate:self];
+    [webView setBackgroundColor:[UIColor blackColor]];
     webView.scrollView.bounces = NO;
 	[self.view addSubview:webView];
 	
@@ -36,6 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", hostName]]]];
+//	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://miky.local:5757/settings.php#/general"]]];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -49,13 +46,12 @@
 #pragma mark - UIWebViewDelegate protocol methods
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError*)error {
-//	NSLog(@"webView didFailLoadWithError:%@", error);
+	NSLog(@"webView didFailLoadWithError:%@", error);
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	
     NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
-
+    
 	//	we should check for:
 	//	1 our hostname, for which we always return yes
 	//	2 software updates (urls which end in the file ext .kvh), for which we always return no & and then take over the downloading process
@@ -71,7 +67,23 @@
     {
 		NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
 		NSArray* pathComponents = [request.URL pathComponents];
-        
+
+		if ([request.URL.host isEqualToString:@"set-tech-mode"]) {
+			BOOL techMode = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
+			NSLog(@"techMode: %d", techMode);
+			NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"]);
+			[[NSUserDefaults standardUserDefaults] setBool:techMode forKey:@"tech-mode"];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"]);
+		} else if ([request.URL.host isEqualToString:@"set-demo-mode"]) {
+			BOOL demoMode = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
+			NSLog(@"demoMode: %d", demoMode);
+			NSLog(@"demo-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]);
+			[[NSUserDefaults standardUserDefaults] setBool:demoMode forKey:@"demo-mode"];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			NSLog(@"demo-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]);
+		}
+		
 		if([request.URL.host isEqualToString:@"sat-finder"])
         {
 			NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
@@ -108,7 +120,13 @@
 				NSString* antType = [NSString stringWithString:pathComponents[2]];
 				[updatesManager startUploadForAntType:antType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
 			}
-		}
+
+        }
+        else if ([request.URL.host isEqualToString:@"change-hostname"])
+        {
+            [self goBackToHostSelect];
+        }
+        
 		return false;
 
 	//	if we're being directed to a .pdf file, we're going to display it
@@ -143,16 +161,49 @@
 	}
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)_webView {
-	NSLog(@"webViewDidFinishLoad");
-	//[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"tvro://sat-finder"]]];
+- (void)goBackToHostSelect
+{
+    BonjourViewController* bonjourViewController;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        // iPad-specific interface here
+        bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourViewiPadLandscape" bundle:nil];
+    }
+    else
+    {
+        // iPhone and iPod touch interface here
+        bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourView" bundle:nil];
+    }
+    
+    [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)_webView {
+- (void)webViewURLRequestTimeout
+{
+    NSLog(@"URL load didn't finish loading within 20 sec");
+    [self goBackToHostSelect];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)_webView
+{
+	NSLog(@"webViewDidFinishLoad");
+	[timeoutTimer invalidate];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)_webView
+{
 	NSLog(@"webViewDidStartLoad");
+    
 	NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
-	NSString* javascriptString = [NSString stringWithFormat:@"var TVRO = { shell: true, satFinder: %@ };", satFinderAvailable];
+	NSString* demoMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"] ? @"true" : @"false";
+	NSString* techMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"] ? @"true" : @"false";
+    
+    NSString* javascriptString = [NSString stringWithFormat:@"var TVRO = { shell: true, satFinder: %@, demoMode: %@, techMode: %@ };", satFinderAvailable, demoMode, techMode];
 	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
+    
+    //start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
+    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
 }
 
 #pragma mark - UpdatesManagerDelgate protocol methods

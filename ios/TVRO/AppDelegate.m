@@ -13,14 +13,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
 	
-	NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"technician-mode"]);
-	BonjourViewController* bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourView" bundle:nil];
+	NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"]);
+	NSLog(@"demo-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]);
+    
+    BonjourViewController* bonjourViewController;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        // iPad-specific interface here
+        bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourViewiPadLandscape" bundle:nil];
+    }
+    else
+    {
+        // iPhone and iPod touch interface here
+        bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourView" bundle:nil];
+    }
+    
 	self.window.rootViewController = bonjourViewController;
 
     return YES;
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window 
+{
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

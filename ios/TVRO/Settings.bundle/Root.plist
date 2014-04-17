@@ -10,7 +10,7 @@
 			<key>Title</key>
 			<string>Technician Mode</string>
 			<key>Key</key>
-			<string>technician-mode</string>
+			<string>tech-mode</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -22,7 +22,7 @@
 			<key>Key</key>
 			<string>demo-mode</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<true/>
 		</dict>
 	</array>
 	<key>StringsTable</key>

@@ -15,6 +15,7 @@
 	NSString* hostName;
 	UpdatesManager* updatesManager;
 	SatFinderViewController* satFinderViewController;
+    NSTimer *timeoutTimer;
 }
 
 - (id)initWithHostName:(NSString*)hostName;
