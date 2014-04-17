@@ -136,13 +136,33 @@
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else setSource(TVRO.setHeadingConfig, value).then(function() {
-        //  redirect depending on:
-        // • CIRCULAR LNB -> select service (service.php)
-        // • TV5 + MANUAL -> select satellites (satellites.php)
-        // • LINEAR LNB TV5/6 -> select satellites (satellites.php)
-        // • TRI AMERICAS -> directv (service.php)
-      });
+      else setSource(TVRO.setHeadingConfig, value)
+        .then(function() {
+          return Promise.all(
+            TVRO.getAntennaVersions(),
+            TVRO.getAutoswitchStatus()
+          );
+        })
+        .then(function(xmls) {
+          var antModel = $('au model', xmls[0]).text();
+          var lnbType = $('lnb polarization', xmls[0]).text();
+          var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
+          var isManual = $('available:first', xmls[1]).text() === 'N';
+
+          // CIRCULAR LNB -> select service (service.php)
+          if (lnbType === 'CIRCULAR') window.location = '/wizard/service.php';
+
+          // TV5 + MANUAL -> select satellites (satellites.php)
+          else if (antModel === 'TV5') window.location = '/wizard/satellites.php';
+
+          // LINEAR LNB TV5/6 -> select satellites (satellites.php)
+          else if (lnbType === 'LINEAR' && (antModel === 'TV5' || antModel === 'TV6')) window.location = '/wizard/satellites.php';
+
+          // TRI AMERICAS -> directv (service.php)
+          else if (isTriAmericas) window.location = '/wizard/service.php#/directv';
+
+          else window.location = '/wizard/service.php';
+        });
     });
 
 
