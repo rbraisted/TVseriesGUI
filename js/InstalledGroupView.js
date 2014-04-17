@@ -7,7 +7,7 @@
 
     var tableView = TVRO.TableView($('.\\#sat-table-view', jQ))
       .onBuild(function(row, sat) {
-        $('.\\#sat-name', row).text(sat.name);
+        $('.\\#sat-name', row).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
 
         $('.\\#install-btn', row).click(function() {
           if (!row.hasClass('$installed')) {
