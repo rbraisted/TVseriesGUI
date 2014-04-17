@@ -1,14 +1,53 @@
 !function(TVRO) {
   "use strict";
 
+  TVRO.debug = 2;
+
+  //  getSources('nmea0183', xml)
+  //  can use for gps and heading sources
+  var getSources = function(type, xml) {
+    return _.map($(type + ' nmea_message', xml), function(xml) {
+      var name = $('nmea_name', xml).text();
+      var value = $('heading_value', xml).text();
+      var source = $('nmea_source', xml).text();
+      var state = $('state', xml).text();
+      var selected = $('selected', xml).text() === 'Y';
+      var display = (type === 'nmea0183' ? 'NMEA 0183' : 'NMEA 2000') + ' - ' + name;
+      return {
+        type: type,
+        name: name,
+        source: source,
+        state: state,
+        selected: selected,
+        display: display
+      };
+    });
+  };
+
+  //  setSource(TVRO.setGpsConfig)
+  //  setSource(TVRO.setHeadingConfig)
+  var setSource = function(webServiceCall) {
+    return function(source) {
+      //  default - the 'None' option
+      var params = {
+        nmea0183: { enable: 'N', nmea_source: '' },
+        nmea2000: { enable: 'N', nmea_source: '' }
+      };
+
+      if (source['type']) {
+        params[source.type].enable = 'Y';
+        params[source.type].nmea_source = source.source;
+      }
+
+      return webServiceCall(params);
+    };
+  };
+
   var GpsSourceView = function(jQ) {
+    //  use as base for BackupGpsView + VesselLocationView
     var self = TVRO.TableView($('.\\#table-view', jQ))
       .onBuild(function(row, value) {
-        if (value === 'NMEA0183') $('.\\#value', row).text('NMEA 0183');
-        else if (value === 'NMEA2000') $('.\\#value', row).text('NMEA 2000');
-        else if (value === 'NONE') $('.\\#value', row).text('Other');
-        else if (value === 'COORDINATES') $('.\\#value', row).text('Other');
-        else if (value === 'CITY') $('.\\#value', row).text('Other');
+        $('.\\#value', row).text(value.display);
       });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -23,13 +62,16 @@
     });
 
     return _.merge(self, {
-      setNmea: function() {
-        var value = self.getValue();
-        var nmea0183Enabled = value === 'NMEA0183' ? 'Y' : 'N';
-        var nmea2000Enabled = value === 'NMEA2000' ? 'Y' : 'N';
-        return TVRO.setGpsConfig({
-          nmea0183: { enable: nmea0183Enabled },
-          nmea2000: { enable: nmea2000Enabled }
+      setNmeaSource: setSource(TVRO.setGpsConfig),
+      getNmeaSources: function() {
+        return TVRO.getGpsConfig().then(function(xml) {
+          var nmea0183Sources = getSources('nmea0183', xml);
+          var nmea2000Sources = getSources('nmea2000', xml);
+          var nmeaSources = nmea0183Sources.concat(nmea2000Sources);
+          //  include a 'None' option
+          //  see self.onBuild and setNmeaSource
+          nmeaSources.push({ display: 'None' });
+          return nmeaSources;
         });
       }
     });
@@ -38,22 +80,19 @@
   
 
   var BackupGpsSourceView = function(jQ) {
-    var self = GpsSourceView(jQ)
-      .setValues([
-        'NMEA0183',
-        'NMEA2000',
-        'NONE'
-      ])
-      .build();
+    var self = GpsSourceView(jQ);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else if (value === 'NONE') window.location.hash = '/heading-source';
-      else self.setNmea().then(function() {
+      else self.setNmeaSource(value).then(function() {
         window.location.hash = '/heading-source';
       });
     });
+
+    self.getNmeaSources()
+      .then(self.setValues)
+      .then(self.build);
 
     return self;
   };
@@ -62,22 +101,22 @@
 
   var VesselLocationView = function(jQ) {
     var self = GpsSourceView(jQ)
-      .setValues([
-        'NMEA0183',
-        'NMEA2000',
-        'COORDINATES',
-        'CITY'
-      ])
-      .build();
+      .onBuild(function(row, value) {
+        $('.\\#value', row).text(value.display);
+      });
+
+    self.getNmeaSources()
+      .then(self.setValues)
+      .then(self.build);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      var value = self.getValue();
-      if (!value) alert('You must select an option to continue.');
-      else if (value === 'COORDINATES') window.location.hash = '/heading-source';
-      else if (value === 'CITY') window.location.hash = '/heading-source';
-      else self.setNmea().then(function() {
-        window.location.hash = '/heading-source';
-      });
+    //   var value = self.getValue();
+    //   if (!value) alert('You must select an option to continue.');
+    //   else if (value === 'COORDINATES') window.location.hash = '/heading-source';
+    //   else if (value === 'CITY') window.location.hash = '/heading-source';
+    //   else self.setNmeaSource().then(function() {
+    //     window.location.hash = '/heading-source';
+    //   });
     });
 
     var CoordinatesView = function(jQ) {
@@ -92,7 +131,7 @@
   var HeadingSourceView = function(jQ) {
     var self = TVRO.TableView($('.\\#table-view', jQ))
       .onBuild(function(row, headingSource) {
-        $('.\\#value', row).text(headingSource.name);
+        $('.\\#value', row).text(headingSource.display);
       });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
@@ -123,16 +162,10 @@
     });
 
     TVRO.getHeadingConfig().then(function(xml) {
-      var getHeadingSource = function() {
-        var name = $('nmea_name', this).text();
-        var source = $('nmea_source', this).text();
-        return { name: name, source: source };
-      };
-
-      var nmea0183Sources = $('nmea0183 nmea_message', xml).map(getHeadingSource).get();
-      var nmea2000Sources = $('nmea2000 nmea_message', xml).map(getHeadingSource).get();
+      var nmea0183Sources = getSources('nmea0183', xml);
+      var nmea2000Sources = getSources('nmea2000', xml);
       var headingSources = nmea0183Sources.concat(nmea2000Sources);
-
+      headingSources.push({ display: 'None' });
       self.setValues(headingSources).build();
     });
 

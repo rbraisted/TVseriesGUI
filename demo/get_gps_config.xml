@@ -4,9 +4,15 @@
 	<nmea0183>
 		<enable>Y</enable><!-- Y | N -->
 		<message_list>
-			<nmea_message>
-				<nmea_name>RMC data from GPS device</nmea_name>
-				<nmea_source>GPRMC</nmea_source>
+	   <nmea_message>
+        <nmea_name>RMC data from GPS device</nmea_name>
+        <nmea_source>GPRMC</nmea_source>
+        <state>ACTIVE</state><!-- ACTIVE | INACTIVE -->
+        <selected>N</selected><!-- Y | N -->
+      </nmea_message>
+  		<nmea_message>
+				<nmea_name>GPS Almanac Data</nmea_name>
+				<nmea_source>GPALM</nmea_source>
 				<state>ACTIVE</state><!-- ACTIVE | INACTIVE -->
 				<selected>N</selected><!-- Y | N -->
 			</nmea_message>
@@ -19,7 +25,7 @@
 				<nmea_name>LATLON from GPS device</nmea_name>
 				<nmea_source>GPS-LATLON</nmea_source>
 				<state>ACTIVE</state><!-- ACTIVE | INACTIVE -->
-				<selected>Y</selected><!-- Y | N -->
+				<selected>N</selected><!-- Y | N -->
 			</nmea_message>
 		</message_list>
 	</nmea2000>
