@@ -45,15 +45,11 @@
 
           $('.\\#' + type + '-status', statusJq)
             .text(message);
-
-          $('.\\#' + type + '-status', statusJq)
-            .text('TVRO.shell is: ' + TVRO.shell);
-
         });
       });
     };
 
-    var flashInteral = setInterval(function() {
+    var flashInterval = setInterval(function() {
       var types = ['power', 'acu', 'antenna'];
       _.forEach(types, function(type) {
         var light = $('.\\#' + type + '-status', jQ);
