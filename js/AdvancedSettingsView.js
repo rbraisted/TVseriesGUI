@@ -8,8 +8,8 @@
 			TVRO.getAntennaConfig().then(function(xml) {
 				var sleepModeOn = $('sleep', xml).text() === 'ON';
 				var sidelobeModeOn = $('sidelobe', xml).text() === 'ON';
-				sleepTogBtn.setOn(sleepModeEnabled);
-				sidelobeTogBtn.setOn(sidelobeModeEnabled);
+				sleepModeBtn.setOn(sleepModeOn);
+				sidelobeModeBtn.setOn(sidelobeModeOn);
 			});
 
       // TVRO.getAntennaVersions().then(function(xml) {
