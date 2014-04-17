@@ -19,6 +19,9 @@
     });
 
     var reload = function() {
+      $('#debugger').append('<br><br>~ GeneralSettingsView.reload');
+      $('#debugger').append('<br>TVRO.shell: ' + TVRO.shell);
+
       $('.\\#shell', jQ).toggle(TVRO.shell);
       techModeBtn.setOn(TVRO.getTechMode());
       demoModeBtn.setOn(TVRO.getDemoMode());

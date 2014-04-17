@@ -41,6 +41,9 @@
 
   //  return as bool
   TVRO.getDemoMode = function() {
+    $('#debugger').append('<br><br>~ getDemoMode');
+    $('#debugger').append('<br>TVRO.shell: ' + TVRO.shell);
+    $('#debugger').append('<br>TVRO.demoMode: ' + TVRO.demoMode);
     if (TVRO.shell) return TVRO.demoMode;
     else return !!get('tvro-demo-mode')();
   };

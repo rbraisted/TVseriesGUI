@@ -15,17 +15,24 @@
   window.decode = decode;
   window.indexOf = indexOf;
 
-  if (typeof TVRO === 'undefined') {
-    var TVRO = {};
-  }
+  var g = document.getElementById('debugger');
+  console.log(g);
+
+  var TVRO = typeof window['TVRO'] !== 'undefined' ? window.TVRO : {};
 
   TVRO = {
-    debug: TVRO.debug || 0,
-    shell: TVRO.shell || false,
-    satFinder: TVRO.satFinder || false,
-    demoMode: TVRO.demoMode || false,
-    techMode: TVRO.techMode || false
+    debug: TVRO['debug'] || 0,
+    shell: TVRO['shell'] || false,
+    satFinder: TVRO['satFinder'] || false,
+    demoMode: TVRO['demoMode'] || false,
+    techMode: TVRO['techMode'] || false
   };
+  
+  
+  
+  
+  
+
 
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc

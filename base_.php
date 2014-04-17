@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <div id="debugger" style="display: none; max-height: 100%; overflow: auto; line-height: 1.2; font-size: 12px; position: fixed; width: 100%; z-index: 999999999999; background: rgba(0, 0, 0, 0.6);">
+    DEBUGGING
+  </div>
+
   <head>
     <title>KVH TracVision</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,7 +37,6 @@
     <script type="text/javascript" src="/js/DropdownView.js"></script>
 
     <script type="text/javascript" src="/js/HeaderView.js"></script>
-
   </head>
 
   <body class>
