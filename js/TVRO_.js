@@ -15,22 +15,23 @@
   window.decode = decode;
   window.indexOf = indexOf;
 
+}(window);
 
-  var TVRO = typeof window['TVRO'] !== 'undefined' ? window.TVRO : {};
+!function(window) {
+  "use strict";
 
-  TVRO = {
-    debug: TVRO['debug'] || 0,
-    shell: TVRO['shell'] || false,
-    satFinder: TVRO['satFinder'] || false,
-    demoMode: TVRO['demoMode'] || false,
-    techMode: TVRO['techMode'] || false
-  };
-  
-  
-  
-  
-  
+  // var TVRO = typeof window['TVRO'] !== 'undefined' ? window.TVRO : {};
 
+  // TVRO = {
+  //   debug: TVRO['debug'] || 0,
+  //   shell: TVRO['shell'] || false,
+  //   satFinder: TVRO['satFinder'] || false,
+  //   demoMode: TVRO['demoMode'] || false,
+  //   techMode: TVRO['techMode'] || false
+  // };
+
+  var TVRO = {};
+  TVRO.debug = 0;
 
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc
@@ -61,7 +62,7 @@
   var hashCallbacks = [];
 
   hashCallbacks.push(function(hash) {
-    if (TVRO.debug) console.log("-> #: "+hash);
+    if (TVRO.debug) console.log("-> #: " + hash);
   });
 
   TVRO.onHashChange = function(arg) {

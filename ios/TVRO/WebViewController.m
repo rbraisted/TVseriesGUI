@@ -26,8 +26,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", hostName]]]];
-//	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://miky.local:5757/settings.php#/general"]]];
+	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shell.php", hostName]]]];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -45,8 +44,8 @@
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
-    
+  NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
+
 	//	we should check for:
 	//	1 our hostname, for which we always return yes
 	//	2 software updates (urls which end in the file ext .kvh), for which we always return no & and then take over the downloading process
@@ -54,10 +53,11 @@
 	//	4 anything besides those, for which we should always return no and then open in safari app instead
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
-	
+
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
 	if ([request.URL.scheme isEqualToString:@"tvro"]) {
+    NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
     [self handleCustomURL:request.URL];
 		return false;
 
@@ -75,7 +75,7 @@
 	//	if not, it's probably an external link and we
 	//	should open it in safari
 	} else if (![hostName isEqualToString:_hostName]) {
-//		NSLog(@"    ![hostName isEqualToString:_hostName]");
+		NSLog(@"  ![hostName isEqualToString:_hostName]");
 //		[[UIApplication sharedApplication] openURL:request.URL];
 //		return false;
 		return true;
@@ -83,6 +83,7 @@
         
 	//	at this point it's probably just another path in our app
 	} else {
+		NSLog(@"  } else {");
 		return true;
 	}
 }
@@ -94,32 +95,22 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidFinishLoad");
+  
+	NSString* demoMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"] ? @"true" : @"false";
+  NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
+  
+	NSString* techMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"] ? @"true" : @"false";
+  NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+  
+	NSString* jsString = [NSString stringWithFormat:@"%@%@", demoModeString, techModeString];
+	[webView stringByEvaluatingJavaScriptFromString:jsString];
+
 	[timeoutTimer invalidate];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidStartLoad");
-    
-	NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
-	NSString* demoMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"] ? @"true" : @"false";
-	NSString* techMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"] ? @"true" : @"false";
-    
-  NSString* javascriptString = [NSString stringWithFormat:
-    @"if (typeof window['TVRO'] === 'undefined') {"
-      "window.TVRO = {"
-      	"shell: true,"
-	      "satFinder: %@,"
-  	    "demoMode: %@,"
-    	  "techMode: %@"
-	    "};"
-		"}",
-    satFinderAvailable,
-    demoMode,
-    techMode];
-    
-	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
-    
-  //start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
+  //	start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
   timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
 }
 
@@ -128,6 +119,7 @@
 - (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForAntType:(NSString *)antType {
 	NSString* deviceVersion = [updatesManager deviceVersionForAntType:antType];
 	NSString* jsString = [NSString stringWithFormat:@"window.tvro.updates.%@.deviceVersion = '%@'; window.tvro.updates.update();", antType, deviceVersion];
+  
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
@@ -147,7 +139,7 @@
 - (void)goBackToHostSelect {
   //	we should probably move the iPad detection to BonjourViewController
   //	and we should probably pop/push instead of setting the rootViewController
-  BonjourViewController* bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourViewiPadLandscape" bundle:nil];
+  BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
   [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
 }
 
@@ -179,20 +171,16 @@
   //      we do this for the same reason as the download - some devices can't
   //      search/find and upload/install the file from the device's file system
   
-  //	tvro://debug/{ msg }
-	//			using safari's web inspector to debug UIWebViews is not fun
-
+  NSLog(@"handleCustomURL: %@", url);
   NSArray* pathComponents = [url pathComponents];
+  NSLog(@"pathComponents: %@", pathComponents);
+  NSLog(@"url.host: %@", url.host);
 
-  if ([url.host isEqualToString:@"debug"]) {
-    NSString* message = [pathComponents objectAtIndex:1];
-		NSLog(@"%@", message);
-    
-  } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
-    NSString* key = [url.host substringFromIndex:3];
+	if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
+    NSString* key = [url.host substringFromIndex:4];
+    NSLog(@"key: %@", key);
     BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
-    NSLog(@"!!!");
-    NSLog(@"%@", key);
+    NSLog(@"value: %@", key);
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
     

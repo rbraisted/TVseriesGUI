@@ -5,10 +5,16 @@
 		var self;
 
 		var techModeBtn = TVRO.ToggleBtn(jQ.find('.\\#tech-mode-btn'))
-			.onClick(TVRO.setTechMode);
+			.onClick(function(techMode) {
+        TVRO.setTechMode(techMode);
+        if (TVRO.getShellMode()) window.location = 'tvro://set-tech-mode/' + techMode;
+      });
 
     var demoModeBtn = TVRO.ToggleBtn(jQ.find('.\\#demo-mode-btn'))
-      .onClick(TVRO.setDemoMode);
+      .onClick(function(demoMode) {
+        TVRO.setDemoMode(demoMode);
+        if (TVRO.getShellMode()) window.location = 'tvro://set-demo-mode/' + demoMode;
+      });
 
     var wizardBtn = jQ.find('.\\#wizard-btn').click(function() {
       window.location = '/wizard';
@@ -19,10 +25,7 @@
     });
 
     var reload = function() {
-      $('#debugger').append('<br><br>~ GeneralSettingsView.reload');
-      $('#debugger').append('<br>TVRO.shell: ' + TVRO.shell);
-
-      $('.\\#shell', jQ).toggle(TVRO.shell);
+      $('.\\#shell', jQ).toggle(TVRO.getShellMode());
       techModeBtn.setOn(TVRO.getTechMode());
       demoModeBtn.setOn(TVRO.getDemoMode());
     };

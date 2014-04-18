@@ -11,7 +11,7 @@
         var portalVersion = $('software_version', xml).text() || $('version', xml).text();
         var portalUrl = $('url', xml).text();
         var shellUrl = 'tvro://updates/download/'+update+'/'+portalVersion+'/'+portalUrl;
-        if (TVRO.shell) {
+        if (TVRO.getShellMode()) {
           window.location = shellUrl;
         } else {
           window.location = portalUrl;
@@ -30,7 +30,7 @@
     var onChange = function() {
       if (!jQ.hasClass('$connected')) return;
 
-      if (TVRO.shell) {
+      if (TVRO.getShellMode()) {
         window.location = 'tvro://updates/upload/'+update;
 
       } else {
