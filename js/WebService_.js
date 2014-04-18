@@ -310,11 +310,6 @@
 	]);
 
   //  custom calls for updates page
-
-  //  upload_software
-  //  upload_software
-  //  upload_software
-
   TVRO.getLatestSoftware = function(update) {
     var msg = update === 'SatLibrary' ? 'latest_sat_library' : 'latest_software';
     var url = 'http://www.kvhupdate.com/TVRO/'+update+'/portalMain.php/'+msg;

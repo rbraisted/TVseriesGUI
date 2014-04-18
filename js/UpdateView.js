@@ -8,15 +8,11 @@
 
     var downloadBtn = $('.\\#download-btn', jQ).click(function() {
       TVRO.getLatestSoftware(update).then(function(xml) {
-        var portalVersion = $('software_version', xml).text() || $('version', xml).text();
         var portalUrl = $('url', xml).text();
+        var portalVersion = $('software_version', xml).text() || $('version', xml).text();
         var shellUrl = 'tvro://updates/download/'+update+'/'+portalVersion+'/'+portalUrl;
-        if (TVRO.getShellMode()) {
-          window.location = shellUrl;
-        } else {
-          window.location = portalUrl;
-        }
-
+        if (TVRO.getShellMode()) window.location = shellUrl;
+        else window.location = portalUrl;
         jQ.removeClass('$not-available');
       });
     });
@@ -50,9 +46,6 @@
 
             var filename = $('file_name', xml).text();
 
-            console.log('filename');
-            console.log(filename);
-
             var confirmed = filename ? confirm('Do you want to install this update?') : false;
             if (confirmed) {
               TVRO.installSoftware({
@@ -63,7 +56,7 @@
           },
           error: function(jqXHR, textStatus, errorThrown) {
             clearInput();
-            if (TVRO.debug) {            
+            if (TVRO.debug) {
               console.log('\n~ ! ~');
               console.log(jqXHR);
               console.log(textStatus);
@@ -76,8 +69,9 @@
     };
 
     $('#fileToUpload').change(onChange);
-
-    // var input = $('#fileToUpload').change(onChange);
+    
+    $('.\\#no-shell', jQ).toggle(!TVRO.getShellMode());
+    $('.\\#shell', jQ).toggle(TVRO.getShellMode());
 
     return self = {
       setUpdate: function(arg) {

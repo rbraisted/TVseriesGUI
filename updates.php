@@ -58,12 +58,12 @@
   </div>
 
   <div class="section device-version">
-    <div class="desktop-version #desktop">
+    <div class="desktop-version #no-shell">
       <div class="bg"></div>
       <div class="label">My Computer</div>
     </div>
 
-    <div class="mobile-version #mobile">
+    <div class="mobile-version #shell">
       <div class="bg"></div>
       <div class="label">On Device</div>
       <div class="version connected-label">
