@@ -15,6 +15,8 @@
 	#import <Foundation/Foundation.h>
 #endif
 
+#import "Constants.h"
+
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 #define isNaN(x) (x != x)

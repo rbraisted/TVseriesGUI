@@ -94,6 +94,7 @@
 		E90AA3A418FCA972005699D1 /* refreshButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refreshButton@2x.png"; path = "TVRO/Images/refreshButton@2x.png"; sourceTree = SOURCE_ROOT; };
 		E90AA3A518FCA972005699D1 /* viewUpdatesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = viewUpdatesButton.png; path = TVRO/Images/viewUpdatesButton.png; sourceTree = SOURCE_ROOT; };
 		E90AA3A618FCA972005699D1 /* viewUpdatesButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "viewUpdatesButton@2x.png"; path = "TVRO/Images/viewUpdatesButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		E90E802E1901A8F900010D50 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E916FD8F184D653000E06C33 /* SatFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatFinderViewController.h; sourceTree = "<group>"; };
 		E916FD90184D653000E06C33 /* SatFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatFinderViewController.m; sourceTree = "<group>"; };
 		E916FD92184D666800E06C33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -297,6 +298,7 @@
 		E9B97C701829A14A007AA4A3 /* TVRO */ = {
 			isa = PBXGroup;
 			children = (
+				E90E802E1901A8F900010D50 /* Constants.h */,
 				E95C93E118F5D0500080FA62 /* Images */,
 				E9B97C791829A14A007AA4A3 /* AppDelegate.h */,
 				E9B97C7A1829A14A007AA4A3 /* AppDelegate.m */,

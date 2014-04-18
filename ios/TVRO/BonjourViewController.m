@@ -61,7 +61,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[netServiceBrowser stop];
-	[netServiceBrowser searchForServicesOfType:@"_afpovertcp._tcp" inDomain:@""];
+	[netServiceBrowser searchForServicesOfType:kBonjourServiceType inDomain:@""];
 }
 
 - (BOOL)prefersStatusBarHidden {
