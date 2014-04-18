@@ -43,6 +43,12 @@ $(function() {
         var portalVersion = $('software_version', xml).text() || $('version', xml).text();
         $('.\\#portal-ver', row).text(portalVersion);
       });
+
+      TVRO.getDeviceVersions().then(function(deviceVersions) {
+        $('#debugger').append('<br>' + update + ' @ ' + deviceVersions[update]);
+        $('.\\#device-version-label', row).show();
+        $('.\\#device-ver', row).text(deviceVersions[update] || 'N/A');
+      });
     })
     .onClick(function(update) {
       window.location.hash = '/' + update;

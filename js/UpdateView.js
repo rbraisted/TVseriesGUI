@@ -69,7 +69,7 @@
     };
 
     $('#fileToUpload').change(onChange);
-    
+
     $('.\\#no-shell', jQ).toggle(!TVRO.getShellMode());
     $('.\\#shell', jQ).toggle(TVRO.getShellMode());
 

@@ -309,18 +309,6 @@
 		get('get_wizard_status')
 	]);
 
-  //  custom calls for updates page
-  TVRO.getLatestSoftware = function(update) {
-    var msg = update === 'SatLibrary' ? 'latest_sat_library' : 'latest_software';
-    var url = 'http://www.kvhupdate.com/TVRO/'+update+'/portalMain.php/'+msg;
-    var cacheName = 'update_' + update;
-    if (cache[cacheName]) {
-        return cache[cacheName];
-    } else {
-      return cache[cacheName] = get(msg)(url, 1);
-    }
-  };
-
   //  custom call to get web ui version from version.txt
   TVRO.getWebUIVersion = function() {
     var cacheKey = 'get_web_ui_version';
@@ -336,6 +324,42 @@
           error: reject
         });
       });
+    }
+  };
+
+  //  custom calls for updates page
+  TVRO.getLatestSoftware = function(update) {
+    var msg = update === 'SatLibrary' ? 'latest_sat_library' : 'latest_software';
+    var url = 'http://www.kvhupdate.com/TVRO/'+update+'/portalMain.php/'+msg;
+    var cacheName = 'update_' + update;
+    if (cache[cacheName]) return cache[cacheName];
+    else return cache[cacheName] = get(msg)(url, 1);
+  };
+
+  var deviceVersions;
+  var getDeviceVersionsCallbacks = [];
+  var getDeviceVersions = function(callback) {
+    if (!_.isUndefined(deviceVersions)) callback(null, deviceVersions);
+    getDeviceVersionsCallbacks.push(callback);
+  };
+
+  var setDeviceVersions = function(arg) {
+    deviceVersions = arg;
+    $('#debugger').append('<br><br>TVRO.setDeviceVersions');
+    $('#debugger').append('<br>deviceVersions.TV1: ' + deviceVersions.TV1);
+    $('#debugger').append('<br>deviceVersions.TV3: ' + deviceVersions.TV3);
+    $('#debugger').append('<br>deviceVersions.TV5: ' + deviceVersions.TV5);
+    $('#debugger').append('<br>deviceVersions.TV6: ' + deviceVersions.TV6);
+    _.invoke(getDeviceVersionsCallbacks, 'call', null, null, deviceVersions);
+  };
+
+  TVRO.setDeviceVersions = setDeviceVersions;
+  TVRO.getDeviceVersions = function() {
+    if (cache['get_device_versions']) {
+      return cache['get_device_versions'];
+    } else {
+      if (TVRO.getShellMode()) window.location = 'tvro://get-device-versions';
+      return cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
     }
   };
 

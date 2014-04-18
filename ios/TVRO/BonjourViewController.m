@@ -106,6 +106,14 @@
 	[netServices removeAllObjects];
 }
 
+- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict {
+  NSLog(@"netServiceBrowser didNotSearch:%@", errorDict);
+}
+
+- (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)aNetServiceBrowser {
+  NSLog(@"netServiceBrowserDidStopSearch");
+}
+
 #pragma mark - NSNetServiceDelegate protocol methods
 
 - (void)netServiceDidResolveAddress:(NSNetService *)netService {
@@ -129,7 +137,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[netServiceBrowser stop];
-    
+
 	NSInteger row = [indexPath row];
 
 	if (row >= [netServices count]) {

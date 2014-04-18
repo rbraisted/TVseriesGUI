@@ -22,7 +22,7 @@
           <span class="version #portal-ver">N/A</span>
         </div>
 
-        <div class="version-label device-version-label">
+        <div class="version-label device-version-label #device-version-label">
           Downloaded Version:
           <span class="version #device-ver">N/A</span>
         </div>
