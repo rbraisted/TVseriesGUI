@@ -1,8 +1,3 @@
-/*       *\
-
-    ^3^
-
-\*       */
 
 #import "WebViewController.h"
 #import "UpdatesManager.h"
@@ -21,8 +16,8 @@
 	[webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 	[webView.scrollView setDelaysContentTouches:NO];
 	[webView setDelegate:self];
-    [webView setBackgroundColor:[UIColor blackColor]];
-    webView.scrollView.bounces = NO;
+	[webView setBackgroundColor:[UIColor blackColor]];
+	webView.scrollView.bounces = NO;
 	[self.view addSubview:webView];
 	
 	updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
@@ -60,150 +55,70 @@
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
 	
-	
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
-	if ([request.URL.scheme isEqualToString:@"tvro"])
-    {
-		NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
-		NSArray* pathComponents = [request.URL pathComponents];
-
-		if ([request.URL.host isEqualToString:@"set-tech-mode"]) {
-			BOOL techMode = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
-			NSLog(@"techMode: %d", techMode);
-			NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"]);
-			[[NSUserDefaults standardUserDefaults] setBool:techMode forKey:@"tech-mode"];
-			[[NSUserDefaults standardUserDefaults] synchronize];
-			NSLog(@"technician-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"]);
-		} else if ([request.URL.host isEqualToString:@"set-demo-mode"]) {
-			BOOL demoMode = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
-			NSLog(@"demoMode: %d", demoMode);
-			NSLog(@"demo-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]);
-			[[NSUserDefaults standardUserDefaults] setBool:demoMode forKey:@"demo-mode"];
-			[[NSUserDefaults standardUserDefaults] synchronize];
-			NSLog(@"demo-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]);
-		}
-		
-		if([request.URL.host isEqualToString:@"sat-finder"])
-        {
-			NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
-			NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-			NSLog(@"satListXmlString:");
-			NSLog(@"%@", satListXmlString);
-			NSLog(@":satListXmlString");
-			satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
-			[self presentViewController:satFinderViewController animated:YES completion:nil];
-		}
-        else if([request.URL.host isEqualToString:@"updates"])
-        {
-			if ([pathComponents[1] isEqualToString:@"device-versions"])
-            {
-				//	tvro://updates/device-versions
-				NSString* tv1DeviceVersion = [updatesManager deviceVersionForAntType:@"tv1"];
-				NSString* tv3DeviceVersion = [updatesManager deviceVersionForAntType:@"tv3"];
-				NSString* tv5DeviceVersion = [updatesManager deviceVersionForAntType:@"tv5"];
-				NSString* tv6DeviceVersion = [updatesManager deviceVersionForAntType:@"tv6"];
-				NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.setDeviceVersions({'tv1':'%@','tv3':'%@','tv5':'%@','tv6':'%@'});", tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion];
-				[webView stringByEvaluatingJavaScriptFromString:javascriptString];
-			}
-            else if([pathComponents[1] isEqualToString:@"download"])
-            {
-				//	tvro://updates/download/antenna-type/portal-version/portal-url
-				NSString* antType = [NSString stringWithString:pathComponents[2]];
-				NSString* portalVersion = [NSString stringWithString:pathComponents[3]];
-				NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(4, [pathComponents count]-4)] componentsJoinedByString:@"/"];
-				[updatesManager startDownloadForAntType:antType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
-			}
-            else if ([pathComponents[1] isEqualToString:@"install"])
-            {
-				//	tvro://updates/install/antenna-type
-				NSString* antType = [NSString stringWithString:pathComponents[2]];
-				[updatesManager startUploadForAntType:antType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
-			}
-
-        }
-        else if ([request.URL.host isEqualToString:@"change-hostname"])
-        {
-            [self goBackToHostSelect];
-        }
-        
+	if ([request.URL.scheme isEqualToString:@"tvro"]) {
+    [self handleCustomURL:request.URL];
 		return false;
 
+        
 	//	if we're being directed to a .pdf file, we're going to display it
 	//	in some custom view that includes the pdf and a back button
-	}
-    else if ([request.URL.pathExtension isEqualToString:@"pdf"])
-    {
-		NSLog(@"    request.URL.pathExtension isEqualToString:@\"pdf\"");
-		if (![webView.request.URL.lastPathComponent isEqualToString:@"pdf-frame.php"])
-        {
-			[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/pdf-frame.php?src=%@", hostName, request.URL]]]];
-		}
-		return false;
-			
+//	} else if ([request.URL.pathExtension isEqualToString:@"pdf"]) {
+//		NSLog(@"    request.URL.pathExtension isEqualToString:@\"pdf\"");
+//		if (![webView.request.URL.lastPathComponent isEqualToString:@"pdf-frame.php"])
+//			[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/pdf-frame.php?src=%@", hostName, request.URL]]]];
+//		return false;
+
+    
 	//	check if it's coming from our bdu hostname
 	//	if not, it's probably an external link and we
 	//	should open it in safari
-	}
-    else if (![hostName isEqualToString:_hostName])
-    {
+	} else if (![hostName isEqualToString:_hostName]) {
 //		NSLog(@"    ![hostName isEqualToString:_hostName]");
 //		[[UIApplication sharedApplication] openURL:request.URL];
 //		return false;
 		return true;
-		
+	
+        
 	//	at this point it's probably just another path in our app
-	}
-    else
-    {
-		NSLog(@"    else");
+	} else {
 		return true;
 	}
 }
 
-- (void)goBackToHostSelect
-{
-    BonjourViewController* bonjourViewController;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        // iPad-specific interface here
-        bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourViewiPadLandscape" bundle:nil];
-    }
-    else
-    {
-        // iPhone and iPod touch interface here
-        bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourView" bundle:nil];
-    }
-    
-    [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
+- (void)webViewURLRequestTimeout {
+  NSLog(@"URL load didn't finish loading within 20 sec");
+  [self goBackToHostSelect];
 }
 
-- (void)webViewURLRequestTimeout
-{
-    NSLog(@"URL load didn't finish loading within 20 sec");
-    [self goBackToHostSelect];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)_webView
-{
+- (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidFinishLoad");
 	[timeoutTimer invalidate];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)_webView
-{
+- (void)webViewDidStartLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidStartLoad");
     
 	NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
 	NSString* demoMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"] ? @"true" : @"false";
 	NSString* techMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"] ? @"true" : @"false";
     
-    NSString* javascriptString = [NSString stringWithFormat:@"var TVRO = { shell: true, satFinder: %@, demoMode: %@, techMode: %@ };", satFinderAvailable, demoMode, techMode];
+  NSString* javascriptString = [NSString stringWithFormat:
+    @"var TVRO = {"
+      "shell: true,"
+      "satFinder: %@,"
+      "demoMode: %@,"
+      "techMode: %@"
+    "};",
+    satFinderAvailable,
+    demoMode,
+    techMode];
+    
 	[webView stringByEvaluatingJavaScriptFromString:javascriptString];
     
-    //start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
-    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
+  //start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
+  timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
 }
 
 #pragma mark - UpdatesManagerDelgate protocol methods
@@ -225,6 +140,85 @@
 	self = [self init];
 	hostName = _hostName;
 	return self;
+}
+
+- (void)goBackToHostSelect {
+  //	we should probably move the iPad detection to BonjourViewController
+  //	and we should probably pop/push instead of setting the rootViewController
+  BonjourViewController* bonjourViewController = [[BonjourViewController alloc] initWithNibName:@"BonjourViewiPadLandscape" bundle:nil];
+  [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
+}
+
+- (void)handleCustomURL:(NSURL*)url {
+  //	custom urls all begin with tvro://
+  //	the custom urls are ...
+
+  //	tvro://set-tech-mode/{ true || false }
+  //	tvro://set-demo-mode/{ true || false }
+  //      setting tech/demo mode - these are done via cookies on desktop
+  //      but are done via NSUserDefaults in the mobile shell
+
+  //	tvro://sat-finder
+  //      shows the sat finder - desktop has no sat finder
+
+  //	tvro://updates/device-versions
+  //      gets versions of the stored update files
+  //      makes a javascript call that gives the web code the device versions
+
+  //	tvro://updates/download/{ antenna-type-of-the-update-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-file-from }
+  //      starts downloading the a specifed version of the update file
+  //      for a specified antenna-type
+  //      from a specifed url
+  //      this reponsibility is passed from the web code to the mobile code because
+  //      you cannot navigate the filesystem on some mobile devices for certain kinds of files
+
+  //	tvro://updates/download/{ antenna-type-of-the-update-to-upload-and-install }
+  //      calls the install_software method of the backend
+  //      we do this for the same reason as the download - some devices can't
+  //      search/find and upload/install the file from the device's file system
+
+  NSArray* pathComponents = [url pathComponents];
+
+  if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
+    NSString* key = [url.host substringFromIndex:3];
+    BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
+    NSLog(@"!!!");
+    NSLog(@"%@", key);
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+  } else if ([url.host isEqualToString:@"sat-finder"]) {
+    NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
+    NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
+    satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+    [self presentViewController:satFinderViewController animated:YES completion:nil];
+
+  } else if ([url.host isEqualToString:@"updates"]) {
+    if ([pathComponents[1] isEqualToString:@"device-versions"]) {
+      //	tvro://updates/device-versions
+      NSString* tv1DeviceVersion = [updatesManager deviceVersionForAntType:@"tv1"];
+      NSString* tv3DeviceVersion = [updatesManager deviceVersionForAntType:@"tv3"];
+      NSString* tv5DeviceVersion = [updatesManager deviceVersionForAntType:@"tv5"];
+      NSString* tv6DeviceVersion = [updatesManager deviceVersionForAntType:@"tv6"];
+      NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.setDeviceVersions({'tv1':'%@','tv3':'%@','tv5':'%@','tv6':'%@'});", tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion];
+      [webView stringByEvaluatingJavaScriptFromString:javascriptString];
+      
+    } else if ([pathComponents[1] isEqualToString:@"download"]) {
+      //	tvro://updates/download/antenna-type/portal-version/portal-url
+      NSString* antType = [NSString stringWithString:pathComponents[2]];
+      NSString* portalVersion = [NSString stringWithString:pathComponents[3]];
+      NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(4, [pathComponents count]-4)] componentsJoinedByString:@"/"];
+      [updatesManager startDownloadForAntType:antType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
+      
+    } else if ([pathComponents[1] isEqualToString:@"install"]) {
+      //	tvro://updates/install/antenna-type
+      NSString* antType = [NSString stringWithString:pathComponents[2]];
+      [updatesManager startUploadForAntType:antType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
+    }
+
+  } else if ([url.host isEqualToString:@"change-hostname"]) {
+    [self goBackToHostSelect];
+  }
 }
 
 @end

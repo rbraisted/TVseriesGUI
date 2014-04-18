@@ -1,8 +1,3 @@
-/*       *\
-
-    ^3^
-
-\*       */
 
 #import "BonjourViewController.h"
 #import "WebViewController.h"
@@ -29,18 +24,13 @@
 
 #pragma mark - UIViewController methods
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        // Custom initialization
-    }
-    return self;
+- (id)init {
+  if (IS_IPAD) self = [super initWithNibName:@"BonjourViewiPadLandscape" bundle:nil];
+  else self = [super initWithNibName:@"BonjourView" bundle:nil];
+  return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	netServiceBrowser = [[NSNetServiceBrowser alloc] init];
 	[netServiceBrowser setDelegate:self];
 	
@@ -51,300 +41,215 @@
 
 	[self.tableView setDelegate:self];
 	[self.tableView setDataSource:self];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BonjourTableViewCell" bundle:nil] forCellReuseIdentifier:@"BonjourTableCell"];
-    
-    [self registerForKeyboardNotifications];
-    
-    cellBGImageDark  =  [UIImage imageNamed:@"tableCellBGDark.png"];
-    cellBGImageLight =  [UIImage imageNamed:@"tableCellBGLight.png"];
-    
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    
-	
-    [super viewDidLoad];
+  [self.tableView registerNib:[UINib nibWithNibName:@"BonjourTableViewCell" bundle:nil] forCellReuseIdentifier:@"BonjourTableCell"];
+
+  [self registerForKeyboardNotifications];
+
+  cellBGImageDark  =  [UIImage imageNamed:@"tableCellBGDark.png"];
+  cellBGImageLight =  [UIImage imageNamed:@"tableCellBGLight.png"];
+
+  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+
+  [super viewDidLoad];
 }
 
-- (void)registerForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    
+- (void)registerForKeyboardNotifications {
+  //	add notification observers for keyboard appearing/hiding
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	NSLog(@"viewWillAppear");
-    //TODO: use this for refreshing the list
+- (void)viewWillAppear:(BOOL)animated {
 	[netServiceBrowser stop];
 	[netServiceBrowser searchForServicesOfType:@"_afpovertcp._tcp" inDomain:@""];
 }
 
-- (BOOL)prefersStatusBarHidden
-{
+- (BOOL)prefersStatusBarHidden {
 	return YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
 }
 
-- (BOOL)shouldAutorotate
-{
-    return YES;
+- (BOOL)shouldAutorotate {
+  return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-    {
-        return UIInterfaceOrientationMaskPortrait;
-    }
-    else
-    {
-        return UIInterfaceOrientationMaskLandscape;
-    }
+- (NSUInteger)supportedInterfaceOrientations {
+  if (IS_IPAD) return UIInterfaceOrientationMaskLandscape;
+  else return UIInterfaceOrientationMaskPortrait;
 }
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+  return UIInterfaceOrientationPortrait;
 }
-
 
 #pragma mark - NSNetServiceBrowserDelegate protocol methods
 
-- (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
-{
-	NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
-	[netService setDelegate:self];
-    [netService resolveWithTimeout:5];
-	[netServices addObject:netService];
-	[self.tableView reloadData];
+- (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing {
+  NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
+  [netService setDelegate:self];
+  [netService resolveWithTimeout:5];
+  [netServices addObject:netService];
+  [self.tableView reloadData];
 }
 
-- (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didRemoveService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
-{
+- (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didRemoveService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing {
 	NSLog(@"netServiceBrowser didRemoveService:%@ moreComing:%d", netService, moreServicesComing);
 	[netServices removeObject:netService];
 	[self.tableView reloadData];
 }
 
-- (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)netServiceBrowser
-{
+- (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)netServiceBrowser {
 	NSLog(@"netServiceBrowserWillSearch");
 	[netServices removeAllObjects];
 }
 
 #pragma mark - NSNetServiceDelegate protocol methods
 
-- (void)netServiceDidResolveAddress:(NSNetService *)netService
-{
+- (void)netServiceDidResolveAddress:(NSNetService *)netService {
 	NSLog(@"netServiceDidResolveAddress:%@", netService);
 	[self.tableView reloadData];
 }
 
-- (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorDict
-{
+- (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorDict {
 	NSLog(@"netService:%@ didNotResolve:%@", netService, errorDict);
 }
 
-- (void)netServiceDidStop:(NSNetService *)netService
-{
+- (void)netServiceDidStop:(NSNetService *)netService {
 	NSLog(@"netServiceDidStop:%@", netService);
 }
 
 #pragma mark - UITableViewDelegate protocol methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 50.0;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[netServiceBrowser stop];
     
 	NSInteger row = [indexPath row];
-    
-	if (row >= [netServices count])
-    {
+
+	if (row >= [netServices count]) {
 		[self.tableView setHidden:YES];
-	}
-    else
-    {
+	} else {
 		NSNetService* netService = [netServices objectAtIndex:row];
-		//[netService resolveWithTimeout:5];
-        WebViewController* webViewController = [[WebViewController alloc] initWithHostName:netService.hostName];
-        [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:netService.hostName];
+    [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 	}
-}
-
-
-
-- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
-{
-//    cell.backgroundColor = indexPath.row % 2
-//    ? [UIColor colorWithRed: 0.0 green: 0.0 blue: 1.0 alpha: 1.0]
-//    : [UIColor whiteColor];
-//    cell.textLabel.backgroundColor = [UIColor clearColor];
-//    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - UITableViewDataSource protocol methods
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSString *CellIdentifier = @"BonjourTableCell";
+  BonjourTableViewCell *cell = (BonjourTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSString *CellIdentifier = @"BonjourTableCell";
-   
-    BonjourTableViewCell *cell = (BonjourTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-	if (cell == nil)
-	{
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BonjourTableViewCell" owner:self options:nil];
-        
-        cell = [nib objectAtIndex:0];
+	if (cell == nil) {
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BonjourTableViewCell" owner:self options:nil];
+    cell = [nib objectAtIndex:0];
 	}
 
+  //	alternating row colors
 	NSInteger row = [indexPath row];
-    
-    if(row % 2 == 0)
-    {
-        [cell setUnselectedBackgroundImage: cellBGImageLight];
-    }
-    else
-    {
-        [cell setUnselectedBackgroundImage: cellBGImageDark];
-    }
+  if (row % 2 == 0) [cell setUnselectedBackgroundImage: cellBGImageLight];
+  else [cell setUnselectedBackgroundImage: cellBGImageDark];
 	
-    NSNetService* netService = [netServices objectAtIndex:row];
-    [cell  setHubName:netService.name];
+  NSNetService* netService = [netServices objectAtIndex:row];
+  [cell  setHubName:netService.name];
     
-    //Now extract the ip address and set the ip label
-    
-    char addressBuffer[INET6_ADDRSTRLEN];
-    
+
+	//	extract the ip address from NSNetService
+  //	http://stackoverflow.com/questions/938521/iphone-bonjour-nsnetservice-ip-address-and-port
+  char addressBuffer[INET6_ADDRSTRLEN];
+  memset(addressBuffer, 0, INET6_ADDRSTRLEN);
+      
+  typedef union {
+    struct sockaddr sa;
+    struct sockaddr_in ipv4;
+    struct sockaddr_in6 ipv6;
+  } ip_socket_address;
   
-    memset(addressBuffer, 0, INET6_ADDRSTRLEN);
-        
-    typedef union
-    {
-        struct sockaddr sa;
-        struct sockaddr_in ipv4;
-        struct sockaddr_in6 ipv6;
-    } ip_socket_address;
-    
-    if([netService.addresses count] == 0)
-        return cell;
-    
-    
-    ip_socket_address *socketAddress = (ip_socket_address *)[[netService.addresses objectAtIndex: 0] bytes];
-    
-    if (socketAddress && (socketAddress->sa.sa_family == AF_INET || socketAddress->sa.sa_family == AF_INET6))
-    {
-        const char *addressStr = inet_ntop(
-                                            socketAddress->sa.sa_family,
-                                            (socketAddress->sa.sa_family == AF_INET ? (void *)&(socketAddress->ipv4.sin_addr) : (void *)&(socketAddress->ipv6.sin6_addr)),
-                                            addressBuffer,
-                                            sizeof(addressBuffer));
-            
-        //int port = ntohs(socketAddress->sa.sa_family == AF_INET ? socketAddress->ipv4.sin_port : socketAddress->ipv6.sin6_port);
-            
-        [cell setIPLabel:[[NSString alloc] initWithUTF8String:addressStr]];
-    }
-    
+  if ([netService.addresses count] == 0)
     return cell;
+
+  ip_socket_address *socketAddress = (ip_socket_address *)[[netService.addresses objectAtIndex: 0] bytes];
+  if (socketAddress && (socketAddress->sa.sa_family == AF_INET || socketAddress->sa.sa_family == AF_INET6)) {
+    const char *addressStr = inet_ntop(socketAddress->sa.sa_family,
+                                      (socketAddress->sa.sa_family == AF_INET ? (void *)&(socketAddress->ipv4.sin_addr) : (void *)&(socketAddress->ipv6.sin6_addr)),
+                                       addressBuffer,
+                                       sizeof(addressBuffer));
+    [cell setIPLabel:[[NSString alloc] initWithUTF8String:addressStr]];
+  }
+  
+  return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-//	NSLog(@"tableView numberOfRowsInSection return:%d", [netServices count]);
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [netServices count];
 }
 
 #pragma mark - UITextFieldDelegate protocol methods
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-//	NSLog(@"textFieldShouldReturn");
-    
-    [self.scrollView setContentOffset:svos animated:YES];
-    [textField resignFirstResponder];
-    
-    
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [self.scrollView setContentOffset:scrollViewOffset animated:YES];
+  [textField resignFirstResponder];
 	[textField endEditing:YES];
 	return NO;
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
 //	NSLog(@"textFieldShouldEndEditing");
 	return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
 //	NSLog(@"textFieldDidEndEditing");
 }
 
 #pragma mark - UIButton actions
 
-- (IBAction)refreshButtonPressed:(id)sender
-{
-    [netServiceBrowser stop];
+- (IBAction)refreshButtonPressed:(id)sender {
+  [netServiceBrowser stop];
 	[netServiceBrowser searchForServicesOfType:@"_afpovertcp._tcp" inDomain:@""];
 }
 
-- (IBAction)connectButtonPressed:(id)sender
-{
-    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
+- (IBAction)connectButtonPressed:(id)sender {
+  WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
-- (IBAction)viewUpdatesButtonPressed:(id)sender
-{
-    //TODO: Connect to the Updates website
+- (IBAction)viewUpdatesButtonPressed:(id)sender {
+  //TODO: Connect to the Updates website
 }
 
 #pragma mark - Keyboard notifications
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    CGFloat kbHeight = 0.0f;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        kbHeight = kbSize.width;
-    }
-    else
-    {
-        kbHeight = kbSize.height;
-    }
-    
-    svos = self.scrollView.contentOffset;
-    CGPoint pt;
-    CGRect rc = [self.textField bounds];
-    rc = [self.textField convertRect:rc toView:self.scrollView];
-    pt = rc.origin;
-    pt.x = 0;
-    pt.y -= kbHeight;
-    [self.scrollView setContentOffset:pt animated:YES];
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+  NSDictionary* info = [aNotification userInfo];
+  CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+  CGFloat kbHeight = 0.0f;
+  
+  if (IS_IPAD) kbHeight = kbSize.width;
+  else kbHeight = kbSize.height;
+  
+  scrollViewOffset = self.scrollView.contentOffset;
+  CGPoint pt;
+  CGRect rc = [self.textField bounds];
+  rc = [self.textField convertRect:rc toView:self.scrollView];
+  pt = rc.origin;
+  pt.x = 0;
+  pt.y -= kbHeight;
+  [self.scrollView setContentOffset:pt animated:YES];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    [self.scrollView setContentOffset:svos animated:YES];
-    [self.textField resignFirstResponder];
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+  [self.scrollView setContentOffset:scrollViewOffset animated:YES];
+  [self.textField resignFirstResponder];
 }
 
 @end

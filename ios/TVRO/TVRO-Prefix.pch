@@ -26,3 +26,5 @@
 //	camera view - doesnt take entire screen
 #define camviewwidth 320.0
 #define camviewheight 426.0
+
+#define IS_IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad

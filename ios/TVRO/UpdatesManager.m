@@ -1,8 +1,3 @@
-/*       *\
-
-    ^3^
-
-\*       */
 
 #import "UpdatesManager.h"
 #import "UpdatesManagerDelegate.h"

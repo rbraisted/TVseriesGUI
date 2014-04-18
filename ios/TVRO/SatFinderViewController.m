@@ -1,8 +1,3 @@
-/*       *\
-
-    ^3^
-
-\*       */
 
 #import "SatFinderViewController.h"
 #import "RXMLElement.h"
