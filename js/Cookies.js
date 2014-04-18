@@ -26,7 +26,7 @@
       TVRO.demoMode = value;
       window.location = 'tvro://set-demo-mode/' + value;
     } else {
-      set('tvro-demo-mode');
+      set('tvro-demo-mode')(value);
     }
   }
 
@@ -35,7 +35,7 @@
       TVRO.techMode = value;
       window.location = 'tvro://set-tech-mode/' + value;
     } else {
-      set('tvro-tech-mode');
+      set('tvro-tech-mode')(value);
     }
   }
 
