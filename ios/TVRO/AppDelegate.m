@@ -16,8 +16,18 @@
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];
 	
-	NSLog(@"tech-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"]);
-	NSLog(@"demo-mode: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]);
+  //	set default values -
+  //	even though we set these in the settings bundle,
+  //	iOS doesn't actually use those defaults on first launch
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if ([defaults objectForKey:@"tech-mode"] == nil) [defaults setBool:false forKey:@"tech-mode"];
+  if ([defaults objectForKey:@"demo-mode"] == nil) [defaults setBool:true forKey:@"demo-mode"];
+  
+  [defaults synchronize];
+  NSLog(@"%@", [defaults dictionaryRepresentation]);
+	NSLog(@"tech-mode: %d", [defaults boolForKey:@"tech-mode"]);
+	NSLog(@"demo-mode: %d", [defaults boolForKey:@"demo-mode"]);
+  NSLog(@"\n");
 
   BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
 	self.window.rootViewController = bonjourViewController;

@@ -105,12 +105,14 @@
 	NSString* techMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"] ? @"true" : @"false";
     
   NSString* javascriptString = [NSString stringWithFormat:
-    @"var TVRO = {"
-      "shell: true,"
-      "satFinder: %@,"
-      "demoMode: %@,"
-      "techMode: %@"
-    "};",
+    @"if (typeof window['TVRO'] === 'undefined') {"
+      "window.TVRO = {"
+      	"shell: true,"
+	      "satFinder: %@,"
+  	    "demoMode: %@,"
+    	  "techMode: %@"
+	    "};"
+		"}",
     satFinderAvailable,
     demoMode,
     techMode];
@@ -152,7 +154,7 @@
 - (void)handleCustomURL:(NSURL*)url {
   //	custom urls all begin with tvro://
   //	the custom urls are ...
-
+  
   //	tvro://set-tech-mode/{ true || false }
   //	tvro://set-demo-mode/{ true || false }
   //      setting tech/demo mode - these are done via cookies on desktop
@@ -176,10 +178,17 @@
   //      calls the install_software method of the backend
   //      we do this for the same reason as the download - some devices can't
   //      search/find and upload/install the file from the device's file system
+  
+  //	tvro://debug/{ msg }
+	//			using safari's web inspector to debug UIWebViews is not fun
 
   NSArray* pathComponents = [url pathComponents];
 
-  if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
+  if ([url.host isEqualToString:@"debug"]) {
+    NSString* message = [pathComponents objectAtIndex:1];
+		NSLog(@"%@", message);
+    
+  } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
     NSString* key = [url.host substringFromIndex:3];
     BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
     NSLog(@"!!!");
