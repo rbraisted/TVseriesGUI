@@ -1,8 +1,3 @@
-/*       *\
- 
-    ^3^
- 
-\*       */
 
 #import "AppDelegate.h"
 #import "BonjourViewController.h"

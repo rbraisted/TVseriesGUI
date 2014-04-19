@@ -346,10 +346,12 @@
   var setDeviceVersions = function(arg) {
     deviceVersions = arg;
     $('#debugger').append('<br><br>TVRO.setDeviceVersions');
+    $('#debugger').append('<br>deviceVersions.SatLibrary: ' + deviceVersions.SatLibrary);
     $('#debugger').append('<br>deviceVersions.TV1: ' + deviceVersions.TV1);
     $('#debugger').append('<br>deviceVersions.TV3: ' + deviceVersions.TV3);
     $('#debugger').append('<br>deviceVersions.TV5: ' + deviceVersions.TV5);
     $('#debugger').append('<br>deviceVersions.TV6: ' + deviceVersions.TV6);
+    $('#debugger').append('<br>deviceVersions.RV1: ' + deviceVersions.RV1);
     _.invoke(getDeviceVersionsCallbacks, 'call', null, null, deviceVersions);
   };
 

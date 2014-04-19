@@ -1,8 +1,3 @@
-/*       *\
- 
-    ^3^
- 
-\*       */
 
 #import <UIKit/UIKit.h>
 #import "UpdatesManagerDelegate.h"
@@ -12,19 +7,19 @@
 	NSMutableData* fileData;
 	UIAlertView* alertView;
 	
-	NSString* antType;
+	NSString* updateType;
 	NSString* portalVersion;
 	id delegate;
 }
 
 - (id)initWithDelegate:(id<UpdatesManagerDelegate>)_delegate;
-- (void)startDownloadForAntType:(NSString *)_antType portalVersion:(NSString *)portalVersion portalUrl:(NSURL *)portalUrl;
+- (void)startDownloadForUpdateType:(NSString *)_updateType portalVersion:(NSString *)portalVersion portalUrl:(NSURL *)portalUrl;
 - (void)cancelDownload;
 
-- (void)startUploadForAntType:(NSString *)_antType uploadUrl:(NSURL *)uploadUrl;
+- (void)startUploadForUpdateType:(NSString *)_updateType uploadUrl:(NSURL *)uploadUrl;
 - (void)cancelUpload;
 
-- (NSString*)deviceVersionForAntType:(NSString *)_antType;
-- (NSString*)filePathForAntType:(NSString *)_antType;
+- (NSString*)deviceVersionForUpdateType:(NSString *)_updateType;
+- (NSString*)filePathForUpdateType:(NSString *)_updateType;
 
 @end

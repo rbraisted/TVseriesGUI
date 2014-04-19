@@ -1,8 +1,3 @@
-/*       *\
- 
-    ^3^
- 
-\*       */
 
 #import <UIKit/UIKit.h>
 

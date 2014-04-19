@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <div id="debugger" style="display: block; max-height: 45%; overflow: auto; line-height: 1.2; font-size: 12px; position: fixed; width: 100%; z-index: 999999999999; background: rgba(0, 0, 0, 0.); bottom: 5%; border: 1px solid #fff;"></div>
+  <!-- <div id="debugger" style="display: block; max-height: 45%; overflow: auto; line-height: 1.2; font-size: 12px; position: fixed; width: 100%; z-index: 999999999999; background: rgba(0, 0, 0, 0.); bottom: 5%; border: 1px solid #fff;"></div> -->
 
   <head>
     <title>KVH TracVision</title>
@@ -21,6 +21,7 @@
     <? endif; ?>
 
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/fastclick.js"></script>
 
     <script type="text/javascript" src="/js/lodash.min.js"></script>
     <script src="/js/promise-3.2.0.js"></script>
@@ -87,3 +88,4 @@
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
 --><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a>
 </div>
+

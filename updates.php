@@ -22,7 +22,7 @@
           <span class="version #portal-ver">N/A</span>
         </div>
 
-        <div class="version-label device-version-label #device-version-label">
+        <div class="version-label device-version-label #device-ver-label">
           Downloaded Version:
           <span class="version #device-ver">N/A</span>
         </div>
@@ -58,12 +58,12 @@
   </div>
 
   <div class="section device-version">
-    <div class="desktop-version #no-shell">
+    <div class="desktop-version #no-device-ver-label">
       <div class="bg"></div>
       <div class="label">My Computer</div>
     </div>
 
-    <div class="mobile-version #shell">
+    <div class="mobile-version #device-ver-label">
       <div class="bg"></div>
       <div class="label">On Device</div>
       <div class="version connected-label">

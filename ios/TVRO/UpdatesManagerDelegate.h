@@ -1,8 +1,3 @@
-/*       *\
- 
-    ^3^
- 
-\*       */
 
 #import <UIKit/UIKit.h>
 
@@ -11,10 +6,10 @@
 @protocol UpdatesManagerDelegate
 
 @optional
-- (void)updatesManager:(UpdatesManager *)updatesManager downloadCompletedForAntType:(NSString *)antType;
-- (void)updatesManager:(UpdatesManager *)updatesManager downloadCancelledForAntType:(NSString *)antType;
-- (void)updatesManager:(UpdatesManager *)updatesManager uploadCompletedForAntType:(NSString *)antType;
-- (void)updatesManager:(UpdatesManager *)updatesManager uploadCancelledForAntType:(NSString *)antType;
+- (void)updatesManager:(UpdatesManager *)updatesManager downloadCompletedForUpdateType:(NSString *)updateType;
+- (void)updatesManager:(UpdatesManager *)updatesManager downloadCancelledForUpdateType:(NSString *)updateType;
+- (void)updatesManager:(UpdatesManager *)updatesManager uploadCompletedForUpdateType:(NSString *)updateType;
+- (void)updatesManager:(UpdatesManager *)updatesManager uploadCancelledForUpdateType:(NSString *)updateType;
 
 
 @end

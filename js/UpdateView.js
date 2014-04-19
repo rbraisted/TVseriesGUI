@@ -10,7 +10,7 @@
       TVRO.getLatestSoftware(update).then(function(xml) {
         var portalUrl = $('url', xml).text();
         var portalVersion = $('software_version', xml).text() || $('version', xml).text();
-        var shellUrl = 'tvro://updates/download/'+update+'/'+portalVersion+'/'+portalUrl;
+        var shellUrl = 'tvro://download/' + update + '/' + portalVersion + '/' + portalUrl;
         if (TVRO.getShellMode()) window.location = shellUrl;
         else window.location = portalUrl;
         jQ.removeClass('$not-available');
@@ -27,7 +27,7 @@
       if (!jQ.hasClass('$connected')) return;
 
       if (TVRO.getShellMode()) {
-        window.location = 'tvro://updates/upload/'+update;
+        window.location = 'tvro://upload/' + update;
 
       } else {
         console.log("starting upload...");
@@ -69,9 +69,6 @@
     };
 
     $('#fileToUpload').change(onChange);
-
-    $('.\\#no-shell', jQ).toggle(!TVRO.getShellMode());
-    $('.\\#shell', jQ).toggle(TVRO.getShellMode());
 
     return self = {
       setUpdate: function(arg) {
@@ -116,6 +113,12 @@
           var systemVersion = versions[0];
           var portalVersion = versions[1];
           jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
+        });
+
+        TVRO.getDeviceVersions().then(function(deviceVersions) {
+          $('.\\#device-ver-label', jQ).show();
+          $('.\\#no-device-ver-label', jQ).hide();
+          $('.\\#device-ver', jQ).text(deviceVersions[update] || 'N/A');
         });
       }
     };

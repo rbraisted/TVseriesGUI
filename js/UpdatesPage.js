@@ -45,8 +45,7 @@ $(function() {
       });
 
       TVRO.getDeviceVersions().then(function(deviceVersions) {
-        $('#debugger').append('<br>' + update + ' @ ' + deviceVersions[update]);
-        $('.\\#device-version-label', row).show();
+        $('.\\#device-ver-label', row).show();
         $('.\\#device-ver', row).text(deviceVersions[update] || 'N/A');
       });
     })
@@ -69,6 +68,11 @@ $(function() {
   TVRO.onHashChange(function(hash) {
     headerView.reload();
     
+    //  so that device versions can be updated
+    //  after the file has been downloaded in to the shell
+    if (TVRO.getShellMode())
+      menuTableView.build();
+
     if (hash) {
       var update = hash.substr(1);
       menuTableView.setValue(update);

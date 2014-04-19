@@ -106,14 +106,6 @@
 	[netServices removeAllObjects];
 }
 
-- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didNotSearch:(NSDictionary *)errorDict {
-  NSLog(@"netServiceBrowser didNotSearch:%@", errorDict);
-}
-
-- (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)aNetServiceBrowser {
-  NSLog(@"netServiceBrowserDidStopSearch");
-}
-
 #pragma mark - NSNetServiceDelegate protocol methods
 
 - (void)netServiceDidResolveAddress:(NSNetService *)netService {
@@ -137,14 +129,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[netServiceBrowser stop];
-
+    
 	NSInteger row = [indexPath row];
 
 	if (row >= [netServices count]) {
 		[self.tableView setHidden:YES];
 	} else {
-		NSNetService* netService = [netServices objectAtIndex:row];
+  	NSNetService* netService = [netServices objectAtIndex:row];
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:netService.hostName];
+//  	WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"localhost:8888"];
     [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 	}
 }
@@ -220,7 +213,7 @@
 
 - (IBAction)refreshButtonPressed:(id)sender {
   [netServiceBrowser stop];
-	[netServiceBrowser searchForServicesOfType:@"_afpovertcp._tcp" inDomain:@""];
+	[netServiceBrowser searchForServicesOfType:kBonjourServiceType inDomain:@""];
 }
 
 - (IBAction)connectButtonPressed:(id)sender {

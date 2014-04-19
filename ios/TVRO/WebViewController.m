@@ -26,6 +26,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  //	there used to be a very complicated process to pass demo/tech mode
+  //	and mobile shell flags to the web code but now we just open on shell.php
+  //	which handles this for us
 	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shell.php", hostName]]]];
 }
 
@@ -116,14 +119,17 @@
 
 #pragma mark - UpdatesManagerDelgate protocol methods
 
-- (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForAntType:(NSString *)antType {
-	NSString* deviceVersion = [updatesManager deviceVersionForAntType:antType];
-	NSString* jsString = [NSString stringWithFormat:@"window.tvro.updates.%@.deviceVersion = '%@'; window.tvro.updates.update();", antType, deviceVersion];
-  
-	[webView stringByEvaluatingJavaScriptFromString:jsString];
+- (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForUpdateType:(NSString *)updateType {
+	NSLog(@"updatesManager downloadCompletedForUpdateType:%@", updateType);
+	[webView stringByEvaluatingJavaScriptFromString:@"$('#debugger').append('<br>before [self setDeviceVersions]');"];
+  [self setDeviceVersions];
+  [webView stringByEvaluatingJavaScriptFromString:@"$('#debugger').append('<br>after [self setDeviceVersions]');"];
+	[webView stringByEvaluatingJavaScriptFromString:@"TVRO.reload();"];
+  [webView stringByEvaluatingJavaScriptFromString:@"$('#debugger').append('<br>after TVRO.reload()');"];
 }
 
-- (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForAntType:(NSString *)antType {
+- (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForUpdateType:(NSString *)updateType {
+	NSLog(@"updatesManager uploadCompletedForUpdateType:%@", updateType);
 	NSString* jsString = [NSString stringWithFormat:@"window.tvro.updates.install('%@');", @"some file name"];
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
@@ -147,36 +153,28 @@
   //	custom urls all begin with tvro://
   //	the custom urls are ...
   
-  //	tvro://set-tech-mode/{ true || false }
-  //	tvro://set-demo-mode/{ true || false }
-  //      setting tech/demo mode - these are done via cookies on desktop
-  //      but are done via NSUserDefaults in the mobile shell
-
-  //	tvro://sat-finder
-  //      shows the sat finder - desktop has no sat finder
-
-  //	tvro://updates/device-versions
-  //      gets versions of the stored update files
-  //      makes a javascript call that gives the web code the device versions
-
-  //	tvro://updates/download/{ antenna-type-of-the-update-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-file-from }
-  //      starts downloading the a specifed version of the update file
-  //      for a specified antenna-type
-  //      from a specifed url
-  //      this reponsibility is passed from the web code to the mobile code because
-  //      you cannot navigate the filesystem on some mobile devices for certain kinds of files
-
-  //	tvro://updates/download/{ antenna-type-of-the-update-to-upload-and-install }
-  //      calls the install_software method of the backend
-  //      we do this for the same reason as the download - some devices can't
-  //      search/find and upload/install the file from the device's file system
-  
   NSLog(@"handleCustomURL: %@", url);
   NSArray* pathComponents = [url pathComponents];
-  NSLog(@"pathComponents: %@", pathComponents);
-  NSLog(@"url.host: %@", url.host);
+  
+  if ([url.host isEqualToString:@"change-hostname"]) {
+  //	tvro://change-hostname
+  //    brings you back to the bonjour list view
+    [self goBackToHostSelect];
 
-	if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
+    
+  } else if ([url.host isEqualToString:@"sat-finder"]) {
+  //	tvro://sat-finder
+  //    shows the sat finder - desktop has no sat finder
+    [self showSatFinder];
+    
+    
+  } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
+  //	tvro://set-tech-mode/{ true || false }
+  //	tvro://set-demo-mode/{ true || false }
+  //    setting tech/demo mode - these are done via cookies on desktop
+  //    but are done via NSUserDefaults in the mobile shell
+  //    the ui buttons in GeneralSettingsView of the web code is hooked up
+  //    to call these two functions on the iOS side
     NSString* key = [url.host substringFromIndex:4];
     NSLog(@"key: %@", key);
     BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
@@ -184,38 +182,66 @@
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-  } else if ([url.host isEqualToString:@"sat-finder"]) {
-    NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
-    NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-    satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
-    [self presentViewController:satFinderViewController animated:YES completion:nil];
+    
+  } else if ([url.host isEqualToString:@"get-device-versions"]) {
+  //	tvro://get-device-versions
+  //    gets versions of the stored update files
+  //    makes a javascript call that gives the web code the device versions
+    [self setDeviceVersions];
 
-  } else if ([url.host isEqualToString:@"updates"]) {
-    if ([pathComponents[1] isEqualToString:@"device-versions"]) {
-      //	tvro://updates/device-versions
-      NSString* tv1DeviceVersion = [updatesManager deviceVersionForAntType:@"tv1"];
-      NSString* tv3DeviceVersion = [updatesManager deviceVersionForAntType:@"tv3"];
-      NSString* tv5DeviceVersion = [updatesManager deviceVersionForAntType:@"tv5"];
-      NSString* tv6DeviceVersion = [updatesManager deviceVersionForAntType:@"tv6"];
-      NSString* javascriptString = [NSString stringWithFormat:@"window.tvro.updates.setDeviceVersions({'tv1':'%@','tv3':'%@','tv5':'%@','tv6':'%@'});", tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion];
-      [webView stringByEvaluatingJavaScriptFromString:javascriptString];
-      
-    } else if ([pathComponents[1] isEqualToString:@"download"]) {
-      //	tvro://updates/download/antenna-type/portal-version/portal-url
-      NSString* antType = [NSString stringWithString:pathComponents[2]];
-      NSString* portalVersion = [NSString stringWithString:pathComponents[3]];
-      NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(4, [pathComponents count]-4)] componentsJoinedByString:@"/"];
-      [updatesManager startDownloadForAntType:antType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
-      
-    } else if ([pathComponents[1] isEqualToString:@"install"]) {
-      //	tvro://updates/install/antenna-type
-      NSString* antType = [NSString stringWithString:pathComponents[2]];
-      [updatesManager startUploadForAntType:antType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
-    }
-
-  } else if ([url.host isEqualToString:@"change-hostname"]) {
-    [self goBackToHostSelect];
+    
+  } else if ([url.host isEqualToString:@"download"]) {
+  //  tvro://download/{ update-type-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-update-from }
+  //    starts downloading the a specifed version of the update file
+  //    for a specified antenna-type
+  //    from a specifed url
+  //    this reponsibility is passed from the web code to the mobile code because
+  //    you cannot navigate the filesystem on some mobile devices for certain kinds of files
+    NSString* updateType = [NSString stringWithString:pathComponents[1]];
+    NSString* portalVersion = [NSString stringWithString:pathComponents[2]];
+    NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(3, [pathComponents count]-3)] componentsJoinedByString:@"/"];
+    [updatesManager startDownloadForUpdateType:updateType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
+    
+    
+  } else if ([url.host isEqualToString:@"upload"]) {
+  //  tvro://upload/{ update-type-to-upload-and-install }
+  //    calls the install_software method of the backend
+  //    we do this for the same reason as the download - some devices can't
+  //    search/find and upload/install the file from the device's file system
+    NSString* updateType = [NSString stringWithString:pathComponents[1]];
+    [updatesManager startUploadForUpdateType:updateType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
   }
+}
+
+- (void)showSatFinder {
+  NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
+  NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
+  satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+  [self presentViewController:satFinderViewController animated:YES completion:nil];
+}
+
+- (void)setDeviceVersions {
+  NSString* satLibraryDeviceVersion = [updatesManager deviceVersionForUpdateType:@"satlibrary"];
+  NSString* tv1DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv1"];
+  NSString* tv3DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv3"];
+  NSString* tv5DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv5"];
+  NSString* tv6DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv6"];
+  NSString* rv1DeviceVersion = [updatesManager deviceVersionForUpdateType:@"rv1"];
+  
+  NSLog(@"setDeviceVersions");
+  NSLog(@"satLibraryDeviceVersion: %@", satLibraryDeviceVersion);
+  NSLog(@"tv1DeviceVersion: %@", tv1DeviceVersion);
+  NSLog(@"tv3DeviceVersion: %@", tv3DeviceVersion);
+  NSLog(@"tv5DeviceVersion: %@", tv5DeviceVersion);
+  NSLog(@"tv6DeviceVersion: %@", tv6DeviceVersion);
+  NSLog(@"rv1DeviceVersion: %@", rv1DeviceVersion);
+  
+  //	on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
+  NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', RV1: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, rv1DeviceVersion];
+  
+  NSLog(@"jsString: %@", jsString);
+  
+  [webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
 @end
