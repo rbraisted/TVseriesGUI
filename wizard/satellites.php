@@ -118,6 +118,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
 
   </div>
+
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
 </div>
 
 <div class="view group-view #group-view">

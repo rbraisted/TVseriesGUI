@@ -51,6 +51,23 @@ $(function() {
 //  single views 
 ////////////////////////////////////////////////////////////////////////////////
 
+  var singlePrevBtn = $('.\\#single-view .\\#prev-btn').click(function() {
+    window.location.hash = '';
+  });
+
+  var singleNextBtn = $('.\\#single-view .\\#next-btn').click(function() {
+    //  make sure a satellite has been installed
+    TVRO.getInstalledSat().then(function(installedSat) {
+      if (!installedSat) alert('You must install a satellite to continue!');
+      else {
+        //  Skew Angle - TV1/TV3/TV5 Manual
+        //  System Config - (BELL/DISH)
+        //  System Config - (Linear TV5/TV6)
+        //  TriAmericas
+      }
+    });
+  });
+
   var regionTableView = TVRO.TableView($('.\\#region-table-view'))
     .setValues([
       'Africa',

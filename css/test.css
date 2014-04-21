@@ -1490,6 +1490,10 @@ body[class=''] .\#service-provider-view,
   display: block; }
 
 @media screen and (max-width: 880px) {
+  .\/regions .\#single-view,
+  .\/regions\/region .\#single-view {
+    display: block; }
+
   .\/regions .\#region-table-view,
   .\/regions\/region .\#single-sat-table-view,
   .\/groups .\#group-table-view,
@@ -1499,13 +1503,12 @@ body[class=''] .\#service-provider-view,
     display: block; } }
 @media screen and (min-width: 881px) {
   .\/regions .\#single-view,
-  .\/regions\/region .\#single-view {
-    display: block; }
   .\/regions .\#region-table-view,
   .\/regions .\#single-sat-table-view,
+  .\/regions\/region .\#single-view,
   .\/regions\/region .\#region-table-view,
   .\/regions\/region .\#single-sat-table-view {
-    display: inline-block; }
+    display: block; }
 
   .\/groups .\#group-view,
   .\/groups .\#group-table-view,

@@ -630,7 +630,7 @@ body[class=''] .\#service-provider-view,
     margin-bottom: 30px;
     text-align: center;
   }
-  
+
   .container {
     background-color: $dark-grey;
     height: 600px;
@@ -680,6 +680,13 @@ body[class=''] .\#service-provider-view,
 
 //  mobile
 @include breakpoint($mobile) {
+  .\/regions,
+  .\/regions\/region {
+    .\#single-view {
+      display: block;
+    }
+  }
+
   //  single mode
   .\/regions .\#region-table-view,
   .\/regions\/region .\#single-sat-table-view,
@@ -698,13 +705,10 @@ body[class=''] .\#service-provider-view,
   //  single mode
   .\/regions,
   .\/regions\/region {
-    .\#single-view {
-      display: block;
-    }
-
+    .\#single-view,
     .\#region-table-view,
     .\#single-sat-table-view {
-      display: inline-block;
+      display: block;
     }
   }
   
