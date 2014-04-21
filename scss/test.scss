@@ -582,6 +582,7 @@ body[class=''] .\#service-provider-view,
     }
 
     &.\$installed {
+      .install-btn { background-image: url(/images/radio-checked.svg); }
       background-color: $bright-blue;
     }
   }
@@ -625,38 +626,49 @@ body[class=''] .\#service-provider-view,
 
 .single-view,
 .group-view {
+  .copy {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
   .container {
-    background-color: $grey;
+    background-color: $dark-grey;
+    height: 600px;
+    margin-bottom: 30px;
     position: relative;
+    width: 100%;
 
     .container-head {
       @include mobile-view-head;
       @include breakpoint($mobile) { display: none; }
-
-      display: inline-block;
-      margin-bottom: 0;
-      position: relative;
       top: 0;
     }
 
-    .region-table-head,
-    .group-table-head {
+    .left {
+      left: 0;
+      position: absolute;
+      right: auto;
       width: $sidebar-width;
     }
 
-    .sat-table-head,
-    .group-info-head {
-      width: $sidebar-width;
+    .right {
+      left: auto;
+      position: absolute;
+      right: 0;
+      width: calc(100%  - #{$sidebar-width} - 5px);
     }
   }
 
-  .single-sat-table {
-    width: 520px;
-    display: inline-block;
+  .region-table,
+  .single-sat-table,
+  .group-table,
+  .group-info {
+    top: $big-bump;
   }
 
-  .region-table {
-    display: inline-block;
+  .sat-table {
+    overflow: auto;
+    max-height: 600px - $big-bump;
   }
 }
 
@@ -686,10 +698,13 @@ body[class=''] .\#service-provider-view,
   //  single mode
   .\/regions,
   .\/regions\/region {
-    .\#single-view,
+    .\#single-view {
+      display: block;
+    }
+
     .\#region-table-view,
     .\#single-sat-table-view {
-      display: block;
+      display: inline-block;
     }
   }
   

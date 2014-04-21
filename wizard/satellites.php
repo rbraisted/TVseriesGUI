@@ -87,15 +87,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
   <div class="container">
     
-    <div class="container-head sat-table-head">Satellites</div>
+    <div class="left container-head region-table-head">Regions</div>
+    <div class="right container-head sat-table-head">Satellites</div>
 
-    <div class="region-table #region-table-view">
+    <div class="left region-table #region-table-view">
       <div class="table-row #table-row">
         <span class="table-col #region-name"></span>
       </div>
     </div>
 
-    <div class="single-sat-table #single-sat-table-view">
+    <div class="right single-sat-table #single-sat-table-view">
       <div class="sat-table #table-view">
         <div class="table-head #table-head">
           <div class="table-col install-col">Installed</div><!--

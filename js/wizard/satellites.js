@@ -197,7 +197,8 @@ $(function() {
         }
       }
 
-
+    } else if (hash.match(/options/)) {
+      className = hash;
     } else {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView
