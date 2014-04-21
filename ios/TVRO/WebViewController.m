@@ -61,6 +61,9 @@
 	//	being called with a the scheme "tvro"
 	if ([request.URL.scheme isEqualToString:@"tvro"]) {
     NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
+    //	invalidate timer otherwise we will be kicked back to the bonjour
+    //	from calls like set-demo-mode, set-tech-mode
+    [timeoutTimer invalidate];
     [self handleCustomURL:request.URL];
 		return false;
 
@@ -121,11 +124,8 @@
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForUpdateType:(NSString *)updateType {
 	NSLog(@"updatesManager downloadCompletedForUpdateType:%@", updateType);
-	[webView stringByEvaluatingJavaScriptFromString:@"$('#debugger').append('<br>before [self setDeviceVersions]');"];
   [self setDeviceVersions];
-  [webView stringByEvaluatingJavaScriptFromString:@"$('#debugger').append('<br>after [self setDeviceVersions]');"];
 	[webView stringByEvaluatingJavaScriptFromString:@"TVRO.reload();"];
-  [webView stringByEvaluatingJavaScriptFromString:@"$('#debugger').append('<br>after TVRO.reload()');"];
 }
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForUpdateType:(NSString *)updateType {
