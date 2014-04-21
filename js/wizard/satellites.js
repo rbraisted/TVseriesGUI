@@ -51,6 +51,23 @@ $(function() {
 //  single views 
 ////////////////////////////////////////////////////////////////////////////////
 
+  var singlePrevBtn = $('.\\#single-view .\\#prev-btn').click(function() {
+    window.location.hash = '';
+  });
+
+  var singleNextBtn = $('.\\#single-view .\\#next-btn').click(function() {
+    //  make sure a satellite has been installed
+    TVRO.getInstalledSat().then(function(installedSat) {
+      if (!installedSat) alert('You must install a satellite to continue!');
+      else {
+        //  Skew Angle - TV1/TV3/TV5 Manual
+        //  System Config - (BELL/DISH)
+        //  System Config - (Linear TV5/TV6)
+        //  TriAmericas
+      }
+    });
+  });
+
   var regionTableView = TVRO.TableView($('.\\#region-table-view'))
     .setValues([
       'Africa',
@@ -197,11 +214,22 @@ $(function() {
         }
       }
 
-
+    } else if (hash.match(/options/)) {
+      className = hash;
     } else {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView
-      className = '/tv5-manual-options';
+      Promise.all(
+        TVRO.getAntennaVersions(),
+        TVRO.getAutoswitchStatus()
+      ).then(function(xmls) {
+        var antModel = $('au model', xmls[0]).text();
+        var lnbType = $('lnb polarization', xmls[0]).text();
+        var isManual = $('available:first', xmls[1]).text() === 'N';
+        if (lnbType === 'circular') window.location.hash = '/circular-options';
+        else if (antModel === 'TV5' && isManual) window.location.hash = '/tv5-manual-options';
+        else window.location.hash = '/options';
+      });
     }
 
     document.body.className = className;
