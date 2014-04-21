@@ -118,9 +118,6 @@
         lon: $('.\\#sat-hemisphere', jQ).val(),
         suffix: $('.\\#sat-suffix', jQ).val(),
         skew: $('.\\#sat-skew', jQ).val(),
-        lnbType: $('.\\#sat-lnb', jQ).val(),
-        lo1: $('.\\#sat-lo1', jQ).val(),
-        lo2: $('.\\#sat-lo2', jQ).val(),
         xponders: _.invoke(xponderViews, 'getXponder')
       }).then(TVRO.reload);
     });
@@ -164,9 +161,6 @@
           $('.\\#sat-hemisphere', jQ).val(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).val(sat.suffix);
           $('.\\#sat-skew', jQ).val(sat.skew);
-          $('.\\#sat-lnb', jQ).val(sat.lnbType);
-          $('.\\#sat-lo1', jQ).val(sat.lo1);
-          $('.\\#sat-lo2', jQ).val(sat.lo2);
 
           //  plain ol text, dropdown btns
           $('.\\#sat-name', jQ).text(sat.name || 'N/A');
@@ -175,15 +169,13 @@
           $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
-          $('.\\#sat-lnb', jQ).text(sat.lnbType || 'N/A');
-          $('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
-          $('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
 
           for (var i = 0; i < sat.xponders.length; i++) {
             xponderViews[i].setXponder(sat.xponders[i]);
           }
         });
 
+        
         return self;
       },
 

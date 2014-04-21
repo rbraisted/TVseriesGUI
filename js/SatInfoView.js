@@ -55,15 +55,30 @@
           $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
           $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
-          $('.\\#sat-lnb', jQ).text(sat.lnbType || 'N/A');
-          $('.\\#sat-lo1', jQ).text(sat.lo1 || 'N/A');
-          $('.\\#sat-lo2', jQ).text(sat.lo2 || 'N/A');
 
           for (var i = 0; i < sat.xponders.length; i++) {
             xponderViews[i].setXponder(sat.xponders[i]);
           }
         });
-
+        
+        TVRO.getAntennaVersions().then(function(xml) {
+        	var polarization = $('lnb polarization', xml).text() || 'N/A';
+        	
+        	switch(polarization)
+        	{
+        	case "circular":
+        		polarization = "Circular";
+        		break;
+        	case "linear":
+        		polarization = "Linear";
+        		break;
+        	}
+        		
+            $('.\\#sat-lnb').text(polarization);
+            $('.\\#sat-lo1').text($('lnb LO1_freq', xml).text() || "N/A");
+            $('.\\#sat-lo2').text($('lnb LO2_freq', xml).text() || "N/A");
+          });
+        
         return self;
       },
 
