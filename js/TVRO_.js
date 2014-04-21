@@ -22,16 +22,6 @@
 !function(window) {
   "use strict";
 
-  // var TVRO = typeof window['TVRO'] !== 'undefined' ? window.TVRO : {};
-
-  // TVRO = {
-  //   debug: TVRO['debug'] || 0,
-  //   shell: TVRO['shell'] || false,
-  //   satFinder: TVRO['satFinder'] || false,
-  //   demoMode: TVRO['demoMode'] || false,
-  //   techMode: TVRO['techMode'] || false
-  // };
-
   var TVRO = {};
   TVRO.debug = 0;
 

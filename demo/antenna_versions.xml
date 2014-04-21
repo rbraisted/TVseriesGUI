@@ -56,7 +56,7 @@
 		<part>19-0815</part>
 		<ver>1.00</ver>
 		<name>DishPro Stacked</name>
-		<polarization>LINEAR</polarization><!-- LINEAR | CIRCULAR -->
+		<polarization>linear</polarization><!-- linear | circular --><!-- note: docs show these are all caps -->
 		<voltage>18V</voltage>
 		<LO1_freq>11250</LO1_freq>
 		<LO1_convert>NORMAL</LO1_convert><!-- NORMAL | INVERTED -->

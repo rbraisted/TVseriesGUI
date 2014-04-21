@@ -157,13 +157,13 @@
           var isManual = $('available:first', xmls[1]).text() === 'N';
 
           // CIRCULAR LNB -> select service (service.php)
-          if (lnbType === 'CIRCULAR') window.location = '/wizard/service.php';
+          if (lnbType === 'circular') window.location = '/wizard/service.php';
 
           // TV5 + MANUAL -> select satellites (satellites.php)
           else if (antModel === 'TV5') window.location = '/wizard/satellites.php';
 
           // LINEAR LNB TV5/6 -> select satellites (satellites.php)
-          else if (lnbType === 'LINEAR' && (antModel === 'TV5' || antModel === 'TV6')) window.location = '/wizard/satellites.php';
+          else if (lnbType === 'linear' && (antModel === 'TV5' || antModel === 'TV6')) window.location = '/wizard/satellites.php';
 
           // TRI AMERICAS -> directv (service.php)
           else if (isTriAmericas) window.location = '/wizard/service.php#/directv';
