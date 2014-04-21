@@ -1011,15 +1011,15 @@ a {
       position: fixed;
       top: 96px; }
     .sat-table .install-col {
-      width: 15%; }
+      width: 14%; }
     .sat-table .name-col {
-      width: 50%; }
+      width: 28%; }
     .sat-table .orb-slot-col {
-      width: 35%; }
+      width: 15%; }
     .sat-table .region-col {
-      display: none; }
+      width: 17%; }
     .sat-table .fav-col {
-      display: none; } }
+      width: 25%; } }
   .popup .sat-table .table-row {
     cursor: pointer; }
 
