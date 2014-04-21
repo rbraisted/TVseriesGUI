@@ -126,25 +126,63 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 </div>
 
 <div class="view group-view #group-view">
-  <div class="view-head">
-    Select a Satellite Group
-  </div>
-  <div class="copy">
-    Select a group name to view its included satellites.
-  </div>
+  <div class="view-head">Select a Satellite Group</div>
+  <div class="copy">Select a group name to view its included satellites.</div>
 
   <div class="container">
-    <div class="group-table #group-table-view">
-      <div class="view-head desktop">Groups</div>
+    <div class="left container-head group-table-head">Groups</div>
+    <div class="right container-head group-info-head">Satellites</div>
+
+    <div class="left group-table #group-table-view">
       <div class="#table-view">
         <div class="table-row #table-row">
           <span class="table-col install-btn #install-btn"></span><!--
          --><span class="table-col #group-name"></span>
         </div>
       </div>
+      <div class="block-btn #new-btn">Create New Group</div>
     </div>
 
+    <div class="right group-info #group-info-view $installed $predefined">
+      <div class="name-block">
+        <div class="name-label">Satellite Group Name</div>
+        <div class="group-name #group-name">N/A</div>
+      </div>
+      <div class="slot first #sat-view #sat-a-view $n/a">
+        <div class="slot-head">Slot A</div>
+        <div class="sat-name #sat-name">N/A</div>
+        <div class="install-btn #install-btn"></div>
+        <div class="info-btn #info-btn"></div>
+        <div class="slot-foot">Installed</div>
+      </div><!--
+     --><div class="slot #sat-view #sat-b-view $n/a">
+        <div class="slot-head">Slot B</div>
+        <div class="sat-name #sat-name">N/A</div>
+        <div class="install-btn #install-btn"></div>
+        <div class="info-btn #info-btn"></div>
+        <div class="slot-foot">Installed</div>
+      </div><!--
+     --><div class="slot #sat-view #sat-c-view $n/a">
+        <div class="slot-head">Slot C</div>
+        <div class="sat-name #sat-name">N/A</div>
+        <div class="install-btn #install-btn"></div>
+        <div class="info-btn #info-btn"></div>
+        <div class="slot-foot">Installed</div>
+      </div><!--
+     --><div class="slot #sat-view #sat-d-view $n/a">
+        <div class="slot-head">Slot D</div>
+        <div class="sat-name #sat-name">N/A</div>
+        <div class="install-btn #install-btn"></div>
+        <div class="info-btn #info-btn"></div>
+        <div class="slot-foot">Installed</div>
+      </div>
+      <div class="block-btn install-btn #install-btn">Install Group</div>
+    </div>
+  </div>
 
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
   </div>
 </div>
 

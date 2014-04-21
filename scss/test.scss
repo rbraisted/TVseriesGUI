@@ -645,6 +645,11 @@ body[class=''] .\#service-provider-view,
     position: relative;
   }
 
+  .group-table .block-btn {
+    margin: $sidebar-padding;
+    width: calc(100% - #{$sidebar-padding * 2});
+  }
+
   @include breakpoint($mobile) {
     .copy {
       display: none;
@@ -665,7 +670,7 @@ body[class=''] .\#service-provider-view,
 
   @include breakpoint($desktop) {
     .container {
-      background-color: $dark-grey;
+      background-color: darken($dark-grey, 10);
       height: 600px;
       margin-bottom: 30px;
       width: 100%;
@@ -705,6 +710,275 @@ body[class=''] .\#service-provider-view,
   }
 }
 
+
+@mixin label {
+  font-size: $small-font;
+  color: $bright-grey;
+}
+
+@mixin thin-black-bar {
+  background-color: #000;
+  font-size: $small-font;
+  height: $lil-bump;
+  padding: ($lil-bump - $small-font)/2;
+  text-align: center;
+  width: 100%;
+}
+
+@mixin desktop-slot-head {
+}
+
+@mixin desktop-slot-foot {
+  @include thin-black-bar;
+  position: absolute;
+  bottom: 0;
+}
+
+@mixin desktop-slot($class: false) {
+  @include split(2, 30px, $class);
+  background-color: $dark-grey;
+  position: relative; 
+
+  .slot-head, .slot-foot {
+    @include thin-black-bar;
+    position: absolute;
+  }
+
+  .slot-head { top: 0; }
+  .slot-foot { bottom: 0; }
+}
+
+@mixin mobile-slot {
+  @include table-row;
+  width: calc(100% - #{$table-row-padding*4});
+  margin: auto;
+  padding: $table-row-padding;
+
+  &.name-block {
+    margin: $table-row-padding auto $table-row-padding * 2;
+    border-bottom: 0;
+  }
+
+  &.first {
+    border-top: 1px solid $bright-blue;
+  }
+
+  .slot-head,
+  .name-label {
+    @include label;
+    padding-bottom: $table-row-padding/2;
+  }
+
+  .info-btn,
+  .slot-foot {
+    display: none;
+  }
+}
+
+.group-info {
+  @include breakpoint($desktop) {
+    .name-block {
+      width: 100%;
+      text-align: center;
+      padding: 30px;
+      .name-label { display: none; }
+    }
+
+    .slot {
+      @include desktop-slot('.slot');
+      height: 140px;
+
+      .slot-foot {
+        color: #000;
+      }
+
+      .install-btn, .info-btn, .sat-name {
+        position: absolute;
+        top: 50%;
+      }
+
+      .install-btn, .info-btn {
+        cursor: pointer;
+        margin-top: $medium-icon/-2;
+      }
+
+      .sat-name {
+        margin-top: $medium-font/-2;
+        text-align: center;
+        width: 100%;
+      }
+
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        display: none;
+        left: 25px;
+      }
+
+      .info-btn {
+        @include bgimg('info-icon');
+        right: 25px;
+        display: none;
+      }
+    }
+
+    //  if the group is installed
+    &.\$installed .slot {
+      .install-btn {
+        display: block;
+      }
+
+      //  if group installed and sat installed
+      &.\$installed {
+        background-color: $light-blue;
+        .slot-head, .slot-foot {
+          background-color: $bright-blue;
+          color: #fff;
+        }
+
+        .install-btn {
+          @include bgimg('radio-checked');
+        }
+      }
+    }
+  }
+}
+
+.group-edit,
+.group-info {
+  @include breakpoint($mobile) {
+    .name-block,
+    .slot {
+      @include mobile-slot;
+    }
+
+    .install-btn {
+      cursor: pointer;
+    }
+
+    .block-btn.install-btn {
+      margin: 30px;
+      display: block;
+    }
+
+    .btn-tray {
+      .block-btn {
+        @include split(2, $btn-tray-padding, '.block-btn');
+        display: inline-block;
+        margin-bottom: 0;
+      }
+
+      .install-btn {
+        display: none;
+      }
+    }
+
+    &.\$installed .slot {
+      padding-left: ($table-row-padding * 2) + $medium-icon;
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        position: absolute;
+        left: $table-row-padding;
+        top: 50%;
+        margin-top: $medium-icon/-2;
+      }
+
+      &.\$installed .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
+
+    &.\$predefined .btn-tray {
+      display: none;
+    }
+
+    &.group-edit {
+      .group-name {
+        padding-left: 16px;
+        margin-left: -16px;
+        width: calc(100% + 32px);
+      }
+
+      .slot {
+        @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+        cursor: pointer;
+      }
+    }
+  }
+
+  //  if the sat is n/a, don't show install/info btns
+  .slot.\$n\/a {
+    .install-btn, .info-btn{
+      display: none;
+    }
+  }
+
+  //  can't install if already installed
+  &.\$installed .btn-tray .install-btn {
+    display: none;
+  }
+
+  //  can't edit/delete if the group is predefined
+  &.\$predefined .btn-tray {
+    .edit-btn, .delete-btn {
+      display: none;
+    }
+  }
+}
+
+.group-edit {
+  @include breakpoint($desktop) {
+    &.popup-guts {
+      height: 540px;
+      margin-top: -270px;
+    }
+
+    .name-block,
+    .slot {
+      @include mobile-slot;
+    }
+
+    &.\$installed .slot {
+      padding-left: ($table-row-padding * 2) + $medium-icon;
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        position: absolute;
+        left: $table-row-padding;
+        top: 50%;
+        margin-top: $medium-icon/-2;
+      }
+
+      &.\$installed .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
+
+    &.group-edit {
+      .group-name {
+        padding-left: 16px;
+        margin-left: -16px;
+        width: calc(50% + 16px);
+      }
+
+      .slot {
+        @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.group-info,
+.group-edit {
+  .block-btn.install-btn {
+    display: block;
+  }
+
+  &.\$installed .block-btn.install-btn {
+    display: none;
+  }
+}
+
+
 .\/options .\#options-view,
 .\/circular-options .\#circular-options-view,
 .\/tv5-manual-options .\#tv5-manual-options-view {
@@ -720,6 +994,7 @@ body[class=''] .\#service-provider-view,
     display: none;
   }
 
+  //  single mode
   .\/regions,
   .\/regions\/region {
     .\#single-view {
@@ -727,11 +1002,19 @@ body[class=''] .\#service-provider-view,
     }
   }
 
-  //  single mode
   .\/regions .\#region-table-view,
   .\/regions\/region .\#single-sat-table-view,
 
   //  group mode
+  .\/groups,
+  .\/groups\/group,
+  .\/groups\/group\/edit,
+  .\/groups\/group\/edit\/sats {
+    .\#group-view {
+      display: block;
+    }
+  }
+
   .\/groups .\#group-table-view,
   .\/groups\/group .\#group-info-view,
   .\/groups\/group\/edit .\#group-edit-view,
