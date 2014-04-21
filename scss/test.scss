@@ -1021,6 +1021,13 @@ body[class=''] .\#service-provider-view,
   .\/groups\/group\/edit\/sats .\#group-sat-table-view {
     display: block;
   }
+
+  .\/groups\/group\/edit,
+  .\/groups\/group\/edit\/sats {
+    .bottom-bar {
+      display: none;
+    }
+  }
 }
 
 //  desktop

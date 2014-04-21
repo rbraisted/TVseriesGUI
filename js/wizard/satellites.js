@@ -60,12 +60,7 @@ $(function() {
     //  make sure a satellite has been installed
     TVRO.getInstalledSat().then(function(installedSat) {
       if (!installedSat) alert('You must install a satellite to continue!');
-      else {
-        //  Skew Angle - TV1/TV3/TV5 Manual
-        //  System Config - (BELL/DISH)
-        //  System Config - (Linear TV5/TV6)
-        //  TriAmericas
-      }
+      else window.location = '/wizard/system.php';
     });
   });
 
@@ -99,6 +94,19 @@ $(function() {
 
 //  group views
 ////////////////////////////////////////////////////////////////////////////////
+
+  var groupPrevBtn = $('.\\#group-view .\\#prev-btn').click(function() {
+    if (window.location.hash === '/regions') window.location.hash = '';
+    else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+  });
+
+  var groupNextBtn = $('.\\#group-view .\\#next-btn').click(function() {
+    //  make sure a satellite group has been installed
+    TVRO.getInstalledGroup().then(function(installedGroup) {
+      if (!installedGroup) alert('You must install a satellite group to continue!');
+      else window.location = '/wizard/system.php';
+    });
+  });
 
   var groupTableView = TVRO.GroupTableView($('.\\#group-table-view'))
     .onClick(function(group) {
@@ -157,7 +165,7 @@ $(function() {
         .end()
   );
 
-  var createGroupBtn = $('.\\#new-btn', '.sidebar')
+  var createGroupBtn = $('.\\#group-view .\\#new-btn')
     .click(function() {
       window.location.hash = '/groups/new/edit';
     });
@@ -215,8 +223,11 @@ $(function() {
         }
       }
 
+
     } else if (hash.match(/options/)) {
       className = hash;
+
+
     } else {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView

@@ -1811,7 +1811,11 @@ body[class=''] .\#service-provider-view,
   .\/groups\/group .\#group-info-view,
   .\/groups\/group\/edit .\#group-edit-view,
   .\/groups\/group\/edit\/sats .\#group-sat-table-view {
-    display: block; } }
+    display: block; }
+
+  .\/groups\/group\/edit .bottom-bar,
+  .\/groups\/group\/edit\/sats .bottom-bar {
+    display: none; } }
 @media screen and (min-width: 881px) {
   .\/regions .\#single-view,
   .\/regions .\#region-table-view,
