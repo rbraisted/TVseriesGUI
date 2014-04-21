@@ -41,9 +41,8 @@
       window.location = '/wizard/gps.php#/heading-source';
     });
 
-    TVRO.getService().then(function(service) {
-      self.setValue(service);
-    });
+    TVRO.getService()
+      .then(self.setValue);
 
     return self;
   };
@@ -77,17 +76,21 @@
   var DirectvView = function(jQ) {
     var singleOption = {
       title: 'Single Satellite',
-      copy: 'For programming on the 101 satellite, you are ready to activate your system!'
+      copy: 'For programming on the 101 satellite, you are ready to activate ' +
+            'your system!'
     };
 
     var manualOption = {
       title: 'Manual Switching',
-      copy: 'For programming on the 101 satellite, you are ready to activate your system!'
+      copy: 'For programming on the 101 & 119 satellites with manual ' +
+            'switching between them, you are ready to activate your system!'
     };
 
     var automaticOption = {
       title: 'Automatic Switching',
-      copy: 'For programming on the 101 & 119 satellites with automatic switching between them, you need to set up the system for automatic switching.'
+      copy: 'For programming on the 101 & 119 satellites with automatic ' +
+            'switching between them, you need to set up the system for ' +
+            'automatic switching.'
     };
 
     var self = TVRO.TableView($('.\\#table-view', jQ))
@@ -106,18 +109,24 @@
         TVRO.setInstalledSat({
           antSatID: '101W'
         }).then(function() {
-
+          //  go to activation screen
         });
 
       else if (option === manualOption)
-        TVRO.setInstalledGroup({
-          name: 'DIRECTV-USA'
+        TVRO.setAutoswitchService({
+          enable: 'N',
+          service: 'DIRECTV',
+          satellite_group: 'DIRECTV-USA'
         }).then(function() {
-
+          //  go to activation screen
         });
 
       else if (option === automaticOption)
-        window.location = '/wizard/autoswitch.php';
+        TVRO.setInstalledGroup({
+          name: 'DIRECTV-USA'
+        }).then(function() {
+          window.location = '/wizard/autoswitch.php';
+        });
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {

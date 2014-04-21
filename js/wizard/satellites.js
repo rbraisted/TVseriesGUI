@@ -201,7 +201,17 @@ $(function() {
     } else {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView
-      className = '/tv5-manual-options';
+      Promise.all(
+        TVRO.getAntennaVersions(),
+        TVRO.getAutoswitchStatus()
+      ).then(function(xmls) {
+        var antModel = $('au model', xmls[0]).text();
+        var lnbType = $('lnb polarization', xmls[0]).text();
+        var isManual = $('available:first', xmls[1]).text() === 'N';
+        if (lnbType === 'circular') window.location.hash = '/circular-options';
+        else if (antModel === 'TV5' && isManual) window.location.hash = '/tv5-manual-options';
+        else window.location.hash = '/options';
+      });
     }
 
     document.body.className = className;
