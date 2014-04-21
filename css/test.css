@@ -917,6 +917,8 @@ html {
 @media screen and (max-width: 880px) {
   .grey-box-table {
     margin-bottom: 92px; }
+    .grey-box-table .table-row {
+      padding-bottom: 20px; }
     .grey-box-table .title {
       background-color: #000;
       font-size: 13px;
@@ -930,7 +932,11 @@ html {
       font-size: 13px;
       line-height: 1.6; }
     .grey-box-table .radio-icon {
-      display: none; } }
+      display: none; }
+    .grey-box-table .image {
+      background: transparent no-repeat center center/100% 100%;
+      height: 70px;
+      margin-top: 20px; } }
 @media screen and (min-width: 881px) {
   .grey-box-table {
     text-align: center; }
@@ -1434,55 +1440,73 @@ body[class=''] .\#service-provider-view,
   text-align: center; }
 .single-view .container,
 .group-view .container {
-  background-color: #293147;
-  height: 600px;
-  margin-bottom: 30px;
-  position: relative;
-  width: 100%; }
-  .single-view .container .container-head,
-  .group-view .container .container-head {
-    background-color: #000;
-    border-bottom: 1px solid #4f7abd;
-    font-size: 21px;
-    left: 0;
-    line-height: 46px;
-    margin: 0 0 46px;
-    position: fixed;
-    right: 0;
-    text-align: center;
-    top: 50px;
-    z-index: 2;
-    top: 0; }
-    @media screen and (max-width: 880px) {
+  position: relative; }
+@media screen and (max-width: 880px) {
+  .single-view .copy,
+  .group-view .copy {
+    display: none; }
+  .single-view .left, .single-view .right,
+  .group-view .left,
+  .group-view .right {
+    width: 100%; }
+  .single-view .container-head,
+  .group-view .container-head {
+    display: none; }
+  .single-view .single-sat-table,
+  .group-view .single-sat-table {
+    top: 0; } }
+@media screen and (min-width: 881px) {
+  .single-view .container,
+  .group-view .container {
+    background-color: #293147;
+    height: 600px;
+    margin-bottom: 30px;
+    width: 100%; }
+    .single-view .container .container-head,
+    .group-view .container .container-head {
+      background-color: #000;
+      border-bottom: 1px solid #4f7abd;
+      font-size: 21px;
+      left: 0;
+      line-height: 46px;
+      margin: 0 0 46px;
+      position: fixed;
+      right: 0;
+      text-align: center;
+      top: 50px;
+      z-index: 2;
+      top: 0; } }
+    @media screen and (min-width: 881px) and (max-width: 880px) {
       .single-view .container .container-head,
       .group-view .container .container-head {
         display: none; } }
-  .single-view .container .left,
-  .group-view .container .left {
-    left: 0;
-    position: absolute;
-    right: auto;
-    width: 240px; }
-  .single-view .container .right,
-  .group-view .container .right {
-    left: auto;
-    position: absolute;
-    right: 0;
-    width: calc(100%  - 240px - 5px); }
-.single-view .region-table, .single-view .group-table,
-.single-view .single-sat-table,
-.single-view .group-table,
-.single-view .group-info,
-.group-view .region-table,
-.group-view .group-table,
-.group-view .single-sat-table,
-.group-view .group-table,
-.group-view .group-info {
-  top: 46px; }
-.single-view .sat-table,
-.group-view .sat-table {
-  overflow: auto;
-  max-height: 554px; }
+@media screen and (min-width: 881px) {
+    .single-view .container .left,
+    .group-view .container .left {
+      left: 0;
+      position: absolute;
+      right: auto;
+      width: 240px; }
+    .single-view .container .right,
+    .group-view .container .right {
+      left: auto;
+      position: absolute;
+      right: 0;
+      width: calc(100%  - 240px - 5px); }
+  .single-view .region-table, .single-view .group-table,
+  .single-view .single-sat-table,
+  .single-view .group-table,
+  .single-view .group-info,
+  .group-view .region-table,
+  .group-view .group-table,
+  .group-view .single-sat-table,
+  .group-view .group-table,
+  .group-view .group-info {
+    top: 46px; }
+  .single-view .sat-table,
+  .group-view .sat-table {
+    overflow: auto;
+    max-height: 554px; } }
 
 .\/options .\#options-view,
 .\/circular-options .\#circular-options-view,
@@ -1490,6 +1514,12 @@ body[class=''] .\#service-provider-view,
   display: block; }
 
 @media screen and (max-width: 880px) {
+  .region-table, .group-table,
+  .single-sat-table,
+  .group-table,
+  .group-info {
+    display: none; }
+
   .\/regions .\#single-view,
   .\/regions\/region .\#single-view {
     display: block; }
