@@ -52,8 +52,11 @@ $(function() {
 ////////////////////////////////////////////////////////////////////////////////
 
   var singlePrevBtn = $('.\\#single-view .\\#prev-btn').click(function() {
-    if (window.location.hash === '/regions') window.location.hash = '';
-    else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+    TVRO.getService().then(function(service) {
+      if (service === 'DISH') window.location = '/wizard/service.php';
+      else if (window.location.hash === '/regions') window.location.hash = '';
+      else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+    });
   });
 
   var singleNextBtn = $('.\\#single-view .\\#next-btn').click(function() {
@@ -96,8 +99,11 @@ $(function() {
 ////////////////////////////////////////////////////////////////////////////////
 
   var groupPrevBtn = $('.\\#group-view .\\#prev-btn').click(function() {
-    if (window.location.hash === '/regions') window.location.hash = '';
-    else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+    TVRO.getService().then(function(service) {
+      if (service === 'DISH') window.location = '/wizard/service.php';
+      else if (window.location.hash === '/groups') window.location.hash = '';
+      else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+    });
   });
 
   var groupNextBtn = $('.\\#group-view .\\#next-btn').click(function() {
