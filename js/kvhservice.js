@@ -1,4 +1,3 @@
-
 $(document).ready(function(e) {
 
 SendGetCommand = function(cmd){
@@ -548,22 +547,24 @@ function power(xml)
 			message+='POWER\n\n';
 		$(xml).find('acu').each(function() {
 			message+='ACU\n';
-			message+=' Input 50V: '+$(this).find('input50v').text()+'\n';
-			message+=' Input 24V: '+$(this).find('input24v').text()+'\n';
-			message+='   5 Volts: '+$(this).find('five').text()+'\n';
-			message+=' 3.3 Volts: '+$(this).find('three_three').text()+'\n';
-			message+='Output 50V: '+$(this).find('output50v').text()+'\n';
-			message+='Output 24V: '+$(this).find('output24v').text()+'\n\n';
+            message+='Input Supply: '+$(this).find('inputsupplyv').text()+'\n';
+			message+='   Input 42V: '+$(this).find('input42v').text()+'\n';
+			message+='   Input 24V: '+$(this).find('input24v').text()+'\n';
+			message+='     8 Volts: '+$(this).find('eight').text()+'\n';
+            message+='     5 Volts: '+$(this).find('five').text()+'\n';
+			message+='   3.3 Volts: '+$(this).find('three_three').text()+'\n';
+			message+='  Output 42V: '+$(this).find('output42v').text()+'\n';
+			message+='  Output 24V: '+$(this).find('output24v').text()+'\n';
+            message+='Temp Celsius: '+$(this).find('temp_celsius').text()+'\n\n';
 		});
 		$(xml).find('au').each(function() {
 			message+='AU\n';
-			message+='Input Volts: '+$(this).find('dc').text()+'\n';
-			message+='Motor Volts: '+$(this).find('motor').text()+'\n';
-			message+=' 12.0 Volts: '+$(this).find('twelve').text()+'\n';
-			message+='  5.0 Volts: '+$(this).find('five').text()+'\n';
-			message+='  2.5 Volts: '+$(this).find('two_five').text()+'\n';
-			message+='  1.2 Volts: '+$(this).find('one_two').text()+'\n';
-			message+='  LNB Volts: '+$(this).find('lnb').text()+'\n\n';
+			message+=' Input Volts: '+$(this).find('dc').text()+'\n';
+			message+=' Motor Volts: '+$(this).find('motor').text()+'\n';
+			message+='   8.0 Volts: '+$(this).find('eight').text()+'\n';
+			message+='   5.0 Volts: '+$(this).find('five').text()+'\n';
+			message+='   LNB Volts: '+$(this).find('lnb').text()+'\n';
+			message+='Temp Celsius: '+$(this).find('temp_celsius').text()+'\n\n';
 		});
 		$('#response').val( message +'\n');
 		return false;

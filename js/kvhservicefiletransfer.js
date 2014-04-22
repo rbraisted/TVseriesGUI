@@ -42,7 +42,7 @@ $(document).ready(function(e) {
 								var message = 'Successfully Sent!';
 								$('#response').html(message).css('color','green');
 								
-								if ( fname.match(/HD11-/) &&  fname.match(/\.kvh$/) ) {
+								if ( fname.match(/TV\d-/) &&  fname.match(/\.kvh$/) ) {
 									$('#updateOption').removeClass('hideField');
 									
 								} else {

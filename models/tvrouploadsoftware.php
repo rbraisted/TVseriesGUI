@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
- *  FILE NAME:    hd11uploadsoftware.php
- *  
+ *  FILE NAME:    tvrouploadsoftware.php
+ *
  *  AUTHOR:       SDansereau
  *
  *  DESCRIPTION:  Performs File IO
@@ -42,7 +42,7 @@ class TVROuploadsoftware
    //
    private function _respondClient($xml_string, $function_name)
    {
-      // disable verboseness of xml lib 
+      // disable verboseness of xml lib
       libxml_use_internal_errors(true);
 	  //encoding='utf-8'
       $xml_header = "<?xml version='1.0' encoding='utf-8'?>";
@@ -55,12 +55,12 @@ class TVROuploadsoftware
       try {
          $xml = new SimpleXMLElement($my_xml_string);
          print $xml->asXML();
-		 
+
       } catch(Exception $e) {
          // xml formatting error - inform caller
          $my_xml_string = $xml_header . "<ipacu_response>". '<message name="' . $function_name . '" error="Error formating xml response"/></ipacu_response>';
          echo $my_xml_string;
-		 
+
       }
 
       // prevent potential memory leak
@@ -76,7 +76,7 @@ class TVROuploadsoftware
 
       if ( !file_exists($serial_log) ) {
          $err = "file not found";
-		 
+
       } else {
          $started = filectime($serial_log);
          $ftime = filectime($serial_log);
@@ -107,7 +107,7 @@ class TVROuploadsoftware
       $fileElementName = 'fileToUpload';
 
       if ( !empty($_FILES[$fileElementName]['error']) ) {
-		  
+
          switch($_FILES[$fileElementName]['error']) {
             case '1':
                $error = 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
@@ -116,7 +116,7 @@ class TVROuploadsoftware
             case '2':
                $error = 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form';
             break;
-         
+
             case '3':
                $error = 'The uploaded file was only partially uploaded';
             break;
@@ -142,21 +142,21 @@ class TVROuploadsoftware
                $error = 'No error code avaiable';
             break;
          }
-		 
+
       } elseif( empty($_FILES['fileToUpload']['tmp_name']) || $_FILES['fileToUpload']['tmp_name'] == 'none' ) {
          $error = 'No file was uploaded..';
-		 
+
       } else {
-		  
+
 		if ( !file_exists(INSTALL_SW_DIR) ) {
 			mkdir(INSTALL_SW_DIR);
-			
+
 		}
-		
+
 		$fname = $_FILES['fileToUpload']['name'];
 		$fsize = @filesize($_FILES['fileToUpload']['tmp_name']);
-		
-      }		
+
+      }
 
       $array = array($error, $fname, $fsize);
 
@@ -174,7 +174,7 @@ class TVROuploadsoftware
 
    	 	//for security reason, remove uploaded file
    	 	@unlink($_FILES['fileToUpload']);
-		
+
         $xmlR .= "<file_name>" . $fname . "</file_name>";
         $xmlR .= "<file_size>" . $fsize . "</file_size>";
       }
@@ -201,40 +201,40 @@ class TVROuploadsoftware
       list($err, $fname, $fsize) = $this->upload_file();
 
       if ( "0" == $err ) {
-		  
+
 		 $pos = strrpos($fname, ".kvh");
-		 
+
          if ( ($fname=="acuservices.conf") ||
 			 ($fname=="acuservices.conf.prev") ||
 			 ($fname=="acuservices.factory.conf") ||
 			 ($fname=="lighttpd.conf") ||
 			 ($fname=="satInfoWorkingCopy.xml") ||
 			 ($fname=="tips.conf") ) {
-				 
+
             copy($_FILES['fileToUpload']['tmp_name'], CONF_DIR."/".$fname);
-			
+
          } else if ( ($fname=="eth.conf")||($fname=="wlan.conf") ) {
             copy($_FILES['fileToUpload']['tmp_name'], CONF_DIR."/network/".$fname);
 
          } else if ( ($fname=="560255.xml") ) {
             copy($_FILES['fileToUpload']['tmp_name'], UPLOAD_SW_DIR."/".$fname);
-			
+
 		 } else if ( (false !== $pos) ) {
             copy($_FILES['fileToUpload']['tmp_name'], UPLOAD_SW_DIR."/".$fname);
-			
+
          } else {
 			 $err = "ERROR: You can't upload unknown files!";
-			 
+
 		 }
-		
+
 		 //for security reason, remove uploaded file
 		 @unlink($_FILES['fileToUpload']);
 		 $xmlR = "<message name=\"" . __FUNCTION__ . "\" error=\"$err\"/>";
 		 $xmlR .= "<file_name>" . $fname . "</file_name>";
-         $xmlR .= "<file_size>" . $fsize . "</file_size>";		
+         $xmlR .= "<file_size>" . $fsize . "</file_size>";
 
       }
-	  
+
 	  $this->_respondClient($xmlR, __FUNCTION__);
 
    }
