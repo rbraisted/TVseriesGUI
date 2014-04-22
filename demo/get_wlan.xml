@@ -8,7 +8,7 @@
     <security>
       <mode>OFF</mode><!-- OFF | WPA_PSK -->
       <algorithm>TKIP</algorithm>
-      <key>letmein</key>
+      <wpa2>letmein</wpa2>
     </security>
     <ip>192.168.1.123</ip>
     <netmask>255.255.255.0</netmask>
@@ -21,7 +21,7 @@
 		<security>
 			<mode>WPA_PSK</mode><!-- OFF | WPA_PSK -->
 			<algorithm>TKIP</algorithm>
-			<key>trustno1</key>
+			<wpa2>trustno1</wpa2>
 		</security>
 		<ip>192.168.1.456</ip>
 		<netmask>255.255.255.0</netmask>

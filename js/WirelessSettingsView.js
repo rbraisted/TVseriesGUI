@@ -37,8 +37,8 @@
 
           security: {
             mode: securityMode,
-            key: securityKey,
-          }          
+            wpa2: securityKey,
+          }
         }
       };
 
@@ -68,7 +68,7 @@
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
         var networkMode = $('mode:first', xml).text();
         var securityMode = $('security mode', xml).text();
-        var securityKey = $('security key', xml).text();
+        var securityKey = $('security wpa2', xml).text();
 
         setNetworkMode(networkMode);
         setSecurityMode(securityMode);

@@ -1,4 +1,8 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php'; ?>
+<?
+// include $_SERVER['DOCUMENT_ROOT'] . '/wizard.php';
+$wiz = 1;
+include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
+?>
 <script type="text/javascript" src="/js/wizard/system.js"></script>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
