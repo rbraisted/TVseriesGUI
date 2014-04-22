@@ -33,9 +33,9 @@
     });
 
     var deleteBtn = $('.\\#delete-btn', jQ).click(function() {
-      //  if !predefined, ask for confirmatiomn
+      //  if !predefined, ask for confirmation
       var confirmed = receiver.predefined ? false : confirm('Are you sure you want to delete ' + receiver.name + '?');
-      if (confirmed) TVRO.removereceiver(receiver).then(TVRO.reload);
+      if (confirmed) TVRO.removeReceiver(receiver).then(TVRO.reload);
     });
 
     TVRO.getReceiverType().then(function(receiverType) {
