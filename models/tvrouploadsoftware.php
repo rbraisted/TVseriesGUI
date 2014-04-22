@@ -207,7 +207,9 @@ class TVROuploadsoftware
          if ( ($fname=="acuservices.conf") ||
 			 ($fname=="acuservices.conf.prev") ||
 			 ($fname=="acuservices.factory.conf") ||
-			 ($fname=="lighttpd.conf") ||
+             ($fname=="acunetwork.conf") ||
+             ($fname=="acunetwork.factory.conf") ||
+             ($fname=="lighttpd.conf") ||
 			 ($fname=="satInfoWorkingCopy.xml") ||
 			 ($fname=="tips.conf") ) {
 
