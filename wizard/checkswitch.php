@@ -10,13 +10,13 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21 mb2"><span class="desktop">Configuration 1 - Run a </span>Check Switch Test</div>
 		<div class="d2col mb2">
 			<div class="video-iframe-container">
-				<iframe src="//www.youtube.com/embed/pQZiAAZZuBM?rel=0" frameborder="0" allowfullscreen class="video-iframe"></iframe>
+				<iframe src="/media/CheckSwitchTest.mp4" frameborder="0" allowfullscreen class="video-mp4"></iframe>
 			</div>
 		</div><!--
 	 --><div class="d2col dlh1.6 mlh1.2 mt1 mb2 wiz-instructions">
 			<div class="dfs16 mfs13">
 				Now you need to run a Check Switch test on your receiver
-				(<a class="cp wiz-link">learn how to run a Check Switch test</a>).
+				(<a class="cp wiz-link" href="/media/CheckSwitchTest.mp4">learn how to run a Check Switch test</a>).
 				This test can take up to 15 minutes. When the test is complete,
 				click Next to continue the Wizard.
 			</div>
@@ -45,14 +45,14 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21 mb2"><span class="desktop">Configuration 2 - Run a </span>Check Switch Test</div>
 		<div class="d2col mb2">
 			<div class="video-iframe-container">
-				<iframe src="//www.youtube.com/embed/pQZiAAZZuBM?rel=0" frameborder="0" allowfullscreen class="video-iframe"></iframe>
+				<iframe src="/media/CheckSwitchTest.mp4" frameborder="0" allowfullscreen class="video-mp4"></iframe>
 			</div>
 		</div><!--
 	 --><div class="d2col dlh1.6 mlh1.2 mt1 mb2 wiz-instructions">
 			<div class="dfs16 mfs13">
 				Connect each reveiver, one at a time, directly to the "IRD" jack
 				on the back of the TV-Hub and run a Check Switch test
-				(<a class="cp wiz-link">learn how to run a Check Switch test</a>).
+				(<a class="cp wiz-link" href="/media/CheckSwitchTest.mp4">learn how to run a Check Switch test</a>).
 				This test can take up to 15 minutes per receiver. Once you have
 				run a checkswitch test on all of your receivers, click Next.
 			</div>
@@ -81,14 +81,14 @@
 		<div class="wiz-title-view tac bb dfs26 mfs21 mb2"><span class="desktop">Configuration 3 - Run a </span>Check Switch Test</div>
 		<div class="d2col mb2">
 			<div class="video-iframe-container">
-				<iframe src="//www.youtube.com/embed/pQZiAAZZuBM?rel=0" frameborder="0" allowfullscreen class="video-iframe"></iframe>
+				<iframe src="/media/CheckSwitchTest.mp4" frameborder="0" allowfullscreen class="video-mp4"></iframe>
 			</div>
 		</div><!--
 	 --><div class="d2col dlh1.6 mlh1.2 mt1 mb2 wiz-instructions">
 			<div class="dfs16 mfs13">
 				Connect each reveiver, one at a time, directly to the "IRD" jack
 				on the back of the TV-Hub and run a Check Switch test
-				(<a class="cp wiz-link">learn how to run a Check Switch test</a>).
+				(<a class="cp wiz-link" href="/media/CheckSwitchTest.mp4">learn how to run a Check Switch test</a>).
 				This test can take up to 15 minutes per receiver. Once you have
 				run a checkswitch test on all of your receivers, click Next.
 			</div>

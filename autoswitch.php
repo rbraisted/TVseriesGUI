@@ -1,6 +1,6 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
-<script type="text/javascript" src="/js/InstalledSatView.js"></script>  
+<script type="text/javascript" src="/js/InstalledSatView.js"></script>
 <script type="text/javascript" src="/js/InstalledGroupView.js"></script>
 <script type="text/javascript" src="/js/ReceiverTableView.js"></script>
 <script type="text/javascript" src="/js/ReceiverInfoView.js"></script>
@@ -68,7 +68,11 @@
     configured on your network. The receiver connected to the master IP
     AutoSwitch controls satellite selection in automatic satellite
     switching mode. You may choose the master by selecting it below or
-    by pressing the Master Select button on the IP AutoSwitch itself,
+    by pressing the
+    <a class="link" href="/media/IPAS_Master_Select_Button.png">
+     Master Select button
+    </a>
+    on the IP AutoSwitch itself,
     provided it is currently active on the network (status is green).
     Assign a unique name to each IP AutoSwitch so you can easily identify
     it later.
@@ -82,16 +86,16 @@
   <div class="copy #directv">
     The following receivers have been set up for automatic satellite
     switching. The master receiver controls satellite selection. You may
-    choose the master by selecting it below. To add a receiver to the 
+    choose the master by selecting it below. To add a receiver to the
     list, enter its IP address and assign it a unique name.
-    <a class="link">
+    <a class="link" href="/media/DTV_FindIPaddress.mp4">
       Find your receiver’s IP address.
     </a>
     <div class="note">
-      Note: Receiver must be activated to view its IP address. The 
-      receiver also must be set up to allow external access before it 
-      will communicate with the TV-Hub. 
-      <a class="link">
+      Note: Receiver must be activated to view its IP address. The
+      receiver also must be set up to allow external access before it
+      will communicate with the TV-Hub.
+      <a class="link" href="/media/DTV_ExternalControl.mp4">
         Learn how to enable external access on your DIRECTV receiver.
       </a>
     </div>
@@ -254,7 +258,7 @@
     <a id="wizard-btn" class="btn basic-btn wizard-btn">
       <label>Launch Setup Wizard</label>
     </a>
-    
+
     <div class="guts">
       <div class="label receiver-label">
         <span id="not-directv">IP AutoSwitch</span>
