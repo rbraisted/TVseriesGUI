@@ -51,7 +51,7 @@
     <span class="label">DiSEqC Version</span><span class="value #diseqc-ver"></span>
     <span class="label">IP AutoSwitch Version</span><span class="value #ipautosw-ver"></span>
     <div class="label power-label">TV-Hub Power</div>
-    <span class="label">15 VDC Input Supply Voltage</span><span class="value #hub-inputsupplyv"></span>
+    <span class="label">Input Supply Voltage 15 VDC</span><span class="value #hub-inputsupplyv"></span>
     <span class="label">42 VDC Input</span><span class="value #hub-input42v"></span>
     <span class="label">8 VDC</span><span class="value #hub-eight"></span>
     <span class="label">5 VDC</span><span class="value #hub-five"></span>
