@@ -29,7 +29,6 @@
       TVRO.getPower().then(function(xml) {
         var hubInputSupplyV = $('acu inputsupplyv', xml).text();
         var hubInput42V = $('acu input42v', xml).text();
-        var hubInput24V = $('acu input24v', xml).text();
         var hubEight = $('acu eight', xml).text();
         var hubFive = $('acu five', xml).text();
         var hubThreeThree = $('acu three_three', xml).text();
@@ -45,7 +44,6 @@
 
         $('.\\#hub-inputsupplyv', jQ).text(hubInputSupplyV || 'N/A');
         $('.\\#hub-input42v', jQ).text(hubInput42V || 'N/A');
-        $('.\\#hub-input24v', jQ).text(hubInput24V || 'N/A');
         $('.\\#hub-eight', jQ).text(hubEight || 'N/A');
         $('.\\#hub-five', jQ).text(hubFive || 'N/A');
         $('.\\#hub-three-three', jQ).text(hubThreeThree || 'N/A');
