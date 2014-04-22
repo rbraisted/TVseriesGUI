@@ -60,8 +60,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[netServiceBrowser stop];
-	[netServiceBrowser searchForServicesOfType:kBonjourServiceType inDomain:@""];
+	[self resetBonjourHostList];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -83,6 +82,11 @@
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
   return UIInterfaceOrientationPortrait;
+}
+
+- (void)resetBonjourHostList{
+    [netServiceBrowser stop];
+	[netServiceBrowser searchForServicesOfType:kBonjourServiceType inDomain:@""];
 }
 
 #pragma mark - NSNetServiceBrowserDelegate protocol methods
@@ -212,12 +216,11 @@
 #pragma mark - UIButton actions
 
 - (IBAction)refreshButtonPressed:(id)sender {
-  [netServiceBrowser stop];
-	[netServiceBrowser searchForServicesOfType:kBonjourServiceType inDomain:@""];
+    [self resetBonjourHostList];
 }
 
 - (IBAction)connectButtonPressed:(id)sender {
-  WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 

@@ -61,9 +61,7 @@
 	//	being called with a the scheme "tvro"
 	if ([request.URL.scheme isEqualToString:@"tvro"]) {
     NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
-    //	invalidate timer otherwise we will be kicked back to the bonjour
-    //	from calls like set-demo-mode, set-tech-mode
-    [timeoutTimer invalidate];
+    
     [self handleCustomURL:request.URL];
 		return false;
 
@@ -211,6 +209,10 @@
     NSString* updateType = [NSString stringWithString:pathComponents[1]];
     [updatesManager startUploadForUpdateType:updateType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
   }
+    
+  //invalidate timer otherwise we will be kicked back to the bonjour
+  //from calls like set-demo-mode, set-tech-mode
+  [timeoutTimer invalidate];
 }
 
 - (void)showSatFinder {

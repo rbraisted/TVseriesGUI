@@ -16,7 +16,7 @@
 // SETTINGS FOR APP STORE AND AD HOC BUILDS 
 #ifdef FINAL_BUILD
 
-#define kBonjourServiceType     @"_tvro-xml._tcp"
+#define kBonjourServiceType     @"_tvro-xml._tcp."
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
 
 /*
@@ -49,7 +49,7 @@
 // SETTINGS FOR KVH TEST BUILDS 
 #ifdef KVH_BUILD
 
-#define kBonjourServiceType     @"_tvro-xml._tcp"
+#define kBonjourServiceType     @"_tvro-xml._tcp."
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
 
 /*
@@ -84,7 +84,7 @@
 // note >> software updates / satpar updates are at okaymiky.net
 #ifdef VAIN_BUILD
 
-#define kBonjourServiceType     @"_afpovertcp._tcp"
+#define kBonjourServiceType     @"_afpovertcp._tcp."
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
 
 /*
