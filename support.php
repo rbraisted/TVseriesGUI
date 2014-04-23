@@ -73,7 +73,7 @@
     <span class="label">LNB Type</span><span class="value #lnb-name"></span>
     <span class="label">LNB Version</span><span class="value #lnb-ver"></span>
     <div class="label power-label">Antenna Power</div>
-    <span class="label">Main 48 VDC </span><span class="value #ant-dc"></span>
+    <span class="label">Main 42 VDC </span><span class="value #ant-dc"></span>
     <span class="label">Motor 32 VDC </span><span class="value #ant-motor"></span>
     <span class="label">8 VDC</span><span class="value #ant-eight"></span>
     <span class="label">5 VDC</span><span class="value #ant-five"></span>

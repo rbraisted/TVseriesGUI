@@ -559,7 +559,7 @@ function power(xml)
 		});
 		$(xml).find('au').each(function() {
 			message+='AU\n';
-			message+='  Main 48 VDC: '+$(this).find('dc').text()+'\n';
+			message+='  Main 42 VDC: '+$(this).find('dc').text()+'\n';
 			message+=' Motor 32 VDC: '+$(this).find('motor').text()+'\n';
 			message+='        8 VDC: '+$(this).find('eight').text()+'\n';
 			message+='        5 VDC: '+$(this).find('five').text()+'\n';
