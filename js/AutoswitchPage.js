@@ -2,8 +2,6 @@ $(function() {
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
-  var groupMode;
-
   //  $on === isManual
   var satSwitchingBtn = TVRO.ToggleBtn($('.\\#sat-switching-btn'))
     .onClick(function(isManual) {
@@ -62,7 +60,9 @@ $(function() {
     headerView.reload();
     installedSatView.reload();
 
-    if (groupMode) {
+    TVRO.getGroupMode().then(function(groupMode) {
+      if (!groupMode) return;
+
       TVRO.getAutoswitchEnabled().then(function(enabled) {
         $('.\\#manual-installed-group-view').toggle(!enabled);
         satSwitchingBtn.setOn(!enabled);
@@ -70,7 +70,7 @@ $(function() {
 
       manualInstalledGroupView.reload();
       automaticInstalledGroupView.reload();
-    }
+    });
   };
 
   // initialization
@@ -81,9 +81,8 @@ $(function() {
     $('.\\#receiver-type').text(receiverType);
   });
 
-  TVRO.getInstalledGroup().then(function(group) {
+  TVRO.getGroupMode().then(function(groupMode) {
     //  if group mode, show sat switching, autoswitch master, installed group
-    groupMode = group && group.getSats().length > 1;
     $('.\\#sat-switching-view').toggle(groupMode);
     $('.\\#manual-installed-group-view').toggle(groupMode);
     $('.\\#automatic-installed-group-view').toggle(groupMode);

@@ -268,10 +268,9 @@ $(function() {
     //  find out if they have a group or a single sat installed
     //  and redirect
     } else {
-      TVRO.getInstalledGroup().then(function(group) {
-        var isSingle = !group || group.getSats().length === 1;
-        if (isSingle) window.location.hash = '/regions';
-        else window.location.hash = '/groups';
+      TVRO.getGroupMode().then(function(groupMode) {
+        if (groupMode) window.location.hash = '/groups';
+        else window.location.hash = '/regions';
       });
     }
 

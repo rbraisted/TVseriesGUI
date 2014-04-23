@@ -4,8 +4,6 @@ $(function() {
 
   //  no routing on this page
 
-  var groupMode;
-
   //  $on === isManual === get_autoswitch_status <enable>N</enable>
   var satSwitchingBtn = TVRO.ToggleBtn($('.\\#sat-switching-btn'))
     .onClick(function(isManual) {
@@ -30,7 +28,10 @@ $(function() {
       $('.\\#gps-longitude').text(TVRO.formatLongitude(longitude, 3));
     });
 
-    if (groupMode) {
+    TVRO.getGroupMode().then(function(groupMode) {
+      
+      if (!groupMode) return;
+
       TVRO.getAutoswitchEnabled().then(function(enabled) {
         $('.\\#manual-installed-group-view').toggle(!enabled);
         satSwitchingBtn.setOn(!enabled);
@@ -39,7 +40,7 @@ $(function() {
       masterView.reload();
       manualInstalledGroupView.reload();
       automaticInstalledGroupView.reload();
-    }
+    });
   };
 
   // initialization stuff
@@ -50,9 +51,8 @@ $(function() {
     $('.\\#ant-model').text(antModel);
   });
 
-  TVRO.getInstalledGroup().then(function(group) {
+  TVRO.getGroupMode().then(function(groupMode) {
     //  if group mode, show sat switching, autoswitch master, installed group
-    groupMode = group && group.getSats().length > 1;
     $('.\\#sat-switching-view').toggle(groupMode);
     $('.\\#master-view').toggle(groupMode);
     $('.\\#manual-installed-group-view').toggle(groupMode);
