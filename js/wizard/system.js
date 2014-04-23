@@ -1,3 +1,65 @@
+!function(TVRO) {
+  "use strict";
+
+  var SkewAngleView = function(jQ) {
+    var SatView = function(jQ) {
+      return {
+        setSat: function(sat) {
+          if (!sat) return $('.\\#sat-name, .\\#sat-skew', jQ).text('N/A');
+          //  grab the skews
+          TVRO.getSatParams(sat).then(function(sat) {
+            $('.\\#sat-name', jQ).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
+            $('.\\#sat-skew', jQ).text(sat.skew + '˚');            
+          });
+        }
+      };
+    };
+
+    var satAView = SatView($('.\\#sat-a-view', jQ));
+    var satBView = SatView($('.\\#sat-b-view', jQ));
+    var satCView = SatView($('.\\#sat-c-view', jQ));
+    var satDView = SatView($('.\\#sat-d-view', jQ));
+
+    TVRO.getGroupMode().then(function(groupMode) {
+      $('.\\#single', jQ).toggle(!groupMode);
+      $('.\\#group', jQ).toggle(groupMode);
+
+      if (groupMode) TVRO.getInstalledGroup().then(function(installedGroup) {
+        satAView.setSat(installedGroup.satA);
+        satBView.setSat(installedGroup.satB);
+        satCView.setSat(installedGroup.satC);
+        satDView.setSat(installedGroup.satD);
+      });
+
+      else TVRO.getInstalledSat().then(function(installedSat) {
+        $('.\\#single', jQ).text(installedSat.skew + '˚ Skew Angle');
+      });
+    });
+  };
+
+
+
+  var SystemConfigView = function(jQ) {
+    return {
+
+    };
+  };
+
+  TVRO.SkewAngleView = SkewAngleView;
+  TVRO.SystemConfigView = SystemConfigView;
+
+}(window.TVRO);
+
+$(function() {
+  var skewAngleView = TVRO.SkewAngleView($('.\\#skew-angle-view'));
+
+  TVRO.onHashChange(function(hash) {
+    document.body.className = hash;
+  });
+
+  TVRO.reload();
+});
+
 /*
 
 "use strict";

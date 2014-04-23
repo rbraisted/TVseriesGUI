@@ -1059,3 +1059,89 @@ body[class=''] .\#service-provider-view,
     display: block;
   }
 }
+
+//  system
+////////////////////////////////////////////////////////////////////////////////
+
+.skew-angle {
+  .skew-table {
+    @extend .clear-table;
+
+    margin: 30px 0;
+
+    .slot-col {
+      text-align: center;
+      width: 15%;
+    }
+    
+    .sat-col { width: 55%; }
+    .skew-col { width: 30%; }
+
+    .table-head {
+      background-color: $light-blue;
+      min-height: $lil-bump;
+      position: relative;
+      font-size: $fine-font;
+      line-height: 1;
+      border-bottom: 0;
+      .table-col {
+        font-size: $fine-font;
+        padding: 7px 15px;
+      }
+    }
+
+    .table-row {
+      .table-col {
+        font-size: $small-font;
+        padding: 13px 15px;
+      }      
+    }
+  }
+
+  .single {
+    margin: 30px 0;
+  }
+
+  .single,
+  .important {
+    font-size: $large-font;
+  }
+
+  .link {
+    display: block;
+    text-align: center;
+  }
+
+  .skew-image {
+    width: 90%;
+    margin: 5%;
+  }
+
+  @include breakpoint($desktop) {
+    .column {
+      @include split(2, 20px, 'column');
+      line-height: 1.6;
+      vertical-align: middle;
+    }
+  }
+}
+
+body[class=""] .\#skew-angle-view,
+.\/skew-angle .\#skew-angle-view,
+.\/other-system-config .\#other-system-config-view,
+.\/linear-system-config .\#linear-system-config-view,
+.\/diagram-1 .\#diagram-1-view,
+.\/diagram-2 .\#diagram-2-view,
+.\/diagram-3 .\#diagram-3-view,
+.\/diagram-4 .\#diagram-4-view {
+  display: block;
+}
+
+@media screen and (min-width: 880px) {
+  .\/diagram-1 .\#linear-system-config-view,
+  .\/diagram-2 .\#linear-system-config-view,
+  .\/diagram-3 .\#linear-system-config-view,
+  .\/diagram-4 .\#linear-system-config-view {
+    display: block;
+  }
+}

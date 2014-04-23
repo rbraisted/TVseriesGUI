@@ -52,33 +52,33 @@
 	//	we should check for:
 	//	1 our hostname, for which we always return yes
 	//	2 software updates (urls which end in the file ext .kvh), for which we always return no & and then take over the downloading process
-	//	3 pdfs, which we open with hostname/pdf-frame.php
+	//	3 about:blank requests
 	//	4 anything besides those, for which we should always return no and then open in safari app instead
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
+    
 
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
-	if ([request.URL.scheme isEqualToString:@"tvro"]) {
-    NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
-    
-    [self handleCustomURL:request.URL];
-		return false;
+	if ([request.URL.scheme isEqualToString:@"tvro"]){
+        NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
+        
+        [self handleCustomURL:request.URL];
+        
+        return false;
 
         
-	//	if we're being directed to a .pdf file, we're going to display it
-	//	in some custom view that includes the pdf and a back button
-//	} else if ([request.URL.pathExtension isEqualToString:@"pdf"]) {
-//		NSLog(@"    request.URL.pathExtension isEqualToString:@\"pdf\"");
-//		if (![webView.request.URL.lastPathComponent isEqualToString:@"pdf-frame.php"])
-//			[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/pdf-frame.php?src=%@", hostName, request.URL]]]];
-//		return false;
-
+    }else if ([[request.URL relativeString] isEqualToString:@"about:blank"]){
+        //were trying to go to about:blank for some reason lets negate that
+        NSLog(@"%@", @"Got an about:blank request.");
+        [timeoutTimer invalidate];
+        return false;
+        
     
 	//	check if it's coming from our bdu hostname
 	//	if not, it's probably an external link and we
 	//	should open it in safari
-	} else if (![hostName isEqualToString:_hostName]) {
+	}else if (![hostName isEqualToString:_hostName]){
 		NSLog(@"  ![hostName isEqualToString:_hostName]");
 //		[[UIApplication sharedApplication] openURL:request.URL];
 //		return false;
@@ -86,7 +86,7 @@
 	
         
 	//	at this point it's probably just another path in our app
-	} else {
+	}else{
 		NSLog(@"  } else {");
 		return true;
 	}

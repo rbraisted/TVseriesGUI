@@ -13,7 +13,7 @@
 			<div id="single" class="dfs26 mfs21 mt1 mb1">
 				<span id="skew">X X </span>˚ Skew Angle
 			</div>
-			<table id="group" class="mt1 mb1 skew-table">
+			<table id="group" class="mt1 mb1 skew-table" style="display: table">
 				<thead>
 					<th class="slot-col">Slot</th>
 					<th class="name-col">Satellite</th>

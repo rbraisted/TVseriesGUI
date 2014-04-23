@@ -848,10 +848,10 @@ html {
     float: left;
     padding: 0 20px 0 50px; }
 
-.clear-table {
+.clear-table, .skew-angle .skew-table {
   width: 100%;
   position: relative; }
-  .clear-table .table-head {
+  .clear-table .table-head, .skew-angle .skew-table .table-head {
     display: block;
     width: 100%;
     min-height: 46px;
@@ -860,36 +860,36 @@ html {
     vertical-align: middle;
     position: absolute;
     z-index: 1; }
-  .clear-table .table-row {
+  .clear-table .table-row, .skew-angle .skew-table .table-row {
     display: block;
     width: 100%;
     min-height: 46px;
     border-bottom: 1px solid #4f7abd;
     position: relative;
     vertical-align: middle; }
-  .clear-table .table-col {
+  .clear-table .table-col, .skew-angle .skew-table .table-col {
     display: inline-block;
     height: 100%;
     overflow: hidden;
     padding: 15px;
     vertical-align: middle; }
   @media screen and (min-width: 881px) {
-    .clear-table {
+    .clear-table, .skew-angle .skew-table {
       max-width: 680px;
       margin: auto; }
-      .clear-table .table-col {
+      .clear-table .table-col, .skew-angle .skew-table .table-col {
         font-size: 16px;
         padding: 22.5px; } }
   @media screen and (max-width: 880px) {
-    .clear-table {
+    .clear-table, .skew-angle .skew-table {
       margin: 0 20px;
       width: calc(100% - 40px); }
-      .clear-table .table-col {
+      .clear-table .table-col, .skew-angle .skew-table .table-col {
         font-size: 13px;
         padding: 15px; } }
-  .clear-table .table-row {
+  .clear-table .table-row, .skew-angle .skew-table .table-row {
     cursor: pointer; }
-    .clear-table .table-row .install-btn {
+    .clear-table .table-row .install-btn, .skew-angle .skew-table .table-row .install-btn {
       background-image: url(/images/radio-unchecked.svg);
       background-position: center center;
       background-repeat: no-repeat;
@@ -899,7 +899,7 @@ html {
       display: inline-block;
       padding: 0;
       cursor: pointer; }
-    .clear-table .table-row.\$selected .install-btn {
+    .clear-table .table-row.\$selected .install-btn, .skew-angle .skew-table .table-row.\$selected .install-btn {
       background-image: url(/images/radio-checked.svg);
       background-position: center center;
       background-repeat: no-repeat;
@@ -1191,8 +1191,10 @@ html {
 .local-channels,
 .dish-network {
   text-align: center; }
-  .local-channels .clear-table,
-  .dish-network .clear-table {
+  .local-channels .clear-table, .local-channels .skew-angle .skew-table, .skew-angle .local-channels .skew-table,
+  .dish-network .clear-table,
+  .dish-network .skew-angle .skew-table,
+  .skew-angle .dish-network .skew-table {
     text-align: left; }
 
 body[class=''] .\#service-provider-view,
@@ -1841,4 +1843,66 @@ body[class=''] .\#service-provider-view,
 
   .\/groups\/group\/edit .\#group-edit-view,
   .\/groups\/group\/edit\/sats .\#group-sat-table-view {
+    display: block; } }
+.skew-angle .skew-table {
+  margin: 30px 0; }
+  .skew-angle .skew-table .slot-col {
+    text-align: center;
+    width: 15%; }
+  .skew-angle .skew-table .sat-col {
+    width: 55%; }
+  .skew-angle .skew-table .skew-col {
+    width: 30%; }
+  .skew-angle .skew-table .table-head {
+    background-color: #243774;
+    min-height: 26px;
+    position: relative;
+    font-size: 11px;
+    line-height: 1;
+    border-bottom: 0; }
+    .skew-angle .skew-table .table-head .table-col {
+      font-size: 11px;
+      padding: 7px 15px; }
+  .skew-angle .skew-table .table-row .table-col {
+    font-size: 13px;
+    padding: 13px 15px; }
+.skew-angle .single {
+  margin: 30px 0; }
+.skew-angle .single,
+.skew-angle .important {
+  font-size: 21px; }
+.skew-angle .link {
+  display: block;
+  text-align: center; }
+.skew-angle .skew-image {
+  width: 90%;
+  margin: 5%; }
+@media screen and (min-width: 881px) {
+  .skew-angle .column {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    margin-left: 20px;
+    line-height: 1.6;
+    vertical-align: middle; }
+    .skew-angle .column.first {
+      margin-left: 0; }
+    .skew-angle .column.first + column + column {
+      margin-left: 0; } }
+
+body[class=""] .\#skew-angle-view,
+.\/skew-angle .\#skew-angle-view,
+.\/other-system-config .\#other-system-config-view,
+.\/linear-system-config .\#linear-system-config-view,
+.\/diagram-1 .\#diagram-1-view,
+.\/diagram-2 .\#diagram-2-view,
+.\/diagram-3 .\#diagram-3-view,
+.\/diagram-4 .\#diagram-4-view {
+  display: block; }
+
+@media screen and (min-width: 880px) {
+  .\/diagram-1 .\#linear-system-config-view,
+  .\/diagram-2 .\#linear-system-config-view,
+  .\/diagram-3 .\#linear-system-config-view,
+  .\/diagram-4 .\#linear-system-config-view {
     display: block; } }
