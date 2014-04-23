@@ -115,8 +115,6 @@
         name: $('.\\#sat-name', jQ).val(),
         region: $('.\\#sat-region', jQ).val(),
         antSatID: $('.\\#sat-antSatID', jQ).val(),
-        lon: $('.\\#sat-hemisphere', jQ).val(),
-        suffix: $('.\\#sat-suffix', jQ).val(),
         skew: $('.\\#sat-skew', jQ).val(),
         xponders: _.invoke(xponderViews, 'getXponder')
       }).then(TVRO.reload);
@@ -137,11 +135,6 @@
         'North America'
       ]).build();
 
-    var hemisphereDropdownView = TVRO.DropdownView($('.\\#sat-edit-hemisphere-dropdown-view'))
-      .setValues([
-        'East',
-        'West'
-      ]).build();
 
     var xponderViews = _.times(4, function (i) {
       return XponderView($('.\\#xponder-' + (i + 1) + '-view', jQ));
@@ -158,17 +151,13 @@
           $('.\\#sat-name', jQ).val(sat.name);
           $('.\\#sat-region', jQ).val(sat.region);
           $('.\\#sat-longitude', jQ).val(TVRO.formatLongitude(sat.lon, 0));
-          $('.\\#sat-hemisphere', jQ).val(sat.lon > 0 ? 'East' : 'West');
-          $('.\\#sat-suffix', jQ).val(sat.suffix);
           $('.\\#sat-skew', jQ).val(sat.skew);
 
           //  plain ol text, dropdown btns
           $('.\\#sat-name', jQ).text(sat.name || 'N/A');
           $('.\\#sat-region', jQ).text(sat.region || 'N/A');
           $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
-          $('.\\#sat-hemisphere', jQ).text(sat.lon > 0 ? 'East' : 'West');
-          $('.\\#sat-suffix', jQ).text(sat.suffix || 'N/A');
-          $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
+           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
 
           for (var i = 0; i < sat.xponders.length; i++) {
             xponderViews[i].setXponder(sat.xponders[i]);

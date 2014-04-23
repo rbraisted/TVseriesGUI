@@ -28,7 +28,7 @@ and also .#group-table-view (group mode)
     <div class="sat-signal #ant-bars $0"></div>
     <span class="sat-status #ant-state"></span>
   </div>
-  
+
   <div class="sidebar-chunk">
     <div class="sidebar-chunk-head">Satellite Mode</div>
     <div class="toggle-btn #sat-mode-btn">
@@ -76,7 +76,7 @@ and also .#group-table-view (group mode)
       </div>
       <div class="heart-btn #fav-btn">
         <div class="on"></div>
-        <div class="off"></div>       
+        <div class="off"></div>
       </div>
     </div><!--
    --><div class="region-block">
@@ -86,14 +86,6 @@ and also .#group-table-view (group mode)
    --><div class="orb-slot-block">
       <div class="label">Orbital Slot</div>
       <div class="value #sat-longitude">N/A</div>
-    </div><!--
-   --><div class="hemisphere-block">
-      <div class="label">Hemisphere</div>
-      <div class="value #sat-hemisphere">N/A</div>
-    </div><!--
-   --><div class="suffix-block">
-      <div class="label">Suffix</div>
-      <div class="value #sat-suffix">N/A</div>
     </div><!--
    --><div class="skew-block">
       <div class="label">Pre-Skew</div>
@@ -112,7 +104,7 @@ and also .#group-table-view (group mode)
       <div class="value #sat-lo2">N/A</div>
     </div>
     <div class="xponder first #xponder-1-view">
-      <div class="slot-head #xponder-display"></div> 
+      <div class="slot-head #xponder-display"></div>
       <div class="freq-block xponder-block">
         <div class="label">Frequency (MHz)</div>
         <div class="value #xponder-freq">N/A</div>
@@ -243,19 +235,6 @@ and also .#group-table-view (group mode)
       <div class="label">Orbital Slot</div>
       <div class="value #sat-longitude"></div>
       <input class="input #sat-longitude" />
-    </div><!--
-   --><div class="hemisphere-block">
-      <div class="label">Hemisphere</div>
-      <div class="value #sat-hemisphere"></div>
-      <div class="dropdown-btn #hemisphere-btn">
-        <div class="#sat-hemisphere"></div>
-        <div class="dropdown-icon"></div>
-      </div>
-    </div><!--
-   --><div class="suffix-block">
-      <div class="label">Suffix</div>
-      <div class="value #sat-suffix"></div>
-      <input class="input #sat-suffix" />
     </div><!--
    --><div class="skew-block">
       <div class="label">Pre-Skew</div>
