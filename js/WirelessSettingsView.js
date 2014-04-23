@@ -47,7 +47,8 @@
         delete params.if_mode;
       }
 
-      TVRO.setWlan(params).then(TVRO.reload);
+      var confirmed = confirm('Are you sure you want to save these changes?');
+      if (confirmed) TVRO.setWlan(params).then(TVRO.reload);
     });
 
 

@@ -15,13 +15,17 @@
       var netmask = $('.\\#eth-netmask', jQ).val();
       var gateway = $('.\\#eth-gateway', jQ).val();
       var broadcast = $('.\\#eth-broadcast', jQ).val();
-      TVRO.setEth({
-        mode: mode,
-        ip: ip,
-        netmask: netmask,
-        gateway: gateway,
-        broadcast: broadcast
-      }).then(reload);
+
+      var confirmed = confirm('Are you sure you want to save these changes?');
+
+      if (confirmed) 
+        TVRO.setEth({
+          mode: mode,
+          ip: ip,
+          netmask: netmask,
+          gateway: gateway,
+          broadcast: broadcast
+        }).then(reload);
     });
 
     var setMode = function(mode) {
