@@ -32,7 +32,9 @@
   };
 
 
-
+  //  use as base class for
+  //  VesselInfoView (which is the base class for DIY and CDT vessel info views)
+  //  and InstallerInfoView
   var InfoView = function(jQ) {
     return {
       isValid: function() {
@@ -61,10 +63,6 @@
 
   var VesselInfoView = function(jQ) {
     var self = InfoView(jQ);
-
-    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '/installed-id';
-    });
 
     TVRO.getProductRegistration().then(function(xml) {
       var vessel = $('product vessel_name', xml).text();
@@ -107,6 +105,10 @@
   var CdtVesselInfoView = function(jQ) {
     var self = VesselInfoView(jQ);
 
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location.hash = '/installer-id';
+    });
+
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       if (!self.isValid()) return;
       self.setVesselInfo().then(function() {
@@ -121,6 +123,14 @@
 
   var DiyVesselInfoView = function(jQ) {
     var self = VesselInfoView(jQ);
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function(event) {
+      TVRO.getAntennaVersions().then(function(xml) {
+        var antModel = $('au model', xml).text();
+        if (antModel === 'TV5' || antModel === 'TV6') window.location = '/wizard/';
+        else window.location.hash = '/installer-id';
+      });
+    });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       if (!self.isValid()) return;

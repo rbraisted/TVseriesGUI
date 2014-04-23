@@ -1104,7 +1104,7 @@ html {
   float: right;
   margin-top: 30px; }
 
-.\/installed-id .\#installer-id-view,
+.\/installer-id .\#installer-id-view,
 .\/cdt-vessel-info .\#cdt-vessel-info-view,
 .\/diy-vessel-info .\#diy-vessel-info-view,
 .\/installer-info .\#installer-info-view {
