@@ -225,6 +225,8 @@
 
   TVRO.reboot = set('reboot');
 
+  TVRO.resetSoftware = set('reset_software');
+
   TVRO.getPower = get('power');
 
 	TVRO.getLnbList = get('get_lnb_list');

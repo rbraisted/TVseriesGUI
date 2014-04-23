@@ -6,6 +6,16 @@
     var self;
     var update;
 
+    var flashCurrentBtn = $('.\\#flash-current-btn', jQ).click(function() {
+      var confirmed = confirm('Are you sure you want to flash the current system software?');
+      if (confirmed) TVRO.resetSoftware({ rollback: 'CURRENT' }).then(TVRO.reload);
+    });
+    
+    var flashAllBtn = $('.\\#flash-all-btn', jQ).click(function() {
+      var confirmed = confirm('Are you sure you want to flash all system software?');
+      if (confirmed) TVRO.resetSoftware({ rollback: 'ALL' }).then(TVRO.reload);
+    });
+
     var downloadBtn = $('.\\#download-btn', jQ).click(function() {
       TVRO.getLatestSoftware(update).then(function(xml) {
         var portalUrl = $('url', xml).text();
@@ -30,7 +40,6 @@
         window.location = 'tvro://upload/' + update;
 
       } else {
-        console.log("starting upload...");
         $.ajaxFileUpload({
           url: 'xmlservices.php/set_config_file',
           secureuri: false,
@@ -76,6 +85,8 @@
         var antUpdate = update !== 'SatLibrary';
         var updateName = antUpdate ? update : 'Satellite Library';
         $('.\\#update-name', jQ).text(updateName);
+
+        jQ.toggleClass('$tech-mode', TVRO.getTechMode());
 
         var getSystemVersion = TVRO.getAntennaVersions().then(function(xml) {
           var connectedAnt = $('au model', xml).text();

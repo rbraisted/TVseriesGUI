@@ -94,9 +94,12 @@
       Software Version
       <span class="#system-ver"></span>
       installed
-    </div>  
+    </div>
     <div class="version not-connected-label">
       Version not available
     </div>
+
+    <div class="block-btn flash-current-btn #flash-current-btn">Flash Current</div><!--
+ --><div class="block-btn flash-all-btn #flash-all-btn">Flash All</div>
   </div>  
 </div>
