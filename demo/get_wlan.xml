@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message error="0" name="get_wlan"/>
-	<mode>AP</mode><!-- OFF | AP | IF -->
+	<mode>AP (Access Point)</mode><!-- OFF | AP (Access Point) | IF (Infrastructure) -->
   <ap_mode>
     <mode>END_POINT</mode><!-- BRIDGED | END_POINT -->
     <essid>ipacu</essid>

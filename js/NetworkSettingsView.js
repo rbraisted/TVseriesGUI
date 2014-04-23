@@ -26,8 +26,8 @@
       TVRO.getWlan().then(function(xml) {
         var mode = $('mode:first', xml).text();
 
-        if (mode === 'AP') xml = xml.find('ap_mode');
-        if (mode === 'IF') xml = xml.find('if_mode');
+        if (mode === 'AP (Access Point)') xml = xml.find('ap_mode');
+        if (mode === 'IF (Infrastructure)') xml = xml.find('if_mode');
 
         var essid = $('essid', xml).text();
         var ip = $('ip', xml).text();

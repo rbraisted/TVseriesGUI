@@ -42,7 +42,7 @@
         }
       };
 
-      if (mode === 'AP') {
+      if (mode === 'AP (Access Point)') {
         params.ap_mode = params.if_mode;
         delete params.if_mode;
       }
@@ -56,8 +56,8 @@
 
     var setMode = function(mode) {
       TVRO.getWlan().then(function(xml) {
-        if (mode === 'AP') xml = xml.find('ap_mode');
-        else if (mode === 'IF') xml = xml.find('if_mode');
+        if (mode === 'AP (Access Point)') xml = xml.find('ap_mode');
+        else if (mode === 'IF (Infrastructure)') xml = xml.find('if_mode');
         else return;
 
         var essid = $('essid', xml).text();
@@ -87,8 +87,8 @@
       jQ.toggleClass('$wlan-off', mode === 'OFF');
 
       var networkModeDropdownValues;
-      if (mode === 'IF') networkModeDropdownValues = ifDropdownVals;
-      else if (mode === 'AP') networkModeDropdownValues = apDropdownVals;
+      if (mode === 'IF (Infrastructure)') networkModeDropdownValues = ifDropdownVals;
+      else if (mode === 'AP (Access Point)') networkModeDropdownValues = apDropdownVals;
       else return setNetworkMode('OFF');
 
       networkModeDropdownView
@@ -106,8 +106,8 @@
     var modeDropdownView = TVRO.DropdownView($('.\\#wlan-mode-dropdown-view'))
       .setValues([
         'OFF',
-        'IF',
-        'AP'
+        'IF (Infrastructure)',
+        'AP (Access Point)'
       ])
       .onClick(setMode)
       .build();
