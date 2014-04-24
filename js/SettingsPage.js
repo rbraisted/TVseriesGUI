@@ -1,5 +1,5 @@
 $(function() {
-
+  
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
   setInterval(function() {

@@ -1863,9 +1863,11 @@ body[class=''] .\#service-provider-view,
     .skew-angle .skew-table .table-head .table-col {
       font-size: 11px;
       padding: 7px 15px; }
-  .skew-angle .skew-table .table-row .table-col {
-    font-size: 13px;
-    padding: 13px 15px; }
+  .skew-angle .skew-table .table-row {
+    cursor: default; }
+    .skew-angle .skew-table .table-row .table-col {
+      font-size: 13px;
+      padding: 13px 15px; }
 .skew-angle .single {
   margin: 30px 0; }
 .skew-angle .single,
@@ -1889,6 +1891,41 @@ body[class=''] .\#service-provider-view,
       margin-left: 0; }
     .skew-angle .column.first + column + column {
       margin-left: 0; } }
+
+.linear-system-config .copy,
+.other-system-config .copy {
+  line-height: 1.4;
+  margin: 0 auto 40px;
+  max-width: 680px;
+  text-align: center; }
+.linear-system-config .subtitle,
+.other-system-config .subtitle {
+  font-size: 13px;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center; }
+@media screen and (max-width: 880px) {
+  .linear-system-config .copy,
+  .other-system-config .copy {
+    padding: 0 20px;
+    margin: 20px auto; }
+  .linear-system-config .grey-box-table .image,
+  .other-system-config .grey-box-table .image {
+    height: 200px;
+    margin-bottom: 40px; } }
+@media screen and (min-width: 881px) {
+  .linear-system-config .grey-box-table .table-row,
+  .other-system-config .grey-box-table .table-row {
+    width: 255px; }
+  .linear-system-config .grey-box-table .table-row + .table-row,
+  .other-system-config .grey-box-table .table-row + .table-row {
+    margin-left: 15px; }
+  .linear-system-config .grey-box-table .image,
+  .other-system-config .grey-box-table .image {
+    height: 220px;
+    background-size: 90% 90%;
+    margin: 20px 0 55px; } }
 
 body[class=""] .\#skew-angle-view,
 .\/skew-angle .\#skew-angle-view,

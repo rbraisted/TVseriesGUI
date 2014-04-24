@@ -42,48 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
      --><div class="table-col sat-col #sat-name">N/A</div><!--
      --><div class="table-col skew-col #sat-skew">N/A</div>
       </div>
-
     </div>
-
-    <!--
-    <table class="mt1 mb1 skew-table">
-      <thead>
-        <th class="slot-col">Slot</th>
-        <th class="name-col">Satellite</th>
-        <th class="skew-col">Skew Angle</th>
-      </thead>
-      <tbody>
-        <tr id="slot-a">
-          <td class="slot-col">A</td>
-          <td id="name" class="name-col"></td>
-          <td class="skew-col">
-            <span id="skew"></span>˚
-          </td>
-        </tr>
-        <tr id="slot-b">
-          <td class="slot-col">B</td>
-          <td id="name" class="name-col"></td>
-          <td class="skew-col">
-            <span id="skew"></span>˚
-          </td>
-        </tr>
-        <tr id="slot-c">
-          <td class="slot-col">C</td>
-          <td id="name" class="name-col"></td>
-          <td class="skew-col">
-            <span id="skew"></span>˚
-          </td>
-        </tr>
-        <tr id="slot-d">
-          <td class="slot-col">D</td>
-          <td id="name" class="name-col"></td>
-          <td class="skew-col">
-            <span id="skew"></span>˚
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    -->
 
     <div class="important">
       Important!
@@ -103,6 +62,49 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <a class="prev-btn #prev-btn">Previous</a>
     <a class="next-btn #next-btn">Next</a>
   </div>
+</div>
+
+
+
+<div class="view linear-system-config #linear-system-config-view">
+  <div class="view-head">
+    <span class="desktop">Choose Your </span>System Configuration
+  </div>
+  <div class="copy">
+    Choose the configuration that most closely resembles
+    the one on your vessel.
+  </div>
+
+  <div class="bottom-bar">
+    <a class="prev-btn #prev-btn">Previous</a>
+    <a class="next-btn #next-btn">Next</a>
+  </div>  
+</div>
+
+
+
+<div class="view other-system-config #other-system-config-view">
+  <div class="view-head">
+    <span class="desktop">Choose Your </span>System Configuration
+  </div>
+  <div class="copy">
+    Choose the configuration that most closely resembles
+    the one on your vessel.
+  </div>
+
+  <div class="grey-box-table #table-view">
+    <div class="table-row #table-row">
+      <div class="title #title"></div>
+      <div class="image #image"></div>
+      <div class="subtitle #subtitle"></div>
+      <div class="radio-icon"></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <a class="prev-btn #prev-btn">Previous</a>
+    <a class="next-btn #next-btn">Next</a>
+  </div>  
 </div>
 
 

@@ -1073,7 +1073,7 @@ body[class=''] .\#service-provider-view,
       text-align: center;
       width: 15%;
     }
-    
+
     .sat-col { width: 55%; }
     .skew-col { width: 30%; }
 
@@ -1091,6 +1091,8 @@ body[class=''] .\#service-provider-view,
     }
 
     .table-row {
+      cursor: default;
+
       .table-col {
         font-size: $small-font;
         padding: 13px 15px;
@@ -1122,6 +1124,54 @@ body[class=''] .\#service-provider-view,
       @include split(2, 20px, 'column');
       line-height: 1.6;
       vertical-align: middle;
+    }
+  }
+}
+
+.linear-system-config,
+.other-system-config {
+  .copy {
+    line-height: 1.4;
+    margin: 0 auto 40px;
+    max-width: 680px;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: $small-font;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  @include breakpoint($mobile) {
+    .copy {
+      padding: 0 20px;
+      margin: 20px auto;
+    }
+
+    .grey-box-table .image {
+      height: 200px;
+      margin-bottom: 40px;
+    }
+  }
+
+  @include breakpoint($desktop) {    
+    .grey-box-table {
+      .table-row {
+        width: 255px;
+      }
+
+      .table-row+.table-row {
+        margin-left: 15px;
+      }
+
+      .image {
+        height: 220px;
+        background-size: 90% 90%;
+        margin: 20px 0 55px;
+      }
     }
   }
 }
