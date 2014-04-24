@@ -4,6 +4,7 @@
 #import "BonjourTableViewCell.h"
 #import <arpa/inet.h>
 
+
 @interface BonjourViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -60,6 +61,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    //get the default host name (Either tvhub or the last host name that the user connected to)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"default-host"] != nil)
+    {
+        [self.textField setText:[defaults objectForKey:@"default-host"]];
+    }
+    
 	[self resetBonjourHostList];
 }
 
@@ -254,5 +262,6 @@
   [self.scrollView setContentOffset:scrollViewOffset animated:YES];
   [self.textField resignFirstResponder];
 }
+
 
 @end

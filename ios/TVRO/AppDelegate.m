@@ -15,6 +15,7 @@
   //	even though we set these in the settings bundle,
   //	iOS doesn't actually use those defaults on first launch
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if ([defaults objectForKey:@"default-host"] == nil) [defaults setObject:@"tvhub" forKey:@"default-host"];
   if ([defaults objectForKey:@"tech-mode"] == nil) [defaults setBool:false forKey:@"tech-mode"];
   if ([defaults objectForKey:@"demo-mode"] == nil) [defaults setBool:true forKey:@"demo-mode"];
   

@@ -100,11 +100,21 @@
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidFinishLoad");
   
-	NSString* demoMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"] ? @"true" : @"false";
-  NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+	NSString* demoMode = [defaults boolForKey:@"demo-mode"] ? @"true" : @"false";
+    NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
   
-	NSString* techMode = [[NSUserDefaults standardUserDefaults] boolForKey:@"tech-mode"] ? @"true" : @"false";
-  NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
+    NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+    
+    // Check to see if the default host name has been set to the current connected host
+    // if not then set the user defaults host name so it can be displayed on Bonjour view
+    if(![hostName isEqualToString:[defaults objectForKey:@"default-host"]])
+    {
+        [defaults setObject:hostName forKey:@"default-host"];
+        [defaults synchronize];
+    }
   
 	NSString* jsString = [NSString stringWithFormat:@"%@%@", demoModeString, techModeString];
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
