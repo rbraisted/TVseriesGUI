@@ -1943,6 +1943,15 @@ body[class=''] .\#service-provider-view,
   @media screen and (min-width: 881px) {
     .linear-system-config .subtitle {
       margin-left: 5px; } }
+@media screen and (max-width: 880px) {
+  .linear-system-config .info-btn,
+  .linear-system-config .install-btn {
+    position: absolute; }
+  .linear-system-config .content-col {
+    padding-left: 40px;
+    padding-right: 40px; }
+  .linear-system-config .table-row {
+    line-height: 1.6; } }
 
 .other-system-config .subtitle {
   bottom: 20px;

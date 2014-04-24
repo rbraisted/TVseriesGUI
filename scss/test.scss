@@ -1195,6 +1195,22 @@ body[class=''] .\#service-provider-view,
       margin-left: 5px;
     }
   }
+
+  @include breakpoint($mobile) {
+    .info-btn,
+    .install-btn {
+      position: absolute;
+    }
+
+    .content-col {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .table-row {
+      line-height: 1.6;
+    }
+  }
 }
 
 .other-system-config {
