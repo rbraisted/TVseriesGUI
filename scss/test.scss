@@ -1137,14 +1137,6 @@ body[class=''] .\#service-provider-view,
     text-align: center;
   }
 
-  .subtitle {
-    font-size: $small-font;
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-  }
-
   @include breakpoint($mobile) {
     .copy {
       padding: 0 20px;
@@ -1173,6 +1165,45 @@ body[class=''] .\#service-provider-view,
         margin: 20px 0 55px;
       }
     }
+  }
+}
+
+.linear-system-config {
+  .copy {
+    margin-bottom: 20px;
+  }
+
+  .clear-table {
+    @include breakpoint($desktop) {
+      max-width: 700px;
+    }
+
+    .info-btn {
+      @include bgimg('info-icon');
+      height: 100%;
+      padding: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .subtitle {
+    font-size: $small-font;
+    position: relative;
+    text-align: left;
+    @include breakpoint($desktop) {
+      margin-left: 5px;
+    }
+  }
+}
+
+.other-system-config {
+  .subtitle {
+    bottom: 20px;
+    font-size: $small-font;
+    position: absolute;
+    text-align: center;
+    width: 100%;
   }
 }
 

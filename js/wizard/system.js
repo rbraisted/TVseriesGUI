@@ -48,7 +48,55 @@
 
 
   var LinearSystemConfigView = function(jQ) {
-    var self;
+    var config1 = {
+      title: 'Configuration 1',
+      subtitle: '1-4 Recievers (1 master reciever)',
+      diagramHash: '/diagram-1'
+    };
+
+    var config2 = {
+      title: 'Configuration 2',
+      subtitle: '1-4 Recievers with AutoSwitch(es) installed (multiple master recievers)',
+      diagramHash: '/diagram-2'
+    };
+
+    var config3 = {
+      title: 'Configuration 3',
+      subtitle: '5+ Receivers + multiswitch (manual satellite switching only)',
+      diagramHash: '/diagram-3'
+    };
+
+    var config4 = {
+      title: 'Configuration 4',
+      subtitle: '5+ Recievers with AutoSwitch(es) installed (1+ master receivers) + multiswitch',
+      diagramHash: '/diagram-4'
+    };
+
+    var self = TVRO.TableView($('.\\#table-view', jQ))
+      .setValues([config1, config2, config3, config4])
+      .onBuild(function(row, config) {
+        $('.\\#title', row).text(config.title);
+        $('.\\#subtitle', row).text(config.subtitle);
+        $('.\\#info-btn', row).click(function(event) {
+          event.stopPropagation();
+          window.location.hash = config.diagramHash;
+        });
+      })
+      .build();
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var config = self.getValue();
+      if (!config) alert('You must select an option to continue.');
+      else if (config === config1) window.location.hash = '/regions';
+      else if (config === config2) window.location.hash = '/groups';
+      else if (config === config3) window.location.hash = '/groups/new/edit';
+      else if (config === config4) window.location.hash = '/groups/new/edit';
+    });
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.history.back();
+    });
+
     return self;
   };
 
@@ -107,6 +155,11 @@ $(function() {
   var skewAngleView = TVRO.SkewAngleView($('.\\#skew-angle-view'));
   var linearSystemConfigView = TVRO.LinearSystemConfigView($('.\\#linear-system-config-view'));
   var otherSystemConfigView = TVRO.OtherSystemConfigView($('.\\#other-system-config-view'));
+
+  //  for popups
+  $('.\\#back-btn').click(function() {
+    window.location.hash = '/linear-system-config';
+  });
 
   TVRO.onHashChange(function(hash) {
 

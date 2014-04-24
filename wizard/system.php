@@ -75,6 +75,19 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     the one on your vessel.
   </div>
 
+  <div class="clear-table #table-view">
+    <div class="table-row #table-row">
+      <span class="table-col install-col install-btn"></span><!--
+   --><span class="table-col content-col">
+        <span class="title #title"></span>
+        <span class="desktop">:</span>
+        <br class="mobile">
+        <span class="subtitle #subtitle"></span>
+      </span><!--
+   --><span class="table-col info-col info-btn #info-btn"></span>
+    </div>
+  </div>
+
   <div class="bottom-bar">
     <a class="prev-btn #prev-btn">Previous</a>
     <a class="next-btn #next-btn">Next</a>
@@ -105,44 +118,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <a class="prev-btn #prev-btn">Previous</a>
     <a class="next-btn #next-btn">Next</a>
   </div>  
-</div>
-
-
-
-<div id="other-system-config-view" class="view main-view wiz-view other-system-config-view">
-  <div class="view-content main-content wiz-content">
-    <div class="wiz-title-view tac bb dfs26 mfs21"><span class="desktop">Choose Your </span>System Configuration</div>
-    <div class="tac dfs21 mfs16 dlh1.6 mlh1.6 mt2 mb2 wiz-instructions">
-      Choose the configuration that most closely resembles<br class="desktop">
-      the one on your vessel.
-    </div>
-
-    <div id="radio" class="tac">
-      <div id="radio-option" class="wiz-opt wiz-opt-config cp">
-        <div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Configuration #1</div>
-        <div class="wiz-opt-config-1-img"></div>
-        <div class="tac dfs13 mfs13">One Receiver</div>
-        <div class="radio-icon wiz-opt-radio"></div>
-      </div><!--
-     --><div id="radio-option" class="wiz-opt wiz-opt-config cp">
-        <div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Configuration #2</div>
-        <div class="wiz-opt-config-2-img"></div>
-        <div class="tac dfs13 mfs13">One Master Receiver + Multiswitch</div>
-        <div class="radio-icon wiz-opt-radio"></div>
-      </div><!--
-     --><div id="radio-option" class="wiz-opt wiz-opt-config cp">
-        <div class="dfs21 mfs11 dlh1.2 wiz-opt-title">Configuration #3</div>
-        <div class="wiz-opt-config-3-img"></div>
-        <div class="tac dfs13 mfs13">Multiple Receivers w/ AutoSwitch(es)</div>
-        <div class="radio-icon wiz-opt-radio"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="bottom-bar">
-    <a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
-    <a id="next-btn" class="btn next-btn next-icon fr">Next</a>
-  </div>
 </div>
 
 
@@ -235,7 +210,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
     <img src="/images/wizard-diagram-4.svg" class="diagram-image">
   </div>
-</div>  
+</div>
 
 <!--
 <style type="text/css">
