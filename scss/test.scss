@@ -1240,11 +1240,75 @@ body[class=""] .\#skew-angle-view,
   display: block;
 }
 
-@media screen and (min-width: 880px) {
+@include breakpoint($desktop) {
   .\/diagram-1 .\#linear-system-config-view,
   .\/diagram-2 .\#linear-system-config-view,
   .\/diagram-3 .\#linear-system-config-view,
   .\/diagram-4 .\#linear-system-config-view {
+    display: block;
+  }
+}
+
+//  checkswitch
+////////////////////////////////////////////////////////////////////////////////
+
+.config-1,
+.config-2,
+.config-3 {
+  .important {
+    font-size: $large-font;
+    margin-top: 30px;
+  }
+
+  .video-iframe {
+    display: block;
+  }
+
+  @include breakpoint($mobile) {
+    .column {
+      padding-left: 20px;
+      padding-right: 20px;
+      line-height: 1.4;
+    }
+
+    .video-iframe {
+      width: 300px;
+      height: 253px;
+      margin: 30px auto;
+    }
+  }
+
+  @include breakpoint($desktop) {
+    .column {
+      @include split(2, 20px, 'column');
+      line-height: 1.6;
+      vertical-align: middle;
+    }
+
+    .video-iframe {
+      width: 390px;
+      height: 330px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.\/config-1 .\#config-1-view,
+.\/config-2 .\#config-2-view,
+.\/config-3 .\#config-3-view,
+.\/complete-1 .\#complete-1-view,
+.\/complete-2 .\#complete-2-view,
+.\/complete-3 .\#complete-3-view,
+.\/diagram-1 .\#diagram-1-view,
+.\/diagram-2 .\#diagram-2-view,
+.\/diagram-3 .\#diagram-3-view {
+  display: block;
+}
+
+@include breakpoint($desktop) {
+  .\/diagram-1 .\#complete-1-view,
+  .\/diagram-2 .\#complete-2-view,
+  .\/diagram-3 .\#complete-3-view {
     display: block;
   }
 }

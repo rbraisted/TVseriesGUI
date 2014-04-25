@@ -1975,9 +1975,72 @@ body[class=""] .\#skew-angle-view,
 .\/diagram-4 .\#diagram-4-view {
   display: block; }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 881px) {
   .\/diagram-1 .\#linear-system-config-view,
   .\/diagram-2 .\#linear-system-config-view,
   .\/diagram-3 .\#linear-system-config-view,
   .\/diagram-4 .\#linear-system-config-view {
+    display: block; } }
+.config-1 .important,
+.config-2 .important,
+.config-3 .important {
+  font-size: 21px;
+  margin-top: 30px; }
+.config-1 .video-iframe,
+.config-2 .video-iframe,
+.config-3 .video-iframe {
+  display: block; }
+@media screen and (max-width: 880px) {
+  .config-1 .column,
+  .config-2 .column,
+  .config-3 .column {
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.4; }
+  .config-1 .video-iframe,
+  .config-2 .video-iframe,
+  .config-3 .video-iframe {
+    width: 300px;
+    height: 253px;
+    margin: 30px auto; } }
+@media screen and (min-width: 881px) {
+  .config-1 .column,
+  .config-2 .column,
+  .config-3 .column {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    margin-left: 20px;
+    line-height: 1.6;
+    vertical-align: middle; }
+    .config-1 .column.first,
+    .config-2 .column.first,
+    .config-3 .column.first {
+      margin-left: 0; }
+    .config-1 .column.first + column + column,
+    .config-2 .column.first + column + column,
+    .config-3 .column.first + column + column {
+      margin-left: 0; }
+  .config-1 .video-iframe,
+  .config-2 .video-iframe,
+  .config-3 .video-iframe {
+    width: 390px;
+    height: 330px;
+    margin: 0 auto; } }
+
+.\/config-1 .\#config-1-view,
+.\/config-2 .\#config-2-view,
+.\/config-3 .\#config-3-view,
+.\/complete-1 .\#complete-1-view,
+.\/complete-2 .\#complete-2-view,
+.\/complete-3 .\#complete-3-view,
+.\/diagram-1 .\#diagram-1-view,
+.\/diagram-2 .\#diagram-2-view,
+.\/diagram-3 .\#diagram-3-view {
+  display: block; }
+
+@media screen and (min-width: 881px) {
+  .\/diagram-1 .\#complete-1-view,
+  .\/diagram-2 .\#complete-2-view,
+  .\/diagram-3 .\#complete-3-view {
     display: block; } }

@@ -55,7 +55,6 @@
 
   hashCallbacks.push(function(hash) {
     if (TVRO.debug) console.log("-> #: " + hash);
-    $('#debugger').append("<br>-> #: " + hash);
   });
 
   TVRO.onHashChange = function(arg) {
@@ -74,7 +73,6 @@
 
   TVRO.reload = function() {
     if (TVRO.debug) console.log("-> #: reloading...");
-    $('#debugger').append("<br>-> #: reloading...");
 
     hash = window.location.hash.substring(1);
     _.invoke(hashCallbacks, 'call', null, hash);

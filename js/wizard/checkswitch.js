@@ -1,6 +1,92 @@
-"use strict";
+!function(TVRO) {
+  "use strict";
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+  var ConfigView = function(jQ) {
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      // if (jQ.is(config1View)) $(document.body).setClass('at-complete-1-view');
+      // else if (jQ.is(config2View)) $(document.body).setClass('at-complete-2-view');
+      // else if (jQ.is(config3View)) $(document.body).setClass('at-complete-3-view');
+      TVRO.setCheckswitchMode({
+        enable: 'N'
+      }).then(function() {
+
+      });
+    });
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+
+    });
+
+    return {
+      startVideo: function() {
+        $('iframe', jQ).attr('src', '/media/CheckSwitchTest.mp4');
+      },
+
+      stopVideo: function() {
+        $('iframe', jQ).attr('src', '');
+      }
+    }
+  };
+
+
+
+  var CompleteView = function(jQ) {
+    var diagramBtn = $('.\\#diagram-btn', jQ).click(function() {
+      // if (jQ.is(complete1View)) $(document.body).setClass('at-diagram-1-view');
+      // else if (jQ.is(complete2View)) $(document.body).setClass('at-diagram-2-view');
+      // else if (jQ.is(complete3View)) $(document.body).setClass('at-diagram-3-view');
+    });
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      if (jQ.is(complete3View)) window.location = '/wizard/autoswitch.php';
+      else window.location = '/wizard/activation.php';
+    });
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      // if (jQ.is(complete1View)) $(document.body).setClass('at-config-1-view');
+      // else if (jQ.is(complete2View)) $(document.body).setClass('at-config-2-view');
+      // else if (jQ.is(complete3View)) $(document.body).setClass('at-config-3-view');
+      TVRO.setCheckswitchMode({
+        enable: 'Y'
+      }).then(function() {
+
+      });
+    });
+
+  };
+
+  TVRO.ConfigView = ConfigView;
+  TVRO.CompleteView = CompleteView;
+
+}(window.TVRO);
+
+$(function() {
+  var config1View = TVRO.ConfigView($('.\\#config-1-view'));
+  var config2View = TVRO.ConfigView($('.\\#config-2-view'));
+  var config3View = TVRO.ConfigView($('.\\#config-3-view'));
+
+  var complete1View = TVRO.CompleteView($('.\\#complete-1-view'));
+  var complete2View = TVRO.CompleteView($('.\\#complete-2-view'));
+  var complete3View = TVRO.CompleteView($('.\\#complete-3-view'));
+
+  TVRO.onHashChange(function(hash) {
+    if (hash === '/config-1') config1View.startVideo();
+    else config1View.stopVideo();
+
+    if (hash === '/config-2') config2View.startVideo();
+    else config2View.stopVideo();
+
+    if (hash === '/config-3') config3View.startVideo();
+    else config3View.stopVideo();
+
+    document.body.className = hash;
+  });
+
+  TVRO.reload();
+});
+
+/*
+"use strict";
 
 TVRO.CheckswitchPage = function() {
 	var
@@ -75,6 +161,5 @@ TVRO.CheckswitchPage = function() {
 	}
 };
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-
 TVRO.page = TVRO.CheckswitchPage();
+*/
