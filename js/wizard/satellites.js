@@ -42,30 +42,43 @@
 
 }(window.TVRO);
 
+
+
+
 $(function() {
 
   var optionsView = TVRO.OptionsView($('.\\#options-view'));
   var circularOptionsView = TVRO.OptionsView($('.\\#circular-options-view'));
   var tv5ManualOptionsView = TVRO.OptionsView($('.\\#tv5-manual-options-view'));
 
-//  single views 
-////////////////////////////////////////////////////////////////////////////////
-
-  var singlePrevBtn = $('.\\#single-view .\\#prev-btn').click(function() {
+  //  previous btn on single and group view
+  var prevBtnClick = function() {
     TVRO.getService().then(function(service) {
       if (service === 'DISH') window.location = '/wizard/service.php';
-      else if (window.location.hash === '/regions') window.location.hash = '';
+      else if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
       else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
     });
-  });
+  };
 
-  var singleNextBtn = $('.\\#single-view .\\#next-btn').click(function() {
-    //  make sure a satellite has been installed
+  var singleViewPrevBtn = $('.\\#single-view .\\#prev-btn').click(prevBtnClick);
+  var groupViewPrevBtn =  $('.\\#group-view .\\#prev-btn').click(prevBtnClick);
+
+  var singleViewNextBtn = $('.\\#single-view .\\#next-btn').click(function() {
     TVRO.getInstalledSat().then(function(installedSat) {
       if (!installedSat) alert('You must install a satellite to continue!');
       else window.location = '/wizard/system.php';
     });
   });
+
+  var groupViewNextBtn = $('.\\#group-view .\\#next-btn').click(function() {
+    TVRO.getInstalledGroup().then(function(installedGroup) {
+      if (!installedGroup) alert('You must install a group to continue!');
+      else window.location = '/wizard/system.php';
+    });
+  });
+
+//  single views 
+////////////////////////////////////////////////////////////////////////////////
 
   var regionTableView = TVRO.TableView($('.\\#region-table-view'))
     .setValues([
@@ -97,22 +110,6 @@ $(function() {
 
 //  group views
 ////////////////////////////////////////////////////////////////////////////////
-
-  var groupPrevBtn = $('.\\#group-view .\\#prev-btn').click(function() {
-    TVRO.getService().then(function(service) {
-      if (service === 'DISH') window.location = '/wizard/service.php';
-      else if (window.location.hash === '/groups') window.location.hash = '';
-      else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
-    });
-  });
-
-  var groupNextBtn = $('.\\#group-view .\\#next-btn').click(function() {
-    //  make sure a satellite group has been installed
-    TVRO.getInstalledGroup().then(function(installedGroup) {
-      if (!installedGroup) alert('You must install a satellite group to continue!');
-      else window.location = '/wizard/system.php';
-    });
-  });
 
   var groupTableView = TVRO.GroupTableView($('.\\#group-table-view'))
     .onClick(function(group) {

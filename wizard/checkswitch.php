@@ -11,7 +11,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     Check Switch Test
   </div>
   <div class="column first">
-    <iframe src="/media/CheckSwitchTest.mp4" frameborder="0" allowfullscreen class="video-iframe"></iframe>
+    <iframe src="" frameborder="0" allowfullscreen class="video-iframe"></iframe>
   </div><!--
 --><div class="column">
     Now you need to run a Check Switch test on your receiver
@@ -38,7 +38,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     Check Switch Test
   </div>
   <div class="column first">
-    <iframe src="/media/CheckSwitchTest.mp4" frameborder="0" allowfullscreen class="video-iframe"></iframe>
+    <iframe src="" frameborder="0" allowfullscreen class="video-iframe"></iframe>
   </div><!--
  --><div class="column">
     Connect each reveiver, one at a time, directly to the "IRD" jack
@@ -66,7 +66,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     Check Switch Test
   </div>
   <div class="column first">
-    <iframe src="/media/CheckSwitchTest.mp4" frameborder="0" allowfullscreen class="video-iframe"></iframe>
+    <iframe src="" frameborder="0" allowfullscreen class="video-iframe"></iframe>
   </div><!--
  --><div class="column">
     Connect each reveiver, one at a time, directly to the "IRD" jack
@@ -80,7 +80,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     Be sure your vessel/vehicle is stationary while performing this
     test. The Check Switch test will not pass if the antenna is
     moving.
-    </div>
   </div>
 
   <div class="bottom-bar">
@@ -94,17 +93,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <span class="desktop">Configuration 1 -</span>
     Check Switch Test Complete
   </div>
-  <div class="d2col dlh1.6 mlh1.2 mt1 mb2 step">
-    <div class="bullet tac dfs21 mfs16">1</div>
-    <div class="dfs16 mfs13">
+  <div class="column first">
+    <div class="bullet">1</div>
+    <div class="copy">
       Confirm that all receivers and other system devices are
       reconnected as shown in your
-      <span id="diagram-btn" class="link">configuration diagram</span>.
+      <span class="link #diagram-btn">configuration diagram</span>.
     </div>
   </div><!--
- --><div class="d2col dlh1.6 mlh1.2 mt1 mb2 step">
-    <div class="bullet tac dfs21 mfs16">2</div>
-    <div class="dfs16 mfs13">
+ --><div class="column">
+    <div class="bullet">2</div>
+    <div class="copy">
       Click Next to continue the Setup Wizard.
     </div>
   </div>
@@ -120,17 +119,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <span class="desktop">Configuration 2 -</span>
     Check Switch Test Complete
   </div>
-  <div class="d2col dlh1.6 mlh1.2 mt1 mb2 step">
-    <div class="bullet tac dfs21 mfs16">2</div>
-    <div class="dfs16 mfs13">
+  <div class="column first">
+    <div class="bullet">2</div>
+    <div class="copy">
       Confirm that all receivers and other system devices are
       reconnected as shown in your
-      <span id="diagram-btn" class="link">configuration diagram</span>.
+      <span class="link #diagram-btn">configuration diagram</span>.
     </div>
   </div><!--
- --><div class="d2col dlh1.6 mlh1.2 mt1 mb2 step">
-    <div class="bullet tac dfs21 mfs16">2</div>
-    <div class="dfs16 mfs13">
+ --><div class="column">
+    <div class="bullet">2</div>
+    <div class="copy">
       Click Next to continue the Setup Wizard.
     </div>
   </div>
@@ -146,17 +145,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <span class="desktop">Configuration 3 -</span>
     Check Switch Test Complete
   </div>
-  <div class="d2col dlh1.6 mlh1.2 mt1 mb2 step">
-    <div class="bullet tac dfs21 mfs16">3</div>
-    <div class="dfs16 mfs13">
+  <div class="column first">
+    <div class="bullet">3</div>
+    <div class="copy">
       Confirm that all receivers and other system devices are
       reconnected as shown in your
-      <span id="diagram-btn" class="link">configuration diagram</span>.
+      <span class="link #diagram-btn">configuration diagram</span>.
     </div>
   </div><!--
- --><div class="d2col dlh1.6 mlh1.2 mt1 mb2 step">
-    <div class="bullet tac dfs21 mfs16">2</div>
-    <div class="dfs16 mfs13">
+ --><div class="column">
+    <div class="bullet">2</div>
+    <div class="copy">
       Click Next to continue the Setup Wizard.
     </div>
   </div>
