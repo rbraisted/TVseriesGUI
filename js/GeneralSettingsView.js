@@ -20,10 +20,6 @@
       window.location = '/wizard';
     });
 
-		var hostnameBtn = jQ.find('.\\#hostname-btn').click(function() {
-      window.location = 'tvro://change-hostname';
-    });
-
     var reload = function() {
       $('.\\#shell', jQ).toggle(TVRO.getShellMode());
       techModeBtn.setOn(TVRO.getTechMode());

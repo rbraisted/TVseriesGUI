@@ -61,11 +61,6 @@
   </p>
   <div class="block-btn #wizard-btn">Setup Wizard</div>
 
-  <div class="heading #shell">Change Hostname</div>
-  <p class="#shell">
-    Placeholder text placeholder text placeholder text placeholder text
-  </p>
-  <div class="block-btn #hostname-btn #shell">Change Hostname</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
