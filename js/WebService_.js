@@ -313,7 +313,7 @@
 
   //  custom call to get web ui version from version.txt
   TVRO.getWebUIVersion = function() {
-    Promise(function(resolve, reject) {
+    return Promise(function(resolve, reject) {
       $.ajax({
         url: '/version.txt',
         success: function(txt) {
