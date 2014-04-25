@@ -120,10 +120,12 @@ $(function() {
       '/command-line': 'Command Line'
     }[hash]);
 
-    document.body.className = hash;
+    if (hash === '/system-info') systemInfoView.reload();
 
 		if (hash === '/command-line') commandLineView.startOutput();
 		else commandLineView.stopOutput();
+
+    document.body.className = hash;
 	});
 
 	TVRO.reload();
