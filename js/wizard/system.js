@@ -133,9 +133,9 @@
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var config = self.getValue();
       if (!config) alert('You must select an option to continue.');
-      else if (config === config1) window.location.hash = '/regions';
-      else if (config === config2) window.location.hash = '/groups';
-      else if (config === config3) window.location.hash = '/groups/new/edit';
+      else if (config === config1) window.location = '/wizard/checkswitch.php#/config-1';
+      else if (config === config2) window.location = '/wizard/checkswitch.php#/config-2';
+      else if (config === config3) window.location = '/wizard/checkswitch.php#/config-3';
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -165,131 +165,27 @@ $(function() {
 
     //  tv1, tv3, tv5 manual
 
-    if (!hash) TVRO.getService().then(function(service) {
-      //  bell, dish services
-      if (service === 'BELL' || service === 'DISH') window.location.hash = '/other-system-config';
-      else return TVRO.getAntennaVersions();
-    }).then(function(xml) {
-      //  linear tv5, linear tv6
-      var lnbType = $('lnb polarization', xmls[0]).text();  
-      if (lnbType === 'linear') window.location.hash = '/linear-system-config';
-      // else do nothing, continue to /skew-angle
-    });
+    if (!hash) {
+      Promise.all(
+        TVRO.getAntennaVersions(),
+        TVRO.getAutoswitchStatus()
+      ).then(function(xmls) {
+        var antModel = $('au model', xmls[0]).text();
+        var lnbType = $('lnb polarization', xmls[0]).text();
+        var isManual = $('available:first', xmls[1]).text() === 'N';
+        var service = $('service', xmls[1]).text();
+        var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
+
+        if (antModel === 'TV1' || antModel === 'TV3') window.location.hash = '/skew-angle';
+        else if (antModel === 'TV5' && isManual) window.location.hash = '/skew-angle';
+        else if (service === 'BELL' || service === 'DISH') window.location.hash = '/other-system-config';
+        else if (lnbType === 'linear') window.location.hash = '/linear-system-config';
+        // else if (isTriAmericas) window.location.hash = '';
+      });
+    }
 
     document.body.className = hash;
   });
 
   TVRO.reload();
 });
-
-/*
-
-"use strict";
-
-TVRO.SystemPage = function() {
-	var
-	webService = TVRO.WebService(),
-
-
-	skewAngleView,
-	SkewAngleView = function() {
-		var self = $.apply($, arguments);
-
-		webService.request('get_satellite_groups', function(response) {
-			var group,
-				groups = $('group', response).map(function() { return TVRO.Group(this); }).get(),
-				satellite,
-				isSingle,
-				singleView = $('#single', self),
-				groupView = $('#group', self);
-
-			webService.request('get_autoswitch_status', function(response) {
-				var name = $('satellite_group', response).text(),
-					slot = $('master sat', response).text();
-
-				$(groups).each(function() {
-					if (this.name === name) {
-						group = this;
-						satellite = group['satellite'+slot];
-						return false;
-					}
-				});
-
-				isSingle = !!group.satelliteA.antSatID + !!group.satelliteB.antSatID + !!group.satelliteC.antSatID + !!group.satelliteD.antSatID === 1;
-				$('#single', self).toggle(isSingle);
-				$('#group', self).toggle(!isSingle);
-
-				if (isSingle) {
-					$('#skew', singleView).text(satellite.skew);
-				} else {
-					$(['a', 'b', 'c', 'd']).map(function() {
-						var satellite = group['satellite'+this.toUpperCase()],
-							view = $('#slot-'+this, groupView);
-						view.toggle(!!satellite.antSatID);
-						$('#name', view).text(satellite.name);
-						webService.request('get_satellite_params', {
-							antSatID: satellite.antSatID
-						}, function(response) {
-							$('#skew', view).text($('skew', response).text());
-						});
-					});
-				}
-			});
-		});
-
-		$('[id ~= next-btn ]', self).click(function() {
-			$(document.body).setClass('at-linear-system-config-view');
-		});
-
-		$('[id ~= prev-btn ]', self).click(function() {
-			webService.request('get_autoswitch_status', function(response) {
-
-			});
-		});
-
-		return $.extend({}, self, {});
-	},
-
-
-	otherSystemConfigView,
-	linearSystemConfigView,
-	SystemConfigView = function() {
-		var self = $.apply($, arguments),
-			radio = TVRO.Radio(self);
-
-		$('[id ~= next-btn ]', self).click(function() {
-			var selectedValue = radio.selectedValue();
-			if (!selectedValue) alert('You must select an option to continue.');
-		});
-
-		$('[id ~= prev-btn ]', self).click(function() {
-			
-		});
-
-		$.each([1, 2, 3, 4], function(undefined, i) {
-			$('[id ~= diagram-'+i+'-btn ]', self).click(function() {
-				$(document.body).setClass('at-diagram-'+i+'-view');
-				return false;
-			});
-
-			$('[id ~= close-btn ]', '[id ~= diagram-'+i+'-view ]').click(function() {
-				$(document.body).setClass('at-linear-system-config-view');
-			});
-		});
-
-		return $.extend({}, self, {});
-	};
-
-
-	return {
-		init: function() {
-			skewAngleView = SkewAngleView('#skew-angle-view');
-			otherSystemConfigView = SystemConfigView('#other-system-config-view');
-			linearSystemConfigView = SystemConfigView('#linear-system-config-view');
-		}
-	}
-};
-
-TVRO.page = TVRO.SystemPage();
-
-*/
