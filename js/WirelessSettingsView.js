@@ -7,7 +7,7 @@
     //  button tray
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
-      var confirmed = confirm('Are you sure you want to reset the ethernet settings?');
+      var confirmed = confirm('Are you sure you want to reset the wireless settings?');
       if (confirmed) TVRO.setWlanFactory().then(TVRO.reload);
     });
 
@@ -111,6 +111,7 @@
       ])
       .onClick(setMode)
       .build();
+
 
 
 
