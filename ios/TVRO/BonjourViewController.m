@@ -233,7 +233,10 @@
 }
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
-  //TODO: Connect to the Updates website
+    //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"www.kvhupdate.com/mobile/tvhub/v1"];
+    //WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"jxn.local/kvhupdate"];
+	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 #pragma mark - Keyboard notifications

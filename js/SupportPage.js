@@ -29,7 +29,7 @@ $(function() {
           window.location.hash = '';
         })
         .end()
-  ).reload();
+  );
 
 	var operationalLogView = TVRO.OperationalLogView(
 		$('.\\#operational-log-view')
@@ -120,7 +120,7 @@ $(function() {
       '/command-line': 'Command Line'
     }[hash]);
 
-    if (hash === '/system-info') systemInfoView.reload();
+    if (!hash || hash === '/system-info') systemInfoView.reload();
 
 		if (hash === '/command-line') commandLineView.startOutput();
 		else commandLineView.stopOutput();
