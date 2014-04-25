@@ -42,7 +42,7 @@
 
         jQ.toggleClass('$wlan-off', mode === 'OFF');
         jQ.toggleClass('$wlan-bridged', networkMode === 'BRIDGED');
-        jQ.toggleClass('$wlan-end-point', networkMode === 'END_POINT');
+        jQ.toggleClass('$wlan-end-point', networkMode === 'ENDPOINT');
         jQ.toggleClass('$wlan-static', networkMode === 'STATIC'); 
         jQ.toggleClass('$wlan-dynamic', networkMode === 'DYNAMIC');
         jQ.toggleClass('$wlan-sec-off', securityMode === 'OFF');

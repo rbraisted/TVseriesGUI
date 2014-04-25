@@ -3,7 +3,7 @@
 	<message error="0" name="get_wlan"/>
 	<mode>AP (Access Point)</mode><!-- OFF | AP (Access Point) | IF (Infrastructure) -->
   <ap_mode>
-    <mode>END_POINT</mode><!-- BRIDGED | END_POINT -->
+    <mode>ENDPOINT</mode><!-- BRIDGED | END_POINT -->
     <essid>ipacu</essid>
     <security>
       <mode>OFF</mode><!-- OFF | WPA_PSK -->
