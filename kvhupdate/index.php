@@ -31,7 +31,6 @@
 
     <script type="text/javascript" src="js/HeaderView.js"></script>
 
-
     <script type="text/javascript" src="js/ajaxfileupload.js"></script>
     <script type="text/javascript" src="js/UpdateView.js"></script>
     <script type="text/javascript" src="js/UpdatesPage.js"></script>
@@ -106,34 +105,15 @@
   </div>
 
   <div class="section device-version">
-    <div class="desktop-version #no-device-ver-label">
-      <div class="bg"></div>
-      <div class="label">My Computer</div>
-    </div>
-
     <div class="mobile-version #device-ver-label">
       <div class="bg"></div>
       <div class="label">On Device</div>
-      <div class="version connected-label">
+      <div class="version">
         Software Version
         <span class="#device-ver"></span>
-        ready to install
+        downloaded
       </div>
     </div>
-
-    <div class="install-btn #install-btn">
-      <input type="file" id="fileToUpload" name="fileToUpload" class="upload-btn #upload-btn" />
-    </div>
-    <div class="cta connected-label">
-      <span class="not-up-to-date-label">Install Update</span>
-      <span class="up-to-date-label">Latest Version installed</span>
-    </div>
-    <div class="cta not-connected-label">Not connected</div>
   </div>
 
-  <div class="section system-version #shell">
-    <div class="bg"></div>
-    
-    <div class="block-btn #hostname-btn #shell">Change Hostname</div>
-  </div>  
 </div>

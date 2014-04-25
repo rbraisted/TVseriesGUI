@@ -367,11 +367,4 @@
     }
   };
 
-  //  it's easier to just keep getting antenna_status here
-  //  we need it to be updated on all the main gui pages
-  setInterval(function() {
-    //  it's call(params, forceRecache)
-    TVRO.getAntennaStatus({}, 1);
-  }, 3000);
-
 }(window.TVRO);

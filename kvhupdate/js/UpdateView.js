@@ -44,9 +44,6 @@
 
     var onChange = function() {
       if (!jQ.hasClass('$connected')) return;
-
-      alert("made it!");
-
       
       if (TVRO.getShellMode()) {
         window.location = 'tvro://upload/' + update;
@@ -98,44 +95,16 @@
         var updateName = antUpdate ? update : 'Satellite Library';
         $('.\\#update-name', jQ).text(updateName);
 
-        jQ.toggleClass('$tech-mode', TVRO.getTechMode());
+        jQ.toggleClass('$antenna', antUpdate)
+          .toggleClass('$sat-library', !antUpdate);
 
-        var getSystemVersion = TVRO.getAntennaVersions().then(function(xml) {
-          var connectedAnt = $('au model', xml).text();
-          var connected = update === connectedAnt;
-          var systemVersion = $('current', xml).text();
-
-          jQ.removeClass('$antenna $sat-library $connected');
-
-          if (antUpdate) {
-            jQ.addClass('$antenna');
-            jQ.toggleClass('$connected', connected);
-            $('.\\#system-ver', jQ).text(systemVersion);
-          } else {
-            jQ.addClass('$sat-library $connected');
-            systemVersion = $('sat_list ver', xml).text();
-            $('.\\#system-ver', jQ).text(systemVersion);
-          }
-
-          if (jQ.hasClass('$connected')) return systemVersion;
-          else return -1;
-        });
-
-        var getPortalVersion = TVRO.getLatestSoftware(update).then(function(xml) {
+        TVRO.getLatestSoftware(update).then(function(xml) {
           var portalVersion = $('software_version', xml).text() || $('version', xml).text();
           $('.\\#portal-ver', jQ).text(portalVersion);
 
           jQ.removeClass('$not-available');
-          return portalVersion;
         }, function() {
           jQ.addClass('$not-available');
-          return -1;
-        });
-
-        Promise.all(getSystemVersion, getPortalVersion).then(function(versions) {
-          var systemVersion = versions[0];
-          var portalVersion = versions[1];
-          jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
         });
 
         TVRO.getDeviceVersions().then(function(deviceVersions) {

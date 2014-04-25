@@ -10,21 +10,13 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
 
-    <!-- for codekit, since we must include css in head or codekit live reload doesnt work -->
-    <? if (isset($wiz)): ?>
-      <link type="text/css" rel="stylesheet" href="css/test.css">
-    <? else: ?>
-      <link type="text/css" rel="stylesheet" href="css/updates.css">
-    <? endif; ?>
-
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-
     <script type="text/javascript" src="js/lodash.min.js"></script>
     <script src="/js/promise-3.2.0.js"></script>
-
     <script type="text/javascript" src="js/TVRO_.js"></script>
     <script type="text/javascript" src="js/Cookies.js"></script>
   </head>
+
   <body>
     <script type="text/javascript">
       TVRO.setShellMode(true);

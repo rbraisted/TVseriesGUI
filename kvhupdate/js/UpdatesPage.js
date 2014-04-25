@@ -1,10 +1,8 @@
 $(function() {
-  // var headerView = TVRO.HeaderView($('.\\#header-view'));
 
-  // setInterval(function() {
-  //   headerView.reload();
-  // }, 3000);
+  TVRO.debug = 2;
 
+  
   var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
     .setValues([
       'SatLibrary',
@@ -20,23 +18,8 @@ $(function() {
       var updateName = antUpdate ? update : 'Satellite Library';
       $('.\\#update-name', row).text(updateName);
 
-      //  get the system version (the currently installed version)
-      TVRO.getAntennaVersions().then(function(xml) {
-        var connectedAnt = $('au model', xml).text();
-        var connected = update === connectedAnt;
-        var systemVersion = $('current', xml).text();
-
-        if (antUpdate) {
-          row.addClass('$antenna');
-          row.toggle(techMode || connected);
-          row.toggleClass('$connected', connected);
-          $('.\\#system-ver', row).text(systemVersion);
-        } else {
-          row.addClass('$sat-library');
-          systemVersion = $('sat_list ver', xml).text();
-          $('.\\#system-ver', row).text(systemVersion);
-        }
-      });
+      row.toggleClass('$antenna', antUpdate)
+         .toggleClass('$sat-library', !antUpdate);
 
       //  get the portal version (latest/avail to download)
       TVRO.getLatestSoftware(update).then(function(xml) {
