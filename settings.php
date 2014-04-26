@@ -31,16 +31,6 @@
     <div class="back-btn #back-btn"></div>
   </div>
 
-  <div class="heading">Technician Mode</div>
-  <p>
-    Turn on Technician mode to view the software updates for all TracVision
-    system models. Keep Technician mode set to off for normal operation.
-  </p>
-  <div class="toggle-btn #tech-mode-btn">
-    <div class="on">On</div>
-    <div class="off">Off</div>
-  </div>
-
   <div class="heading">Demo Mode</div>
   <p>
     Turn on Demo mode to browse the capabilities of the web interface and the
@@ -69,6 +59,16 @@
   <div class="view-head">
     Advanced Settings
     <div class="back-btn #back-btn"></div>
+  </div>
+
+  <div class="heading">Technician Mode</div>
+  <p>
+    Turn on Technician mode to view the software updates for all TracVision
+    system models. Keep Technician mode set to off for normal operation.
+  </p>
+  <div class="toggle-btn #tech-mode-btn">
+    <div class="on">On</div>
+    <div class="off">Off</div>
   </div>
 
   <div class="heading">Sleep Mode</div>

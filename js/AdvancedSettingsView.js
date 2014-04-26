@@ -4,21 +4,11 @@
 	var AdvancedSettingsView = function(jQ) {
 		var self;
 
-		var reload = function() {
-			TVRO.getAntennaConfig().then(function(xml) {
-				var sleepModeOn = $('sleep', xml).text() === 'ON';
-				var sidelobeModeOn = $('sidelobe', xml).text() === 'ON';
-				sleepModeBtn.setOn(sleepModeOn);
-				sidelobeModeBtn.setOn(sidelobeModeOn);
-			});
-
-      // TVRO.getAntennaVersions().then(function(xml) {
-      //   var antModel = $('au model', xml).text();
-      //   //  if match RV, it's a vehicle
-      //   var vesselType = /RV/.exec(antModel) ? 'vehicle' : 'vessel';  
-      //   $('.\\#vessel-type', jQ).text(vesselType);
-      // });
-		};
+    var techModeBtn = TVRO.ToggleBtn(jQ.find('.\\#tech-mode-btn'))
+      .onClick(function(techMode) {
+        TVRO.setTechMode(techMode);
+        if (TVRO.getShellMode()) window.location = 'tvro://set-tech-mode/' + techMode;
+      });
 
     var setMode = function(mode) {
       return function(isEnabled) {
@@ -33,6 +23,17 @@
 
 		var sidelobeModeBtn = TVRO.ToggleBtn(jQ.find('.\\#sidelobe-mode-btn'))
 			.onClick(setMode('sidelobe'));
+
+    var reload = function() {
+      techModeBtn.setOn(TVRO.getTechMode());
+      
+      TVRO.getAntennaConfig().then(function(xml) {
+        var sleepModeOn = $('sleep', xml).text() === 'ON';
+        var sidelobeModeOn = $('sidelobe', xml).text() === 'ON';
+        sleepModeBtn.setOn(sleepModeOn);
+        sidelobeModeBtn.setOn(sidelobeModeOn);
+      });
+    };
 
 		return self = {
       reload: reload
