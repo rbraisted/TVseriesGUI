@@ -4,6 +4,8 @@
 #import "BonjourTableViewCell.h"
 #import <arpa/inet.h>
 
+#import "Constants.h"
+
 
 @interface BonjourViewController ()
 
@@ -234,7 +236,7 @@
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
     //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
-    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"www.kvhupdate.com/mobile/tvhub/v1"];
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
     //WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"jxn.local/kvhupdate"];
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }

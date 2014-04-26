@@ -372,7 +372,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					E9B97C661829A14A007AA4A3 = {
-						DevelopmentTeam = QL999G4CE6;
+						DevelopmentTeam = YYEW9VQ5XU;
 					};
 					E9B97C811829A14A007AA4A3 = {
 						TestTargetID = E9B97C661829A14A007AA4A3;
