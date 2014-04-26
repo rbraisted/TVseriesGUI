@@ -5,7 +5,8 @@
 @interface UpdatesManager : NSObject <NSURLConnectionDelegate> {
 	NSURLConnection* connection;
 	NSMutableData* fileData;
-	UIAlertView* alertView;
+  long long totalFileSize;
+	UIAlertView* downloadAlertView;
 	
 	NSString* updateType;
 	NSString* portalVersion;

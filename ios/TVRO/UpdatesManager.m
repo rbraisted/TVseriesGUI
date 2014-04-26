@@ -24,7 +24,8 @@
 	if (![defaults stringForKey:@"rv1-device-version"]) [defaults setValue:@"" forKey:@"rv1-device-version"];
 	
 	fileData = [[NSMutableData alloc] init];
-	alertView = [[UIAlertView alloc] initWithTitle:@"Downloading" message:@"Please wait!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+  
+	downloadAlertView = [[UIAlertView alloc] initWithTitle:@"Downloading" message:@"Please wait!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
 	
 	return self;
 }
@@ -45,7 +46,8 @@
 	connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:portalUrl] delegate:self];
 	[connection start];
 	
-	[alertView show];
+  [downloadAlertView setMessage:@"Please wait!"];
+	[downloadAlertView show];
 }
 
 - (void)cancelDownload {
@@ -124,11 +126,18 @@
 
 - (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response {
 	NSLog(@"connection:%@ didReceiveResponse:%@", _connection, response);
+	totalFileSize = [[NSNumber numberWithLongLong:[response expectedContentLength]] longLongValue];
 }
 
 - (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data {
 	NSLog(@"connection:%@ didReceiveData:%d", _connection, [data length]);
   [fileData appendData:data];
+  
+  NSNumber *resourceLength = [NSNumber numberWithUnsignedInteger:[fileData length]];
+  NSNumber *progress = [NSNumber numberWithFloat:([resourceLength floatValue] / totalFileSize )];
+  //    progressView.progress = [progress floatValue];
+	NSString* progressString = [NSString stringWithFormat:@"Please wait...\n%.0f%%", [progress floatValue]*100];
+	[downloadAlertView setMessage:progressString];
 }
 
 - (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)error {
@@ -143,7 +152,7 @@
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, updateType, fileName];
 		
 	[fileData writeToFile:filePath atomically:YES];
-  [alertView dismissWithClickedButtonIndex:0 animated:YES];
+  [downloadAlertView dismissWithClickedButtonIndex:0 animated:YES];
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setValue:portalVersion forKey:[NSString stringWithFormat:@"%@-device-version", updateType]];
@@ -157,8 +166,13 @@
 
 #pragma mark - UIAlertViewDelegate protocol methods
 
-- (void)alertView:(UIAlertView *)_alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (alertView == downloadAlertView) {
+    NSLog(@"!!@@!@");
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+		[connection cancel];
+		[fileData setLength:0];
+  }
 }
 
 @end
