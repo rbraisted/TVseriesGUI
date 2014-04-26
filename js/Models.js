@@ -330,6 +330,30 @@
     });
   };
 
+  TVRO.getPowerInfo = function() {
+    return TVRO.getPower().then(function(xml) {
+      var powerInfo = {};
+      //  hub
+      powerInfo.hubInputSupplyV = $('acu inputsupplyv', xml).text();
+      powerInfo.hubInput42V = $('acu input42v', xml).text();
+      powerInfo.hubEight = $('acu eight', xml).text();
+      powerInfo.hubFive = $('acu five', xml).text();
+      powerInfo.hubThreeThree = $('acu three_three', xml).text();
+      powerInfo.hubOutput42V = $('acu output42v', xml).text();
+      powerInfo.hubOutput24V = $('acu output24v', xml).text();
+      powerInfo.hubTempCelsius = $('acu temp_celsius', xml).text();
+      //  antenna
+      powerInfo.antDc = $('au dc', xml).text();
+      powerInfo.antMotor = $('au motor', xml).text();
+      powerInfo.antEight = $('au eight', xml).text();
+      powerInfo.antFive = $('au five', xml).text();
+      powerInfo.antLnb = $('au lnb', xml).text();
+      return powerInfo;
+    });
+  };
+
+
+
 
   TVRO.getGroupMode = function() {
     return TVRO.getInstalledGroup().then(function(group) {

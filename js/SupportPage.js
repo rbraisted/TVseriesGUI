@@ -76,34 +76,63 @@ $(function() {
   var emailBtn = $('.\\#email-support-btn').click(function() {
     var email = $(this).text();
 
-    TVRO.getSystemInfo().then(function(systemInfo) {
+    Promise.all(
+      TVRO.getSystemInfo(),
+      TVRO.getPowerInfo()
+    ).then(function(info) {
+      var systemInfo = info[0];
+      var powerInfo = info[1];
+
+      //  appears in subject field, all on a single line
       var subject =
         'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
         ' Antenna Unit S/N: ' + systemInfo.antSn +
         ' Date/Time: ' + systemInfo.dateTime;
 
+      //  appears in email body, newlines
+      //  the idea here is to match this to the data displayed in SystemInfoView
       var body =
         'TV-Hub' +
-        '\nS/N: ' + systemInfo.hubSn +
-        '\nDate/Time: ' + systemInfo.dateTime +
-        '\nVersion: ' + systemInfo.hubVer +
-        '\nWeb UI Version: ' + systemInfo.webUIVersion +
-        '\nSatellite Library Version: ' + systemInfo.satVer +
-        '\nSatellite Service: ' + systemInfo.service +
-        '\nSupport IP: ' + systemInfo.gprsIp +
-        '\nDiSEqC Version: ' + systemInfo.diseqcVer +
-        '\nIP Autoswitch Version: ' + systemInfo.ipautoswVer +
+        '\n S/N: ' + systemInfo.hubSn +
+        '\n Date/Time: ' + systemInfo.dateTime +
+        '\n Version: ' + systemInfo.hubVer +
+        '\n Web UI Version: ' + systemInfo.webUIVersion +
+        '\n Satellite Library Version: ' + systemInfo.satVer +
+        '\n Satellite Service: ' + systemInfo.service +
+        '\n Support IP: ' + systemInfo.gprsIp +
+        '\n DiSEqC Version: ' + systemInfo.diseqcVer +
+        '\n IP Autoswitch Version: ' + systemInfo.ipautoswVer +
+
+        '\n' +
+        '\nTV-Hub Power' + 
+        '\n Input Supply Voltage 15 VDC' + powerInfo.hubInputSupplyV +
+        '\n 42 VDC Input' + powerInfo.hubInput42V +
+        '\n 8 VDC' + powerInfo.hubEight +
+        '\n 5 VDC' + powerInfo.hubFive +
+        '\n 3.3 VDC' + powerInfo.hubThreeThree +
+        '\n 42 VDC Output' + powerInfo.hubOutput42V +
+        '\n 24 VDC Output' + powerInfo.hubOutput24V +
+        '\n Temperature (Celsius)' + powerInfo.hubTempCelsius +
+
         '\n' +
         '\nAntenna Unit' +
-        '\n Model: ' + systemInfo.antModel +
-        '\n S/N: ' + systemInfo.antSn +
-        '\n Main Version: ' + systemInfo.antVer +
-        '\n RF Version: ' + systemInfo.rfVer +
-        '\n FPGA Version: ' + systemInfo.fpgaVer +
-        '\n AZ/EL Version: ' + systemInfo.azVer +
-        '\n SKEW Version: ' + systemInfo.skewVer +
-        '\n LNB Type: ' + systemInfo.lnbName +
-        '\n LNB Version: ' + systemInfo.lnbVer;
+        '\n Model: ' + systemInfo.antModel +
+        '\n S/N: ' + systemInfo.antSn +
+        '\n Main Version: ' + systemInfo.antVer +
+        '\n RF Version: ' + systemInfo.rfVer +
+        '\n FPGA Version: ' + systemInfo.fpgaVer +
+        '\n AZ/EL Version: ' + systemInfo.azVer +
+        '\n SKEW Version: ' + systemInfo.skewVer +
+        '\n LNB Type: ' + systemInfo.lnbName +
+        '\n LNB Version: ' + systemInfo.lnbVer +
+
+        '\n' +
+        '\nAntenna Power' + 
+        '\n Main 42 VDC' + powerInfo.antDc +
+        '\n Motor 32 VDC' + powerInfo.antMotor +
+        '\n 8 VDC' + powerInfo.antEight +
+        '\n 5 VDC' + powerInfo.antFive +
+        '\n LNB 13/18 VDC' + powerInfo.antLnb;
 
       window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + encode(body);
     });
