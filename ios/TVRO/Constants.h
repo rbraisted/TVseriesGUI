@@ -19,7 +19,7 @@
 #define kBonjourServiceType     @"_tvro-xml._tcp."
 #define kDefaultHostname        @"tvhub"
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
-#define kWebSvcPortal           @"http://wss.kvhupdate.com/mobile/tvhub/v1"
+#define kWebSvcPortal           @"www.kvhupdate.com/mobile/tvhub/v1"
 
 /*
 #define kBonjourEnabled         TRUE
@@ -54,7 +54,7 @@
 #define kBonjourServiceType     @"_tvro-xml._tcp."
 #define kDefaultHostname        @"172.16.223.92"
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
-#define kWebSvcPortal           @"http://wss.kvhupdate.com/mobile/tvhub/v1"
+#define kWebSvcPortal           @"www.kvhupdate.com/mobile/tvhub/v1"
 
 /*
 #define kBonjourEnabled         TRUE
@@ -91,7 +91,7 @@
 #define kBonjourServiceType     @"_afpovertcp._tcp."
 #define kDefaultHostname        @"199.244.84.92"
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
-#define kWebSvcPortal           @"jxn.local/kvhupdate"
+#define kWebSvcPortal           @"www.kvhupdate.com/mobile/tvhub/v1"
 
 /*
 #define kBonjourEnabled         TRUE

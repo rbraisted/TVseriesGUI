@@ -63,12 +63,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //get the default host name (Either tvhub or the last host name that the user connected to)
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"default-host"] != nil)
-    {
-        [self.textField setText:[defaults objectForKey:@"default-host"]];
-    }
+  //get the default host name (Either tvhub or the last host name that the user connected to)
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if ([defaults objectForKey:@"default-host"] != nil) {
+    [self.textField setText:[defaults objectForKey:@"default-host"]];
+  }
     
 	[self resetBonjourHostList];
 }
@@ -237,7 +236,6 @@
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
     //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
-    //WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"jxn.local/kvhupdate"];
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 

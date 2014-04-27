@@ -108,11 +108,12 @@
   
   // Check to see if the default host name has been set to the current connected host
   // if not then set the user defaults host name so it can be displayed on Bonjour view
-  if (![hostName isEqualToString:[defaults objectForKey:@"default-host"]]) {
+  NSString* defaultHostname = [defaults objectForKey:@"default-host"];
+  if (![hostName isEqualToString:defaultHostname] && ![hostName isEqualToString:kWebSvcPortal]) {
     [defaults setObject:hostName forKey:@"default-host"];
     [defaults synchronize];
   }
-  
+
 	NSString* jsString = [NSString stringWithFormat:@"%@%@", demoModeString, techModeString];
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
 
