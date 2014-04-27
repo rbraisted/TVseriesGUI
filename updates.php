@@ -67,7 +67,7 @@
     <div class="mobile-version #device-ver-label">
       <div class="bg"></div>
       <div class="label">On Device</div>
-      <div class="version connected-label">
+      <div class="version">
         Software Version
         <span class="#device-ver"></span>
         ready to install

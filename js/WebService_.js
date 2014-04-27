@@ -346,8 +346,8 @@
   };
 
   TVRO.setDeviceVersions = setDeviceVersions;
-  TVRO.getDeviceVersions = function() {
-    if (cache['get_device_versions']) {
+  TVRO.getDeviceVersions = function(recache) {
+    if (cache['get_device_versions'] && !recache) {
       return cache['get_device_versions'];
     } else {
       if (TVRO.getShellMode()) window.location = 'tvro://get-device-versions';

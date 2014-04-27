@@ -70,8 +70,9 @@ $(function() {
     
     //  so that device versions can be updated
     //  after the file has been downloaded in to the shell
-    if (TVRO.getShellMode())
+    if (TVRO.getShellMode()) {
       menuTableView.build();
+    }
 
     if (hash) {
       var update = hash.substr(1);

@@ -37,7 +37,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+  [super didReceiveMemoryWarning];
 }
 
 #pragma mark - UIWebViewDelegate protocol methods
@@ -61,24 +61,22 @@
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
 	if ([request.URL.scheme isEqualToString:@"tvro"]){
-        NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
-        
-        [self handleCustomURL:request.URL];
-        
-        return false;
+      NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
+      [self handleCustomURL:request.URL];
+      return false;
 
         
-    }else if ([[request.URL relativeString] isEqualToString:@"about:blank"]){
-        //were trying to go to about:blank for some reason lets negate that
-        NSLog(@"%@", @"Got an about:blank request.");
-        [timeoutTimer invalidate];
-        return false;
+  } else if ([[request.URL relativeString] isEqualToString:@"about:blank"]){
+    //	were trying to go to about:blank for some reason lets negate that
+    NSLog(@"%@", @"Got an about:blank request.");
+    [timeoutTimer invalidate];
+    return false;
         
     
 	//	check if it's coming from our bdu hostname
 	//	if not, it's probably an external link and we
 	//	should open it in safari
-	}else if (![hostName isEqualToString:_hostName]){
+	} else if (![hostName isEqualToString:_hostName]){
 		NSLog(@"  ![hostName isEqualToString:_hostName]");
 //		[[UIApplication sharedApplication] openURL:request.URL];
 //		return false;
@@ -86,7 +84,7 @@
 	
         
 	//	at this point it's probably just another path in our app
-	}else{
+	} else {
 		NSLog(@"  } else {");
 		return true;
 	}
@@ -100,21 +98,20 @@
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidFinishLoad");
   
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
 	NSString* demoMode = [defaults boolForKey:@"demo-mode"] ? @"true" : @"false";
-    NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
+  NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
   
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
-    NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
-    
-    // Check to see if the default host name has been set to the current connected host
-    // if not then set the user defaults host name so it can be displayed on Bonjour view
-    if(![hostName isEqualToString:[defaults objectForKey:@"default-host"]])
-    {
-        [defaults setObject:hostName forKey:@"default-host"];
-        [defaults synchronize];
-    }
+  NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+  
+  // Check to see if the default host name has been set to the current connected host
+  // if not then set the user defaults host name so it can be displayed on Bonjour view
+  if (![hostName isEqualToString:[defaults objectForKey:@"default-host"]]) {
+    [defaults setObject:hostName forKey:@"default-host"];
+    [defaults synchronize];
+  }
   
 	NSString* jsString = [NSString stringWithFormat:@"%@%@", demoModeString, techModeString];
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
@@ -132,8 +129,9 @@
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForUpdateType:(NSString *)updateType {
 	NSLog(@"updatesManager downloadCompletedForUpdateType:%@", updateType);
-  [self setDeviceVersions];
-	[webView stringByEvaluatingJavaScriptFromString:@"TVRO.reload();"];
+//  [self setDeviceVersions];
+  [webView reload];
+//	[webView stringByEvaluatingJavaScriptFromString:@"TVRO.reload();"];
 }
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForUpdateType:(NSString *)updateType {
