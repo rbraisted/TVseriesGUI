@@ -13,7 +13,7 @@
         $('.\\#ant-state', jQ).text(antState);
 
         $('.\\#ant-bars', jQ)
-          .removeClass(['$0', '$1', '$2', '$3', '$4', '$5'])
+          .removeClass('$0 $1 $2 $3 $4 $5')
           .addClass(antBars);
 
         return TVRO.getInstalledSat();

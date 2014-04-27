@@ -348,7 +348,6 @@ a {
   width: auto; }
 .sidebar .sat-status {
   bottom: 16px;
-  color: #6784ad;
   position: absolute; }
 .sidebar .sat-signal {
   background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;

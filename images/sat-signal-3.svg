@@ -19,23 +19,8 @@
 	</clipPath>
 	
 	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="-2848.062" y1="1967.7891" x2="-2847.062" y2="1967.7891" gradientTransform="matrix(0 -142.1564 -142.1564 0 279813.0938 -404699.3125)">
-		<stop  offset="0" style="stop-color:#000000"/>
-		<stop  offset="0.0019" style="stop-color:#131314"/>
-		<stop  offset="0.0121" style="stop-color:#34333C"/>
-		<stop  offset="0.0237" style="stop-color:#373847"/>
-		<stop  offset="0.0361" style="stop-color:#35374D"/>
-		<stop  offset="0.0497" style="stop-color:#2F3451"/>
-		<stop  offset="0.0646" style="stop-color:#283153"/>
-		<stop  offset="0.0815" style="stop-color:#202E54"/>
-		<stop  offset="0.1012" style="stop-color:#182B55"/>
-		<stop  offset="0.1255" style="stop-color:#102956"/>
-		<stop  offset="0.1597" style="stop-color:#0B2856"/>
-		<stop  offset="0.2546" style="stop-color:#0A2856"/>
-		<stop  offset="0.3834" style="stop-color:#0E2B59"/>
-		<stop  offset="0.5286" style="stop-color:#183363"/>
-		<stop  offset="0.6818" style="stop-color:#294275"/>
-		<stop  offset="0.8405" style="stop-color:#3E5890"/>
-		<stop  offset="1" style="stop-color:#5A76BA"/>
+    <stop  offset="0" style="stop-color:#4f7abd"/>
+    <stop  offset="1" style="stop-color:#4f7abd"/>
 	</linearGradient>
 	<!-- <rect y="0.001" clip-path="url(#SVGID_2_)" fill="url(#SVGID_3_)" width="158.697" height="156.637"/> -->
 	<rect y="0.001" clip-path="url(#SVGID_2_)" fill="#4c5269" width="158.697" height="156.637"/>
