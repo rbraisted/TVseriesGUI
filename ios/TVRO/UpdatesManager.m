@@ -26,7 +26,8 @@
 	fileData = [[NSMutableData alloc] init];
   
 	downloadAlertView = [[UIAlertView alloc] initWithTitle:@"Downloading" message:@"Please wait!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-	
+	uploadAlertView = [[UIAlertView alloc] initWithTitle:@"Uploading" message:@"Please wait!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+
 	return self;
 }
 
@@ -43,6 +44,7 @@
 	updateType = [_updateType lowercaseString];
 	portalVersion = _portalVersion;
 	
+  uploading = false;
 	connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:portalUrl] delegate:self];
 	[connection start];
 	
@@ -97,7 +99,10 @@
   [postData appendData:fileData];
   [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [request setHTTPBody:postData];
-	
+  
+  [uploadAlertView show];
+  
+  uploading = true;
 	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[connection start];
 }
@@ -133,10 +138,9 @@
 	NSLog(@"connection:%@ didReceiveData:%d", _connection, [data length]);
   [fileData appendData:data];
   
-  NSNumber *resourceLength = [NSNumber numberWithUnsignedInteger:[fileData length]];
-  NSNumber *progress = [NSNumber numberWithFloat:([resourceLength floatValue] / totalFileSize )];
-  //    progressView.progress = [progress floatValue];
-	NSString* progressString = [NSString stringWithFormat:@"Please wait...\n%.0f%%", [progress floatValue]*100];
+  NSNumber* resourceLength = [NSNumber numberWithUnsignedInteger:[fileData length]];
+  NSNumber* progress = [NSNumber numberWithFloat:([resourceLength floatValue] / totalFileSize )];
+	NSString* progressString = [NSString stringWithFormat:@"Please wait...\n%.0f%%", [progress floatValue] * 100];
 	[downloadAlertView setMessage:progressString];
 }
 
@@ -146,29 +150,37 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
 	NSLog(@"connectionDidFinishLoading:%@", _connection);
-	NSString* fileName = connection.currentRequest.URL.lastPathComponent;
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, updateType, fileName];
+  if (uploading) {
+    [uploadAlertView dismissWithClickedButtonIndex:0 animated:YES];
+
+    if (delegate)
+      if ([delegate respondsToSelector:@selector(updatesManager:uploadCompletedForUpdateType:)])
+        [delegate updatesManager:self uploadCompletedForUpdateType:updateType];
+
+  } else {
+    NSString* fileName = connection.currentRequest.URL.lastPathComponent;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, updateType, fileName];
 		
-	[fileData writeToFile:filePath atomically:YES];
-  [downloadAlertView dismissWithClickedButtonIndex:0 animated:YES];
-	
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setValue:portalVersion forKey:[NSString stringWithFormat:@"%@-device-version", updateType]];
-	[defaults setValue:filePath forKey:[NSString stringWithFormat:@"%@-file-path", updateType]];
-	[defaults synchronize];
-	
-	if (delegate)
-		if ([delegate respondsToSelector:@selector(updatesManager:downloadCompletedForUpdateType:)])
-			[delegate updatesManager:self downloadCompletedForUpdateType:updateType];
+    [fileData writeToFile:filePath atomically:YES];
+    [downloadAlertView dismissWithClickedButtonIndex:0 animated:YES];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:portalVersion forKey:[NSString stringWithFormat:@"%@-device-version", updateType]];
+    [defaults setValue:filePath forKey:[NSString stringWithFormat:@"%@-file-path", updateType]];
+    [defaults synchronize];
+    
+    if (delegate)
+      if ([delegate respondsToSelector:@selector(updatesManager:downloadCompletedForUpdateType:)])
+        [delegate updatesManager:self downloadCompletedForUpdateType:updateType];
+  }
 }
 
 #pragma mark - UIAlertViewDelegate protocol methods
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (alertView == downloadAlertView) {
-    NSLog(@"!!@@!@");
+	if (alertView == downloadAlertView || alertView == uploadAlertView) {
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 		[connection cancel];
 		[fileData setLength:0];

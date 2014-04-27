@@ -27,6 +27,14 @@
       });
     });
 
+    var uploadBtn = $('.\\#upload-btn', jQ).click(function(event) {
+      if (TVRO.getShellMode()) {
+        event.preventDefault();
+        window.location = 'tvro://upload/' + update;
+      }
+    });
+
+
     var clearInput = function() {
       $('#fileToUpload').wrap('<form>').closest('form').get(0).reset();
       $('#fileToUpload').unwrap();
@@ -36,45 +44,40 @@
     var onChange = function() {
       if (!jQ.hasClass('$connected')) return;
 
-      if (TVRO.getShellMode()) {
-        window.location = 'tvro://upload/' + update;
-
-      } else {
-        $.ajaxFileUpload({
-          url: 'xmlservices.php/set_config_file',
-          secureuri: false,
-          fileElementId: 'fileToUpload',
-          dataType: 'xml',
-          success: function(xml) {
-            if (TVRO.debug) {
-              console.log('~ SET_CONFIG_FILE');
-              console.log($(xml).get(0));
-            }
-
-            clearInput();
-
-            var filename = $('file_name', xml).text();
-
-            var confirmed = filename ? confirm('Do you want to install this update?') : false;
-            if (confirmed) {
-              TVRO.installSoftware({
-                install: 'Y',
-                filename: filename
-              }).then(TVRO.reload);
-            }
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            clearInput();
-            if (TVRO.debug) {
-              console.log('\n~ ! ~');
-              console.log(jqXHR);
-              console.log(textStatus);
-              console.log(errorThrown);
-              console.log('\n');
-            }
+      $.ajaxFileUpload({
+        url: 'xmlservices.php/set_config_file',
+        secureuri: false,
+        fileElementId: 'fileToUpload',
+        dataType: 'xml',
+        success: function(xml) {
+          if (TVRO.debug) {
+            console.log('~ SET_CONFIG_FILE');
+            console.log($(xml).get(0));
           }
-        });
-      }
+
+          clearInput();
+
+          var filename = $('file_name', xml).text();
+
+          var confirmed = filename ? confirm('Do you want to install this update?') : false;
+          if (confirmed) {
+            TVRO.installSoftware({
+              install: 'Y',
+              filename: filename
+            }).then(TVRO.reload);
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          clearInput();
+          if (TVRO.debug) {
+            console.log('\n~ ! ~');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+            console.log('\n');
+          }
+        }
+      });
     };
 
     $('#fileToUpload').change(onChange);

@@ -216,7 +216,9 @@
   //    we do this for the same reason as the download - some devices can't
   //    search/find and upload/install the file from the device's file system
     NSString* updateType = [NSString stringWithString:pathComponents[1]];
-    [updatesManager startUploadForUpdateType:updateType uploadUrl:[NSURL URLWithString:@"/xmlservices.php/upload_software"]];
+    NSString* uploadURLString = [NSString stringWithFormat:@"http://%@/xmlservices.php/set_config_file", hostName];
+    NSURL* uploadURL = [NSURL URLWithString:uploadURLString];
+    [updatesManager startUploadForUpdateType:updateType uploadUrl:uploadURL];
   }
     
   //invalidate timer otherwise we will be kicked back to the bonjour

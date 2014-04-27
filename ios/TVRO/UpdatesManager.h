@@ -6,11 +6,16 @@
 	NSURLConnection* connection;
 	NSMutableData* fileData;
   long long totalFileSize;
-	UIAlertView* downloadAlertView;
+  BOOL uploading;
 	
 	NSString* updateType;
 	NSString* portalVersion;
 	id delegate;
+  
+
+  
+  UIAlertView* downloadAlertView;
+  UIAlertView* uploadAlertView;
 }
 
 - (id)initWithDelegate:(id<UpdatesManagerDelegate>)_delegate;
