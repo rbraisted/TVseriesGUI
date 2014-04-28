@@ -604,7 +604,7 @@ body[class=''] .\#service-provider-view,
   }
 
   @include breakpoint($desktop) {
-    width: 800px - $sidebar-width;
+    width: 800px - $sidebar-width - 10px;
 
     .install-col {  width: 11%; }
     .name-col {   width: 29%; }
@@ -692,7 +692,7 @@ body[class=''] .\#service-provider-view,
         left: auto;
         position: absolute;
         right: 0;
-        width: calc(100%  - #{$sidebar-width} - 5px);
+        width: calc(100%  - #{$sidebar-width} - 10px);
       }
     }
 
@@ -706,9 +706,18 @@ body[class=''] .\#service-provider-view,
     .sat-table {
       overflow: auto;
       max-height: 600px - $big-bump;
-    }    
+    }
   }
 }
+
+.group-sat-table {
+  width: 100%;
+  .name-col { width: 34%; }
+  .orb-slot-col { width: 33%; }
+  .region-col { display: inline-block; width: 33%; }
+}
+
+
 
 
 @mixin label {
@@ -1003,7 +1012,9 @@ body[class=''] .\#service-provider-view,
   }
 
   .\/regions .\#region-table-view,
-  .\/regions\/region .\#single-sat-table-view,
+  .\/regions\/region .\#single-sat-table-view {
+    display: block;
+  }
 
   //  group mode
   .\/groups,

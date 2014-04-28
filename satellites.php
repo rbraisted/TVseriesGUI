@@ -430,7 +430,7 @@ and also .#group-table-view (group mode)
     <span>Satellites</span>
     <div class="back-btn #back-btn"></div>
   </div>
-  <div class="sat-table #table-view">
+  <div class="sat-table single-sat-table #table-view">
     <div class="table-head #table-head">
       <div class="table-col install-col">Installed</div><!--
      --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
@@ -543,7 +543,7 @@ and also .#group-table-view (group mode)
       <span>Satellites</span>
       <div class="back-btn #back-btn"></div>
     </div>
-    <div class="sat-table #table-view">
+    <div class="sat-table group-sat-table #table-view">
       <div class="table-head #table-head">
         <div class="table-col install-col">Installed</div><!--
      --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--

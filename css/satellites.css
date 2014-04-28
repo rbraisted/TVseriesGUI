@@ -1022,6 +1022,27 @@ a {
   .popup .sat-table .table-row {
     cursor: pointer; }
 
+.group-sat-table .install-col {
+  display: none; }
+@media screen and (min-width: 881px) {
+  .group-sat-table .name-col {
+    width: 27%; }
+  .group-sat-table .orb-slot-col {
+    width: 19%; }
+  .group-sat-table .region-col {
+    width: 27%; }
+  .group-sat-table .fav-col {
+    width: 27%; } }
+@media screen and (max-width: 880px) {
+  .group-sat-table .name-col {
+    width: 30%; }
+  .group-sat-table .orb-slot-col {
+    width: 20%; }
+  .group-sat-table .region-col {
+    width: 20%; }
+  .group-sat-table .fav-col {
+    width: 29%; } }
+
 @media screen and (min-width: 881px) {
   .group-info .name-block {
     display: none; }

@@ -218,27 +218,18 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
       <span>Satellites</span>
       <div class="back-btn #back-btn"></div>
     </div>
-    <div class="sat-table #table-view">
+    <div class="sat-table group-sat-table #table-view">
       <div class="table-head #table-head">
-        <div class="table-col install-col">Installed</div><!--
-     --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
+        <div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
      --><div class="table-col orb-slot-col sort-btn #sort-btn #lon-btn">Orbital Slot</div><!--
-     --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div><!--
-     --><div class="table-col fav-col sort-btn #sort-btn #fav-btn">Favorites</div>
+     --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div>
       </div>
       <div class="table-row #table-row">
-        <div class="table-col install-col">
-          <div class="install-btn #install-btn"></div>
-        </div><!--
-     --><div class="table-col name-col">
+        <div class="table-col name-col">
           <div class="#sat-name"></div>
         </div><!--
      --><div class="table-col orb-slot-col #sat-longitude"></div><!--
-     --><div class="table-col region-col #sat-region"></div><!--
-     --><div class="table-col fav-col">
-          <div class="fav-btn #fav-btn"></div>
-          <div class="info-btn #info-btn"></div>
-        </div>
+     --><div class="table-col region-col #sat-region"></div>
       </div>
     </div>
   </div>

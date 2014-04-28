@@ -1408,7 +1408,7 @@ body[class=''] .\#service-provider-view,
     text-align: center; }
   @media screen and (min-width: 881px) {
     .sat-table {
-      width: 560px; }
+      width: 550px; }
       .sat-table .install-col {
         width: 11%; }
       .sat-table .name-col {
@@ -1498,7 +1498,7 @@ body[class=''] .\#service-provider-view,
       left: auto;
       position: absolute;
       right: 0;
-      width: calc(100%  - 240px - 5px); }
+      width: calc(100%  - 240px - 10px); }
   .single-view .region-table, .single-view .group-table,
   .single-view .single-sat-table,
   .single-view .group-table,
@@ -1513,6 +1513,16 @@ body[class=''] .\#service-provider-view,
   .group-view .sat-table {
     overflow: auto;
     max-height: 554px; } }
+
+.group-sat-table {
+  width: 100%; }
+  .group-sat-table .name-col {
+    width: 34%; }
+  .group-sat-table .orb-slot-col {
+    width: 33%; }
+  .group-sat-table .region-col {
+    display: inline-block;
+    width: 33%; }
 
 @media screen and (min-width: 881px) {
   .group-info .name-block {
@@ -1801,8 +1811,10 @@ body[class=''] .\#service-provider-view,
   .\/regions\/region .\#single-view {
     display: block; }
 
-  .\/regions .\#region-table-view .\#group-view,
-  .\/regions\/region .\#single-sat-table-view .\#group-view,
+  .\/regions .\#region-table-view,
+  .\/regions\/region .\#single-sat-table-view {
+    display: block; }
+
   .\/groups .\#group-view,
   .\/groups\/group .\#group-view,
   .\/groups\/group\/edit .\#group-view,

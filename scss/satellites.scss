@@ -1,563 +1,579 @@
 @import "base.scss";
 
 .sat-icon {
-	@include bgimg('sat-icon-white');
-	display: inline-block;
-	margin-right: 5px;
-	vertical-align: text-top;
+  @include bgimg('sat-icon-white');
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: text-top;
 }
 
 .region-table {
-	@include blue-table;
+  @include blue-table;
 
-	.table-row {
-		cursor: pointer;
-	}
+  .table-row {
+    cursor: pointer;
+  }
 
-	@include breakpoint($mobile) {
-		.table-row.\$selected {
-			background-color: $light-blue;
-		}
+  @include breakpoint($mobile) {
+    .table-row.\$selected {
+      background-color: $light-blue;
+    }
 
-		.table-row {
-			@include bgimg('right-icon-blue', right 15px center, $fine-icon);
-		}
-	}
+    .table-row {
+      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+    }
+  }
 }
 
 .group-table {
-	@extend .region-table;
+  @extend .region-table;
 
-	.table-row {
-		.install-btn {
-			@include bgimg('radio-unchecked');
-			display: inline-block;
-			padding: 0;
-			margin-left: 15px;
-		}
+  .table-row {
+    .install-btn {
+      @include bgimg('radio-unchecked');
+      display: inline-block;
+      padding: 0;
+      margin-left: 15px;
+    }
 
-		&.\$installed .install-btn {
-			@include bgimg('radio-checked');
-		}
-	}
+    &.\$installed .install-btn {
+      @include bgimg('radio-checked');
+    }
+  }
 }
 
-//	sat table
+//  sat table
 ////////////////////////////////////////////////////////////////////////////////
 
 .sat-table {
-	@include alt-table;
-	overflow: auto;
+  @include alt-table;
+  overflow: auto;
 
-	.table-head {
-		background-color: $light-blue;
-		font-size: $fine-font;
-		min-height: $lil-bump;
+  .table-head {
+    background-color: $light-blue;
+    font-size: $fine-font;
+    min-height: $lil-bump;
 
-		.table-col { padding: 7px 15px; }
-		.sort-btn { cursor: pointer; }
-		.sort-btn.\$ascending { @include bgimg('up-icon-white'); }
-		.sort-btn.\$descending { @include bgimg('down-icon-white'); }
+    .table-col { padding: 7px 15px; }
+    .sort-btn { cursor: pointer; }
+    .sort-btn.\$ascending { @include bgimg('up-icon-white'); }
+    .sort-btn.\$descending { @include bgimg('down-icon-white'); }
 
-		.sort-btn.\$ascending,
-		.sort-btn.\$descending {
-			background-color: $bright-blue;
-			background-position: right 15px center;
-			background-size: 9px;
-		}
-	}
+    .sort-btn.\$ascending,
+    .sort-btn.\$descending {
+      background-color: $bright-blue;
+      background-position: right 15px center;
+      background-size: 9px;
+    }
+  }
 
-	//	for the fixed header
-	.table-head+.table-row {
-		margin-top: $lil-bump;
-	}
+  //  for the fixed header
+  .table-head+.table-row {
+    margin-top: $lil-bump;
+  }
 
-	.table-row {
-		font-size: $small-font;
+  .table-row {
+    font-size: $small-font;
 
-		.install-btn {
-			@include bgimg('radio-unchecked');
-			cursor: pointer;
-			margin: auto;
-			width: 21px;
-		}
+    .install-btn {
+      @include bgimg('radio-unchecked');
+      cursor: pointer;
+      margin: auto;
+      width: 21px;
+    }
 
-		.fav-btn {
-			@include bgimg('heart-icon-black');
-			cursor: pointer;
-			float: left;
-		}
+    .fav-btn {
+      @include bgimg('heart-icon-black');
+      cursor: pointer;
+      float: left;
+    }
 
-		.info-btn {
-			@include bgimg('info-icon');
-			cursor: pointer;
-			float: right;
-		}
+    .info-btn {
+      @include bgimg('info-icon');
+      cursor: pointer;
+      float: right;
+    }
 
-		&.\$installed {
-			background-color: $bright-blue;
-			.install-btn  {
-				@include bgimg('radio-checked');
-			}
-		}
+    &.\$installed {
+      background-color: $bright-blue;
+      .install-btn  {
+        @include bgimg('radio-checked');
+      }
+    }
 
-		&.\$favorite .fav-btn {
-			@include bgimg('heart-icon-white');
-		}
+    &.\$favorite .fav-btn {
+      @include bgimg('heart-icon-white');
+    }
 
-	}
-	
-	.install-col {
-		padding-left: 0;
-		padding-right: 0;
-		text-align: center;
-	}
+  }
+  
+  .install-col {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
 
-	@include breakpoint($desktop) {
-		max-height: 600px;
+  @include breakpoint($desktop) {
+    max-height: 600px;
 
-		.install-col { 	width: 9%; }
-		.name-col { 	width: 25%; }
-		.orb-slot-col { width: 16%; }
-		.region-col { 	width: 25%; }
-		.fav-col { 		width: 25%; }
+    .install-col {  width: 9%; }
+    .name-col {     width: 25%; }
+    .orb-slot-col { width: 16%; }
+    .region-col {   width: 25%; }
+    .fav-col {      width: 25%; }
 
-		.popup & { height: 100%; }
-	}
+    .popup & { height: 100%; }
+  }
 
-	@include breakpoint($mobile) {
-		.table-head {
-			position: fixed;
-			top: $header-height + $big-bump;// view-head height
-		}
+  @include breakpoint($mobile) {
+    .table-head {
+      position: fixed;
+      top: $header-height + $big-bump;// view-head height
+    }
 
-		.install-col { 	width: 14%; }
-		.name-col { 	width: 28%; }
-		.orb-slot-col { width: 15%; }
-		.region-col { 	width: 17%; }
-		.fav-col { 		width: 25%; }
-	}
+    .install-col {  width: 14%; }
+    .name-col {     width: 28%; }
+    .orb-slot-col { width: 15%; }
+    .region-col {   width: 17%; }
+    .fav-col {      width: 25%; }
+  }
 
-	.popup & {
-		.table-row {
-			cursor: pointer;
-		}
-	}
+  .popup & {
+    .table-row {
+      cursor: pointer;
+    }
+  }
 }
 
-//	mixins for group info/edit and sat info/edit
+.group-sat-table {
+  .install-col { display: none; }
+  @include breakpoint($desktop) {
+    .name-col {     width: 27%; }
+    .orb-slot-col { width: 19%; }
+    .region-col {   width: 27%; }
+    .fav-col {      width: 27%; }
+  }
+  @include breakpoint($mobile) {
+    .name-col {     width: 30%; }
+    .orb-slot-col { width: 20%; }
+    .region-col {   width: 20%; }
+    .fav-col {      width: 29%; }
+  }
+}
+
+//  mixins for group info/edit and sat info/edit
 ////////////////////////////////////////////////////////////////////////////////
 
 @mixin label {
-	font-size: $small-font;
-	color: $bright-grey;
+  font-size: $small-font;
+  color: $bright-grey;
 }
 
 @mixin thin-black-bar {
-	background-color: #000;
-	font-size: $small-font;
-	height: $lil-bump;
-	padding: ($lil-bump - $small-font)/2;
-	text-align: center;
-	width: 100%;
+  background-color: #000;
+  font-size: $small-font;
+  height: $lil-bump;
+  padding: ($lil-bump - $small-font)/2;
+  text-align: center;
+  width: 100%;
 }
 
 @mixin desktop-slot-head {
 }
 
 @mixin desktop-slot-foot {
-	@include thin-black-bar;
-	position: absolute;
-	bottom: 0;
+  @include thin-black-bar;
+  position: absolute;
+  bottom: 0;
 }
 
 @mixin desktop-slot($class: false) {
-	@include split(2, 30px, $class);
-	background-color: $dark-grey;
-	position: relative;	
+  @include split(2, 30px, $class);
+  background-color: $dark-grey;
+  position: relative; 
 
-	.slot-head, .slot-foot {
-		@include thin-black-bar;
-		position: absolute;
-	}
+  .slot-head, .slot-foot {
+    @include thin-black-bar;
+    position: absolute;
+  }
 
-	.slot-head { top: 0; }
-	.slot-foot { bottom: 0; }
+  .slot-head { top: 0; }
+  .slot-foot { bottom: 0; }
 }
 
 @mixin mobile-slot {
-	@include table-row;
-	width: calc(100% - #{$table-row-padding*4});
-	margin: auto;
-	padding: $table-row-padding;
+  @include table-row;
+  width: calc(100% - #{$table-row-padding*4});
+  margin: auto;
+  padding: $table-row-padding;
 
-	&.name-block {
-		margin: $table-row-padding auto $table-row-padding * 2;
-		border-bottom: 0;
-	}
+  &.name-block {
+    margin: $table-row-padding auto $table-row-padding * 2;
+    border-bottom: 0;
+  }
 
-	&.first {
-		border-top: 1px solid $bright-blue;
-	}
+  &.first {
+    border-top: 1px solid $bright-blue;
+  }
 
-	.slot-head,
-	.name-label {
-		@include label;
-		padding-bottom: $table-row-padding/2;
-	}
+  .slot-head,
+  .name-label {
+    @include label;
+    padding-bottom: $table-row-padding/2;
+  }
 
-	.info-btn,
-	.slot-foot {
-		display: none;
-	}
+  .info-btn,
+  .slot-foot {
+    display: none;
+  }
 }
 
-//	group info desktop
+//  group info desktop
 ////////////////////////////////////////////////////////////////////////////////
 
 .group-info {
-	@include breakpoint($desktop) {
-		.name-block {
-			display: none;
-		}
+  @include breakpoint($desktop) {
+    .name-block {
+      display: none;
+    }
 
-		.slot {
-			@include desktop-slot('.slot');
-			height: 140px;
+    .slot {
+      @include desktop-slot('.slot');
+      height: 140px;
 
-			.slot-foot {
-				color: #000;
-			}
+      .slot-foot {
+        color: #000;
+      }
 
-			.install-btn, .info-btn, .sat-name {
-				position: absolute;
-				top: 50%;
-			}
+      .install-btn, .info-btn, .sat-name {
+        position: absolute;
+        top: 50%;
+      }
 
-			.install-btn, .info-btn {
-				cursor: pointer;
-				margin-top: $medium-icon/-2;
-			}
+      .install-btn, .info-btn {
+        cursor: pointer;
+        margin-top: $medium-icon/-2;
+      }
 
-			.sat-name {
-				margin-top: $medium-font/-2;
-				text-align: center;
-				width: 100%;
-			}
+      .sat-name {
+        margin-top: $medium-font/-2;
+        text-align: center;
+        width: 100%;
+      }
 
-			.install-btn {
-				@include bgimg('radio-unchecked');
-				display: none;
-				left: 25px;
-			}
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        display: none;
+        left: 25px;
+      }
 
-			.info-btn {
-				@include bgimg('info-icon');
-				right: 25px;
-			}
-		}
+      .info-btn {
+        @include bgimg('info-icon');
+        right: 25px;
+      }
+    }
 
-		//	if the group is installed
-		&.\$installed .slot {
-			.install-btn {
-				display: block;
-			}
+    //  if the group is installed
+    &.\$installed .slot {
+      .install-btn {
+        display: block;
+      }
 
-			//	if group installed and sat installed
-			&.\$installed {
-				background-color: $light-blue;
-				.slot-head, .slot-foot {
-					background-color: $bright-blue;
-					color: #fff;
-				}
+      //  if group installed and sat installed
+      &.\$installed {
+        background-color: $light-blue;
+        .slot-head, .slot-foot {
+          background-color: $bright-blue;
+          color: #fff;
+        }
 
-				.install-btn {
-					@include bgimg('radio-checked');
-				}
-			}
-		}
-	}
+        .install-btn {
+          @include bgimg('radio-checked');
+        }
+      }
+    }
+  }
 }
 
-//	group info mobile
-//	group edit mobile
-//	they're very similar
+//  group info mobile
+//  group edit mobile
+//  they're very similar
 ////////////////////////////////////////////////////////////////////////////////
 
 .group-edit,
 .group-info {
-	@include breakpoint($mobile) {
-		.name-block,
-		.slot {
-			@include mobile-slot;
-		}
+  @include breakpoint($mobile) {
+    .name-block,
+    .slot {
+      @include mobile-slot;
+    }
 
-		.install-btn {
-			cursor: pointer;
-		}
+    .install-btn {
+      cursor: pointer;
+    }
 
-		.btn-tray {
-			.block-btn {
-				@include split(2, $btn-tray-padding, '.block-btn');
-				display: inline-block;
-				margin-bottom: 0;
-			}
+    .btn-tray {
+      .block-btn {
+        @include split(2, $btn-tray-padding, '.block-btn');
+        display: inline-block;
+        margin-bottom: 0;
+      }
 
-			.install-btn {
-				display: none;
-			}
-		}
+      .install-btn {
+        display: none;
+      }
+    }
 
-		&.\$installed .slot {
-			padding-left: ($table-row-padding * 2) + $medium-icon;
-			.install-btn {
-				@include bgimg('radio-unchecked');
-				position: absolute;
-				left: $table-row-padding;
-				top: 50%;
-				margin-top: $medium-icon/-2;
-			}
+    &.\$installed .slot {
+      padding-left: ($table-row-padding * 2) + $medium-icon;
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        position: absolute;
+        left: $table-row-padding;
+        top: 50%;
+        margin-top: $medium-icon/-2;
+      }
 
-			&.\$installed .install-btn {
-				@include bgimg('radio-checked');
-			}
-		}
+      &.\$installed .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
 
-		&.\$predefined .btn-tray {
-			display: none;
-		}
+    &.\$predefined .btn-tray {
+      display: none;
+    }
 
-		&.group-edit {
-			.group-name {
-				padding-left: 16px;
-				margin-left: -16px;
-				width: calc(100% + 32px);
-			}
+    &.group-edit {
+      .group-name {
+        padding-left: 16px;
+        margin-left: -16px;
+        width: calc(100% + 32px);
+      }
 
-			.slot {
-				@include bgimg('right-icon-blue', right 15px center, $fine-icon);
-				cursor: pointer;
-			}
-		}
-	}
+      .slot {
+        @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+        cursor: pointer;
+      }
+    }
+  }
 
-	//	if the sat is n/a, don't show install/info btns
-	.slot.\$n\/a {
-		.install-btn, .info-btn{
-			display: none;
-		}
-	}
+  //  if the sat is n/a, don't show install/info btns
+  .slot.\$n\/a {
+    .install-btn, .info-btn{
+      display: none;
+    }
+  }
 
-	//	can't install if already installed
-	&.\$installed .btn-tray .install-btn {
-		display: none;
-	}
+  //  can't install if already installed
+  &.\$installed .btn-tray .install-btn {
+    display: none;
+  }
 
-	//	can't edit/delete if the group is predefined
-	&.\$predefined .btn-tray {
-		.edit-btn, .delete-btn {
-			display: none;
-		}
-	}
+  //  can't edit/delete if the group is predefined
+  &.\$predefined .btn-tray {
+    .edit-btn, .delete-btn {
+      display: none;
+    }
+  }
 }
 
-//	group edit desktop
-//	they're very similar
+//  group edit desktop
+//  they're very similar
 ////////////////////////////////////////////////////////////////////////////////
 
 .group-edit {
-	@include breakpoint($desktop) {
-		&.popup-guts {
-			height: 540px;
-			margin-top: -270px;
-		}
+  @include breakpoint($desktop) {
+    &.popup-guts {
+      height: 540px;
+      margin-top: -270px;
+    }
 
-		.name-block,
-		.slot {
-			@include mobile-slot;
-		}
+    .name-block,
+    .slot {
+      @include mobile-slot;
+    }
 
-		&.\$installed .slot {
-			padding-left: ($table-row-padding * 2) + $medium-icon;
-			.install-btn {
-				@include bgimg('radio-unchecked');
-				position: absolute;
-				left: $table-row-padding;
-				top: 50%;
-				margin-top: $medium-icon/-2;
-			}
+    &.\$installed .slot {
+      padding-left: ($table-row-padding * 2) + $medium-icon;
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        position: absolute;
+        left: $table-row-padding;
+        top: 50%;
+        margin-top: $medium-icon/-2;
+      }
 
-			&.\$installed .install-btn {
-				@include bgimg('radio-checked');
-			}
-		}
+      &.\$installed .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
 
-		&.group-edit {
-			.group-name {
-				padding-left: 16px;
-				margin-left: -16px;
-				width: calc(50% + 16px);
-			}
+    &.group-edit {
+      .group-name {
+        padding-left: 16px;
+        margin-left: -16px;
+        width: calc(50% + 16px);
+      }
 
-			.slot {
-				@include bgimg('right-icon-blue', right 15px center, $fine-icon);
-				cursor: pointer;
-			}
-		}
-	}
+      .slot {
+        @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-//	sat info
-//	sat edit
+//  sat info
+//  sat edit
 ////////////////////////////////////////////////////////////////////////////////
 
 .sat-info,
 .sat-edit {
-	.value {
-		@include ellipsis;
-	}
+  .value {
+    @include ellipsis;
+  }
 
-	.label {
-		@include label;
-	}
+  .label {
+    @include label;
+  }
 
-	.value {
-		padding-top: 10px;
-	}
+  .value {
+    padding-top: 10px;
+  }
 
-	.heart-btn {
-		cursor: pointer;		
-	}
+  .heart-btn {
+    cursor: pointer;    
+  }
 
-	@include breakpoint($mobile) {
-		&.popup-guts {
-			padding: 30px;
-		}
-		.btn-tray {
-			.edit-btn {
-				width: 100%;
-			}
-			
-			.save-btn,
-			.cancel-btn,
-			.reset-btn {
-				@include split(3, $btn-tray-padding, '.block-btn');
-				margin-bottom: 0;
-			}
-		}
+  @include breakpoint($mobile) {
+    &.popup-guts {
+      padding: 30px;
+    }
+    .btn-tray {
+      .edit-btn {
+        width: 100%;
+      }
+      
+      .save-btn,
+      .cancel-btn,
+      .reset-btn {
+        @include split(3, $btn-tray-padding, '.block-btn');
+        margin-bottom: 0;
+      }
+    }
 
-		.fav-block {
-			position: absolute;
-			top: 30px;
-			right: 30px;
-			.label,
-			.fav-btn {
-				display: none;
-			}
+    .fav-block {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      .label,
+      .fav-btn {
+        display: none;
+      }
 
-			.heart-btn {
-				@include bgimg('heart-icon-blue', center center, 40px, 40px);
-				&.\$on { @include bgimg('heart-icon-white', center center, 40px, 40px); }
-			}
-		}
+      .heart-btn {
+        @include bgimg('heart-icon-blue', center center, 40px, 40px);
+        &.\$on { @include bgimg('heart-icon-white', center center, 40px, 40px); }
+      }
+    }
 
-		.name-block {
-			border-bottom: 1px solid $bright-blue;
-			padding: 0 20px 20px;
-		}
+    .name-block {
+      border-bottom: 1px solid $bright-blue;
+      padding: 0 20px 20px;
+    }
 
-		.region-block,
-		.orb-slot-block,
-		.hemisphere-block,
-		.suffix-block,
-		.skew-block,
-		.lnb-block,
-		.lo1-block,
-		.lo2-block {
-			@include split(2, 0px, '');
-			border-bottom: 1px solid $bright-blue;
-			padding: 20px 0;
-			.label, .value {
-				padding-left: 20px;
-				padding-right: 20px;
-			}
-			&:nth-child(odd) {
-				.label, .value { border-left: 1px solid $bright-blue; }
-			}
-		}
+    .region-block,
+    .orb-slot-block,
+    .hemisphere-block,
+    .suffix-block,
+    .skew-block,
+    .lnb-block,
+    .lo1-block,
+    .lo2-block {
+      @include split(2, 0px, '');
+      border-bottom: 1px solid $bright-blue;
+      padding: 20px 0;
+      .label, .value {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      &:nth-child(odd) {
+        .label, .value { border-left: 1px solid $bright-blue; }
+      }
+    }
 
-		.xponder {
-			@include desktop-slot('.xponder');
-			display: block;
-			width: 100%;
-			margin: 20px 0;
+    .xponder {
+      @include desktop-slot('.xponder');
+      display: block;
+      width: 100%;
+      margin: 20px 0;
 
-			.xponder-block {
-				padding: 20px;
-				border-top: 1px solid $bright-blue;
-			}
+      .xponder-block {
+        padding: 20px;
+        border-top: 1px solid $bright-blue;
+      }
 
-			.freq-block {
-				padding-top: $lil-bump+20px;
-			}
-		}
-	}
+      .freq-block {
+        padding-top: $lil-bump+20px;
+      }
+    }
+  }
 
-	@include breakpoint($desktop) {
+  @include breakpoint($desktop) {
 
-		&.popup-guts {
-			padding: $big-bump+30px 30px 30px 30px;
-			height: 844px;
-			margin-top: -422px;
-		}
+    &.popup-guts {
+      padding: $big-bump+30px 30px 30px 30px;
+      height: 844px;
+      margin-top: -422px;
+    }
 
-		.label {
-			@include label;
-		}
+    .label {
+      @include label;
+    }
 
-		.name-block {
-			margin-bottom: 25px;
-		}
+    .name-block {
+      margin-bottom: 25px;
+    }
 
-		.fav-block {
-			position: absolute;
-			right: 30px;
-			top: $big-bump+30px;
-			vertical-align: middle;
+    .fav-block {
+      position: absolute;
+      right: 30px;
+      top: $big-bump+30px;
+      vertical-align: middle;
 
-			.label,
-			.fav-btn,
-			.heart-btn {
-				display: inline-block;
-				vertical-align: middle;
-				margin-left: 10px;
-			}
+      .label,
+      .fav-btn,
+      .heart-btn {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
 
-			.heart-btn {
-				@include bgimg('heart-icon-black');
-				&.\$on { @include bgimg('heart-icon-white'); }
-			}
-		}
+      .heart-btn {
+        @include bgimg('heart-icon-black');
+        &.\$on { @include bgimg('heart-icon-white'); }
+      }
+    }
 
-		.region-block,
-		.orb-slot-block,
-		.hemisphere-block,
-		.suffix-block,
-		.skew-block {
-			@include split(5, 0px, '');
-			border-left: 1px solid $bright-blue;
-			padding: 0 20px;
-			margin-bottom: 25px;
-		}
+    .region-block,
+    .orb-slot-block,
+    .hemisphere-block,
+    .suffix-block,
+    .skew-block {
+      @include split(5, 0px, '');
+      border-left: 1px solid $bright-blue;
+      padding: 0 20px;
+      margin-bottom: 25px;
+    }
 
-		.lnb-block,
-		.lo1-block,
-		.lo2-block {
-			@include split(3, 0px, '');
-			border-left: 1px solid $bright-blue;
-			padding: 0 20px;
-			margin-bottom: 25px;
-		}
+    .lnb-block,
+    .lo1-block,
+    .lo2-block {
+      @include split(3, 0px, '');
+      border-left: 1px solid $bright-blue;
+      padding: 0 20px;
+      margin-bottom: 25px;
+    }
 
     .region-block,
     .orb-slot-block,
@@ -574,61 +590,61 @@
       width: 50%;
     }
 
-		.xponder {
-			@include desktop-slot('.xponder');
-			padding: $lil-bump+20px 20px 0 20px;
+    .xponder {
+      @include desktop-slot('.xponder');
+      padding: $lil-bump+20px 20px 0 20px;
 
-			.slot-head {
-				left: 0;
-			}
+      .slot-head {
+        left: 0;
+      }
 
-			.xponder-block {
-				@include split(2, 0px, '.xponder-block');
-				margin-bottom: 20px;
-				vertical-align: top;
-			}
-		}
+      .xponder-block {
+        @include split(2, 0px, '.xponder-block');
+        margin-bottom: 20px;
+        vertical-align: top;
+      }
+    }
 
-		.btn-tray {
-			left: 0;
-		}
-	}  
+    .btn-tray {
+      left: 0;
+    }
+  }  
 }
 
 .sat-edit {
-	.input,
-	.dropdown-btn {
-		width: calc(100% - 5px);
-		margin: 4px -11px -6px;
-	}
+  .input,
+  .dropdown-btn {
+    width: calc(100% - 5px);
+    margin: 4px -11px -6px;
+  }
 
-	@include breakpoint($mobile) {
-			.input,
-			.dropdown-btn {
-				width: calc(100% + 20px);
-			}				
-	}
+  @include breakpoint($mobile) {
+      .input,
+      .dropdown-btn {
+        width: calc(100% + 20px);
+      }       
+  }
 
-	@include breakpoint($desktop) {
-		.symRate-block,
-		.netID-block {
-			.input,
-			.dropdown-btn {
-				width: calc(100% + 20px);
-			}
-		}		
-	}
+  @include breakpoint($desktop) {
+    .symRate-block,
+    .netID-block {
+      .input,
+      .dropdown-btn {
+        width: calc(100% + 20px);
+      }
+    }   
+  }
 
-	.\$predefined & {
-		.input,
-		.dropdown-btn {
-			display: none;
-		}
-		.xponder .input,
-		.xponder .dropdown-btn {
-			display: inline-block;
-		}
-	}
+  .\$predefined & {
+    .input,
+    .dropdown-btn {
+      display: none;
+    }
+    .xponder .input,
+    .xponder .dropdown-btn {
+      display: inline-block;
+    }
+  }
 }
 
 .popup:not(.\$predefined) .sat-edit {
@@ -646,86 +662,86 @@
   }
 }
 
-//	routing
+//  routing
 ////////////////////////////////////////////////////////////////////////////////
 
 .\#region-table-view,
 .\#group-table-view,
 .sidebar .\#new-btn {
-	display: none;
+  display: none;
 }
 
-//	mobile
+//  mobile
 @include breakpoint($mobile) {
 
-	//	single mode
-	.\/regions .sidebar,
-	.\/regions .\#region-table-view,
-	.\/regions\/region .\#single-sat-table-view,
-	.\/regions\/region\/sat .\#sat-info-view,
-	.\/regions\/region\/sat\/edit .\#sat-edit-view,
+  //  single mode
+  .\/regions .sidebar,
+  .\/regions .\#region-table-view,
+  .\/regions\/region .\#single-sat-table-view,
+  .\/regions\/region\/sat .\#sat-info-view,
+  .\/regions\/region\/sat\/edit .\#sat-edit-view,
 
-	//	group mode
-	.\/groups .sidebar,
-	.\/groups .sidebar .\#new-btn,
-	.\/groups .\#group-table-view,
-	.\/groups\/group .\#group-info-view,
-	.\/groups\/group\/edit .\#group-edit-view,
-	.\/groups\/group\/sat .\#sat-info-view,
-	.\/groups\/group\/edit\/sats .\#group-sat-table-view,
-	.\/groups\/group\/sat\/edit .\#sat-edit-view,
-	.\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
-	.\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
-		display: block;
-	}
+  //  group mode
+  .\/groups .sidebar,
+  .\/groups .sidebar .\#new-btn,
+  .\/groups .\#group-table-view,
+  .\/groups\/group .\#group-info-view,
+  .\/groups\/group\/edit .\#group-edit-view,
+  .\/groups\/group\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
+  .\/groups\/group\/sat\/edit .\#sat-edit-view,
+  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+    display: block;
+  }
 }
 
-//	desktop
+//  desktop
 @include breakpoint($desktop)  {
-	.sidebar {
-		display: block;
-	}
+  .sidebar {
+    display: block;
+  }
 
-	//	single mode
-	.\/regions,
-	.\/regions\/region,
-	.\/regions\/region\/sat,
-	.\/regions\/region\/sat\/edit {
-		.\#region-table-view,
-		.\#single-sat-table-view {
-			display: block;
-		}
-	}
-	
-	.\/regions\/region\/sat .\#sat-info-view,
-	.\/regions\/region\/sat\/edit .\#sat-edit-view {
-		display: block;
-	}
+  //  single mode
+  .\/regions,
+  .\/regions\/region,
+  .\/regions\/region\/sat,
+  .\/regions\/region\/sat\/edit {
+    .\#region-table-view,
+    .\#single-sat-table-view {
+      display: block;
+    }
+  }
+  
+  .\/regions\/region\/sat .\#sat-info-view,
+  .\/regions\/region\/sat\/edit .\#sat-edit-view {
+    display: block;
+  }
 
-	//	group mode
-	.\/groups,
-	.\/groups\/group,
-	.\/groups\/group\/edit,
-	.\/groups\/group\/sat,
-	.\/groups\/group\/edit\/sats,
-	.\/groups\/group\/sat\/edit,
-	.\/groups\/group\/edit\/sats\/sat,
-	.\/groups\/group\/edit\/sats\/sat\/edit {
-		.\#group-table-view,
-		.\#group-info-view,
-		.sidebar .\#new-btn, {
-			display: block;
-		}
-	}
+  //  group mode
+  .\/groups,
+  .\/groups\/group,
+  .\/groups\/group\/edit,
+  .\/groups\/group\/sat,
+  .\/groups\/group\/edit\/sats,
+  .\/groups\/group\/sat\/edit,
+  .\/groups\/group\/edit\/sats\/sat,
+  .\/groups\/group\/edit\/sats\/sat\/edit {
+    .\#group-table-view,
+    .\#group-info-view,
+    .sidebar .\#new-btn, {
+      display: block;
+    }
+  }
 
-	.\/groups\/group\/edit .\#group-edit-view,
-	.\/groups\/group\/sat .\#sat-info-view,
-	.\/groups\/group\/edit\/sats .\#group-sat-table-view,
-	.\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
-	.\/groups\/group\/sat\/edit .\#sat-edit-view,
-	.\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
-		display: block;
-	}
+  .\/groups\/group\/edit .\#group-edit-view,
+  .\/groups\/group\/sat .\#sat-info-view,
+  .\/groups\/group\/edit\/sats .\#group-sat-table-view,
+  .\/groups\/group\/edit\/sats\/sat .\#sat-info-view,
+  .\/groups\/group\/sat\/edit .\#sat-edit-view,
+  .\/groups\/group\/edit\/sats\/sat\/edit .\#sat-edit-view {
+    display: block;
+  }
 
 
 
