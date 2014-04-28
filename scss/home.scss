@@ -35,7 +35,7 @@
 
 .vessel-view {
   @include bgimg('vessel-animation-bg', center, 360px, 360px);
-  background-position: top 140px center;
+  background-position: top 125px center;
   overflow: hidden;
 
   .demo-mode {
@@ -86,7 +86,7 @@
   }
 
   .vessel-view {
-    background-position: top 100px center;
+    background-position: top 95px center;
 
     .vessel-heading {
       margin-top: 30px;
@@ -94,10 +94,6 @@
 
     .vessel-name {
       margin-bottom: 30px;
-    }
-
-    .vessel-animation {
-
     }
   }
 }
@@ -109,14 +105,14 @@
       bottom: 10px;
       left: 30px;
       top: auto;
-    }      
+    }
   }
 }
 
-@include breakpoint('screen and (max-width: 460px)') {
+@include breakpoint('screen and (max-width: 480px)') {
   .vessel-view {
-    background-position: top 85px center;
-    background-size: 60% 60%;
+    background-position: top 42% center;
+    background-size: 58% 58%;
     min-width: 0;
     min-height: 0;
 

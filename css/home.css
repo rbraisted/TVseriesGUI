@@ -850,7 +850,7 @@ a {
   background-size: 360px 360px;
   min-height: 360px;
   min-width: 360px;
-  background-position: top 140px center;
+  background-position: top 125px center;
   overflow: hidden; }
   .vessel-view .demo-mode {
     background-color: #c51313;
@@ -890,7 +890,7 @@ a {
     top: 50px; }
 
   .vessel-view {
-    background-position: top 100px center; }
+    background-position: top 95px center; }
     .vessel-view .vessel-heading {
       margin-top: 30px; }
     .vessel-view .vessel-name {
@@ -902,10 +902,10 @@ a {
       bottom: 10px;
       left: 30px;
       top: auto; } }
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 480px) {
   .vessel-view {
-    background-position: top 85px center;
-    background-size: 60% 60%;
+    background-position: top 42% center;
+    background-size: 58% 58%;
     min-width: 0;
     min-height: 0; }
     .vessel-view .vessel-animation {
