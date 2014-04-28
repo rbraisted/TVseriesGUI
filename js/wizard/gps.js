@@ -116,13 +116,17 @@
       .then(self.build);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-    //   var value = self.getValue();
-    //   if (!value) alert('You must select an option to continue.');
-    //   else if (value === 'COORDINATES') window.location.hash = '/heading-source';
-    //   else if (value === 'CITY') window.location.hash = '/heading-source';
-    //   else self.setNmeaSource().then(function() {
-    //     window.location.hash = '/heading-source';
-    //   });
+      var value = self.getValue();
+      if (!value) alert('You must select an option to continue.');
+      else self.setNmeaSource()
+        .then(TVRO.getAntennaVersions)
+        .then(function(xml) {
+          var antModel = $('au model', xmls[0]).text();
+          var lnbType = $('lnb polarization', xmls[0]).text();
+          if (lnbType === 'circular') window.location = '/wizard/service.php';
+          else if (lnbType === 'linear' && (antModel === 'TV1' || antModel === 'TV3')) window.location = '/wizard/satelltes.php';
+          else window.location.hash = '/heading-source';
+        });
     });
 
     var CoordinatesView = function(jQ) {

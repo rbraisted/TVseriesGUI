@@ -13,7 +13,7 @@
 		<sn>1.00123456789</sn>
 	</acu>
 	<au>
-		<model>TV5</model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
+		<model>TV1</model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
 		<part>04-1234</part>
 		<rev>A</rev>
 		<ver>040914</ver>
