@@ -44,31 +44,35 @@
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError*)error {
 	NSLog(@"webView didFailLoadWithError:%@", error);
+	//  NSURLErrorCancelled (-999)
+  //	"Returned when an asynchronous load is canceled. A Web Kit framework delegate will
+  //	receive this error when it performs a cancel operation on a loading resource. Note
+  //	that an NSURLConnection or NSURLDownload delegate will not receive this error
+  //	if the download is canceled."
+  //	k
+  //	i'm not exactly sure what unusual cases might bring this error, but we need to
+  //	check for this case now in order to prevent the timeoutTimer from kicking us
+  //	back to the bonjour view after a redirect (or even if the user has fast fingers)
+  if (error.code == NSURLErrorCancelled) [timeoutTimer invalidate];
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
   NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
 
-	//	we should check for:
-	//	1 our hostname, for which we always return yes
-	//	2 software updates (urls which end in the file ext .kvh), for which we always return no & and then take over the downloading process
-	//	3 about:blank requests
-	//	4 anything besides those, for which we should always return no and then open in safari app instead
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
-    
-
+  
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
-	if ([request.URL.scheme isEqualToString:@"tvro"]){
-      NSLog(@"  [request.URL.scheme isEqualToString:@\"tvro\"]");
-      [self handleCustomURL:request.URL];
-      return false;
+  if ([request.URL.scheme isEqualToString:@"tvro"]) {
+    NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
+    [self handleCustomURL:request.URL];
+    return false;
 
         
-  } else if ([[request.URL relativeString] isEqualToString:@"about:blank"]){
+  } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
     //	were trying to go to about:blank for some reason lets negate that
-    NSLog(@"%@", @"Got an about:blank request.");
+    NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
     [timeoutTimer invalidate];
     return false;
         
@@ -76,16 +80,16 @@
 	//	check if it's coming from our bdu hostname
 	//	if not, it's probably an external link and we
 	//	should open it in safari
-	} else if (![hostName isEqualToString:_hostName]){
-		NSLog(@"  ![hostName isEqualToString:_hostName]");
+	} else if (![hostName isEqualToString:_hostName]) {
+		NSLog(@"    ![hostName isEqualToString:_hostName]");
 //		[[UIApplication sharedApplication] openURL:request.URL];
 //		return false;
 		return true;
 	
         
-	//	at this point it's probably just another path in our app
+	//	at this point it's probably just another path in our app,
+  //	so return true and let the uiwebview continue loading
 	} else {
-		NSLog(@"  } else {");
 		return true;
 	}
 }
@@ -99,12 +103,18 @@
 	NSLog(@"webViewDidFinishLoad");
   
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+  
+	//	set tech and demo mode - the device's settings should override the
+  //	cookies set by the gui - we basically brute force this by setting the cookies
+  //	with the device's setting values on every page load≈
 	NSString* demoMode = [defaults boolForKey:@"demo-mode"] ? @"true" : @"false";
   NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
   
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
   NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+  
+	NSString* jsString = [NSString stringWithFormat:@"%@%@", demoModeString, techModeString];
+	[webView stringByEvaluatingJavaScriptFromString:jsString];
   
   // Check to see if the default host name has been set to the current connected host
   // if not then set the user defaults host name so it can be displayed on Bonjour view
@@ -113,9 +123,6 @@
     [defaults setObject:hostName forKey:@"default-host"];
     [defaults synchronize];
   }
-
-	NSString* jsString = [NSString stringWithFormat:@"%@%@", demoModeString, techModeString];
-	[webView stringByEvaluatingJavaScriptFromString:jsString];
 
 	[timeoutTimer invalidate];
 }
@@ -145,7 +152,10 @@
 
 - (id)initWithHostName:(NSString*)_hostName {
 	self = [self init];
-	hostName = _hostName;
+  //	remove / from end of host name
+  //	we're going to add it ourselves in viewWillAppear
+  if ([_hostName hasSuffix:@"/"]) hostName = [_hostName substringToIndex:[_hostName length]-1];
+	else hostName = _hostName;
 	return self;
 }
 
@@ -183,9 +193,7 @@
   //    the ui buttons in GeneralSettingsView of the web code is hooked up
   //    to call these two functions on the iOS side
     NSString* key = [url.host substringFromIndex:4];
-    NSLog(@"key: %@", key);
     BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
-    NSLog(@"value: %@", key);
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
