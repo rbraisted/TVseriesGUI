@@ -124,6 +124,11 @@
       </div>
     </div>
   </div>
+
+  <div class="block-btn new-btn #new-btn">
+    Add
+    <span class="#receiver-type"></span>
+  </div>
 </div>
 
 

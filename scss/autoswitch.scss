@@ -31,6 +31,16 @@
   }
 }
 
+.new-btn {
+  display: block;
+  max-width: calc(100% - #{$sidebar-padding} * 2);
+  margin: $sidebar-padding auto;
+
+  @include breakpoint($desktop) {
+    display: none;
+  }
+}
+
 .receiver-table {
   @include breakpoint($mobile) {
     @include grey-table;

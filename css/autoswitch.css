@@ -866,6 +866,14 @@ a {
       min-height: 21px;
       min-width: 21px; }
 
+.new-btn {
+  display: block;
+  max-width: calc(100% - 16px * 2);
+  margin: 16px auto; }
+  @media screen and (min-width: 881px) {
+    .new-btn {
+      display: none; } }
+
 @media screen and (max-width: 880px) {
   .receiver-table {
     width: 100%;
