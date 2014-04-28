@@ -124,8 +124,7 @@
           var antModel = $('au model', xmls[0]).text();
           var lnbType = $('lnb polarization', xmls[0]).text();
           if (lnbType === 'circular') window.location = '/wizard/service.php';
-          else if (lnbType === 'linear' && (antModel === 'TV1' || antModel === 'TV3')) window.location = '/wizard/satelltes.php';
-          else window.location.hash = '/heading-source';
+          else window.location = '/wizard/satellites.php#/regions';
         });
     });
 
