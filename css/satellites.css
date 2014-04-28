@@ -765,6 +765,26 @@ a {
     height: 26px;
     width: 26px; }
 
+.flashing-view {
+  z-index: 3; }
+  .flashing-view .popup-guts {
+    background: #101f30;
+    position: fixed;
+    text-align: center;
+    line-height: 1.6;
+    padding: 46px; }
+    @media screen and (min-width: 881px) {
+      .flashing-view .popup-guts {
+        padding-top: 92px;
+        width: 400px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -200px; } }
+    @media screen and (max-width: 880px) {
+      .flashing-view .popup-guts {
+        height: 100%;
+        width: 100%; } }
+
 .sat-icon {
   background-image: url(/images/sat-icon-white.svg);
   background-position: center center;

@@ -878,3 +878,27 @@ a {
 		width: $lil-bump;
 	}
 }
+
+.flashing-view {
+  z-index: $nav-index;
+  .popup-guts {
+    background: #101f30;
+    position: fixed;
+    text-align: center;
+    line-height: 1.6;
+    padding: $big-bump;
+
+    @include breakpoint($desktop) {
+      padding-top: $big-bump * 2;
+      width: 400px;
+      height: 200px;
+      margin-top: -100px;
+      margin-left: -200px;
+    }    
+
+    @include breakpoint($mobile) {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

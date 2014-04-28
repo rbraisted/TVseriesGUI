@@ -9,8 +9,8 @@
 	</gps>
 	<acu>
 		<state>OK</state><!-- OK | FLASHING | CALGYRO | ERROR -->
-		<line1>Foo</line1>
-		<line2>Bar</line2>
+		<line1>Updating File 1 of 10</line1>
+		<line2>Min. Remaining: 10</line2>
     <led_power>
       <color>GREEN</color><!-- GREEN | ORANGE | RED -->
       <state>ON</state><!-- OFF | ON | FLASH -->

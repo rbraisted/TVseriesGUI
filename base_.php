@@ -65,6 +65,14 @@
   <div class="tracvision-logo #home-btn"></div>
 </div>
 
+<div class="popup flashing-view #flashing-view">
+  <div class="popup-guts">
+    <div class="view-head">Updating...</div>
+    <div class="#line-1"></div>
+    <div class="#line-2"></div>
+  </div>
+</div>
+
 <div class="status #status-view">
   <div class="status-label">
     TV-Hub: 
@@ -88,4 +96,3 @@
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
 --><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a>
 </div>
-
