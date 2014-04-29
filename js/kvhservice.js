@@ -547,15 +547,14 @@ function power(xml)
 			message+='POWER\n\n';
 		$(xml).find('acu').each(function() {
 			message+='ACU\n';
-            message+='Input Supply Voltage 15 VDC: '+$(this).find('inputsupplyv').text()+'\n';
-			message+='               42 VDC Input: '+$(this).find('input42v').text()+'\n';
-			message+='                  Input 24V: '+$(this).find('input24v').text()+'\n';
-			message+='                      8 VDC: '+$(this).find('eight').text()+'\n';
-            message+='                      5 VDC: '+$(this).find('five').text()+'\n';
-			message+='                    3.3 VDC: '+$(this).find('three_three').text()+'\n';
-			message+='              42 VDC Output: '+$(this).find('output42v').text()+'\n';
-			message+='              24 VDC Output: '+$(this).find('output24v').text()+'\n';
-            message+='               Temp Celsius: '+$(this).find('temp_celsius').text()+'\n\n';
+            message+='Input Supply Voltage 10-30 VDC: '+$(this).find('inputsupplyv').text()+'\n';
+			message+='                  42 VDC Input: '+$(this).find('input42v').text()+'\n';
+			message+='                         8 VDC: '+$(this).find('eight').text()+'\n';
+            message+='                         5 VDC: '+$(this).find('five').text()+'\n';
+			message+='                       3.3 VDC: '+$(this).find('three_three').text()+'\n';
+			message+='                 42 VDC Output: '+$(this).find('output42v').text()+'\n';
+			message+='                 24 VDC Output: '+$(this).find('output24v').text()+'\n';
+            message+='                  Temp Celsius: '+$(this).find('temp_celsius').text()+'\n\n';
 		});
 		$(xml).find('au').each(function() {
 			message+='AU\n';
