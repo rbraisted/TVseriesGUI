@@ -115,8 +115,8 @@
 
   <div class="wireless-settings">
     <div class="view-head">Wireless Settings</div>
-    <span class="label mode-label">Network Mode</span><span class="value #wlan-mode"></span>
-    <span class="label network-label">Mode</span><span class="value network-value #wlan-network-mode"></span>
+    <span class="label mode-label">Wireless Mode</span><span class="value #wlan-mode"></span>
+    <span class="label network-label">Network Mode</span><span class="value network-value #wlan-network-mode"></span>
     <span class="label ssid-label">SSID</span><span class="value ssid-value #wlan-essid"></span>
     <span class="label ip-label">IP Address</span><span class="value ip-value #wlan-ip"></span>
     <span class="label subnet-label">Subnet</span><span class="value subnet-value #wlan-netmask"></span>
@@ -191,13 +191,13 @@
       <div class="back-btn #back-btn"></div>
     </div>
 
-    <span class="label mode-label">Network Mode</span><!--
+    <span class="label mode-label">Wireless Mode</span><!--
  --><div class="dropdown-btn mode-dropdown-btn #wlan-mode-btn">
       <div class="#wlan-mode"></div>
       <div class="dropdown-icon"></div>
     </div>
 
-    <span class="label network-label">Mode</span><!--
+    <span class="label network-label">Network Mode</span><!--
  --><div class="dropdown-btn network-dropdown-btn #wlan-network-mode-btn">
       <div class="#wlan-network-mode"></div>
       <div class="dropdown-icon"></div>
@@ -242,7 +242,7 @@
 <div class="dropdown #wlan-mode-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
-      <span class="#dropdown-title">Mode</span>
+      <span class="#dropdown-title">Wireless Mode</span>
       <div class="back-btn #close-btn"></div>
     </div>
     <div class="table #table-view">
