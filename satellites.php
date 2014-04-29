@@ -248,12 +248,10 @@ and also .#group-table-view (group mode)
    --><div class="lo1-block">
       <div class="label">Local Oscillator #1</div>
       <div class="value #sat-lo1"></div>
-      <input class="input #sat-lo1" />
     </div><!--
    --><div class="lo2-block">
       <div class="label">Local Oscillator #2</div>
       <div class="value #sat-lo2"></div>
-      <input class="input #sat-lo2" />
     </div>
     <div class="xponder first #xponder-1-view">
       <div class="slot-head #xponder-display"></div>

@@ -1765,11 +1765,7 @@ a {
 .popup:not(.\$predefined) .sat-edit .name-block .value,
 .popup:not(.\$predefined) .sat-edit .region-block .value,
 .popup:not(.\$predefined) .sat-edit .orb-slot-block .value,
-.popup:not(.\$predefined) .sat-edit .hemisphere-block .value,
-.popup:not(.\$predefined) .sat-edit .suffix-block .value,
-.popup:not(.\$predefined) .sat-edit .skew-block .value,
-.popup:not(.\$predefined) .sat-edit .lo1-block .value,
-.popup:not(.\$predefined) .sat-edit .lo2-block .value {
+.popup:not(.\$predefined) .sat-edit .skew-block .value{
   display: none; }
 
 .\#region-table-view,
