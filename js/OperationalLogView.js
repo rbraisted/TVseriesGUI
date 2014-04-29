@@ -4,10 +4,6 @@
 	var OperationalLogView = function(jQ) {
 		var self;
 
-		var viewBtn = $('.\\#view-btn', jQ).click(function() {
-			window.location.href = 'logfile.php?file=IPACU.serial.log';
-		});
-
 		var startBtn = $('.\\#start-btn', jQ).click(function() {
 			TVRO.startSerialLog({'restart':'N'});
 		});

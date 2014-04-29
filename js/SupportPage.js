@@ -31,11 +31,25 @@ $(function() {
         .end()
   );
 
-	var operationalLogView = TVRO.OperationalLogView(
-		$('.\\#operational-log-view')
+  var operationalLogView = TVRO.OperationalLogView(
+    $('.\\#operational-log-view')
+      .find('.\\#back-btn')
+        .click(function() {
+          window.location.hash = '';
+        })
+        .end()
+      .find('.\\#view-btn')
+        .click(function() {
+          window.location.hash = '/serial-log';
+        })
+        .end()
+  );
+
+	var serialLogView = TVRO.SerialLogView(
+		$('.\\#serial-log-view')
 			.find('.\\#back-btn')
 				.click(function() {
-					window.location.hash = '';
+					window.location.hash = '/operational-log';
 				})
 				.end()
 	);
@@ -74,12 +88,6 @@ $(function() {
   });
 
   var emailBtn = $('.\\#email-support-btn').click(function() {
-    // setTimeout(function(){ 
-    //   window.location = 'mailto:' + 't.a.pape@gmail.com'; },
-    //   1000);
-    
-    //return;
-
     var email = $(this).text();
 
     Promise.all(
@@ -90,14 +98,15 @@ $(function() {
       var powerInfo = info[1];
 
       //  appears in subject field, all on a single line
-      var subject =
+      var subject = encode(
         'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
         ' Antenna Unit S/N: ' + systemInfo.antSn +
-        ' Date/Time: ' + systemInfo.dateTime;
+        ' Date/Time: ' + systemInfo.dateTime
+      );
 
       //  appears in email body, newlines
       //  the idea here is to match this to the data displayed in SystemInfoView
-      var body =
+      var body = encode(
         'TV-Hub' +
         '\nS/N: ' + systemInfo.hubSn +
         '\nDate/Time: ' + systemInfo.dateTime +
@@ -138,9 +147,10 @@ $(function() {
         '\nMotor 32 VDC' + powerInfo.antMotor +
         '\n8 VDC' + powerInfo.antEight +
         '\n5 VDC' + powerInfo.antFive +
-        '\nLNB 13/18 VDC' + powerInfo.antLnb;
+        '\nLNB 13/18 VDC' + powerInfo.antLnb
+      );
 
-      window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + encode(body);
+      window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
     });
   });
 
@@ -150,12 +160,15 @@ $(function() {
     menuTableView.setValue({
       '/system-info': 'System Info',
       '/operational-log': 'Operational Log',
+      '/serial-log': 'Operational Log',
       '/event-log': 'Event Log',
       '/restart-system': 'Restart System',
       '/command-line': 'Command Line'
     }[hash]);
 
     if (!hash || hash === '/system-info') systemInfoView.reload();
+
+    if (!hash || hash === '/serial-log') serialLogView.reload();
 
 		if (hash === '/command-line') commandLineView.startOutput();
 		else commandLineView.stopOutput();

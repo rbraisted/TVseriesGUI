@@ -2,6 +2,7 @@
 
 <script type="text/javascript" src="/js/SystemInfoView.js"></script>
 <script type="text/javascript" src="/js/OperationalLogView.js"></script>
+<script type="text/javascript" src="/js/SerialLogView.js"></script>
 <script type="text/javascript" src="/js/EventLogView.js"></script>
 <script type="text/javascript" src="/js/RestartSystemView.js"></script>
 <script type="text/javascript" src="/js/CommandLineView.js"></script>
@@ -126,6 +127,26 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<div class="popup #serial-log-view">
+  <div class="popup-guts serial-log">
+    <div class="view-head">
+      Serial Log
+      <div class="back-btn #back-btn"></div>
+    </div>
+
+    <pre class="#serial-log">
+      Loading...
+    </pre>
+
+    <div class="btn-tray">
+      <div class="block-btn save-btn first #save-btn">Save Log</div><!--
+    --><div class="block-btn email-btn #email-btn">Email Log</div>
+    </div>
+  </div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 <div class="view event-log #event-log-view">
 	<div class="view-head">
 		Event Log
@@ -152,7 +173,6 @@
 		<div class="block-btn save-btn #save-btn">Save Log</div>
 		<div class="block-btn email-btn #email-btn">Email Log</div>
  	</div>
-
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -162,16 +182,6 @@
 		Restart System
 		<div class="back-btn #back-btn"></div>
 	</div>
-
-<!-- this may come back one day -->
-<!--
-  <div class="block-btn restart-hub-btn #system-btn">
-		Restart TV-Hub
-	</div>
-	<p>
-    Choose this option to restart just the TV-Hub.
-  </p>
--->
 
 	<div class="block-btn restart-ant-btn #antenna-btn">
 		Restart Antenna

@@ -918,6 +918,30 @@ a {
   .command-line.view {
     padding-top: 26px; } }
 
+.serial-log pre {
+  background-color: #4c5269;
+  display: block;
+  font-color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  height: 425px;
+  line-height: 1.4;
+  margin: 30px auto;
+  overflow: auto;
+  white-space: pre-wrap;
+  width: 740px;
+  padding: 0.5em; }
+@media screen and (max-width: 880px) {
+  .serial-log .btn-tray .save-btn {
+    display: none; }
+  .serial-log .btn-tray .email-btn {
+    display: block; }
+  .serial-log pre {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    margin-bottom: 60px; } }
+
 .event-log .event-table {
   width: 100%;
   position: relative;
@@ -1043,6 +1067,7 @@ a {
   .sidebar,
   .\/system-info .\#system-info-view,
   .\/operational-log .\#operational-log-view,
+  .\/serial-log .\#serial-log-view,
   .\/event-log .\#event-log-view,
   .\/restart-system .\#restart-system-view,
   .\/command-line .\#command-line-view {
@@ -1059,7 +1084,11 @@ a {
   body[class=''] .\#system-info-view,
   .\/system-info .\#system-info-view,
   .\/operational-log .\#operational-log-view,
+  .\/serial-log .\#serial-log-view,
   .\/event-log .\#event-log-view,
   .\/restart-system .\#restart-system-view,
   .\/command-line .\#command-line-view {
+    display: block; }
+
+  .\/serial-log .\#operational-log {
     display: block; } }

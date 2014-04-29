@@ -49,20 +49,20 @@
         TVRO.getAntennaStatus(),
         TVRO.getEventHistoryLog()
       ).then(function(xmls) {
-        var email = '';
+        var email = 'miky@vainmedia.com';
         var antModel = $('au model', xmls[0]).text();
         var antSn = $('au sn', xmls[0]).text();
         var hubSn = $('acu sn', xmls[0]).text();
         var dateTime = $('gps dt', xmls[1]).text();
 
-        var subject =
+        var subject = encode(
           'TV-Hub: ' + antModel + ' ' + hubSn +
           ' Antenna Unit S/N: ' + antSn +
-          ' Date/Time: ' + dateTime;
+          ' Date/Time: ' + dateTime
+        );
 
-        var body = $('content', xmls[2]).text();
-
-        window.location = 'mailto:' + email + '?subject=' + subject + '&?body=' + body;
+        var body = encode($('content', xmls[2]).text());
+        window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
       });
     });
 
