@@ -1362,6 +1362,361 @@ body[class=""] .\#skew-angle-view,
   }
 }
 
+//  autoswitch
+////////////////////////////////////////////////////////////////////////////////
+
+.autoswitch-icon {
+  @include bgimg('autoswitch-icon-white');
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: text-top;
+}
+
+.receiver-table {
+  @include breakpoint($mobile) {
+    @include grey-table;
+
+    .table-row {
+      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+      cursor: pointer;
+
+      .label,
+      .status-col,
+      .id-col,
+      .edit-col,
+      .select-col {
+        display: none;
+      }
+
+      .install-btn {
+        @include bgimg('red-dot-icon');
+        display: inline-block;
+        padding: 0;
+        margin-left: 15px;
+        cursor: pointer;
+      }
+
+      &.\$active .install-btn {
+        @include bgimg('green-dot-icon');
+      }
+
+      &.\$master {
+        background-color: $bright-blue;
+        background-image: url(/images/right-icon-white.svg);
+        .install-btn {
+          @include bgimg('radio-checked');
+        }
+      }
+    }    
+  }
+
+  @include breakpoint($desktop) {
+    @include table;
+
+    .table-row {
+      @include table-row;
+      background-color: #000;
+      border-bottom: 0;
+      margin-bottom: 20px;
+      border: 1px solid $red;
+
+      .table-col {
+        @include table-col;
+        padding: 20px;
+        width: 20%;
+      }
+
+      .install-btn {
+        display: none;
+      }
+
+      .label {
+        font-size: $small-font;
+        color: $bright-grey;
+        white-space: nowrap;
+      }
+
+      .value {
+        white-space: nowrap;
+      }
+
+      .status-col .label {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+
+      .name-col .label,
+      .id-col .label {
+        margin-bottom: 10px;
+      }
+
+      .status-icon {
+        @include bgimg('red-dot-icon', left center);
+        line-height: 21px;
+        padding-left: 35px;
+      }
+
+      .block-btn {
+        width: 100%;
+      }
+
+      .select-btn {
+        display: none;
+      }
+
+      .master-icon {
+        display: none;
+      }
+
+      &.\$hub {
+        .edit-btn {
+          display: none;
+        }
+      }
+
+      &.\$active {
+        border-color: $green;
+
+        .status-icon {
+          @include bgimg('green-dot-icon', left center);
+        }
+
+        .select-btn {
+          display: block;
+        }
+      }
+
+      &.\$master {
+        background-color: $light-blue;
+        border-color: $light-blue;
+
+        .select-btn {
+          display: none;
+        }
+
+        .master-icon {
+          @include bgimg('radio-checked', right center);
+          display: block;
+          line-height: 21px;
+          text-align: right;
+          padding-right: 35px;
+        }
+      }
+    }
+  }
+}
+
+.receiver-table-view {
+  .copy {
+    display: none;
+    font-size: $small-font;
+    line-height: 1.4;
+    margin-bottom: 1.4em;
+
+    .note,
+    .link {
+      margin: 1.4em 0;
+    }
+
+    .link {
+      color: $bright-grey;
+      text-decoration: underline;
+    }
+
+    @include breakpoint($mobile) {
+      margin: 1.4em;
+    }
+
+    &.come-back-copy {
+      display: inline-block;
+      margin-left: 20px;
+      max-width: 400px;
+      vertical-align: top;
+      margin-bottom: 100px;
+
+      @include breakpoint($mobile) {
+        display: block;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 100px;
+        max-width: 300px;
+      }
+    }
+  }
+
+  .new-btn {
+    display: inline-block;
+    vertical-align: top;
+
+    @include breakpoint($mobile) {
+      display: block;
+      margin: $sidebar-padding;
+    }
+  }
+}
+
+.receiver-info,
+.receiver-edit {
+  @include breakpoint($mobile) {
+    //  only appears on mobile
+    padding: 20px;
+
+    .edit-btn,
+    .select-btn,
+    .cancel-btn,
+    .save-btn {
+      @include split(2, $btn-tray-padding, '.block-btn');
+      margin-bottom: 0;
+    }
+
+    .select-btn {
+      display: none;
+    }
+
+    .remove-btn {
+      width: 100%;
+      margin-top: 30px;
+      background-color: $red;
+    }
+
+    .label {
+      color: $bright-grey;
+      font-size: $small-font;
+      margin: 0 0 10px 10px;
+    }
+
+    .value {
+      margin: 0 0 30px 10px;
+    }
+
+    .input {
+      margin-bottom: 25px;
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .status-icon {
+      @include bgimg('red-dot-icon', left center);
+      border-bottom: 1px solid $bright-blue;
+      border-top: 1px solid $bright-blue;
+      line-height: 21px;
+      margin: 0;
+      padding: 13px 35px;
+    }
+
+    .master-icon { display: none; }
+
+    .\$active & {
+      .status-icon {
+        background-image: url(/images/green-dot-icon.svg);
+      }
+
+      .select-btn {
+        display: inline-block;
+      }
+    }
+
+    .\$hub & .edit-btn {
+      display: none;
+    }
+
+    .\$master & {
+      .select-btn { display: none; }
+
+      .master-icon {
+        @include bgimg('radio-checked', right center);
+        display: block;
+        line-height: 21px;
+        padding-right: 35px;
+        position: absolute;
+        right: $btn-tray-padding * 2;
+        text-align: right;
+        top: 20px;
+      }
+    }
+  }
+
+  @include breakpoint($desktop) {
+    max-width: 700px;
+    max-height: 280px;
+    margin-left: -350px !important;
+    margin-top: -140px !important;
+
+    .btn-tray {
+      margin: $lil-bump;
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      border-top: 1px solid $bright-blue;
+      width: 648px;
+    }
+
+    .label,
+    .input {
+      width: 310px;
+      position: absolute;
+    }
+
+    .label {
+      color: $bright-grey;
+      padding-left: 11px;
+      top: 80px;
+    }
+
+    .input {
+      top: 110px;
+      margin: 0;
+    }
+
+    .name-input,
+    .name-label {
+      left: $lil-bump;
+    }
+
+    .id-input,
+    .id-label {
+      right: $lil-bump;
+    }
+
+    .status-icon {
+      display: none;
+    }
+
+    .remove-btn {
+      background-color: $red;
+      position: absolute;
+      bottom: $lil-bump;
+      left: $lil-bump;
+      width: 130px;
+      z-index: 1;
+    }
+  }
+}
+
+
+//  routing
+////////////////////////////////////////////////////////////////////////////////
+
+//  mobile
+@include breakpoint($mobile) {
+  body[class=''] .\#receiver-table-view,
+  .\/receiver .\#receiver-info-view,
+  .\/receiver\/edit .\#receiver-edit-view {
+    display: block;
+  }
+}
+
+//  desktop
+@include breakpoint($desktop)  {
+  .\#receiver-table-view,
+  .\/receiver\/edit .\#receiver-edit-view {
+    display: block;
+  }
+}
+
+
+
 //  activation
 ////////////////////////////////////////////////////////////////////////////////
 
