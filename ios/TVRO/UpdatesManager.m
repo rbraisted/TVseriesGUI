@@ -158,15 +158,30 @@
         [delegate updatesManager:self uploadCompletedForUpdateType:updateType];
 
   } else {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
     NSString* fileName = connection.currentRequest.URL.lastPathComponent;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, updateType, fileName];
+    
+    NSString* oldFilePath = [defaults stringForKey:[NSString stringWithFormat:@"%@-file-path", updateType]];
+    NSLog(@"oldFilePath: %@", oldFilePath);
+  	if ([oldFilePath length]) {
+      NSFileManager *fileManager = [NSFileManager defaultManager];
+      BOOL fileRemoved = [fileManager removeItemAtPath:oldFilePath error:NULL];
+      NSLog(@"fileRemoved: %d", fileRemoved);
+    }
+    
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, fileName];
 		
-    [fileData writeToFile:filePath atomically:YES];
+		BOOL fileWritten = [fileData writeToFile:filePath atomically:YES];
     [downloadAlertView dismissWithClickedButtonIndex:0 animated:YES];
     
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"fileName: %@", fileName);
+    NSLog(@"filePath: %@", filePath);
+    NSLog(@"[fileData length]: %d", [fileData length]);
+    NSLog(@"fileWritten: %d", fileWritten);
+    
     [defaults setValue:portalVersion forKey:[NSString stringWithFormat:@"%@-device-version", updateType]];
     [defaults setValue:filePath forKey:[NSString stringWithFormat:@"%@-file-path", updateType]];
     [defaults synchronize];
