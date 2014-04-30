@@ -120,7 +120,7 @@ $(function() {
 
         '\n' +
         '\nTV-Hub Power' + 
-        '\nInput Supply Voltage 15 VDC' + powerInfo.hubInputSupplyV +
+        '\nInput Supply Voltage 10-30 VDC' + powerInfo.hubInputSupplyV +
         '\n42 VDC Input' + powerInfo.hubInput42V +
         '\n8 VDC' + powerInfo.hubEight +
         '\n5 VDC' + powerInfo.hubFive +
