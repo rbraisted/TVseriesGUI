@@ -1,9 +1,5 @@
 @import "base.scss";
 
-*:hover {
-  outline: 1px solid red;
-}
-
 html {
   background-position: top center;
 }
@@ -1790,5 +1786,13 @@ body[class=""] .\#skew-angle-view,
 .\/dish-activation .\#dish-activation-view,
 .\/bell-activation .\#bell-activation-view,
 .\/complete-activation .\#complete-activation-view {
+  display: block;
+}
+
+
+//  spinner
+////////////////////////////////////////////////////////////////////////////////
+
+.\/spinner .\#spinner-view {
   display: block;
 }
