@@ -118,9 +118,9 @@
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else self.setNmeaSource()
+      else self.setNmeaSource(value)
         .then(TVRO.getAntennaVersions)
-        .then(function(xml) {
+        .then(function(xmls) {
           var antModel = $('au model', xmls[0]).text();
           var lnbType = $('lnb polarization', xmls[0]).text();
           if (lnbType === 'circular') window.location = '/wizard/service.php';
