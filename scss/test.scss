@@ -1361,3 +1361,69 @@ body[class=""] .\#skew-angle-view,
     display: block;
   }
 }
+
+//  activation
+////////////////////////////////////////////////////////////////////////////////
+
+.directv-activation,
+.dish-activation,
+.bell-activation,
+.complete-activation {
+  .headline {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .copy {
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto;
+    @include breakpoint($mobile) {
+      font-size: $small-font;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .cta,
+  .phone {
+    font-size: $large-font;
+  }
+
+  .cta {
+    margin-top: 30px;
+  }
+
+  .cta,
+  .phone,
+  .time {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+}
+
+.directv-activation {
+  @include breakpoint($desktop) {
+    .column {
+      @include split(2, 20px, 'column');
+      line-height: 1.6;
+      vertical-align: top;
+    }
+  }
+}
+
+.complete-activation {
+  .headline,
+  .copy {
+    text-align: center;
+  }
+}
+
+.\/directv-activation .\#directv-activation-view,
+.\/dish-activation .\#dish-activation-view,
+.\/bell-activation .\#bell-activation-view,
+.\/complete-activation .\#complete-activation-view {
+  display: block;
+}

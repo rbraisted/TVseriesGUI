@@ -21,7 +21,7 @@
     var satDView = SatView($('.\\#sat-d-view', jQ));
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      //  go to activation page
+      window.location = '/wizard/activation.php';
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {

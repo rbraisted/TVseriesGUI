@@ -2120,3 +2120,77 @@ body[class=""] .\#skew-angle-view,
   .\/diagram-2 .\#complete-2-view,
   .\/diagram-3 .\#complete-3-view {
     display: block; } }
+.directv-activation .headline,
+.dish-activation .headline,
+.bell-activation .headline,
+.complete-activation .headline {
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; }
+.directv-activation .copy,
+.dish-activation .copy,
+.bell-activation .copy,
+.complete-activation .copy {
+  line-height: 1.6;
+  max-width: 540px;
+  margin: 0 auto; }
+  @media screen and (max-width: 880px) {
+    .directv-activation .copy,
+    .dish-activation .copy,
+    .bell-activation .copy,
+    .complete-activation .copy {
+      font-size: 13px;
+      padding-left: 20px;
+      padding-right: 20px; } }
+.directv-activation .cta,
+.directv-activation .phone,
+.dish-activation .cta,
+.dish-activation .phone,
+.bell-activation .cta,
+.bell-activation .phone,
+.complete-activation .cta,
+.complete-activation .phone {
+  font-size: 21px; }
+.directv-activation .cta,
+.dish-activation .cta,
+.bell-activation .cta,
+.complete-activation .cta {
+  margin-top: 30px; }
+.directv-activation .cta,
+.directv-activation .phone,
+.directv-activation .time,
+.dish-activation .cta,
+.dish-activation .phone,
+.dish-activation .time,
+.bell-activation .cta,
+.bell-activation .phone,
+.bell-activation .time,
+.complete-activation .cta,
+.complete-activation .phone,
+.complete-activation .time {
+  text-align: center;
+  margin-bottom: 15px; }
+
+@media screen and (min-width: 881px) {
+  .directv-activation .column {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    margin-left: 20px;
+    line-height: 1.6;
+    vertical-align: top; }
+    .directv-activation .column.first {
+      margin-left: 0; }
+    .directv-activation .column.first + column + column {
+      margin-left: 0; } }
+
+.complete-activation .headline,
+.complete-activation .copy {
+  text-align: center; }
+
+.\/directv-activation .\#directv-activation-view,
+.\/dish-activation .\#dish-activation-view,
+.\/bell-activation .\#bell-activation-view,
+.\/complete-activation .\#complete-activation-view {
+  display: block; }

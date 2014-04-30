@@ -109,7 +109,7 @@
         TVRO.setInstalledSat({
           antSatID: '101W'
         }).then(function() {
-          //  go to activation screen
+          window.location = '/wizard/activation.php';
         });
 
       else if (option === manualOption)
@@ -118,7 +118,7 @@
           service: 'DIRECTV',
           satellite_group: 'DIRECTV-USA'
         }).then(function() {
-          //  go to activation screen
+          window.location = '/wizard/activation.php';
         });
 
       else if (option === automaticOption)
