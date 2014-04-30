@@ -29,6 +29,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
   </div>
 
+  <a class="link" href="/media/DTV_DishType.mp4">Learn how to set the Dish Type</a>
+
   <div class="cta">Call to preactivate your account:</div>
   <div class="phone">1-866-551-8004</div>
   <div class="time">(24 hours, 7 days a week)</div>

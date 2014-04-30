@@ -2184,6 +2184,11 @@ body[class=""] .\#skew-angle-view,
       margin-left: 0; }
     .directv-activation .column.first + column + column {
       margin-left: 0; } }
+.directv-activation .link {
+  display: block;
+  margin: 30px auto 40px;
+  max-width: 280px;
+  text-align: center; }
 
 .complete-activation .headline,
 .complete-activation .copy {
