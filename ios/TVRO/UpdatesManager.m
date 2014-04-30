@@ -164,23 +164,16 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString* oldFilePath = [defaults stringForKey:[NSString stringWithFormat:@"%@-file-path", updateType]];
-    NSLog(@"oldFilePath: %@", oldFilePath);
+    NSString* oldFilePath = [self filePathForUpdateType:updateType];
   	if ([oldFilePath length]) {
       NSFileManager *fileManager = [NSFileManager defaultManager];
-      BOOL fileRemoved = [fileManager removeItemAtPath:oldFilePath error:NULL];
-      NSLog(@"fileRemoved: %d", fileRemoved);
+      [fileManager removeItemAtPath:oldFilePath error:NULL];
     }
     
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, fileName];
 		
-		BOOL fileWritten = [fileData writeToFile:filePath atomically:YES];
+		[fileData writeToFile:filePath atomically:YES];
     [downloadAlertView dismissWithClickedButtonIndex:0 animated:YES];
-    
-    NSLog(@"fileName: %@", fileName);
-    NSLog(@"filePath: %@", filePath);
-    NSLog(@"[fileData length]: %d", [fileData length]);
-    NSLog(@"fileWritten: %d", fileWritten);
     
     [defaults setValue:portalVersion forKey:[NSString stringWithFormat:@"%@-device-version", updateType]];
     [defaults setValue:filePath forKey:[NSString stringWithFormat:@"%@-file-path", updateType]];

@@ -2120,6 +2120,7 @@ body[class=""] .\#skew-angle-view,
   .\/diagram-2 .\#complete-2-view,
   .\/diagram-3 .\#complete-3-view {
     display: block; } }
+.generic-activation .headline,
 .directv-activation .headline,
 .dish-activation .headline,
 .bell-activation .headline,
@@ -2128,6 +2129,7 @@ body[class=""] .\#skew-angle-view,
   margin-left: auto;
   margin-right: auto;
   text-align: left; }
+.generic-activation .copy,
 .directv-activation .copy,
 .dish-activation .copy,
 .bell-activation .copy,
@@ -2136,6 +2138,7 @@ body[class=""] .\#skew-angle-view,
   max-width: 540px;
   margin: 0 auto; }
   @media screen and (max-width: 880px) {
+    .generic-activation .copy,
     .directv-activation .copy,
     .dish-activation .copy,
     .bell-activation .copy,
@@ -2143,6 +2146,8 @@ body[class=""] .\#skew-angle-view,
       font-size: 13px;
       padding-left: 20px;
       padding-right: 20px; } }
+.generic-activation .cta,
+.generic-activation .phone,
 .directv-activation .cta,
 .directv-activation .phone,
 .dish-activation .cta,
@@ -2152,11 +2157,15 @@ body[class=""] .\#skew-angle-view,
 .complete-activation .cta,
 .complete-activation .phone {
   font-size: 21px; }
+.generic-activation .cta,
 .directv-activation .cta,
 .dish-activation .cta,
 .bell-activation .cta,
 .complete-activation .cta {
   margin-top: 30px; }
+.generic-activation .cta,
+.generic-activation .phone,
+.generic-activation .time,
 .directv-activation .cta,
 .directv-activation .phone,
 .directv-activation .time,
@@ -2190,10 +2199,13 @@ body[class=""] .\#skew-angle-view,
   max-width: 280px;
   text-align: center; }
 
+.generic-activation .headline,
+.generic-activation .copy,
 .complete-activation .headline,
 .complete-activation .copy {
   text-align: center; }
 
+.\/generic-activation .\#generic-activation-view,
 .\/directv-activation .\#directv-activation-view,
 .\/dish-activation .\#dish-activation-view,
 .\/bell-activation .\#bell-activation-view,

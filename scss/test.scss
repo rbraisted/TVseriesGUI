@@ -1365,6 +1365,7 @@ body[class=""] .\#skew-angle-view,
 //  activation
 ////////////////////////////////////////////////////////////////////////////////
 
+.generic-activation,
 .directv-activation,
 .dish-activation,
 .bell-activation,
@@ -1421,6 +1422,7 @@ body[class=""] .\#skew-angle-view,
   }
 }
 
+.generic-activation,
 .complete-activation {
   .headline,
   .copy {
@@ -1428,6 +1430,7 @@ body[class=""] .\#skew-angle-view,
   }
 }
 
+.\/generic-activation .\#generic-activation-view,
 .\/directv-activation .\#directv-activation-view,
 .\/dish-activation .\#dish-activation-view,
 .\/bell-activation .\#bell-activation-view,

@@ -5,6 +5,20 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <script type="text/javascript" src="/js/wizard/activation.js"></script>
 
+<div class="view generic-activation #generic-activation-view">
+  <div class="view-head">Activate the TracVision System!</div>
+  <div class="copy">
+    Make sure your receivers are activated and ready to receive.
+  </div>
+  <div class="cta">Call to preactivate your account:</div>
+  <div class="phone">1-866-551-8004</div>
+  <div class="time">(24 hours, 7 days a week)</div>
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
+</div>
+
 <div class="view directv-activation #directv-activation-view">
   <div class="view-head">Activate the TracVision System!</div>
 
