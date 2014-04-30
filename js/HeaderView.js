@@ -36,8 +36,17 @@
     var startWalkAnimation = function() {
       if (walkAnimationInverval) return;
 
-      var currentLightIndex = 0;
-      var lights = $('.\\#power-status, .\\#acu-status, .\\#antenna-status', '.\\#status-btn');
+      var currentLightIndex = -1;
+
+      $('.\\#power-status, .\\#acu-status, .\\#antenna-status')
+        .removeClass('$green $orange $red')
+        .removeClass('$on $off $flash');
+
+      $('.\\#power-status, .\\#acu-status, .\\#antenna-status', statusJq)
+        .text('...');
+
+      var lights = $('.\\#power-status, .\\#acu-status, .\\#antenna-status', '.\\#status-btn')
+        .addClass('$orange $off');
 
       walkAnimationInverval = setInterval(function() {
         currentLightIndex = (currentLightIndex + 1) % lights.length;
@@ -69,42 +78,42 @@
             .text(line2)
             .end();
 
-        if (isFlashing) startWalkAnimation();
-        else stopWalkAnimation();
+        if (isFlashing) {
+          startWalkAnimation();
+        } else {
+          stopWalkAnimation();
 
-        //  each of the lights
-        var types = ['power', 'acu', 'antenna'];
+          //  each of the lights
+          var types = ['power', 'acu', 'antenna'];
 
-        //  for each of the lights,
-        //  get the color, state, and message to display
-        _.forEach(types, function(type) {
-          var color = $('led_' + type + ' color', xml).text().toLowerCase();
-          var state = $('led_' + type + ' state', xml).text().toLowerCase();
-          var message = $('led_' + type + ' message', xml).text();
+          //  for each of the lights,
+          //  get the color, state, and message to display
+          _.forEach(types, function(type) {
+            var color = $('led_' + type + ' color', xml).text().toLowerCase();
+            var state = $('led_' + type + ' state', xml).text().toLowerCase();
+            var message = $('led_' + type + ' message', xml).text();
 
-          //  update the light color and state
-          //  happens in both the status dropdown and the little
-          //  indicator in the top left corner
-          var statusLight = $('.\\#' + type + '-status')
-            .removeClass('$green $orange $red')
-            .removeClass('$on $off $flash')
+            //  update the light color and state
+            //  happens in both the status dropdown and the little
+            //  indicator in the top left corner
+            var statusLight = $('.\\#' + type + '-status')
+              .removeClass('$green $orange $red')
+              .removeClass('$on $off $flash')
 
-          if (isFlashing) {
-            statusLight
-              .addClass('$orange');
+            if (!isFlashing) {
+              statusLight
+                .addClass('$' + color)
+                .addClass('$' + state);
+            }
 
-          } else {
-            statusLight
-              .addClass('$' + color)
-              .addClass('$' + state);
-          }
+            //  update the message
+            //  happens only in the status dropdown otherwise our
+            //  indicator is going to filled with jumbled text
+            $('.\\#' + type + '-status', statusJq)
+              .text(message);
+          });
+        }
 
-          //  update the message
-          //  happens only in the status dropdown otherwise our
-          //  indicator is going to filled with jumbled text
-          $('.\\#' + type + '-status', statusJq)
-            .text(message);
-        });
       });
     };
 
