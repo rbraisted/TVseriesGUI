@@ -1765,7 +1765,7 @@ a {
 .popup:not(.\$predefined) .sat-edit .name-block .value,
 .popup:not(.\$predefined) .sat-edit .region-block .value,
 .popup:not(.\$predefined) .sat-edit .orb-slot-block .value,
-.popup:not(.\$predefined) .sat-edit .skew-block .value{
+.popup:not(.\$predefined) .sat-edit .skew-block .value {
   display: none; }
 
 .\#region-table-view,
