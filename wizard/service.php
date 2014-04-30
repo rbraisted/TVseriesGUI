@@ -7,6 +7,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 
 
+<div class="view spinner-view #spinner-view">
+  <div class="view-head">Installing Satellites</div>
+  <div class="headline">Please wait while your satellites are being installed...</div>
+
+  <img src="/images/spinner.gif" class="spinner" />
+</div>
+
+
+
 <div class="view service-provider #service-provider-view">
   <div class="view-head">Service Provider</div>
   

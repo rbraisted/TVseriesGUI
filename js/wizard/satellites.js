@@ -65,15 +65,27 @@ $(function() {
 
   var singleViewNextBtn = $('.\\#single-view .\\#next-btn').click(function() {
     TVRO.getInstalledSat().then(function(installedSat) {
-      if (!installedSat) alert('You must install a satellite to continue!');
-      else window.location = '/wizard/system.php';
+      if (!installedSat) {
+        alert('You must install a satellite to continue!');
+      } else {
+        document.body.className = '/spinner';
+        setTimeout(function() {
+          window.location = '/wizard/system.php';
+        }, 500);
+      }
     });
   });
 
   var groupViewNextBtn = $('.\\#group-view .\\#next-btn').click(function() {
     TVRO.getInstalledGroup().then(function(installedGroup) {
-      if (!installedGroup) alert('You must install a group to continue!');
-      else window.location = '/wizard/system.php';
+      if (!installedGroup) {
+        alert('You must install a group to continue!');
+      } else {
+        document.body.className = '/spinner';
+        setTimeout(function() {
+          window.location = '/wizard/system.php';
+        }, 500);
+      }
     });
   });
 
@@ -247,7 +259,7 @@ $(function() {
       });
     }
 
-    document.body.className = className;
+    document.body.className = '/spinner';//className;
   });
 
   TVRO.reload();

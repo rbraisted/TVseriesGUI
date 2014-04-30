@@ -12,6 +12,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <script type="text/javascript" src="/js/wizard/satellites.js"></script>
 
+<div class="view spinner-view #spinner-view">
+  <div class="view-head">Installing Satellites</div>
+  <div class="headline">Please wait while your satellites are being installed...</div>
+
+  <img src="/images/spinner.gif" class="spinner" />
+</div>
+
+
 <div class="view options #options-view">
   <div class="view-head">Satellite Selection</div>
 

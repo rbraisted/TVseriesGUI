@@ -56,7 +56,10 @@
       TVRO.setInstalledSat({
         antSatID: '119WD'
       }).then(function() {
-        window.location.hash = '/directv';
+        document.body.className = '/spinner';
+        setTimeout(function() {
+          window.location = '/wizard/activation.php';
+        }, 500);
       });
     });
 
