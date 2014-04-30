@@ -1385,7 +1385,7 @@ body[class=""] .\#skew-angle-view,
       }
 
       .install-btn {
-        @include bgimg('red-dot-icon');
+        @include bgimg('grey-dot-icon');
         display: inline-block;
         padding: 0;
         margin-left: 15px;
@@ -1448,7 +1448,7 @@ body[class=""] .\#skew-angle-view,
       }
 
       .status-icon {
-        @include bgimg('red-dot-icon', left center);
+        @include bgimg('grey-dot-icon', left center);
         line-height: 21px;
         padding-left: 35px;
       }
@@ -1593,7 +1593,7 @@ body[class=""] .\#skew-angle-view,
     }
 
     .status-icon {
-      @include bgimg('red-dot-icon', left center);
+      @include bgimg('grey-dot-icon', left center);
       border-bottom: 1px solid $bright-blue;
       border-top: 1px solid $bright-blue;
       line-height: 21px;

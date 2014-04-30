@@ -939,7 +939,7 @@ a {
       .receiver-table .table-row .select-col {
         display: none; }
       .receiver-table .table-row .install-btn {
-        background-image: url(/images/red-dot-icon.svg);
+        background-image: url(/images/grey-dot-icon.svg);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: 21px 21px;
@@ -1027,7 +1027,7 @@ a {
       .receiver-table .table-row .id-col .label {
         margin-bottom: 10px; }
       .receiver-table .table-row .status-icon {
-        background-image: url(/images/red-dot-icon.svg);
+        background-image: url(/images/grey-dot-icon.svg);
         background-position: left center;
         background-repeat: no-repeat;
         background-size: 21px 21px;
@@ -1156,7 +1156,7 @@ a {
       width: 100%; }
     .receiver-info .status-icon,
     .receiver-edit .status-icon {
-      background-image: url(/images/red-dot-icon.svg);
+      background-image: url(/images/grey-dot-icon.svg);
       background-position: left center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
