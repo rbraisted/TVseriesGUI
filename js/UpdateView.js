@@ -28,11 +28,17 @@
     });
 
     var uploadBtn = $('.\\#upload-btn', jQ).click(function(event) {
-      if (TVRO.getShellMode()) {
+      var confirmed = confirm('You are about to update the software on your TV-Hub, are you sure you want to proceed?');
+      if (confirmed) confirmed = confirm('This operation may take up to 30 minutes during which you will not be able to obtain a satellite signal, are you sure you want to proceed?');
+      
+      if (!confirmed) {
+        event.preventDefault();
+      } else if (TVRO.getShellMode()) {
         event.preventDefault();
         window.location = 'tvro://upload/' + update;
       }
     });
+
 
 
     var clearInput = function() {
@@ -58,14 +64,12 @@
           clearInput();
 
           var filename = $('file_name', xml).text();
-
-          var confirmed = filename ? confirm('Do you want to install this update?') : false;
-          if (confirmed) {
-            TVRO.installSoftware({
-              install: 'Y',
-              filename: filename
-            }).then(TVRO.reload);
-          }
+          if (!filename) return alert('An unexpected error occured. Please try again later.');
+          
+          TVRO.installSoftware({
+            install: 'Y',
+            filename: filename
+          }).then(TVRO.reload);
         },
         error: function(jqXHR, textStatus, errorThrown) {
           clearInput();
