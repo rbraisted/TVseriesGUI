@@ -23,10 +23,10 @@
         else newReceiver.sn = id;
 
         if (isNew) {
-          TVRO.addReceiver(newReceiver);
+          TVRO.addReceiver(newReceiver).then(TVRO.reload);
         } else {
           TVRO.removeReceiver(receiver).then(function() {
-            TVRO.addReceiver(newReceiver);
+            TVRO.addReceiver(newReceiver).then(TVRO.reload);
           });
         }
       });
