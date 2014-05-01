@@ -31,6 +31,15 @@
     <div class="back-btn #back-btn"></div>
   </div>
 
+  <div class="heading">Setup Wizard</div>
+  <p>
+    The Setup Wizard guides you through setting up the system, step by step.
+    The Setup Wizard should be run after initial installation and repeated
+    whenever you make a change to your system’s configuration, such as adding
+    or removing devices.
+  </p>
+  <div class="block-btn #wizard-btn">Setup Wizard</div>
+
   <div class="heading">Demo Mode</div>
   <p>
     Turn on Demo mode to browse the capabilities of the web interface and the
@@ -41,16 +50,6 @@
     <div class="on">On</div>
     <div class="off">Off</div>
   </div>
-
-  <div class="heading">Setup Wizard</div>
-  <p>
-    The Setup Wizard guides you through setting up the system, step by step.
-    The Setup Wizard should be run after initial installation and repeated
-    whenever you make a change to your system’s configuration, such as adding
-    or removing devices.
-  </p>
-  <div class="block-btn #wizard-btn">Setup Wizard</div>
-
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
