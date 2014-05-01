@@ -259,7 +259,7 @@ $(function() {
       });
     }
 
-    document.body.className = '/spinner';//className;
+    document.body.className = className;
   });
 
   TVRO.reload();
