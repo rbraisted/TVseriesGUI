@@ -27,5 +27,6 @@
 
 - (NSString*)deviceVersionForUpdateType:(NSString *)_updateType;
 - (NSString*)filePathForUpdateType:(NSString *)_updateType;
+- (NSString*)fileNameForUpdateType:(NSString *)_updateType;
 
 @end

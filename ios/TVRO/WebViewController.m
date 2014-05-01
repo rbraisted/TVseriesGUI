@@ -137,14 +137,14 @@
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForUpdateType:(NSString *)updateType {
 	NSLog(@"updatesManager downloadCompletedForUpdateType:%@", updateType);
-//  [self setDeviceVersions];
   [webView reload];
-//	[webView stringByEvaluatingJavaScriptFromString:@"TVRO.reload();"];
 }
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForUpdateType:(NSString *)updateType {
 	NSLog(@"updatesManager uploadCompletedForUpdateType:%@", updateType);
-	NSString* jsString = [NSString stringWithFormat:@"window.tvro.updates.install('%@');", @"some file name"];
+  NSString* fileName = [updatesManager fileNameForUpdateType:updateType];
+	NSString* jsString = [NSString stringWithFormat:@"TVRO.installSoftware({ install: 'Y', filename: '%@' }).then(TVRO.reload);", fileName];
+  NSLog(@"jsString: %@", jsString);
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 

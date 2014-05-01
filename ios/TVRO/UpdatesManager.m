@@ -127,6 +127,12 @@
 	return [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"%@-file-path", [_updateType lowercaseString]]];
 }
 
+- (NSString*)fileNameForUpdateType:(NSString *)_updateType {
+  NSString* filePath = [self filePathForUpdateType:_updateType];
+	return [filePath lastPathComponent];
+}
+
+
 #pragma mark - NSURLConnectionDelegate protocol methods
 
 - (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response {
