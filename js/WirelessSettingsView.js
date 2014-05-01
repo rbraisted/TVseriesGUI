@@ -14,51 +14,42 @@
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
       //  we make this call just to get <security><algorithm>
       //  the call to set <security><wpa2> does not work without it
-      TVRO.getWlan().then(function(xml) {
-        var mode = $('.\\#wlan-mode', jQ).text();
-        var essid = $('.\\#wlan-essid', jQ).val();
-        var ip = $('.\\#wlan-ip', jQ).val();
-        var netmask = $('.\\#wlan-netmask', jQ).val();
-        var gateway = $('.\\#wlan-gateway', jQ).val();
-        var broadcast = $('.\\#wlan-broadcast', jQ).val();
+      var mode = $('.\\#wlan-mode', jQ).text();
+      var essid = $('.\\#wlan-essid', jQ).val();
+      var ip = $('.\\#wlan-ip', jQ).val();
+      var netmask = $('.\\#wlan-netmask', jQ).val();
+      var gateway = $('.\\#wlan-gateway', jQ).val();
 
-        //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
-        var networkMode = $('.\\#wlan-network-mode', jQ).text();
-        var securityMode = $('.\\#wlan-security-mode', jQ).text();
-        var securityKey = $('.\\#wlan-security-key', jQ).text();
+      //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
+      var networkMode = $('.\\#wlan-network-mode', jQ).text();
+      var securityMode = $('.\\#wlan-security-mode', jQ).text();
+      var securityKey = $('.\\#wlan-security-key', jQ).text();
 
-        if (mode === 'AP (Access Point)') xml = $('ap_mode', xml);
-        else xml = $('if_mode', xml);
+      if (mode === 'AP (Access Point)') xml = $('ap_mode', xml);
+      else xml = $('if_mode', xml);
 
-        var securityAlgorithm = $('security algorithm', xml).text();
-
-        var params = {
-          mode: mode,
-
-          if_mode: {
-            mode: networkMode,
-            essid: essid,
-            ip: ip,
-            netmask: netmask,
-            gateway: gateway,
-            broadcast: broadcast,
-
-            security: {
-              mode: securityMode,
-              algorithm: securityAlgorithm,
-              wpa2: securityKey
-            }
+      var params = {
+        mode: mode,
+        if_mode: {
+          mode: networkMode,
+          essid: essid,
+          ip: ip,
+          netmask: netmask,
+          gateway: gateway,
+          security: {
+            mode: securityMode,
+            wpa2: securityKey
           }
-        };
-
-        if (mode === 'AP (Access Point)') {
-          params.ap_mode = params.if_mode;
-          delete params.if_mode;
         }
+      };
 
-        var confirmed = confirm('Are you sure you want to save these changes?');
-        if (confirmed) TVRO.setWlan(params).then(TVRO.reload);
-      });
+      if (mode === 'AP (Access Point)') {
+        params.ap_mode = params.if_mode;
+        delete params.if_mode;
+      }
+
+      var confirmed = confirm('Are you sure you want to save these changes?');
+      if (confirmed) TVRO.setWlan(params).then(TVRO.reload);
     });
 
 
