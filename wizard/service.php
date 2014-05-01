@@ -35,6 +35,23 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 </div>
 
 
+<div class="view service-subtype #service-subtype-view">
+  <div class="view-head">Choose the Active Service</div>
+  <div class="headline">Which service do you want the antenna to track now?</div>
+  <div class="clear-table #table-view">
+    <div class="table-row #table-row">
+      <span class="table-col install-btn"></span><!--
+    --><span class="table-col #value"></span>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
+</div>
+
+
 
 <div class="view local-channels #local-channels-view">
   <div class="view-head">Local Channels</div>

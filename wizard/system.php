@@ -122,55 +122,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 
 
-<div id="linear-system-config-view" class="view main-view wiz-view linear-system-config-view">
-  <div class="view-content main-content wiz-content">
-    <div class="wiz-title-view tac bb dfs26 mfs21"><span class="desktop">Choose Your </span>System Configuration</div>
-    <div class="tac dfs21 mfs16 dlh1.6 mlh1.6 mt2 mb1 wiz-instructions">
-      Choose the configuration that most closely resembles<br class="desktop">
-      the one on your vessel.
-    </div>
-    <div id="radio" class="wiz-radio">
-      <div id="radio-option" class="btn radio-btn radio-icon bb">
-        <span class="dfs16 mfs13">
-          Configuration 1<span class="desktop">:</span>
-        </span>
-        <br class="mobile">
-        <span class="dfs13 mfs11">1-4 Recievers (1 master reciever)</span>
-        <div id="diagram-1-btn" class="info-icon info-btn"></div>
-      </div>
-      <div id="radio-option" class="btn radio-btn radio-icon bb">
-        <span class="dfs16 mfs13">
-          Configuration 2<span class="desktop">:</span>
-        </span>
-        <br class="mobile">
-        <span class="dfs13 mfs11">1-4 Recievers with AutoSwitch(es) installed (multiple master recievers)</span>
-        <div id="diagram-2-btn" class="info-icon info-btn"></div>
-      </div>
-      <div id="radio-option" class="btn radio-btn radio-icon bb">
-        <span class="dfs16 mfs13">
-          Configuration 3<span class="desktop">:</span>
-        </span>
-        <br class="mobile">
-        <span class="dfs13 mfs11">5+ Receivers + multiswitch (manual satellite switching only)</span>
-        <div id="diagram-3-btn" class="info-icon info-btn"></div>
-      </div>
-      <div id="radio-option" class="btn radio-btn radio-icon bb">
-        <span class="dfs16 mfs13">
-          Configuration 4<span class="desktop">:</span>
-        </span>
-        <br class="mobile">
-        <span class="dfs13 mfs11">5+ Recievers with AutoSwitch(es) installed (1+ master receivers) + multiswitch</span>
-        <div id="diagram-4-btn" class="info-icon info-btn"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="bottom-bar">
-    <a id="prev-btn" class="btn prev-btn prev-icon fl">Previous</a>
-    <a id="next-btn" class="btn next-btn next-icon fr">Next</a>
-  </div>
-</div>
-
 
 <div class="popup diagram-1 #diagram-1-view">
   <div class="popup-guts">

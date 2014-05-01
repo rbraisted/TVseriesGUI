@@ -434,6 +434,7 @@ html {
 ////////////////////////////////////////////////////////////////////////////////
 
 .service-provider,
+.service-subtype,
 .local-channels,
 .dish-network {
   .headline {
@@ -481,6 +482,7 @@ html {
 }
 
 body[class=''] .\#service-provider-view,
+.\/service-subtype .\#service-subtype-view,
 .\/local-channels .\#local-channels-view,
 .\/directv .\#directv-view,
 .\/dish-network .\#dish-network-view,
