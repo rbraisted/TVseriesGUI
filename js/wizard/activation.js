@@ -4,6 +4,10 @@ $(function() {
     window.location.hash = '/complete-activation';
   });
 
+  $('.\\#dtv-prev-btn').click(function() {
+	    window.location = '/wizard/service.php#/directv';
+  });
+
   $('.\\#exit-btn').click(function() {
     window.location = '/home.php';
   });
