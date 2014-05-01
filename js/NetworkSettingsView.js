@@ -38,7 +38,7 @@
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
         var networkMode = $('mode:first', xml).text();
         var securityMode = $('security mode', xml).text();
-        var securityKey = $('security wpa2', xml).text();
+        var securityKey = $('security wpa2', xml).text() || $('security key', xml).text();
 
         jQ.toggleClass('$wlan-off', mode === 'OFF');
         jQ.toggleClass('$wlan-bridged', networkMode === 'BRIDGED');

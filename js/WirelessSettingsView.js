@@ -89,7 +89,7 @@
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
         var networkMode = $('mode:first', xml).text();
         var securityMode = $('security mode', xml).text();
-        var securityKey = $('security wpa2', xml).text();
+        var securityKey = $('security wpa2', xml).text() || $('security key', xml).text();
 
         setNetworkMode(networkMode);
         setSecurityMode(securityMode);
@@ -196,77 +196,3 @@
 	TVRO.WirelessSettingsView = WirelessSettingsView;
 
 }(window.TVRO);
-
-/*
-
-<ipacu_response>
-  <message name="get_wlan" error="0"></message>
-  <mode>AP (Access Point)</mode>
-  <if_mode>
-    <mode>DYNAMIC</mode>
-    <essid>linksys</essid>
-    <security>
-      <mode>OFF</mode>
-      <algorithm>TKIP</algorithm>
-      <key>tracvision</key>
-    </security>
-    <ip>169.254.1.1</ip>
-    <netmask>255.255.0.0</netmask>
-    <gateway>169.254.1.1</gateway>
-    <broadcast>169.254.1.255</broadcast>
-  </if_mode>
-</ipacu_response>
-
-{
-  mode: "IF (Infrastructure)",
-  if_mode: {
-    mode: "DYNAMIC",
-    essid: "linksys",
-    security: {
-      mode: "OFF",
-      algorithm: "TKIP",
-      key: "tracvision"
-    },
-    ip: "169.254.1.1",
-    netmask: "255.255.0.0",
-    gateway: "169.254.1.1",
-    broadcast: "169.254.1.255"
-  }
-}
-
-<ipacu_request>
-  <message name="set_wlan"></message>
-  <mode>AP (Access Point)</mode>
-  <ap_mode>
-    <mode>ENDPOINT</mode>
-    <essid>TVHub-140311659</essid>
-    <ip>172.16.0.1</ip>
-    <netmask>255.255.255.0</netmask>
-    <gateway>172.16.0.1</gateway>
-    <broadcast>172.16.0.1</broadcast>
-    <security>
-      <mode>OFF</mode>
-      <wpa2>tracvision</wpa2>
-      <key>tracvision</key>
-    </security>
-</ap_mode>
-</ipacu_request>
-
-{
-  mode: "AP (Access Point)",
-  ap_mode: {
-    mode: "ENDPOINT",
-    essid: "TVHub-140311659",
-    ip: "172.16.0.1",
-    netmask: "255.255.255.0",
-    gateway: "172.16.0.1",
-    security: {
-      mode: "WPA_PSK",
-      algorithm: "TKIP",
-      wpa2: "securitykey",
-      key: "securitykey"
-    }
-  }
-}
-
-*/
