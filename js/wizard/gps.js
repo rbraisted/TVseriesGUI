@@ -94,10 +94,10 @@
       .then(self.build)
       .then(function() {
         var values = self.getValues();
-        var value = _.find(values, 'selected') || _.find(values, { display: 'None' });
-        self.setValue(value);
         // we don't expect more than 1 one of the options from get_gps_config
         // to have <selected>Y</selected>
+        var value = _.find(values, 'selected') || _.find(values, { display: 'None' });
+        self.setValue(value);
       });
 
     return self;
@@ -106,19 +106,52 @@
 
 
   var VesselLocationView = function(jQ) {
+    var coordinatesView = $('.\\#coordinates-view', jQ).detach();
+    var cityView = $('.\\#city-view', jQ).detach();
+
+    var cityDropdownView = TVRO.DropdownView($('.\\#city-dropdown-view'));
+    var cityDropdownBtn = $('.\\#city-btn', cityView).click(function() {
+      cityDropdownView.show(cityDropdownBtn.offset());
+      self.setValue('CITY');
+    });
+
+    TVRO.getGpsCities().then(function(xml) {
+      cityDropdownView.setValues(
+        _.map($('city', xml), function(element) {
+          return $(element).text();
+        })
+      ).build();
+    });
+
     var self = GpsSourceView(jQ)
       .onBuild(function(row, value) {
-        $('.\\#value', row).text(value.display);
+        if (value === 'COORDINATES') $('.\\#value', row).append(coordinatesView);
+        else if (value === 'CITY') $('.\\#value', row).append(cityView);
+        else $('.\\#value', row).text(value.display);
       });
 
     self.getNmeaSources()
-      .then(self.setValues)
+      .then(function(values) {
+        //  insert CITY and COORDINATES before None
+        var none = values.pop();
+        values = values.concat(['COORDINATES', 'CITY', none]);
+        self.setValues(values);
+      })
       .then(self.build);
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
-      if (!value) alert('You must select an option to continue.');
-      else self.setNmeaSource(value)
+      if (!value) {
+        alert('You must select an option to continue.');
+
+      } else if (value === 'COORDINATES') {
+        var latitude = $('.\\#latitude', coordinatesView).val();
+        var longitude = $('.\\#longitude', coordinatesView).val();
+
+      } else if (value === 'CITY') {
+        var city = circulartyDropdownView.getValue();
+
+      } else self.setNmeaSource(value)
         .then(TVRO.getAntennaVersions)
         .then(function(xmls) {
           var antModel = $('au model', xmls[0]).text();
@@ -127,10 +160,6 @@
           else window.location = '/wizard/satellites.php#/regions';
         });
     });
-
-    var CoordinatesView = function(jQ) {
-
-    };
 
     return self;
   };
