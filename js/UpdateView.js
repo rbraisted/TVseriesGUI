@@ -27,28 +27,37 @@
       });
     });
 
-    var uploadBtn = $('.\\#upload-btn', jQ).click(function(event) {
+    var getConfirmation = function() {
       var confirmed = confirm('You are about to update the software on your TV-Hub, are you sure you want to proceed?');
-      if (confirmed) confirmed = confirm('This operation may take up to 30 minutes during which you will not be able to obtain a satellite signal, are you sure you want to proceed?');
-      
-      if (!confirmed) {
+      //  ran into a strange error here where confirmation alerts would stack up
+      //  if you selected "Cancel" on the 2nd confirmation
+      //  not sure why, but this seemed to fix it
+      if (confirmed && jQ.hasClass('$antenna')) return confirmed = confirm('This operation may take up to 30 minutes during which you will not be able to obtain a satellite signal, are you sure you want to proceed?');
+      else return confirmed;
+    };
+
+    var uploadBtn = $('.\\#upload-btn', jQ).click(function(event) {
+      if (TVRO.getShellMode()) {
         event.preventDefault();
-      } else if (TVRO.getShellMode()) {
-        event.preventDefault();
-        window.location = 'tvro://upload/' + update;
+        var confirmed = getConfirmation();
+        if (confirmed) window.location = 'tvro://upload/' + update;
       }
     });
-
-
 
     var clearInput = function() {
       $('#fileToUpload').wrap('<form>').closest('form').get(0).reset();
       $('#fileToUpload').unwrap();
-      $('#fileToUpload').change(onChange);
+      $('#fileToUpload').off('change').change(onChange);
     };
 
     var onChange = function() {
       if (!jQ.hasClass('$connected')) return;
+
+      var confirmed = getConfirmation();
+      if (!confirmed) {
+        clearInput();
+        return;
+      }
 
       $.ajaxFileUpload({
         url: 'xmlservices.php/set_config_file',
@@ -73,6 +82,7 @@
         },
         error: function(jqXHR, textStatus, errorThrown) {
           clearInput();
+
           if (TVRO.debug) {
             console.log('\n~ ! ~');
             console.log(jqXHR);
