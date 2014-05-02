@@ -166,9 +166,23 @@
   	}
   };
 
+  //  'getting'
+  //  caches the result so you don't make too many calls
+  //  TVRO.messageName = get('message_name')
+  //  TVRO.messageName is now a function with this signature:
+  //  TVRO.messageName(paramsJsonThatWillBeConvertedToXMLToSend,
+  //                   shouldForceAjaxCallInsteadOfReturningCachedResult)
 
-
-
+  //  'setting'
+  //  TVRO.messageName = set('message_name', [
+  //                       get('some_xml_that_needs_to_be_updated_as_a_result'),
+  //                       get('some_xml_that_needs_to_be_updated_as_a_result')
+  //                     ])
+  //  for example, if you set_antenna_config,
+  //  you probably expect that the results of get_antenna_config will have
+  //  changed on the box. since get_antenna_config is cached, you'll want
+  //  the call to set_antenna_config to remove get_antenna_config from the cache
+  //  so that calls to it will bring you fresh data
 
 	TVRO.getAntennaStatus = get('antenna_status');
 

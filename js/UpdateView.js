@@ -106,10 +106,12 @@
             jQ.addClass('$antenna');
             jQ.toggleClass('$connected', connected);
             $('.\\#system-ver', jQ).text(systemVersion);
+            $('#fileToUpload').attr('accept', 'text/kvh');
           } else {
             jQ.addClass('$sat-library $connected');
             systemVersion = $('sat_list ver', xml).text();
             $('.\\#system-ver', jQ).text(systemVersion);
+            $('#fileToUpload').attr('accept', 'text/xml');
           }
 
           if (jQ.hasClass('$connected')) return systemVersion;
