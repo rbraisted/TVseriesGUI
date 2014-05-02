@@ -331,7 +331,13 @@ html {
   }
 
   .note {
+    font-size: $small-font;
+    margin: 30px 15px auto 75px;
+    position: relative;
     text-align: center;
+    @include breakpoint($mobile) {
+      margin: 30px 0;
+    }
   }
 }
 
@@ -434,7 +440,8 @@ html {
     }
 
     .city-label {
-      @media screen and (max-width: 400px) {
+      margin-top: 0;
+      @media screen and (max-width: 540px) {
         margin-left: 12px;
       }
     }
@@ -447,14 +454,14 @@ html {
 
     .dropdown-btn {
       display: inline-block;
-      min-width: 100px;
+      margin-bottom: -5px;
       margin-left: 10px;
       min-height: 28px;
+      min-width: 100px;
 
       @media screen and (max-width: 540px) {
         display: block;
-        margin-top: 10px;
-        margin-left: 0;
+        margin: 10px 0 0;
       }
     }
   }

@@ -1090,7 +1090,13 @@ html {
     .wizard-index .step.step-2 {
       padding-top: 22px; }
   .wizard-index .note {
+    font-size: 13px;
+    margin: 30px 15px auto 75px;
+    position: relative;
     text-align: center; }
+    @media screen and (max-width: 880px) {
+      .wizard-index .note {
+        margin: 30px 0; } }
 
 @media screen and (min-width: 881px) {
   .installer-id .headline {
@@ -1176,10 +1182,13 @@ html {
       .vessel-location .coordinates-view .coordinates-label,
       .vessel-location .city-view .coordinates-label {
         display: block; } }
-  @media screen and (max-width: 400px) {
-    .vessel-location .coordinates-view .city-label,
-    .vessel-location .city-view .city-label {
-      margin-left: 12px; } }
+  .vessel-location .coordinates-view .city-label,
+  .vessel-location .city-view .city-label {
+    margin-top: 0; }
+    @media screen and (max-width: 540px) {
+      .vessel-location .coordinates-view .city-label,
+      .vessel-location .city-view .city-label {
+        margin-left: 12px; } }
   .vessel-location .coordinates-view .input, .vessel-location .coordinates-view .dropdown-btn,
   .vessel-location .city-view .input,
   .vessel-location .city-view .dropdown-btn {
@@ -1189,15 +1198,15 @@ html {
   .vessel-location .coordinates-view .dropdown-btn,
   .vessel-location .city-view .dropdown-btn {
     display: inline-block;
-    min-width: 100px;
+    margin-bottom: -5px;
     margin-left: 10px;
-    min-height: 28px; }
+    min-height: 28px;
+    min-width: 100px; }
     @media screen and (max-width: 540px) {
       .vessel-location .coordinates-view .dropdown-btn,
       .vessel-location .city-view .dropdown-btn {
         display: block;
-        margin-top: 10px;
-        margin-left: 0; } }
+        margin: 10px 0 0; } }
 
 .backup-gps-source .headline.desktop {
   white-space: nowrap; }

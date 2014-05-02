@@ -36,7 +36,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   </div>
 
   <div class="city-view #city-view">
-    <span class="city-label">Choose your nearest major city</span>
+    <span class="city-label label">Choose your nearest major city</span>
     <div class="dropdown-btn #city-btn">
       <div class="#city">Select a City</div>
       <div class="dropdown-icon"></div>
