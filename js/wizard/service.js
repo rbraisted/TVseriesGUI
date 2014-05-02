@@ -49,6 +49,38 @@
 
 
 
+  var ServiceSubtypeView = function(jQ) {
+    var self = TVRO.TableView($('.\\#table-view', jQ))
+      .setValues([
+        'NORTH_AMERICA',
+        'LATIN_AMERICA'
+      ])
+      .onBuild(function(row, value) {
+        if (value === 'NORTH_AMERICA') $('.\\#value', row).text('DIRECTV North America');
+        else $('.\\#value', row).text('DIRECTV Latin America');
+      })
+      .build();
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var value = self.getValue();
+      if (!value) alert('You must select an option to continue.');
+      else TVRO.setAutoswitchService({
+        service: 'DIRECTV',
+        service_subtype: value
+      }).then(function() {
+        window.location = '/wizard/system.php#/linear-system-config'
+      });
+    });
+
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      window.location.hash = '/local-channels';
+    });
+
+    return self;
+  };
+
+
+
   var LocalChannelsView = function(jQ) {
     var self;
 
@@ -58,7 +90,11 @@
       }).then(function() {
         document.body.className = '/spinner';
         setTimeout(function() {
-          window.location = '/wizard/activation.php';
+          TVRO.getAntennaVersions().then(function(xml) {
+            var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
+            if (isTriAmericas) window.location.hash = '/service-subtype';
+            else window.location = '/wizard/activation.php';
+          });
         }, 500);
       });
     });
@@ -141,6 +177,7 @@
 
 
   TVRO.ServiceProviderView = ServiceProviderView;
+  TVRO.ServiceSubtypeView = ServiceSubtypeView;
   TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
 
@@ -149,6 +186,7 @@
 
 $(function() {
   var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
+  var serviceSubtypeView = TVRO.ServiceSubtypeView($('.\\#service-subtype-view'));
   var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
   var directvView = TVRO.DirectvView($('.\\#directv-view'));
 
