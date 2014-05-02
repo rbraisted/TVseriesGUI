@@ -39,6 +39,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 			your particular configuration
 			<div class="bullet">3</div>
 		</div>
+		<div class="note">
+		Note: Refer to the Installation Guide for details.
+		</div>
 	</div><!--
 --><div class="col">
 		<div class="headline">

@@ -1089,7 +1089,13 @@ html {
       padding-top: 12px; }
     .wizard-index .step.step-2 {
       padding-top: 22px; }
-
+    .wizard-index .note {
+      font-size: 13px;
+      margin: auto 15px auto 75px;
+      margin-top: 30px;
+      position: relative;
+      text-align: left; }
+      
 @media screen and (min-width: 881px) {
   .installer-id .headline {
     margin: 60px 0 30px; } }
