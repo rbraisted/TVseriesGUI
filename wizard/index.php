@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 	<div class="system-detected">
 		System Detected:<br>
 		<span class="copy">
-			Tracvision <span class="#ant-model"></span>
+			TracVision <span class="#ant-model"></span>
 			<span class="desktop">with</span>
 			<br class="mobile">
 			<span class="#ant-lnb"></span> LNB
@@ -31,7 +31,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 			<div class="bullet">1</div>
 		</div>
 		<div class="step step-2">
-			Download the latest antenna software
+			Update the antenna software to the latest version.
 			<div class="bullet">2</div>
 		</div>
 		<div class="step step-3">
