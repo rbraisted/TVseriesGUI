@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 <script type="text/javascript" src="/js/wizard/activation.js"></script>
 
 <div class="view generic-activation #generic-activation-view">
-  <div class="view-head">Activate the TracVision System!</div>
+  <div class="view-head">Activate the Receiver(s)</div>
   <div class="copy">
     Make sure your receivers are activated and ready to receive.
   </div>
@@ -20,7 +20,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 </div>
 
 <div class="view directv-activation #directv-activation-view">
-  <div class="view-head">Activate the TracVision System!</div>
+  <div class="view-head">Activate the DIRECTV Receiver(s)</div>
 
   <div class="column first">
     <div class="headline">DIRECTV SWM Receivers/DVRs</div>
@@ -55,7 +55,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 </div>
 
 <div class="view dish-activation #dish-activation-view">
-  <div class="view-head">Activate the TracVision System!</div>
+  <div class="view-head">Activate the DISH Receiver(s)</div>
   <div class="headline">DISH Network Customers</div>
   <div class="copy">* Info specific to DISH Network users about activation to come.</div>
   <div class="cta">Call to preactivate your account:</div>

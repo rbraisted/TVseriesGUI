@@ -84,9 +84,9 @@
         document.body.className = '/spinner';
         setTimeout(function() {
           TVRO.getAntennaVersions().then(function(xml) {
-            var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
+            var isTriAmericas = $('lnb name', xml).text() === 'Tri-Americas';
             if (isTriAmericas) window.location.hash = '/service-subtype';
-            else window.location = '/wizard/activation.php';
+            else window.location.hash = '/directv';
           });
         }, 500);
       });
