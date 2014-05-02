@@ -9,7 +9,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <div class="view installer-id #installer-id-view">
   <div class="view-head">Installer Identification</div>
-  <div class="headline">Who Installed the TracVision System?</div>
+  <div class="headline">Who installed the TracVision System?</div>
 
   <div class="clear-table #table-view">
     <div class="table-row #table-row">
