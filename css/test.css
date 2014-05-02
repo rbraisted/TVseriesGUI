@@ -1150,6 +1150,53 @@ html {
     .heading-source .note {
       font-size: 16px; } }
 
+.vessel-location .coordinates-view,
+.vessel-location .city-view {
+  line-height: 1.4; }
+  .vessel-location .coordinates-view .label,
+  .vessel-location .city-view .label {
+    display: inline-block;
+    margin-top: 5px; }
+    @media screen and (max-width: 400px) {
+      .vessel-location .coordinates-view .label,
+      .vessel-location .city-view .label {
+        display: block;
+        margin-left: 12px;
+        margin-top: 10px; } }
+    @media screen and (min-width: 401px) {
+      .vessel-location .coordinates-view .label,
+      .vessel-location .city-view .label {
+        min-width: 90px; } }
+  .vessel-location .coordinates-view .coordinates-label,
+  .vessel-location .city-view .coordinates-label {
+    margin-top: 0; }
+    @media screen and (min-width: 401px) {
+      .vessel-location .coordinates-view .coordinates-label,
+      .vessel-location .city-view .coordinates-label {
+        display: block; } }
+  @media screen and (max-width: 400px) {
+    .vessel-location .coordinates-view .city-label,
+    .vessel-location .city-view .city-label {
+      margin-left: 12px; } }
+  .vessel-location .coordinates-view .input, .vessel-location .coordinates-view .dropdown-btn,
+  .vessel-location .city-view .input,
+  .vessel-location .city-view .dropdown-btn {
+    margin: -2px 0 0;
+    width: 200px;
+    font-size: 13px; }
+  .vessel-location .coordinates-view .dropdown-btn,
+  .vessel-location .city-view .dropdown-btn {
+    display: inline-block;
+    min-width: 100px;
+    margin-left: 10px;
+    min-height: 28px; }
+    @media screen and (max-width: 540px) {
+      .vessel-location .coordinates-view .dropdown-btn,
+      .vessel-location .city-view .dropdown-btn {
+        display: block;
+        margin-top: 10px;
+        margin-left: 0; } }
+
 .backup-gps-source .headline.desktop {
   white-space: nowrap; }
 
@@ -1158,15 +1205,6 @@ html {
 .\/heading-source .\#heading-source-view {
   display: block; }
 
-@media screen and (max-width: 880px) {
-  .\/coordinates .\#coordinates-view {
-    display: block; }
-
-  .coordinates-view input {
-    width: 100%; } }
-@media screen and (min-width: 881px) {
-  .\/coordinates .\#vessel-location-view {
-    display: block; } }
 @media screen and (min-width: 881px) {
   .service-provider .headline,
   .service-subtype .headline,

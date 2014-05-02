@@ -403,6 +403,59 @@ html {
   }
 }
 
+.vessel-location {
+  .coordinates-view,
+  .city-view {
+    line-height: 1.4;
+
+    .label {
+      display: inline-block;
+      margin-top: 5px;
+      @media screen and (max-width: 400px) {
+        display: block;
+        margin-left: 12px;
+        margin-top: 10px;
+      }
+
+      @media screen and (min-width: 401px) {
+        min-width: 90px;
+      }
+    }
+
+    .coordinates-label {
+      margin-top: 0;
+      @media screen and (min-width: 401px) {
+        display: block;
+      }
+    }
+
+    .city-label {
+      @media screen and (max-width: 400px) {
+        margin-left: 12px;
+      }
+    }
+
+    .input {
+      margin: -2px 0 0;
+      width: 200px;
+      font-size: $small-font;
+    }
+
+    .dropdown-btn {
+      display: inline-block;
+      min-width: 100px;
+      margin-left: 10px;
+      min-height: 28px;
+
+      @media screen and (max-width: 540px) {
+        display: block;
+        margin-top: 10px;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
 .backup-gps-source .headline.desktop {
   white-space: nowrap;
 }
@@ -412,23 +465,6 @@ html {
 .\/heading-source .\#heading-source-view {
   display: block;
 }
-
-@include breakpoint($mobile) {
-  .\/coordinates .\#coordinates-view {
-    display: block;
-  }
-
-  .coordinates-view input {
-    width: 100%;
-  }
-}
-
-@include breakpoint($desktop) {
-  .\/coordinates .\#vessel-location-view {
-    display: block;
-  }
-}
-
 
 //  service
 ////////////////////////////////////////////////////////////////////////////////
