@@ -91,3 +91,33 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <div class="next-btn #next-btn">Next</div>
   </div>
 </div>
+
+
+
+<div class="view dish-network #dish-network-view">
+  <div class="view-head">DISH NETWORK</div>
+  <div class="#groups-view">
+    <div class="headline">Choose your DISH Network satellites.</div>
+    <div class="clear-table #table-view">
+      <div class="table-row #table-row">
+        <span class="table-col install-btn"></span><!--
+      --><span class="table-col #value"></span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="#sats-view">
+    <div class="headline">Choose your DISH Network satellite.</div>
+    <div class="clear-table #table-view">
+      <div class="table-row #table-row">
+        <span class="table-col install-btn"></span><!--
+      --><span class="table-col #value"></span>
+      </div>
+    </div>    
+  </div>
+
+  <div class="bottom-bar">
+    <div class="prev-btn #prev-btn">Previous</div>
+    <div class="next-btn #next-btn">Next</div>
+  </div>
+</div>

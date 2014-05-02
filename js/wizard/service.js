@@ -21,20 +21,13 @@
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
 
-      //  directv shows the local-channels view
-      else if (value === 'DIRECTV')
-        TVRO.setAutoswitchService({
-          service: 'DIRECTV'
-        }).then(function() {
-          window.location.hash = '/local-channels';
-        });
-
-      else // set the service and move to satellite selection
-        TVRO.setAutoswitchService({
-          service: value
-        }).then(function() {
-          window.location = '/wizard/satellites.php';
-        });
+      else TVRO.setAutoswitchService({
+        service: value
+      }).then(function() {
+        if (value === 'DIRECTV') window.location.hash = '/local-channels';
+        else if (value === 'DISH') window.location.hash = '/dish-network';
+        else window.location = '/wizard/satellites.php';
+      });
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -176,10 +169,110 @@
   };
 
 
+
+var DishNetworkView = function(jQ) {
+    var self;
+
+    var onClick = function(value) {
+      if (value === 'Other') {
+        satsTableView.setValue('');
+        groupsTableView.setValue('');
+        satsView.toggle();
+        groupsView.toggle();        
+      }
+    };
+
+    var groupsView = $('.\\#groups-view', jQ).show();
+    var groupsTableView = TVRO.TableView($('.\\#table-view', groupsView))
+      .onClick(onClick)
+      .onBuild(function(row, group) {
+        if (group === 'Other') {
+          $('.\\#value', row).text('Other');
+
+        } else {
+          //  we're trying to print this:
+          //  Group Name (SatLon, SatLon)
+          var value = group.name + ' (';
+
+          value += _.map(group.getSats(), function(sat) {
+            return TVRO.formatLongitude(sat.lon, 0);
+          }).join(', ');
+
+          value += ')';
+
+          $('.\\#value', row).text(value);
+        }
+      });
+
+    var satsView = $('.\\#sats-view', jQ).hide();
+    var satsTableView = TVRO.TableView($('.\\#table-view', satsView))
+      .onClick(onClick)
+      .onBuild(function(row, sat) {
+        if (sat === 'Other') $('.\\#value', row).text('Other');
+        else $('.\\#value', row).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
+      });
+
+    //  load up the tables
+    TVRO.getGroups().then(function(groups) {
+      groups = groups.concat(['Other']);
+      groupsTableView
+        .setValues(groups)
+        .build();
+    });
+
+    TVRO.getSats()
+      .then(function(sats) {
+        sats = sats.concat(['Other']);
+        satsTableView.setValues(sats);
+      })
+      .then(satsTableView.build);
+
+    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var isGroup = groupsView.is(':visible');
+      var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
+
+      if (!value) alert('You must select an option to continue.');
+
+      else if (isGroup)
+        TVRO.setInstalledSat({
+          antSatID: value
+        }).then(function() {
+          document.body.className = '/spinner';
+          setTimeout(function() {
+            window.location = '/wizard/system.php';
+          }, 500);
+        });
+
+      else
+        TVRO.setInstalledGroup({
+          name: value
+        }).then(function() {
+          document.body.className = '/spinner';
+          setTimeout(function() {
+            window.location = '/wizard/system.php';
+          }, 500);
+        });
+    });
+    
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+      if (groupsView.is(':visible')) {
+        window.location.hash = '/service-provider';
+      } else {
+        groupsView.show();
+        satsView.hide();
+      }
+    });
+
+    return self;
+  };
+
+
+
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.ServiceSubtypeView = ServiceSubtypeView;
   TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
+  TVRO.DishNetworkView = DishNetworkView;
 
 }(window.TVRO);
 
@@ -189,6 +282,7 @@ $(function() {
   var serviceSubtypeView = TVRO.ServiceSubtypeView($('.\\#service-subtype-view'));
   var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
   var directvView = TVRO.DirectvView($('.\\#directv-view'));
+  var dishNetworkView = TVRO.DishNetworkView($('.\\#dish-network-view'));
 
   TVRO.onHashChange(function(hash) {
     document.body.className = hash;

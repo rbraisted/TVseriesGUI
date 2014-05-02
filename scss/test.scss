@@ -472,12 +472,14 @@ html {
   }  
 }
 
+.service-subtype,
 .local-channels,
 .dish-network {
   text-align: center;
 
   .clear-table {
     text-align: left;
+    margin-bottom: 60px;
   }
 }
 
