@@ -20,6 +20,7 @@
         var ip = $('.\\#wlan-ip', jQ).val();
         var netmask = $('.\\#wlan-netmask', jQ).val();
         var gateway = $('.\\#wlan-gateway', jQ).val();
+        var broadcast = $('.\\#wlan-broadcast', jQ).val();
 
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
         var networkMode = $('.\\#wlan-network-mode', jQ).text();
@@ -33,13 +34,17 @@
 
         var securityAlgorithm = $('security algorithm', xml).text();
 
-        //  after a bunch of tests
+        //  after a bunch of testing
         //  here is what i've figured out:
-        //  1. you should not send "broadcast"
-        //     it results in an error 4 (required tag missing)
-        //     at least when setting AP mode
+        //
+        //  1. you should send "broadcast" when setting IF mode
+        //     otherwise it results in an error 4 (required tag missing)
+        //     but you should not send "broadcast" when setting AP mode
+        //     otherwise it results in an error 4 (required tag missing) (???)
+        //
         //  2. you should send algorithm
         //     at least when setting IF mode
+        //
         //  3. <wpa2> works when setting AP,
         //     <key> works when setting IF
         //     sending both in both cases doesn't hurt
@@ -52,6 +57,7 @@
             ip: ip,
             netmask: netmask,
             gateway: gateway,
+            broadcast: broadcast,
             security: {
               mode: securityMode,
               algorithm: securityAlgorithm,
@@ -64,6 +70,7 @@
         if (mode === 'AP (Access Point)') {
           params.ap_mode = params.if_mode;
           delete params.if_mode;
+          delete params.broadcast; // see note above
         }
 
         var confirmed = confirm('Are you sure you want to save these changes?');
