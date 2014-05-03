@@ -25,7 +25,7 @@
         //  if mode is AP, ap_mode mode .text() else if_mode mode .text()
         var networkMode = $('.\\#wlan-network-mode', jQ).text();
         var securityMode = $('.\\#wlan-security-mode', jQ).text();
-        var securityKey = $('.\\#wlan-security-key', jQ).text();
+        var securityKey = $('.\\#wlan-security-key', jQ).val();
 
         //  reassign xml here otherwise
         //  you'll pull the <security><algorithm> from both modes (IF and AP)
