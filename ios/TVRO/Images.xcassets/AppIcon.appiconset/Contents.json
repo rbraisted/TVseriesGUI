@@ -3,19 +3,37 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "TVRV_icons_29x29-1.png",
+      "filename" : "TVRV_icons_29x29-2.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "TVRV_icons_58x58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "TVRV_icons_40x40.png",
+      "filename" : "TVRV_icons_40x40-2.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "TVRV_icons_57x57.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "TVRV_icons_114x114.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "TVRV_icons_60x60.png",
+      "filename" : "TVRV_icons_60x60-1.png",
       "scale" : "2x"
     },
     {
@@ -43,6 +61,30 @@
       "scale" : "2x"
     },
     {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "TVRV_icons_50x50.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "TVRV_icons_100x100.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "TVRV_icons_72x72.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "TVRV_icons_144x144.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "76x76",
       "idiom" : "ipad",
       "filename" : "TVRV_icons_76x76.png",
@@ -52,6 +94,27 @@
       "size" : "76x76",
       "idiom" : "ipad",
       "filename" : "TVRV_icons_152x152.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "TVRV_icons_29x29-1.png",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "TVRV_icons_40x40.png",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "TVRV_icons_60x60.png",
+      "unassigned" : true,
       "scale" : "2x"
     }
   ],
