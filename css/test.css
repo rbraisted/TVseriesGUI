@@ -2249,10 +2249,11 @@ body[class=""] .\#skew-angle-view,
       .receiver-table .table-row .label,
       .receiver-table .table-row .status-col,
       .receiver-table .table-row .id-col,
-      .receiver-table .table-row .edit-col,
-      .receiver-table .table-row .select-col {
+      .receiver-table .table-row .edit-col {
         display: none; }
-      .receiver-table .table-row .install-btn {
+      .receiver-table .table-row .select-col {
+        padding-right: 0; }
+      .receiver-table .table-row .select-icon {
         background-image: url(/images/grey-dot-icon.svg);
         background-position: center center;
         background-repeat: no-repeat;
@@ -2261,9 +2262,8 @@ body[class=""] .\#skew-angle-view,
         min-width: 21px;
         display: inline-block;
         padding: 0;
-        margin-left: 15px;
         cursor: pointer; }
-      .receiver-table .table-row.\$active .install-btn {
+      .receiver-table .table-row.\$active .select-icon {
         background-image: url(/images/green-dot-icon.svg);
         background-position: center center;
         background-repeat: no-repeat;
@@ -2273,7 +2273,7 @@ body[class=""] .\#skew-angle-view,
       .receiver-table .table-row.\$master {
         background-color: #4f7abd;
         background-image: url(/images/right-icon-white.svg); }
-        .receiver-table .table-row.\$master .install-btn {
+        .receiver-table .table-row.\$master .select-icon {
           background-image: url(/images/radio-checked.svg);
           background-position: center center;
           background-repeat: no-repeat;
@@ -2316,74 +2316,72 @@ body[class=""] .\#skew-angle-view,
       background-color: #000;
       border-bottom: 0;
       margin-bottom: 20px;
-      border: 1px solid #c51313; }
+      border: 1px solid #4c5269; }
       .receiver-table .table-row .table-col {
         display: inline-block;
         height: 100%;
         overflow: hidden;
         padding: 15px;
         vertical-align: middle;
-        padding: 20px;
-        width: 20%; }
-      .receiver-table .table-row .install-btn {
-        display: none; }
+        padding: 20px; }
+      .receiver-table .table-row .select-col,
+      .receiver-table .table-row .status-col {
+        width: 10%;
+        vertical-align: top;
+        padding-bottom: 0; }
+        .receiver-table .table-row .select-col .label,
+        .receiver-table .table-row .status-col .label {
+          text-align: center;
+          margin-bottom: 7px; }
+      .receiver-table .table-row .name-col,
+      .receiver-table .table-row .id-col {
+        width: 27%; }
+        .receiver-table .table-row .name-col .label,
+        .receiver-table .table-row .id-col .label {
+          margin-bottom: 10px; }
+      .receiver-table .table-row .edit-col {
+        width: 26%; }
+        .receiver-table .table-row .edit-col .edit-btn {
+          width: 100%; }
       .receiver-table .table-row .label {
         font-size: 13px;
         color: #bac7da;
         white-space: nowrap; }
       .receiver-table .table-row .value {
         white-space: nowrap; }
-      .receiver-table .table-row .status-col .label {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 10px; }
-      .receiver-table .table-row .name-col .label,
-      .receiver-table .table-row .id-col .label {
-        margin-bottom: 10px; }
+      .receiver-table .table-row .select-icon,
       .receiver-table .table-row .status-icon {
         background-image: url(/images/grey-dot-icon.svg);
-        background-position: left center;
+        background-position: center center;
         background-repeat: no-repeat;
         background-size: 21px 21px;
         min-height: 21px;
-        min-width: 21px;
-        line-height: 21px;
-        padding-left: 35px; }
-      .receiver-table .table-row .block-btn {
-        width: 100%; }
-      .receiver-table .table-row .select-btn {
-        display: none; }
-      .receiver-table .table-row .master-icon {
-        display: none; }
+        min-width: 21px; }
       .receiver-table .table-row.\$hub .edit-btn {
         display: none; }
       .receiver-table .table-row.\$active {
         border-color: #acd038; }
         .receiver-table .table-row.\$active .status-icon {
-          background-image: url(/images/green-dot-icon.svg);
-          background-position: left center;
-          background-repeat: no-repeat;
-          background-size: 21px 21px;
-          min-height: 21px;
-          min-width: 21px; }
-        .receiver-table .table-row.\$active .select-btn {
-          display: block; }
-      .receiver-table .table-row.\$master {
-        background-color: #243774;
-        border-color: #243774; }
-        .receiver-table .table-row.\$master .select-btn {
-          display: none; }
-        .receiver-table .table-row.\$master .master-icon {
-          background-image: url(/images/radio-checked.svg);
-          background-position: right center;
+          background-image: url("/images/green-dot-icon.svg"); }
+        .receiver-table .table-row.\$active .select-icon {
+          background-image: url(/images/radio-unchecked.svg);
+          background-position: center center;
           background-repeat: no-repeat;
           background-size: 21px 21px;
           min-height: 21px;
           min-width: 21px;
-          display: block;
-          line-height: 21px;
-          text-align: right;
-          padding-right: 35px; } }
+          cursor: pointer; }
+      .receiver-table .table-row.\$master {
+        background-color: #243774;
+        border-color: #243774; }
+        .receiver-table .table-row.\$master .select-icon {
+          background-image: url(/images/radio-checked.svg);
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: 21px 21px;
+          min-height: 21px;
+          min-width: 21px;
+          cursor: default; } }
 
 .receiver-table-view .copy {
   display: none;

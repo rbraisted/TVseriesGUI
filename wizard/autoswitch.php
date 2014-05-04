@@ -54,9 +54,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
   <div class="receiver-table #table-view">
     <div class="table-row #table-row">
-      <div class="table-col install-btn #select-btn"></div><!--
+      <div class="table-col select-col">
+        <div class="label">Master</div>
+        <div class="select-icon #select-btn"></div>
+      </div><!--
    --><div class="table-col status-col">
-        <div class="status-icon label">Status</div>
+        <div class="label">Status</div>
+        <div class="status-icon"></div>
       </div><!--
    --><div class="table-col name-col">
         <div class="label #receiver-name-label"></div>
@@ -68,10 +72,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
       </div><!--
    --><div class="table-col edit-col">
         <div class="block-btn edit-btn #edit-btn">Edit</div>
-      </div><!--
-   --><div class="table-col select-col">
-        <div class="block-btn select-btn #select-btn">Select</div>
-        <div class="master-icon label">Master</div>
       </div>
     </div>
   </div>
