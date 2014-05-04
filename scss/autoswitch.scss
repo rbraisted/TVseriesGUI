@@ -52,27 +52,29 @@
       .label,
       .status-col,
       .id-col,
-      .edit-col,
-      .select-col {
+      .edit-col {
         display: none;
       }
 
-      .install-btn {
+      .select-col {
+        padding-right: 0;
+      }
+
+      .select-icon {
         @include bgimg('grey-dot-icon');
         display: inline-block;
         padding: 0;
-        margin-left: 15px;
         cursor: pointer;
       }
 
-      &.\$active .install-btn {
+      &.\$active .select-icon {
         @include bgimg('green-dot-icon');
       }
 
       &.\$master {
         background-color: $bright-blue;
         background-image: url(/images/right-icon-white.svg);
-        .install-btn {
+        .select-icon {
           @include bgimg('radio-checked');
         }
       }
@@ -87,16 +89,37 @@
       background-color: #000;
       border-bottom: 0;
       margin-bottom: 20px;
-      border: 1px solid $red;
+      border: 1px solid $light-grey;
 
   		.table-col {
   			@include table-col;
   			padding: 20px;
-  			width: 20%;
   		}
 
-      .install-btn {
-        display: none;
+      .select-col,
+      .status-col {
+        width: 10%;
+        vertical-align: top;
+        padding-bottom: 0;
+        .label {
+          text-align: center;
+          margin-bottom: 7px;
+        }
+      }
+
+      .name-col,
+      .id-col {
+        width: 27%;
+        .label {
+          margin-bottom: 10px;
+        }
+      }
+
+      .edit-col {
+        width: 26%;
+        .edit-btn {
+          width: 100%;
+        }
       }
 
   		.label {
@@ -109,34 +132,10 @@
         white-space: nowrap;
       }
 
-  		.status-col .label {
-  			display: inline-block;
-  			vertical-align: middle;
-  			margin-left: 10px;
-  		}
-
-  		.name-col .label,
-  		.id-col .label {
-  			margin-bottom: 10px;
-  		}
-
-  		.status-icon {
-  			@include bgimg('grey-dot-icon', left center);
-  			line-height: 21px;
-  			padding-left: 35px;
-  		}
-
-  		.block-btn {
-  			width: 100%;
-  		}
-
-  		.select-btn {
-  			display: none;
-  		}
-
-  		.master-icon {
-  			display: none;
-  		}
+      .select-icon,
+      .status-icon {
+        @include bgimg('grey-dot-icon');
+      }
 
       &.\$hub {
         .edit-btn {
@@ -148,29 +147,23 @@
         border-color: $green;
 
   			.status-icon {
-  				@include bgimg('green-dot-icon', left center);
+          background-image: url('/images/green-dot-icon.svg');
   			}
 
-  			.select-btn {
-  				display: block;
-  			}
+        .select-icon {
+          @include bgimg('radio-unchecked');
+          cursor: pointer;
+        }
   		}
 
   		&.\$master {
   			background-color: $light-blue;
         border-color: $light-blue;
 
-  			.select-btn {
-  				display: none;
-  			}
-
-  			.master-icon {
-  				@include bgimg('radio-checked', right center);
-  				display: block;
-  				line-height: 21px;
-  				text-align: right;
-  				padding-right: 35px;
-  			}
+        .select-icon {
+          @include bgimg('radio-checked');
+          cursor: default;
+        }
   		}
   	}
   }

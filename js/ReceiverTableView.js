@@ -10,8 +10,10 @@
 				$('.\\#receiver-id', row).text(receiver.id);
 				row.toggleClass('$active', receiver.active);
 
-				$('.\\#select-btn', row).click(function() {
-          var confirmed = receiver.active ? confirm('Are you sure you want to make ' + receiver.name + ' master?') : false;
+				$('.\\#select-btn', row).click(function(event) {
+          if (!receiver.active || row.hasClass('$master')) return;
+          event.stopPropagation();
+          var confirmed = confirm('Are you sure you want to make ' + receiver.name + ' master?');
 					if (confirmed) TVRO.setMasterReceiver(receiver).then(reload);
 				});
 
