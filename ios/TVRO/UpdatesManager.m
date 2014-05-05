@@ -100,6 +100,7 @@
   [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
   [request setHTTPBody:postData];
   
+  [uploadAlertView setMessage:@"Please wait!"];
   [uploadAlertView show];
   
   uploading = true;
@@ -148,6 +149,13 @@
   NSNumber* progress = [NSNumber numberWithFloat:([resourceLength floatValue] / totalFileSize )];
 	NSString* progressString = [NSString stringWithFormat:@"Please wait...\n%.0f%%", [progress floatValue] * 100];
 	[downloadAlertView setMessage:progressString];
+}
+
+- (void)connection:(NSURLConnection *)_connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+  NSLog(@"connection:%@ didSendBodyData:%d totalBytesWritten:%d totalBytesExpectedToWrite:%d", _connection, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+  float progress = (float)totalBytesWritten/(float)totalBytesExpectedToWrite;
+	NSString* progressString = [NSString stringWithFormat:@"Please wait...\n%.0f%%", progress * 100];
+  [uploadAlertView setMessage:progressString];
 }
 
 - (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)error {
