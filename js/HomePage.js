@@ -24,8 +24,8 @@ $(function() {
     TVRO.getAntennaStatus().then(function(xml) {
       var latitude = $('gps lat', xml).text();
       var longitude = $('gps lon', xml).text();      
-      $('.\\#gps-latitude').text(TVRO.formatLatitude(latitude, 3));
-      $('.\\#gps-longitude').text(TVRO.formatLongitude(longitude, 3));
+      $('.\\#gps-latitude').text(TVRO.formatLatitude(latitude, 4));
+      $('.\\#gps-longitude').text(TVRO.formatLongitude(longitude, 4));
     });
 
     TVRO.getGroupMode().then(function(groupMode) {
