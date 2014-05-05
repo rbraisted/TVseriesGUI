@@ -14,7 +14,7 @@
         TVRO.getAntennaStatus(),
         TVRO.getSerialLog()
       ).then(function(xmls) {
-        var email = '';
+        var email = 'support@kvh.com';
         var antModel = $('au model', xmls[0]).text();
         var antSn = $('au sn', xmls[0]).text();
         var hubSn = $('acu sn', xmls[0]).text();
