@@ -19,6 +19,29 @@
 	[webView setBackgroundColor:[UIColor blackColor]];
 	webView.scrollView.bounces = NO;
 	[self.view addSubview:webView];
+  
+  loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
+  [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [loadingView setBackgroundColor:[UIColor colorWithRed:4.0/255.0 green:18.0/255.0 blue:42.0/255.0 alpha:1]];
+  
+  UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradient.png"]];
+  [backgroundView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin   |
+																		   UIViewAutoresizingFlexibleRightMargin  |
+                                       UIViewAutoresizingFlexibleTopMargin    |
+                                       UIViewAutoresizingFlexibleBottomMargin)];
+  [backgroundView setCenter:loadingView.center];
+  [loadingView addSubview:backgroundView];
+  
+  UIActivityIndicatorView* spinnerView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  [spinnerView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin   |
+                                    UIViewAutoresizingFlexibleRightMargin  |
+                                    UIViewAutoresizingFlexibleTopMargin    |
+                                    UIViewAutoresizingFlexibleBottomMargin)];
+  [spinnerView setCenter:loadingView.center];
+  [loadingView addSubview:spinnerView];
+  [spinnerView startAnimating];
+  [self.view addSubview:loadingView];
+  [loadingView setHidden:TRUE];
 	
 	updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
 	
@@ -53,7 +76,10 @@
   //	i'm not exactly sure what unusual cases might bring this error, but we need to
   //	check for this case now in order to prevent the timeoutTimer from kicking us
   //	back to the bonjour view after a redirect (or even if the user has fast fingers)
-  if (error.code == NSURLErrorCancelled) [timeoutTimer invalidate];
+  if (error.code == NSURLErrorCancelled) {
+    [timeoutTimer invalidate];
+    [loadingView setHidden:TRUE];
+  }
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -74,6 +100,7 @@
     //	were trying to go to about:blank for some reason lets negate that
     NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
     [timeoutTimer invalidate];
+    [loadingView setHidden:TRUE];
     return false;
         
     
@@ -125,12 +152,14 @@
   }
 
 	[timeoutTimer invalidate];
+  [loadingView setHidden:TRUE];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidStartLoad");
   //	start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
   timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
+  [loadingView setHidden:FALSE];
 }
 
 #pragma mark - UpdatesManagerDelgate protocol methods
@@ -232,6 +261,7 @@
   //invalidate timer otherwise we will be kicked back to the bonjour
   //from calls like set-demo-mode, set-tech-mode
   [timeoutTimer invalidate];
+  [loadingView setHidden:TRUE];
 }
 
 - (void)showSatFinder {

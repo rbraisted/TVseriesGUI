@@ -24,6 +24,7 @@
 		E916FD91184D653000E06C33 /* SatFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916FD90184D653000E06C33 /* SatFinderViewController.m */; };
 		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
 		E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD94184D670D00E06C33 /* AVFoundation.framework */; };
+		E91B58641918114300344B7D /* gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E91B58631918114300344B7D /* gradient.png */; };
 		E91C2E42184FB38A003618D1 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E91C2E41184FB38A003618D1 /* AccelerometerFilter.m */; };
 		E91C2E45184FD8F7003618D1 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E91C2E44184FD8F7003618D1 /* RXMLElement.m */; };
 		E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E46184FD9A1003618D1 /* libz.dylib */; };
@@ -99,6 +100,7 @@
 		E916FD90184D653000E06C33 /* SatFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatFinderViewController.m; sourceTree = "<group>"; };
 		E916FD92184D666800E06C33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E916FD94184D670D00E06C33 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E91B58631918114300344B7D /* gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient.png; path = TVRO/Images/gradient.png; sourceTree = SOURCE_ROOT; };
 		E91C2E40184FB38A003618D1 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
 		E91C2E41184FB38A003618D1 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		E91C2E43184FD8F7003618D1 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		E95C93E118F5D0500080FA62 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E91B58631918114300344B7D /* gradient.png */,
 				E90AA3A118FCA972005699D1 /* connectButton.png */,
 				E90AA3A218FCA972005699D1 /* connectButton@2x.png */,
 				E90AA3A318FCA972005699D1 /* refreshButton.png */,
@@ -433,6 +436,7 @@
 				E9D41CFF18F74A03007F21DF /* refreshButton.png in Resources */,
 				E9D41D1518F76098007F21DF /* tableCellBGLight.png in Resources */,
 				E90AA3A018FC93CE005699D1 /* BonjourTableViewCell~ipad.xib in Resources */,
+				E91B58641918114300344B7D /* gradient.png in Resources */,
 				E9D41D0418F753E1007F21DF /* bonjourBG@2x.png in Resources */,
 				E9082EAF18F87601009519D7 /* iPadBonjourBG@2x.png in Resources */,
 				E9D7C31618F712A800416442 /* KVH_Logo@2x.png in Resources */,
