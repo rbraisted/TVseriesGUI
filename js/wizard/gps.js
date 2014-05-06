@@ -149,7 +149,7 @@
       .then(function(values) {
         //  insert CITY and COORDINATES before None
         var none = values.pop();
-        values = values.concat(['COORDINATES', 'CITY', none]);
+        values = values.concat(['COORDINATES', 'CITY']);
         self.setValues(values).build();
 
         //  get the selected value
@@ -184,7 +184,7 @@
       TVRO.getAntennaVersions().then(function(xml) {
         var antModel = $('au model', xml).text();
         var lnbType = $('lnb polarization', xml).text();
-        if (lnbType === 'circular') window.location = '/wizard/service.php';
+        if (lnbType === 'circular') window.location.hash = '/heading-source';
         else window.location = '/wizard/satellites.php#/regions';
       });
     };
