@@ -932,18 +932,19 @@ a {
   display: none; }
 
 .\$wlan-bridged .wireless-settings .network-label, .\$wlan-bridged .wireless-settings .network-value, .\$wlan-bridged .wireless-settings .network-dropdown-btn,
-.\$wlan-bridged .wireless-settings .broadcast-label, .\$wlan-bridged .wireless-settings .broadcast-value, .\$wlan-bridged .wireless-settings .broadcast-input,
-.\$wlan-bridged .wireless-settings .gateway-label, .\$wlan-bridged .wireless-settings .gateway-value, .\$wlan-bridged .wireless-settings .gateway-input,
+.\$wlan-bridged .wireless-settings .gateway-input, .\$wlan-bridged .wireless-settings .broadcast-input, .\$wlan-bridged .wireless-settings .subnet-input,
 .\$wlan-end-point .wireless-settings .network-label,
 .\$wlan-end-point .wireless-settings .network-value,
 .\$wlan-end-point .wireless-settings .network-dropdown-btn,
-.\$wlan-end-point .wireless-settings .broadcast-label,
-.\$wlan-end-point .wireless-settings .broadcast-value,
+.\$wlan-end-point .wireless-settings .gateway-input,
 .\$wlan-end-point .wireless-settings .broadcast-input,
-.\$wlan-end-point .wireless-settings .gateway-label,
-.\$wlan-end-point .wireless-settings .gateway-value,
-.\$wlan-end-point .wireless-settings .gateway-input {
+.\$wlan-end-point .wireless-settings .subnet-input {
   display: none; }
+.\$wlan-bridged .wireless-settings .gateway-value, .\$wlan-bridged .wireless-settings .broadcast-value, .\$wlan-bridged .wireless-settings .subnet-value,
+.\$wlan-end-point .wireless-settings .gateway-value,
+.\$wlan-end-point .wireless-settings .broadcast-value,
+.\$wlan-end-point .wireless-settings .subnet-value {
+  display: inline-block !important; }
 
 .\$wlan-dynamic .wireless-settings .ip-input,
 .\$wlan-dynamic .wireless-settings .subnet-input,
@@ -1026,20 +1027,13 @@ a {
       padding: 20px; } }
 
 @media screen and (max-width: 880px) {
-  .sidebar,
+  body[class=''] .sidebar,
   .\/general .\#general-settings-view,
   .\/advanced .\#advanced-settings-view,
   .\/network .\#network-settings-view,
   .\/network\/ethernet .\#ethernet-settings-view,
   .\/network\/wireless .\#wireless-settings-view {
-    display: block; }
-
-  .\/general .sidebar,
-  .\/advanced .sidebar,
-  .\/network .sidebar,
-  .\/network\/ethernet .sidebar,
-  .\/network\/wireless .sidebar {
-    display: none; } }
+    display: block; } }
 @media screen and (min-width: 881px) {
   .sidebar,
   body[class=''] .\#general-settings-view,

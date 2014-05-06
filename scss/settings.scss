@@ -148,10 +148,13 @@
 .\$wlan-end-point {
   .wireless-settings {
     .network-label, .network-value, .network-dropdown-btn,
-    .broadcast-label, .broadcast-value, .broadcast-input,
-    .gateway-label, .gateway-value, .gateway-input {
+    .gateway-input, .broadcast-input, .subnet-input {
       display: none;
-    }    
+    }
+
+    .gateway-value, .broadcast-value, .subnet-value {
+      display: inline-block !important; // not sure why, but i had to use important here
+    }
   }
 }
 
@@ -273,21 +276,13 @@
 
 //	mobile
 @include breakpoint($mobile) {
-  .sidebar,
+  body[class=''] .sidebar,
   .\/general .\#general-settings-view,
   .\/advanced .\#advanced-settings-view,
   .\/network .\#network-settings-view,
   .\/network\/ethernet .\#ethernet-settings-view,
   .\/network\/wireless .\#wireless-settings-view {
     display: block;
-  }
-
-  .\/general .sidebar,
-  .\/advanced .sidebar,
-  .\/network .sidebar,
-  .\/network\/ethernet .sidebar,
-  .\/network\/wireless .sidebar {
-    display: none;
   }
 }
 
@@ -311,9 +306,3 @@
     }
   }
 }
-
-//	nothing/splash
-//	/general
-//	/network/ethernet
-//	/network/wireless
-//	/advanced

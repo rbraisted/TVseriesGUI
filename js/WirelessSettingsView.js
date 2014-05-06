@@ -4,6 +4,39 @@
 	var WirelessSettingsView = function(jQ) {
 		var self;
 
+    //  entering IP Address in AP (Access Point) mode
+    //  when in AP mode, when the user changes the IP Address
+    //  we should make sure that broadcast updates
+    //  itself to be the same value except that broadcast's
+    //  last octet is always .255 (in the gui)
+
+    var ipInputValue; //  store this so we can revert on inproper values entered
+    var ipInput = $('input.\\#wlan-ip', jQ).change(function(event) {
+      var octets = ipInput.val().split('.');
+
+      //  check for validity
+      var valid =
+        octets.length === 4 && // make sure we've got a every octet
+        octets[3] == 1 && // make sure the last octet is .1
+        octets[0] < 256 && // make sure they don't go higher than 255
+        octets[1] < 256 &&
+        octets[2] < 256 &&
+        octets[0] > 0 && // and make sure they don't get lower than 1
+        octets[1] > 0 &&
+        octets[2] > 0;
+
+      if (!valid) {
+        ipInput.val(ipInputValue);
+      } else {
+        ipInputValue = ipInput.val();
+
+        octets.pop();
+        octets.push(255);
+        var broadcast = octets.join('.');
+        $('.\\#wlan-broadcast', jQ).text(broadcast);
+      }
+    });
+
     //  button tray
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
@@ -107,6 +140,8 @@
         $('.\\#wlan-gateway', jQ).val(gateway).text(gateway);
         $('.\\#wlan-broadcast', jQ).val(broadcast).text(broadcast);
         $('.\\#wlan-security-key', jQ).val(securityKey).text(securityKey);
+
+        ipInputValue = ip;
       });
 
       $('.\\#wlan-mode', jQ).text(mode);
