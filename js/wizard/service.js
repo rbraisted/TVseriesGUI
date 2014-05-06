@@ -50,12 +50,8 @@
     
     TVRO.getSatelliteService()
     .then(function(xml) {
-       var service = $('service', xml).text();
-   	   console.log(service);
-    }).then(self.setValue);
-    
-  //   TVRO.getService()
-  //    .then(self.setValue);
+            return $('service', xml).text();
+    }).then(self.setValue);    
 
     return self;
   };
