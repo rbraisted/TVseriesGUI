@@ -82,11 +82,13 @@
         var modType = $('.\\#xponder-modType', jQ).text();
         if (modType === 'N/A') modType = '';
 
-        xponder.freq = $('.\\#xponder-freq', jQ).val();
-        xponder.symRate = $('.\\#xponder-symRate', jQ).val();
-        xponder.fec = fec;
-        xponder.netID = $('.\\#xponder-netID', jQ).val();
-        xponder.modType = modType;
+        if (xponder) {
+          xponder.freq = $('.\\#xponder-freq', jQ).val();
+          xponder.symRate = $('.\\#xponder-symRate', jQ).val();
+          xponder.fec = fec;
+          xponder.netID = $('.\\#xponder-netID', jQ).val();
+          xponder.modType = modType;
+        }
 
         return xponder;
       }
@@ -116,7 +118,7 @@
         region: $('.\\#sat-region', jQ).val(),
         antSatID: $('.\\#sat-antSatID', jQ).val(),
         skew: $('.\\#sat-skew', jQ).val(),
-        xponders: _.invoke(xponderViews, 'getXponder')
+        xponder: _.invoke(xponderViews, 'getXponder')
       }).then(TVRO.reload);
     });
 
