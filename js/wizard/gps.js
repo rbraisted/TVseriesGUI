@@ -183,9 +183,12 @@
     var goToNext = function() {
       TVRO.getAntennaVersions().then(function(xml) {
         var antModel = $('au model', xml).text();
-        var lnbType = $('lnb polarization', xml).text();
-        if (lnbType === 'circular') window.location.hash = '/heading-source';
-        else window.location = '/wizard/satellites.php#/regions';
+        
+        if (antModel === 'RV1'){
+            window.location = '/wizard/service.php';
+        }else{
+            window.location.hash = '/heading-source';
+        }
       });
     };
 
@@ -252,10 +255,14 @@
           // LINEAR LNB TV5/6 -> select satellites (satellites.php)
           else if (lnbType === 'linear' && (antModel === 'TV5' || antModel === 'TV6')) window.location = '/wizard/satellites.php#/options';
 
+          // LINEAR LNB TV1/3 -> select satellites (satellites.php)
+          else if (lnbType === 'linear' && (antModel === 'TV1' || antModel === 'TV3')) window.location = '/wizard/satellites.php#/regions';
+
           // TRI AMERICAS -> directv (service.php)
           else if (isTriAmericas) window.location = '/wizard/service.php#/directv';
 
           else window.location = '/wizard/service.php';
+
         });
     });
 
@@ -299,13 +306,10 @@ $(function() {
   var headingSourceView = TVRO.HeadingSourceView($('.\\#heading-source-view'));
 
   TVRO.onHashChange(function(hash) {
-    if (!hash)
-      TVRO.getAntennaVersions().then(function(xml) {
-        var antModel = $('au model', xml).text();
-        if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/backup-gps-source';
-        else window.location.hash = '/vessel-location';
-      });
-
+    if (!hash){   	
+        window.location.hash = '/vessel-location';
+    }   
+    
     document.body.className = hash;
   });
 
