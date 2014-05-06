@@ -1137,24 +1137,20 @@ html {
 
 @media screen and (min-width: 881px) {
   .vessel-location .headline,
-  .backup-gps-source .headline,
   .heading-source .headline {
     margin: 60px 0 30px; } }
 .vessel-location .note,
-.backup-gps-source .note,
 .heading-source .note {
   line-height: 1.6;
   margin-top: 30px;
   text-align: center; }
   @media screen and (max-width: 880px) {
     .vessel-location .note,
-    .backup-gps-source .note,
     .heading-source .note {
       font-size: 13px;
       padding: 0 20px; } }
   @media screen and (min-width: 881px) {
     .vessel-location .note,
-    .backup-gps-source .note,
     .heading-source .note {
       font-size: 16px; } }
 
@@ -1208,11 +1204,7 @@ html {
         display: block;
         margin: 10px 0 0; } }
 
-.backup-gps-source .headline.desktop {
-  white-space: nowrap; }
-
 .\/vessel-location .\#vessel-location-view,
-.\/backup-gps-source .\#backup-gps-source-view,
 .\/heading-source .\#heading-source-view {
   display: block; }
 

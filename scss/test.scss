@@ -391,7 +391,6 @@ html {
 ////////////////////////////////////////////////////////////////////////////////
 
 .vessel-location,
-.backup-gps-source,
 .heading-source {
   .headline {
     @include breakpoint($desktop) { margin: 60px 0 30px; }
@@ -467,12 +466,7 @@ html {
   }
 }
 
-.backup-gps-source .headline.desktop {
-  white-space: nowrap;
-}
-
 .\/vessel-location .\#vessel-location-view,
-.\/backup-gps-source .\#backup-gps-source-view, 
 .\/heading-source .\#heading-source-view {
   display: block;
 }

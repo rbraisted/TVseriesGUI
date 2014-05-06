@@ -73,35 +73,6 @@
     });
   };
 
-  
-
-  var BackupGpsSourceView = function(jQ) {
-    var self = GpsSourceView(jQ)
-      .onBuild(function(row, value) {
-        $('.\\#value', row).text(value.display);
-      });
-
-    var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      var value = self.getValue();
-      if (!value) alert('You must select an option to continue.');
-      else self.setNmeaSource(value).then(function() {
-        window.location.hash = '/heading-source';
-      });
-    });
-
-    self.getNmeaSources()
-      .then(self.setValues)
-      .then(self.build)
-      .then(function() {
-        //  search the options for the previously selected one - default to 'None'
-        var values = self.getValues();
-        var value = _.find(values, 'selected') || _.find(values, { display: 'None' });
-        self.setValue(value);
-      });
-
-    return self;
-  };
-
 
 
   var VesselLocationView = function(jQ) {
@@ -286,7 +257,6 @@
   };
 
   TVRO.VesselLocationView = VesselLocationView;
-  TVRO.BackupGpsSourceView = BackupGpsSourceView;
   TVRO.HeadingSourceView = HeadingSourceView;
 
 }(window.TVRO);
@@ -294,7 +264,6 @@
 
 $(function() {
   var vesselLocationView = TVRO.VesselLocationView($('.\\#vessel-location-view'));
-  var backupGpsSourceView = TVRO.BackupGpsSourceView($('.\\#backup-gps-source-view'));
   var headingSourceView = TVRO.HeadingSourceView($('.\\#heading-source-view'));
 
   TVRO.onHashChange(function(hash) {

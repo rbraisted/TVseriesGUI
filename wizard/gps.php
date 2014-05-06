@@ -72,39 +72,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 
 
-
-<div class="view backup-gps-source #backup-gps-source-view">
-  <div class="view-head">Backup GPS Source</div>
-  <div class="headline desktop">
-    Choose the backup GPS source you would like
-    to use for your location coordinates.
-  </div>
-  <div class="headline mobile">
-    Choose the backup GPS source you would like
-    to use for your location coordinates.
-  </div>
-
-  <div class="clear-table #table-view">
-    <div class="table-row #table-row">
-      <span class="table-col install-btn"></span><!--
-    --><span class="table-col #value"></span>
-    </div>
-  </div>
-
-  <div class="note">
-    The system will use this backup GPS only if the antenna’s<br class="desktop">
-    built-in GPS is unable to determine your location.
-  </div>
-
-  <div class="bottom-bar">
-    <div class="prev-btn #prev-btn">Previous</div>
-    <div class="next-btn #next-btn">Next</div>
-  </div>
-</div>
-
-
-
-
 <div class="view heading-source #heading-source-view">
   <div class="view-head">Heading Source</div>
 
