@@ -1,6 +1,7 @@
 <? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
 
 <script type="text/javascript" src="/js/SystemInfoView.js"></script>
+<script type="text/javascript" src="/js/RemoteDiagnosticsView.js"></script>
 <script type="text/javascript" src="/js/OperationalLogView.js"></script>
 <script type="text/javascript" src="/js/SerialLogView.js"></script>
 <script type="text/javascript" src="/js/EventLogView.js"></script>
@@ -40,6 +41,8 @@
     <div class="back-btn #back-btn"></div>
   </div>
 
+
+
   <div class="tv-hub">
     <div class="view-head">TV-Hub</div>
     <span class="label">S/N</span><span class="value #hub-sn"></span>
@@ -48,7 +51,7 @@
     <span class="label">Web UI Version</span><span class="value #webui-ver"></span>
     <span class="label">Satellite Library Version</span><span class="value #sat-ver"></span>
     <span class="label">Satellite Service</span><span class="value #sat-service"></span>
-    <span class="label">Support IP</span><span class="value #gprs-ip"></span>
+    <span class="label remote-diagnostics-btn #remote-diagnostics-btn">Support IP</span><span class="value remote-diagnostics-btn #remote-diagnostics-btn #gprs-ip"></span>
     <span class="label">DiSEqC Version</span><span class="value #diseqc-ver"></span>
     <span class="label">IP AutoSwitch Version</span><span class="value #ipautosw-ver"></span>
     <div class="label power-label">TV-Hub Power</div>
@@ -79,6 +82,26 @@
     <span class="label">8 VDC</span><span class="value #ant-eight"></span>
     <span class="label">5 VDC</span><span class="value #ant-five"></span>
     <span class="label">LNB 13/18 VDC</span><span class="value #ant-lnb"></span>
+  </div>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="popup #remote-diagnostics-view">
+  <div class="popup-guts remote-diagnostics">
+    <div class="view-head">
+      Remote Diagnostics
+      <div class="back-btn #back-btn"></div>
+    </div>
+
+    <p>
+      Select Connect to allow KVH Technical Support access to the system over
+      your Internet connection. Enable this connection only when requested by
+      KVH Technical Support.
+    </p>
+
+    <div class="block-btn connect-btn #connect-btn">Connect</div><!--
+ --><div class="block-btn disconnect-btn #disconnect-btn">Disconnect</div>
   </div>
 </div>
 

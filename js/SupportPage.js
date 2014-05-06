@@ -29,6 +29,20 @@ $(function() {
           window.location.hash = '';
         })
         .end()
+      .find('.\\#remote-diagnostics-btn')
+        .click(function() {
+          window.location.hash = '/remote-diagnostics';
+        })
+        .end()
+  );
+
+  var remoteDiagnosticsView = TVRO.RemoteDiagnosticsView(
+    $('.\\#remote-diagnostics-view')
+      .find('.\\#back-btn')
+        .click(function() {
+          window.location.hash = '/system-info';
+        })
+        .end()
   );
 
   var operationalLogView = TVRO.OperationalLogView(
@@ -168,7 +182,7 @@ $(function() {
 
     if (!hash || hash === '/system-info') systemInfoView.reload();
 
-    if (!hash || hash === '/serial-log') serialLogView.reload();
+    if (hash === '/serial-log') serialLogView.reload();
 
 		if (hash === '/command-line') commandLineView.startOutput();
 		else commandLineView.stopOutput();

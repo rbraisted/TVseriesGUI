@@ -856,6 +856,8 @@ a {
   color: #bac7da;
   padding: 0 16px; }
 
+.system-info .remote-diagnostics-btn {
+  cursor: pointer; }
 @media screen and (min-width: 881px) {
   .system-info > .view-head {
     display: none; } }
@@ -892,6 +894,7 @@ a {
   text-align: center;
   margin-top: 20px; }
 
+.remote-diagnostics p,
 .operational-log p,
 .event-log p,
 .restart-system p,
@@ -900,11 +903,13 @@ a {
   margin-top: 13px;
   margin-bottom: 26px; }
 @media screen and (max-width: 880px) {
+  .remote-diagnostics p,
   .operational-log p,
   .event-log p,
   .restart-system p,
   .command-line p {
     padding: 0 26px; }
+  .remote-diagnostics .block-btn,
   .operational-log .block-btn,
   .event-log .block-btn,
   .restart-system .block-btn,
@@ -912,11 +917,25 @@ a {
     display: block;
     margin: 0 auto 13px;
     width: calc(100% - 52px); }
+  .remote-diagnostics.view,
   .operational-log.view,
   .event-log.view,
   .restart-system.view,
   .command-line.view {
     padding-top: 26px; } }
+
+@media screen and (min-width: 881px) {
+  .remote-diagnostics {
+    max-width: 600px;
+    max-height: 300px;
+    margin: -150px -300px !important; }
+    .remote-diagnostics p {
+      padding: 26px; }
+    .remote-diagnostics .connect-btn {
+      margin-left: 26px;
+      margin-right: 10px; }
+    .remote-diagnostics .block-btn {
+      min-width: 130px; } }
 
 .serial-log pre {
   background-color: #4c5269;
@@ -1064,25 +1083,20 @@ a {
     margin-bottom: 0; } }
 
 @media screen and (max-width: 880px) {
-  .sidebar,
+  body[class=''] .sidebar,
   .\/system-info .\#system-info-view,
+  .\/remote-diagnostics .\#remote-diagnostics-view,
   .\/operational-log .\#operational-log-view,
   .\/serial-log .\#serial-log-view,
   .\/event-log .\#event-log-view,
   .\/restart-system .\#restart-system-view,
   .\/command-line .\#command-line-view {
-    display: block; }
-
-  .\/system-info .sidebar,
-  .\/operational-log .sidebar,
-  .\/event-log .sidebar,
-  .\/restart-system .sidebar,
-  .\/command-line .sidebar {
-    display: none; } }
+    display: block; } }
 @media screen and (min-width: 881px) {
   .sidebar,
   body[class=''] .\#system-info-view,
   .\/system-info .\#system-info-view,
+  .\/remote-diagnostics .\#remote-diagnostics-view,
   .\/operational-log .\#operational-log-view,
   .\/serial-log .\#serial-log-view,
   .\/event-log .\#event-log-view,
@@ -1090,5 +1104,6 @@ a {
   .\/command-line .\#command-line-view {
     display: block; }
 
-  .\/serial-log .\#operational-log {
+  .\/serial-log .\#operational-log,
+  .\/remote-diagnostics .\#system-info {
     display: block; } }

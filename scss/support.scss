@@ -28,6 +28,10 @@
 }
 
 .system-info {
+  .remote-diagnostics-btn {
+    cursor: pointer;
+  }
+
   @include breakpoint($desktop) {
     >.view-head {
       display: none;
@@ -82,6 +86,7 @@
   }
 }
 
+.remote-diagnostics,
 .operational-log,
 .event-log,
 .restart-system,
@@ -107,6 +112,27 @@
 			padding-top: $lil-bump;
 		}
 	}
+}
+
+.remote-diagnostics {
+  @include breakpoint($desktop) {
+    max-width: 600px;
+    max-height: 300px;
+    margin: -150px -300px !important;
+
+    p {
+      padding: $lil-bump;
+    }
+
+    .connect-btn {
+      margin-left: $lil-bump;
+      margin-right: 10px;
+    }
+
+    .block-btn {
+      min-width: 130px;
+    }
+  }
 }
 
 .serial-log {
@@ -265,7 +291,6 @@
 				margin-bottom: 0;
 			}
 		}
-
 	}
 }
 
@@ -274,32 +299,24 @@
 
 //	mobile
 @include breakpoint($mobile) {
-
-	.sidebar,
+	body[class=''] .sidebar,
   .\/system-info .\#system-info-view,
+  .\/remote-diagnostics .\#remote-diagnostics-view,
   .\/operational-log .\#operational-log-view,
 	.\/serial-log .\#serial-log-view,
 	.\/event-log .\#event-log-view,
 	.\/restart-system .\#restart-system-view,
 	.\/command-line .\#command-line-view {
 		display: block;
-	}
-
-  .\/system-info .sidebar,
-	.\/operational-log .sidebar,
-	.\/event-log .sidebar,
-	.\/restart-system .sidebar,
-	.\/command-line .sidebar {
-		display: none;
 	}
 }
 
 //	desktop
-@include breakpoint($desktop)  {
-
+@include breakpoint($desktop) {
   .sidebar,
   body[class=''] .\#system-info-view,
   .\/system-info .\#system-info-view,
+  .\/remote-diagnostics .\#remote-diagnostics-view,
   .\/operational-log .\#operational-log-view,
 	.\/serial-log .\#serial-log-view,
 	.\/event-log .\#event-log-view,
@@ -308,7 +325,8 @@
 		display: block;
 	}
 
-  .\/serial-log .\#operational-log {
+  .\/serial-log .\#operational-log,
+  .\/remote-diagnostics .\#system-info {
     display: block;
   }
 }

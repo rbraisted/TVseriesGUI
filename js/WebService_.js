@@ -319,10 +319,16 @@
 
 	TVRO.getProductRegistration = get('get_product_registration');
 
-	TVRO.getWizardStatus = get('get_wizard_status');
+  TVRO.getWizardStatus = get('get_wizard_status');
 
-	TVRO.setWizardStatus = set('set_wizard_status', [
-		get('get_wizard_status')
+  TVRO.setWizardStatus = set('set_wizard_status', [
+    get('get_wizard_status')
+  ]);
+
+	TVRO.getCallhome = get('get_callhome');
+
+	TVRO.setCallhome = set('set_callhome', [
+		get('get_callhome')
 	]);
 
   //  custom call to get web ui version from version.txt
