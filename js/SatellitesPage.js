@@ -2,11 +2,13 @@ $(function() {
 
   var headerView = TVRO.HeaderView($('.\\#header-view'));
 
+  var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view')).reload();
+
   setInterval(function() {
     headerView.reload();
+    installedSatView.reload();
   }, 3000);
 
-  var installedSatView = TVRO.InstalledSatView($('.\\#installed-sat-view')).reload();
 
   //  views shared between single/group mode
 
