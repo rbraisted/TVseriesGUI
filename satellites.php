@@ -110,7 +110,7 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-freq">N/A</div>
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <div class="value #xponder-symRate">N/A</div>
       </div><!--
     --><div class="fec-block xponder-block">
@@ -133,7 +133,7 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-freq">N/A</div>
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <div class="value #xponder-symRate">N/A</div>
       </div><!--
     --><div class="fec-block xponder-block">
@@ -156,7 +156,7 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-freq">N/A</div>
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <div class="value #xponder-symRate">N/A</div>
       </div><!--
     --><div class="fec-block xponder-block">
@@ -179,7 +179,7 @@ and also .#group-table-view (group mode)
         <div class="value #xponder-freq">N/A</div>
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <div class="value #xponder-symRate">N/A</div>
       </div><!--
     --><div class="fec-block xponder-block">
@@ -260,7 +260,7 @@ and also .#group-table-view (group mode)
         <input class="input #xponder-freq" />
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <input class="input #xponder-symRate" />
       </div><!--
     --><div class="fec-block xponder-block">
@@ -289,7 +289,7 @@ and also .#group-table-view (group mode)
         <input class="input #xponder-freq" />
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <input class="input #xponder-symRate" />
       </div><!--
     --><div class="fec-block xponder-block">
@@ -318,7 +318,7 @@ and also .#group-table-view (group mode)
         <input class="input #xponder-freq" />
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <input class="input #xponder-symRate" />
       </div><!--
     --><div class="fec-block xponder-block">
@@ -347,7 +347,7 @@ and also .#group-table-view (group mode)
         <input class="input #xponder-freq" />
       </div><!--
     --><div class="symRate-block xponder-block">
-        <div class="label">Symbol Rate (Msym/s)</div>
+        <div class="label">Symbol Rate</div>
         <input class="input #xponder-symRate" />
       </div><!--
     --><div class="fec-block xponder-block">
