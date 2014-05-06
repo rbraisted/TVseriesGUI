@@ -245,23 +245,19 @@
           var lnbType = $('lnb polarization', xmls[0]).text();
           var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
           var isManual = $('available:first', xmls[1]).text() === 'N';
-
+          var systemIDModel = $('au systemIDModel', xmls[0]).text();
+          
           // CIRCULAR LNB -> select service (service.php)
           if (lnbType === 'circular') window.location = '/wizard/service.php';
-
-          // TV5 + MANUAL -> select satellites (satellites.php)
-          else if (antModel === 'TV5' && isManual) window.location = '/wizard/satellites.php#/tv5-manual-options';
-
-          // LINEAR LNB TV5/6 -> select satellites (satellites.php)
-          else if (lnbType === 'linear' && (antModel === 'TV5' || antModel === 'TV6')) window.location = '/wizard/satellites.php#/options';
-
-          // LINEAR LNB TV1/3 -> select satellites (satellites.php)
-          else if (lnbType === 'linear' && (antModel === 'TV1' || antModel === 'TV3')) window.location = '/wizard/satellites.php#/regions';
 
           // TRI AMERICAS -> directv (service.php)
           else if (isTriAmericas) window.location = '/wizard/service.php#/directv';
 
-          else window.location = '/wizard/service.php';
+          // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
+          else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';
+
+          // TV5 + MANUAL -> select satellites (satellites.php)
+          else window.location = '/wizard/satellites.php#/manual-options';
 
         });
     });

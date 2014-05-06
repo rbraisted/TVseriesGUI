@@ -66,7 +66,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 
 
-<div class="view tv5-manual-options #tv5-manual-options-view">
+<div class="view manual-options #manual-options-view">
   <div class="view-head">Satellite Selection</div>
   <div class="copy">
     * You will have the opportunity to create your own group if one of
