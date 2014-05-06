@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
  *  FILE NAME:    hd11xml.php
- *  
+ *
  *  AUTHOR:       SDansereau
  *
  *  DESCRIPTION:  Entry point for the hd11-acuservices
@@ -23,7 +23,7 @@
 
     require_once("tvrowebservice.php");
     libxml_use_internal_errors(true);
-    
+
 /******************************************************************************/
 /***                        PHP CLASS DEFINITION                            ***/
 /******************************************************************************/
@@ -39,7 +39,7 @@
         {
 
         }
-    
+
 /******************************************************************************
  *                        doSimple()
  *   Author:      S Dansereau
@@ -48,7 +48,7 @@
  *
  *   Inputs: N/A
  *
- *   Returns:   
+ *   Returns:
  *
  *   Side Effects: N/A
  *
@@ -57,10 +57,10 @@
         {
             $xmlReq ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
             $xmlReq .="<ipacu_request><message name=\"" . $message . "\"/>".$content."</ipacu_request>";
-    
+
             return($this->_xmlRequest($xmlReq));
         }
-    
+
 /******************************************************************************
  *                        Function List
  *   Author:      S Dansereau
@@ -70,16 +70,23 @@
  *
  *   Inputs: N/A
  *
- *   Returns:   
+ *   Returns:
  *
  *   Side Effects: N/A
  *
  *****************************************************************************/
-        function antenna_status()
+        function get_satellite_service()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
+        function set_satellite_service($service)
+        {
+            $extra = "<service>$service</service>";
+
+            return($this->doSimple(__FUNCTION__, $extra));
+        }
+
         function antenna_versions()
         {
             return($this->doSimple(__FUNCTION__));
@@ -94,26 +101,26 @@
         {
             $extra  = "<sidemode>$sidemode</sidemode>";
             $extra .= "<sleep>$sleepmode</sleep>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function get_satellite_list($region_filter, $user_choice_filter)
         {
             $extra  = "<region_filter>$region_filter</region_filter>";
             $extra .= "<user_choice_filter>$user_choice_filter</user_choice_filter>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function select_satellite($antSatID, $listID)
         {
             $extra  = "<antSatID>$antSatID</antSatID>";
             $extra .= "<listID>$listID</listID>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function set_satellite_identity($listID, $antSatID, $name, $region, $satLongitude, $preSkew, $time, $enabled, $favorites, $select, $isTriSatID, $lo1, $lo2)
         {
             $extra  = "<listID>$listID</listID>";
@@ -129,17 +136,17 @@
             $extra .= "<triSatID>$isTriSatID</triSatID>";
             $extra .= "<lo1>$lo1</lo1>";
             $extra .= "<lo2>$lo2</lo2>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function get_satellite_params($listID)
         {
             $extra = "<listID>$listID</listID>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function set_satellite_params($listID, $xponder, $polarization, $band, $frequency, $symbolRate, $FEC, $networkId, $decoderType)
         {
             $extra  = "<listID>$listID</listID>";
@@ -153,111 +160,111 @@
             $extra .= "<netID>$networkId</netID>";
             $extra .= "<modType>$decoderType</modType>";
             $extra .= "</xponder>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function reset_satellite_params($listID)
         {
             $extra = "<listID>$listID</listID>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function start_serial_log($restart)
         {
-    
+
             $extra = "<restart>$restart</restart>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function serial_log_status()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
         function antenna_maintenance_position()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
-    
+
+
         function set_gps($lat, $lon)
         {
             $extra = "<lat>$lat</lat><lon>$lon</lon>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function set_nmea_gprmc($nmea_string)
         {
             $extra = "<nmea>$nmea_string</nmea>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function get_nmea_heading()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
         function set_nmea_heading($nmea_string)
         {
             $extra = "<nmea>$nmea_string</nmea>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function reboot($sbc,$ant)
         {
             $extra  = "<sbc>$sbc</sbc>";
             $extra .= "<ant>$ant</ant>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function calibrate_gyro()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
         function reset_software($rev)
         {
             $extra = "<rollback>$rev</rollback>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function power()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
         function ophours()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
         function get_lcd_brightness()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
         function set_lcd_brightness($brightness)
         {
             $extra = "<brightness>$brightness</brightness>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function set_date_time($date, $time)
         {
             $extra = "<date>$date</date><time>$time</time>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
+
         function set_autoswitch_config($enabled, $sat_select, $listID)
         {
             $extra  = "<enabled>$enabled</enabled>";
@@ -267,25 +274,25 @@
             $extra .= "<listID>$listID</listID>";
             $extra .= "</satellite>";
             $extra .= "</satellite_list>";
-    
+
             return($this->doSimple(__FUNCTION__, $extra));
         }
-    
-    
+
+
         function get_autoswitch_status()
         {
             return($this->doSimple(__FUNCTION__));
         }
-		
+
 		function get_satellite_groups()
         {
             return($this->doSimple(__FUNCTION__));
         }
-		
+
 		function get_autoswitch_configured_names()
         {
             return($this->doSimple(__FUNCTION__));
         }
-    
+
     }
 ?>

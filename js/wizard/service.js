@@ -21,21 +21,41 @@
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
 
-      else TVRO.setAutoswitchService({
+      else TVRO.setSatelliteService({
         service: value
       }).then(function() {
-        if (value === 'DIRECTV') window.location.hash = '/local-channels';
-        else if (value === 'DISH') window.location.hash = '/dish-network';
-        else window.location = '/wizard/satellites.php';
+        if (value === 'DIRECTV'){ 
+        	window.location.hash = '/local-channels';
+        }else if (value === 'DISH'){
+        	window.location.hash = '/dish-network';
+        }else if (value === 'BELL'){
+            TVRO.setAutoswitchService({
+            	service: 'BELL',
+                satellite_group: 'BELL'
+            }).then(function() {
+                document.body.className = '/spinner';
+                setTimeout(function() {
+                	window.location = '/wizard/system.php#/other-system-config';
+                }, 500);
+              });
+        }else{
+        	window.location = '/wizard/satellites.php';
+        }
       });
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       window.location = '/wizard/gps.php#/heading-source';
     });
-
-    TVRO.getService()
-      .then(self.setValue);
+    
+    TVRO.getSatelliteService()
+    .then(function(xml) {
+       var service = $('service', xml).text();
+   	   console.log(service);
+    }).then(self.setValue);
+    
+  //   TVRO.getService()
+  //    .then(self.setValue);
 
     return self;
   };
@@ -97,7 +117,7 @@
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '';
+      window.location.hash = '/service-provider';
     });
 
     return self;

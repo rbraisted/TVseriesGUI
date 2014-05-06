@@ -184,6 +184,13 @@
   //  the call to set_antenna_config to remove get_antenna_config from the cache
   //  so that calls to it will bring you fresh data
 
+    TVRO.getSatelliteService = get('get_satellite_service');
+
+	  
+	TVRO.setSatelliteService = set('set_satellite_service', [
+	                          		get('get_satellite_service')
+	                                ]);
+
 	TVRO.getAntennaStatus = get('antenna_status');
 
 	TVRO.getAntennaVersions = get('antenna_versions');
