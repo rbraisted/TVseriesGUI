@@ -272,7 +272,8 @@ var DishNetworkView = function(jQ) {
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       if (groupsView.is(':visible')) {
-        window.location.hash = '/service-provider';
+    	  console.log("here");
+        window.location = '/wizard/service.php';
       } else {
         groupsView.show();
         satsView.hide();

@@ -7,6 +7,10 @@
         enable: 'N'
       });
     });
+    
+    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+        window.location = '/wizard/system.php#/other-system-config';
+    });
 
     return {
       startVideo: function() {

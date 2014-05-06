@@ -139,7 +139,7 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.history.back();
+      window.location = '/wizard/service.php#/dish-network'
     });
 
     return self;
@@ -168,7 +168,7 @@ $(function() {
     if (!hash) {
       Promise.all(
         TVRO.getAntennaVersions(),
-        TVRO.getAutoswitchStatus()
+        TVRO.getSatelliteService()
       ).then(function(xmls) {
         var antModel = $('au model', xmls[0]).text();
         var lnbType = $('lnb polarization', xmls[0]).text();
@@ -176,8 +176,8 @@ $(function() {
         var service = $('service', xmls[1]).text();
         var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
 
-        if (antModel === 'TV1' || antModel === 'TV3') window.location.hash = '/skew-angle';
-        else if (antModel === 'TV5' && isManual) window.location.hash = '/skew-angle';
+        if ((antModel === 'TV1' || antModel === 'TV3') && lnbType === 'linear') window.location.hash = '/skew-angle';
+        else if ((antModel === 'TV5' && isManual) && lnbType === 'linear') window.location.hash = '/skew-angle';
         else if (service === 'BELL' || service === 'DISH') window.location.hash = '/other-system-config';
         else if (lnbType === 'linear') window.location.hash = '/linear-system-config';
         // else if (isTriAmericas) window.location.hash = '';
