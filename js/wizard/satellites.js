@@ -32,7 +32,7 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/service.php';
+      window.location = '/wizard/gps.php#/heading-source';
     });
 
     return self;
@@ -53,11 +53,8 @@ $(function() {
 
   //  previous btn on single and group view
   var prevBtnClick = function() {
-    TVRO.getService().then(function(service) {
-      if (service === 'DISH') window.location = '/wizard/service.php';
-      else if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
+      if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
       else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
-    });
   };
 
   var singleViewPrevBtn = $('.\\#single-view .\\#prev-btn').click(prevBtnClick);
