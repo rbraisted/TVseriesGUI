@@ -268,11 +268,7 @@
 
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      TVRO.getAntennaVersions().then(function(xml) {
-        var antModel = $('au model', xml).text();
-        if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/backup-gps-source';
-        else window.location.hash = '/vessel-location';
-      });
+      window.location.hash = '/vessel-location';
     });
 
     TVRO.getHeadingConfig().then(function(xml) {
