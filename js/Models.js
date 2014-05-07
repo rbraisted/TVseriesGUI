@@ -316,6 +316,7 @@
       systemInfo.diseqcVer = $('diseqc ver', xmls[0]).text();
       systemInfo.ipautoswVer = $('ipautosw ver', xmls[0]).text();
       systemInfo.antModel = $('au model', xmls[0]).text();
+      systemInfo.systemIDModel = $('au systemIDModel', xmls[0]).text();
       systemInfo.antSn = $('au sn', xmls[0]).text();
       systemInfo.antVer = $('au ver', xmls[0]).text();
       systemInfo.rfVer = $('rf ver', xmls[0]).text();
