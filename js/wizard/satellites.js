@@ -244,14 +244,13 @@ $(function() {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView
       Promise.all(
-        TVRO.getAntennaVersions(),
-        TVRO.getAutoswitchStatus()
+        TVRO.getAntennaVersions()
       ).then(function(xmls) {
         var antModel = $('au model', xmls[0]).text();
         var lnbType = $('lnb polarization', xmls[0]).text();
-        var isManual = $('available:first', xmls[1]).text() === 'N';
+        var systemIDModel = $('au systemIDModel', xmls[0]).text();
         if (lnbType === 'circular') window.location.hash = '/circular-options';
-        else if (antModel === 'TV5' && isManual) window.location.hash = '/tv5-manual-options';
+        else if (systemIDModel === 'TV5') window.location.hash = '/tv5-manual-options';
         else window.location.hash = '/options';
       });
     }
