@@ -33,16 +33,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <div class="label">Vessel Owner *</div>
     <input required type="text" class="input #owner">
 
-    <div class="label">Main Vessel Contact *</div>
-    <input required type="text" class="input #contact">
+    <div class="label">Main Vessel Contact </div>
+    <input type="text" class="input #contact">
 
-    <div class="label">Vessel Contact Phone Number *</div>
-    <input required type="text" class="input #phone">
+    <div class="label">Vessel Contact Phone Number </div>
+    <input type="text" class="input #phone">
 
-    <div class="label">Vessel Contact Email *</div>
-    <input required type="text" class="input #email">
+    <div class="label">Vessel Contact Email </div>
+    <input type="text" class="input #email">
 
-    <div class="note">* All fields required</div>
+    <div class="note">* Required fields</div>
   </div>
 
   <div class="bottom-bar">
