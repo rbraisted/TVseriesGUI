@@ -59,8 +59,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   <div class="headline">DISH Network Customers</div>
   <div class="copy">* Info specific to DISH Network users about activation to come.</div>
   <div class="cta">Call to preactivate your account:</div>
-  <div class="phone">1-866-551-8004</div>
-  <div class="time">(24 hours, 7 days a week)</div>
+  <div class="phone">1-800-970-9829</div>
+  <div class="time">
+       Mon-Fri: 8am-10:45pm CST 
+       Sat-Sun: 9am-8:45pm CST
+  </div>
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>

@@ -86,15 +86,16 @@
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var config = self.getValue();
-      if (!config) alert('You must select an option to continue.');
-      else if (config === config1) window.location.hash = '/regions';
-      else if (config === config2) window.location.hash = '/groups';
-      else if (config === config3) window.location.hash = '/groups/new/edit';
-      else if (config === config4) window.location.hash = '/groups/new/edit';
+      if (!config)
+    	  alert('You must select an option to continue.');
+      else if ((config === config1) || (config === config3))
+    	  window.location = '/wizard/activation.php';
+      else
+    	  window.location = '/wizard/autoswitch.php';
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.history.back();
+        window.location = '/wizard/satellites.php#/options';
     });
 
     return self;
