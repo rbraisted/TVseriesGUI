@@ -24,21 +24,24 @@
       else TVRO.setSatelliteService({
         service: value
       }).then(function() {
-        if (value === 'DIRECTV'){ 
+        if (value === 'DIRECTV') {
         	window.location.hash = '/local-channels';
-        }else if (value === 'DISH'){
+
+        } else if (value === 'DISH') {
         	window.location.hash = '/dish-network';
-        }else if (value === 'BELL'){
-            TVRO.setAutoswitchService({
-            	service: 'BELL',
-                satellite_group: 'BELL'
-            }).then(function() {
-                document.body.className = '/spinner';
-                setTimeout(function() {
-                	window.location = '/wizard/system.php#/other-system-config';
-                }, 500);
-              });
-        }else{
+
+        } else if (value === 'BELL') {
+          TVRO.setAutoswitchService({
+          	service: 'BELL',
+            satellite_group: 'BELL'
+          }).then(function() {
+            document.body.className = '/spinner';
+            setTimeout(function() {
+            	window.location = '/wizard/system.php#/other-system-config';
+            }, 500);
+          });
+
+        } else {
         	window.location = '/wizard/satellites.php';
         }
       });
@@ -50,7 +53,7 @@
     
     TVRO.getSatelliteService()
     .then(function(xml) {
-            return $('service', xml).text();
+      return $('service', xml).text();
     }).then(self.setValue);    
 
     return self;
@@ -250,9 +253,10 @@ var DishNetworkView = function(jQ) {
       if (!value) alert('You must select an option to continue.');
 
       else if (isGroup)
-        TVRO.setInstalledSat({
-          antSatID: value
+        TVRO.setInstalledGroup({
+          name: value.name
         }).then(function() {
+          return;
           document.body.className = '/spinner';
           setTimeout(function() {
             window.location = '/wizard/system.php';
@@ -260,9 +264,10 @@ var DishNetworkView = function(jQ) {
         });
 
       else
-        TVRO.setInstalledGroup({
-          name: value
+        TVRO.setInstalledSat({
+          antSatID: value.antSatID
         }).then(function() {
+          return;
           document.body.className = '/spinner';
           setTimeout(function() {
             window.location = '/wizard/system.php';
