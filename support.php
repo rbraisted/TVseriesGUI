@@ -68,6 +68,7 @@
   <div class="antenna-unit">
     <div class="view-head">Antenna Unit</div>
     <span class="label">Model</span><span class="value #ant-model"></span>
+    <span class="label">System ID</span><span class="value #ant-sysid"></span>
     <span class="label">S/N</span><span class="value #ant-sn"></span>
     <span class="label">Main Version</span><span class="value #ant-ver"></span>
     <span class="label">RF Version</span><span class="value #rf-ver"></span>

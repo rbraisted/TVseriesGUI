@@ -13,6 +13,7 @@
         $('.\\#diseqc-ver', jQ).text(systemInfo.diseqcVer || 'N/A');
         $('.\\#ipautosw-ver', jQ).text(systemInfo.ipautoswVer || 'N/A');
         $('.\\#ant-model', jQ).text(systemInfo.antModel || 'N/A');
+        $('.\\#ant-sysid', jQ).text(systemInfo.systemIDModel || 'N/A');
         $('.\\#ant-sn', jQ).text(systemInfo.antSn || 'N/A');
         $('.\\#ant-ver', jQ).text(systemInfo.antVer || 'N/A');
         $('.\\#rf-ver', jQ).text(systemInfo.rfVer || 'N/A');
