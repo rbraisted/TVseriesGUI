@@ -116,7 +116,7 @@
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '/service-provider';
+      window.location = '/wizard/service.php';
     });
 
     return self;
@@ -191,104 +191,106 @@
 
 var DishNetworkView = function(jQ) {
     var self;
-
     var onClick = function(value) {
-      if (value === 'Other') {
-        satsTableView.setValue('');
-        groupsTableView.setValue('');
-        satsView.toggle();
-        groupsView.toggle();        
-      }
-    };
-
-    var groupsView = $('.\\#groups-view', jQ).show();
-    var groupsTableView = TVRO.TableView($('.\\#table-view', groupsView))
-      .onClick(onClick)
-      .onBuild(function(row, group) {
-        if (group === 'Other') {
-          $('.\\#value', row).text('Other');
-
-        } else {
-          //  we're trying to print this:
-          //  Group Name (SatLon, SatLon)
-          var value = group.name + ' (';
-
-          value += _.map(group.getSats(), function(sat) {
-            return TVRO.formatLongitude(sat.lon, 0);
-          }).join(', ');
-
-          value += ')';
-
-          $('.\\#value', row).text(value);
+        if (value === 'OTHER') {
+            satsView.toggle();
+            groupsView.toggle();        
         }
-      });
-
-    var satsView = $('.\\#sats-view', jQ).hide();
-    var satsTableView = TVRO.TableView($('.\\#table-view', satsView))
-      .onClick(onClick)
-      .onBuild(function(row, sat) {
-        if (sat === 'Other') $('.\\#value', row).text('Other');
-        else $('.\\#value', row).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
-      });
-
-    //  load up the tables
-    TVRO.getGroups().then(function(groups) {
-      groups = groups.concat(['Other']);
-      groupsTableView
-        .setValues(groups)
-        .build();
-    });
-
-    TVRO.getSats()
-      .then(function(sats) {
-        sats = sats.concat(['Other']);
-        satsTableView.setValues(sats);
-      })
-      .then(satsTableView.build);
-
-    var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      var isGroup = groupsView.is(':visible');
-      var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
-
-      if (!value) alert('You must select an option to continue.');
-
-      else if (isGroup)
-        TVRO.setInstalledGroup({
-          name: value.name
-        }).then(function() {
-          return;
-          document.body.className = '/spinner';
-          setTimeout(function() {
-            window.location = '/wizard/system.php';
-          }, 500);
-        });
-
-      else
-        TVRO.setInstalledSat({
-          antSatID: value.antSatID
-        }).then(function() {
-          return;
-          document.body.className = '/spinner';
-          setTimeout(function() {
-            window.location = '/wizard/system.php';
-          }, 500);
-        });
-    });
+    };
     
-    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      if (groupsView.is(':visible')) {
-    	  console.log("here");
-        window.location = '/wizard/service.php';
-      } else {
-        groupsView.show();
-        satsView.hide();
-      }
-    });
+    var groupsView = $('.\\#groups-view', jQ).show();
+    var groupsTableView= TVRO.TableView($('.\\#table-view', groupsView))
+    .onClick(onClick)
+    .setValues([
+      'WESTERN ARC',
+      'EASTERN ARC',
+      '72-GROUP',
+      'LEGACY ARC',
+      'DUAL ARC',
+      'OTHER'
+    ])
+    .onBuild(function(row, value) {
+      if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110\u00B0W, 119\u00B0W, 129\u00B0W)');
+      if (value === 'EASTERN ARC') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
+      if (value === '72-GROUP') $('.\\#value', row).text('72-Group (72\u00B0W)');
+      if (value === 'LEGACY ARC') $('.\\#value', row).text('Legacy Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
+      if (value === 'DUAL ARC') $('.\\#value', row).text('Dual Arc (110\u00B0W, 119\u00B0W)');
+      if (value === 'OTHER') $('.\\#value', row).text('Other');
+    })
+    .build();
 
-    return self;
+  var satsView = $('.\\#sats-view', jQ).hide();
+  var satsTableView = TVRO.TableView($('.\\#table-view', satsView))
+    .onClick(onClick)
+    .setValues([
+      '61W',
+      '72W',
+      '77WM',
+      '110W',
+      '119W',
+      '129W'
+    ])
+    .onBuild(function(row, value) {
+      if (value === '61W') $('.\\#value', row).text('61\u00B0');
+      if (value === '72W') $('.\\#value', row).text('72\u00B0');
+      if (value === '77WM') $('.\\#value', row).text('77\u00B0');
+      if (value === '110W') $('.\\#value', row).text('110\u00B0');
+      if (value === '119W') $('.\\#value', row).text('119\u00B0');
+      if (value === '129W') $('.\\#value', row).text('129\u00B0');
+    })
+    .build();    
+    
+  var nextBtn = $('.\\#next-btn', jQ).click(function() {
+    var isGroup = groupsView.is(':visible');
+    var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
+
+    if (!value){
+    	alert('You must select an option to continue.');
+    }else if (isGroup){
+        TVRO.setAutoswitchService({
+            satellite_group: value,
+            service: 'DISH'
+        }).then(function() {
+            document.body.className = '/spinner';
+            setTimeout(function() {
+      	        window.location = '/wizard/system.php#/other-system-config';
+            }, 500);
+        });
+    }else{
+    	TVRO.selectSatellite({
+        antSatID: value
+      }).then(function() {
+        document.body.className = '/spinner';
+        setTimeout(function() {
+          window.location = '/wizard/system.php#/other-system-config';
+        }, 500);
+      });
+    }
+  });
+
+  var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+    if (groupsView.is(':visible')) {
+      window.location = '/wizard/service.php';
+    }else{
+      groupsView.show();
+      satsView.hide(); 	
+    }
+  });
+
+  // Retrieve the installed satellite to update the screen
+  TVRO.getAntennaStatus()
+  .then(function(xml) {   
+    return $('satellite antSatID', xml).text();
+  }).then(satsTableView.setValue);    
+
+  // Retrieve the installed group to update the screen
+  TVRO.getAutoswitchStatus()
+  .then(function(xml) {   
+    return $('satellite_group', xml).text();
+  }).then(groupsTableView.setValue);    
+  
+  return self;
   };
-
-
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.ServiceSubtypeView = ServiceSubtypeView;
@@ -297,7 +299,6 @@ var DishNetworkView = function(jQ) {
   TVRO.DishNetworkView = DishNetworkView;
 
 }(window.TVRO);
-
 
 $(function() {
   var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
