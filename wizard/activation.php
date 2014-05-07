@@ -49,7 +49,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   <div class="phone">1-866-551-8004</div>
   <div class="time">(24 hours, 7 days a week)</div>
   <div class="bottom-bar">
-    <div class="prev-btn #dtv-prev-btn">Previous</div>
+    <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>
   </div>
 </div>
