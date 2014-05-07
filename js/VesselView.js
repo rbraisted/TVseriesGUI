@@ -12,7 +12,6 @@
         TVRO.getAntennaVersions(),
         TVRO.getAntennaStatus()
       ).then(function(xmls) {
-        console.log("!");
         var heading = $('antenna brst hdg', xmls[1]).text();
         heading = heading === '' ? '---' : Number(heading).toFixed(1) + '˚';
         $('.\\#vessel-heading', jQ).text(heading);
@@ -46,6 +45,10 @@
             '-webkit-transform': 'rotate(' + azBow + 'deg)'
           });
         }
+
+        //  now set the vessel/rv image depending on whether you're a vessel/rv
+        jQ.toggleClass('$rv', antModel === 'RV1');
+        jQ.toggleClass('$vessel', antModel !== 'RV1');
       });
 
       TVRO.getProductRegistration().then(function(xml) {

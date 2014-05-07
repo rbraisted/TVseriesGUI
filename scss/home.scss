@@ -34,7 +34,8 @@
 }
 
 .vessel-view {
-  @include bgimg('vessel-animation-bg', center, 360px, 360px);
+  @include bgimg('vessel-animation-bg', center, auto, 360px);
+  &.\$rv { background-image: url(/images/vessel-animation-bg-rv.svg); }
   background-position: top 125px center;
   overflow: hidden;
 
@@ -112,7 +113,7 @@
 @include breakpoint('screen and (max-width: 480px)') {
   .vessel-view {
     background-position: top 42% center;
-    background-size: 58% 58%;
+    background-size: auto 58%;
     min-width: 0;
     min-height: 0;
 

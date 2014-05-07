@@ -867,11 +867,13 @@ a {
   background-image: url(/images/vessel-animation-bg.svg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 360px 360px;
-  min-height: 360px;
+  background-size: auto 360px;
+  min-height: auto;
   min-width: 360px;
   background-position: top 125px center;
   overflow: hidden; }
+  .vessel-view.\$rv {
+    background-image: url(/images/vessel-animation-bg-rv.svg); }
   .vessel-view .demo-mode {
     background-color: #c51313;
     cursor: default;
@@ -925,7 +927,7 @@ a {
 @media screen and (max-width: 480px) {
   .vessel-view {
     background-position: top 42% center;
-    background-size: 58% 58%;
+    background-size: auto 58%;
     min-width: 0;
     min-height: 0; }
     .vessel-view .vessel-animation {
