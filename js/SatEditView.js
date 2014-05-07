@@ -144,12 +144,7 @@
 
     return self = {
       setSat: function(arg) {
-        console.log('setSat');
-        console.log(arg);
-
         TVRO.getSatParams(arg).then(function(arg) {
-          console.log('getSatParams then');
-          console.log(arg);
           sat = arg;
           favBtn.setOn(sat.favorite);
           jQ.toggleClass('$predefined', sat.predefined);

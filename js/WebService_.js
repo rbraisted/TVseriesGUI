@@ -94,7 +94,7 @@
       success: function(response) {
         if (TVRO.debug) {
           console.log('~ '+requestName.toUpperCase());
-          if (TVRO.debug > 1) {
+          if ((TVRO.debug > 1 && requestName !== 'antenna_status') || (TVRO.debug > 2)) {
             console.log($(requestXml).get(0));
             console.log($('ipacu_response', response).get(0));
           }
