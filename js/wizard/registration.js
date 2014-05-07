@@ -106,7 +106,11 @@
     var self = VesselInfoView(jQ);
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '/installer-id';
+        TVRO.getAntennaVersions().then(function(xml) {
+            var antModel = $('au model', xml).text();
+            if (antModel === 'TV5' || antModel === 'TV6') window.location = '/wizard/';
+            else window.location.hash = '/installer-id';
+        });
     });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
@@ -125,11 +129,7 @@
     var self = VesselInfoView(jQ);
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function(event) {
-      TVRO.getAntennaVersions().then(function(xml) {
-        var antModel = $('au model', xml).text();
-        if (antModel === 'TV5' || antModel === 'TV6') window.location = '/wizard/';
-        else window.location.hash = '/installer-id';
-      });
+        window.location.hash = '/installer-id';
     });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
@@ -200,7 +200,7 @@ $(function() {
     if (!hash)
       TVRO.getAntennaVersions().then(function(xml) {
         var antModel = $('au model', xml).text();
-        if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/diy-vessel-info';
+        if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/cdt-vessel-info';
         else window.location.hash = '/installer-id';
       });
 
