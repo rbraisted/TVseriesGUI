@@ -40,7 +40,7 @@
 		<netID>0xFFFE</netID>
 		<modType>QDVB</modType>
 	</xponder>
-	<xponder>
+<!-- 	<xponder>
 		<id>3</id>
 		<display>Horizontal High</display>
 		<pol>H</pol>
@@ -61,5 +61,5 @@
 		<fec>3/5</fec>
 		<netID>0xPINK</netID>
 		<modType>L8PSK</modType>
-	</xponder>
+	</xponder> -->
 </ipacu_response>

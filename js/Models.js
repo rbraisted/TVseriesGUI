@@ -189,9 +189,11 @@
   };
 
   TVRO.setSatParams = function(sat) {
-    //  return the sat we get from getSatelliteParams in a promise
-    var noXponders = _.omit(sat, 'xponders');
-    var onlyXponders = _.pick(sat, 'xponders', 'listID', 'antSatID');
+    //  remove empty xponders
+    if (sat['xponder']) sat.xponder = _.compact(sat.xponder);
+
+    var noXponders = _.omit(sat, 'xponder');
+    var onlyXponders = _.pick(sat, 'antSatID', 'xponder');
 
     return TVRO.setSatelliteIdentity(noXponders, 1)
       .then(TVRO.setSatelliteParams(onlyXponders, 1));
