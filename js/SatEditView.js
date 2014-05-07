@@ -114,9 +114,9 @@
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
       TVRO.setSatParams({
         listID: sat.listID,
+        antSatID: sat.antSatID,
         name: $('.\\#sat-name', jQ).val(),
         region: $('.\\#sat-region', jQ).val(),
-        antSatID: $('.\\#sat-antSatID', jQ).val(),
         skew: $('.\\#sat-skew', jQ).val(),
         xponder: _.invoke(xponderViews, 'getXponder')
       }).then(TVRO.reload);
@@ -144,7 +144,12 @@
 
     return self = {
       setSat: function(arg) {
+        console.log('setSat');
+        console.log(arg);
+
         TVRO.getSatParams(arg).then(function(arg) {
+          console.log('getSatParams then');
+          console.log(arg);
           sat = arg;
           favBtn.setOn(sat.favorite);
           jQ.toggleClass('$predefined', sat.predefined);
