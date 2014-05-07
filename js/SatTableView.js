@@ -54,6 +54,7 @@
         $('.\\#fav-btn', row).click(function() {
           row.toggleClass('$favorite');
           TVRO.setSatelliteIdentity({
+            listID: sat.listID,
             antSatID:sat.antSatID,
             favorite: row.hasClass('$favorite') ? 'TRUE' : 'FALSE'
           });
