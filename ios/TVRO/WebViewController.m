@@ -19,6 +19,17 @@
 	[webView setBackgroundColor:[UIColor blackColor]];
 	webView.scrollView.bounces = NO;
 	[self.view addSubview:webView];
+
+  
+  helpWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
+  [helpWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [helpWebView.scrollView setDelaysContentTouches:NO];
+  [helpWebView setDelegate:self];
+  [helpWebView setBackgroundColor:[UIColor blackColor]];
+  helpWebView.scrollView.bounces = NO;
+  [helpWebView setHidden:YES];
+  [self.view addSubview:helpWebView];
+
   
   loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
   [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -66,7 +77,7 @@
 #pragma mark - UIWebViewDelegate protocol methods
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError*)error {
-	NSLog(@"webView didFailLoadWithError:%@", error);
+	NSLog(@"webView:%@ didFailLoadWithError:%@", _webView == webView ? @"webView" : @"helpWebView", error);
 	//  NSURLErrorCancelled (-999)
   //	"Returned when an asynchronous load is canceled. A Web Kit framework delegate will
   //	receive this error when it performs a cancel operation on a loading resource. Note
@@ -83,10 +94,21 @@
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
-
+  NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%d", _webView == webView ? @"webView" : @"helpWebView", request, navigationType);
+  
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
+  
+  //	check if we're calling a help file
+  if (([request.URL.pathComponents count] > 1) && _webView != helpWebView) {
+    if ([[request.URL.pathComponents objectAtIndex:1] isEqualToString:@"help"]) {
+      [helpWebView loadRequest:[NSURLRequest requestWithURL:request.URL]];
+      [helpWebView setHidden:NO];
+      return true;
+    }
+  }
+  
+  [helpWebView setHidden:YES];
   
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
@@ -94,8 +116,8 @@
     NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
     [self handleCustomURL:request.URL];
     return false;
-
-        
+    
+    
   } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
     //	were trying to go to about:blank for some reason lets negate that
     NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
@@ -113,7 +135,9 @@
 //		return false;
 		return true;
 	
-        
+    
+//	} else if ([request.URL.pathComponents objectAtIndex:1])
+    
 	//	at this point it's probably just another path in our app,
   //	so return true and let the uiwebview continue loading
 	} else {

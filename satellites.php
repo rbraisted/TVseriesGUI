@@ -370,7 +370,7 @@ and also .#group-table-view (group mode)
       </div>
     </div>
 
-    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', 'test', 905)" class="link">
+    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 905)" class="link">
       Learn more about these satellite parameters.
     </a>
 

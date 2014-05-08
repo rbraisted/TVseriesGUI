@@ -84,6 +84,14 @@
     }
   };
 
+  TVRO.showHelp = function(mapId) {
+    // if (TVRO.getShellMode()) RH_ShowHelp(0, '/help/index.htm', HH_HELP_CONTEXT, mapId);
+    // else RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', mapId); 
+  };
+
+
+
+
   window.TVRO = TVRO;
 
 }(window);

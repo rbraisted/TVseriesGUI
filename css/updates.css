@@ -785,6 +785,9 @@ a {
         height: 100%;
         width: 100%; } }
 
+#dataDiv {
+  z-index: 9999999999999999999 !important; }
+
 .updates-icon {
   background-image: url(/images/updates-icon-white.svg);
   background-position: center center;
