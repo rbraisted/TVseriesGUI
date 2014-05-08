@@ -35,8 +35,8 @@
           var windowHeight = $(window).height();
 
           if (contentHeight + offset.top > windowHeight)
-            offset.top = windowHeight - contentHeight - 80;
-
+            offset.top = contentHeight - 80;
+          
           content.offset(offset);
         }
         return self;
