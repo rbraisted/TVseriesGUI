@@ -61,7 +61,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
       <span class="#dropdown-title">Cities</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table #table-view" style="overflow-y:scroll">
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
       --><span class="table-col #dropdown-value"></span>
