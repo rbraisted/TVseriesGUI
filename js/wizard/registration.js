@@ -149,14 +149,25 @@
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       if (!self.isValid()) return;
+
+      var company = $('.\\#company', jQ).val();
+      var contact = $('.\\#contact', jQ).val();
+      var phone = $('.\\#phone', jQ).val();
+      var email = $('.\\#email', jQ).val();
+
       TVRO.setProductRegistration({
         dealer: {
-          company: $('.\\#company', jQ).val(),
-          installer_name: $('.\\#contact', jQ).val(),
-          installer_phone: $('.\\#phone', jQ).val(),
-          installer_email: $('.\\#email', jQ).val()
+          company: company,
+          installer_name: contact,
+          installer_phone: phone,
+          installer_email: email
         }
       }).then(function() {
+        //  save cookies
+        TVRO.setInstallerCompany(company);
+        TVRO.setInstallerContact(contact);
+        TVRO.setInstallerPhone(phone);
+        TVRO.setInstallerEmail(email);
         window.location = '/wizard/gps.php';
       });
     });
@@ -165,15 +176,11 @@
       window.location.hash = '/cdt-vessel-info';
     });
 
-    TVRO.getProductRegistration().then(function(xml) {
-      var company = $('dealer company', xml).text();
-      var contact = $('dealer installer_name', xml).text();
-      var phone = $('dealer installer_phone', xml).text();
-      var email = $('dealer installer_email', xml).text();
-      $('.\\#company', jQ).val(company);
-      $('.\\#contact', jQ).val(contact);
-      $('.\\#phone', jQ).val(phone);
-      $('.\\#email', jQ).val(email);
+    TVRO.getInstallerInfo().then(function(installerInfo) {
+      $('.\\#company', jQ).val(installerInfo.company);
+      $('.\\#contact', jQ).val(installerInfo.contact);
+      $('.\\#phone', jQ).val(installerInfo.phone);
+      $('.\\#email', jQ).val(installerInfo.email);
     });
 
     return self;

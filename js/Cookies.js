@@ -30,4 +30,14 @@
   TVRO.getTechMode = get('tvro-tech-mode');
   TVRO.getShellMode = get('tvro-shell-mode');
 
+  TVRO.setInstallerCompany = set('tvro-installer-company');
+  TVRO.setInstallerContact = set('tvro-installer-contact');
+  TVRO.setInstallerPhone = set('tvro-installer-phone');
+  TVRO.setInstallerEmail = set('tvro-installer-email');
+
+  TVRO.getInstallerCompany = get('tvro-installer-company');
+  TVRO.getInstallerContact = get('tvro-installer-contact');
+  TVRO.getInstallerPhone = get('tvro-installer-phone');
+  TVRO.getInstallerEmail = get('tvro-installer-email');
+
 }(window.TVRO);

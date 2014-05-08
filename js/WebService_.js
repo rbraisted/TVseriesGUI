@@ -184,8 +184,14 @@
   //  the call to set_antenna_config to remove get_antenna_config from the cache
   //  so that calls to it will bring you fresh data
 
-    TVRO.getSatelliteService = get('get_satellite_service');
+  //  NOTE ABOUT CUSTOM CALLS:
+  //  at the bottom here we have some custom calls that will also get cached
+  //  but if you intend to add a webservice call on the back end
+  //  because we use the message name as a key to items in the cache
+  //  just make sure you don't accidentally write over something in the cache
+  //  by giving a backend call the same message name as a custom call here
 
+  TVRO.getSatelliteService = get('get_satellite_service');
 	  
 	TVRO.setSatelliteService = set('set_satellite_service', [
 	                          		get('get_satellite_service')
@@ -360,6 +366,15 @@
     else return cache[cacheName] = get(msg)(url, 1);
   };
 
+  //  device versions
+  //  basically we return a promise
+  //  which is fulfilled when somebody calls setDeviceVersions
+  //  so on the desktop nothing actually happens right now
+  //  but later we could give the desktop version some reason to call
+  //  setDeviceVersions and it should work out ok
+  //  in shell mode though, we send out a tvro:// call and the app (iOS/Android)
+  //  should respond by calling setDeviceVersions
+
   var deviceVersions;
   var getDeviceVersionsCallbacks = [];
   var getDeviceVersions = function(callback) {
@@ -381,6 +396,67 @@
       return cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
     }
   };
+
+    //  pull from the box first,
+    //  then if any of these fields are unavailable try getting them from
+    //  cookies and in shell mode by making a tvro:// call
+  var installerInfo;
+  var getInstallerInfoCallbacks = [];
+  var getInstallerInfo = function(callback) {
+    if (!_.isUndefined(deviceVersions)) callback(null, deviceVersions);
+    getInstallerInfoCallbacks.push(callback);    
+  };
+
+  var setInstallerInfo = function(arg) {
+    installerInfo = arg;
+    _.invoke(getInstallerInfoCallbacks, 'call', null, null, installerInfo);
+  };
+
+  TVRO.setInstallerInfo = setInstallerInfo;
+  TVRO.getInstallerInfo = function() {
+    if (cache['get_installer_info'] && !recache) {
+      return cache['get_installer_info'];
+    } else {
+      //  pull from the box first,
+      //  then if any of these fields are unavailable try getting them from
+      //  cookies and in shell mode by making a tvro:// call
+      TVRO.getProductRegistration().then(function(xml) {
+        var company = $('dealer company', xml).text();
+        var contact = $('dealer installer_name', xml).text();
+        var phone = $('dealer installer_phone', xml).text();
+        var email = $('dealer installer_email', xml).text();
+
+        //  since the ui forces you to enter all four of these fields,
+        //  let's just assume that if company is available then the other
+        //  fields will be too
+        if (company) {
+          //  we found the box's stored installer info
+          //  this should fulfill the getInstallerInfo promise
+          TVRO.setInstallerInfo({
+            company: company,
+            contact: contact,
+            phone: phone,
+            email: email
+          });
+        } else if (TVRO.getShellMode()) {
+          //  in shell mode, we'll ask the shell device (iOS/Android)
+          //  to call setInstallerInfo for us
+          window.location = 'tvro://get-installer-info';
+        } else if (TVRO.getInstallerCompany()) {
+          //  otherwise, check cookies
+          TVRO.setInstallerInfo({
+            company: TVRO.getInstallerCompany(),
+            contact: TVRO.getInstallerContact(),
+            phone: TVRO.getInstallerPhone(),
+            email: TVRO.getInstallerEmail()
+          });
+        }
+      });
+
+      return cache['get_installer_info'] = Promise.denodeify(getInstallerInfo)();
+    }
+  };
+
 
   //  it's easier to just keep getting antenna_status here
   //  we need it to be updated on all the main gui pages

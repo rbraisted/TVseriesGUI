@@ -355,9 +355,6 @@
     });
   };
 
-
-
-
   TVRO.getGroupMode = function() {
     return TVRO.getInstalledGroup().then(function(group) {
       return !!(group && group.getSats().length > 1);

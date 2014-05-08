@@ -5,8 +5,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <script type="text/javascript" src="/js/wizard/registration.js"></script>
 
-
-
 <div class="view installer-id #installer-id-view">
   <div class="view-head">Installer Identification</div>
   <div class="headline">Who installed the TracVision System?</div>
