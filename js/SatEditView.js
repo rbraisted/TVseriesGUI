@@ -116,7 +116,7 @@
         listID: sat.listID,
         antSatID: sat.antSatID,
         name: $('.\\#sat-name', jQ).val(),
-        region: $('.\\#sat-region', jQ).val(),
+        region: regionDropdownView.getValue(),
         skew: $('.\\#sat-skew', jQ).val(),
         xponder: _.invoke(xponderViews, 'getXponder')
       }).then(TVRO.reload);
@@ -135,8 +135,15 @@
         'Central/South America',
         'Europe',
         'North America'
-      ]).build();
+      ])
+      .onClick(function(region) {
+        $('.\\#sat-region', jQ).text(region);
+      })
+      .build();
 
+    var regionBtn = $('.\\#region-btn', jQ).click(function() {
+      regionDropdownView.show($(this).offset());
+    });
 
     var xponderViews = _.times(4, function (i) {
       return XponderView($('.\\#xponder-' + (i + 1) + '-view', jQ));
@@ -158,6 +165,7 @@
           //  plain ol text, dropdown btns
           $('.\\#sat-name', jQ).text(sat.name || 'N/A');
           $('.\\#sat-region', jQ).text(sat.region || 'N/A');
+          regionDropdownView.setValue(sat.region || null);
           $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
            $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
 

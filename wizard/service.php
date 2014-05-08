@@ -18,7 +18,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
 <div class="view service-provider #service-provider-view">
   <div class="view-head">Service Provider</div>
-  
+
   <div class="headline">Choose your satellite TV service provider.</div>
 
   <div class="clear-table #table-view">
@@ -64,14 +64,38 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 
   <div class="block-btn #install-btn">Install DIRECTV Satellite 119</div>
   <br>
-  <div class="link">Find out which channels are carried on the 119 satellite.</div>
+  <span class="link #cityDropdown">Find out which channels are carried on the 119 satellite.</span>
 
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>
   </div>
+
 </div>
 
+ <div class="popup cities-119 #cities-119-view">
+  <div class="popup-guts" style="overflow-y: scroll;">
+    <div class="city-list view-head" style="overflow-y: hidden;">
+      <span>Cities for DIRECTV Satellite 119 Local Channels</span>
+      <div class="back-btn #back-btn"></div>
+    </div>
+    <div style="overflow: scroll;">
+      <?PHP
+        $file_handle = fopen("cities.csv", "r");
+        print "<BR>";
+
+        while (!feof($file_handle) ) {
+
+          $line_of_text = fgetcsv($file_handle, 1024);
+
+          print $line_of_text[0] . ", " . $line_of_text[1] . "<BR>";
+        }
+
+        fclose($file_handle);
+      ?>
+    </div>
+  </div>
+</div>
 
 
 <div class="view directv #directv-view">
@@ -103,7 +127,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
         <span class="table-col install-btn"></span><!--
       --><span class="table-col #value"></span>
       </div>
-    </div>    
+    </div>
   </div>
 
   <div class="#sats-view">
@@ -113,7 +137,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
         <span class="table-col install-btn"></span><!--
       --><span class="table-col #value"></span>
       </div>
-    </div>    
+    </div>
   </div>
 
   <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 901)" class="link">
