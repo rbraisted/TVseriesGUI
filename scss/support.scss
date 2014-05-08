@@ -170,6 +170,13 @@
 }
 
 .event-log {
+
+  .link {
+    color: $bright-blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
 	.event-table {
 		@include alt-table;
     background-color: $light-grey;

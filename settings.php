@@ -158,6 +158,10 @@
  --><input class="input broadcast-input #eth-broadcast" /><!--
  --><span class="value broadcast-value #eth-broadcast"></span>
 
+    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 903)" class="link">
+      Learn more about these Ethernet settings.
+    </a>
+
     <div class="btn-tray">
       <div class="block-btn cancel-btn #back-btn">Cancel</div><!--
     --><div class="block-btn save-btn first #save-btn">Save</div><!--
@@ -227,6 +231,10 @@
       <div class="dropdown-icon"></div>
     </div>
     <span class="label password-label">Password</span><input class="input password-input #wlan-security-key" />
+
+    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 904)" class="link">
+      Learn more about these wireless settings.
+    </a>
 
     <div class="btn-tray">
       <div class="block-btn cancel-btn #back-btn">Cancel</div><!--

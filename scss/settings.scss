@@ -90,6 +90,20 @@
 //  ethernet-settings-view
 //  wireless-settings-view
 .popup {
+  .link {
+    width: 40%;
+    margin: 30px auto;
+    color: $bright-blue;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+    @include breakpoint($mobile) {
+      width: 100%;
+      line-height: 1.6;
+    }
+  }
+
   .ethernet-settings,
   .wireless-settings {
     padding-bottom: 106px;

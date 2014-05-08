@@ -369,6 +369,11 @@ and also .#group-table-view (group mode)
         </div>
       </div>
     </div>
+
+    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', 'test', 905)" class="link">
+      Learn more about these satellite parameters.
+    </a>
+
     <div class="btn-tray">
       <div class="block-btn first save-btn #save-btn">Save</div><!--
     --><div class="block-btn cancel-btn #back-btn">Cancel</div><!--

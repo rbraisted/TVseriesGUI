@@ -1262,8 +1262,10 @@ html {
   .dish-network .clear-table,
   .dish-network .skew-angle .skew-table,
   .skew-angle .dish-network .skew-table {
-    text-align: left;
-    margin-bottom: 60px; }
+    text-align: left; }
+
+.dish-network .link {
+  margin-bottom: 60px; }
 
 body[class=''] .\#service-provider-view,
 .\/service-subtype .\#service-subtype-view,

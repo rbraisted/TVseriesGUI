@@ -1318,6 +1318,21 @@ a {
     min-width: 21px;
     cursor: pointer; } }
 
+.sat-info .link,
+.sat-edit .link {
+  color: #4f7abd;
+  text-decoration: underline;
+  width: 50%;
+  display: block;
+  margin: -5px auto;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer; }
+  @media screen and (max-width: 880px) {
+    .sat-info .link,
+    .sat-edit .link {
+      padding-top: 15px;
+      margin-bottom: 60px; } }
 .sat-info .value,
 .sat-edit .value {
   max-width: 100%;
@@ -1563,6 +1578,10 @@ a {
     padding: 76px 30px 30px 30px;
     height: 844px;
     margin-top: -422px; }
+  .sat-info.popup-guts.sat-edit,
+  .sat-edit.popup-guts.sat-edit {
+    height: 890px;
+    margin-top: -445px; }
   .sat-info .label,
   .sat-edit .label {
     font-size: 13px;

@@ -429,6 +429,21 @@
 
 .sat-info,
 .sat-edit {
+  .link {
+    color: $bright-blue;
+    text-decoration: underline;
+    width: 50%;
+    display: block;
+    margin: -5px auto;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    @include breakpoint($mobile) {
+      padding-top: 15px;
+      margin-bottom: 60px;
+    }
+  }
+
   .value {
     @include ellipsis;
   }
@@ -525,6 +540,11 @@
       padding: $big-bump+30px 30px 30px 30px;
       height: 844px;
       margin-top: -422px;
+    }
+
+    &.popup-guts.sat-edit {
+      height: 890px;
+      margin-top: -445px;
     }
 
     .label {

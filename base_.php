@@ -22,9 +22,9 @@
 
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/js/fastclick.js"></script>
-
     <script type="text/javascript" src="/js/lodash.min.js"></script>
     <script src="/js/promise-3.2.0.js"></script>
+    <script type="text/javascript" src="/js/RoboHelp_CSH_modified.js"></script>
 
     <script type="text/javascript" src="/js/TVRO_.js"></script>
     

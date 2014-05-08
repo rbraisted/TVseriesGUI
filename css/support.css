@@ -961,6 +961,10 @@ a {
     margin: 0;
     margin-bottom: 60px; } }
 
+.event-log .link {
+  color: #4f7abd;
+  text-decoration: underline;
+  cursor: pointer; }
 .event-log .event-table {
   width: 100%;
   position: relative;
