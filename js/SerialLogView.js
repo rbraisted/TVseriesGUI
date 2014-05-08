@@ -12,7 +12,8 @@
       Promise.all(
         TVRO.getAntennaVersions(),
         TVRO.getAntennaStatus(),
-        TVRO.getSerialLog(1, 1)
+        TVRO.getSerialLog(1, 1),
+        TVRO.startSerialLog({ restart: 'N' })
       ).then(function(xmls) {
         var email = 'support@kvh.com';
         var antModel = $('au model', xmls[0]).text();
@@ -33,9 +34,12 @@
     });
 
     var reload = function() {
-      TVRO.getSerialLog().then(function(xml) {
+      TVRO.getSerialLog(1, 1).then(function(xml) {
         var serialLog = $('content', xml).text();
         $('.\\#serial-log', jQ).text(serialLog);
+      }, function(error) {
+        //  serial log isn't available yet, start the log and reload.
+        TVRO.startSerialLog({ restart: 'N' }).then(TVRO.reload);
       });
     };
 

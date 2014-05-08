@@ -112,14 +112,20 @@
       });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
-      TVRO.setSatParams({
+      var params = {
         listID: sat.listID,
         antSatID: sat.antSatID,
         name: $('.\\#sat-name', jQ).val(),
         region: regionDropdownView.getValue(),
         skew: $('.\\#sat-skew', jQ).val(),
         xponder: _.invoke(xponderViews, 'getXponder')
-      }).then(TVRO.reload);
+      };
+
+      if (!sat.predefined) {
+        // params.lon = 
+      }
+
+      TVRO.setSatParams(params).then(TVRO.reload);
     });
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
