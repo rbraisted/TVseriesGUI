@@ -176,14 +176,14 @@
         TVRO.setAutoswitchService({
           enable: 'N',
           service: 'DIRECTV',
-          satellite_group: 'DIRECTV-USA'
+          satellite_group: 'DIRECTV DUAL'
         }).then(function() {
           window.location = '/wizard/activation.php';
         });
 
       else if (option === automaticOption)
         TVRO.setInstalledGroup({
-          name: 'DIRECTV-USA'
+          name: 'DIRECTV DUAL'
         }).then(function() {
           window.location = '/wizard/autoswitch.php';
         });
