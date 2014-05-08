@@ -233,7 +233,7 @@ a {
     color: $grey;
     &.\$green { color: $green; }
     &.\$orange { color: $orange; }
-    &.\$red { color: $red; }
+    &.\$red { color: #f00; }
   }
 }
 
