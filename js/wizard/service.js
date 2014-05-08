@@ -110,6 +110,15 @@
         }, 500);
       });
     });
+    
+    $('.\\#local-channels-view')
+    .find('.\\#cityDropdown')
+    .click(function() {
+      window.location.hash = '/cities-119';
+      })
+    .end()
+    
+  $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/local-channels'; });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       window.location.hash = '/directv';

@@ -2169,10 +2169,15 @@ body[class=""] .\#skew-angle-view,
 .\/diagram-3 .\#diagram-3-view {
   display: block; }
 
+.\/cities-119 .\#cities-119-view {
+  display: block; }
+
 @media screen and (min-width: 881px) {
   .\/diagram-1 .\#complete-1-view,
   .\/diagram-2 .\#complete-2-view,
   .\/diagram-3 .\#complete-3-view {
+    display: block; }
+  .\/cities-119 .\#cities-119-view {
     display: block; } }
 .autoswitch-icon {
   background-image: url(/images/autoswitch-icon-white.svg);
