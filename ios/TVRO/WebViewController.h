@@ -7,13 +7,14 @@
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UpdatesManagerDelegate> {
 	UIWebView* webView;
-	UIWebView* helpWebView;
 	NSString* hostName;
 	UpdatesManager* updatesManager;
 	SatFinderViewController* satFinderViewController;
   NSTimer *timeoutTimer;
   
   UIView* loadingView;
+  
+  UIWebView* helpWebView;
 }
 
 - (id)initWithHostName:(NSString*)hostName;

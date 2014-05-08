@@ -30,6 +30,7 @@
 		E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E46184FD9A1003618D1 /* libz.dylib */; };
 		E91C2E49184FD9AC003618D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E48184FD9AC003618D1 /* libxml2.dylib */; };
 		E9212D7B1831B636008FCDCD /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9212D7A1831B636008FCDCD /* UpdatesManager.m */; };
+		E92842B5191C20B5006F9B93 /* close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E92842B4191C20B5006F9B93 /* close-button.png */; };
 		E9B363A2183EEAE600575839 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E9B363A1183EEAE600575839 /* Settings.bundle */; };
 		E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
 		E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */; };
@@ -109,6 +110,7 @@
 		E91C2E48184FD9AC003618D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		E9212D791831B636008FCDCD /* UpdatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesManager.h; sourceTree = "<group>"; };
 		E9212D7A1831B636008FCDCD /* UpdatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesManager.m; sourceTree = "<group>"; };
+		E92842B4191C20B5006F9B93 /* close-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close-button.png"; path = "TVRO/Images/close-button.png"; sourceTree = SOURCE_ROOT; };
 		E99AB16A183B0E350011DDE0 /* UpdatesManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatesManagerDelegate.h; sourceTree = "<group>"; };
 		E9B363A1183EEAE600575839 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E9B97C671829A14A007AA4A3 /* TVRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +230,7 @@
 				E91B58631918114300344B7D /* gradient.png */,
 				E90AA3A118FCA972005699D1 /* connectButton.png */,
 				E90AA3A218FCA972005699D1 /* connectButton@2x.png */,
+				E92842B4191C20B5006F9B93 /* close-button.png */,
 				E90AA3A318FCA972005699D1 /* refreshButton.png */,
 				E90AA3A418FCA972005699D1 /* refreshButton@2x.png */,
 				E90AA3A518FCA972005699D1 /* viewUpdatesButton.png */,
@@ -421,6 +424,7 @@
 				E9D7C31818F712A800416442 /* tableCellArrow@2x.png in Resources */,
 				E9E50D7D18F4D8680068E5E7 /* BonjourView.xib in Resources */,
 				E9D7C31918F712A800416442 /* TracVisionLogo.png in Resources */,
+				E92842B5191C20B5006F9B93 /* close-button.png in Resources */,
 				E9D7C31518F712A800416442 /* KVH_Logo.png in Resources */,
 				E9D41CFD18F74A03007F21DF /* connectButton.png in Resources */,
 				E9082EB218F8771C009519D7 /* iPadKVHLogo.png in Resources */,

@@ -1,3 +1,5 @@
+//  modifications to this file can be found by looking for "ma:"
+
 // Adobe
 // Copyright© 1998-2008 Adobe Systems Incorporated. All rights reserved.
 // RoboHelp_CSH.js
@@ -153,6 +155,17 @@ if(gnVerMajor>=4)
     if(gnVerMajor>=5)
       gbNav6=true;
   }
+}
+
+//  ma:
+//  i just need to get the url to display for mobile devices to display
+//  help in their own web view instead of opening a new window, which doesn't
+//  always work/work well on mobile devices
+function RH_GetHelpUrlWithMapNo(helpUrl, mapNo)
+{
+  var param = "?rhcsh=1";
+  if (mapNo > 0) param += "&rhmapno=" + mapNo.toString();
+  return helpUrl + param;
 }
 
 function RH_ShowMultiscreenHelpWithMapNo(szHelpURL, szWnd, dwMapNo)

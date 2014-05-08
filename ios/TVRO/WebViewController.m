@@ -12,25 +12,49 @@
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad {
+  updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
+  
+  //	main web view - displays gui, handles custom scheme (tvro://) calls
 	webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
 	[webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 	[webView.scrollView setDelaysContentTouches:NO];
 	[webView setDelegate:self];
-	[webView setBackgroundColor:[UIColor blackColor]];
 	webView.scrollView.bounces = NO;
 	[self.view addSubview:webView];
 
-  
+  //	help web view - displays help pages
+  //	no delegate set for helpWebView
   helpWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
-  [helpWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [helpWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
   [helpWebView.scrollView setDelaysContentTouches:NO];
-  [helpWebView setDelegate:self];
-  [helpWebView setBackgroundColor:[UIColor blackColor]];
   helpWebView.scrollView.bounces = NO;
   [helpWebView setHidden:YES];
   [self.view addSubview:helpWebView];
-
   
+  //	attach a close button and header bar to the help
+  UIImage* helpCloseButtonImage = [UIImage imageNamed:@"close-button"];
+	UIButton* helpCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [helpCloseButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+  [helpCloseButton setBackgroundImage:helpCloseButtonImage forState:UIControlStateNormal];
+  [helpCloseButton setFrame:CGRectMake(0.0, 0.0, 32.0, 32.0)];
+  [helpCloseButton addTarget:self action:@selector(closeHelpWebView) forControlEvents:UIControlEventTouchUpInside];
+
+  UILabel* helpTopBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];
+  [helpTopBarLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+  [helpTopBarLabel setTextColor:[UIColor whiteColor]];
+  [helpTopBarLabel setText:@"Help Center"];
+  [helpTopBarLabel setTextAlignment:NSTextAlignmentCenter];
+  [helpTopBarLabel setFont:[UIFont fontWithName:@"Helvetica" size:21]];
+
+  UIView* helpTopBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];
+  [helpTopBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [helpTopBar setBackgroundColor:[UIColor blackColor]];
+  [helpTopBar addSubview:helpTopBarLabel];
+  
+  [helpWebView addSubview:helpTopBar];
+  [helpWebView addSubview:helpCloseButton];
+  
+  //	spinner/loader
   loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
   [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
   [loadingView setBackgroundColor:[UIColor colorWithRed:4.0/255.0 green:18.0/255.0 blue:42.0/255.0 alpha:1]];
@@ -53,8 +77,6 @@
   [spinnerView startAnimating];
   [self.view addSubview:loadingView];
   [loadingView setHidden:TRUE];
-	
-	updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
 	
 	[super viewDidLoad];
 }
@@ -98,15 +120,6 @@
   
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
-  
-  //	check if we're calling a help file
-  if (([request.URL.pathComponents count] > 1) && _webView != helpWebView) {
-    if ([[request.URL.pathComponents objectAtIndex:1] isEqualToString:@"help"]) {
-      [helpWebView loadRequest:[NSURLRequest requestWithURL:request.URL]];
-      [helpWebView setHidden:NO];
-      return true;
-    }
-  }
   
   [helpWebView setHidden:YES];
   
@@ -225,8 +238,17 @@
   
   NSLog(@"handleCustomURL: %@", url);
   NSArray* pathComponents = [url pathComponents];
-  
-  if ([url.host isEqualToString:@"change-hostname"]) {
+
+  if ([url.host isEqualToString:@"help"]) {
+    NSString* helpUrlString = [NSString stringWithFormat:@"http://%@/%@%@?%@", hostName, url.host, url.path, url.query];
+    NSURL* helpUrl = [NSURL URLWithString:helpUrlString];
+    NSURLRequest* helpRequest = [NSURLRequest requestWithURL:helpUrl];
+    NSLog(@"helpUrl:%@", helpUrl);
+    NSLog(@"helpUrlString:%@", helpUrlString);
+		[helpWebView loadRequest:helpRequest];
+    [helpWebView setHidden:NO];
+    
+  } else if ([url.host isEqualToString:@"change-hostname"]) {
   //	tvro://change-hostname
   //    brings you back to the bonjour list view
     [self goBackToHostSelect];
@@ -317,6 +339,10 @@
   NSLog(@"jsString: %@", jsString);
   
   [webView stringByEvaluatingJavaScriptFromString:jsString];
+}
+
+- (void)closeHelpWebView {
+  [helpWebView setHidden:YES];
 }
 
 @end

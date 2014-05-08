@@ -74,12 +74,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 </div>
 
  <div class="popup cities-119 #cities-119-view">
-  <div class="popup-guts" style="overflow-y: scroll;">
-    <div class="city-list view-head" style="overflow-y: hidden;">
+  <div class="popup-guts">
+    <div class="view-head">
       <span>Cities for DIRECTV Satellite 119 Local Channels</span>
       <div class="back-btn #back-btn"></div>
     </div>
-    <div style="overflow: scroll;">
+    <div class="cities">
       <?PHP
         $file_handle = fopen("cities.csv", "r");
         print "<BR>";

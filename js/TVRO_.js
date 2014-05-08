@@ -84,13 +84,11 @@
     }
   };
 
-  TVRO.showHelp = function(mapId) {
-    // if (TVRO.getShellMode()) RH_ShowHelp(0, '/help/index.htm', HH_HELP_CONTEXT, mapId);
-    // else RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', mapId); 
+  TVRO.showHelp = function(mapNo) {
+    var helpUrl = RH_GetHelpUrlWithMapNo('help/index.htm', mapNo);
+    if (TVRO.getShellMode()) window.location = 'tvro://' + helpUrl;
+    else window.open(helpUrl, 'TVHub Help', 'width=400,height=600');
   };
-
-
-
 
   window.TVRO = TVRO;
 

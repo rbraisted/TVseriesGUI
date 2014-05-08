@@ -529,13 +529,32 @@ html {
   }
 }
 
+.cities-119 {
+  @include breakpoint($desktop) {
+    .view-head {
+      margin-bottom: 0;
+    }
+    .cities {
+      max-height: 100%;
+      overflow: auto;
+    }    
+  }
+}
+
 body[class=''] .\#service-provider-view,
 .\/service-subtype .\#service-subtype-view,
 .\/local-channels .\#local-channels-view,
 .\/directv .\#directv-view,
 .\/dish-network .\#dish-network-view,
+.\/cities-119 .\#cities-119-view,
 .\/spinner .\#spinner-view {
   display: block;
+}
+
+@include breakpoint($mobile) {
+  .\/cities-119 .\#local-channels-view {
+    display: block;
+  }
 }
 
 
