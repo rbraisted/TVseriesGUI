@@ -18,6 +18,19 @@
 	}
 }
 
+.help-btn {
+  @include table-row;
+  background-color: $light-blue;
+  padding: $table-row-padding;
+  cursor: pointer;
+  img {
+    width: $large-font;
+    height: $large-font;
+    vertical-align: middle;
+    margin: -10px .5em;
+  }
+}
+
 .contact-header {
 	padding: $sidebar-padding;
 }

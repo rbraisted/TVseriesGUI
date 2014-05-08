@@ -852,6 +852,22 @@ a {
       min-height: 7px;
       min-width: 21px; } }
 
+.help-btn {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  border-bottom: 1px solid #4f7abd;
+  position: relative;
+  vertical-align: middle;
+  background-color: #243774;
+  padding: 15px;
+  cursor: pointer; }
+  .help-btn img {
+    width: 21px;
+    height: 21px;
+    vertical-align: middle;
+    margin: -10px .5em; }
+
 .contact-header {
   padding: 16px; }
 
