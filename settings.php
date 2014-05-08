@@ -158,7 +158,7 @@
  --><input class="input broadcast-input #eth-broadcast" /><!--
  --><span class="value broadcast-value #eth-broadcast"></span>
 
-    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 903)" class="link">
+    <a href="javascript:TVRO.showHelp(903);" class="link">
       Learn more about these Ethernet settings.
     </a>
 
@@ -232,7 +232,7 @@
     </div>
     <span class="label password-label">Password</span><input class="input password-input #wlan-security-key" />
 
-    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 904)" class="link">
+    <a href="javascript:TVRO.showHelp(904);" class="link">
       Learn more about these wireless settings.
     </a>
 

@@ -55,7 +55,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
   </div><!--
 --><div class="column">
     <img src="/images/wizard-skew.svg" class="skew-image">
-    <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 902)" class="link">
+    <a href="javascript:TVRO.showHelp(902);" class="link">
       Learn how to adjust the LNB’s skew angle.
     </a>
   </div>

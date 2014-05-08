@@ -32,10 +32,6 @@
       });
     };
 
-    var helpBtn = $('.\\#help-btn', jQ).click(function() {
-      TVRO.showHelp(906);
-    });
-
     var eventTableView = TVRO.TableView(
       $('.\\#event-table-view', jQ)
     ).onBuild(function(row, event) {

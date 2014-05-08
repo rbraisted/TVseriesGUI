@@ -34,9 +34,9 @@
   //	attach a close button and header bar to the help
   UIImage* helpCloseButtonImage = [UIImage imageNamed:@"close-button"];
 	UIButton* helpCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [helpCloseButton setFrame:CGRectMake(self.view.frame.size.width - 41.0, 9.0, 32.0, 32.0)];
   [helpCloseButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
   [helpCloseButton setBackgroundImage:helpCloseButtonImage forState:UIControlStateNormal];
-  [helpCloseButton setFrame:CGRectMake(0.0, 0.0, 32.0, 32.0)];
   [helpCloseButton addTarget:self action:@selector(closeHelpWebView) forControlEvents:UIControlEventTouchUpInside];
 
   UILabel* helpTopBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];

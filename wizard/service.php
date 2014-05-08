@@ -140,7 +140,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
   </div>
 
-  <a href="javascript:RH_ShowMultiscreenHelpWithMapNo('/help/index.htm', '', 901)" class="link">
+  <a href="javascript:TVRO.showHelp(901);" class="link">
     Learn more about these satellite options.
   </a>
 
