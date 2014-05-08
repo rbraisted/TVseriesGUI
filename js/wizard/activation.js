@@ -1,6 +1,9 @@
 $(function() {
 
   $('.\\#next-btn').click(function() {
+    TVRO.setWizardStatus({
+        status: 'SUCCESS'
+      });
     window.location.hash = '/complete-activation';
   });
 

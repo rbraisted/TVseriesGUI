@@ -87,6 +87,18 @@
             return($this->doSimple(__FUNCTION__, $extra));
         }
 
+        function get_wizard_status()
+        {
+            return($this->doSimple(__FUNCTION__));
+        }
+
+        function set_wizard_status($status)
+        {
+            $extra = "<status>$status</status>";
+
+            return($this->doSimple(__FUNCTION__, $extra));
+        }
+
         function antenna_versions()
         {
             return($this->doSimple(__FUNCTION__));
