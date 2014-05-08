@@ -68,7 +68,7 @@ gTopicId = "6.0_7";
 			Help Center 
 		</div>
 	</div>
-	<a class="close-button"><img class="close-button" src="../../template/KVH_Help/close_icn.png" alt="" border="0" style="width:100%; max-width:32px" /></a> 
+	&#160;
 </div>
 <div class="search-wrap">
 	<div class="home">
@@ -99,22 +99,26 @@ document.write("<a class=\"breadcrumbs\" href=\"Satellite_Settings.htm\">Satelli
 
   <h2><a name="XREF_85004_Editing_Satellite"></a>Changing Satellite Tracking 
  Parameters</h2>
-  <p>A satellite TV service provider may change the transponder frequency 
- or other satellite parameters at any time without warning. Since the antenna 
+  <p>A satellite TV service provider may change a transponder frequency or 
+ other satellite parameters at any time without warning. Since the antenna 
  uses these parameters to identify and track the satellite, the TV-Hub 
  allows you to change the tracking parameters of any satellite in its library. 
  </p>
   <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>KVH regularly updates 
  the satellite library for service provider changes. You can download the 
- latest update from the TV-Hub web interface. See <a href="../Maintenance/Updating_the_Satellite_Library.htm#XREF_45671_Using_an_IOS">Updating 
- the Satellite Library</a> for details.</p>
+ latest update from the TV-Hub web interface. See <a href="../Maintenance/Updating_the_Satellite_Library.htm#XREF_59227_Software_Updates">Updating 
+ the Satellite Library</a>&#160;for details. Your local KVH dealer or distributor 
+ will be informed whenever an update is required.</p>
+  <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>You can find satellite 
+ information on the web at<span class="Blue"><a href="http://www.lyngsat.com">&#160;www.lyngsat.com</a></span>&#160;(not 
+ affiliated with KVH).</p>
   <p class="TextBeforeList">To manually edit the tracking parameters of a 
  satellite, follow these steps:</p>
   <ol start="1">
 	<li style="list-style: decimal;">
  <p>On the Satellites page of the web 
-	 interface, click the <span class="Button">circle-i</span>&#160;button 
-	 next to the affected satellite.</p></li>
+	 interface, click the <span class="Button">(i)</span>&#160;information 
+	 icon next to the affected satellite.</p></li>
 	<li style="list-style: decimal;">
  <p>Make the necessary changes to the 
 	 tracking parameters. Then save your changes. </p></li>
@@ -138,13 +142,13 @@ document.write("<a class=\"breadcrumbs\" href=\"Satellite_Settings.htm\">Satelli
    <p class="CellBody">00000&#160;MHz 
 			 or 10700&#160;MHz-12750&#160;MHz</p></td>
 		</tr>
-		<tr class="t1Row" style="height: 37.00pt;">
+		<tr class="t1Row" style="height: 23.00pt;">
 			<td style="vertical-align: top;" width="142">
    <p class="CellBody">Symbol 
 			 Rate</p></td>
 			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">10700-12750&#160;Msym/second 
-			 (33000 max if DVB-S2) </p></td>
+   <p class="CellBody">1000-45000 
+			 (33000 max if DVB-S2)</p></td>
 		</tr>
 		<tr class="t2Row" style="height: 37.00pt;">
 			<td style="vertical-align: top;" width="142">
@@ -162,18 +166,24 @@ document.write("<a class=\"breadcrumbs\" href=\"Satellite_Settings.htm\">Satelli
    <p class="CellBody">Hexadecimal 
 			 (0x####)</p></td>
 		</tr>
-		<tr class="t2Row" style="height: 37.00pt;">
+		<tr class="t2Row" style="height: 107.00pt;">
 			<td style="vertical-align: top;" width="142">
    <p class="CellBody">Decoder 
 			 Type</p></td>
 			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">QDSS, 
-			 QDC2, QDVB, LQPSK, L8PSK, TQPSK, or T8PSK</p></td>
+   <p class="CellBody">QDSS: 
+			 Legacy DSS</p>
+			<p class="CellBody">QDC2: Digicipher II QPSK</p>
+			<p class="CellBody">QDVB: Legacy DVB</p>
+			<p class="CellBody">LQPSK: DVB-S2 QPSK</p>
+			<p class="CellBody">L8PSK: DVB-S2 8PSK</p>
+			<p class="CellBody">TQPSK: Turbo QPSK</p>
+			<p class="CellBody">T8PSK: Turbo 8PSK</p></td>
 		</tr>
 	</table>
 	
 	<p class="Figure">Edit Satellite Details</p>
-	<p class="Graphic"><img alt="TVH_edit_satellite_params.png" id="image5" src="TVH_edit_satellite_params.png" style=" margin-bottom:0.000pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:110.500pt; width:100%; max-width:781px;" border="0" />&#160;</p>
+	<p class="Graphic"><img alt="TVH_edit_satellite_params_cropped.png" id="image5" src="TVH_edit_satellite_params_cropped.png" style=" margin-bottom:0.000pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:56.250pt; width:100%; max-width:351px;" border="0" />&#160;</p>
 	<li style="list-style: decimal;">
  <p>If the satellite is a custom user-defined 
 	 satellite, you can change the additional parameters listed below.</p>
@@ -193,31 +203,7 @@ document.write("<a class=\"breadcrumbs\" href=\"Satellite_Settings.htm\">Satelli
    <p class="CellBody">User-defined 
 			 name (e.g., User Sat 1)</p></td>
 		</tr>
-		<tr class="t1Row" style="height: 23.00pt;">
-			<td style="vertical-align: top;" width="142">
-   <p class="CellBody">LNB 
-			 Type</p></td>
-			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">Auto-filled 
-			 field</p></td>
-		</tr>
-		<tr class="t2Row" style="height: 23.00pt;">
-			<td style="vertical-align: top;" width="142">
-   <p class="CellBody">Local 
-			 Oscillator #1</p></td>
-			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">Auto-filled 
-			 field</p></td>
-		</tr>
-		<tr class="t1Row" style="height: 23.00pt;">
-			<td style="vertical-align: top;" width="142">
-   <p class="CellBody">Local 
-			 Oscillator #2</p></td>
-			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">Auto-filled 
-			 field</p></td>
-		</tr>
-		<tr class="t2Row" style="height: 51.00pt;">
+		<tr class="t1Row" style="height: 51.00pt;">
 			<td style="vertical-align: top;" width="142">
    <p class="CellBody">Region</p></td>
 			<td style="vertical-align: top;" width="315">
@@ -225,29 +211,16 @@ document.write("<a class=\"breadcrumbs\" href=\"Satellite_Settings.htm\">Satelli
 			 Asia, Australia/New Zealand, Central/South America, Europe, 
 			 or North America</p></td>
 		</tr>
-		<tr class="t1Row" style="height: 37.00pt;">
+		<tr class="t2Row" style="height: 65.00pt;">
 			<td style="vertical-align: top;" width="142">
    <p class="CellBody">Orbital 
 			 Slot (Longitude)</p></td>
 			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">1°-180°</p></td>
+   <p class="CellBody">Longitude 
+			 of the satellite’s position, using the following format: xxx.xxE 
+			 or xxx.xxW (leading zeros and decimal values are optional)</p></td>
 		</tr>
-		<tr class="t2Row" style="height: 23.00pt;">
-			<td style="vertical-align: top;" width="142">
-   <p class="CellBody">Hemisphere</p></td>
-			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">East 
-			 or West</p></td>
-		</tr>
-		<tr class="t1Row" style="height: 37.00pt;">
-			<td style="vertical-align: top;" width="142">
-   <p class="CellBody">Suffix</p></td>
-			<td style="vertical-align: top;" width="315">
-   <p class="CellBody">User-defined 
-			 initial to designate a spot beam:</p>
-			<p class="CellBody">A-Z (except E and W)</p></td>
-		</tr>
-		<tr class="t2Row" style="height: 23.00pt;">
+		<tr class="t1Row" style="height: 23.00pt;">
 			<td style="vertical-align: top;" width="142">
    <p class="CellBody">Pre-Skew</p></td>
 			<td style="vertical-align: top;" width="315">
@@ -257,6 +230,12 @@ document.write("<a class=\"breadcrumbs\" href=\"Satellite_Settings.htm\">Satelli
 	
 	</li>
 </ol>
+<p class="Figure" style="margin-left: 40px;">Additional Parameters for 
+ User-defined Satellite</p>
+<p class="Graphic" style="margin-left: 40px;"><img alt="TVH_satparams_usersat.png" id="image6" src="TVH_satparams_usersat.png" style=" margin-bottom:0.000pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:33.250pt; width:100%; max-width:433px;" border="0" />&#160;</p>
+<p class="Note" style="margin-left: 40px;"><span class="FM_NoteOrTip">NOTE: 
+ </span>LNB type and local oscillator frequencies cannot be modified, as 
+ they are properties of the LNB installed in the antenna.</p>
 <div style="width: 100%; position: relative;" id="footer">
 	<hr style="margin-bottom: 0px; margin-top: 7px;" width="50%" align="center" />
 	<p class="Trademark" style="text-align: center;">© 2014, KVH 

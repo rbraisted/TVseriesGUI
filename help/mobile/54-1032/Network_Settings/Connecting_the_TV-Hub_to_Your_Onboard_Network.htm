@@ -3,7 +3,7 @@
 <html>
 <head>
  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
- <meta name="OriginalFile" content="K:\TechComm\User Manuals\Authoring_Files\_54-1032_RV1_UG\54-1032_Current\Maintenance.fm" />
+ <meta name="OriginalFile" content="K:\TechComm\User Manuals\Authoring_Files\_54-1032_RV1_UG\54-1032_Current\Network_Settings.fm" />
  <meta name="Originator" content="ImportMif" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,7 +52,7 @@ gRootRelPath = "../..";
 gCommonRootRelPath = "../../..";
 </script>
 <script type="text/javascript" language="JavaScript1.2">
-gTopicId = "9.0_6";
+gTopicId = "3.0_2";
 </script>
  <link rel="SHORTCUT ICON" href="../../favicon_kvh.png" />
 </head>
@@ -68,7 +68,7 @@ gTopicId = "9.0_6";
 			Help Center 
 		</div>
 	</div>
-	<a class="close-button"><img class="close-button" src="../../template/KVH_Help/close_icn.png" alt="" border="0" style="width:100%; max-width:32px" /></a> 
+	&#160;
 </div>
 <div class="search-wrap">
 	<div class="home">
@@ -90,44 +90,35 @@ gTopicId = "9.0_6";
 		<script type="text/javascript" language="javascript">//<![CDATA[
 document.write("<p  style=\"text-align:left;\" class=\"breadcrumbs\">");
 AddMasterBreadcrumbs("../../index.htm", "breadcrumbs", " ▶ ", "Home", "../../home_page.htm");
-document.write("<a class=\"breadcrumbs\" href=\"Maintenance.htm\">Maintenance<\/a>  ▶  Calibrating the Gyros<\/p>");
+document.write("<a class=\"breadcrumbs\" href=\"Network_Settings.htm\">Network Settings<\/a>  ▶  Connecting the TV-Hub to Your Onboard Network<\/p>");
 //]]></script>
 	</div>
 	<div class="wTopic" id="rh_default_topic_placeholder_id">
 
 
 
- <h2><a name="XREF_79410_Calibrating_the"></a>Calibrating the Gyros</h2>
- <p>The antenna’s gyros continuously measure your rate of motion and send this data to the antenna’s motor control circuitry to keep the antenna pointed at the satellite. At the factory, each gyro is precisely calibrated to work with the antenna’s main board. Therefore, if you ever have a gyro or main board replaced, you will need to recalibrate.</p>
-
- <table class="Important" style=" float:alignleft; width:100%; max-width:342.00pt;" cellspacing="0">
-  <tr style=" height : 26.00pt;" class="t1st">
-  <td style="width : 342.000pt; vertical-align : top;">
-  <p class="SignalWord">Important!</p>
-</td>
-</tr>
-  <tr style=" height : 37.00pt;">
-  <td style="width : 342.000pt; vertical-align : top;">
-  <p class="CellBody">Calibrate the gyros only if directed by KVH Technical Support, and only while the vessel is stationary in calm seas.</p>
-</td>
-</tr>
- </table>
-
- <p></p>
- <p class="TextBeforeList">To calibrate the gyros, follow these steps:</p>
- <ol start="1">
-  <li style="list-style: decimal;">
-  <p>At the Support page of the web interface, select <span class="Button">Command Line</span>.</p>
+ <h2><a name="XREF_53601_Wired_DHCP"></a>Connecting the TV-Hub to Your Onboard Network</h2>
+ <p class="TextBeforeList">You can connect the TV-Hub to an onboard local area network (LAN). A network connection is necessary if any of the following conditions apply:</p>
+ <ul type="disc">
+  <li>
+  <p>You have one or more IP AutoSwitches installed to enable automatic satellite switching<span class="Emphasis">&#160;(Linear/DISH Network/Bell TV only)</span>.</p>
 </li>
-  <li style="list-style: decimal;">
-  <p>Enter <span class="Bold">=CALNEWGYRO </span>in the text box. Then click <span class="Button">Send</span>. </p>
+  <li>
+  <p>You have one or more DIRECTV SWM-compatible receivers connected to the system and require automatic switching between the 101W and 119W satellites.</p>
 </li>
-  <li style="list-style: decimal;">
-  <p>Verify that the gyros pass. If a gyro fails, recalibrate. Once the gyros are calibrated, the antenna restarts.</p>
+  <li>
+  <p>You want to have the ability to access the TV-Hub’s web interface using any device connected to your onboard network.</p>
 </li>
- </ol>
- <p class="Figure">Gyro Calibration Command</p>
- <p class="Graphic"><img alt="TVH_CalNewGyro.png" style=" margin-bottom:0.000pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:66.500pt; width:100%; max-width:359px;" id="image3" src="TVH_CalNewGyro.png" />&nbsp;</p>
+ </ul>
+ <p>By default, the TV-Hub’s Ethernet port is configured as a DHCP client, which means your network’s router will automatically assign it an IP address. Simply connect the TV-Hub’s Ethernet port to your onboard network then turn on the TV-Hub.</p>
+ <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>Use a straight-through 100&nbsp;Mbps fast Ethernet UTP CAT5 cable (or better) with RJ45 connectors.</p>
+ <p class="Figure">TV-Hub Wired Network Connection (TV-Hub A shown)</p>
+ <p class="Graphic"><img alt="TVHub_Ethernet.png" style=" margin-bottom:0.000pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:79.000pt; width:100%; max-width:319px;" id="image0" src="TVHub_Ethernet.png" />&nbsp;</p>
+ <p>Once the TV-Hub is connected to your onboard network, you can access its web interface by entering the TV-Hub’s dynamically assigned IP address in the web browser of any device connected to the network. You can find the TV-Hub’s IP address on the web interface (select Settings &gt; Network Settings). </p>
+ <p>If Bonjour is installed on your device, you can use it to find the TV-Hub on the onboard network without knowing the IP address. Just search for its host name: <span class="Bold">TVHub-&lt;TV-Hub serial number&gt;</span>. For more information about Bonjour, visit <span class="Blue"><a href="http://www.apple.com/support/bonjour">www.apple.com/support/bonjour</a></span>.</p>
+ <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>In Dynamic (DHCP) mode, the TV-Hub could get assigned a different IP address whenever it is turned on. If you prefer, you can assign a static IP address to the TV-Hub that never changes, even after a reboot. See <a href="TV-Hub_Ethernet_Settings.htm#XREF_36265_TV_Hub_Ethernet">TV-Hub Ethernet Settings</a> for details.</p>
+ <h3>Connecting the TV-Hub to Your Onboard Network Using its Built-in Wi-Fi</h3>
+ <p>Although not recommended, you can modify the TV-Hub’s wireless settings to connect to your onboard network using its Wi-Fi antenna, rather than using an Ethernet cable. However, once you change the TV-Hub’s wireless settings from Access Point mode to Infrastructure mode, you will lose the ability to connect directly to the TV-Hub using your mobile device – you will always have to connect via the network. See <a href="TV-Hub_Wireless_Settings.htm#XREF_96183_Wireless_Settings">TV-Hub Wireless Settings</a> for details.</p>
  <div style="width: 100%; position: relative;" id="footer">
 	<hr style="margin-bottom: 0px; margin-top: 7px;" width="50%" align="center" />
 	<p class="Trademark" style="text-align: center;">© 2014, KVH 

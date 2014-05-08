@@ -68,7 +68,7 @@ gTopicId = "4.0_4";
 			Help Center 
 		</div>
 	</div>
-	<a class="close-button"><img class="close-button" src="../../template/KVH_Help/close_icn.png" alt="" border="0" style="width:100%; max-width:32px" /></a> 
+	&#160;
 </div>
 <div class="search-wrap">
 	<div class="home">
@@ -99,11 +99,13 @@ document.write("<a class=\"breadcrumbs\" href=\"Antenna_Settings.htm\">Antenna S
 
  <h2><a name="XREF_94585_Using_the_Optional"></a>Using the Optional NMEA Input</h2>
  <p>If a NMEA device is connected to the TV-Hub, the antenna can use its GNSS position and heading data to speed up satellite acquisition. (Refer to the Installation Guide for details on connecting the NMEA device.) The current position and heading will also be displayed on the Home page of the web interface.</p>
- <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>If the antenna is equipped with a built-in GPS, it will use the NMEA device as a backup source of position data.</p>
+ <p class="Figure">TV-Hub NMEA Connection (TV-Hub A shown)</p>
+ <p class="Graphic"><img alt="TVHub_NMEA0183_UG.png" style=" margin-bottom:0.000pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:66.500pt; width:100%; max-width:257px;" id="image4" src="TVHub_NMEA0183_UG.png" />&nbsp;</p>
+ <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>If the antenna is equipped with a built-in GPS, it will use the NMEA device as a backup source of position data. The Home page will display position data from the built-in GPS unless it switches to the NMEA backup.</p>
  <p class="TextBeforeList">To configure the system to use data from a connected NMEA device, follow these steps:</p>
  <ol start="1">
   <li style="list-style: decimal;">
-  <p>Make sure any connected NMEA&nbsp;0183 device is configured to transmit one or more of the following messages at 4800&nbsp;baud: </p>
+  <p>Configure your NMEA device to transmit one or more of the following NMEA 0183 messages at 4800&nbsp;baud:</p>
 
   <table class="SimpleGridBlack" style=" float:alignleft; width:100%; max-width:341.00pt;" cellspacing="0px">
    <tr style=" height : 23.00pt;" class="t1Row">
@@ -171,38 +173,9 @@ document.write("<a class=\"breadcrumbs\" href=\"Antenna_Settings.htm\">Antenna S
 </td>
 </tr>
   </table>
-</li>
-  <li style="list-style: decimal;">
-  <p>Make sure any NMEA&nbsp;2000 device is configured to transmit one or more of the following messages: </p>
 
-  <table class="SimpleGridBlack" style=" float:alignleft; width:100%; max-width:341.00pt;" cellspacing="0px">
-   <tr style=" height : 23.00pt;" class="t1Row">
-   <td style="width : 94.215pt; vertical-align : top;">
-   <p class="CellHeading">PGN</p>
-</td>
-   <td style="width : 246.783pt; vertical-align : top;">
-   <p class="CellHeading">Description</p>
-</td>
-</tr>
-   <tr style=" height : 23.00pt;" class="t2Row">
-   <td style="width : 94.215pt; vertical-align : top;">
-   <p class="CellBody">127250</p>
-</td>
-   <td style="width : 246.783pt; vertical-align : top;">
-   <p class="CellBody">Heading</p>
-</td>
-</tr>
-   <tr style=" height : 23.00pt;" class="t1Row">
-   <td style="width : 94.215pt; vertical-align : top;">
-   <p class="CellBody">129029</p>
-</td>
-   <td style="width : 246.783pt; vertical-align : top;">
-   <p class="CellBody">GNSS Position Data</p>
-</td>
-</tr>
-  </table>
+  <p></p>
 </li>
-  <p class="Note"><span class="FM_NoteOrTip">NOTE: </span>Not all TV-Hubs are equipped with a NMEA&nbsp;2000 port.</p>
   <li style="list-style: decimal;">
   <p>Select the NMEA source at the TracVision Setup Wizard. You can launch the Setup Wizard from the web interface (go to Settings &gt; General Settings).</p>
 </li>
