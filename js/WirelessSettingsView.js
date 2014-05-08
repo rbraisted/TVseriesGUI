@@ -21,9 +21,9 @@
         octets[0] < 256 && // make sure they don't go higher than 255
         octets[1] < 256 &&
         octets[2] < 256 &&
-        octets[0] > 0 && // and make sure they don't get lower than 1
-        octets[1] > 0 &&
-        octets[2] > 0;
+        octets[0] > -1 && // and make sure they don't get lower than 0
+        octets[1] > -1 &&
+        octets[2] > -1;
 
       if (!valid) {
         ipInput.val(ipInputValue);
@@ -33,7 +33,7 @@
         octets.pop();
         octets.push(255);
         var broadcast = octets.join('.');
-        $('.\\#wlan-broadcast', jQ).text(broadcast);
+        $('.\\#wlan-broadcast', jQ).text(broadcast).val(broadcast);
       }
     });
 
@@ -67,21 +67,10 @@
 
         var securityAlgorithm = $('security algorithm', xml).text();
 
-        //  after a bunch of testing
-        //  here is what i've figured out:
-        //
-        //  1. you should send "broadcast" when setting IF mode
-        //     otherwise it results in an error 4 (required tag missing)
-        //     but you should not send "broadcast" when setting AP mode
-        //     otherwise it results in an error 4 (required tag missing) (???)
-        //
-        //  2. you should send algorithm
-        //     at least when setting IF mode
-        //
-        //  3. <wpa2> works when setting AP,
-        //     <key> works when setting IF
-        //     sending both in both cases doesn't hurt
-        //     so just send both
+        //  <wpa2> works when setting AP,
+        //  <key> works when setting IF
+        //  sending both in both cases doesn't hurt
+        //  so just send both
         var params = {
           mode: mode,
           if_mode: {
@@ -103,7 +92,6 @@
         if (mode === 'AP (Access Point)') {
           params.ap_mode = params.if_mode;
           delete params.if_mode;
-          delete params.broadcast; // see note above
         }
 
         var confirmed = confirm('Are you sure you want to save these changes?');
@@ -158,7 +146,10 @@
         .setValue(networkModeDropdownValues[0])
         .build();
 
-      // setNetworkMode(networkModeDropdownValues[0]);
+      //  trigger change on ipInput to auto correct broadcast if it's correct
+      // if (mode === 'AP (Access Point)') ipInput.change();
+      //  actually not sure if i should do that since it will mean the user
+      //  is being given the wrong information until they actually hit save
     };
 
     var modeBtn = $('.\\#wlan-mode-btn').click(function() {
