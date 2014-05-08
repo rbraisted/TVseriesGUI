@@ -7,6 +7,10 @@
     var isNew = false;
 
     var wizardBtn = $('.\\#wizard-btn', jQ).click(function() {
+      TVRO.setWizardStatus({
+          status: 'NONE'
+      });
+
       window.location = '/wizard';
     });
 
