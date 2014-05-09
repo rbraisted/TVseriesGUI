@@ -17,7 +17,7 @@
       //  check for validity
       var valid =
         octets.length === 4 && // make sure we've got a every octet
-        octets[3] == 1 && // make sure the last octet is .1
+        // octets[3] == 1 && // make sure the last octet is .1
         octets[0] < 256 && // make sure they don't go higher than 255
         octets[1] < 256 &&
         octets[2] < 256 &&
@@ -28,7 +28,11 @@
       if (!valid) {
         ipInput.val(ipInputValue);
       } else {
-        ipInputValue = ipInput.val();
+        //  make the last octet 1 always
+        octets.pop();
+        octets.push(1);
+        ipInputValue = octets.join('.');
+        ipInput.val(ipInputValue);
 
         octets.pop();
         octets.push(255);
