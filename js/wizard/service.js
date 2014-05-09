@@ -245,7 +245,7 @@ var DishNetworkView = function(jQ) {
       if (value === '119W') $('.\\#value', row).text('119\u00B0');
       if (value === '129W') $('.\\#value', row).text('129\u00B0');
     })
-    .build();    
+    .build();
 
 
 
@@ -253,30 +253,47 @@ var DishNetworkView = function(jQ) {
     var isGroup = groupsView.is(':visible');
     var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
 
-    if (!value){
-    	alert('You must select an option to continue.');
-    }else if (isGroup){
-        TVRO.setAutoswitchService({
-            satellite_group: value,
-            service: 'DISH'
-        }).then(function() {
-        	console.log("12234");
-            document.body.className = '/checkswitch-spinner';
-            //document.write("HI");
-            //setTimeout(function() {
-      	   //     window.location = '/wizard/system.php#/other-system-config';
-           // }, 500);
-        });
-    }else{
-    	TVRO.selectSatellite({
+    if (!value) {
+      alert('You must select an option to continue.');
+      return; // RETURN
+    }
+
+    //  a promise that we've installed a satellite or a group
+    var installPromise;
+
+    if (isGroup) {
+      installPromise = TVRO.setAutoswitchService({
+        satellite_group: value,
+        service: 'DISH'
+      });
+    } else {
+    	installPromise = TVRO.selectSatellite({
         antSatID: value
-      }).then(function() {
-        document.body.className = '/checkswitch-spinner';
-        setTimeout(function() {
-          window.location = '/wizard/system.php#/other-system-config';
-        }, 500);
       });
     }
+
+    //  whether we installed a group or a single sat
+    //  we want to follow up with the same thing
+    installPromise.then(function() {
+      document.body.className = '/checkswitch-spinner';
+      TVRO.setCheckswitchMode({
+        enable : 'Y',
+      }).then(function() {
+        var isEnabled;
+        var status = 0;
+        var intervalID = window.setInterval(function() {
+          //  use TVRO.webserviceCall(1, 1) to force recache
+          TVRO.getCheckswitchMode(1, 1).then(function(xml) {
+            isEnabled = $('enable', xml).text();
+            status =  $('status', xml).text();
+            $('.\\#checkswitch-status').text(status);
+            //  Go to other_sys_config when IN_PROGRESS and stop interval
+            // window.location = '/wizard/system.php#/other-system-config';
+          });
+        }, 2000);
+      });
+    });
+
   });
 
   var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -300,36 +317,15 @@ var DishNetworkView = function(jQ) {
     return $('satellite_group', xml).text();
   }).then(groupsTableView.setValue);    
   
-  return self;
+    return self;
   };
-  
-  TVRO.checkswitchText = function(){
-		var element = document.getElementById("cstext");
-		var isEnabled;
-		var status=0;
-
-		TVRO.setCheckswitchMode({
-          enable : 'Y',
-		}).then(function(){
-					
-		var intervalID = window.setInterval(function(){	
-			TVRO.getCheckswitchMode().then(function(xml) {
-              isEnabled = $('enable', xml).text();
-              status =  $('status', xml).text();
-              element.textContent = status;
-              
-              //Go to other_sys_config when IN_PROGRESS and stop interval
-		    })
-       },2000);
-  });
-  };
-
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.ServiceSubtypeView = ServiceSubtypeView;
   TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
   TVRO.DishNetworkView = DishNetworkView;
+
 }(window.TVRO);
 
 $(function() {

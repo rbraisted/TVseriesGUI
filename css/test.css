@@ -2679,7 +2679,8 @@ body[class=""] .\#skew-angle-view,
 .\/complete-activation .\#complete-activation-view {
   display: block; }
 
-.\/spinner .\#spinner-view {
+.\/spinner .\#spinner-view,
+.\/checkswitch-spinner .\#checkswitch-spinner-view {
   display: block; }
 
 .spinner {

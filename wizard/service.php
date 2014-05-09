@@ -154,9 +154,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 <div class="view checkswitch-spinner-view #checkswitch-spinner-view">
   <div class="view-head">Installing CHECK Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
-  <script>window.onload = TVRO.checkswitchText</script>
-   <p id="cstext"></p>
-   <img src="/images/spinner.gif" class="checkswitch-spinner" />
+  <p class="checkswitch-status #checkswitch-status"></p>
+  <img src="/images/spinner.gif" class="spinner" />
 </div>
-
-
