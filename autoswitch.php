@@ -88,14 +88,14 @@
     switching. The master receiver controls satellite selection. You may
     choose the master by selecting it below. To add a receiver to the
     list, enter its IP address and assign it a unique name.
-    <a class="link" href="/media/DTV_FindIPaddress.mp4">
+    <a class="link" href="javascript:TVRO.showHelp(909)">
       Find your receiver’s IP address.
     </a>
     <div class="note">
       Note: Receiver must be activated to view its IP address. The
       receiver also must be set up to allow external access before it
       will communicate with the TV-Hub.
-      <a class="link" href="/media/DTV_ExternalControl.mp4">
+      <a class="link" href="javascript:TVRO.showHelp(908)">
         Learn how to enable external access on your DIRECTV receiver.
       </a>
     </div>

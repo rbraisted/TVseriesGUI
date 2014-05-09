@@ -10,12 +10,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <span class="desktop">Configuration 1 - Run a</span>
     Check Switch Test
   </div>
-  <div class="column first">
-    <iframe src="" frameborder="0" allowfullscreen class="video-iframe"></iframe>
-  </div><!--
---><div class="column">
+   <div class="column">
     Now you need to run a Check Switch test on your receiver
-    ( <a class="link" href="/media/CheckSwitchTest.mp4">learn how to run a Check Switch test</a> ).
+    ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
     This test can take up to 15 minutes. When the test is complete,
     click Next to continue the Wizard.
     <div class="important">
@@ -37,13 +34,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <span class="desktop">Configuration 2 - Run a</span>
     Check Switch Test
   </div>
-  <div class="column first">
-    <iframe src="" frameborder="0" allowfullscreen class="video-iframe"></iframe>
-  </div><!--
- --><div class="column">
+    <div class="column">
     Connect each reveiver, one at a time, directly to the "IRD" jack
     on the back of the TV-Hub and run a Check Switch test
-    ( <a class="link" href="/media/CheckSwitchTest.mp4">learn how to run a Check Switch test</a> ).
+    ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
     This test can take up to 15 minutes per receiver. Once you have
     run a checkswitch test on all of your receivers, click Next.
     <div class="important">
@@ -65,13 +59,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <span class="desktop">Configuration 3 - Run a</span>
     Check Switch Test
   </div>
-  <div class="column first">
-    <iframe src="" frameborder="0" allowfullscreen class="video-iframe"></iframe>
-  </div><!--
- --><div class="column">
+    <div class="column">
     Connect each reveiver, one at a time, directly to the "IRD" jack
     on the back of the TV-Hub and run a Check Switch test
-    ( <a class="link" href="/media/CheckSwitchTest.mp4">learn how to run a Check Switch test</a> ).
+    ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
     This test can take up to 15 minutes per receiver. Once you have
     run a checkswitch test on all of your receivers, click Next.
     <div class="important">
@@ -174,7 +165,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
     <img src="/images/wizard-config-1.svg" class="diagram-image">
   </div>
-</div>  
+</div>
 
 <div class="popup diagram-2 #diagram-2-view">
   <div class="popup-guts">
@@ -184,7 +175,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
     <img src="/images/wizard-config-2.svg" class="diagram-image">
   </div>
-</div>  
+</div>
 
 <div class="popup diagram-3 #diagram-3-view">
   <div class="popup-guts">
