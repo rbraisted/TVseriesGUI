@@ -235,14 +235,9 @@ a {
     margin-top: .7em;
   }
 
-  .antenna-status,
-  .power-status,
-  .acu-status {
-    color: $grey;
-    &.\$green { color: $green; }
-    &.\$orange { color: $orange; }
-    &.\$red { color: #f00; }
-  }
+  .\$green { color: $green; }
+  .\$orange { color: $orange; }
+  .\$red { color: $red; }
 }
 
 // nav

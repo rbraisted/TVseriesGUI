@@ -46,9 +46,9 @@
 
 <div class="header #header-view">
   <div class="status-btn #status-btn">
-    <div title="TV-Hub" class="status-light acu-status #acu-status"></div><!--
- --><div title="Antenna" class="status-light antenna-status #antenna-status"></div><!--
- --><div title="Power" class="status-light power-status #power-status"></div>
+    <div title="TV-Hub" class="status-light acu-status #status-acu-color"></div><!--
+ --><div title="Antenna" class="status-light antenna-status #status-antenna-color"></div><!--
+ --><div title="Power" class="status-light power-status #status-power-color"></div>
     Status
   </div>
 
@@ -75,16 +75,16 @@
 
 <div class="status #status-view">
   <div class="status-label">
-    TV-Hub: 
-    <span class="acu-status #acu-status">...</span>
+    <span class="#status-acu-color">TV-Hub</span>:
+    <span class="acu-status #status-acu-state">...</span>
   </div><!--
 --><div class="status-label">
-    Antenna: 
-    <span class="antenna-status #antenna-status">...</span>
+    <span class="#status-antenna-color">Antenna</span>:
+    <span class="antenna-status #status-antenna-state">...</span>
   </div><!--
 --><div class="status-label">
-    Power: 
-    <span class="power-status #power-status">...</span>
+    <span class="#status-power-color">Power</span>:
+    <span class="power-status #status-power-state">...</span>
   </div>
 </div>
 

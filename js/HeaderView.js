@@ -38,14 +38,14 @@
 
       var currentLightIndex = -1;
 
-      $('.\\#power-status, .\\#acu-status, .\\#antenna-status')
+      $('.\\#status-power-color, .\\#status-acu-color, .\\#status-antenna-color')
         .removeClass('$green $orange $red')
         .removeClass('$on $off $flash');
 
-      $('.\\#power-status, .\\#acu-status, .\\#antenna-status', statusJq)
+      $('.\\#status-power-state, .\\#status-acu-state, .\\#status-antenna-state')
         .text('...');
 
-      var lights = $('.\\#power-status, .\\#acu-status, .\\#antenna-status', '.\\#status-btn')
+      var lights = $('.\\#status-power-color, .\\#status-acu-color, .\\#status-antenna-color', '.\\#status-btn')
         .addClass('$orange $off');
 
       walkAnimationInverval = setInterval(function() {
@@ -96,7 +96,7 @@
             //  update the light color and state
             //  happens in both the status dropdown and the little
             //  indicator in the top left corner
-            var statusLight = $('.\\#' + type + '-status')
+            var statusLight = $('.\\#status-' + type + '-color')
               .removeClass('$green $orange $red')
               .removeClass('$on $off $flash')
 
@@ -109,7 +109,7 @@
             //  update the message
             //  happens only in the status dropdown otherwise our
             //  indicator is going to filled with jumbled text
-            $('.\\#' + type + '-status', statusJq)
+            $('.\\#status-' + type + '-state')
               .text(message);
           });
         }
@@ -124,7 +124,7 @@
     var flashInterval = setInterval(function() {
       var types = ['power', 'acu', 'antenna'];
       _.forEach(types, function(type) {
-        var light = $('.\\#' + type + '-status', jQ);
+        var light = $('.\\#status-' + type + '-color', jQ);
         if (light.hasClass('$flash')) light.toggleClass('$off');
       });
     }, 500);

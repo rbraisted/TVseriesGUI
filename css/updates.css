@@ -114,22 +114,12 @@ a {
     display: block; }
   .status .status-label + .status-label {
     margin-top: .7em; }
-  .status .antenna-status,
-  .status .power-status,
-  .status .acu-status {
-    color: #cbcaca; }
-    .status .antenna-status.\$green,
-    .status .power-status.\$green,
-    .status .acu-status.\$green {
-      color: #acd038; }
-    .status .antenna-status.\$orange,
-    .status .power-status.\$orange,
-    .status .acu-status.\$orange {
-      color: #e76d24; }
-    .status .antenna-status.\$red,
-    .status .power-status.\$red,
-    .status .acu-status.\$red {
-      color: #f00; }
+  .status .\$green {
+    color: #acd038; }
+  .status .\$orange {
+    color: #e76d24; }
+  .status .\$red {
+    color: #c51313; }
 
 @media screen and (max-width: 880px) {
   .nav {
