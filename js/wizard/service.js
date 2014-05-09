@@ -196,8 +196,6 @@
     return self;
   };
 
-
-
 var DishNetworkView = function(jQ) {
     var self;
     var onClick = function(value) {
@@ -248,7 +246,9 @@ var DishNetworkView = function(jQ) {
       if (value === '129W') $('.\\#value', row).text('129\u00B0');
     })
     .build();    
-    
+
+
+
   var nextBtn = $('.\\#next-btn', jQ).click(function() {
     var isGroup = groupsView.is(':visible');
     var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
@@ -260,16 +260,18 @@ var DishNetworkView = function(jQ) {
             satellite_group: value,
             service: 'DISH'
         }).then(function() {
-            document.body.className = '/spinner';
-            setTimeout(function() {
-      	        window.location = '/wizard/system.php#/other-system-config';
-            }, 500);
+        	console.log("12234");
+            document.body.className = '/checkswitch-spinner';
+            //document.write("HI");
+            //setTimeout(function() {
+      	   //     window.location = '/wizard/system.php#/other-system-config';
+           // }, 500);
         });
     }else{
     	TVRO.selectSatellite({
         antSatID: value
       }).then(function() {
-        document.body.className = '/spinner';
+        document.body.className = '/checkswitch-spinner';
         setTimeout(function() {
           window.location = '/wizard/system.php#/other-system-config';
         }, 500);
@@ -300,13 +302,34 @@ var DishNetworkView = function(jQ) {
   
   return self;
   };
+  
+  TVRO.checkswitchText = function(){
+		var element = document.getElementById("cstext");
+		var isEnabled;
+		var status=0;
+
+		TVRO.setCheckswitchMode({
+          enable : 'Y',
+		}).then(function(){
+					
+		var intervalID = window.setInterval(function(){	
+			TVRO.getCheckswitchMode().then(function(xml) {
+              isEnabled = $('enable', xml).text();
+              status =  $('status', xml).text();
+              element.textContent = status;
+              
+              //Go to other_sys_config when IN_PROGRESS and stop interval
+		    })
+       },2000);
+  });
+  };
+
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.ServiceSubtypeView = ServiceSubtypeView;
   TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
   TVRO.DishNetworkView = DishNetworkView;
-
 }(window.TVRO);
 
 $(function() {
@@ -322,3 +345,4 @@ $(function() {
 
   TVRO.reload();
 });
+

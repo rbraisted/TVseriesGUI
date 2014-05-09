@@ -10,7 +10,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 <div class="view spinner-view #spinner-view">
   <div class="view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
-
   <img src="/images/spinner.gif" class="spinner" />
 </div>
 
@@ -140,6 +139,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
   </div>
 
+
+
   <a href="javascript:TVRO.showHelp(901);" class="link">
     Learn more about these satellite options.
   </a>
@@ -149,3 +150,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     <div class="next-btn #next-btn">Next</div>
   </div>
 </div>
+
+<div class="view checkswitch-spinner-view #checkswitch-spinner-view">
+  <div class="view-head">Installing CHECK Satellites</div>
+  <div class="headline">Please wait while your satellites are being installed...</div>
+  <script>window.onload = TVRO.checkswitchText</script>
+   <p id="cstext"></p>
+   <img src="/images/spinner.gif" class="checkswitch-spinner" />
+</div>
+
+
