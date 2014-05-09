@@ -85,9 +85,12 @@
   };
 
   TVRO.showHelp = function(mapNo) {
-    var helpUrl = RH_GetHelpUrlWithMapNo('help/index.htm', mapNo);
-    if (TVRO.getShellMode()) window.location = 'tvro://' + helpUrl;
-    else window.open(helpUrl, 'TVHub Help', 'width=400,height=600');
+    TVRO.getAntennaVersions().then(function(xml) {
+      var antModel = $('au model', xml).text();
+      var helpUrl = RH_GetHelpUrlWithMapNo('help/' + antModel + '/index.htm', mapNo);  
+      if (TVRO.getShellMode()) window.location = 'tvro://' + helpUrl;
+      else window.open(helpUrl, 'TVHub Help', 'width=400,height=600');
+    });    
   };
 
   window.TVRO = TVRO;
