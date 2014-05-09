@@ -33,14 +33,34 @@
         } else if (value === 'BELL') {
           TVRO.setAutoswitchService({
           	service: 'BELL',
-            satellite_group: 'BELL'
+            satellite_group: 'BELL TV DUAL'
           }).then(function() {
-            document.body.className = '/spinner';
-            setTimeout(function() {
-            	window.location = '/wizard/system.php#/other-system-config';
-            }, 500);
+              document.body.className = '/checkswitch-spinner';
+              TVRO.setCheckswitchMode({
+                enable : 'Y',
+              }).then(function() {
+                var isEnabled;
+                var status = 0;
+                var intervalID = window.setInterval(function() {
+                  //  use TVRO.webserviceCall(1, 1) to force recache
+                  TVRO.getCheckswitchMode(1, 1).then(function(xml) {
+                    isEnabled = $('enable', xml).text();
+                    status =  $('status', xml).text();
+                    $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
+                    
+                    switch (status){
+                    case "IN_PROGRESS":
+                    	window.clearInterval(intervalID);
+                        window.location = '/wizard/system.php#/other-system-config';
+                        break;
+                    case "FAILED":
+                    	alert("Checkswitch mode has failed.");
+                        break;
+                    }
+                  });
+                }, 1000);
+              });            
           });
-
         } else {
         	window.location = '/wizard/satellites.php';
         }
@@ -118,7 +138,7 @@
       })
     .end()
     
-  $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/local-channels'; });
+    $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/local-channels'; });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       window.location.hash = '/directv';
@@ -185,7 +205,7 @@
         TVRO.setInstalledGroup({
           name: 'DIRECTV DUAL'
         }).then(function() {
-          window.location = '/wizard/autoswitch.php';
+          window.location = '/wizard/autoswitch.php#/directv';
         });
     });
 
@@ -286,11 +306,19 @@ var DishNetworkView = function(jQ) {
           TVRO.getCheckswitchMode(1, 1).then(function(xml) {
             isEnabled = $('enable', xml).text();
             status =  $('status', xml).text();
-            $('.\\#checkswitch-status').text(status);
-            //  Go to other_sys_config when IN_PROGRESS and stop interval
-            // window.location = '/wizard/system.php#/other-system-config';
+            $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
+            
+            switch (status){
+            case "IN_PROGRESS":
+            	window.clearInterval(intervalID);
+                window.location = '/wizard/system.php#/other-system-config';
+                break;
+            case "FAILED":
+            	alert("Checkswitch mode has failed.");
+                break;
+            }
           });
-        }, 2000);
+        }, 1000);
       });
     });
 

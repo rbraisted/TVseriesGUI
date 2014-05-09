@@ -139,8 +139,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
     </div>
   </div>
 
-
-
   <a href="javascript:TVRO.showHelp(901);" class="link">
     Learn more about these satellite options.
   </a>
@@ -152,8 +150,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
 </div>
 
 <div class="view checkswitch-spinner-view #checkswitch-spinner-view">
-  <div class="view-head">Installing CHECK Satellites</div>
+  <div class="view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
-  <p class="checkswitch-status #checkswitch-status"></p>
+  <br>
+  <p class="headline checkswitch-status #checkswitch-status"></p>
   <img src="/images/spinner.gif" class="spinner" />
 </div>
