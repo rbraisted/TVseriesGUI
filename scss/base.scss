@@ -96,6 +96,14 @@ $dark-grey: #293147;
 	-ms-user-select: none;
 }
 
+input {
+  user-select: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
 html {
 	//	we might want to replace this with a css gradient or svg later
 	background: #04122a url(/images/gradient.png) no-repeat;
