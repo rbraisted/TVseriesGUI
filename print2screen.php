@@ -27,7 +27,7 @@
 		
 		
 		//pageScroll();
-		setInterval(pageScroll, 500);
+		setInterval(pageScroll, 100);
 
     </script>
 
@@ -50,15 +50,15 @@
                 // Opens a telnet session to receive data from the antenna
                 if ( !isset($_POST["exitingPage"]) ) {
                     $fp = fsockopen("127.0.0.1", 50001, $errno, $errstr, 10);
-                    
                 }
     
                 // Reads the data coming from the antenna to send to the screen
 				if ( false !== $fp ) {
 					
 					while ( !isset($_POST["exitingPage"]) && false !== $fp ) {
-						echo stream_get_line($fp, 128, "\r") . "<br />";
+						echo fgets($fp, 128) . "<br />";
 						flush();
+						ob_flush();
 						//sleep(1);
 						
 						if( isset($_POST["exitingPage"]) ) {
