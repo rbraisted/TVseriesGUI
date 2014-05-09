@@ -89,7 +89,7 @@
       var antModel = $('au model', xml).text();
       var helpUrl = RH_GetHelpUrlWithMapNo('help/' + antModel + '/index.htm', mapNo);  
       if (TVRO.getShellMode()) window.location = 'tvro://' + helpUrl;
-      else window.open(helpUrl, 'TVHub Help', 'width=400,height=600');
+      else window.open('/' + helpUrl, 'TVHub Help', 'width=400,height=600');
     });    
   };
 
