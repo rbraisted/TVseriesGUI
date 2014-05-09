@@ -67,7 +67,8 @@
           satCView.setSat(group.satC);
           satDView.setSat(group.satD);
         }).then(TVRO.getInstalledGroup).then(function(installedGroup) {
-          jQ.toggleClass('$installed', installedGroup.name === group.name);
+          if (installedGroup) jQ.toggleClass('$installed', installedGroup.name === group.name);
+          else jQ.removeClass('$installed');
         });
         
         return self;
