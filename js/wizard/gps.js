@@ -228,7 +228,7 @@
           else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';
 
           // TV5 + MANUAL -> select satellites (satellites.php)
-          else window.location = '/wizard/satellites.php#/manual-options';
+          else window.location = '/wizard/satellites.php#/tv5-manual-options';
 
         });
     });
