@@ -122,7 +122,7 @@
       };
 
       if (!sat.predefined) {
-        // params.lon = 
+        params.lon = $('.\\#sat-longitude', jQ).val();
       }
 
       TVRO.setSatParams(params).then(TVRO.reload);
@@ -165,7 +165,7 @@
           //  inputs
           $('.\\#sat-name', jQ).val(sat.name);
           $('.\\#sat-region', jQ).val(sat.region);
-          $('.\\#sat-longitude', jQ).val(TVRO.formatLongitude(sat.lon, 0));
+          $('.\\#sat-longitude', jQ).val(sat.lon);
           $('.\\#sat-skew', jQ).val(sat.skew);
 
           //  plain ol text, dropdown btns
