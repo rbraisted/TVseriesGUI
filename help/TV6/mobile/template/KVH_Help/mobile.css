@@ -1,0 +1,2971 @@
+﻿/*Created with Adobe RoboHelp 10.*/
+
+body {
+
+	margin: 0	 ! important ;
+
+	min-width: 320px;
+
+	padding: 0	 ! important ;
+
+	background: green url(bg01.png) repeat	 ! important ;
+
+	font-family: Arial, Helvetica, "sans-serif  "	 ! important ;
+
+	color: white;
+
+	font-size: 100%;
+
+}
+
+a {
+
+	color: #4f7abd;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+* :hover{
+	/*border: 1px solid red;*/
+}
+
+a:hover,
+
+a:active {
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+	text-decoration: underline;
+
+}
+
+div.header {
+
+	background-color: black;
+
+	width: 100%;
+
+	/*height: 6em;*/
+
+	/*margin: .3em 2.5%;*/
+
+	padding: 0;
+
+}
+
+div.introtext {
+
+	color: black;
+
+	padding: 0 5% 0 5%;
+
+	font-size: 1em;
+
+	line-height: 1.5em;
+
+	letter-spacing: 0.5px;
+}
+
+div.logo {
+
+	height: 3em;
+
+	text-align: right;
+
+	vertical-align: middle;
+
+	width: 15%;
+
+}
+
+div.trac-vision-logo {
+
+	text-align: center;
+
+	vertical-align: middle;
+
+	font-size: 1.8em;
+
+	color: #111111;
+
+	font-weight: bold;
+
+	background-color: white;
+
+	margin-top: 20px;
+
+}
+
+div.title-wrap{
+	background-color: black;
+
+	height: 50px;
+
+	vertical-align: center;
+}
+
+div.search-wrap{
+	background-color: #e4e4e4;
+
+	height: 50px;
+
+	border-bottom: 2px solid #4c68b0;
+}
+
+div.help-center-wrap{
+	text-align: center;
+	width: 100%;
+}
+
+div.help-center-title{
+	vertical-align: middle;
+	font-size: 20px;
+	letter-spacing: 0.5px;
+	position: relative;
+	top: 12.5px;
+}
+
+a.close-button{
+	/*text-align: right;*/
+	/*padding-right: 10px;*/
+	position: absolute;
+	top: 9px;
+	right: 10px;
+}
+
+div.home {
+
+	text-align: center;
+
+	vertical-align: middle;
+
+	width: 32px;
+
+	height: 32px;
+
+	cursor: pointer;
+
+	position: absolute;
+	
+	top: 59px;
+	
+	left: 11px;
+}
+
+img.homeLink{
+	display: block;
+
+	margin: ;
+
+	width: 32px;
+
+	height: 32px;
+}
+
+div.searchholder {
+
+	width: 90%;
+
+	/*margin: 1.5em 0;*/
+
+	padding: 0;
+
+	/*float: right;*/
+
+	position: absolute;
+	top: 55px;
+	left: 40px;
+
+	/*position: fixed;*/
+
+}
+
+table.searchholdertable {
+
+	width: 100%;
+
+	border: none;
+
+	vertical-align: middle;
+
+}
+
+div.contentholder {
+
+	width: 100%;
+
+	margin: 10px 0;
+
+	border: none;
+
+	background-color: #ffffff;
+
+}
+
+div.linkItem {
+
+	width: 100%;
+
+	display: block;
+
+	line-height: 44px;
+
+	min-height: 44px;
+
+	background-color: #ffffff;
+
+	margin-right: 5%;
+
+	font-size: 1.2em;
+
+}
+
+div.linkItem a {
+
+	line-height: 44px;
+
+	display: block;
+
+	color: #111111;
+
+	text-decoration: none;
+
+}
+
+div.linkItem a:hover,
+
+div.linkItem a:active {
+
+	background: #4f7abd;
+
+	color: #ffffff;
+
+}
+
+div.linkItem img {
+
+	border: none;
+
+	vertical-align: center;
+
+	margin: 0 .75em 0 2.5%;
+
+	padding: 0;
+
+	float: left;
+
+}
+
+div.linkItem img.navigationArrow {
+
+	float: right;
+
+	position: relative;
+
+	top: 0;
+
+	padding: 0 5% 0 0;
+
+}
+
+div.andholder {
+
+	width: 50%;
+
+	margin: 1em 0 0;
+
+	padding: .5em 2.5%;
+
+	background-color: #ffffff;
+
+	display: inline;
+
+}
+
+div.options {
+
+	margin: 0 2.5%;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+	border-bottom: solid 1px #4f7abd;
+
+}
+
+/*************
+
+	
+
+	CSS for widgets
+
+
+
+************/
+
+* {
+
+	outline-style: none;
+
+}
+
+/****** Topic ******/
+
+div.wTopic {
+
+	width: 95%;
+
+	margin: 2.5% 0;
+
+	padding: .5em 2.5% 1em;
+
+	color: #2d383b;
+
+	background: #ffffff;
+
+}
+
+/* No position attributes allowed */
+
+div.text {
+
+	width: 95%;
+
+	margin: 2.5% 0;
+
+	padding: 0 2.5% 1em;
+
+	color: #2d383b;
+
+	background: #ffffff;
+
+}
+
+/* Main placeholder for text on special pages */
+
+/****** Glossary ******/
+
+div.wGlossary {
+
+	width: 100%;
+
+	margin: 1em 0 5px;
+
+	padding: 0;
+
+	font-size: 1.5em;
+
+}
+
+/* Main holder div */
+
+/* No position attributes allowed */
+
+input.wGloFilter {
+
+	-webkit-border-radius: 5px;
+
+	-moz-border-radius: 5px;
+
+	border-radius: 5px;
+
+	border: 2px solid #000000;
+
+	padding: .3em 1%;
+
+	margin: 0 auto 2em;
+
+	width: 96%;
+
+	max-width: 98%;
+
+	font-size: .9em;
+
+	-webkit-appearance: none;
+
+	background: #2E2E2E;
+
+	color: #ffffff;
+
+}
+
+/* Filter box */
+
+div.wGloTerm {
+
+	color: #E1E1E1;
+
+	word-wrap: break-word;
+
+	border-bottom: 2px solid #212121;
+
+	line-height: 1.5em;
+
+	min-height: 1.5em;
+
+}
+
+div.wGloTermHover {
+
+	cursor: pointer;
+
+	color: #E1E1E1;
+
+	word-wrap: break-word;
+
+	border-bottom: 2px solid #4f7abd;
+
+	line-height: 1.5em;
+
+	min-height: 1.5em;
+
+	border-bottom-style: Solid;
+
+	border-bottom-width: 2px;
+
+	border-bottom-color: #4c77bc;
+
+}
+
+div.wGloTermSelected {
+
+	color: #E1E1E1;
+
+	word-wrap: break-word;
+
+	border-bottom: 2px solid #4f7abd;
+
+	line-height: 1.5em;
+
+	min-height: 1.5em;
+
+	border-bottom-style: Solid;
+
+	border-bottom-width: 2px;
+
+	border-bottom-color: #4c77bc;
+
+}
+
+/* Glossary term selected */
+
+span.wGloTermText {
+
+	color: #E1E1E1;
+
+	font-family: Helvetica, "Droid Sans", Arial;
+
+}
+
+/* Glossary term text */
+
+div.wGloDefinition {
+
+	margin-bottom: .8em;
+
+	font-size: .9em;
+
+	padding: .4em;
+
+	color: #2d383b;
+
+	background: #e8e8e8;
+
+	border: 2px solid #000000;
+
+	-webkit-border-radius: .75em;
+
+	-moz-border-radius: .75em;
+
+	border-radius: .75em;
+
+}
+
+/* Glossary definition */
+
+div.wGloDefinitionHover {
+
+	margin-bottom: .8em;
+
+	font-size: .9em;
+
+	padding: .4em;
+
+	cursor: pointer;
+
+	color: #2d383b;
+
+	background: #e8e8e8;
+
+	border: 2px solid #000000;
+
+	-webkit-border-radius: .75em;
+
+	-moz-border-radius: .75em;
+
+	border-radius: .75em;
+
+}
+
+/* Glossary defintion holder */
+
+span.wGloDefinitionText {
+
+	color: #2d383b;
+
+	font-family: Helvetica, "Droid Sans", Arial;
+
+}
+
+div.wGloAlphabet {
+
+	clear: both;
+
+	background: #02b5bc;
+
+	font-size: 1.4em;
+
+	margin: .8em 0;
+
+	padding: .1em 0 .1em .3em;
+
+	font-weight: bold;
+
+	text-align: left;
+
+	background-color: #4c77bc;
+
+}
+
+/* Category (letter or sign) */
+
+span.wGloAlphabetText {
+
+}
+
+/* Alphabet text */
+
+/****** Index ******/
+
+div.wIndex {
+
+	width: 100%;
+
+	margin: 1em 0 5px;
+
+	padding: 0;
+
+	font-size: 1.5em;
+
+}
+
+/* Main index holder */
+
+/* No position attributes allowed */
+
+input.wIdxFilter {
+
+	-webkit-border-radius: 5px;
+
+	-moz-border-radius: 5px;
+
+	border-radius: 5px;
+
+	border: 2px solid #000000;
+
+	padding: .3em 1%;
+
+	margin: 0 auto 2em;
+
+	width: 96%;
+
+	max-width: 98%;
+
+	font-size: .9em;
+
+	-webkit-appearance: none;
+
+	background: #2E2E2E;
+
+	color: #ffffff;
+
+}
+
+/* Index filter input */
+
+div.wIdxKeyword {
+
+	color: #E1E1E1;
+
+	word-wrap: break-word;
+
+	border-bottom: 2px solid #212121;
+
+	line-height: 1.5em;
+
+	min-height: 1.5em;
+
+	text-decoration: none;
+
+}
+
+div.wIdxKeywordHover {
+
+	cursor: pointer;
+
+	color: #E1E1E1;
+
+	word-wrap: break-word;
+
+	border-bottom: 2px solid #4f7abd;
+
+	line-height: 1.5em;
+
+	min-height: 1.5em;
+
+	border-bottom-style: Solid;
+
+	border-bottom-width: 2px;
+
+	border-bottom-color: #4c77bc;
+
+}
+
+/* Index keyword hover */
+
+span.wIdxKeywordText {
+
+	color: #E1E1E1;
+
+	font-family: Helvetica, "Droid Sans", Arial;
+
+}
+
+/* Index keyword text */
+
+div.wIdxChildBlock {
+
+	cursor: pointer;
+
+	margin: 0 0 0 .75em;
+
+}
+
+/* Index child block */
+
+div.wIdxLink {
+
+	color: #02b5bc;
+
+	word-wrap: break-word;
+
+	margin: .3em 0;
+
+	background: #212121;
+
+	padding: .2em 0 .2em .3em;
+
+	text-decoration: none;
+
+}
+
+div.wIdxLinkHover {
+
+	margin: .3em 0;
+
+	color: #ffffff;
+
+	word-wrap: break-word;
+
+	background: #02b5bc;
+
+	padding: .2em 0 .2em .3em;
+
+}
+
+span.wIdxLinkText {
+
+	font-family: Helvetica, "Droid Sans", Arial;
+
+}
+
+/* Index link entry */
+
+div.wIdxAlphabet {
+
+	clear: both;
+
+	background: #02b5bc;
+
+	font-size: 1.4em;
+
+	margin: .8em 0;
+
+	padding: .1em 0 .1em .3em;
+
+	font-weight: bold;
+
+	text-align: left;
+
+}
+
+/* Category (letter or sign) */
+
+span.wIdxAlphabetText {
+
+	font-family: Helvetica, "Droid Sans", Arial;
+
+}
+
+/* Alphabet text */
+
+/****** TOC Tree ******/
+
+div.wTOCTreePage {
+
+}
+
+/* Main tree holder */
+
+/* No position attributes allowed */
+
+div.wTOCTreeCloseBook {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 25px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* Closed book */
+
+div.wTOCTreeCloseBookHover {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 25px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* Closed book hover */
+
+/* 99CC00 */
+
+div.wTOCTreeCloseBookSelected {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 25px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* Closed book selected */
+
+/* 99CC00 */
+
+span.wTOCTreeCloseBookText {
+
+	margin-left: 5px;
+
+	font-size: 1.2em;
+
+	vertical-align: middle;
+
+}
+
+/* Closed book text */
+
+img.wTOCTreeCloseBookIcon {
+
+	border: none;
+
+	vertical-align: middle;
+
+}
+
+/* Closed book icon */
+
+div.wTOCTreeOpenBook {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 25px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* Open book */
+
+div.wTOCTreeOpenBookHover {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 25px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* Open book hover */
+
+/* 99CC00 */
+
+div.wTOCTreeOpenBookSelected {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 25px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* Open book selected */
+
+/* 99CC00 */
+
+div.wTOCTreeOpenBookChildBlock {
+
+	margin-left: 1em;
+
+	cursor: pointer;
+
+	margin-top: 8px;
+
+}
+
+/* Open book child block */
+
+span.wTOCTreeOpenBookText {
+
+	margin-left: 5px;
+
+	font-size: 1.2em;
+
+	white-space: nowrap;
+
+	vertical-align: middle;
+
+}
+
+/* Open book text */
+
+img.wTOCTreeOpenBookIcon {
+
+	border: none;
+
+	vertical-align: middle;
+
+}
+
+/* Open book image */
+
+div.wTOCTreePage {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 8px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* TOC page */
+
+div.wTOCTreePageHover {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 8px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* TOC page hover */
+
+/* 99CC00 */
+
+div.wTOCTreePageSelected {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 8px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* TOC page selected */
+
+/* 99CC00 */
+
+span.wTOCTreePageText {
+
+	margin-left: 5px;
+
+	font-size: 1.2em;
+
+	vertical-align: middle;
+
+}
+
+/* TOC page text */
+
+img.wTOCTreePageIcon {
+
+	border: none;
+
+	vertical-align: middle;
+
+}
+
+/* TOC page icon */
+
+div.wTOCTreeLink {
+
+	cursor: pointer;
+
+	color: #111111;
+
+	margin-top: 8px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* TOC URL */
+
+div.wTOCTreeLinkHover {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-top: 8px;
+
+	margin-left: 2.5%;
+
+	margin-right: 2.5%;
+
+}
+
+/* TOC URL hover */
+
+/* 99CC00 */
+
+div.wTOCTreeLinkSelected {
+
+	cursor: pointer;
+
+	color: #4f7abd;
+
+	margin-left: 8px;
+
+	margin-right: 2.5%;
+
+	margin-top: 2.5%;
+
+}
+
+/* TOC URL selected */
+
+/* 99CC00 */
+
+span.wTOCTreeLinkText {
+
+	margin-left: 5px;
+
+	font-size: 1.2em;
+
+	white-space: nowrap;
+
+	vertical-align: middle;
+
+}
+
+/* TOC URL text */
+
+img.wTOCTreeLinkIcon {
+
+	border: none;
+
+	vertical-align: middle;
+
+}
+
+div.wTOCNode {
+
+	width: 100%;
+
+	margin: 0;
+
+	padding: 0;
+
+	font-size: 1.2em;
+
+	border-bottom: 2px solid #ffffff;
+
+	border-bottom-style: Solid;
+
+	border-bottom-width: 2px;
+
+	border-bottom-color: #4c77bc;
+
+}
+
+div.wTOCNodeCloseBook {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+}
+
+div.wTOCNodeCloseBookHover {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+div.wTOCNodeCloseBookSelected {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+/* Closed book selected */
+
+span.wTOCNodeCloseBookText {
+
+	color: #ffffff;
+
+	vertical-align: middle;
+
+}
+
+/* Closed book text */
+
+img.wTOCNodeCloseBookIcon {
+
+	border: none;
+
+	float: right;
+
+	clear: both;
+
+	width: 1.2em;
+
+	height: 1.2em;
+
+	margin-right: .3em;
+
+	margin-left: .3em;
+
+}
+
+div.wTOCNodeOpenBook {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+}
+
+div.wTOCNodeOpenBookHover {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+div.wTOCNodeOpenBookSelected {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+/* Open book selected */
+
+span.wTOCNodeOpenBookText {
+
+	color: #ffffff;
+
+}
+
+/* Open book text */
+
+img.wTOCNodeOpenBookIcon {
+
+	border: none;
+
+	float: right;
+
+	clear: both;
+
+	width: 1.2em;
+
+	height: 1.2em;
+
+	margin-right: .3em;
+
+	margin-left: .3em;
+
+}
+
+div.wTOCNodePage {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+}
+
+div.wTOCNodePageHover {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+div.wTOCNodePageSelected {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+/* TOC page selected */
+
+span.wTOCNodePageText {
+
+	color: #ffffff;
+
+	text-decoration: none;
+
+}
+
+/* TOC page text */
+
+img.wTOCNodePageIcon {
+
+	border: none;
+
+	float: right;
+
+	clear: both;
+
+	width: 1.2em;
+
+	height: 1.2em;
+
+	margin-right: .3em;
+
+	margin-left: .3em;
+
+}
+
+div.wTOCNodeLink {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+}
+
+div.wTOCNodeLinkHover {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+div.wTOCNodeLinkSelected {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #ffffff;
+
+	border-top-style: Solid;
+
+	border-top-width: 2px;
+
+	border-top-color: #4c77bc;
+
+	background-color: #4c77bc;
+
+}
+
+/* TOC URL selected */
+
+span.wTOCNodeLinkText {
+
+	color: #ffffff;
+
+}
+
+/* TOC URL text */
+
+img.wTOCNodeLinkIcon {
+
+	border: none;
+
+	float: right;
+
+	clear: both;
+
+	width: 1.2em;
+
+	height: 1.2em;
+
+	margin-right: .3em;
+
+	margin-left: .3em;
+
+}
+
+div.wTOCNodeUp {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border: none;
+
+}
+
+div.wTOCNodeUpHover {
+
+	margin: 0;
+
+	padding-left: 2.5%;
+
+	padding-top: .3em;
+
+	padding-bottom: .3em;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border: none;
+
+	background-color: #4c77bc;
+
+}
+
+/* TOC up hover */
+
+span.wTOCNodeUpText {
+
+	color: #111111;
+
+	text-decoration: none;
+
+}
+
+/* TOC up text */
+
+img.wTOCNodeUpIcon {
+
+	border: none;
+
+	float: left;
+
+	clear: both;
+
+	width: 1.2em;
+
+	height: 1.2em;
+
+}
+
+/* TOC up image */
+
+/****** Print link ******/
+
+a.wPrintLink {
+
+	margin: 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+}
+
+a.wPrintLink:active,
+
+a.wPrintLink:hover {
+
+	background-color: #ffffff;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/****** Print button ******/
+
+a.wPrintButton {
+
+	margin: 0 8pt 0 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	width: 60px;
+
+}
+
+a.wPrintButton:active,
+
+a.wPrintButton:hover {
+
+	background-color: #ffffff;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+img.wPrintButton {
+
+	border: none;
+
+}
+
+/****** Browse sequence links ******/
+
+a.wBSBackLink {
+
+	margin: 0 8pt 0 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	width: 60px;
+
+}
+
+a.wBSBackLink:active,
+
+a.wBSBackLink:hover {
+
+	background-color: #ffffff;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+a.wBSNextLink {
+
+	margin: 0 8pt 0 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	width: 60px;
+
+}
+
+a.wBSNextLink:active,
+
+a.wBSNextLink:hover {
+
+	background-color: #ffffff;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/****** Browse sequence buttons ******/
+
+a.wBSBackButton {
+
+	margin: 0 8pt 0 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	float: left;
+
+}
+
+a.wBSBackButton:active {
+
+	background-color: #ffffff;
+
+}
+
+img.wBSBackButton {
+
+	border: none;
+
+}
+
+a.wBSNextButton {
+
+	margin: 0 8pt 0 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	float: right;
+
+}
+
+a.wBSNextButton:active {
+
+	background-color: #ffffff;
+
+}
+
+img.wBSNextButton {
+
+	border: none;
+
+}
+
+/****** Search results area ******/
+
+div.wSearchResults {
+
+	margin: 0;
+
+	padding: 0;
+
+	width: 100%;
+
+}
+
+/* No position attributes allowed */
+
+div.wSearchResultSettings {
+
+	width: 100%;
+
+	margin: 0;
+
+	padding: 0;
+
+	background-color: #4f7abd;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+}
+
+div.wSearchHighlight {
+
+}
+
+input.wSearchHighlight {
+
+	position: relative;
+
+	top: 0.75pt;
+
+	height: 1.0em;
+
+	width: 1.0em;
+
+}
+
+span.wSearchHighlight {
+
+	margin-left: 6pt;
+
+	color: ffffff;
+
+}
+
+div.wSearchCount {
+
+	width: 95%;
+
+	margin: 1em 2.5% 0;
+
+}
+
+select.wSearchCount {
+
+	font-size: 1.2em;
+
+	position: relative;
+
+	top: -.2em;
+
+}
+
+span.wSearchCount {
+
+	float: right;
+
+	margin-right: 6pt;
+
+	color: ffffff;
+
+}
+
+div.wSearchMessage {
+
+	display: block;
+
+	font-weight: normal;
+
+	width: 95%;
+
+	padding: .5em 2.5% .5em;
+
+	clear: both;
+
+	margin-top: 2px;
+
+	margin-bottom: 1em;
+
+	font-weight: bold;
+
+	font-size: 1.1em;
+
+	background-color: #4f7abd;
+
+}
+
+span.wSearchMessage {
+
+	display: block;
+
+	font-weight: bold;
+
+	width: 90%;
+
+	margin-left: 5%;
+
+}
+
+div.wSearchResultItemsBlock {
+
+	width: 95%;
+
+	margin-left: 2.5%;
+
+}
+
+div.wSearchResultItem {
+
+	margin: 0 0 .75em 0;
+
+	padding: .3em 0;
+
+	width: 100%;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+	background: transparent;
+
+	border-bottom: 1px solid #4f7abd;
+
+}
+
+div.wSearchResultTitle {
+
+	cursor: pointer;
+
+	color: #111111;
+
+	font-size: 1.5em;
+
+	text-decoration: underline none;
+
+}
+
+div.wSearchResultTitleHover {
+
+	cursor: pointer;
+
+	background-color: #4f7abd;
+
+	font-size: 1.5em;
+
+	color: #111111;
+
+}
+
+span.wSearchURL {
+
+	color: #4f7abd;
+
+}
+
+span.wSearchContext {
+
+}
+
+div#searchResList {
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+div.wSearchNavigation {
+
+	margin: 0 2.5%;
+
+	padding: 0;
+
+	width: 95%;
+
+	height: 40px;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+}
+
+div.wSearchBack {
+
+	float: left;
+
+	margin: 0 5pt 0 0;
+
+	height: 40px;
+
+	position: relative;
+
+	top: 20px;
+
+}
+
+a.wSearchBack {
+
+	margin: 0;
+
+	padding: 20px 0 0 39px;
+
+	width: 1px;
+
+	color: transparent;
+
+	background: transparent url(searchBack.png) no-repeat center center;
+
+	text-decoration: none;
+
+}
+
+a.wSearchBack:hover,
+
+a.wSearchBack:active {
+
+	background: transparent url(searchBack.png) no-repeat center center;
+
+}
+
+div.wSearchNext {
+
+	float: left;
+
+	margin: 0 5pt 0 0;
+
+	height: 40px;
+
+	position: relative;
+
+	top: 20px;
+
+}
+
+a.wSearchNext {
+
+	margin: 0;
+
+	padding: 20px 0 0 39px;
+
+	width: 1px;
+
+	color: transparent;
+
+	background: transparent url(searchNext.png) no-repeat center center;
+
+	text-decoration: none;
+
+}
+
+a.wSearchNext:hover,
+
+a.wSearchNext:active {
+
+	background: transparent url(searchNext.png) no-repeat center center;
+
+}
+
+div.wSearchPageNumbers {
+
+	float: left;
+
+	margin-right: 5pt;
+
+	margin-top: 0;
+
+	height: 40px;
+
+	line-height: 40px;
+
+}
+
+li.wSearchPageNumberSelected {
+
+	margin-right: 3pt;
+
+	color: #111111;
+
+}
+
+li.wSearchPageNumberLink {
+
+	margin-right: 3pt;
+
+	color: #02b5bc;
+
+}
+
+li.wSearchPageNumberLink:hover {
+
+	text-decoration: underline;
+
+}
+
+span.wSearchPageNumberSelected {
+
+}
+
+a.wSearchPageNumberLink {
+
+	background-color: transparent;
+
+}
+
+a.wSearchPageNumberLink:hover,
+
+a.wSearchPageNumberLink:active {
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/****** Search results area for small screens ******/
+
+div.options-wrap{
+	display: block;
+	width: 100%;
+	font-size: 12px;
+}
+
+div.wSearchResultsSmallScr {
+
+	margin: 0;
+
+	padding: 0;
+
+	width: 100%;
+
+}
+
+div.wSearchResultSettingsSmallScr {
+
+	width: 50%;
+
+	display: inline;
+
+	margin: 0 0 2px 0;
+
+	padding: .5em 2.5%;
+
+	min-height: 2em;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+	background: #05b5bc;
+
+	background-color: #ffffff;
+
+  font-size: 12px;
+
+}
+
+div.wSearchHighlightSmallScr {
+
+	padding: 0 2.5%;
+
+}
+
+input.wSearchHighlightSmallScr {
+
+}
+
+span.wSearchHighlightSmallScr {
+
+	margin-left: 6pt;
+
+	color: ffffff;
+
+}
+
+div.wSearchCountSmallScr {
+
+	float: left;
+
+  font-size: 10px;
+
+}
+
+div.wSearchCountComboSmallScr {
+
+	/*float: left;*/
+	display: inline;
+}
+
+select.wSearchCountSmallScr {
+
+	/*font-size: 60%;*/
+
+	border-left-style: ;
+
+	border-left-width: 2px;
+
+	border-left-color: #111111;
+
+	border-right-style: ;
+
+	border-right-width: 2px;
+
+	border-right-color: #111111;
+
+	border-top-style: ;
+
+	border-top-width: 2px;
+
+	border-top-color: #111111;
+
+	border-bottom-style: ;
+
+	border-bottom-width: 2px;
+
+	border-bottom-color: #111111;
+
+}
+
+div.wSearchCountMsgSmallScr {
+
+	/*float: left;*/
+
+	margin: 0 .5em 0 0;
+
+	height: 1.2em;
+
+	line-height: 1.2em;
+
+	display: inline;
+
+}
+
+span.wSearchCountSmallScr {
+
+	line-height: 1.2em;
+
+	color: #ffffff;
+
+}
+
+div.wSearchMessageSmallScr {
+
+	text-align: center;
+
+	border-top: 1px solid #4f7abd;
+
+	border-bottom: 1px solid #4f7abd;
+
+	border-color: ;
+
+	display: block;
+
+	font-weight: normal;
+
+	width: 95%;
+
+	padding: 1em 2.5% 1em;
+
+	clear: both;
+
+	margin-top: .5em;
+
+	margin-bottom: ;
+
+	background: #4f7abd;
+
+	font-weight: lighter;
+
+	font-size: 1.1em;
+
+	clear: both;
+
+	background-color: #e1e1e1;
+
+	color: #666666;
+
+}
+
+span.wSearchMessageSmallScr {
+	
+}
+
+div.wSearchResultItemsBlockSmallScr {
+
+	width: 95%;
+
+	margin-left: 2.5%;
+
+}
+
+div.wSearchResultItemSmallScr {
+
+	padding: 1.3em 0;
+
+	width: 100%;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+	background: transparent;
+
+	border-bottom: 1px solid #4f7abd;
+
+	border-bottom-style: Solid;
+
+	border-bottom-width: 1px;
+
+	border-bottom-color: #4f7abd;
+
+}
+
+div.wSearchResultTitleSmallScr {
+
+	cursor: pointer;
+
+	color: #111111;
+
+	font-size: 1.5em;
+
+	padding-bottom: .3em;text-decoration: underline none;
+
+}
+
+div.wSearchResultTitleHoverSmallScr {
+
+	cursor: pointer;
+
+	//background-color: #4f7abd;
+
+	font-size: 1.5em;
+
+	color: #4f7abd;
+
+	padding-bottom: .3em;
+
+}
+
+span.wSearchURLSmallScr {
+
+	color: #4f7abd;
+
+}
+
+span.wSearchContextSmallScr {
+	color: #666666;
+
+
+}
+
+div.wSearchNavigationSmallScr {
+
+	margin: 0 2.5%;
+
+	padding: 0;
+
+	width: 95%;
+
+	height: 40px;
+
+	height: auto;
+
+	overflow: visible;
+
+	overflow: hidden;
+
+}
+
+div.wSearchBackSmallScr {
+
+	float: left;
+
+	margin: 0;
+
+	min-width: 125px;
+
+}
+
+a.wSearchBackSmallScr {
+
+	line-height: 30px;
+
+	font-size: 1.4em;
+
+	color: #111111;
+
+	text-decoration: none;
+
+}
+
+a.wSearchBackSmallScr:hover,
+
+a.wSearchBackSmallScr:active {
+
+	color: #4f7abd;
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+a.wSearchBackSmallScr img {
+
+	margin-right: 10px;
+
+}
+
+div.wSearchNextSmallScr {
+
+	float: right;
+
+	margin: 0;
+
+}
+
+a.wSearchNextSmallScr {
+
+	line-height: 30px;
+
+	font-size: 1.4em;
+
+	color: #111111;
+
+	text-decoration: none;
+
+}
+
+a.wSearchNextSmallScr:hover,
+
+a.wSearchNextSmallScr:active {
+
+	color: #4f7abd;
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+a.wSearchNextSmallScr img {
+
+	margin-left: 10px;
+
+}
+
+div.wSearchPageNumbersSmallScr {
+
+	float: left;
+
+	margin-right: 5pt;
+
+	margin-top: 0;
+
+	height: 40px;
+
+	line-height: 40px;
+
+}
+
+li.wSearchPageNumberSelectedSmallScr {
+
+	margin-right: 3pt;
+
+	color: #F2F2F2;
+
+}
+
+li.wSearchPageNumberLinkSmallScr {
+
+	margin-right: 3pt;
+
+	color: #ffffff;
+
+}
+
+li.wSearchPageNumberLinkSmallScr:hover {
+
+	text-decoration: underline;
+
+}
+
+span.wSearchPageNumberSelectedSmallScr {
+
+}
+
+a.wSearchPageNumberLinkSmallScr {
+
+	background-color: transparent;
+
+}
+
+a.wSearchPageNumberLinkSmallSrc:hover,
+
+a.sSearchPageNumberlinkSmallSrc:active {
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/****** Show/Hide ******/
+
+a.wShowHide {
+
+	color: #111111;
+
+	margin: 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	text-decoration: none;
+
+}
+
+a.wShowHide:hover,
+
+a.wShowHide:active {
+
+	color: #4f7abd;
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/* 99CC00 */
+
+/****** Show/Hide toggle ******/
+
+a.wShow {
+
+	color: #111111;
+
+	margin: 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	height: 1.7em;
+
+	padding-top: .3em;
+
+	text-decoration: none;
+
+}
+
+a.wShow:hover,
+
+a.wShow:active {
+
+	color: #4f7abd;
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/* 99CC00 */
+
+a.wHide {
+
+	color: #111111;
+
+	margin: 0;
+
+	padding: 0;
+
+	background-color: transparent;
+
+	display: block;
+
+	height: 1.7em;
+
+	padding-top: .3em;
+
+	text-decoration: none;
+
+}
+
+a.wHide:hover,
+
+a.wHide:active {
+
+	color: #4f7abd;
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+/* 99CC00 */
+
+/****** Project title ******/
+
+span.wProjTitle {
+
+}
+
+/****** Search options (with AND) ******/
+
+div.wSearchField {
+
+	display: block;
+
+	margin: 0 2.5%;
+
+	padding: 0;
+
+	height: 2em;
+
+	font-family: Impact, sans-serif;
+
+	background: #4d5069;
+
+	font-size: 1.02em;
+
+	color: #111111;
+
+	-webkit-border-radius: .25em;
+
+	-moz-border-radius: .25em;
+
+	border-radius: .25em;
+
+}
+
+input.wSearchField {
+
+	-webkit-appearance: none;
+
+	float: left;
+
+	height: 100%;
+
+	font-size: 1.4em;
+
+	width: 64%;
+
+	border: none;
+
+	color: #ffffff;
+
+	padding: 0 0 0 .5em;
+
+	margin: 0 0 0 1em;
+
+	background: #4d5069;
+
+}
+
+a.wSearchLink {
+
+	display: block;
+
+	background-color: transparent;
+
+	float: right;
+
+	width: 25px;
+
+	margin: 4px 7px 0 0;
+
+	height: 25px;
+
+	text-align: right;
+
+}
+
+a.wSearchLink:active {
+
+	background-color: #4f7abd;
+
+}
+
+img.wSearchLink {
+
+	border: none;
+
+}
+
+input.wSearchAND {
+
+	position: relative;
+
+	top: 0.75pt;
+
+}
+
+span.wSearchAND {
+
+	margin-left: 6pt;
+
+}
+
+/****** Search options ******/
+
+div.wSearchOptions {
+
+}
+
+/* No position attributes allowed */
+
+/****** Tabbed Panel - Horizontal (empty and not empty) ******/
+
+div.wTabbedPanel {
+
+	width: 100%;
+
+}
+
+/* No position attributes allowed */
+
+ul.wTabGroup {
+
+	font-size: 1.5em;
+
+	color: #111111;
+
+	text-align: center;
+
+	background: transparent;
+
+	border-bottom: 4px solid rgb(226, 233, 237);
+
+}
+
+li.wTab {
+
+	padding: 0 8pt;
+
+	color: #111111;
+
+	cursor: pointer;
+
+	margin: 0 5pt;
+
+	border-bottom: 3px solid rgb(226, 233, 237);
+
+	white-space: nowrap;
+
+}
+
+li.wTabHover {
+
+	padding: 0 8pt;
+
+	color: #4f7abd;
+
+	cursor: pointer;
+
+	margin: 0 5pt;
+
+	border-bottom: 3px solid rgb(226, 233, 237);
+
+	white-space: nowrap;
+
+}
+
+/* 99CC00 */
+
+li.wTabSelected {
+
+	padding: 0 8pt;
+
+	color: #4f7abd;
+
+	margin: 0 5pt;
+
+	border-bottom: 3px solid #4f7abd;
+
+	white-space: nowrap;
+
+}
+
+/* 99CC00 */
+
+/* 99CC00 */
+
+span.wTabText {
+
+}
+
+div.wTabContentGroup {
+
+}
+
+div.wTabContent {
+
+	margin: 15pt 5% 0;
+
+	padding: 0 0 15pt 0;
+
+	width: 90%;
+
+	overflow-y: visible;
+
+	overflow-x: auto;
+
+}
+
+/****** Tabbed pannel - Vertical (empty and not empty) ******/
+
+div.wVTabbedPanel {
+
+	width: 100%;
+
+}
+
+/* No position attributes allowed */
+
+ul.wVTabGroup {
+
+	list-style: none;
+
+	margin: 0;
+
+	padding: 0;
+
+	font-size: 1.5em;
+
+	background: transparent;
+
+	border-bottom: 2px solid #111111;
+
+}
+
+li.wVTab {
+
+	min-height: 1.7em;
+
+	padding-top: .3em;
+
+	text-align: center;
+
+	margin: 0;
+
+	line-height: 2em;
+
+	padding-left: 2.5%;
+
+	color: #111111;
+
+	cursor: pointer;
+
+	border-top: 2px solid #111111;
+
+}
+
+li.wVTabHover {
+
+	min-height: 1.7em;
+
+	padding-top: .3em;
+
+	text-align: center;
+
+	margin: 0;
+
+	line-height: 2em;
+
+	padding-left: 2.5%;
+
+	color: #4f7abd;
+
+	cursor: pointer;
+
+	border-top: 2px solid #111111;
+
+}
+
+li.wVTabSelected {
+
+	min-height: 1.7em;
+
+	padding-top: .3em;
+
+	text-align: center;
+
+	margin: 0;
+
+	line-height: 2em;
+
+	padding-left: 2.5%;
+
+	color: #ffffff;
+
+	cursor: pointer;
+
+	border-top: 2px solid #111111;
+
+	background: #02b5bc;
+
+}
+
+span.wVTabText {
+
+}
+
+div.wVTabContentGroup {
+
+	overflow: auto;
+
+	border-top: 2px solid #111111;
+
+}
+
+div.wVTabContent {
+
+	margin: 10pt 15pt;
+
+}
+
+/****** Loading ******/
+
+div.wLoadingIcon {
+
+	text-align: center;
+
+	width: 100%;
+
+}
+
+div.loadingicon {
+
+}
+
+img.wLoadingIcon {
+
+	border: none;
+
+}
+
+div.wLoadingText {
+
+	text-align: center;
+
+	width: 100%;
+
+}
+
+div.loadingtext {
+
+}
+
+/****** Internal widget styles ******/
+
+.unclickable {
+
+	cursor: default;
+
+}
+
+/*Modifies the cursor on hover to default*/
+
+.handcursor {
+
+	cursor: pointer;
+
+	cursor: hand;
+
+}
+
+/*Modifies the cursor on hover to hand*/
+
+.unselectable {
+
+	-webkit-user-select: none;
+
+	-moz-user-select: none;
+
+}
+
+/*Modifies the content unselectable by mouse*/
+
+div.treeitem {
+
+	clear: both;
+
+	margin: 0px;
+
+	padding: 0px;
+
+}
+
+/*Used by TOC Tree widget*/
+
+li.hlist {
+
+	display: inline;
+
+}
+
+/*Used to display horizontal list of page numbers in search results */
+
+a.nolink {
+
+	color: #4f7abd;
+
+	background-color: transparent;
+
+	display: block;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+	text-decoration: none;
+
+}
+
+/*Used to remove default styling of a hyperlink*/
+
+/* 99CC00 */
+
+a.nolink:hover {
+
+	background-color: transparent;
+
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+

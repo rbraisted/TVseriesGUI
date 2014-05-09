@@ -1,0 +1,1 @@
+gXMLBuffer="<?xml version=\"1.0\" encoding=\"UTF-8\"?><cki><ck fm=\"Advanced Settings\" to=\"Setting Up a Linear Receiver for Automatic Switching\" num=\"48\"/><ck fm=\"Setting Up an IP AutoSwitch\" to=\"TV-Hub Status Indicators\" num=\"15\"/></cki>";
