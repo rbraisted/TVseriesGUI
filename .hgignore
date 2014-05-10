@@ -55,6 +55,7 @@ Thumbs.db
 project.xcworkspace/
 xcuserdata/
 config.codekit
+ios/build
 
 # kvh tvro #
 #######################
