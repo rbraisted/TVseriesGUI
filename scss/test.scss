@@ -530,14 +530,31 @@ html {
 }
 
 .cities-119 {
+  .cities {
+    padding: $lil-bump;
+    line-height: 1.6;
+  }
+
+  @include breakpoint($mobile) {
+    .popup-guts {
+      margin-bottom: 30px;
+    }
+  }
+
   @include breakpoint($desktop) {
+    .popup-guts {
+      width: 600px;
+      margin-left: -300px;
+    }
+
     .view-head {
       margin-bottom: 0;
     }
+
     .cities {
       max-height: 100%;
       overflow: auto;
-    }    
+    }
   }
 }
 
@@ -551,7 +568,7 @@ body[class=''] .\#service-provider-view,
   display: block;
 }
 
-@include breakpoint($mobile) {
+@include breakpoint($desktop) {
   .\/cities-119 .\#local-channels-view {
     display: block;
   }
