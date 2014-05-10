@@ -175,14 +175,20 @@
 	
   NSNetService* netService = [netServices objectAtIndex:row];
 	
-	NSString* hubName = netService.name;
-	if ([[netService.name substringToIndex:6] isEqualToString:@"tvhub-"]) {
-		hubName = [hubName substringFromIndex:6];
-	}
-	
-    [cell setHubName:[NSString stringWithFormat:@"S/N: %@", hubName]];
+  NSString* hubName = netService.name;
+//  if ([[netService.name substringToIndex:6] isEqualToString:@"tvhub-"]) {
+//    hubName = [hubName substringFromIndex:6];
+//  }
 
-	//	extract the ip address from NSNetService
+  NSArray *parseList = [netService.name componentsSeparatedByString:@" "];
+  if ([[[parseList objectAtIndex:4] substringToIndex:6] isEqualToString:@"tvhub-"]) {
+    //NSLog(@"Bonjour:%@", [parseList objectAtIndex:4] );
+    hubName = [[parseList objectAtIndex:4] substringFromIndex:6];
+  }
+	
+  [cell setHubName:[NSString stringWithFormat:@"S/N: %@", hubName]];
+
+  //	extract the ip address from NSNetService
   //	http://stackoverflow.com/questions/938521/iphone-bonjour-nsnetservice-ip-address-and-port
   char addressBuffer[INET6_ADDRSTRLEN];
   memset(addressBuffer, 0, INET6_ADDRSTRLEN);
