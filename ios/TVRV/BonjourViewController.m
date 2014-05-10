@@ -160,23 +160,27 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString *CellIdentifier = @"BonjourTableCell";
   BonjourTableViewCell *cell = (BonjourTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+	
 	if (cell == nil) {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BonjourTableViewCell" owner:self options:nil];
     cell = [nib objectAtIndex:0];
+	
 	}
-
+	
   //	alternating row colors
 	NSInteger row = [indexPath row];
+	
   if (row % 2 == 0) [cell setUnselectedBackgroundImage: cellBGImageLight];
   else [cell setUnselectedBackgroundImage: cellBGImageDark];
 	
   NSNetService* netService = [netServices objectAtIndex:row];
-//!!!JG
-    NSArray * foo = [netService.name componentsSeparatedByString:@"tvhub-"];
-//!!!JG    NSLog(@"Bonjour:%@", [foo objectAtIndex:1] );
-    [cell setHubName:[NSString stringWithFormat:@"%@%@", @"S/N:", [foo objectAtIndex:1]]];
-//!!!JG  [cell  setHubName:netService.name];
+	
+	NSString* hubName = netService.name;
+	if ([[netService.name substringToIndex:6] isEqualToString:@"tvhub-"]) {
+		hubName = [hubName substringFromIndex:6];
+	}
+	
+    [cell setHubName:[NSString stringWithFormat:@"S/N: %@", hubName]];
 
 	//	extract the ip address from NSNetService
   //	http://stackoverflow.com/questions/938521/iphone-bonjour-nsnetservice-ip-address-and-port
