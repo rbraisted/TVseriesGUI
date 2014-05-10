@@ -10,10 +10,11 @@
         $('.\\#sat-name', row).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
 
         $('.\\#install-btn', row).click(function() {
-          if (!row.hasClass('$installed')) {
+          if (!row.hasClass('$installed'))
             TVRO.setInstalledSat(sat)
-              .then(TVRO.reload);
-          }
+              .then(TVRO.reload, function(error) {
+                if (error == 14) alert('Sorry, we couldn\'t install your satellite at this time. Please try again in a few minutes.');
+              });
         });
 
         TVRO.getInstalledSat().then(function(installedSat) {

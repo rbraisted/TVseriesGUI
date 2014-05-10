@@ -8,7 +8,11 @@
     var installBtn = $('.\\#install-btn', jQ).click(function() {
       var installed = jQ.hasClass('$installed');
       var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0) + '?');
-      if (confirmed) TVRO.setInstalledSat(sat).then(TVRO.reload);
+      if (confirmed) 
+        TVRO.setInstalledSat(sat)
+          .then(TVRO.reload, function(error) {
+            if (error == 14) alert('Sorry, we couldn\'t install your satellite at this time. Please try again in a few minutes.');
+          });
     });
 
     return self = {
