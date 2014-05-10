@@ -124,14 +124,9 @@
   };
 
   TVRO.setInstalledGroup = function(group) {
-    return TVRO.getAutoswitchStatus()
-      .then(function(xml) {
-        return TVRO.setAutoswitchService({
-          enable: $('enable', xml).first().text(),
-          service: $('service', xml).first().text(),
-          satellite_group: group.name
-        });
-      });
+    return TVRO.setAutoswitchService({
+      satellite_group: group.name
+    });
   };
 
   TVRO.removeGroup = function(group) {
@@ -277,14 +272,9 @@
   };
 
   TVRO.setAutoswitchEnabled = function(enabled) {
-    return TVRO.getAutoswitchStatus()
-      .then(function(xml) {
-        return TVRO.setAutoswitchService({
-          enable: enabled ? 'Y' : 'N',
-          service: $('service:first', xml).text(),
-          satellite_group: $('satellite_group', xml).text()
-        });
-      });
+    return TVRO.setAutoswitchService({
+      enable: enabled ? 'Y' : 'N'
+    });
   };
 
   TVRO.getService = function() {
