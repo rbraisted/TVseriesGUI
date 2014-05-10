@@ -172,7 +172,11 @@
   else [cell setUnselectedBackgroundImage: cellBGImageDark];
 	
   NSNetService* netService = [netServices objectAtIndex:row];
-  [cell  setHubName:netService.name];
+//!!!JG
+    NSArray * foo = [netService.name componentsSeparatedByString:@"tvhub-"];
+//!!!JG    NSLog(@"Bonjour:%@", [foo objectAtIndex:1] );
+    [cell setHubName:[NSString stringWithFormat:@"%@%@", @"S/N:", [foo objectAtIndex:1]]];
+//!!!JG  [cell  setHubName:netService.name];
 
 	//	extract the ip address from NSNetService
   //	http://stackoverflow.com/questions/938521/iphone-bonjour-nsnetservice-ip-address-and-port

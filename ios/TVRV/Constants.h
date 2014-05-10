@@ -8,8 +8,8 @@
  */
 
 
-//#define FINAL_BUILD
-#define KVH_BUILD
+#define FINAL_BUILD
+//#define KVH_BUILD
 //#define VAIN_BUILD
 
 //----------------------------------------------------------
@@ -17,7 +17,7 @@
 #ifdef FINAL_BUILD
 
 #define kBonjourServiceType     @"_tvro-xml._tcp."
-#define kDefaultHostname        @"tvhub"
+#define kDefaultHostname        @"tvhub.kvh"
 #define kUpdateHost             @"http://www.kvhupdate.com/TVRO"
 #define kWebSvcPortal           @"www.kvhupdate.com/mobile/tvhub/v1"
 
