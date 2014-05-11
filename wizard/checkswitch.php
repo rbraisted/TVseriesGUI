@@ -1,6 +1,6 @@
 <?
 $wiz = 1;
-include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 ?>
 
 <script type="text/javascript" src="/js/wizard/checkswitch.js"></script>

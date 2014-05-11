@@ -1,6 +1,6 @@
 <?
 $wiz = true;
-include $_SERVER['DOCUMENT_ROOT'] . '/base_.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 ?>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

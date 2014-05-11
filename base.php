@@ -26,13 +26,13 @@
     <script src="/js/promise-3.2.0.js"></script>
     <script type="text/javascript" src="/js/RoboHelp_CSH_modified.js"></script>
 
-    <script type="text/javascript" src="/js/TVRO_.js"></script>
+    <script type="text/javascript" src="/js/TVRO.js"></script>
     
     <script type="text/javascript" src="/js/Cookies.js"></script>
-    <script type="text/javascript" src="/js/WebService_.js"></script>
+    <script type="text/javascript" src="/js/WebService.js"></script>
     <script type="text/javascript" src="/js/Models.js"></script>
 
-    <script type="text/javascript" src="/js/ToggleBtn_.js"></script>
+    <script type="text/javascript" src="/js/ToggleBtn.js"></script>
     <script type="text/javascript" src="/js/TableView.js"></script>
     <script type="text/javascript" src="/js/DropdownView.js"></script>
 

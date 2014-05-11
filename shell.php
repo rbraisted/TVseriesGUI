@@ -22,7 +22,7 @@
     <script type="text/javascript" src="/js/lodash.min.js"></script>
     <script src="/js/promise-3.2.0.js"></script>
 
-    <script type="text/javascript" src="/js/TVRO_.js"></script>
+    <script type="text/javascript" src="/js/TVRO.js"></script>
     <script type="text/javascript" src="/js/Cookies.js"></script>
   </head>
   <body>

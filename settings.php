@@ -1,4 +1,4 @@
-<? include $_SERVER['DOCUMENT_ROOT'] . '/base_.php'; ?>
+<? include $_SERVER['DOCUMENT_ROOT'] . '/base.php'; ?>
 
 <script type="text/javascript" src="/js/GeneralSettingsView.js"></script>
 <script type="text/javascript" src="/js/NetworkSettingsView.js"></script>
