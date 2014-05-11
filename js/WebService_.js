@@ -417,40 +417,26 @@
     if (cache['get_installer_info'] && !recache) {
       return cache['get_installer_info'];
     } else {
-      //  pull from the box first,
-      //  then if any of these fields are unavailable try getting them from
-      //  cookies and in shell mode by making a tvro:// call
+      //  pull from the box first, cookies if they are not set
       TVRO.getProductRegistration().then(function(xml) {
-        var company = $('dealer company', xml).text();
-        var contact = $('dealer installer_name', xml).text();
-        var phone = $('dealer installer_phone', xml).text();
-        var email = $('dealer installer_email', xml).text();
+        var company = $('dealer company', xml).text() || TVRO.getInstallerCompany();
+        var contact = $('dealer installer_name', xml).text() || TVRO.getInstallerContact();
+        var phone = $('dealer installer_phone', xml).text() || TVRO.getInstallerPhone();
+        var email = $('dealer installer_email', xml).text() || TVRO.getInstallerEmail();
 
         //  since the ui forces you to enter all four of these fields,
-        //  let's just assume that if company is available then the other
-        //  fields will be too
-        if (company) {
-          //  we found the box's stored installer info
-          //  this should fulfill the getInstallerInfo promise
-          TVRO.setInstallerInfo({
-            company: company,
-            contact: contact,
-            phone: phone,
-            email: email
-          });
-        } else if (TVRO.getShellMode()) {
-          //  in shell mode, we'll ask the shell device (iOS/Android)
-          //  to call setInstallerInfo for us
-          window.location = 'tvro://get-installer-info';
-        } else if (TVRO.getInstallerCompany()) {
-          //  otherwise, check cookies
-          TVRO.setInstallerInfo({
-            company: TVRO.getInstallerCompany(),
-            contact: TVRO.getInstallerContact(),
-            phone: TVRO.getInstallerPhone(),
-            email: TVRO.getInstallerEmail()
-          });
-        }
+        //  let's just assume that if company is not available then the other
+        //  fields won't be either
+        if (!company) return;
+
+        //  otherwise -
+        //  this should fulfill the getInstallerInfo promise
+        TVRO.setInstallerInfo({
+          company: company,
+          contact: contact,
+          phone: phone,
+          email: email
+        });
       });
 
       return cache['get_installer_info'] = Promise.denodeify(getInstallerInfo)();
