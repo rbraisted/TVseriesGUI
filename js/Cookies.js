@@ -3,10 +3,12 @@
 
   // https://developer.mozilla.org/en-US/docs/Web/API/document.cookie
 
-  var get = function(key) {
+  var get = function(key, asBool) {
     return function() {
       // return as bool
-      return (decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || undefined);
+      var value = (decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || undefined);
+      if (asBool) return !!value;
+      else return value;
     }
   };
 
@@ -26,9 +28,9 @@
   TVRO.setDemoMode = set('tvro-demo-mode');
   TVRO.setTechMode = set('tvro-tech-mode');
 
-  TVRO.getDemoMode = get('tvro-demo-mode');
-  TVRO.getTechMode = get('tvro-tech-mode');
-  TVRO.getShellMode = get('tvro-shell-mode');
+  TVRO.getDemoMode = get('tvro-demo-mode', true);
+  TVRO.getTechMode = get('tvro-tech-mode', true);
+  TVRO.getShellMode = get('tvro-shell-mode', true);
 
   TVRO.setInstallerCompany = set('tvro-installer-company');
   TVRO.setInstallerContact = set('tvro-installer-contact');
