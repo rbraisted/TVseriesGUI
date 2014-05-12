@@ -50,13 +50,13 @@
   var LinearSystemConfigView = function(jQ) {
     var config1 = {
       title: 'Configuration 1',
-      subtitle: '1-4 Recievers (1 master reciever)',
+      subtitle: '1-4 Receivers (1 master receiver)',
       diagramHash: '/diagram-1'
     };
 
     var config2 = {
       title: 'Configuration 2',
-      subtitle: '1-4 Recievers with AutoSwitch(es) installed (multiple master recievers)',
+      subtitle: '1-4 Receivers with AutoSwitch(es) installed (multiple master receivers)',
       diagramHash: '/diagram-2'
     };
 
@@ -68,7 +68,7 @@
 
     var config4 = {
       title: 'Configuration 4',
-      subtitle: '5+ Recievers with AutoSwitch(es) installed (1+ master receivers) + multiswitch',
+      subtitle: '5+ Receivers with AutoSwitch(es) installed (1+ master receivers) + multiswitch',
       diagramHash: '/diagram-4'
     };
 
