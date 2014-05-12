@@ -6,7 +6,15 @@
 
 		var output = $('.\\#output', jQ);
 		var input = $('.\\#input', jQ);
-
+		
+		// if "Enter" key on key board pressed send the command
+		$('.\\#input').keypress(function(event){
+		    var keycode = (event.keyCode ? event.keyCode : event.which);
+		    if(keycode == '13'){
+		    	$(".\\#send-btn").click();
+		    }
+		});
+		
 		var sendBtn = $('.\\#send-btn', jQ).click(function() {
 			var command = input.val();
 			if (command) {
