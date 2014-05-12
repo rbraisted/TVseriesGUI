@@ -231,17 +231,17 @@ var DishNetworkView = function(jQ) {
     .setValues([
       'WESTERN ARC',
       'EASTERN ARC',
-      '72.7-GROUP',
-      'LEGACY ARC',
-      'DUAL ARC',
+      'LEGACY EASTERN ARC',
+      '72W',
+      'DISH 500',
       'OTHER'
     ])
     .onBuild(function(row, value) {
       if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110\u00B0W, 119\u00B0W, 129\u00B0W)');
       if (value === 'EASTERN ARC') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
-      if (value === '72.7-GROUP') $('.\\#value', row).text('72.7-Group (72\u00B0W)');
-      if (value === 'LEGACY ARC') $('.\\#value', row).text('Legacy Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
-      if (value === 'DUAL ARC') $('.\\#value', row).text('Dual Arc (110\u00B0W, 119\u00B0W)');
+      if (value === 'LEGACY EASTERN ARC') $('.\\#value', row).text('Legacy Eastern Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
+      if (value === '72W') $('.\\#value', row).text('72W (72\u00B0W)');
+      if (value === 'DISH 500') $('.\\#value', row).text('Dish 500 (110\u00B0W, 119\u00B0W)');
       if (value === 'OTHER') $('.\\#value', row).text('Other');
     })
     .build();

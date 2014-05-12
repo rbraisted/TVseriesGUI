@@ -35,7 +35,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     Check Switch Test
   </div>
     <div class="column">
-    Connect each reveiver, one at a time, directly to the "IRD" jack
+    Connect each receiver, one at a time, directly to the "IRD" jack
     on the back of the TV-Hub and run a Check Switch test
     ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
     This test can take up to 15 minutes per receiver. Once you have
