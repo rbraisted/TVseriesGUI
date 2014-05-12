@@ -23,7 +23,6 @@
 
   <a href="javascript:TVRO.showHelp();" class="help-btn">
     Help Center
-    <img src="/images/help.svg"/>
   </a>
 
 	<div class="contact-header">Technical Support</div>
