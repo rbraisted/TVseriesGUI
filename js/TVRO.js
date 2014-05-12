@@ -96,7 +96,7 @@
   TVRO.showHelp = function(mapNo) {
     TVRO.getAntennaVersions().then(function(xml) {
       var antModel = $('au model', xml).text();
-      var helpUrl = RH_GetHelpUrlWithMapNo('help/' + antModel + '/index.htm', mapNo);  
+      var helpUrl = RH_GetHelpUrlWithMapNo('help/' + antModel + '_Help' + '/index.htm', mapNo);  
       if (TVRO.getShellMode()) TVRO.sendShellCommand(helpUrl);
       else window.open('/' + helpUrl, 'TVHub Help', 'width=400,height=600');
     });    
