@@ -13,7 +13,8 @@
 		<sn>1.00123456789</sn>
 	</acu>
 	<au>
-		<model>TV1</model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
+		<model>TV5</model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
+		<systemIDModel>TV5</systemIDModel>
 		<part>04-1234</part>
 		<rev>A</rev>
 		<ver>040914</ver>
@@ -56,7 +57,7 @@
 		<part>19-0815</part>
 		<ver>1.00</ver>
 		<name>DishPro Stacked</name>
-		<polarization>circular</polarization><!-- linear | circular --><!-- note: docs show these are all caps -->
+		<polarization>linear</polarization><!-- linear | circular --><!-- note: docs show these are all caps -->
 		<voltage>18V</voltage>
 		<LO1_freq>11250</LO1_freq>
 		<LO1_convert>NORMAL</LO1_convert><!-- NORMAL | INVERTED -->
