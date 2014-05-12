@@ -202,8 +202,6 @@ class TVROuploadsoftware
 
       if ( "0" == $err ) {
 
-		 $pos = strrpos($fname, ".kvh");
-
          if ( ($fname=="acuservices.conf") ||
 			 ($fname=="acuservices.conf.prev") ||
 			 ($fname=="acuservices.factory.conf") ||
@@ -215,20 +213,17 @@ class TVROuploadsoftware
 
             copy($_FILES['fileToUpload']['tmp_name'], CONF_DIR."/".$fname);
 
-         } else if ( ($fname=="eth.conf")||($fname=="wlan.conf") ) {
+         } else if (($fname=="eth.conf")||
+                    ($fname=="wlan.conf")) {
             copy($_FILES['fileToUpload']['tmp_name'], CONF_DIR."/network/".$fname);
-
-         } else if ( ($fname=="560255.xml") ) {
+         } else if ((false !== strrpos($fname, "560255")) &&
+                    (false !== strrpos($fname, ".xml"))) {
             copy($_FILES['fileToUpload']['tmp_name'], UPLOAD_SW_DIR."/".$fname);
-
-		 } else if ( (false !== $pos) ) {
+		 } else if ((false !== strrpos($fname, ".kvh"))) {
             copy($_FILES['fileToUpload']['tmp_name'], UPLOAD_SW_DIR."/".$fname);
-
          } else {
-			 $err = "ERROR: You can't upload unknown files!";
-
+         	$err = "ERROR: You can't upload unknown files!";
 		 }
-
 		 //for security reason, remove uploaded file
 		 @unlink($_FILES['fileToUpload']);
 		 $xmlR = "<message name=\"" . __FUNCTION__ . "\" error=\"$err\"/>";
