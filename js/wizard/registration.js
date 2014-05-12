@@ -163,11 +163,18 @@
           installer_email: email
         }
       }).then(function() {
+        if (TVRO.getShellMode()) {
+          TVRO.sendShellCommand('set-installer-company/' + company);
+          TVRO.sendShellCommand('set-installer-contact/' + contact);
+          TVRO.sendShellCommand('set-installer-phone/' + phone);
+          TVRO.sendShellCommand('set-installer-email/' + email);
+        }
         //  save cookies
         TVRO.setInstallerCompany(company);
         TVRO.setInstallerContact(contact);
         TVRO.setInstallerPhone(phone);
         TVRO.setInstallerEmail(email);
+
         window.location = '/wizard/gps.php';
       });
     });

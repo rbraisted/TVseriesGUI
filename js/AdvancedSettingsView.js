@@ -7,7 +7,7 @@
     var techModeBtn = TVRO.ToggleBtn(jQ.find('.\\#tech-mode-btn'))
       .onClick(function(techMode) {
         TVRO.setTechMode(techMode);
-        if (TVRO.getShellMode()) window.location = 'tvro://set-tech-mode/' + techMode;
+        if (TVRO.getShellMode()) TVRO.sendShellCommand('set-tech-mode/' + techMode); //window.location = 'tvro://set-tech-mode/' + techMode;
       });
 
     var setMode = function(mode) {

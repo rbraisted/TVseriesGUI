@@ -84,14 +84,24 @@
     }
   };
 
+  TVRO.sendShellCommand = function(command) {
+    //  http://stackoverflow.com/questions/2934789/triggering-shouldstartloadwithrequest-with-multiple-window-location-href-calls/2935005#2935005
+    var iFrame = document.createElement('IFRAME');
+    iFrame.setAttribute('src', 'tvro://' + command);
+    document.body.appendChild(iFrame); 
+    iFrame.parentNode.removeChild(iFrame);
+    iFrame = null;
+  };
+  
   TVRO.showHelp = function(mapNo) {
     TVRO.getAntennaVersions().then(function(xml) {
       var antModel = $('au model', xml).text();
       var helpUrl = RH_GetHelpUrlWithMapNo('help/' + antModel + '/index.htm', mapNo);  
-      if (TVRO.getShellMode()) window.location = 'tvro://' + helpUrl;
+      if (TVRO.getShellMode()) TVRO.sendShellCommand(helpUrl);
       else window.open('/' + helpUrl, 'TVHub Help', 'width=400,height=600');
     });    
   };
+
 
   window.TVRO = TVRO;
 

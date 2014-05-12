@@ -7,7 +7,7 @@
     var demoModeBtn = TVRO.ToggleBtn(jQ.find('.\\#demo-mode-btn'))
       .onClick(function(demoMode) {
         TVRO.setDemoMode(demoMode);
-        if (TVRO.getShellMode()) window.location = 'tvro://set-demo-mode/' + demoMode;
+        if (TVRO.getShellMode()) TVRO.sendShellCommand('set-demo-mode/' + demoMode);
       });
 
     var wizardBtn = jQ.find('.\\#wizard-btn').click(function() {

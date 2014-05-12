@@ -392,7 +392,7 @@
     if (cache['get_device_versions'] && !recache) {
       return cache['get_device_versions'];
     } else {
-      if (TVRO.getShellMode()) window.location = 'tvro://get-device-versions';
+      if (TVRO.getShellMode()) TVRO.sendShellCommand('get-device-versions');
       return cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
     }
   };

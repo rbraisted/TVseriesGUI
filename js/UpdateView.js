@@ -20,8 +20,7 @@
       TVRO.getLatestSoftware(update).then(function(xml) {
         var portalUrl = $('url', xml).text();
         var portalVersion = $('software_version', xml).text() || $('version', xml).text();
-        var shellUrl = 'tvro://download/' + update + '/' + portalVersion + '/' + portalUrl;
-        if (TVRO.getShellMode()) window.location = shellUrl;
+        if (TVRO.getShellMode()) TVRO.sendShellCommand('download/' + update + '/' + portalVersion + '/' + portalUrl);
         else window.location = portalUrl;
         jQ.removeClass('$not-available');
       });
@@ -40,7 +39,7 @@
       if (TVRO.getShellMode()) {
         event.preventDefault();
         var confirmed = getConfirmation();
-        if (confirmed) window.location = 'tvro://upload/' + update;
+        if (confirmed) TVRO.sendShellCommand('upload/' + update);
       }
     });
 
