@@ -159,7 +159,7 @@
 <div class="popup #serial-log-view">
   <div class="popup-guts serial-log">
     <div class="view-head">
-      Serial Log
+      Operational Log
       <div class="back-btn #back-btn"></div>
     </div>
 
