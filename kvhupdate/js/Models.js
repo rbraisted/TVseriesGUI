@@ -124,14 +124,9 @@
   };
 
   TVRO.setInstalledGroup = function(group) {
-    return TVRO.getAutoswitchStatus()
-      .then(function(xml) {
-        return TVRO.setAutoswitchService({
-          enable: $('enable', xml).first().text(),
-          service: $('service', xml).first().text(),
-          satellite_group: group.name
-        });
-      });
+    return TVRO.setAutoswitchService({
+      satellite_group: group.name
+    });
   };
 
   TVRO.removeGroup = function(group) {
@@ -189,9 +184,11 @@
   };
 
   TVRO.setSatParams = function(sat) {
-    //  return the sat we get from getSatelliteParams in a promise
-    var noXponders = _.omit(sat, 'xponders');
-    var onlyXponders = _.pick(sat, 'xponders', 'listID', 'antSatID');
+    //  remove empty xponders
+    if (sat['xponder']) sat.xponder = _.compact(sat.xponder);
+
+    var noXponders = _.omit(sat, 'xponder');
+    var onlyXponders = _.pick(sat, 'antSatID', 'xponder');
 
     return TVRO.setSatelliteIdentity(noXponders, 1)
       .then(TVRO.setSatelliteParams(onlyXponders, 1));
@@ -275,14 +272,9 @@
   };
 
   TVRO.setAutoswitchEnabled = function(enabled) {
-    return TVRO.getAutoswitchStatus()
-      .then(function(xml) {
-        return TVRO.setAutoswitchService({
-          enable: enabled ? 'Y' : 'N',
-          service: $('service:first', xml).text(),
-          satellite_group: $('satellite_group', xml).text()
-        });
-      });
+    return TVRO.setAutoswitchService({
+      enable: enabled ? 'Y' : 'N'
+    });
   };
 
   TVRO.getService = function() {
@@ -316,6 +308,7 @@
       systemInfo.diseqcVer = $('diseqc ver', xmls[0]).text();
       systemInfo.ipautoswVer = $('ipautosw ver', xmls[0]).text();
       systemInfo.antModel = $('au model', xmls[0]).text();
+      systemInfo.systemIDModel = $('au systemIDModel', xmls[0]).text();
       systemInfo.antSn = $('au sn', xmls[0]).text();
       systemInfo.antVer = $('au ver', xmls[0]).text();
       systemInfo.rfVer = $('rf ver', xmls[0]).text();
@@ -330,6 +323,27 @@
     });
   };
 
+  TVRO.getPowerInfo = function() {
+    return TVRO.getPower().then(function(xml) {
+      var powerInfo = {};
+      //  hub
+      powerInfo.hubInputSupplyV = $('acu inputsupplyv', xml).text();
+      powerInfo.hubInput42V = $('acu input42v', xml).text();
+      powerInfo.hubEight = $('acu eight', xml).text();
+      powerInfo.hubFive = $('acu five', xml).text();
+      powerInfo.hubThreeThree = $('acu three_three', xml).text();
+      powerInfo.hubOutput42V = $('acu output42v', xml).text();
+      powerInfo.hubOutput24V = $('acu output24v', xml).text();
+      powerInfo.hubTempCelsius = $('acu temp_celsius', xml).text();
+      //  antenna
+      powerInfo.antDc = $('au dc', xml).text();
+      powerInfo.antMotor = $('au motor', xml).text();
+      powerInfo.antEight = $('au eight', xml).text();
+      powerInfo.antFive = $('au five', xml).text();
+      powerInfo.antLnb = $('au lnb', xml).text();
+      return powerInfo;
+    });
+  };
 
   TVRO.getGroupMode = function() {
     return TVRO.getInstalledGroup().then(function(group) {

@@ -94,7 +94,7 @@
       success: function(response) {
         if (TVRO.debug) {
           console.log('~ '+requestName.toUpperCase());
-          if (TVRO.debug > 1) {
+          if ((TVRO.debug > 1 && requestName !== 'antenna_status') || (TVRO.debug > 2)) {
             console.log($(requestXml).get(0));
             console.log($('ipacu_response', response).get(0));
           }
@@ -166,9 +166,36 @@
   	}
   };
 
+  //  'getting'
+  //  caches the result so you don't make too many calls
+  //  TVRO.messageName = get('message_name')
+  //  TVRO.messageName is now a function with this signature:
+  //  TVRO.messageName(paramsJsonThatWillBeConvertedToXMLToSend,
+  //                   shouldForceAjaxCallInsteadOfReturningCachedResult)
 
+  //  'setting'
+  //  TVRO.messageName = set('message_name', [
+  //                       get('some_xml_that_needs_to_be_updated_as_a_result'),
+  //                       get('some_xml_that_needs_to_be_updated_as_a_result')
+  //                     ])
+  //  for example, if you set_antenna_config,
+  //  you probably expect that the results of get_antenna_config will have
+  //  changed on the box. since get_antenna_config is cached, you'll want
+  //  the call to set_antenna_config to remove get_antenna_config from the cache
+  //  so that calls to it will bring you fresh data
 
+  //  NOTE ABOUT CUSTOM CALLS:
+  //  at the bottom here we have some custom calls that will also get cached
+  //  but if you intend to add a webservice call on the back end
+  //  because we use the message name as a key to items in the cache
+  //  just make sure you don't accidentally write over something in the cache
+  //  by giving a backend call the same message name as a custom call here
 
+  TVRO.getSatelliteService = get('get_satellite_service');
+	  
+	TVRO.setSatelliteService = set('set_satellite_service', [
+	                          		get('get_satellite_service')
+	                                ]);
 
 	TVRO.getAntennaStatus = get('antenna_status');
 
@@ -305,28 +332,29 @@
 
 	TVRO.getProductRegistration = get('get_product_registration');
 
-	TVRO.getWizardStatus = get('get_wizard_status');
+  TVRO.getWizardStatus = get('get_wizard_status');
 
-	TVRO.setWizardStatus = set('set_wizard_status', [
-		get('get_wizard_status')
+  TVRO.setWizardStatus = set('set_wizard_status', [
+    get('get_wizard_status')
+  ]);
+
+	TVRO.getCallhome = get('get_callhome');
+
+	TVRO.setCallhome = set('set_callhome', [
+		get('get_callhome')
 	]);
 
   //  custom call to get web ui version from version.txt
   TVRO.getWebUIVersion = function() {
-    var cacheKey = 'get_web_ui_version';
-    if (cache[cacheKey]) {
-      return cache[cacheKey];
-    } else {
-      return cache[cacheKey] = Promise(function(resolve, reject) {
-        $.ajax({
-          url: '/version.txt',
-          success: function(txt) {
-            resolve(txt.replace('tvserieswebapp=', ''));
-          },
-          error: reject
-        });
+    return Promise(function(resolve, reject) {
+      $.ajax({
+        url: '/version.txt',
+        success: function(txt) {
+          resolve(txt.replace('tvserieswebapp=', ''));
+        },
+        error: reject
       });
-    }
+    });
   };
 
   //  custom calls for updates page
@@ -338,6 +366,15 @@
     else return cache[cacheName] = get(msg)(url, 1);
   };
 
+  //  device versions
+  //  basically we return a promise
+  //  which is fulfilled when somebody calls setDeviceVersions
+  //  so on the desktop nothing actually happens right now
+  //  but later we could give the desktop version some reason to call
+  //  setDeviceVersions and it should work out ok
+  //  in shell mode though, we send out a tvro:// call and the app (iOS/Android)
+  //  should respond by calling setDeviceVersions
+
   var deviceVersions;
   var getDeviceVersionsCallbacks = [];
   var getDeviceVersions = function(callback) {
@@ -347,24 +384,82 @@
 
   var setDeviceVersions = function(arg) {
     deviceVersions = arg;
-    $('#debugger').append('<br><br>TVRO.setDeviceVersions');
-    $('#debugger').append('<br>deviceVersions.SatLibrary: ' + deviceVersions.SatLibrary);
-    $('#debugger').append('<br>deviceVersions.TV1: ' + deviceVersions.TV1);
-    $('#debugger').append('<br>deviceVersions.TV3: ' + deviceVersions.TV3);
-    $('#debugger').append('<br>deviceVersions.TV5: ' + deviceVersions.TV5);
-    $('#debugger').append('<br>deviceVersions.TV6: ' + deviceVersions.TV6);
-    $('#debugger').append('<br>deviceVersions.RV1: ' + deviceVersions.RV1);
     _.invoke(getDeviceVersionsCallbacks, 'call', null, null, deviceVersions);
   };
 
   TVRO.setDeviceVersions = setDeviceVersions;
-  TVRO.getDeviceVersions = function() {
-    if (cache['get_device_versions']) {
+  TVRO.getDeviceVersions = function(recache) {
+    // if (cache['get_device_versions'] && !recache) {
+    //   return cache['get_device_versions'];
+    // } else {
+      cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
+
+      if (TVRO.getShellMode()) TVRO.sendShellCommand('get-device-versions');
+      else TVRO.setDeviceVersions({
+        SatLibrary: TVRO.getDownloadedSatLibraryUpdateVersion(),
+        TV1: TVRO.getDownloadedTV1UpdateVersion(),
+        TV3: TVRO.getDownloadedTV3UpdateVersion(),
+        TV5: TVRO.getDownloadedTV5UpdateVersion(),
+        TV6: TVRO.getDownloadedTV6UpdateVersion(),
+        RV1: TVRO.getDownloadedRV1UpdateVersion()
+      });
+
       return cache['get_device_versions'];
+    // }
+  };
+
+  //  pull from the box first,
+  //  then if any of these fields are unavailable try getting them from
+  //  cookies and in shell mode by making a tvro:// call
+  var installerInfo;
+  var getInstallerInfoCallbacks = [];
+  var getInstallerInfo = function(callback) {
+    if (!_.isUndefined(deviceVersions)) callback(null, deviceVersions);
+    getInstallerInfoCallbacks.push(callback);    
+  };
+
+  var setInstallerInfo = function(arg) {
+    installerInfo = arg;
+    _.invoke(getInstallerInfoCallbacks, 'call', null, null, installerInfo);
+  };
+
+  TVRO.setInstallerInfo = setInstallerInfo;
+  TVRO.getInstallerInfo = function() {
+    if (cache['get_installer_info'] && !recache) {
+      return cache['get_installer_info'];
     } else {
-      if (TVRO.getShellMode()) window.location = 'tvro://get-device-versions';
-      return cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
+      //  pull from the box first, cookies if they are not set
+      TVRO.getProductRegistration().then(function(xml) {
+        var company = $('dealer company', xml).text() || TVRO.getInstallerCompany();
+        var contact = $('dealer installer_name', xml).text() || TVRO.getInstallerContact();
+        var phone = $('dealer installer_phone', xml).text() || TVRO.getInstallerPhone();
+        var email = $('dealer installer_email', xml).text() || TVRO.getInstallerEmail();
+
+        //  since the ui forces you to enter all four of these fields,
+        //  let's just assume that if company is not available then the other
+        //  fields won't be either
+        if (!company) return;
+
+        //  otherwise -
+        //  this should fulfill the getInstallerInfo promise
+        TVRO.setInstallerInfo({
+          company: company,
+          contact: contact,
+          phone: phone,
+          email: email
+        });
+      });
+
+      return cache['get_installer_info'] = Promise.denodeify(getInstallerInfo)();
     }
   };
+
+
+  //  it's easier to just keep getting antenna_status here
+  //  we need it to be updated on all the main gui pages
+  setInterval(function() {
+    //  it's call(params, forceRecache)
+    TVRO.getAntennaStatus({}, 1);
+  }, 3000);
 
 }(window.TVRO);

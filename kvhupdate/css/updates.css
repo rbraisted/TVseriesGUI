@@ -13,12 +13,12 @@
   -ms-user-select: none; }
 
 html {
-  background: #04122a url(../images/gradient.png) no-repeat;
+  background: #04122a url(/images/gradient.png) no-repeat;
   height: 100%;
   width: 100%; }
   @media screen and (max-width: 880px) {
     html {
-    background-position: top center; } }
+      background-position: top center; } }
   @media screen and (min-width: 881px) {
     html {
       background-position: top left calc(50% + 120px); } }
@@ -38,13 +38,13 @@ a {
   text-decoration: inherit; }
 
 .header {
-  background: transparent url(../images/header.png) no-repeat center/100%;
+  background: transparent url(/images/header.png) no-repeat center/100%;
   height: 50px;
   position: fixed;
   width: 100%;
   z-index: 4; }
   .header .tracvision-logo {
-    background: transparent url(../images/tracvision-logo.svg) no-repeat center/90%;
+    background: transparent url(/images/tracvision-logo.svg) no-repeat center/90%;
     height: 100%;
     margin: auto;
     width: 150px;
@@ -107,22 +107,12 @@ a {
     display: block; }
   .status .status-label + .status-label {
     margin-top: .7em; }
-  .status .antenna-status,
-  .status .power-status,
-  .status .acu-status {
-    color: #cbcaca; }
-    .status .antenna-status.\$green,
-    .status .power-status.\$green,
-    .status .acu-status.\$green {
-      color: #acd038; }
-    .status .antenna-status.\$orange,
-    .status .power-status.\$orange,
-    .status .acu-status.\$orange {
-      color: #e76d24; }
-    .status .antenna-status.\$red,
-    .status .power-status.\$red,
-    .status .acu-status.\$red {
-      color: #c51313; }
+  .status .\$green {
+    color: #acd038; }
+  .status .\$orange {
+    color: #e76d24; }
+  .status .\$red {
+    color: #c51313; }
 
 @media screen and (max-width: 880px) {
   .nav {
@@ -138,7 +128,7 @@ a {
     .nav.\$expanded {
       padding-bottom: 66%; }
     .nav .home-btn {
-      background: transparent url(../images/home-icon-white.svg) no-repeat top 35% center/40.47619%;
+      background: transparent url(/images/home-icon-white.svg) no-repeat top 35% center/40.47619%;
       cursor: pointer;
       display: inline-block;
       margin-left: 1%;
@@ -147,7 +137,7 @@ a {
       text-align: center;
       width: 32%; }
     .nav .sat-btn {
-      background: transparent url(../images/sat-icon-white.svg) no-repeat top 35% center/42.85714%;
+      background: transparent url(/images/sat-icon-white.svg) no-repeat top 35% center/42.85714%;
       cursor: pointer;
       display: inline-block;
       margin-left: 1%;
@@ -156,7 +146,7 @@ a {
       text-align: center;
       width: 32%; }
     .nav .autoswitch-btn {
-      background: transparent url(../images/autoswitch-icon-white.svg) no-repeat top 35% center/45.2381%;
+      background: transparent url(/images/autoswitch-icon-white.svg) no-repeat top 35% center/45.2381%;
       cursor: pointer;
       display: inline-block;
       margin-left: 1%;
@@ -165,7 +155,7 @@ a {
       text-align: center;
       width: 32%; }
     .nav .settings-btn {
-      background: transparent url(../images/settings-icon-white.svg) no-repeat top 35% center/40.47619%;
+      background: transparent url(/images/settings-icon-white.svg) no-repeat top 35% center/40.47619%;
       cursor: pointer;
       display: inline-block;
       margin-left: 1%;
@@ -174,7 +164,7 @@ a {
       text-align: center;
       width: 32%; }
     .nav .updates-btn {
-      background: transparent url(../images/updates-icon-white.svg) no-repeat top 35% center/45.2381%;
+      background: transparent url(/images/updates-icon-white.svg) no-repeat top 35% center/45.2381%;
       cursor: pointer;
       display: inline-block;
       margin-left: 1%;
@@ -183,7 +173,7 @@ a {
       text-align: center;
       width: 32%; }
     .nav .support-btn {
-      background: transparent url(../images/support-icon-white.svg) no-repeat top 35% center/30.95238%;
+      background: transparent url(/images/support-icon-white.svg) no-repeat top 35% center/30.95238%;
       cursor: pointer;
       display: inline-block;
       margin-left: 1%;
@@ -200,7 +190,7 @@ a {
     width: 100%;
     z-index: 3; }
     .nav .home-btn {
-      background: transparent url(../images/home-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px 21px;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -209,57 +199,57 @@ a {
       background-position: left 20px center;
       padding-left: 47px; }
       .nav .home-btn:hover, .nav .home-btn.\$selected {
-        background-image: url(../images/home-icon-white.svg);
+        background-image: url(/images/home-icon-white.svg);
         color: #fff; }
     .nav .sat-btn {
-      background: transparent url(../images/sat-icon-grey.svg) no-repeat left 10px center/18px 21px;
+      background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px 21px;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
       height: 100%;
       padding: 16px 15px 0 38px; }
       .nav .sat-btn:hover, .nav .sat-btn.\$selected {
-        background-image: url(../images/sat-icon-white.svg);
+        background-image: url(/images/sat-icon-white.svg);
         color: #fff; }
     .nav .autoswitch-btn {
-      background: transparent url(../images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px 21px;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
       height: 100%;
       padding: 16px 15px 0 39px; }
       .nav .autoswitch-btn:hover, .nav .autoswitch-btn.\$selected {
-        background-image: url(../images/autoswitch-icon-white.svg);
+        background-image: url(/images/autoswitch-icon-white.svg);
         color: #fff; }
     .nav .settings-btn {
-      background: transparent url(../images/settings-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px 21px;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
       height: 100%;
       padding: 16px 15px 0 37px; }
       .nav .settings-btn:hover, .nav .settings-btn.\$selected {
-        background-image: url(../images/settings-icon-white.svg);
+        background-image: url(/images/settings-icon-white.svg);
         color: #fff; }
     .nav .updates-btn {
-      background: transparent url(../images/updates-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px 21px;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
       height: 100%;
       padding: 16px 15px 0 39px; }
       .nav .updates-btn:hover, .nav .updates-btn.\$selected {
-        background-image: url(../images/updates-icon-white.svg);
+        background-image: url(/images/updates-icon-white.svg);
         color: #fff; }
     .nav .support-btn {
-      background: transparent url(../images/support-icon-grey.svg) no-repeat left 10px center/13px 21px;
+      background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px 21px;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
       height: 100%;
       padding: 16px 15px 0 33px; }
       .nav .support-btn:hover, .nav .support-btn.\$selected {
-        background-image: url(../images/support-icon-white.svg);
+        background-image: url(/images/support-icon-white.svg);
         color: #fff; } }
 
 .sidebar,
@@ -298,7 +288,7 @@ a {
       top: 50px;
       z-index: 2; }
     .sidebar .back-btn {
-      background-image: url(../images/prev-icon-blue.svg);
+      background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
@@ -329,7 +319,7 @@ a {
     color: #bac7da;
     padding-bottom: inherit; }
 .sidebar .master-chunk .label {
-  background-image: url(../images/autoswitch-icon-white.svg);
+  background-image: url(/images/autoswitch-icon-white.svg);
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 21px 21px;
@@ -348,25 +338,24 @@ a {
   width: auto; }
 .sidebar .sat-status {
   bottom: 16px;
-  color: #6784ad;
   position: absolute; }
 .sidebar .sat-signal {
-  background: transparent url(../images/sat-signal-0.svg) no-repeat right center/60px;
+  background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;
   height: 60px;
   margin-top: -16px;
   width: 100%; }
   .sidebar .sat-signal.\$0 {
-    background-image: url(../images/sat-signal-0.svg); }
+    background-image: url(/images/sat-signal-0.svg); }
   .sidebar .sat-signal.\$1 {
-    background-image: url(../images/sat-signal-1.svg); }
+    background-image: url(/images/sat-signal-1.svg); }
   .sidebar .sat-signal.\$2 {
-    background-image: url(../images/sat-signal-2.svg); }
+    background-image: url(/images/sat-signal-2.svg); }
   .sidebar .sat-signal.\$3 {
-    background-image: url(../images/sat-signal-3.svg); }
+    background-image: url(/images/sat-signal-3.svg); }
   .sidebar .sat-signal.\$4 {
-    background-image: url(../images/sat-signal-4.svg); }
+    background-image: url(/images/sat-signal-4.svg); }
   .sidebar .sat-signal.\$5 {
-    background-image: url(../images/sat-signal-5.svg); }
+    background-image: url(/images/sat-signal-5.svg); }
 
 @media screen and (min-width: 881px) {
   .view {
@@ -417,7 +406,7 @@ a {
       top: 50px;
       z-index: 2; }
     .view .back-btn {
-      background-image: url(../images/prev-icon-blue.svg);
+      background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
@@ -475,7 +464,7 @@ a {
       position: absolute;
       top: 0; }
     .popup .back-btn {
-      background-image: url(../images/x-icon-blue.svg);
+      background-image: url(/images/x-icon-blue.svg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
@@ -522,7 +511,7 @@ a {
       top: 50px;
       z-index: 2; }
     .popup .back-btn {
-      background-image: url(../images/prev-icon-blue.svg);
+      background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
@@ -579,7 +568,7 @@ a {
     position: absolute;
     top: 0; }
   .dropdown .back-btn {
-    background-image: url(../images/x-icon-blue.svg);
+    background-image: url(/images/x-icon-blue.svg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 21px 21px;
@@ -677,7 +666,7 @@ a {
     vertical-align: middle;
     cursor: pointer; }
     .dropdown .table-row .dropdown-icon {
-      background-image: url(../images/radio-unchecked.svg);
+      background-image: url(/images/radio-unchecked.svg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
@@ -687,7 +676,7 @@ a {
       padding: 0;
       margin-left: 15px; }
     .dropdown .table-row.\$selected .dropdown-icon {
-      background-image: url(../images/radio-checked.svg);
+      background-image: url(/images/radio-checked.svg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 21px 21px;
@@ -753,7 +742,7 @@ a {
   min-height: 28px;
   position: relative; }
   .dropdown-btn .dropdown-icon {
-    background-image: url(../images/down-icon-white.svg);
+    background-image: url(/images/down-icon-white.svg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 7px 21px;
@@ -766,8 +755,31 @@ a {
     height: 26px;
     width: 26px; }
 
+.flashing-view {
+  z-index: 3; }
+  .flashing-view .popup-guts {
+    background: #101f30;
+    position: fixed;
+    text-align: center;
+    line-height: 1.6;
+    padding: 46px; }
+    @media screen and (min-width: 881px) {
+      .flashing-view .popup-guts {
+        padding-top: 92px;
+        width: 400px;
+        height: 200px;
+        margin-top: -100px;
+        margin-left: -200px; } }
+    @media screen and (max-width: 880px) {
+      .flashing-view .popup-guts {
+        height: 100%;
+        width: 100%; } }
+
+#dataDiv {
+  z-index: 9999999999999999999 !important; }
+
 .updates-icon {
-  background-image: url(../images/updates-icon-white.svg);
+  background-image: url(/images/updates-icon-white.svg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 21px 21px;
@@ -834,7 +846,7 @@ a {
     .menu-table .table-row.\$selected {
       background-color: #243774; }
     .menu-table .table-row {
-      background-image: url(../images/right-icon-blue.svg);
+      background-image: url(/images/right-icon-blue.svg);
       background-position: right 15px center;
       background-repeat: no-repeat;
       background-size: 7px 21px;
@@ -860,6 +872,8 @@ a {
   .menu-table .\$connected .antenna-version-label {
     display: block; }
   .menu-table .\$antenna.\$connected .connected-version-label {
+    display: block; }
+  .menu-table .\$sat-library .antenna-version-label {
     display: block; }
   .menu-table .device-version-label {
     display: none; }
@@ -910,14 +924,14 @@ a {
   .update .section .not-available-label {
     color: #c51313; }
 .update .download-btn {
-  background-image: url(../images/download.svg);
+  background-image: url(/images/download.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 80px 80px;
   min-height: 80px;
   min-width: 80px; }
 .update .install-btn {
-  background-image: url(../images/no-download.svg);
+  background-image: url(/images/no-download.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 80px 80px;
@@ -946,24 +960,28 @@ a {
 .update .not-available-label {
   display: none; }
 .update.\$connected .connected-label,
-.update .system-version {
-  display: none; }
+.update.\$connected .system-version {
+  display: block; }
 .update.\$connected .not-connected-label {
   display: none; }
 .update.\$connected .install-btn {
-  background-image: url(../images/download.svg); }
+  background-image: url(/images/download.svg); }
   .update.\$connected .install-btn input {
     display: block; }
+.update.\$has-downloaded-latest .download-btn {
+  background-image: url(/images/up-to-date.svg); }
+.update.\$has-downloaded-latest .cta.available-label {
+  color: #cbcaca; }
 .update.\$not-available .available-label {
   display: none; }
 .update.\$not-available .not-available-label {
   display: block; }
 .update.\$not-available .download-btn {
-  background-image: url(../images/no-download.svg); }
+  background-image: url(/images/no-download.svg); }
 .update .up-to-date-label {
   display: none; }
 .update.\$up-to-date .install-btn {
-  background-image: url(../images/up-to-date.svg); }
+  background-image: url(/images/up-to-date.svg); }
 .update.\$up-to-date .not-up-to-date-label {
   display: none; }
 .update.\$up-to-date .up-to-date-label {
@@ -994,7 +1012,6 @@ a {
   .sidebar,
   .\#update-view {
     display: block; } }
-
 
 .sidebar {
     background: #000;
