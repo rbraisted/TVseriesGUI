@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title>KVH's TracVision HD11 webCONTROL</title>
+    <title>KVH TVHUB Text Only webCONTROL</title>
     <script language="javascript" type="text/javascript">
 
         // Scrolls the page as the data from the antenna is received

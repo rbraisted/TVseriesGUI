@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/bmp" href="/images/favicon.ico.bmp" />
-<title>HD11 Text Only - File Transfer</title>
+<title>KVH TVHUB Text Only - File Transfer</title>
 <style>
 .hideField {
     display:none;

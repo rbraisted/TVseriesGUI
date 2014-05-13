@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>KVH's TracVision HD11 webCONTROL</title>
+<title>KVH TVHUB Text Only</title>
 <link rel="icon" type="image/bmp" href="/images/favicon.ico.bmp" />
 <link href="/css/kvhservice.css" rel="stylesheet" type="text/css" />
 <?php if(isset($extrahead)) echo $extrahead ?>

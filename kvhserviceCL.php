@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>KVH's TracVision HD11 webCONTROL</title>
+    <title>KVH TVHUB Text Only webCONTROL</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css" />
     <script type="text/JavaScript" src="/js/jquery.js"></script>
     <script type="text/JavaScript" src="/js/cmdLine.js"></script>
