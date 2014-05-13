@@ -30,6 +30,9 @@
   var formatCoordinate = function(type, coordinate, places) {
     if (_.isNaN(coordinate) || coordinate == '')
       return 'N/A';
+    else if (coordinate == -72.67){
+      return "72W";
+    }
 
     var posStr, negStr;
     if (type === 'latitude') {
