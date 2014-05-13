@@ -32,11 +32,12 @@
 
         } else if (value === 'BELL') {
           TVRO.setAutoswitchService({
-          	service: 'BELL',
+            enable : 'Y',
+         	service: 'BELL',
             satellite_group: 'BELL TV DUAL'
           }).then(function() {
               document.body.className = '/checkswitch-spinner';
-              TVRO.setCheckswitchMode({
+               TVRO.setCheckswitchMode({
                 enable : 'Y',
               }).then(function() {
                 var isEnabled;
@@ -61,6 +62,7 @@
                 }, 1000);
               });            
           });
+
         } else {
         	window.location = '/wizard/satellites.php';
         }
@@ -202,8 +204,10 @@
         });
 
       else if (option === automaticOption)
-        TVRO.setInstalledGroup({
-          name: 'DIRECTV DUAL'
+        TVRO.setAutoswitchService({
+          enable: 'Y',
+          service: 'DIRECTV',
+          satellite_group: 'DIRECTV DUAL'
         }).then(function() {
           window.location = '/wizard/autoswitch.php#/directv';
         });
@@ -284,7 +288,8 @@ var DishNetworkView = function(jQ) {
     if (isGroup) {
       installPromise = TVRO.setAutoswitchService({
         satellite_group: value,
-        service: 'DISH'
+        service: 'DISH',
+        enable: 'Y'
       });
     } else {
     	installPromise = TVRO.selectSatellite({
@@ -296,7 +301,28 @@ var DishNetworkView = function(jQ) {
     //  we want to follow up with the same thing
     installPromise.then(function() {
       document.body.className = '/checkswitch-spinner';
-      TVRO.setCheckswitchMode({
+      var state;
+      var intervalID;
+      
+      window.setTimeout(function(){
+ 
+        intervalID = window.setInterval(function() {
+    	  
+    	  TVRO.getAntennaStatus(1,1).then(function(xml) {
+            state =  $('antenna state', xml).text();
+            $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
+
+            if ("TRACKING" === state){
+              return window.clearInterval(intervalID);
+            }
+    	  });
+    	  
+        },1000);
+        
+        return;
+        
+      },10000).then(function (){
+        TVRO.setCheckswitchMode({
         enable : 'Y',
       }).then(function() {
         var isEnabled;
@@ -320,7 +346,12 @@ var DishNetworkView = function(jQ) {
           });
         }, 1000);
       });
-    });
+      
+      });
+      
+      
+      
+    }); //end install prom
 
   });
 
