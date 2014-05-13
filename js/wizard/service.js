@@ -305,48 +305,41 @@ var DishNetworkView = function(jQ) {
       var intervalID;
       
       window.setTimeout(function(){
- 
-        intervalID = window.setInterval(function() {
-    	  
-    	  TVRO.getAntennaStatus(1,1).then(function(xml) {
+        intervalID = window.setInterval(function() {  	  
+      	  TVRO.getAntennaStatus(1,1).then(function(xml) {
             state =  $('antenna state', xml).text();
             $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
-
-            if ("TRACKING" === state){
+            if ("TRACKING" === state) {
               return window.clearInterval(intervalID);
             }
-    	  });
-    	  
-        },1000);
-        
-        return;
-        
-      },10000).then(function (){
-        TVRO.setCheckswitchMode({
-        enable : 'Y',
-      }).then(function() {
-        var isEnabled;
-        var status = 0;
-        var intervalID = window.setInterval(function() {
-          //  use TVRO.webserviceCall(1, 1) to force recache
-          TVRO.getCheckswitchMode(1, 1).then(function(xml) {
-            isEnabled = $('enable', xml).text();
-            status =  $('status', xml).text();
-            $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
-            
-            switch (status){
-            case "IN_PROGRESS":
-            	window.clearInterval(intervalID);
-                window.location = '/wizard/system.php#/other-system-config';
-                break;
-            case "FAILED":
-            	alert("Checkswitch mode has failed.");
-                break;
-            }
-          });
+      	  });
         }, 1000);
-      });
-      
+        return;
+      }, 10000).then(function () {
+        TVRO.setCheckswitchMode({
+          enable : 'Y',
+        }).then(function() {
+          var isEnabled;
+          var status = 0;
+          var intervalID = window.setInterval(function() {
+            //  use TVRO.webserviceCall(1, 1) to force recache
+            TVRO.getCheckswitchMode(1, 1).then(function(xml) {
+              isEnabled = $('enable', xml).text();
+              status =  $('status', xml).text();
+              $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
+              
+              switch (status){
+              case "IN_PROGRESS":
+              	window.clearInterval(intervalID);
+                  window.location = '/wizard/system.php#/other-system-config';
+                  break;
+              case "FAILED":
+              	alert("Checkswitch mode has failed.");
+                  break;
+              }
+            });
+          }, 1000);
+        });      
       });
       
       

@@ -106,11 +106,11 @@
     var self = VesselInfoView(jQ);
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-        TVRO.getAntennaVersions().then(function(xml) {
-            var antModel = $('au model', xml).text();
-            if (antModel === 'TV5' || antModel === 'TV6') window.location = '/wizard/';
-            else window.location.hash = '/installer-id';
-        });
+      TVRO.getAntennaVersions().then(function(xml) {
+        var antModel = $('au model', xml).text();
+        if (antModel === 'TV5' || antModel === 'TV6') window.location = '/wizard/';
+        else window.location.hash = '/installer-id';
+      });
     });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
@@ -129,7 +129,7 @@
     var self = VesselInfoView(jQ);
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function(event) {
-        window.location.hash = '/installer-id';
+      window.location.hash = '/installer-id';
     });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
@@ -163,7 +163,8 @@
           installer_email: email
         }
       }).then(function() {
-        if (TVRO.getShellMode()) {
+        // if (TVRO.getShellMode()) {
+        if (true) {
           TVRO.sendShellCommand('set-installer-company/' + company);
           TVRO.sendShellCommand('set-installer-contact/' + contact);
           TVRO.sendShellCommand('set-installer-phone/' + phone);
