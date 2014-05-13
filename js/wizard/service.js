@@ -301,46 +301,63 @@ var DishNetworkView = function(jQ) {
     //  we want to follow up with the same thing
     installPromise.then(function() {
       document.body.className = '/checkswitch-spinner';
-      var state;
-      var intervalID;
-      
-      window.setTimeout(function(){
-        intervalID = window.setInterval(function() {  	  
-      	  TVRO.getAntennaStatus(1,1).then(function(xml) {
-            state =  $('antenna state', xml).text();
+
+      //  wait 10 seconds
+      //  every second after, check if state is TRACKING
+      //  once state is tracking ... ???
+      setTimeout(function() {
+        var interval = setInterval(function() {
+          TVRO.getAntennaStatus(1,1).then(function(xml) {
+            var state =  $('antenna state', xml).text();
             $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
-            if ("TRACKING" === state) {
-              return window.clearInterval(intervalID);
+            if (state === 'TRACKING') {
+              clearInterval(interval);
+              //  state is now tracking, do what you need to do
+              //  ???
             }
-      	  });
+          });          
         }, 1000);
-        return;
-      }, 10000).then(function () {
-        TVRO.setCheckswitchMode({
-          enable : 'Y',
-        }).then(function() {
-          var isEnabled;
-          var status = 0;
-          var intervalID = window.setInterval(function() {
-            //  use TVRO.webserviceCall(1, 1) to force recache
-            TVRO.getCheckswitchMode(1, 1).then(function(xml) {
-              isEnabled = $('enable', xml).text();
-              status =  $('status', xml).text();
-              $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
+      }, 10000);
+
+      // var state;
+      // var intervalID;      
+      // window.setTimeout(function(){
+      //   intervalID = window.setInterval(function() {  	  
+      // 	  TVRO.getAntennaStatus(1,1).then(function(xml) {
+      //       state =  $('antenna state', xml).text();
+      //       $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
+      //       if ("TRACKING" === state) {
+      //         return window.clearInterval(intervalID);
+      //       }
+      // 	  });
+      //   }, 1000);
+      //   return;
+      // }, 10000).then(function () {
+      //   TVRO.setCheckswitchMode({
+      //     enable : 'Y',
+      //   }).then(function() {
+      //     var isEnabled;
+      //     var status = 0;
+      //     var intervalID = window.setInterval(function() {
+      //       //  use TVRO.webserviceCall(1, 1) to force recache
+      //       TVRO.getCheckswitchMode(1, 1).then(function(xml) {
+      //         isEnabled = $('enable', xml).text();
+      //         status =  $('status', xml).text();
+      //         $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
               
-              switch (status){
-              case "IN_PROGRESS":
-              	window.clearInterval(intervalID);
-                  window.location = '/wizard/system.php#/other-system-config';
-                  break;
-              case "FAILED":
-              	alert("Checkswitch mode has failed.");
-                  break;
-              }
-            });
-          }, 1000);
-        });      
-      });
+      //         switch (status){
+      //         case "IN_PROGRESS":
+      //         	window.clearInterval(intervalID);
+      //             window.location = '/wizard/system.php#/other-system-config';
+      //             break;
+      //         case "FAILED":
+      //         	alert("Checkswitch mode has failed.");
+      //             break;
+      //         }
+      //       });
+      //     }, 1000);
+      //   });      
+      // });
       
       
       
