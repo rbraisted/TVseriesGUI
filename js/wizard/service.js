@@ -246,8 +246,6 @@
                 })
                 .build();
 
-
-
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var isGroup = groupsView.is(':visible');
       var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
@@ -270,50 +268,6 @@
         installPromise = TVRO.selectSatellite({
           antSatID: value
         });
-      }
-
-      function startCheckswitchMode(){
-        //  wait 10 seconds to allow antenna to switch
-        //  service/groups and avoid false tracking.
-        //  every second after, check if state is TRACKING
-        //  once state is tracking ... ???
-        setTimeout(function() {
-          var interval = setInterval(function() {
-            TVRO.getAntennaStatus(1,1).then(function(xml) {
-              var state =  $('antenna state', xml).text();
-              $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
-              if (state === 'TRACKING') {
-                clearInterval(interval);
-
-                TVRO.setCheckswitchMode({
-                  enable : 'Y',
-                }).then(function() {
-                  var isEnabled;
-                  var status = 0;
-                  var intervalID = window.setInterval(function() {
-                    //  use TVRO.webserviceCall(1, 1) to force recache
-                    TVRO.getCheckswitchMode(1, 1).then(function(xml) {
-                      isEnabled = $('enable', xml).text();
-                      status =  $('status', xml).text();
-                      $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
-
-                      switch (status){
-                      case "IN_PROGRESS":
-                        window.clearInterval(intervalID);
-                        window.location = '/wizard/system.php#/other-system-config';
-                        break;
-                      case "FAILED":
-                        window.clearInterval(intervalID);
-                        alert("Checkswitch mode has failed.");
-                        break;
-                      }
-                    });
-                  }, 1000);
-                }); //End .then for  setCheckswitchMode   
-              } //End if (state === 'TRACKING')
-            });          
-          }, 1000);
-        }, 10000);
       }
 
       //  whether we installed a group or a single sat
@@ -347,6 +301,50 @@
 
     return self;
   };
+
+  function startCheckswitchMode(){
+    //  wait 10 seconds to allow antenna to switch
+    //  service/groups and avoid false tracking.
+    //  every second after, check if state is TRACKING
+    //  once state is tracking ... ???
+    setTimeout(function() {
+      var interval = setInterval(function() {
+        TVRO.getAntennaStatus(1,1).then(function(xml) {
+          var state =  $('antenna state', xml).text();
+          $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
+          if (state === 'TRACKING') {
+            clearInterval(interval);
+
+            TVRO.setCheckswitchMode({
+              enable : 'Y',
+            }).then(function() {
+              var isEnabled;
+              var status = 0;
+              var intervalID = window.setInterval(function() {
+                //  use TVRO.webserviceCall(1, 1) to force recache
+                TVRO.getCheckswitchMode(1, 1).then(function(xml) {
+                  isEnabled = $('enable', xml).text();
+                  status =  $('status', xml).text();
+                  $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
+
+                  switch (status){
+                  case "IN_PROGRESS":
+                    window.clearInterval(intervalID);
+                    window.location = '/wizard/system.php#/other-system-config';
+                    break;
+                  case "FAILED":
+                    window.clearInterval(intervalID);
+                    alert("Checkswitch mode has failed.");
+                    break;
+                  }
+                });
+              }, 1000);
+            }); //End .then for  setCheckswitchMode   
+          } //End if (state === 'TRACKING')
+        });          
+      }, 1000);
+    }, 10000);
+  }
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.ServiceSubtypeView = ServiceSubtypeView;
