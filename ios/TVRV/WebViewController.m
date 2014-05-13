@@ -29,8 +29,7 @@
   //	there used to be a very complicated process to pass demo/tech mode
   //	and mobile shell flags to the web code but now we just open on shell.php
   //	which handles this for us
-//	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shell.php", hostName]]]];
-	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/wizard/registration.php#/installer-info", hostName]]]];
+	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shell.php", hostName]]]];
 }
 
 - (BOOL)prefersStatusBarHidden {
