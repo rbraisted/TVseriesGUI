@@ -297,7 +297,8 @@
       TVRO.getAntennaVersions(),
       TVRO.getAutoswitchStatus(),
       TVRO.getAntennaStatus(),
-      TVRO.getWebUIVersion()
+      TVRO.getWebUIVersion(),
+      TVRO.getSatelliteService()
     ).then(function(xmls) {
       var systemInfo = {};
       systemInfo.hubSn = $('acu sn', xmls[0]).text();
@@ -317,7 +318,7 @@
       systemInfo.skewVer = $('skew_xaz ver', xmls[0]).text();
       systemInfo.lnbName = $('lnb name', xmls[0]).text();
       systemInfo.lnbVer = $('lnb ver', xmls[0]).text();
-      systemInfo.service = $('service', xmls[1]).text() + ' ' + $('service_subtype', xmls[1]).text();
+      systemInfo.service = $('service', xmls[4]).text();
       systemInfo.webUIVer = xmls[3];
       return systemInfo;
     });
