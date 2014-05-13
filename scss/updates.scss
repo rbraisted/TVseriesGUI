@@ -194,6 +194,16 @@
     }
   }
 
+  &.\$has-downloaded-latest {
+    .download-btn {
+      background-image: url(/images/up-to-date.svg);
+    }
+
+    .cta.available-label {
+      color: $grey;
+    }
+  }
+
   &.\$not-available {
     .available-label {
       display: none;

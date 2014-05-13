@@ -975,6 +975,10 @@ a {
   background-image: url(/images/download.svg); }
   .update.\$connected .install-btn input {
     display: block; }
+.update.\$has-downloaded-latest .download-btn {
+  background-image: url(/images/up-to-date.svg); }
+.update.\$has-downloaded-latest .cta.available-label {
+  color: #cbcaca; }
 .update.\$not-available .available-label {
   display: none; }
 .update.\$not-available .not-available-label {

@@ -389,17 +389,28 @@
 
   TVRO.setDeviceVersions = setDeviceVersions;
   TVRO.getDeviceVersions = function(recache) {
-    if (cache['get_device_versions'] && !recache) {
-      return cache['get_device_versions'];
-    } else {
+    // if (cache['get_device_versions'] && !recache) {
+    //   return cache['get_device_versions'];
+    // } else {
+      cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
+
       if (TVRO.getShellMode()) TVRO.sendShellCommand('get-device-versions');
-      return cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
-    }
+      else TVRO.setDeviceVersions({
+        SatLibrary: TVRO.getDownloadedSatLibraryUpdateVersion(),
+        TV1: TVRO.getDownloadedTV1UpdateVersion(),
+        TV3: TVRO.getDownloadedTV3UpdateVersion(),
+        TV5: TVRO.getDownloadedTV5UpdateVersion(),
+        TV6: TVRO.getDownloadedTV6UpdateVersion(),
+        RV1: TVRO.getDownloadedRV1UpdateVersion()
+      });
+
+      return cache['get_device_versions'];
+    // }
   };
 
-    //  pull from the box first,
-    //  then if any of these fields are unavailable try getting them from
-    //  cookies and in shell mode by making a tvro:// call
+  //  pull from the box first,
+  //  then if any of these fields are unavailable try getting them from
+  //  cookies and in shell mode by making a tvro:// call
   var installerInfo;
   var getInstallerInfoCallbacks = [];
   var getInstallerInfo = function(callback) {

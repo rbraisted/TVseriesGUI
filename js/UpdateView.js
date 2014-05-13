@@ -20,8 +20,15 @@
       TVRO.getLatestSoftware(update).then(function(xml) {
         var portalUrl = $('url', xml).text();
         var portalVersion = $('software_version', xml).text() || $('version', xml).text();
-        if (TVRO.getShellMode()) TVRO.sendShellCommand('download/' + update + '/' + portalVersion + '/' + portalUrl);
-        else window.location = portalUrl;
+        if (TVRO.getShellMode()) {
+          TVRO.sendShellCommand('download/' + update + '/' + portalVersion + '/' + portalUrl);
+        } else {
+          window.location = portalUrl;
+          TVRO['setDownloaded' + update + 'UpdateVersion'](portalVersion);
+          setTimeout(function() {
+            window.location.reload();
+          }, 500);
+        }
         jQ.removeClass('$not-available');
       });
     });
@@ -109,7 +116,7 @@
           var connected = update === connectedAnt;
           var systemVersion = $('current', xml).text();
 
-          jQ.removeClass('$antenna $sat-library $connected');
+          jQ.removeClass('$antenna $sat-library $connected $up-to-date $has-downloaded-latest');
 
           if (antUpdate) {
             jQ.addClass('$antenna');
@@ -138,16 +145,26 @@
           return -1;
         });
 
-        Promise.all(getSystemVersion, getPortalVersion).then(function(versions) {
+        Promise.all(
+          getSystemVersion,
+          getPortalVersion
+        ).then(function(versions) {
           var systemVersion = versions[0];
           var portalVersion = versions[1];
           jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
         });
 
-        TVRO.getDeviceVersions().then(function(deviceVersions) {
+        Promise.all(
+          getPortalVersion,
+          TVRO.getDeviceVersions()
+        ).then(function(versions) {
+          var portalVersion = versions[0];
+          var deviceVersions = versions[1];
+          var downloadedVersionForThisUpdate = deviceVersions[update];
           $('.\\#device-ver-label', jQ).show();
           $('.\\#no-device-ver-label', jQ).hide();
           $('.\\#device-ver', jQ).text(deviceVersions[update] || 'N/A');
+          jQ.toggleClass('$has-downloaded-latest', downloadedVersionForThisUpdate === portalVersion);
         });
       }
     };
