@@ -41,6 +41,11 @@
         $('.\\#ant-eight', jQ).text(powerInfo.antEight || 'N/A');
         $('.\\#ant-five', jQ).text(powerInfo.antFive || 'N/A');
         $('.\\#ant-lnb', jQ).text(powerInfo.antLnb || 'N/A');
+        $('.\\#ant-temp', jQ).text(powerInfo.antTemp || 'N/A');
+      });
+      
+      TVRO.getOphoursInfo().then(function(ophoursInfo) {
+          $('.\\#ant-ophours', jQ).text(ophoursInfo.hours || 'N/A');
       });
     };
 

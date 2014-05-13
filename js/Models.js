@@ -341,9 +341,18 @@
       powerInfo.antEight = $('au eight', xml).text();
       powerInfo.antFive = $('au five', xml).text();
       powerInfo.antLnb = $('au lnb', xml).text();
+      powerInfo.antTemp = $('au temp_celsius', xml).text();
       return powerInfo;
     });
   };
+
+  TVRO.getOphoursInfo = function() {
+	    return TVRO.getOphours().then(function(xml) {
+	      var ophoursInfo = {};
+	      ophoursInfo.hours = $('hours', xml).text();
+	      return ophoursInfo;
+	    });
+	  };
 
   TVRO.getGroupMode = function() {
     return TVRO.getInstalledGroup().then(function(group) {

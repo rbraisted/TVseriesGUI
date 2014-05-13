@@ -87,6 +87,8 @@
     <span class="label">8 VDC</span><span class="value #ant-eight"></span>
     <span class="label">5 VDC</span><span class="value #ant-five"></span>
     <span class="label">LNB 13/18 VDC</span><span class="value #ant-lnb"></span>
+    <span class="label">Temperature(Celsius)</span><span class="value #ant-temp"></span>
+    <span class="label">Operational Hours</span><span class="value #ant-ophours"></span>
   </div>
 </div>
 

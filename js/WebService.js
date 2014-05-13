@@ -250,13 +250,15 @@
 
 	TVRO.getHeadingConfig = get('get_heading_config');
 
-  TVRO.reboot = set('reboot');
+	TVRO.reboot = set('reboot');
 
-  TVRO.resetSoftware = set('reset_software');
+  	TVRO.resetSoftware = set('reset_software');
 
-  TVRO.getPower = get('power');
+    TVRO.getPower = get('power');
 
-	TVRO.getLnbList = get('get_lnb_list');
+    TVRO.getOphours = get('ophours');
+
+    TVRO.getLnbList = get('get_lnb_list');
 
 	TVRO.getVesselConfig = get('get_vessel_config');
 
