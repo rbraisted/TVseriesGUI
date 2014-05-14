@@ -11,6 +11,10 @@
 	UpdatesManager* updatesManager;
 	SatFinderViewController* satFinderViewController;
   NSTimer *timeoutTimer;
+  
+  UIView* loadingView;
+  
+  UIWebView* helpWebView;
 }
 
 - (id)initWithHostName:(NSString*)hostName;

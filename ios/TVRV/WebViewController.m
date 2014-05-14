@@ -12,15 +12,71 @@
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad {
+  updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
+  
+  //	main web view - displays gui, handles custom scheme (tvro://) calls
 	webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
 	[webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 	[webView.scrollView setDelaysContentTouches:NO];
 	[webView setDelegate:self];
-	[webView setBackgroundColor:[UIColor blackColor]];
 	webView.scrollView.bounces = NO;
 	[self.view addSubview:webView];
-	
-	updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
+  
+  //	help web view - displays help pages
+  //	no delegate set for helpWebView
+  helpWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
+  [helpWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+  [helpWebView.scrollView setDelaysContentTouches:NO];
+  helpWebView.scrollView.bounces = NO;
+  [helpWebView setHidden:YES];
+  [self.view addSubview:helpWebView];
+  
+  //	attach a close button and header bar to the help
+  UIImage* helpCloseButtonImage = [UIImage imageNamed:@"close-button"];
+	UIButton* helpCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [helpCloseButton setFrame:CGRectMake(self.view.frame.size.width - 41.0, 9.0, 32.0, 32.0)];
+  [helpCloseButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+  [helpCloseButton setBackgroundImage:helpCloseButtonImage forState:UIControlStateNormal];
+  [helpCloseButton addTarget:self action:@selector(closeHelpWebView) forControlEvents:UIControlEventTouchUpInside];
+  
+  UILabel* helpTopBarLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];
+  [helpTopBarLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+  [helpTopBarLabel setTextColor:[UIColor whiteColor]];
+  [helpTopBarLabel setText:@"Help Center"];
+  [helpTopBarLabel setTextAlignment:NSTextAlignmentCenter];
+  [helpTopBarLabel setFont:[UIFont fontWithName:@"Helvetica" size:21]];
+  
+  UIView* helpTopBar = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];
+  [helpTopBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [helpTopBar setBackgroundColor:[UIColor blackColor]];
+  [helpTopBar addSubview:helpTopBarLabel];
+  
+  [helpWebView addSubview:helpTopBar];
+  [helpWebView addSubview:helpCloseButton];
+  
+  //	spinner/loader
+  loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
+  [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [loadingView setBackgroundColor:[UIColor colorWithRed:4.0/255.0 green:18.0/255.0 blue:42.0/255.0 alpha:1]];
+  
+  UIImageView* backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradient.png"]];
+  [backgroundView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin   |
+																		   UIViewAutoresizingFlexibleRightMargin  |
+                                       UIViewAutoresizingFlexibleTopMargin    |
+                                       UIViewAutoresizingFlexibleBottomMargin)];
+  [backgroundView setCenter:loadingView.center];
+  [loadingView addSubview:backgroundView];
+  
+  UIActivityIndicatorView* spinnerView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  [spinnerView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin   |
+                                    UIViewAutoresizingFlexibleRightMargin  |
+                                    UIViewAutoresizingFlexibleTopMargin    |
+                                    UIViewAutoresizingFlexibleBottomMargin)];
+  [spinnerView setCenter:loadingView.center];
+  [loadingView addSubview:spinnerView];
+  [spinnerView startAnimating];
+  [self.view addSubview:loadingView];
+  [loadingView setHidden:TRUE];
 	
 	[super viewDidLoad];
 }
@@ -43,7 +99,7 @@
 #pragma mark - UIWebViewDelegate protocol methods
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError*)error {
-	NSLog(@"webView didFailLoadWithError:%@", error);
+	NSLog(@"webView:%@ didFailLoadWithError:%@", _webView == webView ? @"webView" : @"helpWebView", error);
 	//  NSURLErrorCancelled (-999)
   //	"Returned when an asynchronous load is canceled. A Web Kit framework delegate will
   //	receive this error when it performs a cancel operation on a loading resource. Note
@@ -53,14 +109,19 @@
   //	i'm not exactly sure what unusual cases might bring this error, but we need to
   //	check for this case now in order to prevent the timeoutTimer from kicking us
   //	back to the bonjour view after a redirect (or even if the user has fast fingers)
-  if (error.code == NSURLErrorCancelled) [timeoutTimer invalidate];
+  if (error.code == NSURLErrorCancelled) {
+    [timeoutTimer invalidate];
+    [loadingView setHidden:TRUE];
+  }
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSLog(@"webView shouldStartLoadWithRequest:%@ navigationType:%d", request, navigationType);
-
+  NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%d", _webView == webView ? @"webView" : @"helpWebView", request, navigationType);
+  
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
+  
+  [helpWebView setHidden:YES];
   
 	//	check if it's a javascript to ios/android command
 	//	being called with a the scheme "tvro"
@@ -68,27 +129,30 @@
     NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
     [self handleCustomURL:request.URL];
     return false;
-
-        
+    
+    
   } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
     //	were trying to go to about:blank for some reason lets negate that
     NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
     [timeoutTimer invalidate];
+    [loadingView setHidden:TRUE];
     return false;
-        
     
-	//	check if it's coming from our bdu hostname
-	//	if not, it's probably an external link and we
-	//	should open it in safari
+    
+    //	check if it's coming from our bdu hostname
+    //	if not, it's probably an external link and we
+    //	should open it in safari
 	} else if (![hostName isEqualToString:_hostName]) {
 		NSLog(@"    ![hostName isEqualToString:_hostName]");
-//		[[UIApplication sharedApplication] openURL:request.URL];
-//		return false;
+    //		[[UIApplication sharedApplication] openURL:request.URL];
+    //		return false;
 		return true;
-	
-        
-	//	at this point it's probably just another path in our app,
-  //	so return true and let the uiwebview continue loading
+    
+    
+    //	} else if ([request.URL.pathComponents objectAtIndex:1])
+    
+    //	at this point it's probably just another path in our app,
+    //	so return true and let the uiwebview continue loading
 	} else {
 		return true;
 	}
@@ -106,34 +170,31 @@
   
 	//	set tech and demo mode - the device's settings should override the
   //	cookies set by the gui - we basically brute force this by setting the cookies
-  //	with the device's setting values on every page load≈
+  //	with the device's setting values on every page load
 	NSString* demoMode = [defaults boolForKey:@"demo-mode"] ? @"true" : @"false";
   NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
   
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
   NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
-	
-	
+  
 	NSString* installerCompany = [defaults valueForKey:@"installer-company"];
 	if (installerCompany == NULL) installerCompany = @"";
 	NSString* installerCompanyString = [NSString stringWithFormat:@"TVRO.setInstallerCompany(%@);", installerCompany];
-	
+
 	NSString* installerContact = [defaults valueForKey:@"installer-contact"];
 	if (installerContact == NULL) installerCompany = @"";
 	NSString* installerContactString = [NSString stringWithFormat:@"TVRO.setInstallerContact(%@);", installerContact];
-	
+
 	NSString* installerPhone = [defaults valueForKey:@"installer-phone"];
 	if (installerPhone == NULL) installerPhone = @"";
 	NSString* installerPhoneString = [NSString stringWithFormat:@"TVRO.setInstallerPhone(%@);", installerPhone];
-	
+
 	NSString* installerEmail = [defaults valueForKey:@"installer-email"];
 	if (installerEmail == NULL) installerEmail = @"";
 	NSString* installerEmailString = [NSString stringWithFormat:@"TVRO.setInstallerEmail(%@);", installerEmail];
-
   
 	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@", demoModeString, techModeString, installerCompanyString, installerContactString, installerPhoneString, installerEmailString];
-	[webView stringByEvaluatingJavaScriptFromString:jsString];
-
+ 	[webView stringByEvaluatingJavaScriptFromString:jsString];
   
   // Check to see if the default host name has been set to the current connected host
   // if not then set the user defaults host name so it can be displayed on Bonjour view
@@ -142,14 +203,16 @@
     [defaults setObject:hostName forKey:@"default-host"];
     [defaults synchronize];
   }
-
+  
 	[timeoutTimer invalidate];
+  [loadingView setHidden:TRUE];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidStartLoad");
   //	start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
   timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
+  [loadingView setHidden:FALSE];
 }
 
 #pragma mark - UpdatesManagerDelgate protocol methods
@@ -192,37 +255,45 @@
   NSLog(@"handleCustomURL: %@", url);
   NSArray* pathComponents = [url pathComponents];
   
-  if ([url.host isEqualToString:@"change-hostname"]) {
-  //	tvro://change-hostname
-  //    brings you back to the bonjour list view
+  if ([url.host isEqualToString:@"help"]) {
+    NSString* helpUrlString = [NSString stringWithFormat:@"http://%@/%@%@?%@", hostName, url.host, url.path, url.query];
+    NSURL* helpUrl = [NSURL URLWithString:helpUrlString];
+    NSURLRequest* helpRequest = [NSURLRequest requestWithURL:helpUrl];
+    NSLog(@"helpUrl:%@", helpUrl);
+    NSLog(@"helpUrlString:%@", helpUrlString);
+		[helpWebView loadRequest:helpRequest];
+    [helpWebView setHidden:NO];
+    
+    
+  } else if ([url.host isEqualToString:@"change-hostname"]) {
+    //	tvro://change-hostname
+    //    brings you back to the bonjour list view
     [self goBackToHostSelect];
-
+    
     
   } else if ([url.host isEqualToString:@"sat-finder"]) {
-  //	tvro://sat-finder
-  //    shows the sat finder - desktop has no sat finder
+    //	tvro://sat-finder
+    //    shows the sat finder - desktop has no sat finder
     [self showSatFinder];
-	  
-	  
-  } else if ([url.host isEqualToString:@"set-installer-company"]
-			 || [url.host isEqualToString:@"set-installer-company"]
-			 || [url.host isEqualToString:@"set-installer-company"]
-			 || [url.host isEqualToString:@"set-installer-company"]) {
+    
+    
+	} else if ([url.host isEqualToString:@"set-installer-company"]
+          || [url.host isEqualToString:@"set-installer-company"]
+					|| [url.host isEqualToString:@"set-installer-company"]
+					|| [url.host isEqualToString:@"set-installer-company"]) {
+		NSString* key = [url.host substringFromIndex:4];
+		NSString* value = [url.path substringFromIndex:1];
+		[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
+		[[NSUserDefaults standardUserDefaults] synchronize];
 
-	  NSString* key = [url.host substringFromIndex:4];
-	  NSString* value = [url.path substringFromIndex:1];
-	  [[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
-	  [[NSUserDefaults standardUserDefaults] synchronize];
-	  
-    
-    
+
   } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
-  //	tvro://set-tech-mode/{ true || false }
-  //	tvro://set-demo-mode/{ true || false }
-  //    setting tech/demo mode - these are done via cookies on desktop
-  //    but are done via NSUserDefaults in the mobile shell
-  //    the ui buttons in GeneralSettingsView of the web code is hooked up
-  //    to call these two functions on the iOS side
+    //	tvro://set-tech-mode/{ true || false }
+    //	tvro://set-demo-mode/{ true || false }
+    //    setting tech/demo mode - these are done via cookies on desktop
+    //    but are done via NSUserDefaults in the mobile shell
+    //    the ui buttons in GeneralSettingsView of the web code is hooked up
+    //    to call these two functions on the iOS side
     NSString* key = [url.host substringFromIndex:4];
     BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
@@ -230,19 +301,19 @@
     
     
   } else if ([url.host isEqualToString:@"get-device-versions"]) {
-  //	tvro://get-device-versions
-  //    gets versions of the stored update files
-  //    makes a javascript call that gives the web code the device versions
+    //	tvro://get-device-versions
+    //    gets versions of the stored update files
+    //    makes a javascript call that gives the web code the device versions
     [self setDeviceVersions];
-
+    
     
   } else if ([url.host isEqualToString:@"download"]) {
-  //  tvro://download/{ update-type-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-update-from }
-  //    starts downloading the a specifed version of the update file
-  //    for a specified antenna-type
-  //    from a specifed url
-  //    this reponsibility is passed from the web code to the mobile code because
-  //    you cannot navigate the filesystem on some mobile devices for certain kinds of files
+    //  tvro://download/{ update-type-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-update-from }
+    //    starts downloading the a specifed version of the update file
+    //    for a specified antenna-type
+    //    from a specifed url
+    //    this reponsibility is passed from the web code to the mobile code because
+    //    you cannot navigate the filesystem on some mobile devices for certain kinds of files
     NSString* updateType = [NSString stringWithString:pathComponents[1]];
     NSString* portalVersion = [NSString stringWithString:pathComponents[2]];
     NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(3, [pathComponents count]-3)] componentsJoinedByString:@"/"];
@@ -250,19 +321,20 @@
     
     
   } else if ([url.host isEqualToString:@"upload"]) {
-  //  tvro://upload/{ update-type-to-upload-and-install }
-  //    calls the install_software method of the backend
-  //    we do this for the same reason as the download - some devices can't
-  //    search/find and upload/install the file from the device's file system
+    //  tvro://upload/{ update-type-to-upload-and-install }
+    //    calls the install_software method of the backend
+    //    we do this for the same reason as the download - some devices can't
+    //    search/find and upload/install the file from the device's file system
     NSString* updateType = [NSString stringWithString:pathComponents[1]];
     NSString* uploadURLString = [NSString stringWithFormat:@"http://%@/xmlservices.php/set_config_file", hostName];
     NSURL* uploadURL = [NSURL URLWithString:uploadURLString];
     [updatesManager startUploadForUpdateType:updateType uploadUrl:uploadURL];
   }
-    
+  
   //invalidate timer otherwise we will be kicked back to the bonjour
   //from calls like set-demo-mode, set-tech-mode
   [timeoutTimer invalidate];
+  [loadingView setHidden:TRUE];
 }
 
 - (void)showSatFinder {
@@ -294,6 +366,10 @@
   NSLog(@"jsString: %@", jsString);
   
   [webView stringByEvaluatingJavaScriptFromString:jsString];
+}
+
+- (void)closeHelpWebView {
+  [helpWebView setHidden:YES];
 }
 
 @end

@@ -87,6 +87,8 @@
 		E9B97C841829A14A007AA4A3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C831829A14A007AA4A3 /* XCTest.framework */; };
 		E9B97C851829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
 		E9B97C861829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
+		E9C285CD1923EFBD001B194F /* close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C285CB1923EFBD001B194F /* close-button.png */; };
+		E9C285CE1923EFBD001B194F /* gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C285CC1923EFBD001B194F /* gradient.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		E9B97C6E1829A14A007AA4A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVRVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B97C831829A14A007AA4A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		E9C285CB1923EFBD001B194F /* close-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button.png"; sourceTree = "<group>"; };
+		E9C285CC1923EFBD001B194F /* gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,8 @@
 		AAC0139B1917F4DA00445E07 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E9C285CB1923EFBD001B194F /* close-button.png */,
+				E9C285CC1923EFBD001B194F /* gradient.png */,
 				AAC0139C1917F4DA00445E07 /* bonjourBG.png */,
 				AAC0139D1917F4DA00445E07 /* bonjourBG@2x.png */,
 				AAC0139E1917F4DA00445E07 /* bonjourDivider.png */,
@@ -437,6 +443,7 @@
 				AAC013E61917F4DA00445E07 /* BonjourViewiPadLandscape.xib in Resources */,
 				AAC014001917F4DA00445E07 /* TracVisionLogo.png in Resources */,
 				AAC014161917F4DA00445E07 /* TVRV_Launch_2048x1536.png in Resources */,
+				E9C285CE1923EFBD001B194F /* gradient.png in Resources */,
 				AAC013E81917F4DA00445E07 /* bonjourBG.png in Resources */,
 				AAC013FC1917F4DA00445E07 /* tableCellBGLight.png in Resources */,
 				AAC014021917F4DA00445E07 /* tracVisionLogoiPad.png in Resources */,
@@ -479,6 +486,7 @@
 				AAC0140D1917F4DA00445E07 /* TVRV_icons_58x58.png in Resources */,
 				AAC013F51917F4DA00445E07 /* refreshButton@2x.png in Resources */,
 				AAC013ED1917F4DA00445E07 /* connectButton@2x.png in Resources */,
+				E9C285CD1923EFBD001B194F /* close-button.png in Resources */,
 				AAC014121917F4DA00445E07 /* TVRV_icons_iTunesArtwork.png in Resources */,
 				AAC013FD1917F4DA00445E07 /* tableCellBGLight@2x.png in Resources */,
 				AAC014181917F4DA00445E07 /* TVRV_Launch_640x1136.png in Resources */,
