@@ -34,9 +34,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 </div>
 
 
-<div class="view service-subtype #service-subtype-view">
-  <div class="view-head">Choose the Active Service</div>
-  <div class="headline">Which service do you want the antenna to track now?</div>
+<div class="view tri-am-group #tri-am-group-view">
+  <div class="view-head">Choose a Group</div>
+  <div class="headline">Which group do you want to install?</div>
   <div class="clear-table #table-view">
     <div class="table-row #table-row">
       <span class="table-col install-btn"></span><!--

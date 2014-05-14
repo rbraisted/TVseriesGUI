@@ -58,79 +58,50 @@
     return self;
   };
 
-  var ServiceSubtypeView = function(jQ) {
+  var TriAmGroupView = function(jQ) {
     var self = TVRO.TableView($('.\\#table-view', jQ))
-    .setValues([
-                'NORTH_AMERICA',
-                'LATIN_AMERICA'
-                ])
+    .setValues(['TRI-AM DUAL',
+                'TRI-AM TRISAT'])
                 .onBuild(function(row, value) {
-                  if (value === 'NORTH_AMERICA') $('.\\#value', row).text('DIRECTV North America');
-                  else $('.\\#value', row).text('DIRECTV Latin America');
+                  if (value === 'TRI-AM DUAL') $('.\\#value', row).text('TRI-AM DUAL');
+                  else if (value === 'TRI-AM TRISAT') $('.\\#value', row).text('TRI-AM TRISAT');
                 })
                 .build();
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else TVRO.setAutoswitchService({
-        service: 'DIRECTV',
-        service_subtype: value
-      }).then(function() {
-        window.location = '/wizard/system.php#/linear-system-config'
-      });
+      else{ 
+        TVRO.setAutoswitchService({
+          enable: 'N',
+          service: 'DIRECTV',
+          satellite_group: value
+        }).then(function() {
+          document.body.className = '/spinner';
+          setTimeout(function() {
+            if(value === 'TRI-AM DUAL'){
+              window.location = '/wizard/activation.php';
+            }else{
+              window.location.hash = '/directv';
+            }  
+          }, 500);
+        });
+      }
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '/directv';
+      window.location = '/wizard/gps.php#/heading-source';
     });
+
+    TVRO.getInstalledGroup().then(function(installedGroup){self.setValue(installedGroup.name)});    
 
     return self;
   };
 
-
-
-//  var LocalChannelsView = function(jQ) {
-//    var self;
-//
-//    var installBtn = $('.\\#install-btn', jQ).click(function() {
-//      TVRO.setInstalledSat({
-//        antSatID: '119WD'
-//      }).then(function() {
-//        document.body.className = '/spinner';
-//        setTimeout(function() {
-//          TVRO.getAntennaVersions().then(function(xml) {
-//            var isTriAmericas = $('lnb name', xml).text() === 'Tri-Americas';
-//            if (isTriAmericas) window.location.hash = '/service-subtype';
-//            else window.location.hash = '/directv';
-//          });
-//        }, 500);
-//      });
-//    });
-//
-//    $('.\\#local-channels-view')
-//    .find('.\\#cityDropdown')
-//    .click(function() {
-//      window.location.hash = '/cities-119';
-//    })
-//    .end()
-//
-//    $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/local-channels'; });
-//
-//    var nextBtn = $('.\\#next-btn', jQ).click(function() {
-//      window.location.hash = '/directv';
-//    });
-//
-//    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-//      window.location = '/wizard/service.php';
-//    });
-//
-//    return self;
-//  };
-
-
-
   var DirectvView = function(jQ) {
+
+    var group = '';
+
     var singleOption = {
         title: 'Single Satellite',
         copy: 'For programming on the 101 satellite, you are ready to activate ' +
@@ -149,14 +120,34 @@
         'switching between them, you need to set up the system for ' +
         'automatic switching.'
     };
+    
+    var self = TVRO.TableView($('.\\#table-view', jQ));
 
-    var self = TVRO.TableView($('.\\#table-view', jQ))
-    .setValues([singleOption, manualOption, automaticOption])
-    .onBuild(function(row, option) {
-      $('.\\#title', row).text(option.title);
-      $('.\\#copy', row).text(option.copy);
-    })
-    .build();
+    // We grap the lnb to handle when a TRI AM LNB is set.
+    // We grap the installed group since we installed the group for TRI AM
+    // LNB in the previous step.
+    Promise.all(
+        TVRO.getInstalledGroup(),
+        TVRO.getAntennaVersions()
+    ).then(function(xmls) {
+      var isTriAmericas = $('lnb name', xmls[1]).text() === 'Tri-Americas Circular';
+
+      if (isTriAmericas == true){
+        group = xmls[0].name;
+        self.setValues([manualOption, automaticOption]);
+        self.onBuild(function(row, option) {
+          $('.\\#title', row).text(option.title);
+          $('.\\#copy', row).text(option.copy);
+        }).build();
+      }else{
+        group = 'DIRECTV DUAL';
+        self.setValues([singleOption, manualOption, automaticOption]);
+        self.onBuild(function(row, option) {
+          $('.\\#title', row).text(option.title);
+          $('.\\#copy', row).text(option.copy);
+        }).build();
+      }
+    });
 
     $('.\\#directv-view')
     .find('.\\#cityDropdown')
@@ -181,11 +172,11 @@
           }, 500);
         });
 
-      else if (option === manualOption)
+      else if (option === manualOption){          
         TVRO.setAutoswitchService({
           enable: 'N',
           service: 'DIRECTV',
-          satellite_group: 'DIRECTV DUAL'
+          satellite_group: group
         }).then(function() {
           document.body.className = '/spinner';
           setTimeout(function() {
@@ -193,11 +184,11 @@
           }, 500);
         });
 
-      else if (option === automaticOption)
+      }else if (option === automaticOption)
         TVRO.setAutoswitchService({
           enable: 'Y',
           service: 'DIRECTV',
-          satellite_group: 'DIRECTV DUAL'
+          satellite_group: group
         }).then(function() {
           document.body.className = '/spinner';
           setTimeout(function() {
@@ -207,7 +198,12 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/service.php';
+      TVRO.getAntennaVersions().then(function(xmls) {
+        var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
+
+        if (isTriAmericas == true) window.location.hash = '/tri-am-group';
+        else window.location = '/wizard/service.php';
+      });
     });
 
     return self;
@@ -365,7 +361,7 @@
   }
 
   TVRO.ServiceProviderView = ServiceProviderView;
-  TVRO.ServiceSubtypeView = ServiceSubtypeView;
+  TVRO.TriAmGroupView = TriAmGroupView;
   //TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
   TVRO.DishNetworkView = DishNetworkView;
@@ -374,7 +370,7 @@
 
 $(function() {
   var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
-  var serviceSubtypeView = TVRO.ServiceSubtypeView($('.\\#service-subtype-view'));
+  var TriAmGroupView = TVRO.TriAmGroupView($('.\\#tri-am-group-view'));
   //var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
   var directvView = TVRO.DirectvView($('.\\#directv-view'));
   var dishNetworkView = TVRO.DishNetworkView($('.\\#dish-network-view'));

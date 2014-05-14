@@ -1210,32 +1210,32 @@ html {
 
 @media screen and (min-width: 881px) {
   .service-provider .headline,
-  .service-subtype .headline,
+  .tri-am-group .headline,
   .local-channels .headline,
   .dish-network .headline {
     margin: 60px 0 30px; } }
 .service-provider .note,
-.service-subtype .note,
+.tri-am-group .note,
 .local-channels .note,
 .dish-network .note {
   text-align: center;
   line-height: 1.6; }
   @media screen and (max-width: 880px) {
     .service-provider .note,
-    .service-subtype .note,
+    .tri-am-group .note,
     .local-channels .note,
     .dish-network .note {
       padding: 30px 20px; } }
   @media screen and (min-width: 881px) {
     .service-provider .note,
-    .service-subtype .note,
+    .tri-am-group .note,
     .local-channels .note,
     .dish-network .note {
       margin: 0 auto;
       max-width: 680px;
       padding: 30px 0; } }
 .service-provider .link,
-.service-subtype .link,
+.tri-am-group .link,
 .local-channels .link,
 .dish-network .link {
   line-height: 1.6;
@@ -1251,11 +1251,11 @@ html {
   .directv .headline {
     margin: 60px 0; } }
 
-.service-subtype,
+.tri-am-group,
 .local-channels,
 .dish-network {
   text-align: center; }
-  .service-subtype .clear-table, .service-subtype .skew-angle .skew-table, .skew-angle .service-subtype .skew-table,
+  .tri-am-group .clear-table, .tri-am-group .skew-angle .skew-table, .skew-angle .tri-am-group .skew-table,
   .local-channels .clear-table,
   .local-channels .skew-angle .skew-table,
   .skew-angle .local-channels .skew-table,
@@ -1284,7 +1284,7 @@ html {
     overflow: auto; } }
 
 body[class=''] .\#service-provider-view,
-.\/service-subtype .\#service-subtype-view,
+.\/tri-am-group .\#tri-am-group-view,
 .\/local-channels .\#local-channels-view,
 .\/directv .\#directv-view,
 .\/dish-network .\#dish-network-view,

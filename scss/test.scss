@@ -475,7 +475,7 @@ html {
 ////////////////////////////////////////////////////////////////////////////////
 
 .service-provider,
-.service-subtype,
+.tri-am-group,
 .local-channels,
 .dish-network {
   .headline {
@@ -513,7 +513,7 @@ html {
   }  
 }
 
-.service-subtype,
+.tri-am-group,
 .local-channels,
 .dish-network {
   text-align: center;
@@ -559,7 +559,7 @@ html {
 }
 
 body[class=''] .\#service-provider-view,
-.\/service-subtype .\#service-subtype-view,
+.\/tri-am-group .\#tri-am-group-view,
 .\/local-channels .\#local-channels-view,
 .\/directv .\#directv-view,
 .\/dish-network .\#dish-network-view,
