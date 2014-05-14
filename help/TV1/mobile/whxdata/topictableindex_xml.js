@@ -1,1 +1,0 @@
-gXMLBuffer="<?xml version=\"1.0\" encoding=\"UTF-8\"?><cki><ck fm=\"Adjusting the LNB Skew Angle (Linear Only)\" to=\"Setting Up a DIRECTV Receiver for Automatic Switching\" num=\"48\"/><ck fm=\"Setting Up a DISH Network/Bell TV Receiver for Automatic Switching\" to=\"TV-Hub Status Indicators\" num=\"16\"/></cki>";
