@@ -25,7 +25,7 @@
         service: value
       }).then(function() {
         if (value === 'DIRECTV') {
-          window.location.hash = '/local-channels';
+          window.location.hash = '/directv';
 
         } else if (value === 'DISH') {
           window.location.hash = '/dish-network';
@@ -82,51 +82,51 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '/local-channels';
-    });
-
-    return self;
-  };
-
-
-
-  var LocalChannelsView = function(jQ) {
-    var self;
-
-    var installBtn = $('.\\#install-btn', jQ).click(function() {
-      TVRO.setInstalledSat({
-        antSatID: '119WD'
-      }).then(function() {
-        document.body.className = '/spinner';
-        setTimeout(function() {
-          TVRO.getAntennaVersions().then(function(xml) {
-            var isTriAmericas = $('lnb name', xml).text() === 'Tri-Americas';
-            if (isTriAmericas) window.location.hash = '/service-subtype';
-            else window.location.hash = '/directv';
-          });
-        }, 500);
-      });
-    });
-
-    $('.\\#local-channels-view')
-    .find('.\\#cityDropdown')
-    .click(function() {
-      window.location.hash = '/cities-119';
-    })
-    .end()
-
-    $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/local-channels'; });
-
-    var nextBtn = $('.\\#next-btn', jQ).click(function() {
       window.location.hash = '/directv';
     });
 
-    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/service.php';
-    });
-
     return self;
   };
+
+
+
+//  var LocalChannelsView = function(jQ) {
+//    var self;
+//
+//    var installBtn = $('.\\#install-btn', jQ).click(function() {
+//      TVRO.setInstalledSat({
+//        antSatID: '119WD'
+//      }).then(function() {
+//        document.body.className = '/spinner';
+//        setTimeout(function() {
+//          TVRO.getAntennaVersions().then(function(xml) {
+//            var isTriAmericas = $('lnb name', xml).text() === 'Tri-Americas';
+//            if (isTriAmericas) window.location.hash = '/service-subtype';
+//            else window.location.hash = '/directv';
+//          });
+//        }, 500);
+//      });
+//    });
+//
+//    $('.\\#local-channels-view')
+//    .find('.\\#cityDropdown')
+//    .click(function() {
+//      window.location.hash = '/cities-119';
+//    })
+//    .end()
+//
+//    $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/local-channels'; });
+//
+//    var nextBtn = $('.\\#next-btn', jQ).click(function() {
+//      window.location.hash = '/directv';
+//    });
+//
+//    var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+//      window.location = '/wizard/service.php';
+//    });
+//
+//    return self;
+//  };
 
 
 
@@ -158,6 +158,15 @@
     })
     .build();
 
+    $('.\\#directv-view')
+    .find('.\\#cityDropdown')
+    .click(function() {
+      window.location.hash = '/cities-119';
+    })
+    .end()
+
+    $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/directv'; });
+
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var option = self.getValue();
       if (!option) alert('You must select an option to continue.');
@@ -166,7 +175,10 @@
         TVRO.setInstalledSat({
           antSatID: '101W'
         }).then(function() {
-          window.location = '/wizard/activation.php';
+          document.body.className = '/spinner';
+          setTimeout(function() {
+            window.location = '/wizard/activation.php';
+          }, 500);
         });
 
       else if (option === manualOption)
@@ -175,7 +187,10 @@
           service: 'DIRECTV',
           satellite_group: 'DIRECTV DUAL'
         }).then(function() {
-          window.location = '/wizard/activation.php';
+          document.body.className = '/spinner';
+          setTimeout(function() {
+            window.location = '/wizard/activation.php';
+          }, 500);
         });
 
       else if (option === automaticOption)
@@ -184,12 +199,15 @@
           service: 'DIRECTV',
           satellite_group: 'DIRECTV DUAL'
         }).then(function() {
-          window.location = '/wizard/autoswitch.php#/directv';
+          document.body.className = '/spinner';
+          setTimeout(function() {
+            window.location = '/wizard/autoswitch.php#/directv';
+          }, 500);
         });
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location.hash = '/local-channels';
+      window.location = '/wizard/service.php';
     });
 
     return self;
@@ -348,7 +366,7 @@
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.ServiceSubtypeView = ServiceSubtypeView;
-  TVRO.LocalChannelsView = LocalChannelsView;
+  //TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
   TVRO.DishNetworkView = DishNetworkView;
 
@@ -357,7 +375,7 @@
 $(function() {
   var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
   var serviceSubtypeView = TVRO.ServiceSubtypeView($('.\\#service-subtype-view'));
-  var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
+  //var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
   var directvView = TVRO.DirectvView($('.\\#directv-view'));
   var dishNetworkView = TVRO.DishNetworkView($('.\\#dish-network-view'));
 
