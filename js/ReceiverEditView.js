@@ -48,7 +48,8 @@
       $('.\\#receiver-id-label', jQ).text(receiverIdType);
     });
 
-    TVRO.getService().then(function(service) {
+    TVRO.getSatelliteService().then(function(xml) {
+      var service = $('service', xml).text();
       $('.\\#directv', jQ).toggle(service === 'DIRECTV');
       $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');
     });
