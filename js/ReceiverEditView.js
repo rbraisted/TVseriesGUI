@@ -27,10 +27,14 @@
         else newReceiver.sn = id;
 
         if (isNew) {
-          TVRO.addReceiver(newReceiver).then(TVRO.reload);
+          TVRO.addReceiver(newReceiver).then(function() {
+            window.location.hash = '/' + newReceiver.id;
+          });
         } else {
           TVRO.removeReceiver(receiver).then(function() {
-            TVRO.addReceiver(newReceiver).then(TVRO.reload);
+            TVRO.addReceiver(newReceiver).then(function() {
+              window.location.hash = '/' + newReceiver.id;
+            });
           });
         }
       });
@@ -39,7 +43,9 @@
     var deleteBtn = $('.\\#delete-btn', jQ).click(function() {
       //  if !predefined, ask for confirmation
       var confirmed = receiver.predefined ? false : confirm('Are you sure you want to delete ' + receiver.name + '?');
-      if (confirmed) TVRO.removeReceiver(receiver).then(TVRO.reload);
+      if (confirmed) TVRO.removeReceiver(receiver).then(function() {
+        window.location.hash = '';
+      });
     });
 
     TVRO.getReceiverType().then(function(receiverType) {
