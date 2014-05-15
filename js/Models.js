@@ -278,8 +278,8 @@
   };
 
   TVRO.getReceiverType = function() {
-    return TVRO.getAutoswitchStatus().then(function(xml) {
-      var service = $('service:first', xml).text();
+    return TVRO.getSatelliteService().then(function(xml) {
+      var service = $('service', xml).text();
       if (service === 'DIRECTV') return 'Receiver';
       else return 'IP AutoSwitch';
     });    
