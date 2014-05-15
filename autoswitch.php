@@ -69,7 +69,7 @@
     AutoSwitch controls satellite selection in automatic satellite
     switching mode. You may choose the master by selecting it below or
     by pressing the
-    <a class="link" href="/media/IPAS_Master_Select_Button.png">
+    <a class="link" href="javascript:TVRO.showHelp(911)">
      Master Select button
     </a>
     on the IP AutoSwitch itself,
