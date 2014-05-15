@@ -32,7 +32,15 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/gps.php#/heading-source';
+      Promise.all(
+          TVRO.getSatelliteService()
+        ).then(function(xmls) {
+          var service = $('service', xmls[0]).text();
+
+          if (service === 'OTHER') window.location = '/wizard/service.php';
+          else window.location = '/wizard/gps.php#/heading-source';
+        });
+      
     });
 
     return self;
@@ -67,7 +75,16 @@ $(function() {
       } else {
         document.body.className = '/spinner';
         setTimeout(function() {
-          window.location = '/wizard/system.php';
+          
+          Promise.all(
+              TVRO.getSatelliteService()
+            ).then(function(xmls) {
+              var service = $('service', xmls[0]).text();
+
+              if (service === 'OTHER') window.location = '/wizard/activation.php';
+              else window.location = '/wizard/system.php';
+            });
+          
         }, 500);
       }
     });
@@ -80,7 +97,16 @@ $(function() {
       } else {
         document.body.className = '/spinner';
         setTimeout(function() {
-          window.location = '/wizard/system.php';
+          
+          Promise.all(
+              TVRO.getSatelliteService()
+            ).then(function(xmls) {
+              var service = $('service', xmls[0]).text();
+
+              if (service === 'OTHER') window.location = '/wizard/activation.php';
+              else window.location = '/wizard/system.php';
+            });
+          
         }, 500);
       }
     });
