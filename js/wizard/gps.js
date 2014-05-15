@@ -205,24 +205,18 @@
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
       else setSource(TVRO.setHeadingConfig, value)
-        .then(function() {
-          return Promise.all(
-            TVRO.getAntennaVersions(),
-            TVRO.getAutoswitchStatus()
-          );
-        })
-        .then(function(xmls) {
+      .then(function() {
+        TVRO.getAntennaVersions().then(function(xmls) {
           var antModel = $('au model', xmls[0]).text();
           var lnbType = $('lnb polarization', xmls[0]).text();
-          var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
-          var isManual = $('available:first', xmls[1]).text() === 'N';
+          var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
           var systemIDModel = $('au systemIDModel', xmls[0]).text();
-          
-          // CIRCULAR LNB -> select service (service.php)
-          if (lnbType === 'circular') window.location = '/wizard/service.php';
 
-          // TRI AMERICAS -> directv (service.php)
-          else if (isTriAmericas) window.location = '/wizard/service.php#/directv';
+          // CIRCULAR LNB -> select service (service.php)
+          if ((lnbType === 'circular') && (!isTriAmericas)) window.location = '/wizard/service.php';
+
+          // TRI AMERICAS -> directv (service.php#/directv)
+          else if (isTriAmericas) window.location = '/wizard/service.php#/tri-am-group';
 
           // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
           else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';
@@ -231,6 +225,7 @@
           else window.location = '/wizard/satellites.php#/tv5-manual-options';
 
         });
+      });
     });
 
 

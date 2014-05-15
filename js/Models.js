@@ -277,13 +277,6 @@
     });
   };
 
-  TVRO.getService = function() {
-    return TVRO.getAutoswitchStatus().then(function(xml) {
-      var service = $('service:first', xml).text();
-      return service;
-    });
-  };
-
   TVRO.getReceiverType = function() {
     return TVRO.getAutoswitchStatus().then(function(xml) {
       var service = $('service:first', xml).text();

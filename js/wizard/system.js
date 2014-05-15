@@ -177,10 +177,13 @@ $(function() {
         var service = $('service', xmls[1]).text();
         var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
 
-        if (antModel === 'TV1' || antModel === 'TV3' || systemIDModel === 'TV5' || systemIDModel === 'TV6') window.location.hash = '/skew-angle';
+        if ((lnbType === 'linear') &&
+            ((antModel === 'TV1') ||
+             (antModel === 'TV3') || 
+             (systemIDModel === 'TV5') ||
+             (systemIDModel === 'TV6'))){ window.location.hash = '/skew-angle';}
         else if (service === 'BELL' || service === 'DISH') window.location.hash = '/other-system-config';
-        else if (lnbType === 'linear') window.location.hash = '/linear-system-config';
-        // else if (isTriAmericas) window.location.hash = '';
+        else if (lnbType === 'linear' || isTriAmericas) window.location.hash = '/linear-system-config';
       });
     }
 

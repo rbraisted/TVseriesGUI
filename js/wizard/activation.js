@@ -13,11 +13,16 @@ $(function() {
     	        TVRO.getSatelliteService()
     	      ).then(function(xmls) {
     	        var lnbType = $('lnb polarization', xmls[0]).text();
+                var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
     	        var service = $('service', xmls[1]).text();
 
                 if((lnbType === 'circular') && (service === 'DIRECTV')){
-    	        	window.location = '/wizard/service.php#/directv'; //directv
-    	        }else if ((lnbType === 'circular') && (service === 'OTHER')){
+                  if(isTriAmericas){
+                    window.location = '/wizard/service.php#/tri-am-group';
+                  }else{
+                    window.location = '/wizard/service.php#/directv'; //directv
+                  }
+     	        }else if ((lnbType === 'circular') && (service === 'OTHER')){
     	        	window.location = '/wizard/satellites.php'; //other circular select sat
     	        }else{
     	        	// This handles Linear TV1,TV3,TV5 Manual (Skew);

@@ -97,7 +97,6 @@
   };
   
   TVRO.showHelp = function(mapNo) {
-    console.log("!");
     TVRO.getAntennaVersions().then(function(xml) {
       var antModel = $('au model', xml).text();
       var helpUrl = RH_GetHelpUrlWithMapNo('help/' + antModel + '_Help' + '/index.htm', mapNo);  
