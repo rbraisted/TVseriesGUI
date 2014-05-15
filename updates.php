@@ -44,14 +44,14 @@
 
   <div class="section portal-version">
     <div class="bg"></div>
-    <div class="label">Latest Software Available</div>
+    <div class="label">Latest <span class ="#update-type"></span> Available</div>
     <div class="version available-label">
-      Software Version
+      <span class ="#download-type"></span> Version
       <span class="#portal-ver"></span>
       available to download
     </div>
     <div class="version not-available-label">
-      Latest Software Version not available
+      Latest <span class ="#update-type"></span> Version not available
     </div>
     <div class="download-btn #download-btn"></div>
     <div class="cta available-label">Download Update</div>
@@ -68,7 +68,7 @@
       <div class="bg"></div>
       <div class="label">On Device</div>
       <div class="version">
-        Software Version
+        <span class ="#download-type"></span> Version
         <span class="#device-ver"></span>
         ready to install
       </div>
@@ -88,11 +88,10 @@
     <div class="bg"></div>
     <div class="label">
       My
-      <span class="#update-name"></span>
-      Antenna Software
+      <span class="#install-type"></span>
     </div>
     <div class="version connected-label">
-      Software Version
+      <span class ="#download-type"></span> Version
       <span class="#system-ver"></span>
       installed
     </div>

@@ -107,7 +107,13 @@
         update = arg;
         var antUpdate = update !== 'SatLibrary';
         var updateName = antUpdate ? update : 'Satellite Library';
+        var updateType = antUpdate ? 'Software' : 'Satellite Library';
+        var downloadType = antUpdate ? 'Software' : 'Library';
+        var installType = antUpdate ? update + ' Antenna Software' : 'Satellite Library';
         $('.\\#update-name', jQ).text(updateName);
+        $('.\\#update-type', jQ).text(updateType);
+        $('.\\#download-type', jQ).text(downloadType);
+        $('.\\#install-type', jQ).text(installType);
 
         jQ.toggleClass('$tech-mode', TVRO.getTechMode());
 
