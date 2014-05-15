@@ -196,8 +196,8 @@
 
   TVRO.getReceivers = function() {
     return Promise.all(
-      TVRO.getAutoswitchStatus(),
-      TVRO.getAutoswitchConfiguredNames()
+      TVRO.getAutoswitchStatus(1, 1), //  don't cache so that we can get active status
+      TVRO.getAutoswitchConfiguredNames(1, 1) //  same here
     ).then(function(xmls) {
       //  get the active receivers
       //  get all receivers
@@ -229,7 +229,7 @@
   };
 
   TVRO.getMasterReceiver = function() {
-    return TVRO.getAutoswitchStatus().then(function(xml) {
+    return TVRO.getAutoswitchStatus(1, 1).then(function(xml) {
       var master = Receiver($('master', xml));
       master.active = true;
       return master;

@@ -94,8 +94,9 @@ $(function() {
   //  routing
 
   TVRO.onHashChange(function(hash) {
-
     var split = _.rest(hash.split('/'));
+
+    receiverTableView.reload();
 
     if (!hash) {
       document.body.className = '';
