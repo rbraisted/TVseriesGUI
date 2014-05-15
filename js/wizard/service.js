@@ -71,20 +71,30 @@
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else{ 
+      else{
+        
         TVRO.setAutoswitchService({
           enable: 'N',
           service: 'DIRECTV',
           satellite_group: value
         }).then(function() {
           document.body.className = '/spinner';
+          
           setTimeout(function() {
-            if(value === 'TRI-AM DUAL'){
-              window.location = '/wizard/activation.php';
-            }else{
-              window.location.hash = '/directv';
-            }  
-          }, 500);
+            var interval = setInterval(function() {
+              TVRO.getAntennaStatus(1,1).then(function(xml) {
+                var state =  $('antenna state', xml).text();
+                if (state === 'TRACKING') {
+                  clearInterval(interval);
+                  if(value === 'TRI-AM DUAL'){
+                    window.location = '/wizard/activation.php';
+                  }else{
+                    window.location.hash = '/directv';
+                  }  
+                } //End if (state === 'TRACKING')
+              });          
+            }, 1000);
+          }, 10000);
         });
       }
     });
