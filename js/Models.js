@@ -114,8 +114,8 @@
 
   TVRO.getInstalledGroup = function() {
     return Promise.all(
-        TVRO.getAutoswitchStatus(),
-        TVRO.getSatelliteGroups()
+        TVRO.getAutoswitchStatus(1, 1), // don't cache, force new call
+        TVRO.getSatelliteGroups(1, 1)
     ).then(function(xmls) {
       //  but if it is enabled, return the correct group
       var installedGroupName = $('satellite_group', xmls[0]).text();
