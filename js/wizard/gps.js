@@ -229,9 +229,9 @@
                 var interval = setInterval(function() {
                   TVRO.getAntennaStatus(1,1).then(function(xml) {
                     var state =  $('antenna state', xml).text();
-                    if (state === 'SEARCHING') {
+                    if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                       clearInterval(interval);
-                        window.location = '/wizard/activation.php';
+                      window.location = '/wizard/activation.php';
                     } //End if (state === 'SEARCHING')
                   });          
                 }, 1000);
