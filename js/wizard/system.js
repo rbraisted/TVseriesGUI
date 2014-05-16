@@ -112,13 +112,13 @@
 
     var config2 = {
       title: 'Configuration #2',
-      subtitle: 'One Master Receiver + Multiswitch',
+      subtitle: 'Multiple Receivers',
       bgimage: 'wizard-config-2.svg'
     };
 
     var config3 = {
       title: 'Configuration #3',
-      subtitle: 'Multiple Receivers w/ AutoSwitch(es)',
+      subtitle: 'Multiple Receivers with IP Autoswitch',
       bgimage: 'wizard-config-3.svg'
     };
 
