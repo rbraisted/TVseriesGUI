@@ -84,7 +84,7 @@
             var interval = setInterval(function() {
               TVRO.getAntennaStatus(1,1).then(function(xml) {
                 var state =  $('antenna state', xml).text();
-                if (state === 'TRACKING') {
+                if (state === 'SEARCHING') {
                   clearInterval(interval);
                   if(value === 'TRI-AM DUAL'){
                     window.location = '/wizard/activation.php';
