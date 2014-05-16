@@ -13,9 +13,7 @@
     var wizardBtn = jQ.find('.\\#wizard-btn').click(function() {
       TVRO.setWizardStatus({
           status: 'NONE'
-      });
-    	
-      window.location = '/wizard';
+      }).then( function(){window.location = '/wizard';});
     });
 
     var reload = function() {

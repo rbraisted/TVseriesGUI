@@ -3,8 +3,7 @@ $(function() {
   $('.\\#next-btn').click(function() {
     TVRO.setWizardStatus({
         status: 'SUCCESS'
-      });
-    window.location.hash = '/complete-activation';
+      }).then(function(){ window.location.hash = '/complete-activation';});
   });
 
   $('.\\#prev-btn').click(function() {

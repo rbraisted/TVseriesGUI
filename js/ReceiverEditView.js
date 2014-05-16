@@ -9,9 +9,8 @@
     var wizardBtn = $('.\\#wizard-btn', jQ).click(function() {
       TVRO.setWizardStatus({
           status: 'NONE'
-      });
-
-      window.location = '/wizard';
+      }).then(function(){window.location = '/wizard';});
+      
     });
 
     //  install receiver
