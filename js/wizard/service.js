@@ -133,32 +133,6 @@
     
     var self = TVRO.TableView($('.\\#table-view', jQ));
 
-    // We grap the lnb to handle when a TRI AM LNB is set.
-    // We grap the installed group since we installed the group for TRI AM
-    // LNB in the previous step.
-    Promise.all(
-        TVRO.getInstalledGroup(),
-        TVRO.getAntennaVersions()
-    ).then(function(xmls) {
-      var isTriAmericas = $('lnb name', xmls[1]).text() === 'Tri-Americas Circular';
-
-      if (isTriAmericas == true){
-        group = xmls[0].name;
-        self.setValues([manualOption, automaticOption]);
-        self.onBuild(function(row, option) {
-          $('.\\#title', row).text(option.title);
-          $('.\\#copy', row).text(option.copy);
-        }).build();
-      }else{
-        group = 'DIRECTV DUAL';
-        self.setValues([singleOption, manualOption, automaticOption]);
-        self.onBuild(function(row, option) {
-          $('.\\#title', row).text(option.title);
-          $('.\\#copy', row).text(option.copy);
-        }).build();
-      }
-    });
-
     $('.\\#directv-view')
     .find('.\\#cityDropdown')
     .click(function() {
@@ -216,7 +190,35 @@
       });
     });
 
-    return self;
+    return _.merge(self, {
+      reload: function() {
+        // We grap the lnb to handle when a TRI AM LNB is set.
+        // We grap the installed group since we installed the group for TRI AM
+        // LNB in the previous step.
+        Promise.all(
+            TVRO.getInstalledGroup(),
+            TVRO.getAntennaVersions()
+        ).then(function(xmls) {
+          var isTriAmericas = $('lnb name', xmls[1]).text() === 'Tri-Americas Circular';
+
+          if (isTriAmericas == true){
+            group = xmls[0].name;
+            self.setValues([manualOption, automaticOption]);
+            self.onBuild(function(row, option) {
+              $('.\\#title', row).text(option.title);
+              $('.\\#copy', row).text(option.copy);
+            }).build();
+          }else{
+            group = 'DIRECTV DUAL';
+            self.setValues([singleOption, manualOption, automaticOption]);
+            self.onBuild(function(row, option) {
+              $('.\\#title', row).text(option.title);
+              $('.\\#copy', row).text(option.copy);
+            }).build();
+          }
+        });
+      }
+    });
   };
 
   var DishNetworkView = function(jQ) {
@@ -387,6 +389,7 @@ $(function() {
 
   TVRO.onHashChange(function(hash) {
     document.body.className = hash;
+    if (hash === '/directv') directvView.reload();
   });
 
   TVRO.reload();
