@@ -5,6 +5,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <script type="text/javascript" src="/js/wizard/gps.js"></script>
 
+<div class="view spinner-view #spinner-view">
+  <div class="view-head">Installing Satellites</div>
+  <div class="headline">Please wait while your satellites are being installed...</div>
+  <img src="/images/spinner.gif" class="spinner" />
+</div>
+
 <div class="view vessel-location #vessel-location-view">
   <div class="view-head">Vessel Location</div>
 

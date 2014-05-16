@@ -1205,7 +1205,8 @@ html {
         margin: 10px 0 0; } }
 
 .\/vessel-location .\#vessel-location-view,
-.\/heading-source .\#heading-source-view {
+.\/heading-source .\#heading-source-view,
+.\/spinner .\#spinner-view {
   display: block; }
 
 @media screen and (min-width: 881px) {

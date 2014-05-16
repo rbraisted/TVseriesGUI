@@ -209,14 +209,37 @@
         TVRO.getAntennaVersions().then(function(xmls) {
           var antModel = $('au model', xmls[0]).text();
           var lnbType = $('lnb polarization', xmls[0]).text();
-          var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
+          var lnbName = $('lnb name', xmls[0]).text();
           var systemIDModel = $('au systemIDModel', xmls[0]).text();
 
           // CIRCULAR LNB -> select service (service.php)
-          if ((lnbType === 'circular') && (!isTriAmericas)) window.location = '/wizard/service.php';
+          if ((lnbType === 'circular') && 
+              (lnbName !== 'Tri-Americas Circular') &&
+              ((lnbName !== 'DIRECTV-LA Circular'))) window.location = '/wizard/service.php';
 
+          // GALAXY -> directv (service.php#/directv)
+          else if (lnbName === 'DIRECTV-LA Circular'){
+            TVRO.setAutoswitchService({
+              enable: 'N',
+              satellite_group: 'GALAXY-LA'
+            }).then(function() {
+              document.body.className = '/spinner';
+              
+              setTimeout(function() {
+                var interval = setInterval(function() {
+                  TVRO.getAntennaStatus(1,1).then(function(xml) {
+                    var state =  $('antenna state', xml).text();
+                    if (state === 'SEARCHING') {
+                      clearInterval(interval);
+                        window.location = '/wizard/activation.php';
+                    } //End if (state === 'SEARCHING')
+                  });          
+                }, 1000);
+              }, 10000);
+            });
+            
           // TRI AMERICAS -> directv (service.php#/directv)
-          else if (isTriAmericas) window.location = '/wizard/service.php#/tri-am-group';
+        }else if (lnbName === 'Tri-Americas Circular') window.location = '/wizard/service.php#/tri-am-group';
 
           // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
           else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';
