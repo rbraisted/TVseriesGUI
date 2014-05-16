@@ -10,9 +10,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="copy">
     Make sure your receivers are activated and ready to receive.
   </div>
-  <div class="cta">Call to preactivate your account:</div>
-  <div class="phone">1-866-551-8004</div>
-  <div class="time">(24 hours, 7 days a week)</div>
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>
@@ -43,7 +40,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     </div>
   </div>
 
-  <a class="link" href="/media/DTV_DishType.mp4">Learn how to set the Dish Type</a>
+  <a class="link" href="javascript:TVRO.showHelp(907)">Learn how to set the Dish Type</a>
 
   <div class="cta">Call to preactivate your account:</div>
   <div class="phone">1-866-551-8004</div>
