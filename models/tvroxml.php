@@ -99,6 +99,13 @@
             return($this->doSimple(__FUNCTION__, $extra));
         }
 
+        function get_skew($antSatID)
+        {
+            $extra = "<antSatID>$antSatID</antSatID>";
+
+            return($this->doSimple(__FUNCTION__));
+        }
+
         function antenna_versions()
         {
             return($this->doSimple(__FUNCTION__));

@@ -9,7 +9,7 @@
           //  grab the skews
           TVRO.getSatParams(sat).then(function(sat) {
             $('.\\#sat-name', jQ).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
-            $('.\\#sat-skew', jQ).text(sat.skew + '˚');            
+            $('.\\#sat-skew', jQ).text(sat.computedSkew);
           });
         }
       };
@@ -40,7 +40,7 @@
       });
 
       else TVRO.getInstalledSat().then(TVRO.getSatParams).then(function(installedSat) {
-        $('.\\#single', jQ).text(installedSat.skew + '˚ Skew Angle');
+        $('.\\#single', jQ).text(installedSat.computedSkew + '˚ Skew Angle');
       });
     });
   };

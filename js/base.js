@@ -341,6 +341,7 @@ TVRO.Satellite = function(xml) {
 
 	//	these values can only be retrieved with get_satellite_params
 	self.skew = $('skew', xml).text();
+	self.computedSkew = $('computedSkew', xml).text();
 	self.lo1 = $('lo1', xml).text();
 	self.lo2 = $('lo2', xml).text();
 	self.kumode = $('kumode', xml).text();

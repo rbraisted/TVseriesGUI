@@ -220,6 +220,8 @@
 		get('get_satellite_list')
 	]);
 
+	TVRO.getSkew = get('get_skew');
+
 	TVRO.getSatelliteParams = get('get_satellite_params');
 
 	TVRO.setSatelliteParams = set('set_satellite_params');

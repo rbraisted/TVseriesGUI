@@ -66,6 +66,7 @@
 
       //  these values can only be retrieved with get_satellite_params
       skew: $('skew', xml).text(),
+      computedSkew: $('computedSkew', xml).text(),
       lo1: $('lo1', xml).text(),
       lo2: $('lo2', xml).text(),
       kumode: $('kumode', xml).text(),
@@ -182,6 +183,7 @@
     //  return the sat we get from getSatelliteParams in a promise
     return TVRO.getSatelliteParams({antSatID:sat.antSatID}, true).then(Sat);
   };
+
 
   TVRO.setSatParams = function(sat) {
     //  remove empty xponders
