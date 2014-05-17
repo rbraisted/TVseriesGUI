@@ -286,7 +286,7 @@ $(function() {
         var lnbType = $('lnb polarization', xmls[0]).text();
         var systemIDModel = $('au systemIDModel', xmls[0]).text();
         if (lnbType === 'circular') window.location.hash = '/circular-options';
-        else if (systemIDModel === 'TV5') window.location.hash = '/tv5-manual-options';
+        else if (systemIDModel === 'TV5' || systemIDModel === 'TV6') window.location.hash = '/tv5-manual-options';
         else window.location.hash = '/options';
       });
     }
