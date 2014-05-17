@@ -236,7 +236,7 @@
     .onClick(onClick)
     .onBuild(function(row, value) {
       if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110\u00B0W, 119\u00B0W, 129\u00B0W)');
-      if (value === 'EASTERN ARC' && antennas !== 'TV1') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
+      if (value === 'EASTERN ARC') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
       if (value === 'LEGACY EAST ARC') $('.\\#value', row).text('Legacy East Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
       if (value === '72W') $('.\\#value', row).text('72W (72\u00B0W)');
       if (value === 'DISH 500') $('.\\#value', row).text('Dish 500 (110\u00B0W, 119\u00B0W)');
@@ -328,6 +328,7 @@
                                        ]).build();
 
             satsTableView.setValues([
+                                     '61W',
                                      '110W',
                                      '119W',
                                      '129W'
