@@ -81,7 +81,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view complete-activation #complete-activation-view">
   <div class="view-head">
-    Welcome to the <span class="desktop">TracVision Setup </span>Wizard
+    Thank you for choosing KVH
   </div>
   <div class="headline">System Setup is complete!</div>
   <div class="copy">

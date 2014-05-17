@@ -54,6 +54,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     the satellite(s) more quickly.
   </div>
 
+    <div class=" note">
+    If your system has a linear LNB, be sure to
+    enter your latitude/longitude to ensure an
+    accurate skew calculation.
+    </div>
+
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>

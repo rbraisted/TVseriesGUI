@@ -1,5 +1,6 @@
 !function(TVRO) {
   var OptionsView = function(jQ) {
+    
     var singleSat = {
       title: 'Choose a Single Satellite',
       bgimage: 'single-sat.svg'
@@ -14,14 +15,23 @@
       title: 'Create a New Group of Satellites',
       bgimage: 'new-group.svg'
     };
+    Promise.all(
+        TVRO.getAntennaVersions()
+      ).then(function(xmls) {
+         return $('lnb polarization', xmls[0]).text();
+      }).then(function(lnbType){
+        if (lnbType === 'linear'){
+          presetGroup.title = presetGroup.title + '*';
+        }        
+        self.build();
+      });
 
     var self = TVRO.TableView($('.\\#table-view', jQ))
       .setValues([singleSat, presetGroup, newGroup])
       .onBuild(function(row, option) {
         $('.\\#title', row).text(option.title);
         $('.\\#image', row).css('background-image', 'url(/images/' + option.bgimage + ')');
-      })
-      .build();
+      });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var option = self.getValue();

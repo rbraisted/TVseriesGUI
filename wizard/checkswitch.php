@@ -13,14 +13,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
    <div class="column">
     Now you need to run a Check Switch test on your receiver
     ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
-    This test can take up to 15 minutes. When the test is complete,
-    click Next to continue the Wizard.
+    Note that if the receiver needs to download a software update,
+    it might take up to 20 minutes. Otherwise, it will take just
+    a few minutes to complete the process. When the test is complete,
+    click Next.
     <div class="important">
       Important!
     </div>
     Be sure your vessel/vehicle is stationary while performing this
-    test. The Check Switch test will not pass if the antenna is
-    moving.
+    test. The Check Switch test will not pass if the vessel/vehicle
+    is moving.
   </div>
 
   <div class="bottom-bar">
@@ -35,18 +37,20 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     Check Switch Test
   </div>
     <div class="column">
-    Connect each receiver, one at a time, directly to the "IRD" jack
-    on the back of the TV-Hub and run a Check Switch test
-    ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
-    This test can take up to 15 minutes per receiver. Once you have
-    run a Check Switch test on all of your receivers, click Next.
+      Connect each receiver, one at a time, directly to the “Receiver”
+      jack on the back of the TV-Hub then run a Check Switch test
+      ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
+      Note that if the receiver needs to download a software update,
+      it might take up to 20 minutes. Otherwise, it will take just a
+      few minutes to complete the process. Once you have run a
+      Check Switch test on all of your receivers, click Next.
     <div class="important">
       Important!
     </div>
-    Be sure your vessel/vehicle is stationary while performing this
-    test. The Check Switch test will not pass if the antenna is
-    moving.
-  </div>
+      Be sure your vessel/vehicle is stationary while performing this
+      test. The Check Switch test will not pass if the vessel/vehicle
+      is moving.
+    </div>
 
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
@@ -60,18 +64,20 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     Check Switch Test
   </div>
     <div class="column">
-    Connect each reveiver, one at a time, directly to the "IRD" jack
-    on the back of the TV-Hub and run a Check Switch test
-    ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
-    This test can take up to 15 minutes per receiver. Once you have
-    run a Check Switch test on all of your receivers, click Next.
+      Connect each receiver, one at a time, directly to the “Receiver”
+      jack on the back of the TV-Hub then run a Check Switch test
+      ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
+      Note that if the receiver needs to download a software update,
+      it might take up to 20 minutes. Otherwise, it will take just a
+      few minutes to complete the process. Once you have run a
+      Check Switch test on all of your receivers, click Next.
     <div class="important">
       Important!
     </div>
-    Be sure your vessel/vehicle is stationary while performing this
-    test. The Check Switch test will not pass if the antenna is
-    moving.
-  </div>
+      Be sure your vessel/vehicle is stationary while performing this
+      test. The Check Switch test will not pass if the vessel/vehicle
+      is moving.
+    </div>
 
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
@@ -139,8 +145,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="column first">
     <div class="bullet">3</div>
     <div class="copy">
-      Confirm that all receivers and other system devices are
-      reconnected as shown in your
+    Confirm that all of your receivers and other devices are connected
+    properly for your particular configuration. Refer to the Installation
+    Guide for details. When you are done, click Next to continue.
       <span class="link #diagram-btn">configuration diagram</span>.
     </div>
   </div><!--

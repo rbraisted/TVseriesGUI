@@ -68,10 +68,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view tv5-manual-options #tv5-manual-options-view">
   <div class="view-head">Satellite Selection</div>
-  <div class="copy">
-    * You will have the opportunity to create your own group if one of
-    the preset groups doesn’t meet your needs.
-  </div>
 
   <div class="grey-box-table #table-view">
     <div class="table-row #table-row">
@@ -79,6 +75,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
       <div class="image #image"></div>
       <div class="radio-icon"></div>
     </div>
+  </div>
+  <div class="copy">
+    * You will have the opportunity to create your own group if one of
+    the preset groups doesn’t meet your needs.
   </div>
 
   <div class="bottom-bar">
@@ -94,7 +94,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="copy">Select a region. Then choose a satellite in that region.</div>
 
   <div class="container">
-    
+
     <div class="left container-head region-table-head">Regions</div>
     <div class="right container-head sat-table-head">Satellites</div>
 

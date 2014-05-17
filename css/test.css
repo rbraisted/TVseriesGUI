@@ -1085,10 +1085,8 @@ html {
         line-height: 1.6; }
         .wizard-index .step {
           margin: auto 20px auto 75px; } }
-    .wizard-index .step.step-1, .wizard-index .step.step-3 {
+    .wizard-index .step.step-1, .wizard-index .step.step-2, .wizard-index .step.step-3 {
       padding-top: 12px; }
-    .wizard-index .step.step-2 {
-      padding-top: 22px; }
   .wizard-index .note {
     font-size: 13px;
     margin: 30px 15px auto 75px;
