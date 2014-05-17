@@ -72,14 +72,14 @@
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
       else{
-        
+
         TVRO.setAutoswitchService({
           enable: 'N',
           service: 'DIRECTV',
           satellite_group: value
         }).then(function() {
           document.body.className = '/spinner';
-          
+
           setTimeout(function() {
             var interval = setInterval(function() {
               TVRO.getAntennaStatus(1,1).then(function(xml) {
@@ -130,7 +130,7 @@
         'switching between them, you need to set up the system for ' +
         'automatic switching.'
     };
-    
+
     var self = TVRO.TableView($('.\\#table-view', jQ));
 
     $('.\\#directv-view')
@@ -222,7 +222,8 @@
   };
 
   var DishNetworkView = function(jQ) {
-    var self;
+    var self = $('.\\#dish-network-view', jQ);
+
     var onClick = function(value) {
       if (value === 'OTHER') {
         satsView.toggle();
@@ -233,44 +234,26 @@
     var groupsView = $('.\\#groups-view', jQ).show();
     var groupsTableView= TVRO.TableView($('.\\#table-view', groupsView))
     .onClick(onClick)
-    .setValues([
-                'WESTERN ARC',
-                'EASTERN ARC',
-                'LEGACY EAST ARC',
-                '72W',
-                'DISH 500',
-                'OTHER'
-                ])
-                .onBuild(function(row, value) {
-                  if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110\u00B0W, 119\u00B0W, 129\u00B0W)');
-                  if (value === 'EASTERN ARC') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
-                  if (value === 'LEGACY EAST ARC') $('.\\#value', row).text('Legacy East Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
-                  if (value === '72W') $('.\\#value', row).text('72W (72\u00B0W)');
-                  if (value === 'DISH 500') $('.\\#value', row).text('Dish 500 (110\u00B0W, 119\u00B0W)');
-                  if (value === 'OTHER') $('.\\#value', row).text('Other');
-                })
-                .build();
+    .onBuild(function(row, value) {
+      if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110\u00B0W, 119\u00B0W, 129\u00B0W)');
+      if (value === 'EASTERN ARC' && antennas !== 'TV1') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
+      if (value === 'LEGACY EAST ARC') $('.\\#value', row).text('Legacy East Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
+      if (value === '72W') $('.\\#value', row).text('72W (72\u00B0W)');
+      if (value === 'DISH 500') $('.\\#value', row).text('Dish 500 (110\u00B0W, 119\u00B0W)');
+      if (value === 'OTHER') $('.\\#value', row).text('Other');
+    });
 
     var satsView = $('.\\#sats-view', jQ).hide();
     var satsTableView = TVRO.TableView($('.\\#table-view', satsView))
     .onClick(onClick)
-    .setValues([
-                '61W',
-                '72W',
-                '77WM',
-                '110W',
-                '119W',
-                '129W'
-                ])
-                .onBuild(function(row, value) {
-                  if (value === '61W') $('.\\#value', row).text('61\u00B0W');
-                  if (value === '72W') $('.\\#value', row).text('72\u00B0W');
-                  if (value === '77WM') $('.\\#value', row).text('77\u00B0W');
-                  if (value === '110W') $('.\\#value', row).text('110\u00B0W');
-                  if (value === '119W') $('.\\#value', row).text('119\u00B0W');
-                  if (value === '129W') $('.\\#value', row).text('129\u00B0W');
-                })
-                .build();
+    .onBuild(function(row, value) {
+      if (value === '61W') $('.\\#value', row).text('61\u00B0W');
+      if (value === '72W') $('.\\#value', row).text('72\u00B0W');
+      if (value === '77WM') $('.\\#value', row).text('77\u00B0W');
+      if (value === '110W') $('.\\#value', row).text('110\u00B0W');
+      if (value === '119W') $('.\\#value', row).text('119\u00B0W');
+      if (value === '129W') $('.\\#value', row).text('129\u00B0W');
+    });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var isGroup = groupsView.is(':visible');
@@ -325,7 +308,53 @@
       return $('satellite_group', xml).text();
     }).then(groupsTableView.setValue);    
 
-    return self;
+
+    return _.merge(self,{
+      reload: function() {
+        //Need to exclude Groups and Satellites if TV1 is installed
+        Promise.all(
+            TVRO.getInstalledGroup(),
+            TVRO.getAntennaVersions()
+        ).then(function(xmls) {
+          var antennas = $('au model', xmls[1]).text();
+
+          if (antennas === 'TV1')
+          {
+            groupsTableView.setValues([
+                                       'WESTERN ARC',
+                                       'LEGACY EAST ARC',
+                                       'DISH 500',
+                                       'OTHER'
+                                       ]).build();
+
+            satsTableView.setValues([
+                                     '110W',
+                                     '119W',
+                                     '129W'
+                                     ]).build();
+
+          }else{
+            groupsTableView.setValues([
+                                       'WESTERN ARC',
+                                       'EASTERN ARC',
+                                       'LEGACY EAST ARC',
+                                       '72W',
+                                       'DISH 500',
+                                       'OTHER'
+                                       ]).build();
+
+            satsTableView.setValues([
+                                     '61W',
+                                     '72W',
+                                     '77WM',
+                                     '110W',
+                                     '119W',
+                                     '129W'
+                                     ]).build();
+          }
+        });
+      }
+    });
   };
 
   function startCheckswitchMode(){
@@ -370,7 +399,7 @@
         });          
       }, 1000);
     }, 10000);
-  }
+  };
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.TriAmGroupView = TriAmGroupView;
@@ -390,6 +419,7 @@ $(function() {
   TVRO.onHashChange(function(hash) {
     document.body.className = hash;
     if (hash === '/directv') directvView.reload();
+    else if (hash === '/dish-network') dishNetworkView.reload();
   });
 
   TVRO.reload();
