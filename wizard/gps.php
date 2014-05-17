@@ -36,10 +36,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     <span class="coordinates-label label">Enter your coordinates</span>
     <span class="label">Latitude:</span>
     <input type="text" placeholder="Format XXS or XXN" class="input latitude #latitude">
+    <span class="label">xxx.xxxN or xxx.xxxS</span>
     <br>
     <span class="label">Longitude:</span>
     <input type="text" placeholder="Format XXE or XXW" class="input longitude #longitude">
-  </div>
+    <span class="label">xxx.xxxE or xxx.xxxW</span>
+    </div>
 
   <div class="city-view #city-view">
     <span class="city-label label">Choose your nearest major city</span>

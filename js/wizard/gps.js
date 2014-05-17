@@ -162,6 +162,29 @@
         }
       });
     };
+    
+    var formatGPS = function(latitude,longitude){
+      // Assuming a xxx.xxxN entry
+      // Extract the hemisphere
+      var latHemisphere = _.find(latitude,function(num){return (num==="N") || (num==='S');})
+      var lonHemisphere = _.find(longitude,function(num){return (num==="E") || (num==='W');})
+      
+      //Extract the number
+      var lat = Number(latitude.substring(0,(latitude.indexOf(latHemisphere))));
+      var lon = Number(longitude.substring(0,(longitude.indexOf(lonHemisphere))));
+
+      // Negate for South latitude or West longitude
+      if (latHemisphere === 'S'){
+        lat = -lat;
+      }
+      if (lonHemisphere === 'W'){
+        lon = -lon;
+      }
+      var Array = new Array();
+      Array[0] = lat.toString();
+      Array[1] = lon.toString();
+      return array;
+    };
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
@@ -172,12 +195,19 @@
       } else if (value === 'COORDINATES') {
         var latitude = latitudeInput.val();
         var longitude = longitudeInput.val();
-        if (!latitude || !longitude) alert('You must enter a latitude and longitude to continue.');
-        else TVRO.setGps({
-          lat: latitude,
-          lon: longitude
-        }).then(goToNext);
 
+        if (!latitude || !longitude) alert('You must enter a latitude and longitude to continue.');
+        else{
+          Promise.all(
+            formatGPS(latitude,longitude)
+          ).then(function(LatLonArray){
+
+            TVRO.setGps({
+              lat: LatLonArray[0],
+              lon: LatLonArray[1]
+            }).then(goToNext);
+          });
+        }
       //  CITY selected
       } else if (value === 'CITY') {
         var city = cityDropdownView.getValue();
@@ -192,7 +222,6 @@
 
     return self;
   };
-
 
 
   var HeadingSourceView = function(jQ) {
