@@ -39,7 +39,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     on the back of the TV-Hub and run a Check Switch test
     ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
     This test can take up to 15 minutes per receiver. Once you have
-    run a checkswitch test on all of your receivers, click Next.
+    run a Check Switch test on all of your receivers, click Next.
     <div class="important">
       Important!
     </div>
@@ -64,7 +64,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     on the back of the TV-Hub and run a Check Switch test
     ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
     This test can take up to 15 minutes per receiver. Once you have
-    run a checkswitch test on all of your receivers, click Next.
+    run a Check Switch test on all of your receivers, click Next.
     <div class="important">
       Important!
     </div>

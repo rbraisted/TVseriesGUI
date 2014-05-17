@@ -16,11 +16,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
   <div class="headline">
     <div class="desktop">
-      Choose the GPS source you would like to use
+      Choose the source you would like to use
       for your location coordinates.
     </div>
     <div class="mobile">
-      Choose the GPS source you would like to use
+      Choose the source you would like to use
       for your location coordinates.
     </div>
   </div>

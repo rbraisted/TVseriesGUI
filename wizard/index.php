@@ -7,7 +7,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view wizard-index">
 	<div class="view-head">
-		Welcome to The <span class="desktop">TracVision Setup </span>Wizard
+		Welcome to the <span class="desktop">TracVision Setup </span>Wizard
 	</div>
 
 	<div class="system-detected">
@@ -27,7 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 		</div>
 		<div class="step step-1">
 			Identify the desired service provider<br>
-			& associated satellite(s)
+			and associated satellite(s)
 			<div class="bullet">1</div>
 		</div>
 		<div class="step step-2">

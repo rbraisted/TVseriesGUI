@@ -63,8 +63,8 @@
     .setValues(['TRI-AM DUAL',
                 'TRI-AM TRISAT'])
                 .onBuild(function(row, value) {
-                  if (value === 'TRI-AM DUAL') $('.\\#value', row).text('TRI-AM DUAL');
-                  else if (value === 'TRI-AM TRISAT') $('.\\#value', row).text('TRI-AM TRISAT');
+                  if (value === 'TRI-AM DUAL') $('.\\#value', row).text('TRI-AM DUAL (101\u00B0W, 95\u00B0W)');
+                  else if (value === 'TRI-AM TRISAT') $('.\\#value', row).text('TRI-AM TRISAT (101\u00B0W, 119\u00B0W, 95\u00B0W)');
                 })
                 .build();
 
@@ -366,7 +366,7 @@
       var interval = setInterval(function() {
         TVRO.getAntennaStatus(1,1).then(function(xml) {
           var state =  $('antenna state', xml).text();
-          $('.\\#checkswitch-status').text("The TV-hub is Installing the group. Status: " + state);
+          $('.\\#checkswitch-status').text("The TV-Hub is Installing the group. Status: " + state);
           if (state === 'TRACKING') {
             clearInterval(interval);
 
@@ -380,7 +380,7 @@
                 TVRO.getCheckswitchMode(1, 1).then(function(xml) {
                   isEnabled = $('enable', xml).text();
                   status =  $('status', xml).text();
-                  $('.\\#checkswitch-status').text("The TV-hub is preparing for checkswitch mode. Status: " + status);
+                  $('.\\#checkswitch-status').text("The TV-Hub is preparing for Check Switch mode. Status: " + status);
 
                   switch (status){
                   case "IN_PROGRESS":
@@ -389,7 +389,7 @@
                     break;
                   case "FAILED":
                     window.clearInterval(intervalID);
-                    alert("Checkswitch mode has failed.");
+                    alert("Check Switch mode has failed.");
                     break;
                   }
                 });

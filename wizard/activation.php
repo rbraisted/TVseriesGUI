@@ -30,7 +30,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 --><div class="column">
     <div class="headline">
-      DIRECTV Latin America & Legacy<br>
+      DIRECTV Latin America and Legacy<br>
       DIRECTV Non-SWM Receivers/DVRs
     </div>
     <div class="copy">
@@ -81,7 +81,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view complete-activation #complete-activation-view">
   <div class="view-head">
-    Welcome to The <span class="desktop">TracVision Setup </span>Wizard
+    Welcome to the <span class="desktop">TracVision Setup </span>Wizard
   </div>
   <div class="headline">System Setup is complete!</div>
   <div class="copy">

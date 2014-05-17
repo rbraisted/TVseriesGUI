@@ -50,28 +50,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 </div>
 
-
-
-<!-- <div class="view local-channels #local-channels-view"> -->
-<!--   <div class="view-head">Local Channels</div> -->
-
-<!--   <div class="note"> -->
-<!--     If the channels for your local TV stations are broadcast on the 119 -->
-<!--     satellite, then you can choose to install that satellite now. -->
-<!--     Otherwise, click Next to continue with your system setup. -->
-<!--   </div> -->
-
-<!--   <div class="block-btn #install-btn">Install DIRECTV Satellite 119</div> -->
-<!--   <br> -->
-<!--   <span class="link #cityDropdown">Find out which channels are carried on the 119 satellite.</span> -->
-
-<!--   <div class="bottom-bar"> -->
-<!--     <div class="prev-btn #prev-btn">Previous</div> -->
-<!--     <div class="next-btn #next-btn">Next</div> -->
-<!--   </div> -->
-
-<!-- </div> -->
-
  <div class="popup cities-119 #cities-119-view">
   <div class="popup-guts">
     <div class="view-head">
@@ -98,7 +76,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view directv #directv-view">
   <div class="view-head">DIRECTV</div>
-  <div class="headline">Success! You’re now setup for all your DIRECTV programming!</div>
+  <div class="headline">Success! You’re now set up for all your DIRECTV programming!</div>
   <div class="link #cityDropdown" align="center">See which cities have their local channels on 119W.</div>
   <br>
   <div class="grey-box-table #table-view">

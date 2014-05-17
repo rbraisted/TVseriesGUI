@@ -42,9 +42,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 <div class="view circular-options #circular-options-view">
   <div class="view-head">Satellite Selection</div>
   <div class="copy">
-    Note: While you may choose any combination of DIRECTV, DISH Network, &/or
+    Note: While you may choose any combination of DIRECTV, DISH Network, and/or
     any other circular satellites you will be limited to manual satellite
-    switching. If you wish to enable automatic switching, go back &
+    switching. If you wish to enable automatic switching, go back and
     <span class="link #prev-btn">
       choose the desired service provider instead.
     </span>
