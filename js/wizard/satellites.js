@@ -87,11 +87,13 @@ $(function() {
         setTimeout(function() {
           
           Promise.all(
-              TVRO.getSatelliteService()
+              TVRO.getSatelliteService(),
+              TVRO.getAntennaVersions()
             ).then(function(xmls) {
               var service = $('service', xmls[0]).text();
+              var lnbType = $('lnb polarization', xmls[1]).text();
 
-              if (service === 'OTHER') window.location = '/wizard/activation.php';
+              if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
               else window.location = '/wizard/system.php';
             });
           
@@ -109,11 +111,13 @@ $(function() {
         setTimeout(function() {
           
           Promise.all(
-              TVRO.getSatelliteService()
+              TVRO.getSatelliteService(),
+              TVRO.getAntennaVersions()
             ).then(function(xmls) {
               var service = $('service', xmls[0]).text();
+              var lnbType = $('lnb polarization', xmls[1]).text();
 
-              if (service === 'OTHER') window.location = '/wizard/activation.php';
+              if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
               else window.location = '/wizard/system.php';
             });
           
