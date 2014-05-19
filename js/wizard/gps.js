@@ -180,10 +180,10 @@
       if (lonHemisphere === 'W'){
         lon = -lon;
       }
-      var Array = new Array();
-      Array[0] = lat.toString();
-      Array[1] = lon.toString();
-      return array;
+      var LatLonArray = new Array();
+      LatLonArray[0] = lat.toString();
+      LatLonArray[1] = lon.toString();
+      return LatLonArray;
     };
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
