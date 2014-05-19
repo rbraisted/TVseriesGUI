@@ -28,8 +28,8 @@
   var setSource = _.curry(function(webServiceCall, source) {
     //  default - the 'None' option
     var params = {
-      nmea0183: { enable: 'N', nmea_source: '' },
-      nmea2000: { enable: 'N', nmea_source: '' }
+        nmea0183: { enable: 'N', nmea_source: '' },
+        nmea2000: { enable: 'N', nmea_source: '' }
     };
 
     if (source['type']) {
@@ -92,94 +92,107 @@
 
     var cityLabel = $('.\\#city', cityView);
     var cityDropdownView = TVRO.DropdownView($('.\\#city-dropdown-view'))
-      .onClick(function(city) {
-        cityLabel.text(city);
-      });
+    .onClick(function(city) {
+      cityLabel.text(city);
+    });
     var cityDropdownBtn = $('.\\#city-btn', cityView).click(showCityDropdownView);
 
     TVRO.getGpsCities().then(function(xml) {
       cityDropdownView.setValues(
-        _.map($('city', xml), function(element) {
-          return $(element).text();
-        })
+          _.map($('city', xml), function(element) {
+            return $(element).text();
+          })
       ).build();
     });
 
     var self = GpsSourceView(jQ)
-      .onBuild(function(row, value) {
-        if (value === 'COORDINATES') $('.\\#value', row).append(coordinatesView);
-        else if (value === 'CITY') $('.\\#value', row).append(cityView);
-        else $('.\\#value', row).text(value.display);
-      })
-      .onClick(function(value) {
-        if (value === 'COORDINATES') latitudeInput.focus();
-        else if (value === 'CITY') showCityDropdownView();
-      });
+    .onBuild(function(row, value) {
+      if (value === 'COORDINATES') $('.\\#value', row).append(coordinatesView);
+      else if (value === 'CITY') $('.\\#value', row).append(cityView);
+      else $('.\\#value', row).text(value.display);
+    })
+    .onClick(function(value) {
+      if (value === 'COORDINATES') latitudeInput.focus();
+      else if (value === 'CITY') showCityDropdownView();
+    });
 
     self.getNmeaSources()
-      .then(function(values) {
-        //  insert CITY and COORDINATES before None
-        var none = values.pop();
-        values = values.concat(['COORDINATES', 'CITY']);
-        self.setValues(values).build();
+    .then(function(values) {
+      //  insert CITY and COORDINATES before None
+      var none = values.pop();
+      values = values.concat(['COORDINATES', 'CITY']);
+      self.setValues(values).build();
 
-        //  get the selected value
-        //  check nmea values first
-        var value = _.find(values, 'selected');
-        if (value) self.setValue(value);
+      //  get the selected value
+      //  check nmea values first
+      var value = _.find(values, 'selected');
+      if (value) self.setValue(value);
 
-        //  then check for CITY or COORDINATES
-        else TVRO.getGps().then(function(xml) {
-          var city = $('city', xml).text();
-          var latitude = $('lat', xml).text();
-          var longitude = $('lon', xml).text();
+      //  then check for CITY or COORDINATES
+      else TVRO.getGps().then(function(xml) {
+        var city = $('city', xml).text();
+        var latitude = $('lat', xml).text();
+        var longitude = $('lon', xml).text();
 
-          if (city) {
-            self.setValue('CITY');
-            cityDropdownView.setValue(city);
-            cityLabel.text(city);
+        if (city) {
+          self.setValue('CITY');
+          cityDropdownView.setValue(city);
+          cityLabel.text(city);
 
-          } else if (latitude || longitude) {
+        } else if (latitude || longitude) {
+          Promise.all(
+              formatGPS(false,latitude,longitude)
+          ).then(function(LatLonArray){
+
             self.setValue('COORDINATES');
-            latitudeInput.val(latitude);
-            longitudeInput.val(longitude);
-
-          } else {
-            //  None
-            self.setValue(_.last(values));
-          }
-        });
+            latitudeInput.val(LatLonArray[0]);
+            longitudeInput.val(LatLonArray[1]);
+          });
+        } else {
+          //  None
+          self.setValue(_.last(values));
+        }
       });
+    });
 
     var goToNext = function() {
       TVRO.getAntennaVersions().then(function(xml) {
         var antModel = $('au model', xml).text();
-        
+
         if (antModel === 'RV1'){
-            window.location = '/wizard/service.php';
+          window.location = '/wizard/service.php';
         }else{
-            window.location.hash = '/heading-source';
+          window.location.hash = '/heading-source';
         }
       });
     };
-    
-    var formatGPS = function(latitude,longitude){
-      // Assuming a xxx.xxxN entry
-      // Extract the hemisphere
-      var latHemisphere = _.find(latitude,function(num){return (num==="N") || (num==='S');})
-      var lonHemisphere = _.find(longitude,function(num){return (num==="E") || (num==='W');})
-      
-      //Extract the number
-      var lat = Number(latitude.substring(0,(latitude.indexOf(latHemisphere))));
-      var lon = Number(longitude.substring(0,(longitude.indexOf(lonHemisphere))));
 
-      // Negate for South latitude or West longitude
-      if (latHemisphere === 'S'){
-        lat = -lat;
+    var formatGPS = function(isInput,latitude,longitude){
+
+      if(isInput)
+      {
+        // Assuming a xxx.xxxN entry
+        // Extract the hemisphere
+        var latHemisphere = _.find(latitude,function(num){return (num==="N") || (num==='S');})
+        var lonHemisphere = _.find(longitude,function(num){return (num==="E") || (num==='W');})
+
+        //Extract the number
+        var lat = Number(latitude.substring(0,(latitude.indexOf(latHemisphere))));
+        var lon = Number(longitude.substring(0,(longitude.indexOf(lonHemisphere))));
+
+        // Negate for South latitude or West longitude
+        if (latHemisphere === 'S'){
+          lat = -lat;
+        }
+        if (lonHemisphere === 'W'){
+          lon = -lon;
+        }else
+        {
+          lat = latitude;
+          lon = longitude;
+        }
       }
-      if (lonHemisphere === 'W'){
-        lon = -lon;
-      }
+
       var LatLonArray = new Array();
       LatLonArray[0] = lat.toString();
       LatLonArray[1] = lon.toString();
@@ -191,7 +204,7 @@
       if (!value) {
         alert('You must select an option to continue.');
 
-      //  custom COORDINATES selected
+        //  custom COORDINATES selected
       } else if (value === 'COORDINATES') {
         var latitude = latitudeInput.val();
         var longitude = longitudeInput.val();
@@ -199,7 +212,7 @@
         if (!latitude || !longitude) alert('You must enter a latitude and longitude to continue.');
         else{
           Promise.all(
-            formatGPS(latitude,longitude)
+              formatGPS(true,latitude,longitude)
           ).then(function(LatLonArray){
 
             TVRO.setGps({
@@ -208,7 +221,7 @@
             }).then(goToNext);
           });
         }
-      //  CITY selected
+        //  CITY selected
       } else if (value === 'CITY') {
         var city = cityDropdownView.getValue();
         if (!city) alert('You must select a city to continue.');
@@ -216,7 +229,7 @@
           city: city
         }).then(goToNext);
 
-      //  NMEA source selected
+        //  NMEA source selected
       } else self.setNmeaSource(value).then(goToNext);
     });
 
@@ -226,9 +239,9 @@
 
   var HeadingSourceView = function(jQ) {
     var self = TVRO.TableView($('.\\#table-view', jQ))
-      .onBuild(function(row, headingSource) {
-        $('.\\#value', row).text(headingSource.display);
-      });
+    .onBuild(function(row, headingSource) {
+      $('.\\#value', row).text(headingSource.display);
+    });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
@@ -253,7 +266,7 @@
               satellite_group: 'GALAXY-LA'
             }).then(function() {
               document.body.className = '/spinner';
-              
+
               setTimeout(function() {
                 var interval = setInterval(function() {
                   TVRO.getAntennaStatus(1,1).then(function(xml) {
@@ -266,9 +279,9 @@
                 }, 1000);
               }, 10000);
             });
-            
-          // TRI AMERICAS -> directv (service.php#/directv)
-        }else if (lnbName === 'Tri-Americas Circular') window.location = '/wizard/service.php#/tri-am-group';
+
+            // TRI AMERICAS -> directv (service.php#/directv)
+          }else if (lnbName === 'Tri-Americas Circular') window.location = '/wizard/service.php#/tri-am-group';
 
           // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
           else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';
@@ -315,9 +328,9 @@ $(function() {
 
   TVRO.onHashChange(function(hash) {
     if (!hash){   	
-        window.location.hash = '/vessel-location';
+      window.location.hash = '/vessel-location';
     }   
-    
+
     document.body.className = hash;
   });
 
