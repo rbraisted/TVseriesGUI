@@ -130,29 +130,19 @@
 
       //  then check for CITY or COORDINATES
       else TVRO.getGps().then(function(xml) {
-        var city = $('city', xml).text();
         var latitude = $('lat', xml).text();
         var longitude = $('lon', xml).text();
 
-        if (city) {
-          self.setValue('CITY');
-          cityDropdownView.setValue(city);
-          cityLabel.text(city);
-
-        } else if (latitude || longitude) {
-          Promise.all(
-              formatGPS(false,latitude,longitude)
-          ).then(function(LatLonArray){
-
-            self.setValue('COORDINATES');
-            latitudeInput.val(LatLonArray[0]);
-            longitudeInput.val(LatLonArray[1]);
-          });
-        } else {
-          //  None
-          self.setValue(_.last(values));
-        }
+        var array = [latitude,longitude];
+        return array;
+      }).then(function(LatLonArray){
+        return formatGPS(false,LatLonArray[0],LatLonArray[1]);
+      }).then(function(array){
+        self.setValue('COORDINATES');
+        latitudeInput.val(array[0]);
+        longitudeInput.val(array[1]);
       });
+
     });
 
     var goToNext = function() {
@@ -186,17 +176,25 @@
         }
         if (lonHemisphere === 'W'){
           lon = -lon;
-        }else
+        }
+      }else
+      {
+        if(Number(latitude)< 0)
+          {
+            lat= Math.abs(Number(latitude)) + "S";
+          }else{
+            lat= Number(latitude) + "N";
+          }
+        if(Number(longitude)< 0)
         {
-          lat = latitude;
-          lon = longitude;
+          lon= Math.abs(Number(longitude)) + "W";
+        }else{
+          lon= Number(longitude) + "N";
         }
       }
 
-      var LatLonArray = new Array();
-      LatLonArray[0] = lat.toString();
-      LatLonArray[1] = lon.toString();
-      return LatLonArray;
+      var latLonArray = [lat.toString(),lon.toString()];
+      return latLonArray;
     };
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
@@ -213,11 +211,11 @@
         else{
           Promise.all(
               formatGPS(true,latitude,longitude)
-          ).then(function(LatLonArray){
+          ).then(function(latLonArray){
 
             TVRO.setGps({
-              lat: LatLonArray[0],
-              lon: LatLonArray[1]
+              lat: latLonArray[0],
+              lon: latLonArray[1]
             }).then(goToNext);
           });
         }
