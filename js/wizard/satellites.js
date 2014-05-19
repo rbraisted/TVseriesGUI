@@ -43,11 +43,13 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
-          TVRO.getSatelliteService()
+          TVRO.getSatelliteService(),
+          TVRO.getAntennaVersions()
         ).then(function(xmls) {
           var service = $('service', xmls[0]).text();
+          var lnbType = $('lnb polarization', xmls[1]).text();
 
-          if (service === 'OTHER') window.location = '/wizard/service.php';
+          if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/service.php';
           else window.location = '/wizard/gps.php#/heading-source';
         });
       
