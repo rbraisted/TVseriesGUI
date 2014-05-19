@@ -1221,6 +1221,17 @@ body[class=''] .\#service-provider-view,
       vertical-align: middle;
     }
   }
+
+  @include breakpoint($mobile) {
+    .column {
+      margin: 20px;
+      line-height: 1.4;
+    }
+
+    .skew-table {
+      width: 100%;
+    }
+  }
 }
 
 .linear-system-config,

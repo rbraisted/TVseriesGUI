@@ -1995,6 +1995,12 @@ body[class=''] .\#service-provider-view,
       margin-left: 0; }
     .skew-angle .column.first + column + column {
       margin-left: 0; } }
+@media screen and (max-width: 880px) {
+  .skew-angle .column {
+    margin: 20px;
+    line-height: 1.4; }
+  .skew-angle .skew-table {
+    width: 100%; } }
 
 .linear-system-config .copy,
 .other-system-config .copy {
