@@ -41,7 +41,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     <span class="label">Longitude:</span>
     <input type="text" placeholder="Format XXE or XXW" class="input longitude #longitude">
     <span class="label">xxx.xxxE or xxx.xxxW</span>
-    </div>
+  </div>
 
   <div class="city-view #city-view">
     <span class="city-label label">Choose your nearest major city</span>
@@ -54,13 +54,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="note">
     This location will allow the antenna to find
     the satellite(s) more quickly.
-  </div>
-
-    <div class=" note">
+    <br>
+    <br>
     If your system has a linear LNB, be sure to
     enter your latitude/longitude to ensure an
     accurate skew calculation.
-    </div>
+  </div>
 
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>

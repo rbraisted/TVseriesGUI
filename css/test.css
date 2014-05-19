@@ -1152,6 +1152,8 @@ html {
     .heading-source .note {
       font-size: 16px; } }
 
+.vessel-location .note {
+  padding-bottom: 60px; }
 .vessel-location .coordinates-view,
 .vessel-location .city-view {
   line-height: 1.4; }
