@@ -32,6 +32,10 @@
       return 'N/A';
     else if (coordinate == -72.67){
       return "72W";
+    }else if(coordinate == 23.57){
+      return "23E";
+    }else if(coordinate == -29.86){
+      return "30W";
     }
 
     var posStr, negStr;
