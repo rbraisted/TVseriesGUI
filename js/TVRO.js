@@ -34,7 +34,7 @@
       return "72W";
     }else if(coordinate == 23.57){
       return "23E";
-    }else if(coordinate == -29.86){
+    }else if(coordinate == -28.85){
       return "30W";
     }else if(coordinate == 70.72){
       return "70E";
