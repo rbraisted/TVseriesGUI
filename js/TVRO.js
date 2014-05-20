@@ -36,6 +36,16 @@
       return "23E";
     }else if(coordinate == -29.86){
       return "30W";
+    }else if(coordinate == 70.72){
+      return "70E";
+    }else if(coordinate == 68.54){
+      return "68E";
+    }else if(coordinate == 93.51){
+      return "93E";
+    }else if(coordinate == 91.53){
+      return "91E";
+    }else if(coordinate == 78.55){
+      return "78E";
     }
 
     var posStr, negStr;
