@@ -147,8 +147,10 @@
       if (!option) alert('You must select an option to continue.');
 
       else if (option === singleOption)
-        TVRO.setInstalledSat({
-          antSatID: '101W'
+        TVRO.setAutoswitchService({
+          enable: 'N',
+          service: 'DIRECTV',
+          satellite_group: '101W'
         }).then(function() {
           document.body.className = '/spinner';
           setTimeout(function() {
