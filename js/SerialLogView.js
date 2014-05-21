@@ -35,17 +35,12 @@
     var reload = function() {
       TVRO.getSerialLog(1, 1).then(function(xml) {
         var serialLog = $('content', xml).text();
-        $('.\\#serial-log', jQ).text(serialLog).scrollTop($(".\\#serial-log")[0].scrollHeight - $(".\\#serial-log").height());
+        $('.\\#serial-log', jQ).text(serialLog);
       }, function(error) {
         //  serial log isn't available yet, start the log and reload.
-        TVRO.startSerialLog({ restart: 'N' }).then(TVRO.reload);
-      });
+        TVRO.startSerialLog({ restart: 'N' }).then(function(){setTimeout(reload,1000);})
+        });
     };
-    // Allow for an interval to be set and cleared to continuously reload
-    //when viewing the log
-    var interval;
-    $('.\\#serial-log-view .\\#back-btn').click(function() { clearInterval(interval); });
-    $('.\\#operational-log-view .\\#view-btn').click(function() { interval = setInterval(reload,1000);});
 
     return self = {
         reload: reload
