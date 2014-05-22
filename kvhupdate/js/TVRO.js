@@ -25,6 +25,7 @@
   var TVRO = {};
   TVRO.debug = 0;
 
+  // JG: test comment to verify change moves kvh update site, can be removed
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc
   var formatCoordinate = function(type, coordinate, places) {
