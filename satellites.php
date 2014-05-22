@@ -209,8 +209,8 @@ and also .#group-table-view (group mode)
     </div>
     <div class="name-block">
       <div class="label">Satellite Name</div>
-      <div class="value #sat-name"></div>
       <input class="input #sat-name" />
+      <div class="value #sat-name"></div>
     </div><!--
    --><div class="fav-block">
       <div class="label">Add To Favorites</div>
@@ -233,13 +233,13 @@ and also .#group-table-view (group mode)
     </div><!--
    --><div class="orb-slot-block">
       <div class="label">Orbital Slot</div>
-      <div class="value #sat-longitude"></div>
       <input class="input #sat-longitude" />
+      <div class="value #sat-longitude"></div>
     </div><!--
    --><div class="skew-block">
       <div class="label">Pre-Skew</div>
-      <div class="value #sat-skew"></div>
       <input class="input #sat-skew" />
+      <div class="value #sat-skew"></div>
     </div><!--
    --><div class="lnb-block">
       <div class="label">LNB Type</div>

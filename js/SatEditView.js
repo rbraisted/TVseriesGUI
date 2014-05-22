@@ -10,45 +10,45 @@
 
     if (!fecDropdownView)
       fecDropdownView = TVRO.DropdownView($('.\\#sat-edit-fec-dropdown-view'))
-        .setValues([
-          '1/2',
-          '2/3',
-          '3/4',
-          '3/5',
-          '4/5',
-          '5/6',
-          '5/11',
-          '6/7',
-          '7/8',
-          '8/9',
-          '9/9',
-          '9/10'
-        ])
-        .build();
+      .setValues([
+                  '1/2',
+                  '2/3',
+                  '3/4',
+                  '3/5',
+                  '4/5',
+                  '5/6',
+                  '5/11',
+                  '6/7',
+                  '7/8',
+                  '8/9',
+                  '9/9',
+                  '9/10'
+                  ])
+                  .build();
 
     if (!modTypeDropdownView)
       modTypeDropdownView = TVRO.DropdownView($('.\\#sat-edit-modType-dropdown-view'))
-        .setValues([
-          'QDSS',
-          'QDC2',
-          'QDVB',
-          'LQPSK',
-          'L8PSK',
-          'TQPSK',
-          'T8PSK'
-        ])
-        .build();
+      .setValues([
+                  'QDSS',
+                  'QDC2',
+                  'QDVB',
+                  'LQPSK',
+                  'L8PSK',
+                  'TQPSK',
+                  'T8PSK'
+                  ])
+                  .build();
 
     $('.\\#fec-btn', jQ).click(function() {
       var fec = $('.\\#xponder-fec', jQ).text();
       var offset = $(this).offset();
 
       fecDropdownView
-        .onClick(function(fec) {
-          $('.\\#xponder-fec', jQ).text(fec);
-        })
-        .setValue(fec)
-        .show(offset);
+      .onClick(function(fec) {
+        $('.\\#xponder-fec', jQ).text(fec);
+      })
+      .setValue(fec)
+      .show(offset);
     });
 
     $('.\\#modType-btn', jQ).click(function() {
@@ -56,42 +56,42 @@
       var offset = $(this).offset();
 
       modTypeDropdownView
-        .onClick(function(modType) {
-          $('.\\#xponder-modType', jQ).text(modType);
-        })
-        .setValue(modType)
-        .show(offset);
+      .onClick(function(modType) {
+        $('.\\#xponder-modType', jQ).text(modType);
+      })
+      .setValue(modType)
+      .show(offset);
     });
 
     return self = {
-      setXponder: function(arg) {
-        xponder = arg;
-        $('.\\#xponder-display', jQ).text(xponder.display);
-        $('.\\#xponder-freq', jQ).val(xponder.freq);
-        $('.\\#xponder-symRate', jQ).val(xponder.symRate);
-        $('.\\#xponder-fec', jQ).text(xponder.fec || 'N/A');
-        $('.\\#xponder-netID', jQ).val(xponder.netID);
-        $('.\\#xponder-modType', jQ).text(xponder.modType || 'N/A');
-        return self;
-      },
+        setXponder: function(arg) {
+          xponder = arg;
+          $('.\\#xponder-display', jQ).text(xponder.display);
+          $('.\\#xponder-freq', jQ).val(xponder.freq);
+          $('.\\#xponder-symRate', jQ).val(xponder.symRate);
+          $('.\\#xponder-fec', jQ).text(xponder.fec || 'N/A');
+          $('.\\#xponder-netID', jQ).val(xponder.netID);
+          $('.\\#xponder-modType', jQ).text(xponder.modType || 'N/A');
+          return self;
+        },
 
-      getXponder: function() {
-        var fec = $('.\\#xponder-fec', jQ).text();
-        if (fec === 'N/A') fec = '';
+        getXponder: function() {
+          var fec = $('.\\#xponder-fec', jQ).text();
+          if (fec === 'N/A') fec = '';
 
-        var modType = $('.\\#xponder-modType', jQ).text();
-        if (modType === 'N/A') modType = '';
+          var modType = $('.\\#xponder-modType', jQ).text();
+          if (modType === 'N/A') modType = '';
 
-        if (xponder) {
-          xponder.freq = $('.\\#xponder-freq', jQ).val();
-          xponder.symRate = $('.\\#xponder-symRate', jQ).val();
-          xponder.fec = fec;
-          xponder.netID = $('.\\#xponder-netID', jQ).val();
-          xponder.modType = modType;
+          if (xponder) {
+            xponder.freq = $('.\\#xponder-freq', jQ).val();
+            xponder.symRate = $('.\\#xponder-symRate', jQ).val();
+            xponder.fec = fec;
+            xponder.netID = $('.\\#xponder-netID', jQ).val();
+            xponder.modType = modType;
+          }
+
+          return xponder;
         }
-
-        return xponder;
-      }
     };
   };
 
@@ -103,26 +103,43 @@
     var sat;
 
     var favBtn = TVRO.ToggleBtn($('.\\#fav-btn', jQ))
-      .onClick(function(isFav) {
-        TVRO.setSatelliteIdentity({
-          listID: sat.listID,
-          antSatID: sat.antSatID,
-          favorite: isFav ? 'TRUE' : 'FALSE'
-        });
+    .onClick(function(isFav) {
+      TVRO.setSatelliteIdentity({
+        listID: sat.listID,
+        antSatID: sat.antSatID,
+        favorite: isFav ? 'TRUE' : 'FALSE'
       });
+    });
 
     var saveBtn = $('.\\#save-btn', jQ).click(function() {
       var params = {
-        listID: sat.listID,
-        antSatID: sat.antSatID,
-        name: $('.\\#sat-name', jQ).val(),
-        region: regionDropdownView.getValue(),
-        skew: $('.\\#sat-skew', jQ).val(),
-        xponder: _.invoke(xponderViews, 'getXponder')
+          listID: sat.listID,
+          antSatID: sat.antSatID,
+          name: $('.\\#sat-name', jQ).val(),
+          region: regionDropdownView.getValue(),
+          skew: $('.\\#sat-skew', jQ).val(),
+          xponder: _.invoke(xponderViews, 'getXponder')
       };
 
       if (!sat.predefined) {
-        params.lon = $('.\\#sat-longitude', jQ).val();
+
+        var longitude = $('.\\#sat-longitude', jQ).val();
+        // Assuming a xxx.xxxN entry
+        // Extract the hemisphere
+        var lonHemisphere = _.find(longitude,function(num){return (num==="E") || (num==='W');})
+
+        // If lonHemisphere is undefined user did not enter E or W
+        if(lonHemisphere){
+          //Extract the number
+          var lon = Number(longitude.substring(0,(longitude.indexOf(lonHemisphere))));
+          // Negate for South latitude or West longitude
+          if (lonHemisphere === 'W'){
+            lon = -lon;
+          }
+        }else{
+          var lon = longitude;
+        }
+        params.lon = lon;
       }
 
       TVRO.setSatParams(params).then(TVRO.reload);
@@ -134,18 +151,18 @@
     });
 
     var regionDropdownView = TVRO.DropdownView($('.\\#sat-edit-region-dropdown-view'))
-      .setValues([
-        'Africa',
-        'Asia',
-        'Australia',
-        'Central/South America',
-        'Europe',
-        'North America'
-      ])
-      .onClick(function(region) {
-        $('.\\#sat-region', jQ).text(region);
-      })
-      .build();
+    .setValues([
+                'Africa',
+                'Asia',
+                'Australia',
+                'Central/South America',
+                'Europe',
+                'North America'
+                ])
+                .onClick(function(region) {
+                  $('.\\#sat-region', jQ).text(region);
+                })
+                .build();
 
     var regionBtn = $('.\\#region-btn', jQ).click(function() {
       regionDropdownView.show($(this).offset());
@@ -156,37 +173,37 @@
     });
 
     return self = {
-      setSat: function(arg) {
-        TVRO.getSatParams(arg).then(function(arg) {
-          sat = arg;
-          favBtn.setOn(sat.favorite);
-          jQ.toggleClass('$predefined', sat.predefined);
+        setSat: function(arg) {
+          TVRO.getSatParams(arg).then(function(arg) {
+            sat = arg;
+            favBtn.setOn(sat.favorite);
+            jQ.toggleClass('$predefined', sat.predefined);
 
-          //  inputs
-          $('.\\#sat-name', jQ).val(sat.name);
-          $('.\\#sat-region', jQ).val(sat.region);
-          $('.\\#sat-longitude', jQ).val(sat.lon);
-          $('.\\#sat-skew', jQ).val(sat.skew);
+            //  inputs
+            $('.\\#sat-name', jQ).val(sat.name);
+            $('.\\#sat-region', jQ).val(sat.region);
+            $('.\\#sat-longitude', jQ).val(TVRO.formatLongitude(sat.lon, 0));
+            $('.\\#sat-skew', jQ).val(sat.skew);
 
-          //  plain ol text, dropdown btns
-          $('.\\#sat-name', jQ).text(sat.name || 'N/A');
-          $('.\\#sat-region', jQ).text(sat.region || 'N/A');
-          regionDropdownView.setValue(sat.region || null);
-          $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
-           $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
+            //  plain ol text, dropdown btns
+            $('.\\#sat-name', jQ).text(sat.name || 'N/A');
+            $('.\\#sat-region', jQ).text(sat.region || 'N/A');
+            regionDropdownView.setValue(sat.region || null);
+            $('.\\#sat-longitude', jQ).text(TVRO.formatLongitude(sat.lon, 0) || 'N/A');
+            $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
 
-          for (var i = 0; i < sat.xponders.length; i++) {
-            xponderViews[i].setXponder(sat.xponders[i]);
-          }
-        });
+            for (var i = 0; i < sat.xponders.length; i++) {
+              xponderViews[i].setXponder(sat.xponders[i]);
+            }
+          });
 
-        
-        return self;
-      },
 
-      getSat: function() {
-        return sat;
-      }
+          return self;
+        },
+
+        getSat: function() {
+          return sat;
+        }
     };
   };
 
