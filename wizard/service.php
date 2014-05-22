@@ -133,4 +133,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <br>
   <p class="headline checkswitch-status #checkswitch-status"></p>
   <img src="/images/spinner.gif" class="spinner" />
+  <div class="bottom-bar">
+    <div class="exit-btn #exit-btn">Exit</div>
+  </div>
 </div>

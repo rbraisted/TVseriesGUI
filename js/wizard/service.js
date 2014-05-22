@@ -37,7 +37,7 @@
             satellite_group: 'BELL TV DUAL'
           }).then(function() {
             document.body.className = '/checkswitch-spinner';
-            startCheckswitchMode();
+            startCheckswitchMode(value);
           });
 
         } else {
@@ -285,7 +285,7 @@
       //  we want to follow up with the same thing
       installPromise.then(function() {
         document.body.className = '/checkswitch-spinner';
-        startCheckswitchMode();
+        startCheckswitchMode("DISH");
       }); //end installPromise
     });
 
@@ -357,16 +357,18 @@
           }
         });
       }
-    });
+    }); 
   };
 
-  function startCheckswitchMode(){
+  function startCheckswitchMode(service){
+    var intervalID;
+    var interval;
     //  wait 10 seconds to allow antenna to switch
     //  service/groups and avoid false tracking.
     //  every second after, check if state is TRACKING
     //  once state is tracking ... ???
     setTimeout(function() {
-      var interval = setInterval(function() {
+      interval = setInterval(function() {
         TVRO.getAntennaStatus(1,1).then(function(xml) {
           var state =  $('antenna state', xml).text();
           $('.\\#checkswitch-status').text("The TV-Hub is Installing the group. Status: " + state);
@@ -374,11 +376,11 @@
             clearInterval(interval);
 
             TVRO.setCheckswitchMode({
-              enable : 'Y',
+              enable : 'Y'
             }).then(function() {
               var isEnabled;
               var status = 0;
-              var intervalID = window.setInterval(function() {
+              intervalID = window.setInterval(function() {
                 //  use TVRO.webserviceCall(1, 1) to force recache
                 TVRO.getCheckswitchMode(1, 1).then(function(xml) {
                   isEnabled = $('enable', xml).text();
@@ -402,11 +404,31 @@
         });          
       }, 1000);
     }, 10000);
+
+    $('.\\#exit-btn').click(function(){
+      // If you want to exit out of the install/checkswitch for DISH or BELL
+      // Clear the intervals and disable checkswitch mode.
+      // If you are DISH you want to reload to dispose of the spinner class
+      // and bring you back to the DISH groups else go to the service
+      // provider page (BELL).
+      window.clearInterval(intervalID);
+      clearInterval(interval);
+
+      TVRO.setCheckswitchMode({
+        enable : 'N'
+      }).then(function() {
+        if(service === "DISH"){
+          TVRO.reload();
+        }else{          
+          window.location = '/wizard/service.php';
+        }
+      });
+    });  
+
   };
 
   TVRO.ServiceProviderView = ServiceProviderView;
   TVRO.TriAmGroupView = TriAmGroupView;
-  //TVRO.LocalChannelsView = LocalChannelsView;
   TVRO.DirectvView = DirectvView;
   TVRO.DishNetworkView = DishNetworkView;
 
@@ -415,7 +437,6 @@
 $(function() {
   var serviceProviderView = TVRO.ServiceProviderView($('.\\#service-provider-view'));
   var TriAmGroupView = TVRO.TriAmGroupView($('.\\#tri-am-group-view'));
-  //var localChannelsView = TVRO.LocalChannelsView($('.\\#local-channels-view'));
   var directvView = TVRO.DirectvView($('.\\#directv-view'));
   var dishNetworkView = TVRO.DishNetworkView($('.\\#dish-network-view'));
 
