@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="set_callhome" error="0" />
+  <status>STARTED</status><!-- NOINTERNET | STARTED | COMPLETE -->
+</ipacu_response>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipacu_response>
+	<message name="get_callhome" error="0" />
+  <status>CONNECTED</status><!-- NOSERVICE | CONNECTING | CONNECTED | DISCONNECTED -->
+</ipacu_response>
