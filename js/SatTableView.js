@@ -5,6 +5,8 @@
     var self;
 
     var region;
+    var previousRegion; // store this so that if you reload a region
+
     var sortFilter;
     var sortReverse;
 
@@ -70,12 +72,20 @@
         if (region !== 'All') sats = _.filter(sats, { region: region });
         if (sortFilter) sats = _.sortBy(sats, sortFilter);
         if (sortFilter && sortReverse) sats.reverse();
+
+        var scrollTop;
+        if (region === previousRegion) scrollTop = $('.\\#table-view', jQ).scrollTop();
+
         tableView.setValues(sats).build();
+
+        if (scrollTop !== null) $('.\\#table-view', jQ).scrollTop(scrollTop);
+
       });
     };
 
     return self = _.merge(tableView, {
       setRegion: function(arg) {
+        previousRegion = region;
         region = arg;
         return self;
       },
