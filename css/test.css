@@ -1124,8 +1124,34 @@ html {
 .diy-vessel-info .note,
 .installer-info .note {
   font-size: 13px;
-  float: right;
+  margin-top: 30px;
+  width: 100%;
+  text-align: right; }
+.cdt-vessel-info .save-info,
+.diy-vessel-info .save-info,
+.installer-info .save-info {
+  display: block;
+  text-align: center;
+  font-size: 13px;
   margin-top: 30px; }
+.cdt-vessel-info .save-btn,
+.diy-vessel-info .save-btn,
+.installer-info .save-btn {
+  background-image: url(/images/radio-unchecked.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 21px 21px;
+  min-height: 21px;
+  min-width: 21px;
+  display: inline-block;
+  position: relative;
+  top: 6px;
+  margin-right: 0.5em;
+  cursor: pointer; }
+.cdt-vessel-info .save-btn.\$on,
+.diy-vessel-info .save-btn.\$on,
+.installer-info .save-btn.\$on {
+  background-image: url(/images/radio-checked.svg); }
 
 .\/installer-id .\#installer-id-view,
 .\/cdt-vessel-info .\#cdt-vessel-info-view,

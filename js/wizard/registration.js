@@ -147,6 +147,8 @@
   var InstallerInfoView = function(jQ) {
     var self = InfoView(jQ);
 
+    var saveBtn = TVRO.ToggleBtn($('.\\#save-btn', jQ));
+
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       if (!self.isValid()) return;
 
@@ -163,8 +165,7 @@
           installer_email: email
         }
       }).then(function() {
-        // if (TVRO.getShellMode()) {
-        if (true) {
+        if (TVRO.getShellMode()) {
           TVRO.sendShellCommand('set-installer-company/' + company);
           TVRO.sendShellCommand('set-installer-contact/' + contact);
           TVRO.sendShellCommand('set-installer-phone/' + phone);

@@ -91,6 +91,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     <div class="label">Installer Contact Email *</div>
     <input required type="text" class="input #email">
 
+    <div class="save-info">
+      <div class="save-btn #save-btn $on"></div>
+      Save this info for use with future installation.
+    </div>
+
     <div class="note">* Indicates required field</div>
   </div>
 
