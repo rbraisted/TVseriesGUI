@@ -145,6 +145,21 @@
     .block-btn {
       min-width: 130px;
     }
+
+    .state {
+      margin-left: $lil-bump;
+      position: relative;
+      bottom: 30px;
+    }
+  }
+
+  @include breakpoint($mobile) {
+    .state {
+      width: 100%;
+      text-align: center;
+      position: relative;
+      bottom: 15px;
+    }
   }
 }
 

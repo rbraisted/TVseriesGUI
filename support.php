@@ -107,6 +107,8 @@
       KVH Technical Support.
     </p>
 
+    <div class="#state state"> </div>
+
     <div class="block-btn connect-btn #connect-btn">Connect</div><!--
  --><div class="block-btn disconnect-btn #disconnect-btn">Disconnect</div>
   </div>

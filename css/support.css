@@ -951,7 +951,17 @@ a {
       margin-left: 26px;
       margin-right: 10px; }
     .remote-diagnostics .block-btn {
-      min-width: 130px; } }
+      min-width: 130px; }
+    .remote-diagnostics .state {
+      margin-left: 26px;
+      position: relative;
+      bottom: 30px; } }
+@media screen and (max-width: 880px) {
+  .remote-diagnostics .state {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 15px; } }
 
 .serial-log pre {
   background-color: #4c5269;
