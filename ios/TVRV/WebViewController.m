@@ -172,29 +172,40 @@
   //	cookies set by the gui - we basically brute force this by setting the cookies
   //	with the device's setting values on every page load
 	NSString* demoMode = [defaults boolForKey:@"demo-mode"] ? @"true" : @"false";
+  NSLog(@"demoMode: %@", demoMode);
   NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
   
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
+  NSLog(@"techMode: %@", techMode);
   NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
   
 	NSString* installerCompany = [defaults valueForKey:@"installer-company"];
+  NSLog(@"installerCompany: %@", installerCompany);
 	if (installerCompany == NULL) installerCompany = @"";
 	NSString* installerCompanyString = [NSString stringWithFormat:@"TVRO.setInstallerCompany(%@);", installerCompany];
 
 	NSString* installerContact = [defaults valueForKey:@"installer-contact"];
-	if (installerContact == NULL) installerCompany = @"";
+  NSLog(@"installerContact: %@", installerContact);
+	if (installerContact == NULL) installerContact = @"";
 	NSString* installerContactString = [NSString stringWithFormat:@"TVRO.setInstallerContact(%@);", installerContact];
 
 	NSString* installerPhone = [defaults valueForKey:@"installer-phone"];
+  NSLog(@"installerPhone: %@", installerPhone);
 	if (installerPhone == NULL) installerPhone = @"";
 	NSString* installerPhoneString = [NSString stringWithFormat:@"TVRO.setInstallerPhone(%@);", installerPhone];
 
 	NSString* installerEmail = [defaults valueForKey:@"installer-email"];
+  NSLog(@"installerEmail: %@", installerEmail);
 	if (installerEmail == NULL) installerEmail = @"";
 	NSString* installerEmailString = [NSString stringWithFormat:@"TVRO.setInstallerEmail(%@);", installerEmail];
+
+  NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
+  NSString* satFinderAvailableString = [NSString stringWithFormat:@"TVRO.setSatfinderMode(%@);", satFinderAvailable];
   
-	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@", demoModeString, techModeString, installerCompanyString, installerContactString, installerPhoneString, installerEmailString];
+	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", demoModeString, techModeString, installerCompanyString, installerContactString, installerPhoneString, installerEmailString, satFinderAvailableString];
  	[webView stringByEvaluatingJavaScriptFromString:jsString];
+
+  NSLog(@"jsString: %@", jsString);
   
   // Check to see if the default host name has been set to the current connected host
   // if not then set the user defaults host name so it can be displayed on Bonjour view
