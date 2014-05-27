@@ -278,9 +278,9 @@
     
     
 	} else if ([url.host isEqualToString:@"set-installer-company"]
-          || [url.host isEqualToString:@"set-installer-company"]
-					|| [url.host isEqualToString:@"set-installer-company"]
-					|| [url.host isEqualToString:@"set-installer-company"]) {
+          || [url.host isEqualToString:@"set-installer-contact"]
+					|| [url.host isEqualToString:@"set-installer-phone"]
+					|| [url.host isEqualToString:@"set-installer-email"]) {
 		NSString* key = [url.host substringFromIndex:4];
 		NSString* value = [url.path substringFromIndex:1];
 		[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
