@@ -294,7 +294,7 @@ a {
       .nav .satfinder-btn:hover, .nav .satfinder-btn.\$selected {
         background-image: url(/images/satfinder-icon-white.svg);
         color: #fff; } }
-.nav .satfinder-btn {
+.nav .satfinder-btn:not(.\$available) {
   display: none; }
 
 .sidebar,

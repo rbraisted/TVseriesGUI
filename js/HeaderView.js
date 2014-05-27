@@ -4,6 +4,9 @@
   var HeaderView = function(jQ) {
     var self;
 
+    //  show or hide sat finder
+    $('.\\#satfinder-btn').toggleClass('$available', TVRO.getSatfinderMode());
+
     var homeBtn = $('.\\#home-btn', jQ).click(function() {
       //  index.php
       //  goes to wizard if wizard has not been completed

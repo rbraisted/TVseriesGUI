@@ -337,10 +337,10 @@ a {
   				color: #fff;
   			}
   		}
-  	}    
+  	}
   }
 
-  .satfinder-btn {
+  .satfinder-btn:not(.\$available) {
     display: none;
   }
 }
