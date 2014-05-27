@@ -176,9 +176,9 @@
   NSNetService* netService = [netServices objectAtIndex:row];
 	
   NSString* hubName = netService.name;
-//  if ([[netService.name substringToIndex:6] isEqualToString:@"tvhub-"]) {
-//    hubName = [hubName substringFromIndex:6];
-//  }
+  if ([[netService.name substringToIndex:6] isEqualToString:@"tvhub-"]) {
+    hubName = [hubName substringFromIndex:6];
+  }
 
   NSArray *parseList = [netService.name componentsSeparatedByString:@" "];
   if ([[[parseList objectAtIndex:4] substringToIndex:6] isEqualToString:@"tvhub-"]) {
