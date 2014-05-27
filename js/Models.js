@@ -197,7 +197,7 @@
     .then(TVRO.setSatelliteParams(onlyXponders, 1));
   };
 
-  TVRO.getReceivers = function() {
+  TVRO.getReceivers = function(service) {
     return Promise.all(
         TVRO.getAutoswitchStatus(1, 1), //  don't cache so that we can get active status
         TVRO.getAutoswitchConfiguredNames(1, 1) //  same here
@@ -205,11 +205,23 @@
       //  get the active receivers
       //  get all receivers
       //  go through all receivers and set receive.active
-      var receivers = _.map($('autoswitch', xmls[1]), Receiver);
-      var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);
-      return _.forEach(receivers, function(receiver) {
-        receiver.active = !!_.find(activeReceivers, { id: receiver.id });
-      });
+      if(service === 'DIRECTV'){
+        var receivers = _.map($('receiver', xmls[1]), Receiver);
+        var activeReceivers = _.map($('receiver', xmls[0]), Receiver);
+        
+        return _.forEach(receivers, function(receiver) {
+          receiver.active = !!_.find(activeReceivers, { id: receiver.id });
+        });
+        
+      }else{
+        var receivers = _.map($('autoswitch', xmls[1]), Receiver);
+        var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);
+        
+        return _.forEach(receivers, function(receiver) {
+          receiver.active = !!_.find(activeReceivers, { id: receiver.id });
+        });
+        
+      }
     });
   };
 
@@ -240,7 +252,7 @@
   };
 
   TVRO.setMasterReceiver = function(hub) {
-    return TVRO.getAutoswitchStatus().then(function(xml) {
+    return TVRO.getSatelliteService().then(function(xml) {
       var service = $('service', xml).text();
       var receiverIdType = 'sn';
       var master = {};

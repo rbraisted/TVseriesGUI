@@ -31,17 +31,19 @@
 				});
 			});
 
-    var reload = function() {
-      TVRO.getReceivers().then(function(receivers) {
-        tableView.setValues(receivers).build();
-      });
+		var reload = function() {
 
-      TVRO.getSatelliteService().then(function(xml) {
-        var service = $('service', xml).text();
-        $('.\\#directv', jQ).toggle(service === 'DIRECTV');
-        $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');
-      });
-    };
+		  TVRO.getSatelliteService().then(function(xml) {
+		    var service = $('service', xml).text();
+		    $('.\\#directv', jQ).toggle(service === 'DIRECTV');
+		    $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');
+		    return service;
+		  }).then(function(service){
+		    TVRO.getReceivers(service).then(function(receivers){
+		      tableView.setValues(receivers).build();
+		    });
+		  });
+		};
 
     return self = _.merge(tableView, {
       reload: reload
