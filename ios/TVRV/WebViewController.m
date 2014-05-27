@@ -338,9 +338,11 @@
 }
 
 - (void)showSatFinder {
-  NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
-  NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-  satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+  //  this is not going to work well, we should find another solution
+  // NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
+  // NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
+  NSString* satListXmlString = @"";
+  if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
   [self presentViewController:satFinderViewController animated:YES completion:nil];
 }
 

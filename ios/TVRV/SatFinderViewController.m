@@ -41,43 +41,43 @@
       	 drLongRad,
     	   drY;
     
-    double drCosDelta,
-    		   drCosLat,
-    		   drSinLat,
-    		   drAbsDelta;
-    
-    double  drA = 0.15127;
-    
-    /* Convert degrees to radians */
-    drLatRad  = degreesToRadians(drLatDeg);
-    drLongRad = degreesToRadians(drLongDeg);
-	
-    drCosLat   = cos(drLatRad);
-    drSinLat   = sin(drLatRad);
-    
-    drDelta = drLongRad - drLongRadSat;
-    drAbsDelta = fabs(drDelta);
-    drCosDelta = cos(drAbsDelta);
-	
-    drY = acos(drCosLat * drCosDelta);
+  double drCosDelta,
+  		   drCosLat,
+  		   drSinLat,
+  		   drAbsDelta;
+  
+  double  drA = 0.15127;
+  
+  /* Convert degrees to radians */
+  drLatRad  = degreesToRadians(drLatDeg);
+  drLongRad = degreesToRadians(drLongDeg);
 
-    /* Compute azimuth */
-    if (drDelta > 0.0)  {
-      drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
-    } else  {
-      drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
-    }
+  drCosLat   = cos(drLatRad);
+  drSinLat   = sin(drLatRad);
+  
+  drDelta = drLongRad - drLongRadSat;
+  drAbsDelta = fabs(drDelta);
+  drCosDelta = cos(drAbsDelta);
 
-    drAzimuth = radiansToDegrees(drAzimuth);
-    drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
-    
-    /* Compute elevation */
-	  drElevation = atan2(cos(drY) - drA, sin(drY));
-	
-    drElevation = radiansToDegrees(drElevation);
-    
-    // now, rElevation and rAzimuth are correct.  use them to place the satellite.
-    return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
+  drY = acos(drCosLat * drCosDelta);
+
+  /* Compute azimuth */
+  if (drDelta > 0.0)  {
+    drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
+  } else  {
+    drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
+  }
+
+  drAzimuth = radiansToDegrees(drAzimuth);
+  drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
+  
+  /* Compute elevation */
+  drElevation = atan2(cos(drY) - drA, sin(drY));
+
+  drElevation = radiansToDegrees(drElevation);
+  
+  // now, rElevation and rAzimuth are correct.  use them to place the satellite.
+  return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
 }
 
 - (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth {
@@ -139,35 +139,36 @@
 			   drLongRad,
 			   drY;
     
-    double drCosDelta,
-			     drCosLat,
-			     drSinLat,
-			     drAbsDelta;
+  double drCosDelta,
+		     drCosLat,
+		     drSinLat,
+		     drAbsDelta;
+  
+  double drA = 0.15127;
+  
+  /* Convert degrees to radians */
+  drLatRad  = degreesToRadians(drLatDeg);
+  drLongRad = degreesToRadians(drLongDeg);
+
+  drCosLat   = cos(drLatRad);
+  drSinLat   = sin(drLatRad);
+  
+  drDelta = drLongRad - drLongRadSat;
+  drAbsDelta = fabs(drDelta);
+  drCosDelta = cos(drAbsDelta);
+
+  drY = acos(drCosLat * drCosDelta);
+  
+  /* Compute azimuth */
+  if (drDelta > 0.0)  {
+    drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
+  } else  {
+    drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
+  }
+  drAzimuth = radiansToDegrees(drAzimuth);
+  drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
     
-    double drA = 0.15127;
-    
-    /* Convert degrees to radians */
-    drLatRad  = degreesToRadians(drLatDeg);
-    drLongRad = degreesToRadians(drLongDeg);
-	
-    drCosLat   = cos(drLatRad);
-    drSinLat   = sin(drLatRad);
-    
-    drDelta = drLongRad - drLongRadSat;
-    drAbsDelta = fabs(drDelta);
-    drCosDelta = cos(drAbsDelta);
-	
-    drY = acos(drCosLat * drCosDelta);
-    /* Compute azimuth */
-    if (drDelta > 0.0)  {
-        drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
-    } else  {
-        drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
-    }
-    drAzimuth = radiansToDegrees(drAzimuth);
-    drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
-    
-    /* Compute elevation */
+  /* Compute elevation */
 	drElevation = atan2(cos(drY) - drA, sin(drY));
 	
   drElevation = radiansToDegrees(drElevation);
@@ -339,14 +340,14 @@
 
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
 	[manager dismissHeadingCalibrationDisplay];
-    return NO;
+  return NO;
 }
 
 #pragma mark - UIAccelerometerDelegate protocol methods
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    [accelerometerFilter addAcceleration:acceleration];
-    double y = accelerometerFilter.y;
+  [accelerometerFilter addAcceleration:acceleration];
+  double y = accelerometerFilter.y;
 	double z = accelerometerFilter.z;
 	deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
 	[self.view setNeedsDisplay];
@@ -355,14 +356,12 @@
 #pragma mark - SatFinderViewController methods
 
 + (BOOL)satFinderAvailable {
-    if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
-        if ([CLLocationManager headingAvailable]) {
-            NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-            if ([videoDevices count]) {
-				return true;
-			}
-        }
+  if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
+    if ([CLLocationManager headingAvailable]) {
+      NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+      if ([videoDevices count]) return true;
     }
+  }
 	
 	return false;
 }

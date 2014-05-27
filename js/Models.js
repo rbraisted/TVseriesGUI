@@ -160,8 +160,8 @@
     //  let's just pull the data by matching antSatID with the sat
     //  from get_satellite_list
     return Promise.all(
-        TVRO.getAntennaStatus(),
-        TVRO.getSatelliteList()
+      TVRO.getAntennaStatus(),
+      TVRO.getSatelliteList()
     ).then(function(xmls) {
       var antSatID = $('satellite antSatID', xmls[0]).text();
       return Sat($('satellite', xmls[1]).filter(function() {
