@@ -3,7 +3,7 @@
   <head>
     <title>KVH TracVision</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, inital-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
@@ -86,12 +86,12 @@
   </div>
 </div>
 
-<div class="nav #nav-view">
+<div class="nav #nav-view $expanded">
   <a href="/home.php" class="home-btn #nav-btn #home-btn">Home</a><!--
 --><a href="/satellites.php" class="sat-btn #nav-btn #satellites-btn">Satellites</a><!--
 --><a href="/autoswitch.php" class="autoswitch-btn #nav-btn #autoswitch-btn">Autoswitch</a><!--
 --><a href="/settings.php" class="settings-btn #nav-btn #settings-btn">Settings</a><!--
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
 --><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!--
---><a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Sat Finder</a>
+--><a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Satellite Finder</a>
 </div>

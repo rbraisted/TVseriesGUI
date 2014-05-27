@@ -218,21 +218,26 @@ a {
 ////////////////////////////////////////////////////////////////////////////////
 
 .status {
-  background-color: #000;
   position: fixed;
   top: $header-height;
   width: 100%;
   z-index: $header-index;
-  padding: 15px 20px;
-  display: none;
-  line-height: 1.4;
+  height: 0;
+  overflow: hidden;
+  transition: height .3s;
 
   &.\$expanded {
-    display: block;
+    height: 100%;
+  }
+
+  .status-label {
+    background-color: #000;
+    line-height: 1.4;
+    padding: 1em;
   }
 
   .status-label+.status-label {
-    margin-top: .7em;
+    padding-top: 0;
   }
 
   .\$green { color: $green; }
@@ -244,41 +249,60 @@ a {
 ////////////////////////////////////////////////////////////////////////////////
 .nav {
   $nav-btns:
-    home 17px,
-    sat 18px,
-    autoswitch 19px,
-    settings 17px,
-    updates 19px,
-    support 13px,
-    satfinder 21px;
+    //  name desktop-width mobile-width
+    home 17px 18px,
+    sat 18px 16.5px,
+    autoswitch 19px 15.5px,
+    settings 17px 17px,
+    updates 19px 19px,
+    support 13px 13px,
+    satfinder 21px 21px;
 
   @include breakpoint($mobile) {
-    background-color: #000;
     height: 0;
     overflow: hidden;
     padding-bottom: 0%;
     position: fixed;
     top: $header-height;
-    transition: padding .3s;
+    transition: height .3s;
     width: 100%;
     z-index: $nav-index;
 
+    //  clear fix
+    &:after {
+      content:"";
+      display:table;
+      clear:both;
+    }
+
     &.\$expanded {
-      padding-bottom: 66%;
+      height: 100%;
     }
 
     @each $nav-btn in $nav-btns {
       $btn-name: nth($nav-btn, 1);
-      $icon-width: unquote(nth($nav-btn, 2)/21px*50+'%');
+      $icon-width: unquote(nth($nav-btn, 3)/21px*50+'%');
       .#{$btn-name}-btn {
-        background: transparent url(/images/#{$btn-name}-icon-white.svg) no-repeat top 35% center/$icon-width;
+        background: #000 url(/images/#{$btn-name}-icon-white.svg) no-repeat top 35% center/$icon-width;
         cursor: pointer;
-        display: inline-block;
-        margin-left: 1%;
-        overflow: hidden;
-        padding: 23% 0 7%;
+        display: block;
+        float: left;
+        padding: 22.22% 0 calc(11.11% - 1em);
         text-align: center;
-        width: 32%;
+        width: 33%;
+
+        //  for some reason, this doesn't fill the screen width on safari
+        //  even though 33 + 34 + 33 = 100%
+        &:nth-child(3n + 2) {
+          width: 34%;
+        }
+
+        @if $btn-name == satfinder {
+          width: 100%;
+          padding: 10% 0;
+          background-position: left 10.5% center;
+          background-size: 15%;
+        }
       }
     }
   }
@@ -318,11 +342,6 @@ a {
 
   .satfinder-btn {
     display: none;
-
-    @include breakpoint($mobile) {
-      position: absolute;
-      left: 0;
-    }
   }
 }
 
