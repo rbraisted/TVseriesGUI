@@ -10,10 +10,9 @@
 
       Promise.all(
         TVRO.getAntennaVersions(),
-        TVRO.getAntennaStatus(),
-        TVRO.getNmeaHeading()
+        TVRO.getAntennaStatus()
       ).then(function(xmls) {
-        var heading = $('true', xmls[2]).text();
+        var heading = $('antenna brst hdg', xmls[1]).text();
         heading = heading === '' ? '---' : Number(heading).toFixed(1) + '˚';
         $('.\\#vessel-heading', jQ).text(heading);
 
