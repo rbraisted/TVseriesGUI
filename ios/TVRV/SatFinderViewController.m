@@ -5,14 +5,14 @@
 @implementation Sat
 
 @synthesize name,
-			region,
-			listId,
-			antSatId,
-			triSatId,
-			lon,
-			favorite,
-			enabled,
-			selectable;
+      			region,
+      			listId,
+      			antSatId,
+      			triSatId,
+      			lon,
+      			favorite,
+      			enabled,
+      			selectable;
 
 @end
 
@@ -27,24 +27,24 @@
 }
 
 - (NSArray*)azimuthAndElevationOfSatelliteAtLongitude:(double)satelliteLongitude {
-    //	these guys are set whenever our current location is updated
+  //	these guys are set whenever our current location is updated
 	double drLatDeg = [delegate deviceLat];
 	double drLongDeg = [delegate deviceLon];
     
 	double drLongDegSat = satelliteLongitude;
-    double drLongRadSat = degreesToRadians(drLongDegSat);
+  double drLongRadSat = degreesToRadians(drLongDegSat);
     
-	double  drAzimuth,
-    		drElevation,
-    		drDelta,
-    		drLatRad,
-    		drLongRad,
-    		drY;
+	double drAzimuth,
+    		 drElevation,
+      	 drDelta,
+      	 drLatRad,
+      	 drLongRad,
+    	   drY;
     
-    double  drCosDelta,
-    		drCosLat,
-    		drSinLat,
-    		drAbsDelta;
+    double drCosDelta,
+    		   drCosLat,
+    		   drSinLat,
+    		   drAbsDelta;
     
     double  drA = 0.15127;
     
@@ -60,17 +60,19 @@
     drCosDelta = cos(drAbsDelta);
 	
     drY = acos(drCosLat * drCosDelta);
+
     /* Compute azimuth */
     if (drDelta > 0.0)  {
-        drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
+      drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
     } else  {
-        drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
+      drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
     }
+
     drAzimuth = radiansToDegrees(drAzimuth);
     drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
     
     /* Compute elevation */
-	drElevation = atan2(cos(drY) - drA, sin(drY));
+	  drElevation = atan2(cos(drY) - drA, sin(drY));
 	
     drElevation = radiansToDegrees(drElevation);
     
@@ -79,7 +81,7 @@
 }
 
 - (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth {
-    satelliteAzimuth += (0.0 > satelliteAzimuth) ? 360.0 : 0.0;
+  satelliteAzimuth += (0.0 > satelliteAzimuth) ? 360.0 : 0.0;
 	
 	//	we could store these values when deviceHeading changes
 	double leftBound = [delegate deviceHeading] - (hfov/2.0);
@@ -88,13 +90,19 @@
 	double positionAtBoundScale;
 	if (leftBound > rightBound)	{
 		if (satelliteAzimuth <= rightBound) {
-            positionAtBoundScale = ((360.0 - leftBound) + satelliteAzimuth)/hfov;
-        } else if (satelliteAzimuth >= leftBound) {
-            positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
-		} else return NAN;
+      positionAtBoundScale = ((360.0 - leftBound) + satelliteAzimuth)/hfov;
+    } else if (satelliteAzimuth >= leftBound) {
+      positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
+    } else {
+      return NAN;
+    }
+
 	} else {
-        if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)) positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
-		else return NAN;
+    if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)){
+      positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
+    } else{
+      return NAN;
+    }
 	}
 	
 	double x = camviewwidth * positionAtBoundScale;
@@ -107,12 +115,14 @@
 	double topBound = [delegate deviceTilt] + (vfov/2.0);
 	double bottomBound = [delegate deviceTilt] - (vfov/2.0);
 	
-    if((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
-        double boundDiff = topBound - bottomBound;
-        double positionAtBoundScale = (satelliteElevation - bottomBound)/boundDiff;
-        double y = camviewheight - (camviewheight * positionAtBoundScale);
-        return y;
-    } else return NAN;
+  if((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
+    double boundDiff = topBound - bottomBound;
+    double positionAtBoundScale = (satelliteElevation - bottomBound)/boundDiff;
+    double y = camviewheight - (camviewheight * positionAtBoundScale);
+    return y;
+  } else {
+    return NAN;
+  }
 }
 
 - (CGPoint)positionWithLon:(double)lon {
@@ -120,21 +130,21 @@
 	double drLongDeg = [delegate deviceLon];
     
 	double drLongDegSat = lon;
-    double drLongRadSat = degreesToRadians(drLongDegSat);
+  double drLongRadSat = degreesToRadians(drLongDegSat);
     
-	double  drAzimuth,
-			drElevation,
-			drDelta,
-			drLatRad,
-			drLongRad,
-			drY;
+	double drAzimuth,
+			   drElevation,
+			   drDelta,
+			   drLatRad,
+			   drLongRad,
+			   drY;
     
-    double  drCosDelta,
-			drCosLat,
-			drSinLat,
-			drAbsDelta;
+    double drCosDelta,
+			     drCosLat,
+			     drSinLat,
+			     drAbsDelta;
     
-    double  drA = 0.15127;
+    double drA = 0.15127;
     
     /* Convert degrees to radians */
     drLatRad  = degreesToRadians(drLatDeg);
@@ -160,10 +170,11 @@
     /* Compute elevation */
 	drElevation = atan2(cos(drY) - drA, sin(drY));
 	
-    drElevation = radiansToDegrees(drElevation);
+  drElevation = radiansToDegrees(drElevation);
     
-    // now, rElevation and rAzimuth are correct.  use them to place the satellite.
-//    return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
+  // now, rElevation and rAzimuth are correct.  use them to place the satellite.
+  // return NSArray with NSNumbers drAzimuth and drElevation as 0 and 1 indexes
+  // // return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
 	drAzimuth += (0.0 > drAzimuth) ? 360.0 : 0.0;
 	
 	//	get x
@@ -173,14 +184,15 @@
 	double positionAtBoundScale;
 	if (leftBound > rightBound)	{
 		if (drAzimuth <= rightBound) {
-            positionAtBoundScale = ((360.0 - leftBound) + drAzimuth)/hfov;
-        } else if (drAzimuth >= leftBound) {
-            positionAtBoundScale = (drAzimuth - leftBound)/hfov;
+      positionAtBoundScale = ((360.0 - leftBound) + drAzimuth)/hfov;
+    } else if (drAzimuth >= leftBound) {
+      positionAtBoundScale = (drAzimuth - leftBound)/hfov;
 		} else {
 			positionAtBoundScale = NAN;
 		}
+
 	} else {
-        if ((drAzimuth > leftBound) && (drAzimuth < rightBound)) {
+    if ((drAzimuth > leftBound) && (drAzimuth < rightBound)) {
 			positionAtBoundScale = (drAzimuth - leftBound)/hfov;
 		} else {
 			positionAtBoundScale = NAN;
@@ -194,11 +206,11 @@
 
 	double y = NAN;
 	
-    if ((drElevation > bottomBound) && (drElevation < topBound)) {
-        double boundDiff = topBound - bottomBound;
-        double positionAtBoundScale = (drElevation - bottomBound)/boundDiff;
-		y = camviewheight - (camviewheight * positionAtBoundScale);
-    }
+  if ((drElevation > bottomBound) && (drElevation < topBound)) {
+    double boundDiff = topBound - bottomBound;
+    double positionAtBoundScale = (drElevation - bottomBound)/boundDiff;
+  	y = camviewheight - (camviewheight * positionAtBoundScale);
+  }
 	
 	return CGPointMake(x, y);
 }
@@ -277,21 +289,21 @@
 @implementation SatFinderViewController
 
 @synthesize deviceLat,
-			deviceLon,
-			deviceTilt,
-			deviceHeading,
-			satList;
+			      deviceLon,
+			      deviceTilt,
+			      deviceHeading,
+			      satList;
 
 #pragma mark - UIViewController methods
 
 - (void)viewWillAppear:(BOOL)animated {
 	[locationManager startUpdatingLocation];
-    if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
+  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[locationManager stopUpdatingLocation];
-    if ([CLLocationManager headingAvailable]) [locationManager stopUpdatingHeading];
+  if ([CLLocationManager headingAvailable]) [locationManager stopUpdatingHeading];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -313,13 +325,13 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
 	deviceLat = newLocation.coordinate.latitude;
 	deviceLon = newLocation.coordinate.longitude;
-    if (deviceLat == 0.0) deviceLat = 0.000001;
-    if (deviceLon == 0.0) deviceLon = 0.000001;
+  if (deviceLat == 0.0) deviceLat = 0.000001;
+  if (deviceLon == 0.0) deviceLon = 0.000001;
 	[self.view setNeedsDisplay];
 }
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
-    if (0 >= newHeading.headingAccuracy) deviceHeading = -999.0;
+  if (0 >= newHeading.headingAccuracy) deviceHeading = -999.0;
 	else if (deviceTilt < 45.0) deviceHeading = newHeading.trueHeading;
 	else deviceHeading = fabsf(newHeading.trueHeading - 180.0);
 	[self.view setNeedsDisplay];

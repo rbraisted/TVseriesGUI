@@ -140,7 +140,7 @@ a {
       display: inline-block;
       margin-left: 1%;
       overflow: hidden;
-      padding: 22% 0 6%;
+      padding: 23% 0 7%;
       text-align: center;
       width: 32%; }
     .nav .sat-btn {
@@ -149,7 +149,7 @@ a {
       display: inline-block;
       margin-left: 1%;
       overflow: hidden;
-      padding: 22% 0 6%;
+      padding: 23% 0 7%;
       text-align: center;
       width: 32%; }
     .nav .autoswitch-btn {
@@ -158,7 +158,7 @@ a {
       display: inline-block;
       margin-left: 1%;
       overflow: hidden;
-      padding: 22% 0 6%;
+      padding: 23% 0 7%;
       text-align: center;
       width: 32%; }
     .nav .settings-btn {
@@ -167,7 +167,7 @@ a {
       display: inline-block;
       margin-left: 1%;
       overflow: hidden;
-      padding: 22% 0 6%;
+      padding: 23% 0 7%;
       text-align: center;
       width: 32%; }
     .nav .updates-btn {
@@ -176,7 +176,7 @@ a {
       display: inline-block;
       margin-left: 1%;
       overflow: hidden;
-      padding: 22% 0 6%;
+      padding: 23% 0 7%;
       text-align: center;
       width: 32%; }
     .nav .support-btn {
@@ -185,7 +185,16 @@ a {
       display: inline-block;
       margin-left: 1%;
       overflow: hidden;
-      padding: 22% 0 6%;
+      padding: 23% 0 7%;
+      text-align: center;
+      width: 32%; }
+    .nav .satfinder-btn {
+      background: transparent url(/images/satfinder-icon-white.svg) no-repeat top 35% center/50%;
+      cursor: pointer;
+      display: inline-block;
+      margin-left: 1%;
+      overflow: hidden;
+      padding: 23% 0 7%;
       text-align: center;
       width: 32%; } }
 @media screen and (min-width: 881px) {
@@ -257,7 +266,23 @@ a {
       padding: 16px 15px 0 33px; }
       .nav .support-btn:hover, .nav .support-btn.\$selected {
         background-image: url(/images/support-icon-white.svg);
+        color: #fff; }
+    .nav .satfinder-btn {
+      background: transparent url(/images/satfinder-icon-grey.svg) no-repeat left 10px center/21px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 41px; }
+      .nav .satfinder-btn:hover, .nav .satfinder-btn.\$selected {
+        background-image: url(/images/satfinder-icon-white.svg);
         color: #fff; } }
+.nav .satfinder-btn {
+  display: none; }
+  @media screen and (max-width: 880px) {
+    .nav .satfinder-btn {
+      position: absolute;
+      left: 0; } }
 
 .sidebar,
 .view,

@@ -249,7 +249,8 @@ a {
     autoswitch 19px,
     settings 17px,
     updates 19px,
-    support 13px;
+    support 13px,
+    satfinder 21px;
 
   @include breakpoint($mobile) {
     background-color: #000;
@@ -275,7 +276,7 @@ a {
         display: inline-block;
         margin-left: 1%;
         overflow: hidden;
-        padding: 22% 0 6%;
+        padding: 23% 0 7%;
         text-align: center;
         width: 32%;
       }
@@ -313,6 +314,15 @@ a {
   			}
   		}
   	}    
+  }
+
+  .satfinder-btn {
+    display: none;
+
+    @include breakpoint($mobile) {
+      position: absolute;
+      left: 0;
+    }
   }
 }
 
