@@ -1,15 +1,18 @@
 package com.kvh.kvhandroid;
 
+import android.net.nsd.NsdManager;
+import android.net.nsd.NsdManager.DiscoveryListener;
+import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.webkit.WebChromeClient;
-import android.graphics.Bitmap;
 
 public class MainActivity extends Activity {
-
+	private String TAG = "KVHANDROID - MainActivity";
+	
+	NetServDisHelper networkServiceDiscoveryHelper;
+	
 	WebView webView;
 	
 	@Override
@@ -22,6 +25,10 @@ public class MainActivity extends Activity {
 		Constants.init();
 		
 		Log.i("KVH", "onCreate");
+		
+		networkServiceDiscoveryHelper = new NetServDisHelper(this);
+		networkServiceDiscoveryHelper.initializeNetworkServiceDiscovery();
+		networkServiceDiscoveryHelper.discoverServices();
 		
 		//OLD CODE --- MIGHT USE LATER
 //		//	get the webview
@@ -57,4 +64,10 @@ public class MainActivity extends Activity {
 //		//	Load URL
 //		webView.loadUrl("http://192.168.2.121/");
 	}
+	
+	@Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }

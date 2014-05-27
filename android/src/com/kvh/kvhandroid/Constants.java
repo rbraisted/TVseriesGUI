@@ -8,9 +8,9 @@ public class Constants {
 		VAIN_BUILD
 	}
 	
-	public static Build buildToUse = Build.FINAL_BUILD;
+//	public static Build buildToUse = Build.FINAL_BUILD;
 //	public static Build buildToUse = Build.KVH_BUILD;
-//	public static Build buildToUse = Build.VAIN_BUILD;
+	public static Build buildToUse = Build.VAIN_BUILD;
 
 	//----------------------------------------------------------
 	//Variables to be set depending on the build
