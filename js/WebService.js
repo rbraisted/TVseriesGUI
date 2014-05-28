@@ -393,23 +393,19 @@
 
   TVRO.setDeviceVersions = setDeviceVersions;
   TVRO.getDeviceVersions = function(recache) {
-    // if (cache['get_device_versions'] && !recache) {
-    //   return cache['get_device_versions'];
-    // } else {
-      cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
+    cache['get_device_versions'] = Promise.denodeify(getDeviceVersions)();
 
-      if (TVRO.getShellMode()) TVRO.sendShellCommand('get-device-versions');
-      else TVRO.setDeviceVersions({
-        SatLibrary: TVRO.getDownloadedSatLibraryUpdateVersion(),
-        TV1: TVRO.getDownloadedTV1UpdateVersion(),
-        TV3: TVRO.getDownloadedTV3UpdateVersion(),
-        TV5: TVRO.getDownloadedTV5UpdateVersion(),
-        TV6: TVRO.getDownloadedTV6UpdateVersion(),
-        RV1: TVRO.getDownloadedRV1UpdateVersion()
-      });
+    if (TVRO.getShellMode()) TVRO.sendShellCommand('get-device-versions');
+    else TVRO.setDeviceVersions({
+      SatLibrary: TVRO.getDownloadedSatLibraryUpdateVersion(),
+      TV1: TVRO.getDownloadedTV1UpdateVersion(),
+      TV3: TVRO.getDownloadedTV3UpdateVersion(),
+      TV5: TVRO.getDownloadedTV5UpdateVersion(),
+      TV6: TVRO.getDownloadedTV6UpdateVersion(),
+      RV1: TVRO.getDownloadedRV1UpdateVersion()
+    });
 
-      return cache['get_device_versions'];
-    // }
+    return cache['get_device_versions'];
   };
 
   //  pull from the box first,
@@ -418,7 +414,7 @@
   var installerInfo;
   var getInstallerInfoCallbacks = [];
   var getInstallerInfo = function(callback) {
-    if (!_.isUndefined(deviceVersions)) callback(null, deviceVersions);
+    if (!_.isUndefined(installerInfo)) callback(null, installerInfo);
     getInstallerInfoCallbacks.push(callback);    
   };
 
