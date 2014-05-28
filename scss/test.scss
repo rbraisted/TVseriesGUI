@@ -351,6 +351,13 @@ html {
 .cdt-vessel-info,
 .diy-vessel-info,
 .installer-info {
+  &:after {
+    content: ' ';
+    display: block;
+    padding-bottom: 65px;
+    width: 100%;
+  }
+
   .form {
     max-width: 440px;
     margin: auto;
