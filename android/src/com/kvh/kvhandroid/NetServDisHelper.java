@@ -1,5 +1,7 @@
 package com.kvh.kvhandroid;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdManager.ResolveListener;
@@ -10,20 +12,20 @@ import android.util.Log;
 public class NetServDisHelper {
 	
 	Context mContext;
+	NetServDisCallback netServDisCallback;
 	
 	NsdManager mNsdManager;
 	ResolveListener mResolveListener;
 	DiscoveryListener mDiscoveryListener;
 	NsdServiceInfo mService;
-	
-	public static final String SERVICE_TYPE = "_http._tcp.";
 
     public static final String TAG = "KVHANDROID - NetServDisHelper";
 	
 	public String mServiceName = "NsdChat";
 	
-	public NetServDisHelper(Context context) {
+	public NetServDisHelper(Context context, NetServDisCallback callback) {
         mContext = context;
+        netServDisCallback = callback;
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
     }
 	
@@ -66,6 +68,7 @@ public class NetServDisHelper {
 			public void onServiceFound(NsdServiceInfo serviceInfo) {
 				// A service was found!  Do something with it.
 	            Log.d(TAG, "Service discovery success: " + serviceInfo + " IP: ");
+	            
 	            if (!serviceInfo.getServiceType().equals(Constants.kBonjourServiceType)) {
 	                // Service type is the string containing the protocol and
 	                // transport layer for this service.
@@ -97,6 +100,7 @@ public class NetServDisHelper {
             @Override
             public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
                 Log.e(TAG, "Resolve failed: " + errorCode + " Service: " + serviceInfo);
+                
                 //lets retry the conenction
                 mNsdManager.resolveService(serviceInfo, mResolveListener);
             }
@@ -111,7 +115,9 @@ public class NetServDisHelper {
                 }
                 mService = serviceInfo;
                 
+                
                 //we need a callback to pass these completed Service
+                netServDisCallback.foundService(serviceInfo);
             }
         };
     }
@@ -119,5 +125,9 @@ public class NetServDisHelper {
 	public void discoverServices() {
 		Log.i(TAG, "Discover Services For Bonjour Service Type: " + Constants.kBonjourServiceType);
         mNsdManager.discoverServices(Constants.kBonjourServiceType, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+    }
+	
+	public void stopDiscovery() {
+        mNsdManager.stopServiceDiscovery(mDiscoveryListener);
     }
 }
