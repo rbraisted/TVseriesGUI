@@ -26,18 +26,18 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 			please do the following:
 		</div>
 		<div class="step step-1">
-			Identify the desired service provider and<br>
-			associated satellite(s)
+			Identify the desired service provider<br>
+      and associated satellite(s)
 			<div class="bullet">1</div>
 		</div>
 		<div class="step step-2">
-			Update the antenna software to the latest<br>
-			version.
+			Update the antenna software to the<br>
+      latest version.
 			<div class="bullet">2</div>
 		</div>
 		<div class="step step-3">
-			Connect all system components for your<br>
-			particular configuration
+			Connect all system components for<br>
+      your particular configuration
 			<div class="bullet">3</div>
 		</div>
 		<div class="note">
