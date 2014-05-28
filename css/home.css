@@ -820,8 +820,60 @@ a {
         height: 100%;
         width: 100%; } }
 
-#dataDiv {
-  z-index: 9999999999999999999 !important; }
+.test {
+  position: relative;
+  overflow: hidden; }
+@keyframes spin {
+  .test 16%  {
+    background-color: #ffe8f4;
+    border-color: #036900;
+    color: #036900;
+    opacity: 1; }
+  .test 33%  {
+    background-color: #f2e8ff;
+    border-color: #695500;
+    color: #695500;
+    opacity: 1; }
+  .test 49%  {
+    background-color: #e8f9ff;
+    border-color: #690000;
+    color: #690000;
+    opacity: 1; }
+  .test 66%  {
+    background-color: #e9ffe8;
+    border-color: #690035;
+    color: #690035;
+    opacity: 1; }
+  .test 80%  {
+    background-color: #fffbe8;
+    border-color: #2b0069;
+    color: #2b0069;
+    opacity: 1; }
+  .test 100%  {
+    background-color: #ffe8e8;
+    border-color: #004c69;
+    color: #004c69;
+    opacity: 1; } }
+  .test:after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    transform: rotate(30deg); }
+
+.test {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  outline: 1px solid red; }
 
 .sidebar,
 .\#vessel-view {
