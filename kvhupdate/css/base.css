@@ -17,7 +17,7 @@
 /**:hover { outline: 1px solid red; }*/
 
 html {
-  background: #04122a url(/images/gradient.png) no-repeat top center;
+  background: #04122a url(../images/gradient.png) no-repeat top center;
 }
 
 html,
@@ -218,7 +218,7 @@ th {
 }
 
 .back-btn img {
-  background-image: url(/images/back-btn.png);
+  background-image: url(../images/back-btn.png);
   left: 0;
   position: absolute;
 }
@@ -237,7 +237,7 @@ th {
 }
 
 .dropdown-btn img {
-  background-image: url(/images/dropdown-btn.png);
+  background-image: url(../images/dropdown-btn.png);
   right: 0;
   width: 30px;
 }
@@ -265,13 +265,13 @@ th {
 }
 
 .dropdown-option img {
-  background-image: url(/images/radio.png);
+  background-image: url(../images/radio.png);
   float: left;
   position: relative;
 }
 
 .dropdown-option.is-selected img {
-  background-image: url(/images/radio-selected.png);
+  background-image: url(../images/radio-selected.png);
 }
 
 .dropdown-option label {
@@ -298,12 +298,12 @@ th {
 }
 
 .sort-btn.is-ascending {
-  background: url(/images/sort-btn-ascending.png) no-repeat;
+  background: url(../images/sort-btn-ascending.png) no-repeat;
   background-position: 97%;
 }
 
 .sort-btn.is-descending {
-  background: url(/images/sort-btn-descending.png) no-repeat;
+  background: url(../images/sort-btn-descending.png) no-repeat;
   background-position: 97%;
 }
 
@@ -363,7 +363,7 @@ table .sort-btn label {
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
 
 .header-view {
-  background: transparent url(/images/header.png) no-repeat center center;
+  background: transparent url(../images/header.png) no-repeat center center;
   background-size: 100%;
   display: block;
   height: 50px;
@@ -380,7 +380,7 @@ table .sort-btn label {
 }
 
 .header-view .tracvision-logo img {
-  background: transparent url(/images/tracvision-logo.svg) no-repeat center center;
+  background: transparent url(../images/tracvision-logo.svg) no-repeat center center;
   height: 100%;
   width: 100%;
 }
@@ -412,7 +412,7 @@ table .sort-btn label {
 }
 
 .header-view .status-btn img {
-  background-image: url(/images/status-btn.png);
+  background-image: url(../images/status-btn.png);
 }
 
 .header-view .nav-btn {
@@ -420,7 +420,7 @@ table .sort-btn label {
 }
 
 .header-view .nav-btn img {
-  background-image: url(/images/nav-btn.png);
+  background-image: url(../images/nav-btn.png);
 }
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -472,7 +472,7 @@ table .sort-btn label {
 }
 
 .menu-view .menu-btn img {
-  background-image: url(/images/menu-btn.png);
+  background-image: url(../images/menu-btn.png);
   right: 0;
 }
 
@@ -571,72 +571,72 @@ table .sort-btn label {
   }
 
   .nav-view .home-btn img {
-    background-image: url(/images/nav-home-small.png);
+    background-image: url(../images/nav-home-small.png);
     width: 17px;
   }
 
   .nav-view .home-btn:hover img,
   .nav-view .home-btn.is-selected img {
-    background-image: url(/images/nav-home-small-selected.png);
+    background-image: url(../images/nav-home-small-selected.png);
   }
 
   .nav-view .satellites-btn img {
-    background-image: url(/images/nav-satellites-small.png);
+    background-image: url(../images/nav-satellites-small.png);
     width: 18px;
   }
 
   .nav-view .satellites-btn:hover img,
   .nav-view .satellites-btn.is-selected img {
-    background-image: url(/images/nav-satellites-small-selected.png);
+    background-image: url(../images/nav-satellites-small-selected.png);
   }
 
   .nav-view .autoswitch-btn img {
-    background-image: url(/images/nav-autoswitch-small.png);
+    background-image: url(../images/nav-autoswitch-small.png);
     width: 19px;
   }
 
   .nav-view .autoswitch-btn:hover img,
   .nav-view .autoswitch-btn.is-selected img {
-    background-image: url(/images/nav-autoswitch-small-selected.png);
+    background-image: url(../images/nav-autoswitch-small-selected.png);
   }
 
   .nav-view .settings-btn img {
-    background-image: url(/images/nav-settings-small.png);
+    background-image: url(../images/nav-settings-small.png);
     width: 17px;
   }
 
   .nav-view .settings-btn:hover img,
   .nav-view .settings-btn.is-selected img {
-    background-image: url(/images/nav-settings-small-selected.png);
+    background-image: url(../images/nav-settings-small-selected.png);
   }
 
   .nav-view .updates-btn img {
-    background-image: url(/images/nav-updates-small.png);
+    background-image: url(../images/nav-updates-small.png);
     width: 19px;
   }
 
   .nav-view .updates-btn:hover img,
   .nav-view .updates-btn.is-selected img {
-    background-image: url(/images/nav-updates-small-selected.png);
+    background-image: url(../images/nav-updates-small-selected.png);
   }
 
   .nav-view .support-btn img {
-    background-image: url(/images/nav-support-small.png);
+    background-image: url(../images/nav-support-small.png);
     width: 13px;
   }
 
   .nav-view .support-btn:hover img,
   .nav-view .support-btn.is-selected img {
-    background-image: url(/images/nav-support-small-selected.png);
+    background-image: url(../images/nav-support-small-selected.png);
   }
 
   .nav-view .sat-finder-btn img {
-    background-image: url(/images/nav-sat-finder-small.png);
+    background-image: url(../images/nav-sat-finder-small.png);
   }
 
   .nav-view .sat-finder-btn:hover img,
   .nav-view .sat-finder-btn.is-selected img {
-    background-image: url(/images/nav-sat-finder-small-selected.png);
+    background-image: url(../images/nav-sat-finder-small-selected.png);
   }
 
   /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -708,11 +708,11 @@ table .sort-btn label {
   }
 
   .popup-view .back-btn img {
-    background-image: url(/images/close-btn.png);
+    background-image: url(../images/close-btn.png);
   }
 
   .popup-view .back-btn:hover img {
-    background-image: url(/images/close-btn-hover.png);
+    background-image: url(../images/close-btn-hover.png);
   }
 
   /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -818,31 +818,31 @@ table .sort-btn label {
   }
 
   .nav-view .home-btn img {
-    background-image: url(/images/nav-home-large.png);
+    background-image: url(../images/nav-home-large.png);
   }
 
   .nav-view .satellites-btn img {
-    background-image: url(/images/nav-satellites-large.png);
+    background-image: url(../images/nav-satellites-large.png);
   }
 
   .nav-view .autoswitch-btn img {
-    background-image: url(/images/nav-autoswitch-large.png);
+    background-image: url(../images/nav-autoswitch-large.png);
   }
 
   .nav-view .settings-btn img {
-    background-image: url(/images/nav-settings-large.png);
+    background-image: url(../images/nav-settings-large.png);
   }
 
   .nav-view .updates-btn img {
-    background-image: url(/images/nav-updates-large.png);
+    background-image: url(../images/nav-updates-large.png);
   }
 
   .nav-view .support-btn img {
-    background-image: url(/images/nav-support-large.png);
+    background-image: url(../images/nav-support-large.png);
   }
 
   .nav-view .sat-finder-btn img {
-    background-image: url(/images/nav-sat-finder-large.png);
+    background-image: url(../images/nav-sat-finder-large.png);
   }
 
   /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
@@ -921,11 +921,11 @@ table .sort-btn label {
   }
 
   .dropdown-view .back-btn img {
-    background-image: url(/images/close-btn.png);
+    background-image: url(../images/close-btn.png);
   }
 
   .dropdown-view .back-btn:hover img {
-    background-image: url(/images/close-btn-hover.png);
+    background-image: url(../images/close-btn-hover.png);
   }
 
   .dropdown-content {
@@ -935,37 +935,37 @@ table .sort-btn label {
 }
 
 .info-icon {
-  background: transparent no-repeat url(/images/info-btn.png) center/21px;
+  background: transparent no-repeat url(../images/info-btn.png) center/21px;
   min-height: 21px;
   min-width: 21px;
 }
 
 .radio-icon {
-  background: transparent no-repeat url(/images/radio.png) center/21px;
+  background: transparent no-repeat url(../images/radio.png) center/21px;
   min-height: 21px;
   min-width: 21px;
 }
 
 .is-selected .radio-icon,
 .radio-icon.is-selected {
-  background-image: url(/images/radio-selected.png);
+  background-image: url(../images/radio-selected.png);
 }
 
 .heart-icon {
-  background: transparent url(/images/favorite-btn.png) no-repeat center center;
+  background: transparent url(../images/favorite-btn.png) no-repeat center center;
   background-size: 21px 21px;
   min-height: 21px;
   min-width: 21px;
 }
 
 .green-dot-icon {
-  background: transparent url(/images/green-dot-icon.svg) no-repeat center/21px;
+  background: transparent url(../images/green-dot-icon.svg) no-repeat center/21px;
   min-height: 21px;
   min-width: 21px;
 }
 
 .red-dot-icon {
-  background: transparent url(/images/red-dot-icon.svg) no-repeat center/21px;
+  background: transparent url(../images/red-dot-icon.svg) no-repeat center/21px;
   min-height: 21px;
   min-width: 21px;
 }
