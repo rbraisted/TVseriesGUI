@@ -1,5 +1,14 @@
 @import "base.scss";
 
+@mixin bottom-bumper {
+  &:after {
+    content: ' ';
+    display: block;
+    padding-bottom: 65px;
+    width: 100%;
+  }
+}
+
 html {
   background-position: top center;
 }
@@ -351,12 +360,7 @@ html {
 .cdt-vessel-info,
 .diy-vessel-info,
 .installer-info {
-  &:after {
-    content: ' ';
-    display: block;
-    padding-bottom: 65px;
-    width: 100%;
-  }
+  @include bottom-bumper;
 
   .form {
     max-width: 440px;
@@ -434,6 +438,11 @@ html {
     @include breakpoint($desktop) {
       font-size: $medium-font;
     }
+  }
+
+  //  for the value column
+  .clear-table .table-row .table-col+.table-col {
+    width: calc(100% - 21px);
   }
 }
 

@@ -1222,6 +1222,11 @@ html {
     .vessel-location .note,
     .heading-source .note {
       font-size: 16px; } }
+.vessel-location .clear-table .table-row .table-col + .table-col, .vessel-location .skew-angle .skew-table .table-row .table-col + .table-col, .skew-angle .vessel-location .skew-table .table-row .table-col + .table-col,
+.heading-source .clear-table .table-row .table-col + .table-col,
+.heading-source .skew-angle .skew-table .table-row .table-col + .table-col,
+.skew-angle .heading-source .skew-table .table-row .table-col + .table-col {
+  width: calc(100% - 21px); }
 
 .vessel-location .note {
   padding-bottom: 60px; }
