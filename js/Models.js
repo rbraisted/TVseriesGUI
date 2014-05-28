@@ -11,7 +11,8 @@
       name: $('name', xml).text(),
       ip: $('ip_address', xml).text(),
       id: $('sn', xml).text() || $('ip_address', xml).text(),
-      active: false
+      active: false,
+      type: ''
     };
   };
 
@@ -191,50 +192,70 @@
                .then(TVRO.setSatelliteParams(onlyXponders, 1));
   };
 
-  TVRO.getReceivers = function(service) {
+  TVRO.getReceivers = function() {
     return Promise.all(
-      TVRO.getAutoswitchStatus(1, 1), //  don't cache so that we can get active status
-      TVRO.getAutoswitchConfiguredNames(1, 1) //  same here
+        TVRO.getAutoswitchStatus(1, 1), //  don't cache so that we can get active status
+        TVRO.getAutoswitchConfiguredNames(1, 1), //  same here
+        TVRO.getSatelliteService(1,1),
+        TVRO.getReceiverType()
     ).then(function(xmls) {
+      var service = $('service', xmls[2]).text();
       //  get the active receivers
       //  get all receivers
       //  go through all receivers and set receive.active
       if(service === 'DIRECTV'){
         var receivers = _.map($('receiver', xmls[1]), Receiver);
         var activeReceivers = _.map($('receiver', xmls[0]), Receiver);
-        
-        return _.forEach(receivers, function(receiver) {
-          receiver.active = !!_.find(activeReceivers, { id: receiver.id });
-        });
-        
       }else{
         var receivers = _.map($('autoswitch', xmls[1]), Receiver);
-        var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);
-        
-        return _.forEach(receivers, function(receiver) {
-          receiver.active = !!_.find(activeReceivers, { id: receiver.id });
-        });
-        
+        var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);        
       }
+      return _.forEach(receivers, function(receiver) {
+        receiver.active = !!_.find(activeReceivers, { id: receiver.id });
+        receiver.type = xmls[3];
+      });
     });
   };
-
+  
   TVRO.removeReceiver = function(receiver) {
-    return TVRO.setAutoswitchConfiguredNames({
-      command: 'DELETE',
-      name: receiver.name || '',
-      sn: receiver.sn || '',
-      ip_address: receiver.ip || ''
-    });
+    if(receiver.type === 'Receiver'){
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'DELETE',
+        receiver:[{
+          name: receiver.name || '',
+          ip_address: receiver.ip || ''
+        }]
+      });
+    }else{
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'DELETE',
+        autoswitch:[{
+          name: receiver.name || '',
+          sn: receiver.sn || ''
+        }]
+      });
+    }
+ 
   };
 
   TVRO.addReceiver = function(receiver) {
-    return TVRO.setAutoswitchConfiguredNames({
-      command: 'ADD',
-      name: receiver.name || '',
-      sn: receiver.sn || '',
-      ip_address: receiver.ip || ''
-    });
+    if(receiver.type === 'Receiver'){
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'ADD',
+        receiver:[{
+          name: receiver.name || '',
+          ip_address: receiver.ip || ''
+        }]
+      });
+    }else{
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'ADD',
+        autoswitch:[{
+          name: receiver.name || '',
+          sn: receiver.sn || ''
+        }]
+      });
+    }
   };
 
   TVRO.getMasterReceiver = function() {
