@@ -4,15 +4,13 @@
 
 @interface UpdatesManager : NSObject <NSURLConnectionDelegate> {
 	NSURLConnection* connection;
-	NSMutableData* fileData;
-  long long totalFileSize;
-  BOOL uploading;
+	NSMutableData*   fileData;
+  long long        totalFileSize;
+  BOOL             uploading;
 	
 	NSString* updateType;
 	NSString* portalVersion;
 	id delegate;
-  
-
   
   UIAlertView* downloadAlertView;
   UIAlertView* uploadAlertView;

@@ -79,9 +79,6 @@
 	NSString* filePath = [self filePathForUpdateType:updateType];
 	NSString* fileName = [filePath lastPathComponent];
 	[fileData appendData:[NSData dataWithContentsOfFile:filePath]];
-
-	NSLog(@"filePath: %@", filePath);
-	NSLog(@"fileName: %@", fileName);
 	
 	NSString* stringBoundary = @"0xKHTMLBoundary";
   NSMutableDictionary* headers = [[NSMutableDictionary alloc] init];

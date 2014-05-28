@@ -6,15 +6,14 @@
 @class UpdatesManager;
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UpdatesManagerDelegate> {
-	UIWebView* webView;
-	NSString* hostName;
-	UpdatesManager* updatesManager;
-	SatFinderViewController* satFinderViewController;
-  NSTimer *timeoutTimer;
-  
-  UIView* loadingView;
-  
+  NSString*  hostName;
+  UIWebView* webView;
   UIWebView* helpWebView;
+  UIView*    loadingView;
+  NSTimer*   timeoutTimer;
+
+  SatFinderViewController* satFinderViewController;
+  UpdatesManager*          updatesManager;
 }
 
 - (id)initWithHostName:(NSString*)hostName;

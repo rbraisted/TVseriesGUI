@@ -159,7 +159,7 @@
 }
 
 - (void)webViewURLRequestTimeout {
-  NSLog(@"URL load didn't finish loading within 20 sec");
+  NSLog(@"webViewURLRequestTimeout");
   [self goBackToHostSelect];
 }
 
@@ -176,6 +176,9 @@
   
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
   NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+
+  NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
+  NSString* satFinderAvailableString = [NSString stringWithFormat:@"TVRO.setSatfinderMode(%@);", satFinderAvailable];
   
   //  get the string, check for single quotes and escape them
   //  this should probably get helperd out
@@ -198,11 +201,14 @@
 	if (installerEmail == NULL) installerEmail = @"false";
   else installerEmail = [NSString stringWithFormat:@"'%@'", [installerEmail stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"]]; 
 	NSString* installerEmailString = [NSString stringWithFormat:@"TVRO.setInstallerEmail(%@);", installerEmail];
-
-  NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
-  NSString* satFinderAvailableString = [NSString stringWithFormat:@"TVRO.setSatfinderMode(%@);", satFinderAvailable];
   
-	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", demoModeString, techModeString, installerCompanyString, installerContactString, installerPhoneString, installerEmailString, satFinderAvailableString];
+	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", demoModeString,
+                                                                     techModeString,
+                                                                     satFinderAvailableString,
+                                                                     installerCompanyString,
+                                                                     installerContactString,
+                                                                     installerPhoneString,
+                                                                     installerEmailString];
  	[webView stringByEvaluatingJavaScriptFromString:jsString];
 
   
@@ -236,7 +242,6 @@
 	NSLog(@"updatesManager uploadCompletedForUpdateType:%@", updateType);
   NSString* fileName = [updatesManager fileNameForUpdateType:updateType];
 	NSString* jsString = [NSString stringWithFormat:@"TVRO.installSoftware({ install: 'Y', filename: '%@' }).then(TVRO.reload);", fileName];
-  NSLog(@"jsString: %@", jsString);
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
@@ -262,15 +267,12 @@
   //	custom urls all begin with tvro://
   //	the custom urls are ...
   
-  NSLog(@"handleCustomURL: %@", url);
   NSArray* pathComponents = [url pathComponents];
   
   if ([url.host isEqualToString:@"help"]) {
     NSString* helpUrlString = [NSString stringWithFormat:@"http://%@/%@%@?%@", hostName, url.host, url.path, url.query];
     NSURL* helpUrl = [NSURL URLWithString:helpUrlString];
     NSURLRequest* helpRequest = [NSURLRequest requestWithURL:helpUrl];
-    NSLog(@"helpUrl:%@", helpUrl);
-    NSLog(@"helpUrlString:%@", helpUrlString);
 		[helpWebView loadRequest:helpRequest];
     [helpWebView setHidden:NO];
     
@@ -358,24 +360,14 @@
 
 - (void)setDeviceVersions {
   NSString* satLibraryDeviceVersion = [updatesManager deviceVersionForUpdateType:@"satlibrary"];
-  NSString* tv1DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv1"];
-  NSString* tv3DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv3"];
-  NSString* tv5DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv5"];
-  NSString* tv6DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv6"];
-  NSString* rv1DeviceVersion = [updatesManager deviceVersionForUpdateType:@"rv1"];
-  
-  NSLog(@"setDeviceVersions");
-  NSLog(@"satLibraryDeviceVersion: %@", satLibraryDeviceVersion);
-  NSLog(@"tv1DeviceVersion: %@", tv1DeviceVersion);
-  NSLog(@"tv3DeviceVersion: %@", tv3DeviceVersion);
-  NSLog(@"tv5DeviceVersion: %@", tv5DeviceVersion);
-  NSLog(@"tv6DeviceVersion: %@", tv6DeviceVersion);
-  NSLog(@"rv1DeviceVersion: %@", rv1DeviceVersion);
-  
+  NSString* tv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv1"];
+  NSString* tv3DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv3"];
+  NSString* tv5DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv5"];
+  NSString* tv6DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv6"];
+  NSString* rv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"rv1"];
+
   //	on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
   NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', RV1: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, rv1DeviceVersion];
-  
-  NSLog(@"jsString: %@", jsString);
   
   [webView stringByEvaluatingJavaScriptFromString:jsString];
 }
