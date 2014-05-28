@@ -1,57 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent" >
-    
-    <LinearLayout
-    	android:layout_width="fill_parent"
-      	android:layout_height="wrap_content"
-      	android:orientation="vertical">
-      		
-      		<RelativeLayout
-          		android:layout_width="match_parent"
-        		android:layout_height="wrap_content"
-        		android:paddingTop="20dp"
-        		android:paddingBottom="20dp">
-        		
-      		    <TextView 
-      		        android:id="@+id/serviceName"
+<?xml version="1.0" encoding="utf-8"?>    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:background="#ffaaaaaa">
+     		
+		<RelativeLayout
+        	android:layout_width="match_parent"
+       		android:layout_height="wrap_content"
+       		android:paddingTop="20dp"
+       		android:paddingBottom="20dp">
+       		
+     		    <TextView 
+     		        android:id="@+id/serviceName"
 		        	android:layout_width="wrap_content"
 		        	android:layout_height="wrap_content"
-		        	android:layout_alignParentRight="true"
-		        	android:layout_marginLeft="10dip"
+		        	android:layout_alignParentLeft="true"
+		        	android:layout_marginLeft="20dip"
 		       		android:textColor="#ffffffff"
 		       		android:textSize="17sp"
 		       		android:singleLine="true"
 		       	/>
-      		    
-      		    <!-- <TextView 
-      		        android:id="@+id/serviceIPAddress"
+     		    
+     		    <TextView 
+     		        android:id="@+id/serviceIPAddress"
 		        	android:layout_width="wrap_content"
 		        	android:layout_height="wrap_content"
-		        	android:layout_toRightOf="@id/serviceName"
 		        	android:layout_alignParentRight="true"
-		        	android:gravity="right"
+		        	android:layout_marginRight="20dp"
 		       		android:textColor="#ffffffff"
 		       		android:textSize="17sp"
 		       		android:singleLine="true"
-		       	/> -->
-      		    
-      		   <!--  <ImageView
+	       		/>
+     		    
+     			<ImageView
 					android:layout_width="wrap_content"
 				 	android:layout_height="wrap_content"
+				 	android:layout_alignParentRight="true"
+				 	android:layout_centerVertical="true"
+		        	android:layout_marginRight="5dp"
 				 	android:adjustViewBounds="true"
 				 	android:src="@drawable/tablecellarrow"    
-				/> -->
-      		    
-      		</RelativeLayout>
-      		
-      		<ImageView
+				/>
+     		    
+     		</RelativeLayout>
+     		
+     		<ImageView
 				android:layout_width="fill_parent"
 			 	android:layout_height="1dp"
 			 	android:adjustViewBounds="true"
 			 	android:src="@drawable/bonjourdivider"    
 			/>
-	</LinearLayout>
-
-</TableRow>
+</LinearLayout>

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.webkit.WebView;
-import android.widget.TableLayout;
+import android.widget.LinearLayout;
 
 public class MainActivity extends Activity implements NetServDisCallback {
 	private MainActivity a = this;
@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements NetServDisCallback {
 	private ArrayList<NsdServiceInfo> nsdServiceInfos;
 	
 	//from layout file
-	TableLayout tableLayout;
+	LinearLayout tableLayout;
 	
 	WebView webView;
 	
@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements NetServDisCallback {
 		//initialize the variables
 		nsdServiceInfos = new ArrayList<NsdServiceInfo>();
 		
-		tableLayout = (TableLayout)findViewById(R.id.tableLayout);
+		tableLayout = (LinearLayout)findViewById(R.id.tableLayout);
 		tableLayout.removeAllViews();
 		
 		//Test Cells

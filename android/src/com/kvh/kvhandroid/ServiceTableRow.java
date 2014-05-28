@@ -24,8 +24,8 @@ public class ServiceTableRow extends TableRow {
 	}
 	
 	public void setServiceIPAddress(String serviceIPAddress) {
-//		TextView serviceIPAddressTextView = (TextView)findViewById(R.id.serviceIPAddress);
-//		serviceIPAddressTextView.setText(serviceIPAddress);
+		TextView serviceIPAddressTextView = (TextView)findViewById(R.id.serviceIPAddress);
+		serviceIPAddressTextView.setText(serviceIPAddress);
 	}
 	
 	public void setServiceInformation(String name, String ipAddress) {
