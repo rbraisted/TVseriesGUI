@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<div class="nav #nav-view $expanded">
+<div class="nav #nav-view">
   <a href="/home.php" class="home-btn #nav-btn #home-btn">Home</a><!--
 --><a href="/satellites.php" class="sat-btn #nav-btn #satellites-btn">Satellites</a><!--
 --><a href="/autoswitch.php" class="autoswitch-btn #nav-btn #autoswitch-btn">Autoswitch</a><!--
