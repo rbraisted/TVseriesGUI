@@ -1,4 +1,4 @@
-package com.kvh.kvhandroid;
+package com.kvh.kvhandroid.utils;
 
 public class Constants {
 	

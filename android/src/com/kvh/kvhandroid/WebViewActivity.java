@@ -1,5 +1,7 @@
 package com.kvh.kvhandroid;
 
+import com.kvh.kvhandroid.utils.Constants;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

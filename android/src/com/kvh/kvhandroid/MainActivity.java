@@ -2,6 +2,12 @@ package com.kvh.kvhandroid;
 
 import java.util.ArrayList;
 
+import com.kvh.android.uielements.ServiceTableRow;
+import com.kvh.android.uielements.ServiceTableRowCallback;
+import com.kvh.kvhandroid.nsd.NetServDisCallback;
+import com.kvh.kvhandroid.nsd.NetServDisHelper;
+import com.kvh.kvhandroid.utils.Constants;
+
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.app.Activity;
@@ -13,7 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-public class MainActivity extends Activity implements NetServDisCallback, OnClickListener {
+public class MainActivity extends Activity implements NetServDisCallback, OnClickListener, ServiceTableRowCallback {
 	private MainActivity a = this;
 	private String TAG = "KVHANDROID - MainActivity";
 	
@@ -176,7 +182,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	}
 	
 	public void connectButtonClicked() {
-		
+		Log.i(TAG, "Connect Button Clicked");
 	}
 	
 	public void clearTable() {
