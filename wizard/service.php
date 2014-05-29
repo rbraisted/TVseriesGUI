@@ -5,15 +5,16 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <script type="text/javascript" src="/js/wizard/service.js"></script>
 
-
-
 <div class="view spinner-view #spinner-view">
   <div class="view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
+  <br>
+  <p class="headline ant_status #ant_status"></p>
   <img src="/images/spinner.gif" class="spinner" />
+  <div class="bottom-bar">
+    <div class="exit-btn #exit-btn">Exit</div>
+  </div>
 </div>
-
-
 
 <div class="view service-provider #service-provider-view">
   <div class="view-head">Service Provider</div>
@@ -124,16 +125,5 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>
-  </div>
-</div>
-
-<div class="view checkswitch-spinner-view #checkswitch-spinner-view">
-  <div class="view-head">Installing Satellites</div>
-  <div class="headline">Please wait while your satellites are being installed...</div>
-  <br>
-  <p class="headline checkswitch-status #checkswitch-status"></p>
-  <img src="/images/spinner.gif" class="spinner" />
-  <div class="bottom-bar">
-    <div class="exit-btn #exit-btn">Exit</div>
   </div>
 </div>

@@ -36,7 +36,7 @@
             service: 'BELL',
             satellite_group: 'BELL TV DUAL'
           }).then(function() {
-            document.body.className = '/checkswitch-spinner';
+            document.body.className = '/spinner';
             startCheckswitchMode(value);
           });
 
@@ -69,6 +69,8 @@
                 .build();
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var interval;
+
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
       else{
@@ -81,9 +83,10 @@
           document.body.className = '/spinner';
 
           setTimeout(function() {
-            var interval = setInterval(function() {
+            interval = setInterval(function() {
               TVRO.getAntennaStatus(1,1).then(function(xml) {
                 var state =  $('antenna state', xml).text();
+                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   if(value === 'TRI-AM DUAL'){
@@ -91,12 +94,22 @@
                   }else{
                     window.location.hash = '/directv';
                   }  
-                } //End if (state === 'TRACKING')
+                }else if (state === 'ERROR') {
+                  clearInterval(interval);
+                  alert("An error occured installing " + value + ".");
+                  window.location.hash = '/tri-am-group';
+                }//End if (state === 'ERROR')
               });          
             }, 1000);
           }, 10000);
         });
       }
+
+      $('.\\#exit-btn').click(function(){
+        clearInterval(interval);
+        TVRO.reload();
+      });  
+
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -143,6 +156,8 @@
     $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/directv'; });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var interval;
+
       var option = self.getValue();
       if (!option) alert('You must select an option to continue.');
 
@@ -153,9 +168,23 @@
           satellite_group: '101W'
         }).then(function() {
           document.body.className = '/spinner';
+
           setTimeout(function() {
-            window.location = '/wizard/activation.php';
-          }, 500);
+            interval = setInterval(function() {
+              TVRO.getAntennaStatus(1,1).then(function(xml) {
+                var state =  $('antenna state', xml).text();
+                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+                  clearInterval(interval);
+                  window.location = '/wizard/activation.php';
+                }else if (state === 'ERROR') {
+                  clearInterval(interval);
+                  alert("An error occured installing 101W.");
+                  window.location.hash = '/directv';
+                }//End if (state === 'ERROR')
+              });          
+            }, 1000);
+          }, 10000);
         });
 
       else if (option === manualOption){          
@@ -166,8 +195,21 @@
         }).then(function() {
           document.body.className = '/spinner';
           setTimeout(function() {
-            window.location = '/wizard/activation.php';
-          }, 500);
+            interval = setInterval(function() {
+              TVRO.getAntennaStatus(1,1).then(function(xml) {
+                var state =  $('antenna state', xml).text();
+                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+                  clearInterval(interval);
+                  window.location = '/wizard/activation.php';
+                }else if (state === 'ERROR') {
+                  clearInterval(interval);
+                  alert("An error occured installing " + group + ".");
+                  window.location.hash = '/directv';
+                }//End if (state === 'ERROR')
+              });          
+            }, 1000);
+          }, 10000);
         });
 
       }else if (option === automaticOption)
@@ -177,10 +219,29 @@
           satellite_group: group
         }).then(function() {
           document.body.className = '/spinner';
+
           setTimeout(function() {
-            window.location = '/wizard/autoswitch.php#/directv';
-          }, 500);
+            interval = setInterval(function() {
+              TVRO.getAntennaStatus(1,1).then(function(xml) {
+                var state =  $('antenna state', xml).text();
+                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+                  clearInterval(interval);
+                  window.location = '/wizard/autoswitch.php#/directv';
+                }else if (state === 'ERROR') {
+                  clearInterval(interval);
+                  alert("An error occured installing " + group + ".");
+                  window.location.hash = '/directv';
+                }//End if (state === 'ERROR')
+              });          
+            }, 1000);
+          }, 10000);
         });
+
+      $('.\\#exit-btn').click(function(){
+        clearInterval(interval);
+        TVRO.reload();
+      });  
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
@@ -220,7 +281,7 @@
           }
         });
       }
-    });
+    });    
   };
 
   var DishNetworkView = function(jQ) {
@@ -284,7 +345,7 @@
       //  whether we installed a group or a single sat
       //  we want to follow up with the same thing
       installPromise.then(function() {
-        document.body.className = '/checkswitch-spinner';
+        document.body.className = '/spinner';
         startCheckswitchMode("DISH");
       }); //end installPromise
     });
@@ -366,12 +427,12 @@
     //  wait 10 seconds to allow antenna to switch
     //  service/groups and avoid false tracking.
     //  every second after, check if state is TRACKING
-    //  once state is tracking ... ???
+    //  once state is tracking start checkswitch mode
     setTimeout(function() {
       interval = setInterval(function() {
         TVRO.getAntennaStatus(1,1).then(function(xml) {
           var state =  $('antenna state', xml).text();
-          $('.\\#checkswitch-status').text("The TV-Hub is Installing the group. Status: " + state);
+          $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
           if (state === 'TRACKING') {
             clearInterval(interval);
 
@@ -385,7 +446,7 @@
                 TVRO.getCheckswitchMode(1, 1).then(function(xml) {
                   isEnabled = $('enable', xml).text();
                   status =  $('status', xml).text();
-                  $('.\\#checkswitch-status').text("The TV-Hub is preparing for Check Switch mode. Status: " + status);
+                  $('.\\#ant_status').text("The TV-Hub is preparing for Check Switch mode. Status: " + status);
 
                   switch (status){
                   case "IN_PROGRESS":
@@ -400,7 +461,11 @@
                 });
               }, 1000);
             }); //End .then for  setCheckswitchMode   
-          } //End if (state === 'TRACKING')
+          }else if (state === 'ERROR') {
+            clearInterval(interval);
+            alert("An error occured installing " + group + ".");
+            window.location.hash = '/dish-network';
+          }//End if (state === 'ERROR')
         });          
       }, 1000);
     }, 10000);

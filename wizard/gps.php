@@ -8,7 +8,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 <div class="view spinner-view #spinner-view">
   <div class="view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
+  <br>
+  <p class="headline ant_status #ant_status"></p>
   <img src="/images/spinner.gif" class="spinner" />
+  <div class="bottom-bar">
+    <div class="exit-btn #exit-btn">Exit</div>
+  </div>
 </div>
 
 <div class="view vessel-location #vessel-location-view">
