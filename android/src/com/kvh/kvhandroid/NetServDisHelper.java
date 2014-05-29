@@ -122,12 +122,12 @@ public class NetServDisHelper {
         };
     }
 	
-	public void discoverServices() {
+	public void startDiscoverServices() {
 		Log.i(TAG, "Discover Services For Bonjour Service Type: " + Constants.kBonjourServiceType);
         mNsdManager.discoverServices(Constants.kBonjourServiceType, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
     }
 	
-	public void stopDiscovery() {
+	public void stopDiscoverServices() {
         mNsdManager.stopServiceDiscovery(mDiscoveryListener);
     }
 }

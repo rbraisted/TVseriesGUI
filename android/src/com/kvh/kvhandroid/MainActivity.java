@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
-import android.webkit.WebView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-public class MainActivity extends Activity implements NetServDisCallback {
+public class MainActivity extends Activity implements NetServDisCallback, OnClickListener {
 	private MainActivity a = this;
 	private String TAG = "KVHANDROID - MainActivity";
 	
@@ -18,8 +21,6 @@ public class MainActivity extends Activity implements NetServDisCallback {
 	
 	//from layout file
 	LinearLayout tableLayout;
-	
-	WebView webView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,84 +40,113 @@ public class MainActivity extends Activity implements NetServDisCallback {
 		
 		//Test Cells
 		//Create a row
-		ServiceTableRow serviceTableRow = new ServiceTableRow(a);
-		serviceTableRow.setServiceInformation("S/N: Rob's MacBoo...","192.168.0.255");
-		tableLayout.addView(serviceTableRow);
+//		ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
+//		serviceTableRow.setServiceInformation("S/N: Rob's MacBoo...","192.168.0.255");
+//		serviceTableRow.setBackgroundImageId(R.drawable.tablecellbglight);
+//		tableLayout.addView(serviceTableRow);
+//		ServiceTableRow serviceTableRow2 = new ServiceTableRow(a, a);
+//		serviceTableRow2.setServiceInformation("S/N: revin","192.168.0.254");
+//		serviceTableRow2.setBackgroundImageId(R.drawable.tablecellbgdark);
+//		tableLayout.addView(serviceTableRow2);
 		
 		Log.i(TAG, "onCreate");
 		
+		//now lets detect the devices
+		//foundService is called whenever this helper class discovers a service
 		networkServiceDiscoveryHelper = new NetServDisHelper(this, this);
-//		networkServiceDiscoveryHelper.initializeNetworkServiceDiscovery();
-//		networkServiceDiscoveryHelper.discoverServices();
+		networkServiceDiscoveryHelper.initializeNetworkServiceDiscovery();
+		networkServiceDiscoveryHelper.startDiscoverServices();
 		
-		//OLD CODE --- MIGHT USE LATER
-//		//	get the webview
-//		webView = (WebView)findViewById(R.id.webView);
-//		
-//		//	enable javascript
-//		webView.getSettings().setJavaScriptEnabled(true);
-//		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-//		
-//		webView.setWebChromeClient(new WebChromeClient());
-//		
-//		webView.setWebViewClient(new WebViewClient() {
-//			@Override
-//			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//				Log.i("KVH", "shouldOverrideUrlLoading"+url);
-//				return false;
-//			}
-//
-//			@Override
-//			public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//				//	TODO: determine is device can implement sat finder
-//				String satFinderAvailable = true ? "true" : "false";
-//				String javascript = "var TVRO = { MOBILE_APP: true, SAT_FINDER: " + satFinderAvailable + " };";
-//				webView.loadUrl("javascript:"+javascript);
-//			}
-//
-//			@Override
-//			public void onPageFinished(WebView view, String url) {
-//				
-//			}
-//		});
-//        
-//		//	Load URL
-//		webView.loadUrl("http://192.168.2.121/");
+		ImageButton refreshButton = (ImageButton)findViewById(R.id.refreshButton);
+		refreshButton.setOnClickListener(this);
 	}
 	
 	@Override
     protected void onDestroy() {
+		networkServiceDiscoveryHelper.stopDiscoverServices();
         super.onDestroy();
     }
 
 	@Override
 	public void foundService(final NsdServiceInfo serviceInfo) {
-		nsdServiceInfos.add(serviceInfo);
+		//don't add if there is already an existing service info
+		boolean toAdd = true;
+		for(int i = 0; i < nsdServiceInfos.size(); i++) {
+			NsdServiceInfo serviceItem = nsdServiceInfos.get(i);
+			
+			if(serviceItem.getServiceName().equalsIgnoreCase(serviceInfo.getServiceName()))
+				toAdd = false;
+		}
 		
-		Log.i(TAG, "Added a Service Info: " + nsdServiceInfos.size());
-		Log.i(TAG, "Last Service Info: " + nsdServiceInfos.get(nsdServiceInfos.size() - 1).getServiceName() + " " + nsdServiceInfos.get(nsdServiceInfos.size() - 1).getHost().getHostAddress());
-		
-		//since finding a service is running on a separate thread
-		//Android doesn't allow a different thread to manipulate the UI so runOnUIThread is needed if manipulation of the UI is needed
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				//parse the unicode since the name will have \032 as spaces.
-				String serviceName = serviceInfo.getServiceName();
-				serviceName = serviceName.replaceAll("\\\\", "");
-				serviceName = serviceName.replaceAll("032", " ");
-				if(serviceName.length() > 13) {
-					serviceName = serviceName.substring(0, 12);
-					serviceName = serviceName + "...";
+		if(toAdd) {
+			nsdServiceInfos.add(serviceInfo);
+			
+			Log.i(TAG, "Added a Service Info: " + nsdServiceInfos.size());
+			Log.i(TAG, "Last Service Info: " + nsdServiceInfos.get(nsdServiceInfos.size() - 1).getServiceName() + " " + nsdServiceInfos.get(nsdServiceInfos.size() - 1).getHost().getHostAddress());
+			
+			//since finding a service is running on a separate thread
+			//Android doesn't allow a different thread to manipulate the UI so runOnUIThread is needed if manipulation of the UI is needed
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					//parse the unicode since the name will have \032 as spaces.
+					String serviceName = serviceInfo.getServiceName();
+					serviceName = serviceName.replaceAll("\\\\", "");
+					serviceName = serviceName.replaceAll("032", " ");
+					if(serviceName.length() > 13) {
+						serviceName = serviceName.substring(0, 12);
+						serviceName = serviceName + "...";
+					}
+					
+					//Create a row
+					ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
+					serviceTableRow.setTag(nsdServiceInfos.size() - 1);
+					serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfo.getHost().getHostAddress());
+					
+					Log.i(TAG, "Service Index: " + (nsdServiceInfos.size() - 1));
+					//we use light background if the index is a even number
+					//otherwise use dark
+					if((nsdServiceInfos.size() - 1) % 2 == 0) serviceTableRow.setBackgroundImageId(R.drawable.tablecellbglight);
+					else serviceTableRow.setBackgroundImageId(R.drawable.tablecellbgdark);
+					
+					tableLayout.addView(serviceTableRow);
 				}
-				
-				//Create a row
-				ServiceTableRow serviceTableRow = new ServiceTableRow(a);
-				serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfo.getHost().getHostAddress());
-				
-				tableLayout.addView(serviceTableRow);
-			}
-		});
+			});
+		}
 	}
 
+	@Override
+	public void serviceTableRowClicked(ServiceTableRow item) {
+		NsdServiceInfo serviceInfo = nsdServiceInfos.get(item.getTagValue());
+		
+		Log.i(TAG, "Service Table Row Clicked: " + serviceInfo.getServiceName() + " " + serviceInfo.getHost().getHostAddress());
+		
+		//Go To WebActivity
+		Intent i = new Intent(getApplicationContext(), WebViewActivity.class);
+		i.putExtra("hostName", serviceInfo.getHost().getHostAddress());
+		startActivity(i);
+		finish();
+	}
+
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.refreshButton)
+			refreshButtonClicked();
+	}
+	
+	public void refreshButtonClicked() {
+		//lets restart the service discovery
+		try {
+//			clearTable();
+			networkServiceDiscoveryHelper.stopDiscoverServices();
+			networkServiceDiscoveryHelper.startDiscoverServices();
+		} catch (Exception e) {
+			Log.e(TAG, "ERROR ON REFRESHING: " + e);
+		}
+	}
+	
+	public void clearTable() {
+		tableLayout.removeAllViews();
+		nsdServiceInfos = new ArrayList<NsdServiceInfo>();
+	}
 }
