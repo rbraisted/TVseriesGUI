@@ -6,6 +6,7 @@ import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +32,13 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		//IMPORTANT:
 		//initalize the Constants
 		Constants.init();
+		
+		//reset the flag which will determine if the app needs a restart because of Android's Application Manager
+		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("restartApp", false);
+		// Commit the edits!
+		editor.commit();
 		
 		//initialize the variables
 		nsdServiceInfos = new ArrayList<NsdServiceInfo>();
@@ -59,12 +67,21 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		
 		ImageButton refreshButton = (ImageButton)findViewById(R.id.refreshButton);
 		refreshButton.setOnClickListener(this);
+		ImageButton connectButton = (ImageButton)findViewById(R.id.connectButton);
+		connectButton.setOnClickListener(this);
 	}
 	
 	@Override
     protected void onDestroy() {
+		networkServiceDiscoveryHelper.stopDiscoverServices();
+		
         super.onDestroy();
     }
+	
+	protected void onPause() {
+		super.onPause();
+		onDestroy();
+	}
 
 	@Override
 	public void foundService(final NsdServiceInfo serviceInfo) {
@@ -102,11 +119,17 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 					serviceTableRow.setTag(nsdServiceInfos.size() - 1);
 					serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfo.getHost().getHostAddress());
 					
-					Log.i(TAG, "Service Index: " + (nsdServiceInfos.size() - 1));
+					Log.i(TAG, "Service Index: " + (nsdServiceInfos.size()));
 					//we use light background if the index is a even number
 					//otherwise use dark
-					if((nsdServiceInfos.size() - 1) % 2 == 0) serviceTableRow.setBackgroundImageId(R.drawable.tablecellbglight);
-					else serviceTableRow.setBackgroundImageId(R.drawable.tablecellbgdark);
+					if((nsdServiceInfos.size() - 1) % 2 == 0) {
+						Log.i(TAG, "Service Use BG Light");
+						serviceTableRow.setBackgroundImageId(R.drawable.tablecellbglight);
+					}
+					else {
+						Log.i(TAG, "Service Use BG Dark");
+						serviceTableRow.setBackgroundImageId(R.drawable.tablecellbgdark);
+					}
 					
 					tableLayout.addView(serviceTableRow);
 				}
@@ -131,6 +154,8 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	public void onClick(View v) {
 		if(v.getId() == R.id.refreshButton)
 			refreshButtonClicked();
+		else if(v.getId() == R.id.connectButton)
+			connectButtonClicked();
 	}
 	
 	public void refreshButtonClicked() {
@@ -138,16 +163,20 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		try {
 //			clearTable();
 			networkServiceDiscoveryHelper.stopDiscoverServices();
-//			networkServiceDiscoveryHelper.startDiscoverServices();
+			networkServiceDiscoveryHelper.startDiscoverServices();
 			
-			//Go To WebActivity
-			Intent i = new Intent(this, WebViewActivity.class);
-			i.putExtra("hostName", "192.168.2.139");
-			startActivity(i);
-			finish();
+			//Go To WebActivity --- just for testing
+//			Intent i = new Intent(this, WebViewActivity.class);
+//			i.putExtra("hostName", "192.168.2.139");
+//			startActivity(i);
+//			finish();
 		} catch (Exception e) {
 			Log.e(TAG, "ERROR ON REFRESHING: " + e);
 		}
+	}
+	
+	public void connectButtonClicked() {
+		
 	}
 	
 	public void clearTable() {

@@ -2,6 +2,7 @@ package com.kvh.kvhandroid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.*;
@@ -21,6 +22,23 @@ public class WebViewActivity extends Activity {
 		Log.i(TAG, "On Create");
 		
 		setContentView(R.layout.activity_main);
+		
+		//because of the Android App Manager is messed up that it will recreate (not just resume) an instance of the last activity 
+		//we shall go to the main Activity again
+		// Restore preferences
+		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+		boolean toRestart = settings.getBoolean("restartApp", false);
+		if(toRestart) {
+			//reset the restart flag
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("restartApp", true);
+			// Commit the edits!
+			editor.commit();
+			
+			Intent i = new Intent(this, MainActivity.class);
+			startActivity(i);
+			finish();
+		}
 		
 		hostName = "http://192.168.2.121/";
 				
@@ -70,6 +88,11 @@ public class WebViewActivity extends Activity {
 		
 		//lets try to save preferences and then when the user has the bright idea to use App Watch/Task Manager to launch the App
 		//Hopefully that would fix this App Watch/Task Manager problem
+		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("restartApp", true);
+		// Commit the edits!
+		editor.commit();
 		
 		onDestroy();
 	}

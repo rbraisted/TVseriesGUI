@@ -126,12 +126,16 @@ public class NetServDisHelper {
 		Log.i(TAG, "Discover Services For Bonjour Service Type: " + Constants.kBonjourServiceType);
 		try{
 			mNsdManager.discoverServices(Constants.kBonjourServiceType, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			Log.e(TAG, "Could not start discover services: " + e);
+		}
     }
 	
 	public void stopDiscoverServices() {
 		try {
         mNsdManager.stopServiceDiscovery(mDiscoveryListener);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			Log.e(TAG, "Could not stop discover services: " + e);
+		}
     }
 }
