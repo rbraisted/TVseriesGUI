@@ -22,8 +22,13 @@
 
       TVRO.getReceiverType().then(function(receiverType) {
         var newReceiver = { name: name };
-        if (receiverType === 'Receiver') newReceiver.ip = id;
-        else newReceiver.sn = id;
+        if (receiverType === 'Receiver'){
+          newReceiver.ip = id;
+          newReceiver.type = receiverType;
+        }else {
+          newReceiver.sn = id;
+          newReceiver.type = receiverType;
+        }
 
         if (isNew) {
           TVRO.addReceiver(newReceiver).then(function() {

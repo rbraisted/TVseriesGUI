@@ -94,7 +94,29 @@
     var cityDropdownView = TVRO.DropdownView($('.\\#city-dropdown-view'))
     .onClick(function(city) {
       cityLabel.text(city);
+
+      // Set GPS from city selection so that it can be displayed in the
+      // coordinates box.
+      TVRO.setGps({
+        city: city
+      }).then(function(){
+        // Delay so system has time to respond.
+        setTimeout(function(){
+          TVRO.getGps(1,1).then(function(xml) {
+            var latitude = $('lat', xml).text();
+            var longitude = $('lon', xml).text();
+            var array = [latitude,longitude];
+            return array; 
+          }).then(function(LatLonArray){
+            return formatGPS(false,LatLonArray[0],LatLonArray[1]);
+          }).then(function(array){
+            latitudeInput.val(array[0]);
+            longitudeInput.val(array[1]);
+          });
+        },500);
+      });
     });
+
     var cityDropdownBtn = $('.\\#city-btn', cityView).click(showCityDropdownView);
 
     TVRO.getGpsCities().then(function(xml) {
@@ -189,7 +211,7 @@
         {
           lon= Math.abs(Number(longitude)) + "W";
         }else{
-          lon= Number(longitude) + "N";
+          lon= Number(longitude) + "E";
         }
       }
 

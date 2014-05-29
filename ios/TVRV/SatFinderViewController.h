@@ -11,10 +11,10 @@
 @property (nonatomic) NSString* listId;
 @property (nonatomic) NSString* antSatId;
 @property (nonatomic) NSString* triSatId;
-@property (nonatomic) float lon;
-@property (nonatomic) BOOL  favorite;
-@property (nonatomic) BOOL  enabled;
-@property (nonatomic) BOOL  selectable;
+@property (nonatomic) float     lon;
+@property (nonatomic) BOOL      favorite;
+@property (nonatomic) BOOL      enabled;
+@property (nonatomic) BOOL      selectable;
 
 @end
 
@@ -24,10 +24,10 @@
 
 @required
 
-@property (nonatomic) double deviceLat;
-@property (nonatomic) double deviceLon;
-@property (nonatomic) double deviceTilt;
-@property (nonatomic) float  deviceHeading;
+@property (nonatomic) double   deviceLat;
+@property (nonatomic) double   deviceLon;
+@property (nonatomic) double   deviceTilt;
+@property (nonatomic) float    deviceHeading;
 @property (nonatomic) NSArray* satList;
 
 @end
@@ -46,10 +46,10 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 @interface SatFinderViewController : UIViewController <CLLocationManagerDelegate, UIAccelerometerDelegate, SatFinderViewDelegate> {
-	LowpassFilter* 		accelerometerFilter;
-	UIAccelerometer* 	accelerometer;
-	CLLocationManager* 	locationManager;
-	NSMutableArray*		satList;	
+	LowpassFilter* 		 accelerometerFilter;
+	UIAccelerometer* 	 accelerometer;
+	CLLocationManager* locationManager;
+	NSMutableArray*		 satList;	
 }
 
 + (BOOL)satFinderAvailable;

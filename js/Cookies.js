@@ -9,7 +9,7 @@
       var value = (decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || undefined);
       if (asBool) return !!value;
       else return value;
-    }
+    };
   };
 
   var set = function(key) {
@@ -21,16 +21,18 @@
       } else {
         document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
       }
-    }
+    };
   };
 
-  TVRO.setShellMode = set('tvro-shell-mode');
   TVRO.setDemoMode = set('tvro-demo-mode');
   TVRO.setTechMode = set('tvro-tech-mode');
+  TVRO.setShellMode = set('tvro-shell-mode');
+  TVRO.setSatfinderMode = set('tvro-satfinder-mode');
 
   TVRO.getDemoMode = get('tvro-demo-mode', true);
   TVRO.getTechMode = get('tvro-tech-mode', true);
   TVRO.getShellMode = get('tvro-shell-mode', true);
+  TVRO.getSatfinderMode = get('tvro-satfinder-mode', true);
 
   TVRO.setInstallerCompany = set('tvro-installer-company');
   TVRO.setInstallerContact = set('tvro-installer-contact');

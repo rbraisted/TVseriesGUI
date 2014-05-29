@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <!-- <div id="debugger" style="display: block; max-height: 45%; overflow: auto; line-height: 1.2; font-size: 12px; position: fixed; width: 100%; z-index: 999999999999; background: rgba(0, 0, 0, 0.); bottom: 5%; border: 1px solid #fff;"></div> -->
-
   <head>
     <title>KVH TracVision</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, inital-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
@@ -94,5 +92,6 @@
 --><a href="/autoswitch.php" class="autoswitch-btn #nav-btn #autoswitch-btn">Autoswitch</a><!--
 --><a href="/settings.php" class="settings-btn #nav-btn #settings-btn">Settings</a><!--
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
---><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a>
+--><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!--
+--><a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Satellite Finder</a>
 </div>

@@ -11,7 +11,8 @@
       name: $('name', xml).text(),
       ip: $('ip_address', xml).text(),
       id: $('sn', xml).text() || $('ip_address', xml).text(),
-      active: false
+      active: false,
+      type: ''
     };
   };
 
@@ -26,15 +27,15 @@
     var self;
 
     return self = {
-        name: $('group_name', xml).text(),
-        predefined: $('predefined', xml).text() === 'Y',
-        satA: Sat($('A', xml)),
-        satB: Sat($('B', xml)),
-        satC: Sat($('C', xml)),
-        satD: Sat($('D', xml)),
-        getSats: function() {
-          return _.compact([self.satA, self.satB, self.satC, self.satD]);
-        }
+      name: $('group_name', xml).text(),
+      predefined: $('predefined', xml).text() === 'Y',
+      satA: Sat($('A', xml)),
+      satB: Sat($('B', xml)),
+      satC: Sat($('C', xml)),
+      satD: Sat($('D', xml)),
+      getSats: function() {
+        return _.compact([self.satA, self.satB, self.satC, self.satD]);
+      }
     };
   };
 
@@ -53,26 +54,26 @@
     else if (preferredPolarity === 'H' || preferredPolarity === 'V') lnbType = 'Linear';
 
     return self = {
-        //  these values can be retrieved from both
-        //  get_satellite_list and get_satellite_params
-        listID: $('listID', xml).text(),
-        antSatID: $('antSatID', xml).text(),
-        predefined: $('antSatID', xml).text().indexOf('USER') < 0,
-        name: $('name', xml).text(),
-        region: $('region', xml).text(),
-        lon: Number($('lon', xml).text()),
-        suffix: $('suffix', xml).text(),
-        favorite: $('favorite', xml).text() === 'TRUE',
+      //  these values can be retrieved from both
+      //  get_satellite_list and get_satellite_params
+      listID: $('listID', xml).text(),
+      antSatID: $('antSatID', xml).text(),
+      predefined: $('antSatID', xml).text().indexOf('USER') < 0,
+      name: $('name', xml).text(),
+      region: $('region', xml).text(),
+      lon: Number($('lon', xml).text()),
+      suffix: $('suffix', xml).text(),
+      favorite: $('favorite', xml).text() === 'TRUE',
 
-        //  these values can only be retrieved with get_satellite_params
-        skew: $('skew', xml).text(),
-        computedSkew: $('computedSkew', xml).text(),
-        lo1: $('lo1', xml).text(),
-        lo2: $('lo2', xml).text(),
-        kumode: $('kumode', xml).text(),
-        preferredPolarity: preferredPolarity,
-        lnbType: lnbType,
-        xponders: _.sortBy(_.map($('xponder', xml), Xponder), 'id')
+      //  these values can only be retrieved with get_satellite_params
+      skew: $('skew', xml).text(),
+      computedSkew: $('computedSkew', xml).text(),
+      lo1: $('lo1', xml).text(),
+      lo2: $('lo2', xml).text(),
+      kumode: $('kumode', xml).text(),
+      preferredPolarity: preferredPolarity,
+      lnbType: lnbType,
+      xponders: _.sortBy(_.map($('xponder', xml), Xponder), 'id')
     };
   };
 
@@ -114,8 +115,8 @@
 
   TVRO.getInstalledGroup = function() {
     return Promise.all(
-        TVRO.getAutoswitchStatus(1, 1), // don't cache, force new call
-        TVRO.getSatelliteGroups(1, 1)
+      TVRO.getAutoswitchStatus(1, 1), // don't cache, force new call
+      TVRO.getSatelliteGroups(1, 1)
     ).then(function(xmls) {
       //  but if it is enabled, return the correct group
       var installedGroupName = $('satellite_group', xmls[0]).text();
@@ -160,24 +161,18 @@
     //  let's just pull the data by matching antSatID with the sat
     //  from get_satellite_list
     return Promise.all(
-        TVRO.getAntennaStatus(),
-        TVRO.getSatelliteList()
+      TVRO.getAntennaStatus(),
+      TVRO.getSatelliteList()
     ).then(function(xmls) {
       var antSatID = $('satellite antSatID', xmls[0]).text();
       return Sat($('satellite', xmls[1]).filter(function() {
         return $('antSatID', this).text() === antSatID;
       }));
     });
-    // return TVRO.getAntennaStatus().then(function(xml) {
-    //   return Sat($('satellite', xml));
-    // });
   };
 
   TVRO.setInstalledSat = function(sat) {
-    console.log(sat.antSatID);
-    return TVRO.selectSatellite({
-      antSatID: sat.antSatID
-    });
+    return TVRO.selectSatellite({ antSatID: sat.antSatID });
   };
 
   TVRO.getSatParams = function(sat) {
@@ -194,41 +189,73 @@
     var onlyXponders = _.pick(sat, 'antSatID', 'xponder');
 
     return TVRO.setSatelliteIdentity(noXponders, 1)
-    .then(TVRO.setSatelliteParams(onlyXponders, 1));
+               .then(TVRO.setSatelliteParams(onlyXponders, 1));
   };
 
   TVRO.getReceivers = function() {
     return Promise.all(
         TVRO.getAutoswitchStatus(1, 1), //  don't cache so that we can get active status
-        TVRO.getAutoswitchConfiguredNames(1, 1) //  same here
+        TVRO.getAutoswitchConfiguredNames(1, 1), //  same here
+        TVRO.getSatelliteService(1,1),
+        TVRO.getReceiverType()
     ).then(function(xmls) {
+      var service = $('service', xmls[2]).text();
       //  get the active receivers
       //  get all receivers
       //  go through all receivers and set receive.active
-      var receivers = _.map($('autoswitch', xmls[1]), Receiver);
-      var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);
+      if(service === 'DIRECTV'){
+        var receivers = _.map($('receiver', xmls[1]), Receiver);
+        var activeReceivers = _.map($('receiver', xmls[0]), Receiver);
+      }else{
+        var receivers = _.map($('autoswitch', xmls[1]), Receiver);
+        var activeReceivers = _.map($('autoswitch', xmls[0]), Receiver);        
+      }
       return _.forEach(receivers, function(receiver) {
         receiver.active = !!_.find(activeReceivers, { id: receiver.id });
+        receiver.type = xmls[3];
       });
     });
   };
-
+  
   TVRO.removeReceiver = function(receiver) {
-    return TVRO.setAutoswitchConfiguredNames({
-      command: 'DELETE',
-      name: receiver.name || '',
-      sn: receiver.sn || '',
-      ip_address: receiver.ip || ''
-    });
+    if(receiver.type === 'Receiver'){
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'DELETE',
+        receiver:[{
+          name: receiver.name || '',
+          ip_address: receiver.ip || ''
+        }]
+      });
+    }else{
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'DELETE',
+        autoswitch:[{
+          name: receiver.name || '',
+          sn: receiver.sn || ''
+        }]
+      });
+    }
+ 
   };
 
   TVRO.addReceiver = function(receiver) {
-    return TVRO.setAutoswitchConfiguredNames({
-      command: 'ADD',
-      name: receiver.name || '',
-      sn: receiver.sn || '',
-      ip_address: receiver.ip || ''
-    });
+    if(receiver.type === 'Receiver'){
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'ADD',
+        receiver:[{
+          name: receiver.name || '',
+          ip_address: receiver.ip || ''
+        }]
+      });
+    }else{
+      return TVRO.setAutoswitchConfiguredNames({
+        command: 'ADD',
+        autoswitch:[{
+          name: receiver.name || '',
+          sn: receiver.sn || ''
+        }]
+      });
+    }
   };
 
   TVRO.getMasterReceiver = function() {
@@ -240,7 +267,7 @@
   };
 
   TVRO.setMasterReceiver = function(hub) {
-    return TVRO.getAutoswitchStatus().then(function(xml) {
+    return TVRO.getSatelliteService().then(function(xml) {
       var service = $('service', xml).text();
       var receiverIdType = 'sn';
       var master = {};
@@ -296,11 +323,11 @@
 
   TVRO.getSystemInfo = function() {
     return Promise.all(
-        TVRO.getAntennaVersions(),
-        TVRO.getAutoswitchStatus(),
-        TVRO.getAntennaStatus(),
-        TVRO.getWebUIVersion(),
-        TVRO.getSatelliteService()
+      TVRO.getAntennaVersions(),
+      TVRO.getAutoswitchStatus(),
+      TVRO.getAntennaStatus(),
+      TVRO.getWebUIVersion(),
+      TVRO.getSatelliteService()
     ).then(function(xmls) {
       var systemInfo = {};
       systemInfo.hubSn = $('acu sn', xmls[0]).text();

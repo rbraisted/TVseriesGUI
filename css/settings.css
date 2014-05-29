@@ -102,18 +102,21 @@ a {
       margin-top: 0; }
 
 .status {
-  background-color: #000;
   position: fixed;
   top: 50px;
   width: 100%;
   z-index: 4;
-  padding: 15px 20px;
-  display: none;
-  line-height: 1.4; }
+  height: 0;
+  overflow: hidden;
+  transition: height .3s; }
   .status.\$expanded {
-    display: block; }
+    height: 100%; }
+  .status .status-label {
+    background-color: #000;
+    line-height: 1.4;
+    padding: 1em; }
   .status .status-label + .status-label {
-    margin-top: .7em; }
+    padding-top: 0; }
   .status .\$green {
     color: #acd038; }
   .status .\$orange {
@@ -123,71 +126,94 @@ a {
 
 @media screen and (max-width: 880px) {
   .nav {
-    background-color: #000;
     height: 0;
     overflow: hidden;
     padding-bottom: 0%;
     position: fixed;
     top: 50px;
-    transition: padding .3s;
+    transition: height .3s;
     width: 100%;
     z-index: 3; }
+    .nav:after {
+      content: "";
+      display: table;
+      clear: both; }
     .nav.\$expanded {
-      padding-bottom: 66%; }
+      height: 100%; }
     .nav .home-btn {
-      background: transparent url(/images/home-icon-white.svg) no-repeat top 35% center/40.47619%;
+      background: black url(/images/home-icon-white.svg) no-repeat top 35% center/42.85714%;
       cursor: pointer;
-      display: inline-block;
-      margin-left: 1%;
-      overflow: hidden;
-      padding: 22% 0 6%;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
       text-align: center;
-      width: 32%; }
+      width: 33%; }
+      .nav .home-btn:nth-child(3n + 2) {
+        width: 34%; }
     .nav .sat-btn {
-      background: transparent url(/images/sat-icon-white.svg) no-repeat top 35% center/42.85714%;
+      background: black url(/images/sat-icon-white.svg) no-repeat top 35% center/39.28571%;
       cursor: pointer;
-      display: inline-block;
-      margin-left: 1%;
-      overflow: hidden;
-      padding: 22% 0 6%;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
       text-align: center;
-      width: 32%; }
+      width: 33%; }
+      .nav .sat-btn:nth-child(3n + 2) {
+        width: 34%; }
     .nav .autoswitch-btn {
-      background: transparent url(/images/autoswitch-icon-white.svg) no-repeat top 35% center/45.2381%;
+      background: black url(/images/autoswitch-icon-white.svg) no-repeat top 35% center/36.90476%;
       cursor: pointer;
-      display: inline-block;
-      margin-left: 1%;
-      overflow: hidden;
-      padding: 22% 0 6%;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
       text-align: center;
-      width: 32%; }
+      width: 33%; }
+      .nav .autoswitch-btn:nth-child(3n + 2) {
+        width: 34%; }
     .nav .settings-btn {
-      background: transparent url(/images/settings-icon-white.svg) no-repeat top 35% center/40.47619%;
+      background: black url(/images/settings-icon-white.svg) no-repeat top 35% center/40.47619%;
       cursor: pointer;
-      display: inline-block;
-      margin-left: 1%;
-      overflow: hidden;
-      padding: 22% 0 6%;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
       text-align: center;
-      width: 32%; }
+      width: 33%; }
+      .nav .settings-btn:nth-child(3n + 2) {
+        width: 34%; }
     .nav .updates-btn {
-      background: transparent url(/images/updates-icon-white.svg) no-repeat top 35% center/45.2381%;
+      background: black url(/images/updates-icon-white.svg) no-repeat top 35% center/45.2381%;
       cursor: pointer;
-      display: inline-block;
-      margin-left: 1%;
-      overflow: hidden;
-      padding: 22% 0 6%;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
       text-align: center;
-      width: 32%; }
+      width: 33%; }
+      .nav .updates-btn:nth-child(3n + 2) {
+        width: 34%; }
     .nav .support-btn {
-      background: transparent url(/images/support-icon-white.svg) no-repeat top 35% center/30.95238%;
+      background: black url(/images/support-icon-white.svg) no-repeat top 35% center/30.95238%;
       cursor: pointer;
-      display: inline-block;
-      margin-left: 1%;
-      overflow: hidden;
-      padding: 22% 0 6%;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
       text-align: center;
-      width: 32%; } }
+      width: 33%; }
+      .nav .support-btn:nth-child(3n + 2) {
+        width: 34%; }
+    .nav .satfinder-btn {
+      background: black url(/images/satfinder-icon-white.svg) no-repeat top 35% center/50%;
+      cursor: pointer;
+      display: block;
+      float: left;
+      padding: 22.22% 0 calc(11.11% - 1em);
+      text-align: center;
+      width: 33%;
+      width: 100%;
+      padding: 10% 0;
+      background-position: left 10.5% center;
+      background-size: 15%; }
+      .nav .satfinder-btn:nth-child(3n + 2) {
+        width: 34%; } }
 @media screen and (min-width: 881px) {
   .nav {
     background: #000;
@@ -257,7 +283,19 @@ a {
       padding: 16px 15px 0 33px; }
       .nav .support-btn:hover, .nav .support-btn.\$selected {
         background-image: url(/images/support-icon-white.svg);
+        color: #fff; }
+    .nav .satfinder-btn {
+      background: transparent url(/images/satfinder-icon-grey.svg) no-repeat left 10px center/21px 21px;
+      color: #bac7da;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding: 16px 15px 0 41px; }
+      .nav .satfinder-btn:hover, .nav .satfinder-btn.\$selected {
+        background-image: url(/images/satfinder-icon-white.svg);
         color: #fff; } }
+.nav .satfinder-btn:not(.\$available) {
+  display: none; }
 
 .sidebar,
 .view,
@@ -782,9 +820,18 @@ a {
         height: 100%;
         width: 100%; } }
 
-#dataDiv {
-  z-index: 9999999999999999999 !important; }
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(360deg); }
 
+  to {
+    -webkit-transform: rotate(0deg); } }
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(360deg); }
+
+  to {
+    -webkit-transform: rotate(0deg); } }
 .menu-table {
   width: 100%;
   position: relative; }

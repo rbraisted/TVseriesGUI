@@ -182,6 +182,8 @@ $(function() {
 
     if (!hash || hash === '/system-info') systemInfoView.reload();
 
+    if (hash !== '/remote-diagnostics') remoteDiagnosticsView.stopUpdating();
+
     if (hash === '/serial-log') serialLogView.reload();
 
 		if (hash === '/command-line') commandLineView.startOutput();

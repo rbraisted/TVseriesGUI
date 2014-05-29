@@ -159,7 +159,7 @@
 }
 
 - (void)webViewURLRequestTimeout {
-  NSLog(@"URL load didn't finish loading within 20 sec");
+  NSLog(@"webViewURLRequestTimeout");
   [self goBackToHostSelect];
 }
 
@@ -176,25 +176,41 @@
   
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
   NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
+
+  NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
+  NSString* satFinderAvailableString = [NSString stringWithFormat:@"TVRO.setSatfinderMode(%@);", satFinderAvailable];
   
+  //  get the string, check for single quotes and escape them
+  //  this should probably get helperd out
 	NSString* installerCompany = [defaults valueForKey:@"installer-company"];
-	if (installerCompany == NULL) installerCompany = @"";
+	if (installerCompany == NULL) installerCompany = @"false";
+  else installerCompany = [NSString stringWithFormat:@"'%@'", [installerCompany stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"]]; 
 	NSString* installerCompanyString = [NSString stringWithFormat:@"TVRO.setInstallerCompany(%@);", installerCompany];
 
 	NSString* installerContact = [defaults valueForKey:@"installer-contact"];
-	if (installerContact == NULL) installerCompany = @"";
-	NSString* installerContactString = [NSString stringWithFormat:@"TVRO.setInstallerContact(%@);", installerContact];
+  if (installerContact == NULL) installerContact = @"false";
+  else installerContact = [NSString stringWithFormat:@"'%@'", [installerContact stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"]]; 
+  NSString* installerContactString = [NSString stringWithFormat:@"TVRO.setInstallerContact(%@);", installerContact];
 
 	NSString* installerPhone = [defaults valueForKey:@"installer-phone"];
-	if (installerPhone == NULL) installerPhone = @"";
+	if (installerPhone == NULL) installerPhone = @"false";
+  else installerPhone = [NSString stringWithFormat:@"'%@'", [installerPhone stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"]]; 
 	NSString* installerPhoneString = [NSString stringWithFormat:@"TVRO.setInstallerPhone(%@);", installerPhone];
 
 	NSString* installerEmail = [defaults valueForKey:@"installer-email"];
-	if (installerEmail == NULL) installerEmail = @"";
+	if (installerEmail == NULL) installerEmail = @"false";
+  else installerEmail = [NSString stringWithFormat:@"'%@'", [installerEmail stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"]]; 
 	NSString* installerEmailString = [NSString stringWithFormat:@"TVRO.setInstallerEmail(%@);", installerEmail];
   
-	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@", demoModeString, techModeString, installerCompanyString, installerContactString, installerPhoneString, installerEmailString];
+	NSString* jsString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", demoModeString,
+                                                                     techModeString,
+                                                                     satFinderAvailableString,
+                                                                     installerCompanyString,
+                                                                     installerContactString,
+                                                                     installerPhoneString,
+                                                                     installerEmailString];
  	[webView stringByEvaluatingJavaScriptFromString:jsString];
+
   
   // Check to see if the default host name has been set to the current connected host
   // if not then set the user defaults host name so it can be displayed on Bonjour view
@@ -226,7 +242,6 @@
 	NSLog(@"updatesManager uploadCompletedForUpdateType:%@", updateType);
   NSString* fileName = [updatesManager fileNameForUpdateType:updateType];
 	NSString* jsString = [NSString stringWithFormat:@"TVRO.installSoftware({ install: 'Y', filename: '%@' }).then(TVRO.reload);", fileName];
-  NSLog(@"jsString: %@", jsString);
 	[webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
@@ -252,15 +267,12 @@
   //	custom urls all begin with tvro://
   //	the custom urls are ...
   
-  NSLog(@"handleCustomURL: %@", url);
   NSArray* pathComponents = [url pathComponents];
   
   if ([url.host isEqualToString:@"help"]) {
     NSString* helpUrlString = [NSString stringWithFormat:@"http://%@/%@%@?%@", hostName, url.host, url.path, url.query];
     NSURL* helpUrl = [NSURL URLWithString:helpUrlString];
     NSURLRequest* helpRequest = [NSURLRequest requestWithURL:helpUrl];
-    NSLog(@"helpUrl:%@", helpUrl);
-    NSLog(@"helpUrlString:%@", helpUrlString);
 		[helpWebView loadRequest:helpRequest];
     [helpWebView setHidden:NO];
     
@@ -278,9 +290,9 @@
     
     
 	} else if ([url.host isEqualToString:@"set-installer-company"]
-          || [url.host isEqualToString:@"set-installer-company"]
-					|| [url.host isEqualToString:@"set-installer-company"]
-					|| [url.host isEqualToString:@"set-installer-company"]) {
+          || [url.host isEqualToString:@"set-installer-contact"]
+					|| [url.host isEqualToString:@"set-installer-phone"]
+					|| [url.host isEqualToString:@"set-installer-email"]) {
 		NSString* key = [url.host substringFromIndex:4];
 		NSString* value = [url.path substringFromIndex:1];
 		[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
@@ -338,32 +350,24 @@
 }
 
 - (void)showSatFinder {
-  NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
-  NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-  satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+  //  this is not going to work well, we should find another solution
+  // NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
+  // NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
+  NSString* satListXmlString = @"";
+  if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
   [self presentViewController:satFinderViewController animated:YES completion:nil];
 }
 
 - (void)setDeviceVersions {
   NSString* satLibraryDeviceVersion = [updatesManager deviceVersionForUpdateType:@"satlibrary"];
-  NSString* tv1DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv1"];
-  NSString* tv3DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv3"];
-  NSString* tv5DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv5"];
-  NSString* tv6DeviceVersion = [updatesManager deviceVersionForUpdateType:@"tv6"];
-  NSString* rv1DeviceVersion = [updatesManager deviceVersionForUpdateType:@"rv1"];
-  
-  NSLog(@"setDeviceVersions");
-  NSLog(@"satLibraryDeviceVersion: %@", satLibraryDeviceVersion);
-  NSLog(@"tv1DeviceVersion: %@", tv1DeviceVersion);
-  NSLog(@"tv3DeviceVersion: %@", tv3DeviceVersion);
-  NSLog(@"tv5DeviceVersion: %@", tv5DeviceVersion);
-  NSLog(@"tv6DeviceVersion: %@", tv6DeviceVersion);
-  NSLog(@"rv1DeviceVersion: %@", rv1DeviceVersion);
-  
+  NSString* tv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv1"];
+  NSString* tv3DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv3"];
+  NSString* tv5DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv5"];
+  NSString* tv6DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv6"];
+  NSString* rv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"rv1"];
+
   //	on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
   NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', RV1: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, rv1DeviceVersion];
-  
-  NSLog(@"jsString: %@", jsString);
   
   [webView stringByEvaluatingJavaScriptFromString:jsString];
 }
