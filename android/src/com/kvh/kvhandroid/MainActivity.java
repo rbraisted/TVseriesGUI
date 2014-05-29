@@ -63,7 +63,6 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	
 	@Override
     protected void onDestroy() {
-		networkServiceDiscoveryHelper.stopDiscoverServices();
         super.onDestroy();
     }
 
@@ -139,7 +138,13 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		try {
 //			clearTable();
 			networkServiceDiscoveryHelper.stopDiscoverServices();
-			networkServiceDiscoveryHelper.startDiscoverServices();
+//			networkServiceDiscoveryHelper.startDiscoverServices();
+			
+			//Go To WebActivity
+			Intent i = new Intent(this, WebViewActivity.class);
+			i.putExtra("hostName", "192.168.2.139");
+			startActivity(i);
+			finish();
 		} catch (Exception e) {
 			Log.e(TAG, "ERROR ON REFRESHING: " + e);
 		}

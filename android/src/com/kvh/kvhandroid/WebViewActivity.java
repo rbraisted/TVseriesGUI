@@ -1,12 +1,14 @@
 package com.kvh.kvhandroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.*;
 import android.graphics.Bitmap;
 
 public class WebViewActivity extends Activity {
+	 public static final String TAG = "KVHANDROID - WebViewActivity";
 	
 	WebView webView;
 	
@@ -15,6 +17,9 @@ public class WebViewActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Log.i(TAG, "On Create");
+		
 		setContentView(R.layout.activity_main);
 		
 		hostName = "http://192.168.2.121/";
@@ -56,5 +61,31 @@ public class WebViewActivity extends Activity {
         
 		//	Load URL
 		webView.loadUrl(hostName);
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		Log.i(TAG, "On Pause");
+		
+		//lets try to save preferences and then when the user has the bright idea to use App Watch/Task Manager to launch the App
+		//Hopefully that would fix this App Watch/Task Manager problem
+		
+		onDestroy();
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onPause();
+		Log.i(TAG, "On Destroy");
+	}
+	
+	@Override
+	public void onRestart() {
+		super.onRestart();
+		Log.i(TAG, "On Restart");
+//		Intent i = new Intent(this, MainActivity.class);
+//		startActivity(i);
+//		finish();
 	}
 }
