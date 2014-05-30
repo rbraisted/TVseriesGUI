@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -33,14 +34,23 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_main);
-		setContentView(R.layout.main_layout);
+		setContentView(R.layout.mainactivity);
 		
 		//IMPORTANT:
 		//initalize the Constants
 		Constants.init();
 		
-		//reset the flag which will determine if the app needs a restart because of Android's Application Manager
+		
 		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+		
+		//load the saved text
+		String savedHostName = settings.getString("hostNameEditText", null);
+		if(savedHostName != null) {
+			EditText hostNameEditText = (EditText)findViewById(R.id.hostEditText);
+			hostNameEditText.setText(savedHostName);
+		}
+		
+		//reset the flag which will determine if the app needs a restart because of Android's Application Manager
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean("restartApp", false);
 		// Commit the edits!
@@ -75,17 +85,19 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		refreshButton.setOnClickListener(this);
 		ImageButton connectButton = (ImageButton)findViewById(R.id.connectButton);
 		connectButton.setOnClickListener(this);
+		ImageButton updatesButton = (ImageButton)findViewById(R.id.viewUpdatesButton);
+		updatesButton.setOnClickListener(this);
 	}
 	
 	@Override
     protected void onDestroy() {
-		networkServiceDiscoveryHelper.stopDiscoverServices();
-		
         super.onDestroy();
     }
 	
 	protected void onPause() {
 		super.onPause();
+		networkServiceDiscoveryHelper.stopDiscoverServices();
+		
 		onDestroy();
 	}
 
@@ -126,18 +138,23 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 					serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfo.getHost().getHostAddress());
 					
 					Log.i(TAG, "Service Index: " + (nsdServiceInfos.size()));
-					//we use light background if the index is a even number
-					//otherwise use dark
-					if((nsdServiceInfos.size() - 1) % 2 == 0) {
-						Log.i(TAG, "Service Use BG Light");
-						serviceTableRow.setBackgroundImageId(R.drawable.tablecellbglight);
-					}
-					else {
-						Log.i(TAG, "Service Use BG Dark");
-						serviceTableRow.setBackgroundImageId(R.drawable.tablecellbgdark);
-					}
 					
 					tableLayout.addView(serviceTableRow);
+					
+					//refresh colors
+					for(int i = 0; i < tableLayout.getChildCount(); i++) {
+						ServiceTableRow childItem = (ServiceTableRow)tableLayout.getChildAt(i);
+						//we use light background if the index is a even number
+						//otherwise use dark
+						if(i % 2 == 0) {
+							Log.i(TAG, "Service Use BG Light");
+							childItem.setBackgroundImageId(R.drawable.tablecellbglight);
+						}
+						else {
+							Log.i(TAG, "Service Use BG Dark");
+							childItem.setBackgroundImageId(R.drawable.tablecellbgdark);
+						}
+					}
 				}
 			});
 		}
@@ -162,6 +179,8 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 			refreshButtonClicked();
 		else if(v.getId() == R.id.connectButton)
 			connectButtonClicked();
+		else if(v.getId() == R.id.viewUpdatesButton)
+			viewUpdatesButtonClicked();
 	}
 	
 	public void refreshButtonClicked() {
@@ -170,12 +189,6 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 //			clearTable();
 			networkServiceDiscoveryHelper.stopDiscoverServices();
 			networkServiceDiscoveryHelper.startDiscoverServices();
-			
-			//Go To WebActivity --- just for testing
-//			Intent i = new Intent(this, WebViewActivity.class);
-//			i.putExtra("hostName", "192.168.2.139");
-//			startActivity(i);
-//			finish();
 		} catch (Exception e) {
 			Log.e(TAG, "ERROR ON REFRESHING: " + e);
 		}
@@ -183,6 +196,29 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	
 	public void connectButtonClicked() {
 		Log.i(TAG, "Connect Button Clicked");
+		
+		//save what was written on the edit text field
+		EditText hostNameEditText = (EditText)findViewById(R.id.hostEditText);
+		//save the host name
+		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("hostNameEditText", hostNameEditText.getText().toString());
+		// Commit the edits!
+		editor.commit();
+		
+		//pass host to the webactivity
+		//Go To WebActivity --- just for testing
+		Intent i = new Intent(this, WebViewActivity.class);
+		i.putExtra("hostName", hostNameEditText.getText().toString());
+		startActivity(i);
+		finish();
+	}
+	
+	public void viewUpdatesButtonClicked() {
+		Intent i = new Intent(this, WebViewActivity.class);
+		i.putExtra("hostName", Constants.kWebSvcPortal);
+		startActivity(i);
+		finish();
 	}
 	
 	public void clearTable() {

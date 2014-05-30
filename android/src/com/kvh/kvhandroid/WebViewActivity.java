@@ -23,7 +23,7 @@ public class WebViewActivity extends Activity {
 		
 		Log.i(TAG, "On Create");
 		
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.webviewactiivity);
 		
 		//because of the Android App Manager is messed up that it will recreate (not just resume) an instance of the last activity 
 		//we shall go to the main Activity again
