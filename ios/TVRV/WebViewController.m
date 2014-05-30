@@ -353,8 +353,9 @@
   //  this is not going to work well, we should find another solution
   // NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
   // NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-  NSString* satListXmlString = @"";
-  if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+  // if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+  //  instead im going to has ios handle get_satellite_list natively
+  if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] init];
   [self presentViewController:satFinderViewController animated:YES completion:nil];
 }
 

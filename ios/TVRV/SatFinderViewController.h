@@ -49,10 +49,13 @@
 	LowpassFilter* 		 accelerometerFilter;
 	UIAccelerometer* 	 accelerometer;
 	CLLocationManager* locationManager;
-	NSMutableArray*		 satList;	
+  NSMutableArray*    satList;
 }
 
+@property (strong, nonatomic) SatFinderView* view;
+
 + (BOOL)satFinderAvailable;
-- (id)initWithSatListXmlString:(NSString*)satListXmlString;
+// - (id)initWithSatListXmlString:(NSString*)satListXmlString;
+- (id)init;
 
 @end

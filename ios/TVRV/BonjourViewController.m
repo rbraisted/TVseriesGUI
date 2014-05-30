@@ -150,7 +150,6 @@
 	} else {
   	NSNetService* netService = [netServices objectAtIndex:row];
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:netService.hostName];
-//  	WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"localhost:8888"];
     [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 	}
 }
@@ -164,7 +163,6 @@
 	if (cell == nil) {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BonjourTableViewCell" owner:self options:nil];
     cell = [nib objectAtIndex:0];
-	
 	}
 	
   //	alternating row colors
