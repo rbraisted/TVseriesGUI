@@ -134,10 +134,7 @@
       var interval;
       var timeout;
 
-      //  this should go somewhere in this .then() callback
-      //  not sure how should this should deal with the setTimeout
       $('.\\#exit-btn').click(function() {
-        console.log("!!!");
         clearInterval(interval);
         clearTimeout(timeout);
         TVRO.reload();
@@ -203,13 +200,21 @@
   };
 
   TVRO.setInstalledSat = function(sat) {
-    var interval;
     return TVRO.selectSatellite({
       antSatID: sat.antSatID 
     }).then(function(){  
       document.body.className = '/spinner';
 
-      setTimeout(function() {
+      var interval;
+      var timeout;
+
+      $('.\\#exit-btn').click(function() {
+        clearInterval(interval);
+        clearTimeout(timeout);
+        TVRO.reload();
+      });
+
+      timeout = setTimeout(function() {
         interval = setInterval(function() {
           TVRO.getAntennaStatus(1,1).then(function(xml) {
             var state =  $('antenna state', xml).text();
