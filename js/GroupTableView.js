@@ -17,7 +17,7 @@
 
           //  if !installed, ask for confirmation
           var confirmed = installed ? false : confirm('Are you sure you want to install ' + group.name + '?');
-          if (confirmed) TVRO.setInstalledGroup(group).then(TVRO.reload);
+          if (confirmed) TVRO.setInstalledGroup(group);
           else event.stopPropagation(); // prevent rows from being selected
         });
   		});

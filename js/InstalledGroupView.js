@@ -11,10 +11,7 @@
 
         $('.\\#install-btn', row).click(function() {
           if (!row.hasClass('$installed'))
-            TVRO.setInstalledSat(sat)
-              .then(TVRO.reload, function(error) {
-                if (error == 14) alert('Sorry, we couldn\'t install your satellite at this time. Please try again in a few minutes.');
-              });
+            TVRO.setInstalledSat(sat);
         });
 
         TVRO.getInstalledSat().then(function(installedSat) {

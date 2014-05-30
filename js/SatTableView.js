@@ -51,10 +51,7 @@
           //  if not installed, ask for confirmation
           var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + '?');
           if (confirmed)
-            TVRO.setInstalledSat(sat)
-              .then(TVRO.reload, function(error) {
-                if (error == 14) alert('Sorry, we couldn\'t install your satellite at this time. Please try again in a few minutes.');
-              });
+            TVRO.setInstalledSat(sat);
         });
 
         $('.\\#fav-btn', row).click(function() {

@@ -9,7 +9,6 @@
 <script type="text/javascript" src="/js/GroupEditView.js"></script>
 
 <script type="text/javascript" src="/js/SatellitesPage.js"></script>
-<script type="text/javascript" src="/js/Models.js"></script>
 
 <!-- sidebar
 contains .#region-table-view (single mode)
@@ -573,8 +572,8 @@ and also .#group-table-view (group mode)
   </div>
 </div>
 
-<div class="view spinner-view #spinner-view">
-  <div class="view-head">Installing Satellites</div>
+<div class="spin-view spinner-view #spinner-view">
+  <div class="spin-view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
   <br>
   <p class="headline ant_status #ant_status"></p>
@@ -583,4 +582,3 @@ and also .#group-table-view (group mode)
     <div class="exit-btn #exit-btn">Exit</div>
   </div>
 </div>
-

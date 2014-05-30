@@ -612,7 +612,7 @@ a {
 		max-width: 600px;
 	}
 
-	.view-head {
+	.view-head, .spin-view-head {
 		@include desktop-view-head;
 	}
 
@@ -632,7 +632,7 @@ a {
 	right: 0;
 	top: $header-height + $big-bump;	//	height of mobile-view-header
 
-	.view-head {
+	.view-head, .spin-view-head {
 		@include mobile-view-head;
 	}
 
@@ -679,7 +679,7 @@ a {
 		width: 800px;
 	}
 
-	.view-head {
+	.view-head, .spin-view-head {
 		@include popup-view-head;
 	}
 
@@ -697,6 +697,7 @@ a {
 //	based on the body class (routing)
 .sidebar,
 .view,
+.spin-view,
 .popup,
 .dropdown {
 	display: none;
@@ -768,7 +769,7 @@ a {
 	}
 }
 
-.view {
+.view, .spin-view {
 	@include breakpoint($desktop) {
 		@include desktop-view;
 	}

@@ -106,7 +106,7 @@ $(function() {
           window.location.hash = '/groups/' + group + '/edit/' + slot + '/' + sat;
         })
         .end()
-  ).onClick(function(sat) {
+   ).onClick(function(sat) {
     var slot = window.location.hash.slice(-1);
     var group = window.location.hash.split('/')[2];
     groupEditView.setSat(slot, sat);
@@ -160,7 +160,7 @@ $(function() {
           else if (btn.is('.\\#sat-d-view .\\#info-btn')) sat = encode(group.satD.antSatID);
           window.location.hash = '/groups/' + encode(group.name) + '/' + sat;
         })
-        .end()
+        .end()    
   );
 
   var createGroupBtn = $('.\\#new-btn', '.sidebar')

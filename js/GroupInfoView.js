@@ -9,10 +9,7 @@
       var installed = jQ.hasClass('$installed');
       var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0) + '?');
       if (confirmed) 
-        TVRO.setInstalledSat(sat)
-          .then(TVRO.reload, function(error) {
-            if (error == 14) alert('Sorry, we couldn\'t install your satellite at this time. Please try again in a few minutes.');
-          });
+        TVRO.setInstalledSat(sat);
     });
 
     return self = {
@@ -51,11 +48,11 @@
       var installed = jQ.hasClass('$installed');
       //  if !installed, ask for confirmation
       var confirmed = installed ? false : confirm('Are you sure you want to install ' + group.name + '?');
-      if (confirmed) TVRO.setInstalledGroup(group).then(TVRO.reload);
+      if (confirmed) TVRO.setInstalledGroup(group);
     });
 
     var deleteBtn = $('.\\#delete-btn', jQ).click(function() {
-      //  if !predefined, ask for confirmatiomn
+      //  if !predefined, ask for confirmation
       var confirmed = group.predefined ? false : confirm('Are you sure you want to delete ' + group.name + '?');
       if (confirmed) TVRO.removeGroup(group).then(TVRO.reload);
     });

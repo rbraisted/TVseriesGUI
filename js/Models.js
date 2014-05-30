@@ -131,7 +131,7 @@
       satellite_group: group.name
     }).then(function(){
       document.body.className = '/spinner';
-
+      
       setTimeout(function() {
         interval = setInterval(function() {
           TVRO.getAntennaStatus(1,1).then(function(xml) {
@@ -149,6 +149,15 @@
         },1000);
       },10000);
     });
+    
+    var exitBtn = $('.\\#exit-btn')
+    .click(function() {
+      console.log("EXIT GI");
+      clearInterval(interval);
+      TVRO.reload();
+
+    });
+
   };
 
   TVRO.removeGroup = function(group) {
@@ -192,7 +201,29 @@
   };
 
   TVRO.setInstalledSat = function(sat) {
-    return TVRO.selectSatellite({ antSatID: sat.antSatID });
+    var interval;
+    return TVRO.selectSatellite({
+      antSatID: sat.antSatID 
+    }).then(function(){  
+      document.body.className = '/spinner';
+
+      setTimeout(function() {
+        interval = setInterval(function() {
+          TVRO.getAntennaStatus(1,1).then(function(xml) {
+            var state =  $('antenna state', xml).text();
+            $('.\\#ant_status').text("The TV-Hub is Installing the satellite . Status: " + state);
+            if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+              clearInterval(interval);
+              TVRO.reload();
+            }else if (state === 'ERROR') {
+              clearInterval(interval);
+              alert("An error occured installing " + sat.antSatID + ".");
+              TVRO.reload();
+            }//End if (state === 'ERROR')
+          });
+        },1000);
+      },10000);
+    });    
   };
 
   TVRO.getSatParams = function(sat) {
