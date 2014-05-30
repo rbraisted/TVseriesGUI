@@ -22,6 +22,8 @@
 
 - (id)initWithDelegate:(id<SatFinderViewDelegate>)_delegate {
 	self = [super init];
+  [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+  [self setBackgroundColor:[UIColor redColor]];
 	delegate = _delegate;
 	return self;
 }
@@ -295,14 +297,43 @@
 			      deviceHeading,
 			      satList;
 
+@dynamic view;
+
 #pragma mark - UIViewController methods
 
+- (id)init {
+  NSLog(@"SatFinderViewController init");
+  self = [super init];
+  return self;
+}
+
+- (void)loadView {
+  NSLog(@"SatFinderViewController loadView");
+  self.view = [[SatFinderView alloc] initWithDelegate:self];
+  // [super loadView];
+}
+
+- (void)viewDidLoad {
+  NSLog(@"SatFinderViewController viewDidLoad");
+  [super viewDidLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
-	[locationManager startUpdatingLocation];
-  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
+  NSLog(@"SatFinderViewController viewWillAppear");
+  [super viewWillAppear:animated];
+  // NSLog(@"[SatFinderViewController viewWillAppear] -> %@", self.view);
+  // [self setView:[[SatFinderView alloc] initWithDelegate:self]];
+  // [self.view setBackgroundColor:[UIColor redColor]];
+  // NSLog(@"after setView -> %@", self.view);
+  // [self.view setBackgroundColor:[UIColor redColor]];
+	// [locationManager startUpdatingLocation];
+ //  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+  NSLog(@"SatFinderViewController viewWillDisappear");
+  [super viewWillDisappear:animated];
+  NSLog(@"[SatFinderViewController viewWillDisappear] -> %@", self.view);
 	[locationManager stopUpdatingLocation];
   if ([CLLocationManager headingAvailable]) [locationManager stopUpdatingHeading];
 }
@@ -356,6 +387,8 @@
 #pragma mark - SatFinderViewController methods
 
 + (BOOL)satFinderAvailable {
+  //  SATFINDERDEBUG
+  return true;
   if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
     if ([CLLocationManager headingAvailable]) {
       NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -366,50 +399,50 @@
 	return false;
 }
 
-- (id)initWithSatListXmlString:(NSString*)satListXmlString {
-	self = [self init];
+// - (id)initWithSatListXmlString:(NSString*)satListXmlString {
+// 	self = [self init];
 	
-	self.view = [[SatFinderView alloc] initWithDelegate:self];
+// 	self.view = [[SatFinderView alloc] initWithDelegate:self];
 	
-	satList = [[NSMutableArray alloc] init];
-	RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
-	[satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
-		Sat* sat = [[Sat alloc] init];
-		[sat setName:[satElement child:@"name"].text];
-		[sat setRegion:[satElement child:@"region"].text];
-		[sat setListId:[satElement child:@"listID"].text];
-		[sat setAntSatId:[satElement child:@"antSatID"].text];
-		[sat setTriSatId:[satElement child:@"triSatID"].text];
-		[sat setLon:[[satElement child:@"lon"].text floatValue]];
-		[sat setFavorite:[[satElement child:@"favorite"].text boolValue]];
-		[sat setEnabled:[[satElement child:@"enabled"].text boolValue]];
-		[sat setSelectable:[[satElement child:@"select"].text boolValue]];
-		[satList addObject:sat];
-	}];
+// 	satList = [[NSMutableArray alloc] init];
+// 	RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+// 	[satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
+// 		Sat* sat = [[Sat alloc] init];
+// 		[sat setName:[satElement child:@"name"].text];
+// 		[sat setRegion:[satElement child:@"region"].text];
+// 		[sat setListId:[satElement child:@"listID"].text];
+// 		[sat setAntSatId:[satElement child:@"antSatID"].text];
+// 		[sat setTriSatId:[satElement child:@"triSatID"].text];
+// 		[sat setLon:[[satElement child:@"lon"].text floatValue]];
+// 		[sat setFavorite:[[satElement child:@"favorite"].text boolValue]];
+// 		[sat setEnabled:[[satElement child:@"enabled"].text boolValue]];
+// 		[sat setSelectable:[[satElement child:@"select"].text boolValue]];
+// 		[satList addObject:sat];
+// 	}];
 	
-	NSLog(@"satList: %@", satList);
+// 	NSLog(@"satList: %@", satList);
 	
-	double accelerometerFrequency = (1.0 / 24.0);
-	accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
-	[accelerometerFilter setAdaptive:YES];
+// 	double accelerometerFrequency = (1.0 / 24.0);
+// 	accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
+// 	[accelerometerFilter setAdaptive:YES];
 	
-	accelerometer = [UIAccelerometer sharedAccelerometer];
-	[accelerometer setUpdateInterval:accelerometerFrequency];
-	[accelerometer setDelegate:self];
+// 	accelerometer = [UIAccelerometer sharedAccelerometer];
+// 	[accelerometer setUpdateInterval:accelerometerFrequency];
+// 	[accelerometer setDelegate:self];
 	
-	locationManager = [[CLLocationManager alloc] init];
-	[locationManager setDelegate:self];
-	[locationManager setDistanceFilter:kCLDistanceFilterNone];
-	[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-	[locationManager setHeadingFilter:kCLHeadingFilterNone];
-	[locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
-	[locationManager startUpdatingLocation];
-	if ([CLLocationManager headingAvailable]) {
-		[locationManager startUpdatingHeading];
-	}
+// 	locationManager = [[CLLocationManager alloc] init];
+// 	[locationManager setDelegate:self];
+// 	[locationManager setDistanceFilter:kCLDistanceFilterNone];
+// 	[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+// 	[locationManager setHeadingFilter:kCLHeadingFilterNone];
+// 	[locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
+// 	[locationManager startUpdatingLocation];
+// 	if ([CLLocationManager headingAvailable]) {
+// 		[locationManager startUpdatingHeading];
+// 	}
 	
-	return self;
-}
+// 	return self;
+// }
 
 - (NSArray*)satList {
 	return satList;

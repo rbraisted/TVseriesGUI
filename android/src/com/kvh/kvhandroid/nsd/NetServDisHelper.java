@@ -1,6 +1,8 @@
-package com.kvh.kvhandroid;
+package com.kvh.kvhandroid.nsd;
 
 import java.util.ArrayList;
+
+import com.kvh.kvhandroid.utils.Constants;
 
 import android.content.Context;
 import android.net.nsd.NsdManager;
@@ -18,6 +20,8 @@ public class NetServDisHelper {
 	ResolveListener mResolveListener;
 	DiscoveryListener mDiscoveryListener;
 	NsdServiceInfo mService;
+	
+	ArrayList<String> hostNames;
 
     public static final String TAG = "KVHANDROID - NetServDisHelper";
 	
@@ -25,6 +29,9 @@ public class NetServDisHelper {
 	
 	public NetServDisHelper(Context context, NetServDisCallback callback) {
         mContext = context;
+        
+        hostNames = new ArrayList<String>();
+        
         netServDisCallback = callback;
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
     }
@@ -101,6 +108,13 @@ public class NetServDisHelper {
             public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
                 Log.e(TAG, "Resolve failed: " + errorCode + " Service: " + serviceInfo);
                 
+                //lets check if a same service has already been resolved and yet the service is still trying to resolve itself even though it should be resolved already
+                //if thats the case then don't reconnect anymore
+                boolean retryConnection = true;
+                for(int i = 0; i < hostNames.size(); i++) {
+                	
+                }
+                
                 //lets retry the conenction
                 mNsdManager.resolveService(serviceInfo, mResolveListener);
             }
@@ -115,6 +129,9 @@ public class NetServDisHelper {
                 }
                 mService = serviceInfo;
                 
+                //we dont want an the same service being detected again and again so we shall keep track 
+                String serviceName = serviceInfo.getServiceName();
+                hostNames.add(serviceName);
                 
                 //we need a callback to pass these completed Service
                 netServDisCallback.foundService(serviceInfo);
@@ -126,12 +143,16 @@ public class NetServDisHelper {
 		Log.i(TAG, "Discover Services For Bonjour Service Type: " + Constants.kBonjourServiceType);
 		try{
 			mNsdManager.discoverServices(Constants.kBonjourServiceType, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			Log.e(TAG, "Could not start discover services: " + e);
+		}
     }
 	
 	public void stopDiscoverServices() {
 		try {
         mNsdManager.stopServiceDiscovery(mDiscoveryListener);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			Log.e(TAG, "Could not stop discover services: " + e);
+		}
     }
 }

@@ -1,4 +1,4 @@
-package com.kvh.kvhandroid;
+package com.kvh.kvhandroid.utils;
 
 public class Constants {
 	
@@ -7,6 +7,8 @@ public class Constants {
 		KVH_BUILD,
 		VAIN_BUILD
 	}
+	
+	public static String PREFS_NAME = "KVHAndroid";
 	
 //	public static Build buildToUse = Build.FINAL_BUILD;
 //	public static Build buildToUse = Build.KVH_BUILD;
@@ -135,5 +137,4 @@ public class Constants {
 			*/
 		}
 	}
-
 }

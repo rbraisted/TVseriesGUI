@@ -264,6 +264,7 @@
     });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
+      var interval;
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
       else setSource(TVRO.setHeadingConfig, value)
@@ -291,10 +292,15 @@
                 var interval = setInterval(function() {
                   TVRO.getAntennaStatus(1,1).then(function(xml) {
                     var state =  $('antenna state', xml).text();
+                    $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                     if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                       clearInterval(interval);
                       window.location = '/wizard/activation.php';
-                    } //End if (state === 'SEARCHING')
+                    }else if (state === 'ERROR') {
+                      clearInterval(interval);
+                      alert("An error occured installing GALAXY-LA.");
+                      window.location.hash = '/heading-source';
+                    }//End if (state === 'ERROR')
                   });          
                 }, 1000);
               }, 10000);
@@ -311,6 +317,12 @@
 
         });
       });
+
+      $('.\\#exit-btn').click(function(){
+        clearInterval(interval);
+        TVRO.reload();
+      });  
+
     });
 
 

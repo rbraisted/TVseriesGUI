@@ -1,4 +1,9 @@
-package com.kvh.kvhandroid;
+package com.kvh.android.uielements;
+
+import com.kvh.kvhandroid.R;
+import com.kvh.kvhandroid.R.id;
+import com.kvh.kvhandroid.R.layout;
+import com.kvh.kvhandroid.nsd.NetServDisCallback;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,7 +18,7 @@ public class ServiceTableRow extends LinearLayout {
 	private ServiceTableRow str = this;
 	
 	
-	NetServDisCallback netServDisCallback;
+	ServiceTableRowCallback serviceTableRowCallback;
 	
 	private String TAG = "KVHANDROID - ServiceTableRow";
 	private int tag;
@@ -23,10 +28,10 @@ public class ServiceTableRow extends LinearLayout {
 		initialize(context);
 	}
 	
-	public ServiceTableRow(Context context, NetServDisCallback _netServDisCallback) {
+	public ServiceTableRow(Context context, ServiceTableRowCallback tablerowCallback) {
 		super(context);
 		initialize(context);
-		netServDisCallback = _netServDisCallback;
+		serviceTableRowCallback = tablerowCallback;
 	}
 	
 	private void initialize(Context context) {
@@ -72,7 +77,7 @@ public class ServiceTableRow extends LinearLayout {
 			public void onClick(View v) {
 				Log.i(TAG, "ServiceTableRow Clicked");
 				
-				netServDisCallback.serviceTableRowClicked(str);
+				serviceTableRowCallback.serviceTableRowClicked(str);
 			}
 		});
 	}

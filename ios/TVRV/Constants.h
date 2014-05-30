@@ -8,9 +8,9 @@
  */
 
 
-//#define FINAL_BUILD
+#define FINAL_BUILD
 //#define KVH_BUILD
-#define VAIN_BUILD
+// #define VAIN_BUILD
 
 //----------------------------------------------------------
 // SETTINGS FOR APP STORE AND AD HOC BUILDS 
