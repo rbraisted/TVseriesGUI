@@ -64,7 +64,7 @@
   </div>
 
   <div class="sidebar-chunk">
-    <div class="sidebar-chunk-head">Location</div>
+    <div class="sidebar-chunk-head">Location - (<span class="#gps-source"></span>)</div>
     <div class="label #gps-latitude"></div>
     <div class="label #gps-longitude"></div>
   </div>
