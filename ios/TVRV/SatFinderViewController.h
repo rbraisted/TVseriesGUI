@@ -52,7 +52,7 @@
   NSMutableArray*    satList;
 }
 
-@property (strong, nonatomic) SatFinderView* view;
+// @property (strong, nonatomic) SatFinderView* view;
 
 + (BOOL)satFinderAvailable;
 // - (id)initWithSatListXmlString:(NSString*)satListXmlString;

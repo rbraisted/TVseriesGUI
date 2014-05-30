@@ -21,7 +21,7 @@
 @implementation SatFinderView
 
 - (id)initWithDelegate:(id<SatFinderViewDelegate>)_delegate {
-	self = [super init];
+	self = [super initWithFrame:UIScreen.mainScreen.applicationFrame];
   [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
   [self setBackgroundColor:[UIColor redColor]];
 	delegate = _delegate;
@@ -297,7 +297,7 @@
 			      deviceHeading,
 			      satList;
 
-@dynamic view;
+// @dynamic view;
 
 #pragma mark - UIViewController methods
 
@@ -307,11 +307,11 @@
   return self;
 }
 
-- (void)loadView {
-  NSLog(@"SatFinderViewController loadView");
-  self.view = [[SatFinderView alloc] initWithDelegate:self];
-  // [super loadView];
-}
+// - (void)loadView {
+//   NSLog(@"SatFinderViewController loadView");
+//   self.view = [[SatFinderView alloc] initWithDelegate:self];
+//   // [super loadView];
+// }
 
 - (void)viewDidLoad {
   NSLog(@"SatFinderViewController viewDidLoad");
@@ -320,6 +320,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   NSLog(@"SatFinderViewController viewWillAppear");
+  // [self.view setBackgroundColor:[UIColor redColor]];
+
   [super viewWillAppear:animated];
   // NSLog(@"[SatFinderViewController viewWillAppear] -> %@", self.view);
   // [self setView:[[SatFinderView alloc] initWithDelegate:self]];
