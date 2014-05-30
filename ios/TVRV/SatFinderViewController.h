@@ -36,7 +36,6 @@
 
 @interface SatFinderView : UIView {
 	id delegate;
-	
 }
 
 - (id)initWithDelegate:(id<SatFinderViewDelegate>)_delegate;
@@ -50,6 +49,7 @@
 	UIAccelerometer* 	 accelerometer;
 	CLLocationManager* locationManager;
   NSMutableArray*    satList;
+  SatFinderView*     satFinderView;
 }
 
 // @property (strong, nonatomic) SatFinderView* view;

@@ -304,40 +304,65 @@
 - (id)init {
   NSLog(@"SatFinderViewController init");
   self = [super init];
+
+  satFinderView = [[SatFinderView alloc] initWithDelegate:self];
+
+  satList = [[NSMutableArray alloc] init];
+  // RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+  // [satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
+  //   Sat* sat = [[Sat alloc] init];
+  //   [sat setName:[satElement child:@"name"].text];
+  //   [sat setRegion:[satElement child:@"region"].text];
+  //   [sat setListId:[satElement child:@"listID"].text];
+  //   [sat setAntSatId:[satElement child:@"antSatID"].text];
+  //   [sat setTriSatId:[satElement child:@"triSatID"].text];
+  //   [sat setLon:[[satElement child:@"lon"].text floatValue]];
+  //   [sat setFavorite:[[satElement child:@"favorite"].text boolValue]];
+  //   [sat setEnabled:[[satElement child:@"enabled"].text boolValue]];
+  //   [sat setSelectable:[[satElement child:@"select"].text boolValue]];
+  //   [satList addObject:sat];
+  // }];
+
+  double accelerometerFrequency = (1.0 / 24.0);
+  accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
+  [accelerometerFilter setAdaptive:YES];
+ 
+  accelerometer = [UIAccelerometer sharedAccelerometer];
+  [accelerometer setUpdateInterval:accelerometerFrequency];
+  [accelerometer setDelegate:self];
+ 
+  locationManager = [[CLLocationManager alloc] init];
+  [locationManager setDelegate:self];
+  [locationManager setDistanceFilter:kCLDistanceFilterNone];
+  [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+  [locationManager setHeadingFilter:kCLHeadingFilterNone];
+  [locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];  //  deprecated
+  [locationManager startUpdatingLocation];
+  if ([CLLocationManager headingAvailable]) {
+    [locationManager startUpdatingHeading];
+  }
+
   return self;
 }
 
-// - (void)loadView {
-//   NSLog(@"SatFinderViewController loadView");
-//   self.view = [[SatFinderView alloc] initWithDelegate:self];
-//   // [super loadView];
-// }
-
 - (void)viewDidLoad {
   NSLog(@"SatFinderViewController viewDidLoad");
+  [self.view addSubview:satFinderView];
   [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   NSLog(@"SatFinderViewController viewWillAppear");
-  // [self.view setBackgroundColor:[UIColor redColor]];
-
+  [locationManager startUpdatingLocation];
+  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
   [super viewWillAppear:animated];
-  // NSLog(@"[SatFinderViewController viewWillAppear] -> %@", self.view);
-  // [self setView:[[SatFinderView alloc] initWithDelegate:self]];
-  // [self.view setBackgroundColor:[UIColor redColor]];
-  // NSLog(@"after setView -> %@", self.view);
-  // [self.view setBackgroundColor:[UIColor redColor]];
-	// [locationManager startUpdatingLocation];
- //  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  NSLog(@"SatFinderViewController viewWillDisappear");
-  [super viewWillDisappear:animated];
-  NSLog(@"[SatFinderViewController viewWillDisappear] -> %@", self.view);
+  NSLog(@"SatFinderViewController viewWillDisappear");  
 	[locationManager stopUpdatingLocation];
   if ([CLLocationManager headingAvailable]) [locationManager stopUpdatingHeading];
+  [super viewWillDisappear:animated];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -361,14 +386,14 @@
 	deviceLon = newLocation.coordinate.longitude;
   if (deviceLat == 0.0) deviceLat = 0.000001;
   if (deviceLon == 0.0) deviceLon = 0.000001;
-	[self.view setNeedsDisplay];
+	[satFinderView setNeedsDisplay];
 }
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
   if (0 >= newHeading.headingAccuracy) deviceHeading = -999.0;
 	else if (deviceTilt < 45.0) deviceHeading = newHeading.trueHeading;
 	else deviceHeading = fabsf(newHeading.trueHeading - 180.0);
-	[self.view setNeedsDisplay];
+	[satFinderView setNeedsDisplay];
 }
 
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
@@ -383,7 +408,7 @@
   double y = accelerometerFilter.y;
 	double z = accelerometerFilter.z;
 	deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
-	[self.view setNeedsDisplay];
+	[satFinderView setNeedsDisplay];
 }
 
 #pragma mark - SatFinderViewController methods
@@ -424,24 +449,24 @@
 	
 // 	NSLog(@"satList: %@", satList);
 	
-// 	double accelerometerFrequency = (1.0 / 24.0);
-// 	accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
-// 	[accelerometerFilter setAdaptive:YES];
-	
-// 	accelerometer = [UIAccelerometer sharedAccelerometer];
-// 	[accelerometer setUpdateInterval:accelerometerFrequency];
-// 	[accelerometer setDelegate:self];
-	
-// 	locationManager = [[CLLocationManager alloc] init];
-// 	[locationManager setDelegate:self];
-// 	[locationManager setDistanceFilter:kCLDistanceFilterNone];
-// 	[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-// 	[locationManager setHeadingFilter:kCLHeadingFilterNone];
-// 	[locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
-// 	[locationManager startUpdatingLocation];
-// 	if ([CLLocationManager headingAvailable]) {
-// 		[locationManager startUpdatingHeading];
-// 	}
+	// double accelerometerFrequency = (1.0 / 24.0);
+ //  accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
+ //  [accelerometerFilter setAdaptive:YES];
+ 
+ //  accelerometer = [UIAccelerometer sharedAccelerometer];
+ //  [accelerometer setUpdateInterval:accelerometerFrequency];
+ //  [accelerometer setDelegate:self];
+ 
+ //  locationManager = [[CLLocationManager alloc] init];
+ //  [locationManager setDelegate:self];
+ //  [locationManager setDistanceFilter:kCLDistanceFilterNone];
+ //  [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+ //  [locationManager setHeadingFilter:kCLHeadingFilterNone];
+ //  [locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
+ //  [locationManager startUpdatingLocation];
+ //  if ([CLLocationManager headingAvailable]) {
+ //    [locationManager startUpdatingHeading];
+ //  }
 	
 // 	return self;
 // }
