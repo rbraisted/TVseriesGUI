@@ -102,7 +102,7 @@
 	} else {
     if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)){
       positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
-    } else{
+    } else {
       return NAN;
     }
 	}
@@ -117,7 +117,7 @@
 	double topBound = [delegate deviceTilt] + (vfov/2.0);
 	double bottomBound = [delegate deviceTilt] - (vfov/2.0);
 	
-  if((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
+  if ((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
     double boundDiff = topBound - bottomBound;
     double positionAtBoundScale = (satelliteElevation - bottomBound)/boundDiff;
     double y = camviewheight - (camviewheight * positionAtBoundScale);
@@ -233,16 +233,6 @@
 	//	draw the clarke belt
 	double d = -180.0;
 	while (d <= 180.0) {
-//		CGPoint position = [self positionWithLon:d];
-//		if (!isNaN(position.x) && isNaN(position.y)) {
-//			NSLog(@"!");
-////			[self drawClarkeBelt:position withContext:context];
-//			CGRect rect = CGRectMake(position.x - 2.0, position.y - 2.0, 4.0, 4.0);
-//			[[UIColor yellowColor] set];
-//			CGContextFillEllipseInRect(context, rect);
-//			[[UIColor whiteColor] set];
-//			CGContextStrokeEllipseInRect(context, rect);
-//		}
 		NSArray* azimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:d];
 		if (azimuthAndElevation) {
 			double elevation = [[azimuthAndElevation objectAtIndex:1] doubleValue];
@@ -265,24 +255,24 @@
 	}
 	
 	//	draw the satellites
-//	NSArray* satList = [delegate satList];
-//	for (int i = 0; i < [satList count]; i++) {
-//		Sat* sat = (Sat*)[satList objectAtIndex:i];
-//   		NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:sat.lon];
-//   		if (satelliteAzimuthAndElevation) {
-//			double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
-//			double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
-//			double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
-//			double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
-//			if (satelliteElevation > 0.0 && !isNaN(x) && !isNaN(y)) {
-//				CGRect rect = CGRectMake(x - 5.0, y - 5.0, 10.0, 10.0);
-//				[[UIColor redColor] set];
-//				CGContextFillEllipseInRect(context, rect);
-//				[[UIColor whiteColor] set];
-//				CGContextStrokeEllipseInRect(context, rect);
-//			}
-//		}
-//	}
+	NSArray* satList = [delegate satList];
+	for (int i = 0; i < [satList count]; i++) {
+		Sat* sat = (Sat*)[satList objectAtIndex:i];
+  		NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:sat.lon];
+  		if (satelliteAzimuthAndElevation) {
+			double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
+			double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
+			double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
+			double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
+			if (satelliteElevation > 0.0 && !isNaN(x) && !isNaN(y)) {
+				CGRect rect = CGRectMake(x - 5.0, y - 5.0, 10.0, 10.0);
+				[[UIColor redColor] set];
+				CGContextFillEllipseInRect(context, rect);
+				[[UIColor whiteColor] set];
+				CGContextStrokeEllipseInRect(context, rect);
+			}
+		}
+	}
 }
 
 @end
@@ -1329,7 +1319,7 @@
   deviceLon = -118.252480;
   deviceTilt = 25.271421;
   deviceHeading = 125.611473;
-  
+
   return self;
 }
 
