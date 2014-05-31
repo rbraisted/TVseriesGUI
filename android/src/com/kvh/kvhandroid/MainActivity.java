@@ -91,18 +91,19 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	
 	@Override
     protected void onDestroy() {
+//		networkServiceDiscoveryHelper.stopDiscoverServices();
         super.onDestroy();
     }
 	
 	protected void onPause() {
 		super.onPause();
-		networkServiceDiscoveryHelper.stopDiscoverServices();
+//		networkServiceDiscoveryHelper.stopDiscoverServices();
 		
 		onDestroy();
 	}
 
 	@Override
-	public void foundService(final NsdServiceInfo serviceInfo) {
+	public void foundService(NsdServiceInfo serviceInfo) {
 		//don't add if there is already an existing service info
 		boolean toAdd = true;
 		for(int i = 0; i < nsdServiceInfos.size(); i++) {
@@ -123,23 +124,27 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					//parse the unicode since the name will have \032 as spaces.
-					String serviceName = serviceInfo.getServiceName();
-					serviceName = serviceName.replaceAll("\\\\", "");
-					serviceName = serviceName.replaceAll("032", " ");
-					if(serviceName.length() > 13) {
-						serviceName = serviceName.substring(0, 12);
-						serviceName = serviceName + "...";
+					clearTable();
+					
+					for(int i = 0; i < nsdServiceInfos.size(); i++) {
+						NsdServiceInfo serviceInfoItem = nsdServiceInfos.get(i);
+						
+						//parse the unicode since the name will have \032 as spaces.
+						String serviceName = serviceInfoItem.getServiceName();
+						serviceName = serviceName.replaceAll("\\\\", "");
+						serviceName = serviceName.replaceAll("032", " ");
+						if(serviceName.length() > 13) {
+							serviceName = serviceName.substring(0, 12);
+							serviceName = serviceName + "...";
+						}
+						
+						//Create a row
+						ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
+						serviceTableRow.setTag(i);
+						serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfoItem.getHost().getHostAddress());
+						
+						tableLayout.addView(serviceTableRow);
 					}
-					
-					//Create a row
-					ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
-					serviceTableRow.setTag(nsdServiceInfos.size() - 1);
-					serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfo.getHost().getHostAddress());
-					
-					Log.i(TAG, "Service Index: " + (nsdServiceInfos.size()));
-					
-					tableLayout.addView(serviceTableRow);
 					
 					//refresh colors
 					for(int i = 0; i < tableLayout.getChildCount(); i++) {
@@ -167,10 +172,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		Log.i(TAG, "Service Table Row Clicked: " + serviceInfo.getServiceName() + " " + serviceInfo.getHost().getHostAddress());
 		
 		//Go To WebActivity
-		Intent i = new Intent(getApplicationContext(), WebViewActivity.class);
-		i.putExtra("hostName", serviceInfo.getHost().getHostAddress());
-		startActivity(i);
-		finish();
+		gotoWebViewActivity(serviceInfo.getHost().getHostAddress());
 	}
 
 	@Override
@@ -208,21 +210,21 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		
 		//pass host to the webactivity
 		//Go To WebActivity --- just for testing
-		Intent i = new Intent(this, WebViewActivity.class);
-		i.putExtra("hostName", hostNameEditText.getText().toString());
-		startActivity(i);
-		finish();
+		gotoWebViewActivity(hostNameEditText.getText().toString());
 	}
 	
 	public void viewUpdatesButtonClicked() {
-		Intent i = new Intent(this, WebViewActivity.class);
-		i.putExtra("hostName", Constants.kWebSvcPortal);
-		startActivity(i);
-		finish();
+		gotoWebViewActivity(Constants.kWebSvcPortal);
 	}
 	
 	public void clearTable() {
 		tableLayout.removeAllViews();
-		nsdServiceInfos = new ArrayList<NsdServiceInfo>();
+	}
+	
+	public void gotoWebViewActivity(String url) {
+		Intent i = new Intent(this, WebViewActivity.class);
+		i.putExtra("hostName", url);
+		startActivity(i);
+		finish();
 	}
 }
