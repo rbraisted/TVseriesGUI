@@ -218,13 +218,13 @@
 	return CGPointMake(x, y);
 }
 
-- (void)drawClarkeBelt:(CGPoint)position withContext:(CGContextRef)context {
-	CGRect rect = CGRectMake(position.x - 2.0, position.y - 2.0, 4.0, 4.0);
-	[[UIColor yellowColor] set];
-	CGContextFillEllipseInRect(context, rect);
-	[[UIColor whiteColor] set];
-	CGContextStrokeEllipseInRect(context, rect);
-}
+// - (void)drawClarkeBelt:(CGPoint)position withContext:(CGContextRef)context {
+// 	CGRect rect = CGRectMake(position.x - 2.0, position.y - 2.0, 4.0, 4.0);
+// 	[[UIColor yellowColor] set];
+// 	CGContextFillEllipseInRect(context, rect);
+// 	[[UIColor whiteColor] set];
+// 	CGContextStrokeEllipseInRect(context, rect);
+// }
 
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -1367,8 +1367,6 @@
   //  SATFINDERDEBUG
   // deviceLat = newLocation.coordinate.latitude;
   // deviceLon = newLocation.coordinate.longitude;
-	deviceLat = 34.043918;
-	deviceLon = -118.252480;
   if (deviceLat == 0.0) deviceLat = 0.000001;
   if (deviceLon == 0.0) deviceLon = 0.000001;
 	[satFinderView setNeedsDisplay];
@@ -1380,8 +1378,7 @@
   //  SATFINDERDEBUG
   // else if (deviceTilt < 45.0) deviceHeading = newHeading.trueHeading;
   // else deviceHeading = fabsf(newHeading.trueHeading - 180.0);
-	else if (deviceTilt < 45.0) deviceHeading = 125.611473;
-	else deviceHeading = fabsf(125.611473 - 180.0);
+  else deviceHeading += 1.0;  // !
 	[satFinderView setNeedsDisplay];
 }
 
@@ -1400,7 +1397,7 @@
 	double z = accelerometerFilter.z;
   //  SATFINDERDEBUG
   // deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
-	deviceTilt = 25.271421;
+	// deviceTilt += 0.5; // !
 	[satFinderView setNeedsDisplay];
 }
 
@@ -1418,51 +1415,6 @@
 	
 	return false;
 }
-
-// - (id)initWithSatListXmlString:(NSString*)satListXmlString {
-// 	self = [self init];
-	
-// 	self.view = [[SatFinderView alloc] initWithDelegate:self];
-	
-// 	satList = [[NSMutableArray alloc] init];
-// 	RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
-// 	[satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
-// 		Sat* sat = [[Sat alloc] init];
-// 		[sat setName:[satElement child:@"name"].text];
-// 		[sat setRegion:[satElement child:@"region"].text];
-// 		[sat setListId:[satElement child:@"listID"].text];
-// 		[sat setAntSatId:[satElement child:@"antSatID"].text];
-// 		[sat setTriSatId:[satElement child:@"triSatID"].text];
-// 		[sat setLon:[[satElement child:@"lon"].text floatValue]];
-// 		[sat setFavorite:[[satElement child:@"favorite"].text boolValue]];
-// 		[sat setEnabled:[[satElement child:@"enabled"].text boolValue]];
-// 		[sat setSelectable:[[satElement child:@"select"].text boolValue]];
-// 		[satList addObject:sat];
-// 	}];
-	
-// 	NSLog(@"satList: %@", satList);
-	
-	// double accelerometerFrequency = (1.0 / 24.0);
- //  accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
- //  [accelerometerFilter setAdaptive:YES];
- 
- //  accelerometer = [UIAccelerometer sharedAccelerometer];
- //  [accelerometer setUpdateInterval:accelerometerFrequency];
- //  [accelerometer setDelegate:self];
- 
- //  locationManager = [[CLLocationManager alloc] init];
- //  [locationManager setDelegate:self];
- //  [locationManager setDistanceFilter:kCLDistanceFilterNone];
- //  [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
- //  [locationManager setHeadingFilter:kCLHeadingFilterNone];
- //  [locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];	//	deprecated
- //  [locationManager startUpdatingLocation];
- //  if ([CLLocationManager headingAvailable]) {
- //    [locationManager startUpdatingHeading];
- //  }
-	
-// 	return self;
-// }
 
 - (NSArray*)satList {
 	return satList;

@@ -9,6 +9,7 @@
 
 @interface BonjourViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
@@ -19,6 +20,7 @@
 
 @implementation BonjourViewController
 
+@synthesize versionLabel = _versionLabel;
 @synthesize tableView = _tableView;
 @synthesize textField = _textField;
 @synthesize refreshButton = _refreshButton;
@@ -52,6 +54,9 @@
   cellBGImageLight =  [UIImage imageNamed:@"tableCellBGLight.png"];
 
   [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+
+  NSString* appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+  [self.versionLabel setText:[NSString stringWithFormat:@"Version %@", appVersion]];
 
   [super viewDidLoad];
 }
