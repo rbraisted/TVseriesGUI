@@ -17,7 +17,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="headline">Please wait while your satellites are being installed...</div>
   <br>
   <p class="headline ant_status #ant_status"></p>
-  <img src="/images/spinner.gif" class="spinner" />
+  <div class="spinner"></div>
   <div class="bottom-bar">
     <div class="exit-btn #exit-btn">Exit</div>
   </div>
