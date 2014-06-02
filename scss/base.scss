@@ -960,7 +960,7 @@ a {
     height: 200%;
     top: -50%;
     left: -50%;
-    z-index: -1;
+    // z-index: -1;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
 
     animation: spin 1s steps(8) infinite;
@@ -971,5 +971,20 @@ a {
     // -ms-transform: rotate(30deg);
     // -o-transform: rotate(30deg);
     // transform: rotate(30deg);
+  }
+}
+
+.popup-spinner {
+  @extend %animated-spinner;
+  display: none;
+  background-color: #101f30;
+  width: 100%;
+  height: calc(100% - #{$big-bump});
+  position: absolute;
+  top: $big-bump;
+  left: 0;
+  z-index: 1;
+  &:after {
+    background-size: 15% 15%;
   }
 }

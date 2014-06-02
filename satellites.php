@@ -60,6 +60,7 @@ and also .#group-table-view (group mode)
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <div class="popup #sat-info-view">
   <div class="popup-guts sat-info">
+    <div class="#spinner popup-spinner"></div>
     <div class="view-head">
       Satellite Details
       <div class="back-btn #back-btn"></div>

@@ -835,20 +835,31 @@ a {
 
   to {
     -webkit-transform: rotate(0deg); } }
-.spinner {
+.popup-spinner, .spinner {
   position: relative;
   overflow: hidden; }
-  .spinner:after {
+  .popup-spinner:after, .spinner:after {
     content: "";
     position: absolute;
     width: 200%;
     height: 200%;
     top: -50%;
     left: -50%;
-    z-index: -1;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
     animation: spin 1s steps(8) infinite;
     -webkit-animation: spin 1s steps(8) infinite; }
+
+.popup-spinner {
+  display: none;
+  background-color: #101f30;
+  width: 100%;
+  height: calc(100% - 46px);
+  position: absolute;
+  top: 46px;
+  left: 0;
+  z-index: 1; }
+  .popup-spinner:after {
+    background-size: 15% 15%; }
 
 html {
   background-position: top center; }
