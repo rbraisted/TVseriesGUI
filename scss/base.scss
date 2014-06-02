@@ -792,15 +792,23 @@ a {
 .dropdown {
   @include popup-view;
 
-  .dropdown-guts {    
+  .dropdown-guts {
     height: auto;
     min-height: auto;
     min-width: 280px;
     width: auto;
   }
 
-  .table { @include blue-table; }
-  .table-col { @include table-col; }
+  .table {
+    @include blue-table;
+    max-height: calc(400px - #{$big-bump});
+    overflow: auto;
+  }
+
+  .table-col {
+    @include table-col;
+  }
+
   .table-row {
     @include table-row;
     cursor: pointer;

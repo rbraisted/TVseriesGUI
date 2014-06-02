@@ -26,14 +26,17 @@
         $('.\\#receiver-type', jQ).text(receiverType);
       });
 
-      TVRO.getMasterReceiver().then(function(master) {
-        $('.\\#master-name', jQ).text(master.name);
-        masterDropdownView.setValue(master)
-      });
-
       TVRO.getReceivers().then(function(receivers) {
         var activeReceivers = _.where(receivers, 'active');
         masterDropdownView.setValues(activeReceivers).build();
+      }).then(TVRO.getMasterReceiver).then(function(master) {
+        $('.\\#master-name', jQ).text(master.name);
+        masterDropdownView.setValue({
+          name: master.name,
+          sn: master.sn,
+          ip: master.ip,
+          id: master.id
+        });
       });
     };
 

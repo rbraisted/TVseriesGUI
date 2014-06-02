@@ -648,7 +648,9 @@ a {
     width: auto; }
   .dropdown .table {
     width: 100%;
-    position: relative; }
+    position: relative;
+    max-height: calc(400px - 46px);
+    overflow: auto; }
     .dropdown .table .table-head {
       display: block;
       width: 100%;
