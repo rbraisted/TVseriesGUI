@@ -980,11 +980,18 @@ a {
   background-color: #101f30;
   width: 100%;
   height: calc(100% - #{$big-bump});
-  position: absolute;
+
   top: $big-bump;
   left: 0;
   z-index: 1;
-  &:after {
-    background-size: 15% 15%;
+
+  @include breakpoint($desktop) {
+    position: absolute;    
+    &:after { background-size: 15% 15%; }
+  }
+
+  @include breakpoint($mobile) {
+    position: fixed;
+    &:after { background-size: 15%; }
   }
 }

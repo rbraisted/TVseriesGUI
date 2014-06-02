@@ -854,12 +854,19 @@ a {
   background-color: #101f30;
   width: 100%;
   height: calc(100% - 46px);
-  position: absolute;
   top: 46px;
   left: 0;
   z-index: 1; }
-  .popup-spinner:after {
-    background-size: 15% 15%; }
+  @media screen and (min-width: 881px) {
+    .popup-spinner {
+      position: absolute; }
+      .popup-spinner:after {
+        background-size: 15% 15%; } }
+  @media screen and (max-width: 880px) {
+    .popup-spinner {
+      position: fixed; }
+      .popup-spinner:after {
+        background-size: 15%; } }
 
 .updates-icon {
   background-image: url(/images/updates-icon-white.svg);
