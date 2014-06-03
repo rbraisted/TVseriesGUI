@@ -117,6 +117,7 @@
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
   NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%d", _webView == webView ? @"webView" : @"helpWebView", request, navigationType);
+  NSLog(@"request.URL.path is %@", request.URL.path);
   
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
 	if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
@@ -128,6 +129,16 @@
   if ([request.URL.scheme isEqualToString:@"tvro"]) {
     NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
     [self handleCustomURL:request.URL];
+    return false;
+
+    
+  } else if ([request.URL.path isEqualToString:@"/print2screen.php"]) {
+    NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
+    //	the command line view pulls this file in, and it can take a while.
+    //	but this request shouldn't cause you to return to the bonjour view
+    //	even if it takes more than a minute to complete
+    [timeoutTimer invalidate];
+    [loadingView setHidden:TRUE];
     return false;
     
     
