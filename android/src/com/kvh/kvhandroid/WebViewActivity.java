@@ -1,30 +1,36 @@
 package com.kvh.kvhandroid;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 import com.kvh.kvhandroid.utils.Constants;
+import com.kvh.kvhandroid.utils.UpdatesManager;
+import com.kvh.kvhandroid.utils.UpdatesManagerCallback;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.*;
 import android.graphics.Bitmap;
 
-public class WebViewActivity extends Activity {
+public class WebViewActivity extends Activity implements UpdatesManagerCallback {
 	 public static final String TAG = "KVHANDROID - WebViewActivity";
 	
 	WebView webView;
 	
 	private String hostName;
+	private UpdatesManager updatesManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		Log.i(TAG, "On Create");
+		updatesManager = new UpdatesManager(this, this);
 		
 		setContentView(R.layout.webviewactiivity);
 		
@@ -34,6 +40,8 @@ public class WebViewActivity extends Activity {
 		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
 		boolean toRestart = settings.getBoolean("restartApp", false);
 		if(toRestart) {
+			Log.i(TAG, "Web View Activity: " + toRestart);
+			
 			//reset the restart flag
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean("restartApp", true);
@@ -43,15 +51,18 @@ public class WebViewActivity extends Activity {
 			goBackToMainActivity();
 		}
 		
-		String shellhostName = "http://192.168.2.121/shell.php";
+		String shellhostName = "http://192.168.2.121/";
 				
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			String tempHostName = extras.getString("hostName");
+			
 			if(tempHostName.charAt(tempHostName.length() - 1) == '/')
 				hostName = tempHostName.substring(0, tempHostName.length() - 1);
+			else
+				hostName = tempHostName;
 			
-			shellhostName = "http://" + shellhostName + "/shell.php";
+			shellhostName = "http://" + hostName + "/shell.php";
 		}
 		
 		//	get the webview
@@ -67,54 +78,39 @@ public class WebViewActivity extends Activity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Log.i("KVH", "shouldOverrideUrlLoading: "+ url);
+				
+//				check if it's a javascript to ios/android command
+				//	being called with a the scheme "tvro" 
+				//	unlike iOS, we're going to just parse the url and check if it begins with tvro
+				String scheme = url.substring(0, 4);
+				Log.i(TAG, "URL scheme: " + scheme);
+				if(scheme.contains("tvro")) {
+					handleCustomURL(url);
+					return false;
+				}
+				else if(scheme.contains("about:blank")) {
+//					were trying to go to about:blank for some reason lets negate that
+//				    NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
+//				    [timeoutTimer invalidate];
+//				    [loadingView setHidden:TRUE];
+					return true;
+				}
+				//	check if it's coming from our bdu hostname
+			    //	if not, it's probably an external link and we
+			    //	should open it in safari
+				else if(!url.contains(hostName)) {
+					//Open in external browser
+					Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+	                startActivity(i);
+					return true;
+				}
+				
 				return false;
 			}
 
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				Log.i(TAG, "On Page Started: " + url);
-				
-				//	check if it's a javascript to ios/android command
-				//	being called with a the scheme "tvro"
-				//	unlike iOS, we're going to just parse the url and check if it begins with tvro
-				String scheme = url.substring(0, 4);
-				Log.i(TAG, "URL scheme: " + scheme);
-				if(scheme.contains("tvro")) {
-					handleCustomURL(url);
-				}
-				
-				/*
-  } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
-    //	were trying to go to about:blank for some reason lets negate that
-    NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
-    [timeoutTimer invalidate];
-    [loadingView setHidden:TRUE];
-    return false;
-    
-    
-    //	check if it's coming from our bdu hostname
-    //	if not, it's probably an external link and we
-    //	should open it in safari
-	} else if (![hostName isEqualToString:_hostName]) {
-		NSLog(@"    ![hostName isEqualToString:_hostName]");
-    //		[[UIApplication sharedApplication] openURL:request.URL];
-    //		return false;
-		return true;
-    
-    
-    //	} else if ([request.URL.pathComponents objectAtIndex:1])
-    
-    //	at this point it's probably just another path in our app,
-    //	so return true and let the uiwebview continue loading
-	} else {
-		return true;
-	}
-				 */
-				
-				//	TODO: determine is device can implement sat finder
-//				String satFinderAvailable = true ? "true" : "false";
-//				String javascript = "var TVRO = { MOBILE_APP: true, SAT_FINDER: " + satFinderAvailable + " };";
-//				webView.loadUrl("javascript:"+javascript);
 			}
 
 			@Override
@@ -192,6 +188,8 @@ public class WebViewActivity extends Activity {
 		super.onPause();
 		Log.i(TAG, "On Pause");
 		
+		updatesManager.unregisterDownloadManager();;
+		
 		//lets try to save preferences and then when the user has the bright idea to use App Watch/Task Manager to launch the App
 		//Hopefully that would fix this App Watch/Task Manager problem
 		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
@@ -218,6 +216,13 @@ public class WebViewActivity extends Activity {
 //		finish();
 	}
 	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		updatesManager.registerDownloadManager();
+	}
+	
 	public void goBackToMainActivity() {
 		Intent i = new Intent(this, MainActivity.class);
 		startActivity(i);
@@ -232,11 +237,11 @@ public class WebViewActivity extends Activity {
 		//	set tech and demo mode - the device's settings should override the
 		//	cookies set by the gui - we basically brute force this by setting the cookies
 		//	with the device's setting values on every page load
-		String demoMode = settings.getString("demo-mode", "true");
-		String demoModeString = "TVRO.setDemoMode(" + demoMode + ");";
+		boolean demoMode = settings.getBoolean("demo-mode", true);
+		String demoModeString = "TVRO.setDemoMode(" + (demoMode ? "true" : "false") + ");";
 		
-		String techMode = settings.getString("tech-mode", "true");
-		String techModeString = "TVRO.setTechMode(" + techMode + ");";
+		boolean techMode = settings.getBoolean("tech-mode", true);
+		String techModeString = "TVRO.setTechMode(" + (techMode ? "true" : "false") + ");";
 		
 		//  get the string, check for single quotes and escape them
 		//  this should probably get helperd out
@@ -272,7 +277,7 @@ public class WebViewActivity extends Activity {
 //				@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 //				@Override
 //				public void onReceiveValue(String value) {
-//					// TODO Auto-generated method stub
+//					
 //					
 //				}
 //			});
@@ -282,95 +287,122 @@ public class WebViewActivity extends Activity {
 	}
 	
 	public void handleCustomURL(String url) {
+		Log.i(TAG, "Custom URL: " + url);
+		
 		//	custom urls all begin with tvro://
 		//	the custom urls are ...
 		
 		try {
-			URL customURL = new URL(url);
+			URI customURL = new URI(url);
+			String[] pathComponents = customURL.getPath().split("/");
 			
 			if(customURL.getHost().equalsIgnoreCase("help")) {
 				String helpURLString = "http://" + hostName + "/" + customURL.getHost() + "/" + customURL.getPath() + "/" + customURL.getQuery();
-				//SETUP HELP WEBVIEW
+				//// TODO SETUP HELP WEBVIEW
+			}
+			else if(customURL.getHost().equalsIgnoreCase("change-hostname")) {
+				Log.i(TAG, "Handle Custom URL Change HostName: " + customURL.getHost());
+				 //	  tvro://change-hostname
+			    //    brings you back to the bonjour list view
+				goBackToMainActivity();
+			}
+			else if(customURL.getHost().equalsIgnoreCase("sat-finder")) {
+				// TODO SatFinder
+			}
+			else if(customURL.getHost().equalsIgnoreCase("set-installer-company") ||
+					customURL.getHost().equalsIgnoreCase("set-installer-contact") ||
+					customURL.getHost().equalsIgnoreCase("set-installer-phone") ||
+					customURL.getHost().equalsIgnoreCase("set-installer-email")) {
+				String key = customURL.getHost().substring(4);
+				String value = customURL.getHost().substring(1);
+				
+				Log.i(TAG, "Set Installer: " + key + ", " + value);
+				
+				SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putString(key, value);
+				// Commit the edits!
+				editor.commit();
+			}
+			else if(customURL.getHost().equalsIgnoreCase("set-tech-mode") ||
+					customURL.getHost().equalsIgnoreCase("set-demo-mode")) {
+				//	tvro://set-tech-mode/{ true || false }
+			    //	tvro://set-demo-mode/{ true || false }
+			    //	setting tech/demo mode - these are done via cookies on desktop
+			    //	but are done via NSUserDefaults in the mobile shell
+			    //	the ui buttons in GeneralSettingsView of the web code is hooked up
+			    //	to call these two functions on the iOS side
+				
+				String key = customURL.getHost().substring(4);
+				boolean value = pathComponents[1].equalsIgnoreCase("true");
+				
+				Log.i(TAG, "Set Mode: " + key + ", " + value);
+				
+				SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putBoolean(key, value);
+				// Commit the edits!
+				editor.commit();
+			}
+			else if(customURL.getHost().equalsIgnoreCase("get-device-versions")) {
+				//	tvro://get-device-versions
+			    //	gets versions of the stored update files
+			    // 	makes a javascript call that gives the web code the device versions
+				setDeviceVersions();
+			}
+			else if(customURL.getHost().equalsIgnoreCase("download")) {
+				String updateType = pathComponents[1];
+				String portalVersion = pathComponents[2];
+				String portalUrl = "";
+				for(int i = 3; i < pathComponents.length; i++) {
+					portalUrl = portalUrl + pathComponents[i] + "/";
+				}
+				
+				Log.i(TAG, "Download: " + updateType + ", " + portalVersion + ", " + portalUrl);
+				
+				updatesManager.startDownload(updateType, portalVersion, portalUrl);
+			}
+			else if(customURL.getHost().equalsIgnoreCase("upload")) {
+				String updateType = pathComponents[1];
+				String uploadURLString = "http:// " + hostName + "/xmlservices.php/set_config_file";
+				
+				Log.i(TAG, "Upload: " + updateType + ", " + uploadURLString);
+				
+				updatesManager.startUpload(updateType, uploadURLString);
 			}
 			
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
 			Log.e(TAG, e.toString());
 		}
-		/*
-  
-  NSArray* pathComponents = [url pathComponents];
-  
-  } else if ([url.host isEqualToString:@"change-hostname"]) {
-    //	tvro://change-hostname
-    //    brings you back to the bonjour list view
-    [self goBackToHostSelect];
-    
-    
-  } else if ([url.host isEqualToString:@"sat-finder"]) {
-    //	tvro://sat-finder
-    //    shows the sat finder - desktop has no sat finder
-    [self showSatFinder];
-    
-    
-	} else if ([url.host isEqualToString:@"set-installer-company"]
-          || [url.host isEqualToString:@"set-installer-contact"]
-					|| [url.host isEqualToString:@"set-installer-phone"]
-					|| [url.host isEqualToString:@"set-installer-email"]) {
-		NSString* key = [url.host substringFromIndex:4];
-		NSString* value = [url.path substringFromIndex:1];
-		[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-
-
-  } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
-    //	tvro://set-tech-mode/{ true || false }
-    //	tvro://set-demo-mode/{ true || false }
-    //    setting tech/demo mode - these are done via cookies on desktop
-    //    but are done via NSUserDefaults in the mobile shell
-    //    the ui buttons in GeneralSettingsView of the web code is hooked up
-    //    to call these two functions on the iOS side
-    NSString* key = [url.host substringFromIndex:4];
-    BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    
-  } else if ([url.host isEqualToString:@"get-device-versions"]) {
-    //	tvro://get-device-versions
-    //    gets versions of the stored update files
-    //    makes a javascript call that gives the web code the device versions
-    [self setDeviceVersions];
-    
-    
-  } else if ([url.host isEqualToString:@"download"]) {
-    //  tvro://download/{ update-type-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-update-from }
-    //    starts downloading the a specifed version of the update file
-    //    for a specified antenna-type
-    //    from a specifed url
-    //    this reponsibility is passed from the web code to the mobile code because
-    //    you cannot navigate the filesystem on some mobile devices for certain kinds of files
-    NSString* updateType = [NSString stringWithString:pathComponents[1]];
-    NSString* portalVersion = [NSString stringWithString:pathComponents[2]];
-    NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(3, [pathComponents count]-3)] componentsJoinedByString:@"/"];
-    [updatesManager startDownloadForUpdateType:updateType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
-    
-    
-  } else if ([url.host isEqualToString:@"upload"]) {
-    //  tvro://upload/{ update-type-to-upload-and-install }
-    //    calls the install_software method of the backend
-    //    we do this for the same reason as the download - some devices can't
-    //    search/find and upload/install the file from the device's file system
-    NSString* updateType = [NSString stringWithString:pathComponents[1]];
-    NSString* uploadURLString = [NSString stringWithFormat:@"http://%@/xmlservices.php/set_config_file", hostName];
-    NSURL* uploadURL = [NSURL URLWithString:uploadURLString];
-    [updatesManager startUploadForUpdateType:updateType uploadUrl:uploadURL];
-  }
-  
+		
+		/* 
   //invalidate timer otherwise we will be kicked back to the bonjour
   //from calls like set-demo-mode, set-tech-mode
   [timeoutTimer invalidate];
   [loadingView setHidden:TRUE];
 
 		 */
+	}
+	
+	public void setDeviceVersions() {
+		String satLibraryDeviceVersion = updatesManager.deviceVersionForUpdateType("satlibrary");
+		String tv1DeviceVersion = updatesManager.deviceVersionForUpdateType("tv1");
+		String tv3DeviceVersion = updatesManager.deviceVersionForUpdateType("tv3");
+		String tv5DeviceVersion = updatesManager.deviceVersionForUpdateType("tv5");
+		String tv6DeviceVersion = updatesManager.deviceVersionForUpdateType("tv6");
+		String rv1DeviceVersion = updatesManager.deviceVersionForUpdateType("rv1");
+		
+		String jString = "TVRO.setDeviceVersions({ SatLibrary: '" + satLibraryDeviceVersion + "', TV1: '" + tv1DeviceVersion + "', TV3: '" + tv3DeviceVersion + "', TV5: '" + tv5DeviceVersion + "', TV6: '" + tv6DeviceVersion + "', RV1: '" + rv1DeviceVersion + "' });";
+		
+		Log.i(TAG, "Set Device Versions JavaScript: " + jString);
+		
+		webView.loadUrl("javascript:"+jString);
+	}
+	
+	//----------------- Updates Manager Callback
+	
+	public void downloadCompleted() {
+		Log.i(TAG, "Reload Page: " + webView.getUrl());
+		webView.reload();
 	}
 }
