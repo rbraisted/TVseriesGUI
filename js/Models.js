@@ -246,8 +246,9 @@
     var noXponders = _.omit(sat, 'xponder');
     var onlyXponders = _.pick(sat, 'antSatID', 'xponder');
 
-    return TVRO.setSatelliteIdentity(noXponders, 1)
-               .then(TVRO.setSatelliteParams(onlyXponders, 1));
+    return TVRO.setSatelliteIdentity(noXponders, 1).then(function() {
+      return TVRO.setSatelliteParams(onlyXponders, 1);
+    });
   };
 
   TVRO.getReceivers = function() {

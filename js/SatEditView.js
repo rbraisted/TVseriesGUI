@@ -1,6 +1,12 @@
 !function(TVRO){
   "use strict";
 
+  var closePopup = function() {
+    var hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+    hash = hash.substr(0, hash.lastIndexOf('/'));
+    window.location.hash = hash;
+  };
+
   var fecDropdownView;
   var modTypeDropdownView;
 
@@ -143,14 +149,14 @@
       }
 
       $('.\\#spinner', jQ).show();
-      TVRO.setSatParams(params).then(TVRO.reload);
+      TVRO.setSatParams(params).then(closePopup);
     });
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to reset this satellite\'s details to factory settings?');
       if (confirmed) {
         $('.\\#spinner', jQ).show();
-        TVRO.resetSatelliteParams({ antSatID: sat.antSatID }).then(TVRO.reload);
+        TVRO.resetSatelliteParams({ antSatID: sat.antSatID }).then(closePopup);
       }
     });
 
