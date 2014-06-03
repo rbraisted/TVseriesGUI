@@ -976,7 +976,7 @@ a {
 
 .popup-spinner {
   @extend %animated-spinner;
-  display: none;
+  display: block;
   background-color: #101f30;
   width: 100%;
   height: calc(100% - #{$big-bump});
@@ -987,11 +987,11 @@ a {
 
   @include breakpoint($desktop) {
     position: absolute;    
-    &:after { background-size: 15% 15%; }
+    &:after { background-size: 200px 200px; }
   }
 
   @include breakpoint($mobile) {
     position: fixed;
-    &:after { background-size: 15%; }
+    &:after { background-size: 200px 200px; }
   }
 }

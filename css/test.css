@@ -850,7 +850,7 @@ a {
     -webkit-animation: spin 1s steps(8) infinite; }
 
 .popup-spinner {
-  display: none;
+  display: block;
   background-color: #101f30;
   width: 100%;
   height: calc(100% - 46px);
@@ -861,12 +861,12 @@ a {
     .popup-spinner {
       position: absolute; }
       .popup-spinner:after {
-        background-size: 15% 15%; } }
+        background-size: 200px 200px; } }
   @media screen and (max-width: 880px) {
     .popup-spinner {
       position: fixed; }
       .popup-spinner:after {
-        background-size: 15%; } }
+        background-size: 200px 200px; } }
 
 html {
   background-position: top center; }

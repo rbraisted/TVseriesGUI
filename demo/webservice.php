@@ -8,5 +8,14 @@ $message = $message[0];
 if ($message) {
 	$response = simplexml_load_file($message.'.xml');
 	header('Content-Type: text/xml');
+
+  //  for debugging spinners
+  switch ($message) {
+    case 'get_satellite_params':
+    case 'set_satellite_params':
+      sleep(2);
+      break;
+  }
+
 	print $response->asXML();
 }

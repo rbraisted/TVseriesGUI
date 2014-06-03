@@ -142,12 +142,16 @@
         params.lon = lon;
       }
 
+      $('.\\#spinner', jQ).show();
       TVRO.setSatParams(params).then(TVRO.reload);
     });
 
     var resetBtn = $('.\\#reset-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to reset this satellite\'s details to factory settings?');
-      if (confirmed) TVRO.resetSatelliteParams({ antSatID: sat.antSatID }).then(TVRO.reload);
+      if (confirmed) {
+        $('.\\#spinner', jQ).show();
+        TVRO.resetSatelliteParams({ antSatID: sat.antSatID }).then(TVRO.reload);
+      }
     });
 
     var regionDropdownView = TVRO.DropdownView($('.\\#sat-edit-region-dropdown-view'))
@@ -174,6 +178,7 @@
 
     return self = {
         setSat: function(arg) {
+          $('.\\#spinner', jQ).show();
           TVRO.getSatParams(arg).then(function(arg) {
             sat = arg;
             favBtn.setOn(sat.favorite);
@@ -195,6 +200,8 @@
             for (var i = 0; i < sat.xponders.length; i++) {
               xponderViews[i].setXponder(sat.xponders[i]);
             }
+
+            $('.\\#spinner', jQ).hide();
           });
 
 

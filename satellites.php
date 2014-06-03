@@ -204,6 +204,7 @@ and also .#group-table-view (group mode)
 
 <div class="popup #sat-edit-view">
   <div class="popup-guts sat-edit">
+    <div class="#spinner popup-spinner"></div>
     <div class="view-head">
       Edit Satellite Details
       <div class="back-btn #back-btn"></div>

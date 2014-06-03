@@ -45,6 +45,7 @@
 
     return self = {
       setSat: function(arg) {
+        $('.\\#spinner', jQ).show();
         TVRO.getSatParams(arg).then(function(arg) {
           sat = arg;
 
@@ -57,6 +58,8 @@
           for (var i = 0; i < sat.xponders.length; i++) {
             xponderViews[i].setXponder(sat.xponders[i]);
           }
+
+          $('.\\#spinner', jQ).hide();
         });
         
         TVRO.getAntennaVersions().then(function(xml) {
