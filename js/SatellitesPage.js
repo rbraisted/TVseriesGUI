@@ -22,7 +22,9 @@ $(function() {
     $('.\\#sat-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+          var hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+          hash = hash.substr(0, hash.lastIndexOf('/'));
+          window.location.hash = hash;
         })
         .end()
   );
