@@ -1,8 +1,6 @@
 package com.kvh.kvhandroid;
 
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 
 import com.kvh.kvhandroid.utils.Constants;
 import com.kvh.kvhandroid.utils.UpdatesManager;
@@ -18,7 +16,8 @@ import android.webkit.*;
 import android.graphics.Bitmap;
 
 public class WebViewActivity extends Activity implements UpdatesManagerCallback {
-	 public static final String TAG = "KVHANDROID - WebViewActivity";
+	public static final String TAG = "KVHANDROID - WebViewActivity";
+//	private final static int FILECHOOSER_RESULTCODE = 1;
 	
 	WebView webView;
 	
@@ -72,7 +71,34 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 		
-		webView.setWebChromeClient(new WebChromeClient());
+		webView.setWebChromeClient(new WebChromeClient() {
+			
+			// Commenting this chunk out because Google removed this functionality in 4.3
+			// they said they'll put in a fix at some point.
+			// Source: https://code.google.com/p/android/issues/detail?id=62220
+			// For Android 3.0+
+			/*public void openFileChooser( ValueCallback<Uri> uploadMsg, String acceptType ) {
+				Log.i(TAG, "CHROME CLIENT OPEN FILE CHOOSER 3+");
+				//mUploadMessage = uploadMsg;  
+				Intent i = new Intent(Intent.ACTION_GET_CONTENT);  
+//				i.addCategory(Intent.CATEGORY_OPENABLE);  
+				i.setType("file/*");  
+//				WebViewActivity.this.startActivityForResult( Intent.createChooser( i, getString(R.string.fileselect) ), MainActivity.FILECHOOSER_RESULTCODE ); 
+				WebViewActivity.this.startActivityForResult( Intent.createChooser(i, "Upload"), WebViewActivity.FILECHOOSER_RESULTCODE);
+			}
+
+			// For Android < 3.0
+			public void openFileChooser( ValueCallback<Uri> uploadMsg ) {
+				Log.i(TAG, "CHROME CLIENT OPEN FILE CHOOSER 3-");
+				openFileChooser( uploadMsg, "" );
+			}
+
+			// For Android > 4.1
+			public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture){
+				Log.i(TAG, "CHROME CLIENT OPEN FILE CHOOSER 4+");
+				openFileChooser( uploadMsg, "" );
+			}*/
+		});
 		
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
@@ -364,11 +390,13 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			}
 			else if(customURL.getHost().equalsIgnoreCase("upload")) {
 				String updateType = pathComponents[1];
-				String uploadURLString = "http:// " + hostName + "/xmlservices.php/set_config_file";
+				String uploadURLString = "http://" + hostName + "/xmlservices.php/set_config_file";
 				
 				Log.i(TAG, "Upload: " + updateType + ", " + uploadURLString);
 				
+				
 				updatesManager.startUpload(updateType, uploadURLString);
+//				webView.loadUrl(uploadURLString);
 			}
 			
 		} catch (Exception e) {
@@ -404,5 +432,14 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 	public void downloadCompleted() {
 		Log.i(TAG, "Reload Page: " + webView.getUrl());
 		webView.reload();
+	}
+	
+	public void uploadCompleted(String fileName) {
+		String jsString = "TVRO.installSoftware({ install: 'Y', filename: '" + fileName + "' }).then(TVRO.reload);";
+		
+		Log.i(TAG, "Upload Complete JavaScript: " + jsString);
+		
+//		webView.loadUrl("javascript:" + jsString);
+		
 	}
 }

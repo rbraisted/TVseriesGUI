@@ -1,6 +1,27 @@
 package com.kvh.kvhandroid.utils;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -13,6 +34,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 public class UpdatesManager {
 	private String TAG = "KVHANDROID - UpdatesManager";
@@ -25,7 +47,7 @@ public class UpdatesManager {
 	private String portalVersion;
 	private long download_id;
 	
-	private ProgressDialog downloadProgressDialog;
+	private ProgressDialog downloadProgressDialog; 
 	
 	public UpdatesManager(Activity act, UpdatesManagerCallback callback) {
 		updatesManagerCallback = callback;
@@ -103,10 +125,6 @@ public class UpdatesManager {
                         downloading = false;
                     }
                     
-                    Log.d(TAG, "Downloaded: " + bytes_downloaded + " / " + bytes_total);
-
-//                    final int dl_progress = (int) ((bytes_downloaded * 100l) / bytes_total);
-                    
                     activity.runOnUiThread(new Runnable() {
 
                         @Override
@@ -129,44 +147,167 @@ public class UpdatesManager {
         }).start();
 	}
 	
-	public void startUpload(String _updateType, String uploadUrl) {
-		/*
-		if (connection) {
-			[connection cancel];
-			connection = nil;
+	public void startUpload(String _updateType, final String uploadUrl) {
+		updateType = _updateType.toLowerCase();
+		
+		SharedPreferences settings = activity.getSharedPreferences(Constants.PREFS_NAME, 0);
+		
+		String filePath = settings.getString(updateType + "-file-path", "");
+		
+		if(filePath.equals("")) {
+			android.widget.Toast.makeText(activity, "Could not find update file.", android.widget.Toast.LENGTH_LONG).show();
+			return;
+		} else {
+			String[] filePathArray = filePath.split("/");
+			final String fileName = filePathArray[filePathArray.length - 1];
+			final File file = new File(Environment.getExternalStorageDirectory() + "/kvh_files", fileName);
+			final String stringBoundary = "0xKHTMLBoundary";
+			
+			Log.i(TAG, "Checking before upload: " + fileName + " " + file.exists());
+			
+			downloadProgressDialog = new ProgressDialog(activity);
+			downloadProgressDialog.setTitle("Uploading File ...");
+			downloadProgressDialog.setMessage("Upload in progress ...");
+			downloadProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			downloadProgressDialog.show();
+			
+			//Lets start uploading
+			//have to create a new thread since it will throw an exception if executing uploads on the main thread
+			new Thread(new Runnable() {
+				@Override
+	            public void run() {
+					try {
+						Log.i(TAG, "Starting Thread");
+						
+						HttpURLConnection conn = null;
+				        DataOutputStream dos = null;
+//				        DataInputStream dis = null;
+				        FileInputStream fileInputStream = null;
+				        byte[] buffer;
+				        int maxBufferSize = 20 * 1024;
+						
+				        // ------------------ CLIENT REQUEST
+			            fileInputStream = new FileInputStream(file);
+			            URL url = new URL(uploadUrl);
+			            
+			            // Open a HTTP connection to the URL
+			            conn = (HttpURLConnection) url.openConnection();
+			            // Allow Inputs
+			            conn.setDoInput(true);
+			            // Allow Outputs
+			            conn.setDoOutput(true);
+			            // Don't use a cached copy.
+			            conn.setUseCaches(false);
+			            // Use a post method.
+			            conn.setRequestMethod("POST");
+			            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + stringBoundary);
+
+			            dos = new DataOutputStream(conn.getOutputStream());
+
+			            dos.writeBytes("--" + stringBoundary + "\r\n");
+			            dos.writeBytes("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"" + fileName + "\"\r\n\r\n");
+			            
+			            // create a buffer of maximum size
+			            buffer = new byte[Math.min((int) file.length(), maxBufferSize)];
+			            int length;
+			            // read file and write it into the body...
+			            while ((length = fileInputStream.read(buffer)) != -1) {
+			                dos.write(buffer, 0, length);
+			            }
+
+			            // send multipart form data necessary after file data...
+			            dos.writeBytes("\r\n--" + stringBoundary + "--\r\n");
+			            dos.flush();
+			            
+			            if (fileInputStream != null)
+			                fileInputStream.close();
+			            if (dos != null)
+			                dos.close();
+			            
+			            //got response from server
+			            //Just for checking purposes
+			            DataInputStream dis = new DataInputStream(conn.getInputStream());
+//			            StringBuilder response = new StringBuilder();
+//			            String line;
+//			            while ((line = dis.readLine()) != null) {
+//			                response.append(line).append('\n');
+//			                Log.i(TAG, "RESPONSE: " + line);
+//			            }
+			            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			            DocumentBuilder parser = factory.newDocumentBuilder();
+			            Document dc= parser.parse(dis);
+			            NodeList listItems = dc.getElementsByTagName("message");
+			            String error_value = "100";
+			            
+			            for (int j = 0; j < listItems.getLength(); j++) {
+			                Element el = (org.w3c.dom.Element) listItems.item(j);
+			                if (el.hasAttribute("error")) {
+			                	error_value = el.getAttribute("error");
+//			                	Log.i(TAG, "Error Value");
+			                }
+			            }
+			            
+			            final int error_code = Integer.parseInt(error_value);
+			            Log.i(TAG, "RESPONSE: " + error_code);
+				        
+			            //First upload code
+			            //this looks cleaner than the code thats being used right now
+			            //this may still work if I found the proper location of the uploaded files
+			            //although the code above is much closer to the iOS version
+			            //so im leaving this code here for awhile
+//						HttpClient httpClient = new DefaultHttpClient();
+//						HttpPost httpPost = new HttpPost(uploadUrl);
+//						
+//						httpPost.addHeader("Cache-Control", "no-cache");
+//						httpPost.addHeader("Pragma", "no-cache");
+//						httpPost.addHeader("Content-Type", "multipart/form-data; boundary=" + stringBoundary);
+//						
+//						MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE, stringBoundary, null);
+//						
+//						entity.addPart("name", new StringBody("fileToUpload"));
+//						entity.addPart("filename", new StringBody(fileName)); 
+//						entity.addPart("\r\n", new FileBody(file));
+//						
+//						httpPost.setEntity(entity);
+//						
+//						Log.i(TAG, "HTTP POST: " + httpPost);
+//						
+//						final HttpResponse response = httpClient.execute(httpPost);
+//						
+//						Log.i(TAG, "Response: " + response.getStatusLine().getStatusCode());
+						
+						//Successful upload since there was no exception
+						activity.runOnUiThread(new Runnable() {
+	                        @Override
+	                        public void run() {
+	                        	
+	                        	downloadProgressDialog.dismiss();
+	                        	
+								if(error_code == 0) { //response.getStatusLine().getStatusCode() == 200) {
+									updatesManagerCallback.uploadCompleted(fileName);
+								} else {
+									android.widget.Toast.makeText(activity, "Uploading Failed", android.widget.Toast.LENGTH_LONG).show();
+								}
+	                        }
+						});
+					} catch (Exception e) {
+						Log.e(TAG, "Error on Upload: " + e.fillInStackTrace() + " " + e + " " + e.toString());
+						
+						//just close the dialog if ever
+						activity.runOnUiThread(new Runnable() {
+	                        @Override
+	                        public void run() {
+	                        	downloadProgressDialog.dismiss();
+	                        }
+						});
+						
+						android.widget.Toast.makeText(activity, "Uploading Failed", android.widget.Toast.LENGTH_LONG).show();
+						
+						
+					}
+				}
+			}).start();
 		}
-		
-		[fileData setLength:0];
-		
-		updateType = [_updateType lowercaseString];
-		
-		NSString* filePath = [self filePathForUpdateType:updateType];
-		NSString* fileName = [filePath lastPathComponent];
-		[fileData appendData:[NSData dataWithContentsOfFile:filePath]];
-		
-		NSString* stringBoundary = @"0xKHTMLBoundary";
-	  NSMutableDictionary* headers = [[NSMutableDictionary alloc] init];
-	  [headers setValue:@"no-cache" forKey:@"Cache-Control"];
-	  [headers setValue:@"no-cache" forKey:@"Pragma"];
-	  [headers setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary] forKey:@"Content-Type"];
-	  
-	  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:uploadUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-	  [request setHTTPMethod:@"POST"];
-	  [request setAllHTTPHeaderFields:headers];
-	  
-	  NSMutableData* postData = [NSMutableData dataWithCapacity:[fileData length] + 512];
-	  [postData appendData:[[NSString stringWithFormat:@"--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	  [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"%@\"\r\n\r\n", fileName] dataUsingEncoding:NSUTF8StringEncoding]];
-	  [postData appendData:fileData];
-	  [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	  [request setHTTPBody:postData];
-	  
-	  [uploadAlertView show];
-	  
-	  uploading = true;
-		connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-		[connection start];
-		*/
 	}
 	
 	public void registerDownloadManager() {   
@@ -197,19 +338,25 @@ public class UpdatesManager {
 			    if(status == DownloadManager.STATUS_SUCCESSFUL) {  	
 			    	String fileLocationString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
 			    	
-			    	//save information in preferences
-			    	SharedPreferences.Editor editor = settings.edit();
-		    		editor.putString(updateType + "-device-version", portalVersion);
-		    		editor.putString(updateType + "-file-path", fileLocationString);
-		    		editor.commit();
-			       
+			    	if(portalVersion != null && updateType != null) {
+				    	//save information in preferences
+				    	SharedPreferences.Editor editor = settings.edit();
+			    		editor.putString(updateType + "-device-version", portalVersion);
+			    		editor.putString(updateType + "-file-path", fileLocationString);
+			    		editor.commit();
+				       
+			    		updatesManagerCallback.downloadCompleted();
+			    	}
+			    	else {
+			    		android.widget.Toast.makeText(context, "Downloading Failed: File could not be saved", android.widget.Toast.LENGTH_LONG).show();
+			    	}
+		    		
 		    		downloadProgressDialog.dismiss();
-		    		updatesManagerCallback.downloadCompleted();
 		    		cursor.close();
 			    } else if(status == DownloadManager.STATUS_FAILED) {
-			    	android.widget.Toast.makeText(context, "FAILED!\n" + "reason of " + reason, android.widget.Toast.LENGTH_LONG).show();
+			    	android.widget.Toast.makeText(context, "Failed Downloading: " + reason, android.widget.Toast.LENGTH_LONG).show();
 			    } else if(status == DownloadManager.STATUS_PAUSED) {
-			    	android.widget.Toast.makeText(context, "PAUSED!\n" + "reason of " + reason, android.widget.Toast.LENGTH_LONG).show();
+			    	android.widget.Toast.makeText(context, "Paused Downloading: " + reason, android.widget.Toast.LENGTH_LONG).show();
 			    } else if(status == DownloadManager.STATUS_PENDING) {
 			    	android.widget.Toast.makeText(context, "PENDING!", android.widget.Toast.LENGTH_LONG).show();
 			    }else if(status == DownloadManager.STATUS_RUNNING){
