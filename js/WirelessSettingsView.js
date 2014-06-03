@@ -63,6 +63,11 @@
         var networkMode = $('.\\#wlan-network-mode', jQ).text();
         var securityMode = $('.\\#wlan-security-mode', jQ).text();
         var securityKey = $('.\\#wlan-security-key', jQ).val();
+        
+        if (_.size(securityKey) < 8 ){
+          alert("Your password must contain 8 or more characters.");
+          return;
+        }
 
         //  reassign xml here otherwise
         //  you'll pull the <security><algorithm> from both modes (IF and AP)

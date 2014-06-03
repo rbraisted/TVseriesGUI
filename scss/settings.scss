@@ -35,6 +35,19 @@
   padding-left: 10px;
 }
 
+.password-info-label {
+  position: absolute;
+  display: inline-block;
+  font-size: .75em;
+  margin-top: -2px;
+  margin-left: 20px;
+  @include breakpoint($mobile) {
+    position: static;
+    margin-top: 15px;
+    margin-left: 0px;
+  }
+}
+
 .edit-btn {
   width: 130px;
   float: right;
@@ -153,7 +166,7 @@
   .gateway-label, .gateway-value, .gateway-input,
   .broadcast-label, .broadcast-value, .broadcast-input,
   .security-label, .security-value, .security-dropdown-btn,
-  .password-label, .password-value, .password-input {
+  .password-label, .password-value, .password-input{
     display: none;
   }
 }
@@ -182,7 +195,7 @@
 }
 
 .\$wlan-sec-off .wireless-settings {
-  .password-label, .password-value, .password-input {
+  .password-label, .password-value, .password-input, .password-info-label {
     display: none;
   }
 }

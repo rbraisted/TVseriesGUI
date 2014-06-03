@@ -946,6 +946,18 @@ a {
 .value {
   padding-left: 10px; }
 
+.password-info-label {
+  position: absolute;
+  display: inline-block;
+  font-size: .75em;
+  margin-top: -2px;
+  margin-left: 20px; }
+  @media screen and (max-width: 880px) {
+    .password-info-label {
+      position: static;
+      margin-top: 15px;
+      margin-left: 0px; } }
+
 .edit-btn {
   width: 130px;
   float: right;
@@ -1047,7 +1059,7 @@ a {
 .\$wlan-dynamic .wireless-settings .broadcast-input {
   display: none; }
 
-.\$wlan-sec-off .wireless-settings .password-label, .\$wlan-sec-off .wireless-settings .password-value, .\$wlan-sec-off .wireless-settings .password-input {
+.\$wlan-sec-off .wireless-settings .password-label, .\$wlan-sec-off .wireless-settings .password-value, .\$wlan-sec-off .wireless-settings .password-input, .\$wlan-sec-off .wireless-settings .password-info-label {
   display: none; }
 
 @media screen and (min-width: 881px) {

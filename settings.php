@@ -230,7 +230,9 @@
       <div class="#wlan-security-mode"></div>
       <div class="dropdown-icon"></div>
     </div>
+
     <span class="label password-label">Password</span><input class="input password-input #wlan-security-key" />
+    <span class="password-info-label">Must contain 8 or more characters<br>Case sensitive</span>
 
     <a href="javascript:TVRO.showHelp(904);" class="link">
       Learn more about these wireless settings.
