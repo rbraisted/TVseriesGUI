@@ -1023,6 +1023,26 @@ a {
   .command-line.view {
     padding-top: 26px; } }
 
+.operational-log .progress-bar {
+  position: relative;
+  background-color: #4c5269;
+  height: 26px;
+  margin-bottom: 39px; }
+  @media screen and (max-width: 880px) {
+    .operational-log .progress-bar {
+      width: calc(100% - 52px);
+      margin-left: 26px; } }
+.operational-log .progress-fill {
+  width: 0%;
+  height: 100%;
+  background-color: #4f7abd; }
+.operational-log .label {
+  position: absolute;
+  font-size: 13px;
+  top: -19.5px; }
+.operational-log .label + .label {
+  right: 0; }
+
 @media screen and (min-width: 881px) {
   .remote-diagnostics {
     max-width: 600px;

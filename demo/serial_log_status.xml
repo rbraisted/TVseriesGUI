@@ -2,7 +2,7 @@
 <ipacu_response>
 	<message name="serial_log_status" error="0" />
 	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
-	<percent> 50</percent>
+	<percent>50</percent>
 	<max>2048000</max>
 	<current>1024000</current>
 </ipacu_response>

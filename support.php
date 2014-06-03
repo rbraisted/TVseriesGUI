@@ -127,6 +127,17 @@
     antenna system.
   </p>
 
+  <p>
+    Current log status: <span class="#percent">0</span>%
+  </p>
+
+  <div class="progress-bar">
+    <div class="label">0%</div>
+    <div class="label">100%</div>
+    <div class="#progress progress-fill"></div>
+  </div>
+
+
 	<div class="block-btn view-curr-log-btn #view-btn">
 		View Current Log
 	</div>
@@ -154,7 +165,6 @@
     self-test results. This information is very useful for diagnostics.
   </p>
 
-	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

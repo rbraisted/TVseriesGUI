@@ -182,6 +182,9 @@ $(function() {
 
     if (!hash || hash === '/system-info') systemInfoView.reload();
 
+    if (hash === '/operational-log') operationalLogView.startUpdating();
+    else operationalLogView.stopUpdating();
+
     if (hash !== '/remote-diagnostics') remoteDiagnosticsView.stopUpdating();
 
     if (hash === '/serial-log') serialLogView.reload();
