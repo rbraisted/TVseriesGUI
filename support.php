@@ -161,13 +161,13 @@
 
 <div class="popup #serial-log-view">
   <div class="popup-guts serial-log">
+    <div class="#spinner popup-spinner"></div>
     <div class="view-head">
       Operational Log
       <div class="back-btn #back-btn"></div>
     </div>
 
     <pre class="#serial-log">
-      Loading...
     </pre>
 
     <div class="btn-tray">
