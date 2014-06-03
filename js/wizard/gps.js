@@ -140,6 +140,7 @@
 
     self.getNmeaSources()
     .then(function(values) {
+      var city;
       //  insert CITY and COORDINATES before None
       var none = values.pop();
       values = values.concat(['COORDINATES', 'CITY']);
@@ -154,17 +155,23 @@
       else TVRO.getGps().then(function(xml) {
         var latitude = $('lat', xml).text();
         var longitude = $('lon', xml).text();
+        city = $('city', xml).text();
 
         var array = [latitude,longitude];
         return array;
       }).then(function(LatLonArray){
         return formatGPS(false,LatLonArray[0],LatLonArray[1]);
       }).then(function(array){
-        self.setValue('COORDINATES');
+        if(city){
+          self.setValue('CITY');
+          cityLabel.text(city);
+          cityDropdownView.setValue(city);
+        }else{
+          self.setValue('COORDINATES');
+        }
         latitudeInput.val(array[0]);
         longitudeInput.val(array[1]);
       });
-
     });
 
     var goToNext = function() {

@@ -126,13 +126,21 @@
   };
 
   TVRO.setInstalledGroup = function(group) {
-    var interval;
     return TVRO.setAutoswitchService({
       satellite_group: group.name
     }).then(function(){
       document.body.className = '/spinner';
-      
-      setTimeout(function() {
+
+      var interval;
+      var timeout;
+
+      $('.\\#exit-btn').click(function() {
+        clearInterval(interval);
+        clearTimeout(timeout);
+        TVRO.reload();
+      });
+
+      timeout = setTimeout(function() {
         interval = setInterval(function() {
           TVRO.getAntennaStatus(1,1).then(function(xml) {
             var state =  $('antenna state', xml).text();
@@ -140,24 +148,15 @@
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
-            }else if (state === 'ERROR') {
+            } else if (state === 'ERROR') {
               clearInterval(interval);
               alert("An error occured installing " + group.name + ".");
               TVRO.reload();
             }//End if (state === 'ERROR')
           });
-        },1000);
-      },10000);
-    });
-    
-    var exitBtn = $('.\\#exit-btn')
-    .click(function() {
-      console.log("EXIT GI");
-      clearInterval(interval);
-      TVRO.reload();
-
-    });
-
+        }, 1000);
+      }, 10000);
+    });    
   };
 
   TVRO.removeGroup = function(group) {
@@ -201,13 +200,21 @@
   };
 
   TVRO.setInstalledSat = function(sat) {
-    var interval;
     return TVRO.selectSatellite({
       antSatID: sat.antSatID 
     }).then(function(){  
       document.body.className = '/spinner';
 
-      setTimeout(function() {
+      var interval;
+      var timeout;
+
+      $('.\\#exit-btn').click(function() {
+        clearInterval(interval);
+        clearTimeout(timeout);
+        TVRO.reload();
+      });
+
+      timeout = setTimeout(function() {
         interval = setInterval(function() {
           TVRO.getAntennaStatus(1,1).then(function(xml) {
             var state =  $('antenna state', xml).text();

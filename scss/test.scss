@@ -1928,6 +1928,13 @@ body[class=""] .\#skew-angle-view,
 }
 
 .spinner {
-  display: block;
+  @extend %animated-spinner;
+  width: 200px;
+  height: 200px;
   margin: 30px auto;
+  display: block; 
+}
+
+.spinner-view .exit-btn {
+  cursor: pointer;
 }

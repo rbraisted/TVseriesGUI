@@ -792,15 +792,23 @@ a {
 .dropdown {
   @include popup-view;
 
-  .dropdown-guts {    
+  .dropdown-guts {
     height: auto;
     min-height: auto;
     min-width: 280px;
     width: auto;
   }
 
-  .table { @include blue-table; }
-  .table-col { @include table-col; }
+  .table {
+    @include blue-table;
+    max-height: calc(400px - #{$big-bump});
+    overflow: auto;
+  }
+
+  .table-col {
+    @include table-col;
+  }
+
   .table-row {
     @include table-row;
     cursor: pointer;
@@ -952,7 +960,7 @@ a {
     height: 200%;
     top: -50%;
     left: -50%;
-    z-index: -1;
+    // z-index: -1;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
 
     animation: spin 1s steps(8) infinite;
@@ -963,5 +971,27 @@ a {
     // -ms-transform: rotate(30deg);
     // -o-transform: rotate(30deg);
     // transform: rotate(30deg);
+  }
+}
+
+.popup-spinner {
+  @extend %animated-spinner;
+  display: block;
+  background-color: #101f30;
+  width: 100%;
+  height: calc(100% - #{$big-bump});
+
+  top: $big-bump;
+  left: 0;
+  z-index: 1;
+
+  @include breakpoint($desktop) {
+    position: absolute;    
+    &:after { background-size: 200px 200px; }
+  }
+
+  @include breakpoint($mobile) {
+    position: fixed;
+    &:after { background-size: 200px 200px; }
   }
 }

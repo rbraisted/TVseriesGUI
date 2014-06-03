@@ -60,6 +60,7 @@ and also .#group-table-view (group mode)
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <div class="popup #sat-info-view">
   <div class="popup-guts sat-info">
+    <div class="#spinner popup-spinner"></div>
     <div class="view-head">
       Satellite Details
       <div class="back-btn #back-btn"></div>
@@ -203,6 +204,7 @@ and also .#group-table-view (group mode)
 
 <div class="popup #sat-edit-view">
   <div class="popup-guts sat-edit">
+    <div class="#spinner popup-spinner"></div>
     <div class="view-head">
       Edit Satellite Details
       <div class="back-btn #back-btn"></div>
@@ -577,7 +579,7 @@ and also .#group-table-view (group mode)
   <div class="headline">Please wait while your satellites are being installed...</div>
   <br>
   <p class="headline ant_status #ant_status"></p>
-  <img src="/images/spinner.gif" class="spinner" />
+  <div class="spinner"></div>
   <div class="bottom-bar">
     <div class="exit-btn #exit-btn">Exit</div>
   </div>

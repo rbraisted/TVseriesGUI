@@ -299,6 +299,7 @@ a {
 
 .sidebar,
 .view,
+.spin-view,
 .popup,
 .dropdown {
   display: none; }
@@ -320,7 +321,7 @@ a {
     right: 0;
     top: 96px;
     top: 50px; }
-    .sidebar .view-head {
+    .sidebar .view-head, .sidebar .spin-view-head {
       background-color: #000;
       border-bottom: 1px solid #4f7abd;
       font-size: 21px;
@@ -403,7 +404,7 @@ a {
     background-image: url(/images/sat-signal-5.svg); }
 
 @media screen and (min-width: 881px) {
-  .view {
+  .view, .spin-view {
     bottom: 0;
     left: 240px;
     margin: auto;
@@ -412,33 +413,33 @@ a {
     top: 95px;
     max-width: 800px; } }
   @media screen and (min-width: 881px) and (min-width: 880px) and (max-width: 1100px) {
-    .view {
+    .view, .spin-view {
       max-width: 600px; } }
 @media screen and (min-width: 881px) {
-    .view .view-head {
+    .view .view-head, .view .spin-view-head, .spin-view .view-head, .spin-view .spin-view-head {
       font-size: 21px;
       margin: 30px 0;
       text-align: center; }
-    .view .back-btn {
+    .view .back-btn, .spin-view .back-btn {
       display: none; }
-    .view .btn-tray {
+    .view .btn-tray, .spin-view .btn-tray {
       border-top: 1px solid #4f7abd;
       display: inline-block;
       padding: 30px 0 30px;
       width: 100%; }
-      .view .btn-tray .block-btn, .view .btn-tray .vessel-view .demo-mode, .vessel-view .view .btn-tray .demo-mode {
+      .view .btn-tray .block-btn, .view .btn-tray .vessel-view .demo-mode, .vessel-view .view .btn-tray .demo-mode, .spin-view .btn-tray .block-btn, .spin-view .btn-tray .vessel-view .demo-mode, .vessel-view .spin-view .btn-tray .demo-mode {
         float: right;
         margin-left: 15px;
         min-width: 130px;
         text-align: center; } }
 @media screen and (max-width: 880px) {
-  .view {
+  .view, .spin-view {
     bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
     top: 96px; }
-    .view .view-head {
+    .view .view-head, .view .spin-view-head, .spin-view .view-head, .spin-view .spin-view-head {
       background-color: #000;
       border-bottom: 1px solid #4f7abd;
       font-size: 21px;
@@ -450,7 +451,7 @@ a {
       text-align: center;
       top: 50px;
       z-index: 2; }
-    .view .back-btn {
+    .view .back-btn, .spin-view .back-btn {
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
@@ -464,7 +465,7 @@ a {
       position: absolute;
       top: 0;
       width: 100%; }
-    .view .btn-tray {
+    .view .btn-tray, .spin-view .btn-tray {
       background-color: #000;
       bottom: 0;
       padding: 10px;
@@ -494,7 +495,7 @@ a {
       position: absolute;
       top: 50%;
       width: 800px; }
-    .popup .view-head {
+    .popup .view-head, .popup .spin-view-head {
       background-color: #000;
       border-bottom: 1px solid #4f7abd;
       font-size: 21px;
@@ -543,7 +544,7 @@ a {
     position: absolute;
     right: 0;
     top: 96px; }
-    .popup .view-head {
+    .popup .view-head, .popup .spin-view-head {
       background-color: #000;
       border-bottom: 1px solid #4f7abd;
       font-size: 21px;
@@ -598,7 +599,7 @@ a {
     position: absolute;
     top: 50%;
     width: 800px; }
-  .dropdown .view-head {
+  .dropdown .view-head, .dropdown .spin-view-head {
     background-color: #000;
     border-bottom: 1px solid #4f7abd;
     font-size: 21px;
@@ -647,7 +648,9 @@ a {
     width: auto; }
   .dropdown .table {
     width: 100%;
-    position: relative; }
+    position: relative;
+    max-height: calc(400px - 46px);
+    overflow: auto; }
     .dropdown .table .table-head {
       display: block;
       width: 100%;
@@ -832,6 +835,39 @@ a {
 
   to {
     -webkit-transform: rotate(0deg); } }
+.popup-spinner {
+  position: relative;
+  overflow: hidden; }
+  .popup-spinner:after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
+    animation: spin 1s steps(8) infinite;
+    -webkit-animation: spin 1s steps(8) infinite; }
+
+.popup-spinner {
+  display: block;
+  background-color: #101f30;
+  width: 100%;
+  height: calc(100% - 46px);
+  top: 46px;
+  left: 0;
+  z-index: 1; }
+  @media screen and (min-width: 881px) {
+    .popup-spinner {
+      position: absolute; }
+      .popup-spinner:after {
+        background-size: 200px 200px; } }
+  @media screen and (max-width: 880px) {
+    .popup-spinner {
+      position: fixed; }
+      .popup-spinner:after {
+        background-size: 200px 200px; } }
+
 .sidebar,
 .\#vessel-view {
   display: block; }

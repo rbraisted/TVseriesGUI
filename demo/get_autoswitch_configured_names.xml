@@ -28,5 +28,42 @@
       <sn>178548390</sn>
       <name>Kitchen</name>
     </autoswitch>
+
+    <autoswitch>
+      <sn>111111111</sn>
+      <name>Room 1</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>222222222</sn>
+      <name>Room 2</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>333333333</sn>
+      <name>Room 3</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>444444444</sn>
+      <name>Room 4</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>555555555</sn>
+      <name>Room 5</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>666666666</sn>
+      <name>Room 6</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>777777777</sn>
+      <name>Room 7</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>888888888</sn>
+      <name>Room 8</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>999999999</sn>
+      <name>Room 9</name>
+    </autoswitch>
 	</autoswitch_list>
 </ipacu_response>

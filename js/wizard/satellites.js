@@ -85,9 +85,6 @@ $(function() {
       if (!installedSat) {
         alert('You must install a satellite to continue!');
       } else {
-        document.body.className = '/spinner';
-        setTimeout(function() {
-          
           Promise.all(
               TVRO.getSatelliteService(),
               TVRO.getAntennaVersions()
@@ -98,8 +95,6 @@ $(function() {
               if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
               else window.location = '/wizard/system.php';
             });
-          
-        }, 500);
       }
     });
   });
@@ -109,9 +104,6 @@ $(function() {
       if (!installedGroup) {
         alert('You must install a group to continue!');
       } else {
-        document.body.className = '/spinner';
-        setTimeout(function() {
-          
           Promise.all(
               TVRO.getSatelliteService(),
               TVRO.getAntennaVersions()
@@ -122,8 +114,6 @@ $(function() {
               if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
               else window.location = '/wizard/system.php';
             });
-          
-        }, 500);
       }
     });
   });

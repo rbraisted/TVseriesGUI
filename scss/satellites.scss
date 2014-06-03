@@ -831,10 +831,10 @@
   }
 }
 
-.\/spinner{
+.\/spinner {
   .sidebar,
   .header,
-  .nav{
+  .nav {
     display: none;
   }
 }
@@ -844,7 +844,13 @@
 }
 
 .spinner {
-    margin: 30px auto;
-   display: block;
- 
+  @extend %animated-spinner;
+  width: 200px;
+  height: 200px;
+  margin: 30px auto;
+  display: block; 
+}
+
+.spinner-view .exit-btn {
+  cursor: pointer;
 }
