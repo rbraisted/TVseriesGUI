@@ -86,9 +86,17 @@
     margin-left: 15px;
   }
 
+  &.\$up-to-date .system-version .bg {
+    height: 120px;
+  }
+
   &.\$antenna.\$connected.\$tech-mode {
     .system-version .bg {
       height: 155px;
+    }
+
+    &.\$up-to-date .system-version .bg {
+      height: 175px;
     }
 
     .block-btn {
@@ -233,7 +241,15 @@
 
     .up-to-date-label {
       display: block;
+    }
+
+    .device-version .up-to-date-label {
       color: $grey;
+    }
+
+    .system-version .up-to-date-label {
+      color: $green;
+      margin-top: 0.5em;
     }
   }
 

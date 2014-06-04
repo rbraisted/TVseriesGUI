@@ -3,7 +3,7 @@
 	<message error="0" name="antenna_versions"/>
 	<system>TVRO</system>
 	<part>04-1234</part>
-	<current>041114</current>
+	<current>1000</current>
 	<icm>Y</icm><!-- Y | N -->
 	<acu>
 		<model>TVRO-IPACU</model>

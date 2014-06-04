@@ -979,8 +979,12 @@ a {
   min-width: 120px; }
 .update .flash-all-btn {
   margin-left: 15px; }
+.update.\$up-to-date .system-version .bg {
+  height: 120px; }
 .update.\$antenna.\$connected.\$tech-mode .system-version .bg {
   height: 155px; }
+.update.\$antenna.\$connected.\$tech-mode.\$up-to-date .system-version .bg {
+  height: 175px; }
 .update.\$antenna.\$connected.\$tech-mode .block-btn {
   display: inline-block; }
 @media screen and (min-width: 881px) {
@@ -1075,8 +1079,12 @@ a {
 .update.\$up-to-date .not-up-to-date-label {
   display: none; }
 .update.\$up-to-date .up-to-date-label {
-  display: block;
+  display: block; }
+.update.\$up-to-date .device-version .up-to-date-label {
   color: #cbcaca; }
+.update.\$up-to-date .system-version .up-to-date-label {
+  color: #acd038;
+  margin-top: 0.5em; }
 @media screen and (max-width: 880px) {
   .update {
     padding: 0 20px; }

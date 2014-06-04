@@ -91,9 +91,16 @@
       <span class="#install-type"></span>
     </div>
     <div class="version connected-label">
-      <span class ="#download-type"></span> Version
+      <span class ="#download-type"></span>
+      Version
       <span class="#system-ver"></span>
       installed
+
+      <div class="up-to-date-label">
+        Your 
+        <span class="#install-type"></span>
+        is up-to-date!
+      </div>
     </div>
     <div class="version not-connected-label">
       Version not available

@@ -13,20 +13,16 @@
       <name>Bedroom</name>
     </autoswitch>
     <autoswitch>
-      <sn>126342782</sn>
-      <name>Kitchen</name>
-    </autoswitch>
-    <autoswitch>
       <sn>167458938</sn>
       <name>Living Room</name>
     </autoswitch>
     <autoswitch>
-      <sn>169335122</sn>
-      <name>Patio</name>
-    </autoswitch>
-    <autoswitch>
       <sn>178548390</sn>
       <name>Kitchen</name>
+    </autoswitch>
+    <autoswitch>
+      <sn>169335122</sn>
+      <name>Patio</name>
     </autoswitch>
 
     <autoswitch>
