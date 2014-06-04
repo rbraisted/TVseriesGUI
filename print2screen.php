@@ -40,6 +40,10 @@
       font-size: 16px;
       font-weight: lighter;
       line-height: 1.4;
+
+      @media screen and (max-width: 440px) {
+        font-size: 13px;
+      }
     }
   </style>
 	<form name="myTelnet" method="POST" action="#">
@@ -59,7 +63,6 @@
 						echo fgets($fp, 128) . "<br />";
 						flush();
 						ob_flush();
-						//sleep(1);
 
 						if( isset($_POST["exitingPage"]) ) {
 

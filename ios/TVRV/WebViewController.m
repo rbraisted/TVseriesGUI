@@ -133,13 +133,14 @@
 
     
   } else if ([request.URL.path isEqualToString:@"/print2screen.php"]) {
-    NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
+    NSLog(@"    [request.URL.relativeString isEqualToString:@\"/print2screen.php\"]");
     //	the command line view pulls this file in, and it can take a while.
     //	but this request shouldn't cause you to return to the bonjour view
     //	even if it takes more than a minute to complete
+    //	there is more to this in webViewDidStartLoad
     [timeoutTimer invalidate];
     [loadingView setHidden:TRUE];
-    return false;
+    return true;
     
     
   } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
@@ -237,6 +238,13 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
 	NSLog(@"webViewDidStartLoad");
+  
+  NSURLRequest* request = _webView.request;
+	if ([request.URL.path isEqualToString:@"/support.php"] && [request.URL.fragment isEqualToString:@"/command-line"]) {
+    //	see comment in webView shouldStartLoadWithRequest about print2screen.php
+		return;
+  }
+
   //	start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
   timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
   [loadingView setHidden:FALSE];
