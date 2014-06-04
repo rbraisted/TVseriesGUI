@@ -40,8 +40,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="coordinates-view #coordinates-view">
     <span class="coordinates-label label">Enter your coordinates</span>
     <span class="label">Latitude:</span>
-    <input type="text" placeholder="XXX.XXXS or XXX.XXXN" class="input latitude #latitude">
-    <span class="label">xxx.xxxN or xxx.xxxS</span>
+    <input type="text" placeholder="XX.XXXS or XX.XXXN" class="input latitude #latitude">
+    <span class="label">xx.xxxN or xx.xxxS</span>
     <br>
     <span class="label">Longitude:</span>
     <input type="text" placeholder="XXX.XXXE or XXX.XXXW" class="input longitude #longitude">
