@@ -1064,6 +1064,9 @@ a {
 .\$wlan-dynamic .wireless-settings .broadcast-input {
   display: none; }
 
+.\$dtv-service .checkswitch-mode {
+  display: none; }
+
 .\$wlan-sec-off .wireless-settings .password-label, .\$wlan-sec-off .wireless-settings .password-value, .\$wlan-sec-off .wireless-settings .password-input, .\$wlan-sec-off .wireless-settings .password-info-label {
   display: none; }
 

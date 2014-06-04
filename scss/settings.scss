@@ -202,12 +202,15 @@
   }
 }
 
+.\$dtv-service .checkswitch-mode {
+  display: none;
+}
+
 .\$wlan-sec-off .wireless-settings {
   .password-label, .password-value, .password-input, .password-info-label {
     display: none;
   }
 }
-
 
 .popup {
   @include breakpoint($desktop) {

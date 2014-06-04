@@ -40,6 +40,17 @@
   </p>
   <div class="block-btn #wizard-btn">Setup Wizard</div>
 
+  <div class="checkswitch-mode">
+    <div class="heading">Check Switch Mode</div>
+    <p>
+      Insert some meaningful words.
+    </p>
+    <div class="toggle-btn #checkswitch-mode-btn">
+      <div class="on">On</div>
+      <div class="off">Off</div>
+    </div>
+  </div>
+
   <div class="heading">Demo Mode</div>
   <p>
     Turn on Demo mode to browse the capabilities of the web interface and the
