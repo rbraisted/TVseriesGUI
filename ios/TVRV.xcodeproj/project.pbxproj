@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AAC013DF1917F4DA00445E07 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138D1917F4DA00445E07 /* AccelerometerFilter.m */; };
 		AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138F1917F4DA00445E07 /* AppDelegate.m */; };
 		AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013911917F4DA00445E07 /* BonjourTableViewCell.m */; };
 		AAC013E21917F4DA00445E07 /* BonjourTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC013921917F4DA00445E07 /* BonjourTableViewCell~ipad.xib */; };
@@ -102,8 +101,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AAC0138C1917F4DA00445E07 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
-		AAC0138D1917F4DA00445E07 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAC0138F1917F4DA00445E07 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AAC013901917F4DA00445E07 /* BonjourTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourTableViewCell.h; sourceTree = "<group>"; };
@@ -228,8 +225,6 @@
 		AAC0138B1917F4DA00445E07 /* TVRV */ = {
 			isa = PBXGroup;
 			children = (
-				AAC0138C1917F4DA00445E07 /* AccelerometerFilter.h */,
-				AAC0138D1917F4DA00445E07 /* AccelerometerFilter.m */,
 				AAC0138E1917F4DA00445E07 /* AppDelegate.h */,
 				AAC0138F1917F4DA00445E07 /* AppDelegate.m */,
 				AAC013901917F4DA00445E07 /* BonjourTableViewCell.h */,
@@ -521,7 +516,6 @@
 				AAC014231917F4DA00445E07 /* UpdatesManager.m in Sources */,
 				AAC0141E1917F4DA00445E07 /* main.m in Sources */,
 				AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */,
-				AAC013DF1917F4DA00445E07 /* AccelerometerFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
