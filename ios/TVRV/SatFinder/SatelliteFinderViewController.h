@@ -21,10 +21,10 @@
 	SatelliteFinderOverlayView* overlayView;// over lay view displaying sats, meters
   SatelliteFinderInfoView*    infoView;	  // info view, trigger by infoButton
 
-  NSArray*      satList;
-	NSDictionary* satelliteLongitudes; // << as key->value satellitename->satellitelongitude
+  NSMutableArray*  satList;
+	NSDictionary*    satelliteLongitudes; // << as key->value satellitename->satellitelongitude
 	
-  UIImagePickerController *picker;
+  UIImagePickerController* picker;
   BOOL showPicker;
 
   double deviceLat;
@@ -41,8 +41,9 @@
 
 - (IBAction)infoButtonPressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
-//- (NSArray*)azimuthAndElevationOfSatelliteAtLongitude:(double)satelliteLongitude;
-- (void)showCameraView;
+
+- (NSArray*)azimuthAndElevationOfSatelliteAtLongitude:(double)satelliteLongitude;
+
 - (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth;
 - (double)offscreenXPositionForSatelliteWithAzimuth:(double)satelliteAzimuth;
 
@@ -50,7 +51,6 @@
 - (double)offscreenYPositionForSatelliteWithElevation:(double)satelliteElevation;
 
 - (void)timerAction;
-- (void)setSatList:(NSArray*)_satList;
 
 - (void)drawSatList;
 - (void)drawClarkeBelt;
