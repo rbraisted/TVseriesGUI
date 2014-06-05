@@ -86,6 +86,14 @@
 		E9B97C841829A14A007AA4A3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C831829A14A007AA4A3 /* XCTest.framework */; };
 		E9B97C851829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
 		E9B97C861829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
+		E9BE2F181940F6B300ADEAF5 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */; };
+		E9BE2F191940F6B300ADEAF5 /* Satellite.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0C1940F6B300ADEAF5 /* Satellite.m */; };
+		E9BE2F1A1940F6B300ADEAF5 /* SatelliteFinderInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0E1940F6B300ADEAF5 /* SatelliteFinderInfoView.m */; };
+		E9BE2F1B1940F6B300ADEAF5 /* SatelliteFinderOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F101940F6B300ADEAF5 /* SatelliteFinderOverlayView.m */; };
+		E9BE2F1C1940F6B300ADEAF5 /* SatelliteFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F121940F6B300ADEAF5 /* SatelliteFinderViewController.m */; };
+		E9BE2F1D1940F6B300ADEAF5 /* SatelliteFinderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BE2F131940F6B300ADEAF5 /* SatelliteFinderViewController.xib */; };
+		E9BE2F1E1940F6B300ADEAF5 /* SatelliteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F151940F6B300ADEAF5 /* SatelliteView.m */; };
+		E9BE2F1F1940F6B300ADEAF5 /* SatelliteViewCrosshairView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F171940F6B300ADEAF5 /* SatelliteViewCrosshairView.m */; };
 		E9C285CD1923EFBD001B194F /* close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C285CB1923EFBD001B194F /* close-button.png */; };
 		E9C285CE1923EFBD001B194F /* gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C285CC1923EFBD001B194F /* gradient.png */; };
 /* End PBXBuildFile section */
@@ -190,6 +198,21 @@
 		E9B97C6E1829A14A007AA4A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVRVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B97C831829A14A007AA4A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		E9BE2F091940F6B300ADEAF5 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
+		E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
+		E9BE2F0B1940F6B300ADEAF5 /* Satellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Satellite.h; sourceTree = "<group>"; };
+		E9BE2F0C1940F6B300ADEAF5 /* Satellite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Satellite.m; sourceTree = "<group>"; };
+		E9BE2F0D1940F6B300ADEAF5 /* SatelliteFinderInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatelliteFinderInfoView.h; sourceTree = "<group>"; };
+		E9BE2F0E1940F6B300ADEAF5 /* SatelliteFinderInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatelliteFinderInfoView.m; sourceTree = "<group>"; };
+		E9BE2F0F1940F6B300ADEAF5 /* SatelliteFinderOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatelliteFinderOverlayView.h; sourceTree = "<group>"; };
+		E9BE2F101940F6B300ADEAF5 /* SatelliteFinderOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatelliteFinderOverlayView.m; sourceTree = "<group>"; };
+		E9BE2F111940F6B300ADEAF5 /* SatelliteFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatelliteFinderViewController.h; sourceTree = "<group>"; };
+		E9BE2F121940F6B300ADEAF5 /* SatelliteFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatelliteFinderViewController.m; sourceTree = "<group>"; };
+		E9BE2F131940F6B300ADEAF5 /* SatelliteFinderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SatelliteFinderViewController.xib; sourceTree = "<group>"; };
+		E9BE2F141940F6B300ADEAF5 /* SatelliteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatelliteView.h; sourceTree = "<group>"; };
+		E9BE2F151940F6B300ADEAF5 /* SatelliteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatelliteView.m; sourceTree = "<group>"; };
+		E9BE2F161940F6B300ADEAF5 /* SatelliteViewCrosshairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatelliteViewCrosshairView.h; sourceTree = "<group>"; };
+		E9BE2F171940F6B300ADEAF5 /* SatelliteViewCrosshairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatelliteViewCrosshairView.m; sourceTree = "<group>"; };
 		E9C285CB1923EFBD001B194F /* close-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button.png"; sourceTree = "<group>"; };
 		E9C285CC1923EFBD001B194F /* gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,6 +248,7 @@
 		AAC0138B1917F4DA00445E07 /* TVRV */ = {
 			isa = PBXGroup;
 			children = (
+				E9BE2F081940F6B300ADEAF5 /* SatFinder */,
 				AAC0138E1917F4DA00445E07 /* AppDelegate.h */,
 				AAC0138F1917F4DA00445E07 /* AppDelegate.m */,
 				AAC013901917F4DA00445E07 /* BonjourTableViewCell.h */,
@@ -349,6 +373,28 @@
 				E9B97C831829A14A007AA4A3 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E9BE2F081940F6B300ADEAF5 /* SatFinder */ = {
+			isa = PBXGroup;
+			children = (
+				E9BE2F091940F6B300ADEAF5 /* AccelerometerFilter.h */,
+				E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */,
+				E9BE2F0B1940F6B300ADEAF5 /* Satellite.h */,
+				E9BE2F0C1940F6B300ADEAF5 /* Satellite.m */,
+				E9BE2F0D1940F6B300ADEAF5 /* SatelliteFinderInfoView.h */,
+				E9BE2F0E1940F6B300ADEAF5 /* SatelliteFinderInfoView.m */,
+				E9BE2F0F1940F6B300ADEAF5 /* SatelliteFinderOverlayView.h */,
+				E9BE2F101940F6B300ADEAF5 /* SatelliteFinderOverlayView.m */,
+				E9BE2F111940F6B300ADEAF5 /* SatelliteFinderViewController.h */,
+				E9BE2F121940F6B300ADEAF5 /* SatelliteFinderViewController.m */,
+				E9BE2F131940F6B300ADEAF5 /* SatelliteFinderViewController.xib */,
+				E9BE2F141940F6B300ADEAF5 /* SatelliteView.h */,
+				E9BE2F151940F6B300ADEAF5 /* SatelliteView.m */,
+				E9BE2F161940F6B300ADEAF5 /* SatelliteViewCrosshairView.h */,
+				E9BE2F171940F6B300ADEAF5 /* SatelliteViewCrosshairView.m */,
+			);
+			path = SatFinder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +522,7 @@
 				AAC0140B1917F4DA00445E07 /* TVRV_icons_50x50.png in Resources */,
 				AAC013EB1917F4DA00445E07 /* bonjourDivider@2x.png in Resources */,
 				AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */,
+				E9BE2F1D1940F6B300ADEAF5 /* SatelliteFinderViewController.xib in Resources */,
 				AAC013F91917F4DA00445E07 /* tableCellArrowSelected@2x.png in Resources */,
 				AAC013FE1917F4DA00445E07 /* tableCellBGSelected.png in Resources */,
 				AAC0140D1917F4DA00445E07 /* TVRV_icons_58x58.png in Resources */,
@@ -509,12 +556,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */,
+				E9BE2F181940F6B300ADEAF5 /* AccelerometerFilter.m in Sources */,
 				AAC014201917F4DA00445E07 /* SatFinderViewController.m in Sources */,
+				E9BE2F1B1940F6B300ADEAF5 /* SatelliteFinderOverlayView.m in Sources */,
+				E9BE2F1E1940F6B300ADEAF5 /* SatelliteView.m in Sources */,
 				AAC013E51917F4DA00445E07 /* BonjourViewController.m in Sources */,
 				AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */,
 				AAC014241917F4DA00445E07 /* WebViewController.m in Sources */,
+				E9BE2F1F1940F6B300ADEAF5 /* SatelliteViewCrosshairView.m in Sources */,
 				AAC014231917F4DA00445E07 /* UpdatesManager.m in Sources */,
+				E9BE2F1A1940F6B300ADEAF5 /* SatelliteFinderInfoView.m in Sources */,
+				E9BE2F191940F6B300ADEAF5 /* Satellite.m in Sources */,
 				AAC0141E1917F4DA00445E07 /* main.m in Sources */,
+				E9BE2F1C1940F6B300ADEAF5 /* SatelliteFinderViewController.m in Sources */,
 				AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
