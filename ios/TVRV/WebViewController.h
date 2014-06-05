@@ -1,7 +1,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UpdatesManagerDelegate.h"
-#import "SatFinderViewController.h"
+#import "SatelliteFinderViewController.h"
 
 @class UpdatesManager;
 
@@ -12,7 +12,7 @@
   UIView*    loadingView;
   NSTimer*   timeoutTimer;
 
-  SatFinderViewController* satFinderViewController;
+  SatelliteFinderViewController* satFinderViewController;
   UpdatesManager*          updatesManager;
 }
 

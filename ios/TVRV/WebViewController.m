@@ -189,7 +189,7 @@
 	NSString* techMode = [defaults boolForKey:@"tech-mode"] ? @"true" : @"false";
   NSString* techModeString = [NSString stringWithFormat:@"TVRO.setTechMode(%@);", techMode];
 
-  NSString* satFinderAvailable = [SatFinderViewController satFinderAvailable] ? @"true" : @"false";
+  NSString* satFinderAvailable = [SatelliteFinderViewController available] ? @"true" : @"false";
   NSString* satFinderAvailableString = [NSString stringWithFormat:@"TVRO.setSatfinderMode(%@);", satFinderAvailable];
   
   //  get the string, check for single quotes and escape them
@@ -372,9 +372,9 @@
   //  this is not going to work well, we should find another solution
   // NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
   // NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-  // if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] initWithSatListXmlString:satListXmlString];
+  // if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] initWithSatListXmlString:satListXmlString];
   //  instead im going to has ios handle get_satellite_list natively
-  if (satFinderViewController == NULL) satFinderViewController = [[SatFinderViewController alloc] init];
+  if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] init];
   [self presentViewController:satFinderViewController animated:YES completion:nil];
 }
 

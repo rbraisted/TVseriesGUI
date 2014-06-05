@@ -1308,17 +1308,17 @@
   [locationManager setDistanceFilter:kCLDistanceFilterNone];
   [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
   [locationManager setHeadingFilter:kCLHeadingFilterNone];
-  [locationManager setPurpose:@"SatelliteFinder needs your location to find satellites!"];  //  deprecated
+  [locationManager setPurpose:@"Satellite Finder needs your location to find satellites!"];  //  deprecated, we may still need for older ios versions
   [locationManager startUpdatingLocation];
   if ([CLLocationManager headingAvailable]) {
     [locationManager startUpdatingHeading];
   }
 
   //  SATFINDERDEBUG
-  deviceLat = 34.043918;
-  deviceLon = -118.252480;
-  deviceTilt = 25.271421;
-  deviceHeading = 125.611473;
+  // deviceLat = 34.043918;
+  // deviceLon = -118.252480;
+  // deviceTilt = 25.271421;
+  // deviceHeading = 125.611473;
 
   return self;
 }
@@ -1352,7 +1352,6 @@
 //  use these values to debug from a single location
 //  (los angeles, looking towards the clarke belt)
 //
-//  IMMA DRAWING! -80
 //  lat: 34.043918
 //  lon: -118.252480
 //  hdg: 125.611473
@@ -1364,9 +1363,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
   NSLog(@"locationManager didUpdateToLocation:%@ fromLocation:%@", newLocation, oldLocation);
-  //  SATFINDERDEBUG
-  // deviceLat = newLocation.coordinate.latitude;
-  // deviceLon = newLocation.coordinate.longitude;
+  deviceLat = newLocation.coordinate.latitude;
+  deviceLon = newLocation.coordinate.longitude;
   if (deviceLat == 0.0) deviceLat = 0.000001;
   if (deviceLon == 0.0) deviceLon = 0.000001;
 	[satFinderView setNeedsDisplay];
@@ -1375,10 +1373,8 @@
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
   NSLog(@"locationManager didUpdateHeading:%@", newHeading);
   if (0 >= newHeading.headingAccuracy) deviceHeading = -999.0;
-  //  SATFINDERDEBUG
-  // else if (deviceTilt < 45.0) deviceHeading = newHeading.trueHeading;
-  // else deviceHeading = fabsf(newHeading.trueHeading - 180.0);
-  else deviceHeading += 1.0;  // !
+  else if (deviceTilt < 45.0) deviceHeading = newHeading.trueHeading;
+  else deviceHeading = fabsf(newHeading.trueHeading - 180.0);
 	[satFinderView setNeedsDisplay];
 }
 
@@ -1395,17 +1391,13 @@
   [accelerometerFilter addAcceleration:acceleration];
   double y = accelerometerFilter.y;
 	double z = accelerometerFilter.z;
-  //  SATFINDERDEBUG
-  // deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
-	// deviceTilt += 0.5; // !
+  deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
 	[satFinderView setNeedsDisplay];
 }
 
 #pragma mark - SatFinderViewController methods
 
 + (BOOL)satFinderAvailable {
-  //  SATFINDERDEBUG
-  return true;
   if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
     if ([CLLocationManager headingAvailable]) {
       NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
