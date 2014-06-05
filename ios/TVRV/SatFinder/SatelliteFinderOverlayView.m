@@ -16,7 +16,9 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)init {
   self = [super initWithFrame:CGRectMake(0, 0, 320, 480)];
-  if (self) {		
+
+  if (self) {
+
 		crosshairView = [[SatelliteViewCrosshairView alloc] init];
 		[self addSubview:crosshairView];
 
@@ -67,6 +69,13 @@
 		[aziLabel setFrame:CGRectMake(270.0, 410.0, 50.0, 14.0)];// note: y - 2
 		[self addSubview:aziLabel];
 		// [aziLabel release];
+
+    //  a cheap hack to deal with tall iphones
+    //  we just cover up parts of the overlay view that stick out further than
+    //  they should on a 568px tall phone
+    UIView* blocker = [[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 88)];
+    [blocker setBackgroundColor:[UIColor blackColor]];
+    [self addSubview:blocker];
 		
 		satelliteViews = [[NSMutableDictionary alloc] init];        
   }

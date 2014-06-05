@@ -276,10 +276,8 @@
 }
 
 - (void)goBackToHostSelect {
-  //	we should probably move the iPad detection to BonjourViewController
-  //	and we should probably pop/push instead of setting the rootViewController
   BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
-  [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
+  [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;  
 }
 
 - (void)handleCustomURL:(NSURL*)url {
@@ -301,11 +299,12 @@
     //    brings you back to the bonjour list view
     [self goBackToHostSelect];
     
-    
   } else if ([url.host isEqualToString:@"sat-finder"]) {
     //	tvro://sat-finder
     //    shows the sat finder - desktop has no sat finder
-    [self showSatFinder];
+    if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] init];
+    [self presentViewController:satFinderViewController animated:YES completion:nil];
+
     
     
 	} else if ([url.host isEqualToString:@"set-installer-company"]
@@ -366,16 +365,6 @@
   //from calls like set-demo-mode, set-tech-mode
   [timeoutTimer invalidate];
   [loadingView setHidden:TRUE];
-}
-
-- (void)showSatFinder {
-  //  this is not going to work well, we should find another solution
-  // NSString* jsString = @"(function() { var webService = new TVRO.WebService(); return webService.getSatelliteList2(); }());";
-  // NSString* satListXmlString = [webView stringByEvaluatingJavaScriptFromString:jsString];
-  // if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] initWithSatListXmlString:satListXmlString];
-  //  instead im going to has ios handle get_satellite_list natively
-  if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] init];
-  [self presentViewController:satFinderViewController animated:YES completion:nil];
 }
 
 - (void)setDeviceVersions {
