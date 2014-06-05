@@ -12,14 +12,22 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.*;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.graphics.Bitmap;
 
 public class WebViewActivity extends Activity implements UpdatesManagerCallback {
 	public static final String TAG = "KVHANDROID - WebViewActivity";
 //	private final static int FILECHOOSER_RESULTCODE = 1;
 	
-	WebView webView;
+	private WebView webView;
+	private RelativeLayout helpLayout;
+	private WebView helpWebView;
+	private ImageButton closeButton;
 	
 	private String hostName;
 	private UpdatesManager updatesManager;
@@ -32,6 +40,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		updatesManager = new UpdatesManager(this, this);
 		
 		setContentView(R.layout.webviewactiivity);
+		
 		
 		//because of the Android App Manager is messed up that it will recreate (not just resume) an instance of the last activity 
 		//we shall go to the main Activity again
@@ -105,7 +114,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Log.i("KVH", "shouldOverrideUrlLoading: "+ url);
 				
-//				check if it's a javascript to ios/android command
+				//	check if it's a javascript to ios/android command
 				//	being called with a the scheme "tvro" 
 				//	unlike iOS, we're going to just parse the url and check if it begins with tvro
 				String scheme = url.substring(0, 4);
@@ -115,10 +124,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 					return false;
 				}
 				else if(scheme.contains("about:blank")) {
-//					were trying to go to about:blank for some reason lets negate that
-//				    NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
-//				    [timeoutTimer invalidate];
-//				    [loadingView setHidden:TRUE];
+					//	were trying to go to about:blank for some reason lets negate that
 					return true;
 				}
 				//	check if it's coming from our bdu hostname
@@ -207,6 +213,23 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		//	Load URL
 		Log.i(TAG, "HostName: " + shellhostName);
 		webView.loadUrl(shellhostName);
+		
+		helpLayout = (RelativeLayout) findViewById(R.id.helpLayout);
+		helpWebView = (WebView) findViewById(R.id.helpWebView);
+		closeButton = (ImageButton)findViewById(R.id.closeButton);
+		
+		helpWebView.getSettings().setJavaScriptEnabled(true);
+		helpWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		helpWebView.setWebChromeClient(new WebChromeClient());
+		
+		helpWebView.setWebViewClient(new WebViewClient());
+		
+		closeButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				helpLayout.setVisibility(LinearLayout.GONE);
+			}
+		});
 	}
 	
 	@Override
@@ -323,8 +346,12 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			String[] pathComponents = customURL.getPath().split("/");
 			
 			if(customURL.getHost().equalsIgnoreCase("help")) {
-				String helpURLString = "http://" + hostName + "/" + customURL.getHost() + "/" + customURL.getPath() + "/" + customURL.getQuery();
-				//// TODO SETUP HELP WEBVIEW
+				String helpURLString = "http://" + hostName + "/" + customURL.getHost() + "" + customURL.getPath() + "?" + customURL.getQuery();
+				
+				Log.i(TAG, "Help URL String: " + helpURLString);
+				
+				helpLayout.setVisibility(LinearLayout.VISIBLE);
+				helpWebView.loadUrl(helpURLString);
 			}
 			else if(customURL.getHost().equalsIgnoreCase("change-hostname")) {
 				Log.i(TAG, "Handle Custom URL Change HostName: " + customURL.getHost());
@@ -439,7 +466,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		
 		Log.i(TAG, "Upload Complete JavaScript: " + jsString);
 		
-//		webView.loadUrl("javascript:" + jsString);
+		webView.loadUrl("javascript:" + jsString);
 		
 	}
 }

@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -62,17 +63,6 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		tableLayout = (LinearLayout)findViewById(R.id.tableLayout);
 		tableLayout.removeAllViews();
 		
-		//Test Cells
-		//Create a row
-//		ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
-//		serviceTableRow.setServiceInformation("S/N: Rob's MacBoo...","192.168.0.255");
-//		serviceTableRow.setBackgroundImageId(R.drawable.tablecellbglight);
-//		tableLayout.addView(serviceTableRow);
-//		ServiceTableRow serviceTableRow2 = new ServiceTableRow(a, a);
-//		serviceTableRow2.setServiceInformation("S/N: revin","192.168.0.254");
-//		serviceTableRow2.setBackgroundImageId(R.drawable.tablecellbgdark);
-//		tableLayout.addView(serviceTableRow2);
-		
 		Log.i(TAG, "onCreate");
 		
 		//now lets detect the devices
@@ -87,11 +77,13 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		connectButton.setOnClickListener(this);
 		ImageButton updatesButton = (ImageButton)findViewById(R.id.viewUpdatesButton);
 		updatesButton.setOnClickListener(this);
+		
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 	}
 	
 	@Override
     protected void onDestroy() {
-//		networkServiceDiscoveryHelper.stopDiscoverServices();
+		networkServiceDiscoveryHelper.stopDiscoverServices();
         super.onDestroy();
     }
 	
@@ -153,11 +145,11 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 						//otherwise use dark
 						if(i % 2 == 0) {
 							Log.i(TAG, "Service Use BG Light");
-							childItem.setBackgroundImageId(R.drawable.tablecellbglight);
+							childItem.setBackgroundImageId(0);
 						}
 						else {
 							Log.i(TAG, "Service Use BG Dark");
-							childItem.setBackgroundImageId(R.drawable.tablecellbgdark);
+							childItem.setBackgroundImageId(1);
 						}
 					}
 				}
@@ -189,7 +181,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		//lets restart the service discovery
 		try {
 //			clearTable();
-			networkServiceDiscoveryHelper.stopDiscoverServices();
+//			networkServiceDiscoveryHelper.stopDiscoverServices();
 			networkServiceDiscoveryHelper.startDiscoverServices();
 		} catch (Exception e) {
 			Log.e(TAG, "ERROR ON REFRESHING: " + e);
@@ -222,6 +214,8 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	}
 	
 	public void gotoWebViewActivity(String url) {
+		networkServiceDiscoveryHelper.stopDiscoverServices();
+		
 		Intent i = new Intent(this, WebViewActivity.class);
 		i.putExtra("hostName", url);
 		startActivity(i);

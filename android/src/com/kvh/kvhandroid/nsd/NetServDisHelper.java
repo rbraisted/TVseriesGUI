@@ -22,6 +22,7 @@ public class NetServDisHelper {
 	NsdServiceInfo mService;
 	
 	ArrayList<String> hostNames;
+	boolean stoppedSearching;
 
     public static final String TAG = "KVHANDROID - NetServDisHelper";
 	
@@ -112,11 +113,22 @@ public class NetServDisHelper {
                 //if thats the case then don't reconnect anymore
                 boolean retryConnection = true;
                 for(int i = 0; i < hostNames.size(); i++) {
-                	
+                	if(hostNames.get(i).equalsIgnoreCase(serviceInfo.getServiceName()))
+                		retryConnection = false;
                 }
                 
-                //lets retry the conenction
-                mNsdManager.resolveService(serviceInfo, mResolveListener);
+                if(errorCode == 3)
+                	if(serviceInfo.getHost() != null)
+                		Log.i(TAG, "Service Already Active: " + serviceInfo.getHost().getHostAddress());
+                	else
+                		Log.i(TAG, "Service Already Active: NO IP FOUND: " + mContext);
+                
+                //seems to be causing an Android bug where if I keep Spamming Network Service Discovery class
+                //it would just stop detecting devices and have to restart the Android device
+                if(!stoppedSearching && retryConnection) {
+                	//lets retry the conenction
+//                	mNsdManager.resolveService(serviceInfo, mResolveListener);
+                }
             }
 
             @Override
@@ -140,6 +152,8 @@ public class NetServDisHelper {
     }
 	
 	public void startDiscoverServices() {
+		stoppedSearching = false;
+		
 		Log.i(TAG, "Discover Services For Bonjour Service Type: " + Constants.kBonjourServiceType);
 		try{
 			mNsdManager.discoverServices(Constants.kBonjourServiceType, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
@@ -149,8 +163,10 @@ public class NetServDisHelper {
     }
 	
 	public void stopDiscoverServices() {
+		stoppedSearching = true;
+		
 		try {
-        mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+			mNsdManager.stopServiceDiscovery(mDiscoveryListener);
 		} catch (Exception e) {
 			Log.e(TAG, "Could not stop discover services: " + e);
 		}

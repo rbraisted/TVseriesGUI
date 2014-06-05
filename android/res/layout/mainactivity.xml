@@ -94,6 +94,7 @@
       		android:maxLines="1"
       		android:ellipsize="end"
       		android:inputType="text"
+      		android:textSize="17sp"
         />
         
         <ImageButton 

@@ -10,17 +10,8 @@ import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import android.app.Activity;
@@ -34,7 +25,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 public class UpdatesManager {
 	private String TAG = "KVHANDROID - UpdatesManager";
@@ -53,7 +43,7 @@ public class UpdatesManager {
 		updatesManagerCallback = callback;
 		this.activity = act;
 		
-		downloadManager = (DownloadManager)activity.getSystemService(activity.DOWNLOAD_SERVICE);
+		downloadManager = (DownloadManager)activity.getSystemService(Activity.DOWNLOAD_SERVICE);
 
 	}
 	

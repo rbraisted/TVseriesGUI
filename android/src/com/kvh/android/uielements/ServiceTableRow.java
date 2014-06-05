@@ -6,6 +6,7 @@ import com.kvh.kvhandroid.R.layout;
 import com.kvh.kvhandroid.nsd.NetServDisCallback;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,9 +57,15 @@ public class ServiceTableRow extends LinearLayout {
 	}
 	
 	public void setBackgroundImageId(int id) {
-		ImageView layout = (ImageView)findViewById(R.id.backgroundImage);
-//		layout.setBackgroundResource(id);
-		layout.setImageResource(id);
+		//#3f4354 - dark
+		//#4e5267 - light
+		LinearLayout layout = (LinearLayout) findViewById(R.id.mainlayout);
+		
+		if(id == 0) {
+			layout.setBackgroundColor(Color.rgb(78, 82, 103)); //light
+		} else {
+			layout.setBackgroundColor(Color.rgb(63, 67, 84)); //dark
+		}
 	}
 	
 	public void setTag(int _tag) {
@@ -70,7 +77,8 @@ public class ServiceTableRow extends LinearLayout {
 	}
 	
 	private void setOnClickListenerForImage() {
-		ImageView layout = (ImageView)findViewById(R.id.backgroundImage);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.mainlayout);
+		
 		layout.setOnClickListener(new OnClickListener() {
 			
 			@Override
