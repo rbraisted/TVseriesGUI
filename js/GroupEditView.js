@@ -9,7 +9,7 @@
       setSat: function(arg) {
         sat = arg;
         jQ.toggleClass('$n/a', _.isUndefined(sat));
-        $('.\\#sat-name', jQ).text(sat ? sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0) : 'N/A');
+        $('.\\#sat-name', jQ).text(sat ? sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID) : 'N/A');
         return self;
       },
 

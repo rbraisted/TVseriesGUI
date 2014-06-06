@@ -8,7 +8,7 @@
           if (!sat) return $('.\\#sat-name, .\\#sat-skew', jQ).text('N/A');
           //  grab the skews
           TVRO.getSatParams(sat).then(function(sat) {
-            $('.\\#sat-name', jQ).text(sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0));
+            $('.\\#sat-name', jQ).text(sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID));
             $('.\\#sat-skew', jQ).text(sat.computedSkew);
           });
         }

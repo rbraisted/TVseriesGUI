@@ -7,7 +7,7 @@
 
     var installBtn = $('.\\#install-btn', jQ).click(function() {
       var installed = jQ.hasClass('$installed');
-      var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0) + '?');
+      var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID) + '?');
       if (confirmed) 
         TVRO.setInstalledSat(sat);
     });
@@ -16,7 +16,7 @@
       setSat: function(arg) {
         sat = arg;
         jQ.toggleClass('$n/a', _.isUndefined(sat));
-        $('.\\#sat-name', jQ).text(sat ?  sat.name + ' - ' + TVRO.formatLongitude(sat.lon, 0)  : 'N/A');
+        $('.\\#sat-name', jQ).text(sat ?  sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID)  : 'N/A');
 
         TVRO.getInstalledSat().then(function(installedSat) {
           jQ.toggleClass('$installed', installedSat.antSatID === sat.antSatID);

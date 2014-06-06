@@ -68,6 +68,7 @@
       //  these values can only be retrieved with get_satellite_params
       skew: $('skew', xml).text(),
       computedSkew: $('computedSkew', xml).text(),
+      antSatID: $('antSatID', xml).text(),
       lo1: $('lo1', xml).text(),
       lo2: $('lo2', xml).text(),
       kumode: $('kumode', xml).text(),

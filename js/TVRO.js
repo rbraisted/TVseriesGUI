@@ -30,23 +30,6 @@
   var formatCoordinate = function(type, coordinate, places) {
     if (_.isNaN(coordinate) || coordinate == '')
       return 'N/A';
-    else if (coordinate == -72.67){
-      return "72W";
-    }else if(coordinate == 23.57){
-      return "23E";
-    }else if(coordinate == -28.85){
-      return "30W";
-    }else if(coordinate == 70.72){
-      return "70E";
-    }else if(coordinate == 68.54){
-      return "68E";
-    }else if(coordinate == 93.51){
-      return "93E";
-    }else if(coordinate == 91.53){
-      return "91E";
-    }else if(coordinate == 78.55){
-      return "78E";
-    }
 
     var posStr, negStr;
     if (type === 'latitude') {
@@ -65,6 +48,17 @@
   TVRO.formatLongitude = _.curry(formatCoordinate, 2)('longitude');
 
 
+  TVRO.formatOrbitalSlot = function(antSatID) {
+      var antLon;
+      
+      if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W"))
+          antLon = antSatID.substring(0, antSatID.length-1);
+      else
+          antLon =  antSatID;
+      
+      return antLon;
+  };
+  
   //  for routing, hash changes
 
   var hash;
