@@ -21,12 +21,17 @@
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 #define isNaN(x) (x != x)
 
-//	NOTE: this camera info is pretty old
-//	camera fov stuff
+#define IS_IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
+//  NOTE: this camera info is pretty old
+//  camera fov stuff
 #define vfov 53
 #define hfov 39.5 // << but this is what i got using a ruler etc 3gs
-//	camera view - doesnt take entire screen
+//  camera view - doesnt take entire screen
 #define camviewwidth 320.0
 #define camviewheight 426.0
 
-#define IS_IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+#define vfov (IS_IPAD ? 44.5 : 53)
+#define hfov (IS_IPAD ? 34.1 : 39.5)
+#define camviewwidth (IS_IPAD ? 768.0 : 320.0)
+#define camviewheight (IS_IPAD ? 1024.0 : 426.0)
