@@ -354,7 +354,9 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)init {
-  self = [super initWithNibName:NSStringFromClass([self class]) bundle:[NSBundle mainBundle]];
+  if (IS_IPAD) self = [super initWithNibName:@"SatelliteFinderViewController~iPad" bundle:[NSBundle mainBundle]];
+  else self = [super initWithNibName:@"SatelliteFinderViewController~iPhone" bundle:[NSBundle mainBundle]];
+
   if (self) {
 
     satList = [[NSMutableArray alloc] init];
