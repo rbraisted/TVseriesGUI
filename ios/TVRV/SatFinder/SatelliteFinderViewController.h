@@ -11,7 +11,7 @@
 
 @class SatelliteFinderInfoView;
 
-@interface SatelliteFinderViewController : UIViewController <CLLocationManagerDelegate, UIAccelerometerDelegate> {
+@interface SatelliteFinderViewController : UIViewController <CLLocationManagerDelegate, UIAccelerometerDelegate, NSURLConnectionDelegate> {
 	// UIButton*	demoButton;
 	UIButton*	infoButton;
 	UIButton*	backButton;
@@ -35,9 +35,14 @@
   CLLocationManager* locationManager;
   UIAccelerometer*   accelerometer;
   LowpassFilter*     accelerometerFilter;
+
+  NSURLConnection* connection;
+  NSMutableData*   xmlData;
 }
 
 + (BOOL)available;
+
+- (void)setHostname:(NSString*)hostname;
 
 - (IBAction)infoButtonPressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
