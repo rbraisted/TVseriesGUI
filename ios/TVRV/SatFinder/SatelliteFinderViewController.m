@@ -73,7 +73,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 + (BOOL)available {
   NSLog(@":: available");
-  return true;
   if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
     if ([CLLocationManager headingAvailable]) {
       NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -1367,10 +1366,10 @@
     }
 
     //  DEBUGGING
-    deviceLat = 34.043918;
-    deviceLon = -118.252480;
-    deviceTilt = 25.271421;
-    deviceHeading = 125.611473;
+    // deviceLat = 34.043918;
+    // deviceLon = -118.252480;
+    // deviceTilt = 25.271421;
+    // deviceHeading = 125.611473;
   }
 
   return self;
@@ -1444,19 +1443,19 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated {
   NSLog(@":: viewDidAppear");
-  [self.view addSubview:overlayView];
+  // [self.view addSubview:overlayView];
 
   // show the camera!
-  // if (showPicker) {
-  //   if (picker == nil) picker = [[UIImagePickerController alloc] init];
-  //   [picker setSourceType:UIImagePickerControllerSourceTypeCamera]; // << choose camera
-  //   [picker setShowsCameraControls:NO];
-  //   [picker setNavigationBarHidden:YES];
-  //   [picker setWantsFullScreenLayout:YES];
-  //   [picker setCameraOverlayView:overlayView];
-  //   [self presentModalViewController:picker animated:NO];
-  //   showPicker = false;
-  // }
+  if (showPicker) {
+    if (picker == nil) picker = [[UIImagePickerController alloc] init];
+    [picker setSourceType:UIImagePickerControllerSourceTypeCamera]; // << choose camera
+    [picker setShowsCameraControls:NO];
+    [picker setNavigationBarHidden:YES];
+    [picker setWantsFullScreenLayout:YES];
+    [picker setCameraOverlayView:overlayView];
+    [self presentModalViewController:picker animated:NO];
+    showPicker = false;
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1486,10 +1485,10 @@
   // NSLog(@"--------------------------------------");
   // NSLog(@":: locationManager didUpdateToLocation");
   // NSLog(@"--------------------------------------");
-  // deviceLat = newLocation.coordinate.latitude;
-  // deviceLon = newLocation.coordinate.longitude;
-  // if (deviceLat == 0.0) deviceLat = 0.000001;
-  // if (deviceLon == 0.0) deviceLon = 0.000001;
+  deviceLat = newLocation.coordinate.latitude;
+  deviceLon = newLocation.coordinate.longitude;
+  if (deviceLat == 0.0) deviceLat = 0.000001;
+  if (deviceLon == 0.0) deviceLon = 0.000001;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1497,12 +1496,12 @@
   // NSLog(@"-----------------------------------");
   // NSLog(@":: locationManager didUpdateHeading");
   // NSLog(@"-----------------------------------");
-  // if (0 < newHeading.headingAccuracy) {
-		// if (deviceTilt > 45.0)	deviceHeading = fabsf(newHeading.trueHeading - 180.0);
-		// else deviceHeading = newHeading.trueHeading;
-  // } else {
-  //   deviceHeading = -999.0;
-  // }
+  if (0 < newHeading.headingAccuracy) {
+		if (deviceTilt > 45.0)	deviceHeading = fabsf(newHeading.trueHeading - 180.0);
+		else deviceHeading = newHeading.trueHeading;
+  } else {
+    deviceHeading = -999.0;
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1524,10 +1523,10 @@
   // NSLog(@"------------------------------");
   // NSLog(@":: accelerometer didAccelerate");
   // NSLog(@"------------------------------");
- //  [accelerometerFilter addAcceleration:acceleration];
- //  double y = accelerometerFilter.y;
-	// double z = accelerometerFilter.z;    
-	// deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
+  [accelerometerFilter addAcceleration:acceleration];
+  double y = accelerometerFilter.y;
+	double z = accelerometerFilter.z;    
+	deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
 }
 
 @end
