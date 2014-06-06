@@ -210,7 +210,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)timerAction {
   NSLog(@":: timerAction");
-  deviceHeading += 0.5;
 	[overlayView updateAzimuthLabel:deviceHeading];
 	[overlayView updateElevationLabel:deviceTilt];
 	[self drawSatList];
