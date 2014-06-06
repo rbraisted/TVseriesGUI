@@ -161,11 +161,12 @@ function antenna_versions(xml)
 		});
 		$(xml).find('au').each(function() {
 			message+='AU\n';
-			message+='Model:	'+$(this).find('model').text()+'\n';
-			message+='Part:	'+$(this).find('part').text()+'\n';
-			message+='Rev:	'+$(this).find('rev').text()+'\n';
-			message+='Ver:	'+$(this).find('ver').text()+'\n';
-			message+='SN:	'+$(this).find('sn').text()+'\n\n';
+			message+='Model:           '+$(this).find('model').text()+'\n';
+            message+='System ID Model: '+$(this).find('systemIDModel').text()+'\n';
+			message+='Part:            '+$(this).find('part').text()+'\n';
+			message+='Rev:             '+$(this).find('rev').text()+'\n';
+			message+='Ver:             '+$(this).find('ver').text()+'\n';
+			message+='SN:              '+$(this).find('sn').text()+'\n\n';
 		});
 		$(xml).find('rf').each(function() {
 			message+='RF\n';
@@ -207,7 +208,16 @@ function antenna_versions(xml)
 		});
 		$(xml).find('lnb').each(function() {
 			message+='LNB\n';
-			message+='Ver:	'+$(this).find('ver').text()+'\n\n';
+            message+='Part:          '+$(this).find('part').text()+'\n';
+			message+='Ver:           '+$(this).find('ver').text()+'\n';
+            message+='Polarization:  '+$(this).find('polarization').text()+'\n';
+            message+='Voltage:       '+$(this).find('voltage').text()+'\n';
+            message+='LO1 Frequency: '+$(this).find('LO1_freq').text()+'\n';
+            message+='LO1 Convert:   '+$(this).find('LO1_convert').text()+'\n';
+            message+='LO1 Tone:      '+$(this).find('LO1_tone').text()+'\n';
+            message+='LO2 Frequency: '+$(this).find('LO2_freq').text()+'\n';
+            message+='LO2 Convert:   '+$(this).find('LO2_convert').text()+'\n';
+            message+='LO2 Tone:      '+$(this).find('LO2_tone').text()+'\n\n';
 		});
 		$(xml).find('sensor').each(function() {
 			message+='SENSOR\n';
@@ -515,7 +525,7 @@ function set_autoswitch_master(xml)
 		return false;
 	}
 }
-function set_directv_service(xml)
+function set_satellite_service(xml)
 {
 	var error=$(xml).find('message').attr('error');
 	if('0'==error){
@@ -892,15 +902,43 @@ function get_satellite_groups(xml)
 				message+='GROUP\n';
 				message+='Group Name: '+$(this).find('group_name').text()+'\n';
 				message+='Predefined: '+$(this).find('predefined').text()+'\n';
-				message+='A:          '+$(this).find('A').text()+'\n';
+				message+='A:\n';
+                message+='\tList ID:  '+$(this).find('A listID').text()+'\n';
+                message+='\tAntSatID: '+$(this).find('A antSatID').text()+'\n';
+                message+='\tName:     '+$(this).find('A name').text()+'\n';
+                message+='\tRegion:   '+$(this).find('A region').text()+'\n';
+                message+='\tLong:     '+$(this).find('A lon').text()+'\n';
+                message+='\tEnable:   '+$(this).find('A enable').text()+'\n';
+                message+='\tFavorite: '+$(this).find('A favorite').text()+'\n';
 				if(''!=$(this).find('B').text()){
-					message+='B:          '+$(this).find('B').text()+'\n';
+	                message+='B:\n';
+	                message+='\tList ID:  '+$(this).find('B listID').text()+'\n';
+	                message+='\tAntSatID: '+$(this).find('B antSatID').text()+'\n';
+	                message+='\tName:     '+$(this).find('B name').text()+'\n';
+	                message+='\tRegion:   '+$(this).find('B region').text()+'\n';
+	                message+='\tLong:     '+$(this).find('B lon').text()+'\n';
+	                message+='\tEnable:   '+$(this).find('B enable').text()+'\n';
+	                message+='\tFavorite: '+$(this).find('B favorite').text()+'\n';
 				}
 				if(''!=$(this).find('C').text()){
-					message+='C:          '+$(this).find('C').text()+'\n';
+	                message+='C:\n';
+	                message+='\tList ID:  '+$(this).find('C listID').text()+'\n';
+	                message+='\tAntSatID: '+$(this).find('C antSatID').text()+'\n';
+	                message+='\tName:     '+$(this).find('C name').text()+'\n';
+	                message+='\tRegion:   '+$(this).find('C region').text()+'\n';
+	                message+='\tLong:     '+$(this).find('C lon').text()+'\n';
+	                message+='\tEnable:   '+$(this).find('C enable').text()+'\n';
+	                message+='\tFavorite: '+$(this).find('C favorite').text()+'\n';
 				}
 				if(''!=$(this).find('D').text()){
-					message+='D:          '+$(this).find('D').text()+'\n';
+	                message+='D:\n';
+	                message+='\tList ID:  '+$(this).find('D listID').text()+'\n';
+	                message+='\tAntSatID: '+$(this).find('D antSatID').text()+'\n';
+	                message+='\tName:     '+$(this).find('D name').text()+'\n';
+	                message+='\tRegion:   '+$(this).find('D region').text()+'\n';
+	                message+='\tLong:     '+$(this).find('D lon').text()+'\n';
+	                message+='\tEnable:   '+$(this).find('D enable').text()+'\n';
+	                message+='\tFavorite: '+$(this).find('D favorite').text()+'\n';
 				}
 				message+='\n';
 			});
@@ -1011,6 +1049,13 @@ function get_autoswitch_configured_names(xml)
 				message+='Name:      '+$(this).find('name').text()+'\n\n';
 			});
 		});
+        $(xml).find('receiver_list').each(function() {
+          $(this).find('receiver').each(function() {
+              message+='RECEIVER\n';
+              message+='IP Address: '+$(this).find('ip_address').text()+'\n';
+              message+='Name:       '+$(this).find('name').text()+'\n\n';
+          });
+      });
 		$('#response').val( message +'\n');
 		return false;
 	}else{
@@ -1018,16 +1063,13 @@ function get_autoswitch_configured_names(xml)
 		return false;
 	}	
 }
-function get_directv_service(xml)
+function get_satellite_service(xml)
 {
 	var error=$(xml).find('message').attr('error');
 	if('0'==error){
 		var message='';
-		message+='GET DIRECTV SERVICE\n\n';
-		message+='Enable:     '+$(xml).find('enable').text()+'\n\n';
-		$(xml).find('receiver_list').each(function() {
-			message+='IP Address: '+$(this).find('ip_address').text()+'\n';
-		});
+		message+='GET SATELLITE SERVICE\n\n';
+		message+='Service:     '+$(xml).find('service').text()+'\n\n';
 		$('#response').val( message +'\n');
 		return false;
 	}else{
@@ -1041,7 +1083,8 @@ function get_checkswitch_mode(xml)
 	if('0'==error){
 		var message='';
 		message+='GET CHECKSWITCH MODE\n\n';
-		message+='Enable: '+$(xml).find('enable').text()+'\n\n';
+		message+='Enable: '+$(xml).find('enable').text()+'\n';
+        message+='Status: '+$(xml).find('status').text()+'\n\n';
 		$('#response').val( message +'\n');
 		return false;
 	}else{
@@ -1628,12 +1671,10 @@ $('#chooseSetting').change(function(){
 			$('#field_AutoswitchNames').removeClass('hideField');
 			$('#fdAN').html('Serial Number');
 			break;
-		case 'set_directv_service':
+		case 'set_satellite_service':
 			clearWindow();
-			$('#field_YesNo1').removeClass('hideField');
-			$('#fdYN1').html('Enable');
-			$('#field_6').removeClass('hideField');
-			$('#fd6').html('Serial Number');
+			$('#field_Sat_Service').removeClass('hideField');
+			$('#fdSatServ').html('Service');
 			break;
 		case 'set_checkswitch_mode':
 			clearWindow();
@@ -2419,10 +2460,9 @@ $('#sendRequest').click(function(){
 
 			SendGetCommand2($('#chooseSetting').val(),message);
 			break;
-		case 'set_directv_service':
+		case 'set_satellite_service':
 			var message='';
-			message+='<enable>'+$('#fdinYesNo1').val()+'</enable>';
-			message+='<ip_address>'+$('#fdin6').val()+'</ip_address>';
+			message+='<service>'+$('#fdinSatServ').val()+'</service>';
 
 			SendGetCommand2($('#chooseSetting').val(),message);
 			break;
@@ -2687,6 +2727,7 @@ clearWindow = function(){
 	$('#field_SatC').addClass('hideField');
 	$('#field_SatD').addClass('hideField');
 	$('#field_SendRequest').addClass('hideField');
+    $('#field_Sat_Service').addClass('hideField');
 }
 
 });

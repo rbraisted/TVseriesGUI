@@ -48,7 +48,7 @@
 			<input type="button" id="button24" value="get_satellite_groups" onclick="SendGetCommand('get_satellite_groups')" style="width:200px" />
 			<input type="button" id="button25" value="get_autoswitch_status" onclick="SendGetCommand('get_autoswitch_status')" style="width:200px" />
 			<input type="button" id="button26" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:200px" />
-			<input type="button" id="button27" value="get_directv_service" onclick="SendGetCommand('get_directv_service')" style="width:200px" />
+			<input type="button" id="button27" value="get_satellite_service" onclick="SendGetCommand('get_satellite_service')" style="width:200px" />
 			<input type="button" id="button28" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:200px" />
             <input type="button" id="button29" value="get_details" onclick="get_details()" style="width:200px" />
             <input type="button" id="button30" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:200px" />
@@ -84,9 +84,9 @@
 				<option value="set_satellite_group">set_satellite_group</option>
 				<option value="set_autoswitch_configured_names">set_autoswitch_configured_names</option>
 				<option value="set_autoswitch_master">set_autoswitch_master</option>
-				<option value="set_directv_service">set_directv_service</option>
+				<option value="set_satellite_service">set_satellite_service</option>
 				<option value="set_checkswitch_mode">set_checkswitch_mode</option>
-				
+
                 <!--option value="set_config_file">set_config_file</option-->
             </select>
             <br />
@@ -233,6 +233,17 @@
                         	<option value="Y">YES</option>
                             <option value="N">NO</option>
                         </select>
+                    </td>
+                </tr>
+                <tr id="field_Sat_Service" class="hideField">
+                	<td id="fdSatServ" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                    	<select id="fdinSatServ">
+                        	<option value="DIRECTV">DIRECTV</option>
+                            <option value="DISH">DISH</option>
+                        	<option value="BELL">Bell</option>
+                            <option value="OTHER">Other</option>
+                            </select>
                     </td>
                 </tr>
                 <tr id="field_Region" class="hideField">
@@ -435,7 +446,7 @@
                 	<td id="fd10" align="left">&nbsp;</td>
                     <td align="left"><input type="text" id="fdin10" style="width:170px" /></td>
                 </tr>
-                
+
                 <tr id="field_upload" class="hideField">
                 	<td id="fdul" align="left">&nbsp;</td>
                     <td align="left"><input type="file" name='fileToUpload' id="fileToUpload" style="width:170px" /></td>
@@ -530,7 +541,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:center">&nbsp;
-                    	
+
                     </td>
                 </tr>
                 <tr id="field_FetchData" class="hideField">
