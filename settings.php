@@ -43,7 +43,13 @@
   <div class="checkswitch-mode">
     <div class="heading">Check Switch Mode</div>
     <p>
-      Insert some meaningful words.
+      Turn on Check Switch mode only when you need to run a Check Switch test
+      to configure a receiver. The Setup Wizard automatically turns on this
+      mode when it prompts you to run a Check Switch test then turns it off
+      when you proceed to the next step. If you close your browser window
+      instead of proceeding to the next step, be sure to turn off Check Switch
+      mode when you are done configuring your receiver(s). Keep Check Switch
+      mode set to off for normal operation.
     </p>
     <div class="toggle-btn #checkswitch-mode-btn">
       <div class="on">On</div>
