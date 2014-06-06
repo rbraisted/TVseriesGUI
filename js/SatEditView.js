@@ -130,15 +130,18 @@
       var i, prefix, id;
       // range checking on transponder parameters
       for (i = 0; i < 4; i++) {
-    	  if ((parseInt(params.xponder[i].freq) != 0) && ((parseInt(params.xponder[i].freq) < 10700) || (parseInt(params.xponder[i].freq) > 12750)))
-    		  return alert('Only values of 0 or 10700-12750 are valid for Frequency');
+    	  if ( ((parseInt(params.xponder[i].freq) != 0) && 
+                 ((parseInt(params.xponder[i].freq) < 10700) || (parseInt(params.xponder[i].freq) > 12750) ) ) ||
+               (params.xponder[i].freq.length != 5))
+    		  return alert('Only values of 00000 or 10700-12750 are valid for Frequency');
 
-    	  if ((parseInt(params.xponder[i].symRate) < 1000) || (parseInt(params.xponder[i].symRate) > 45000))
-    		  return alert('Only values of 1000-45000 are valid for Symbol Rate');
+    	  if ( ((parseInt(params.xponder[i].symRate) < 1000) || (parseInt(params.xponder[i].symRate) > 45000)) ||
+    		   (params.xponder[i].symRate.length != 5))
+    		  return alert('Only values of 01000-45000 are valid for Symbol Rate');
 
     	  prefix = params.xponder[i].netID.substring(0,2);
     	  id = parseInt(params.xponder[i].netID.substring(2), 16);
-    	  if ((prefix !== '0X') || (id < 0) || (id > 65535))
+    	  if ((prefix !== '0X') || (id < 0) || (id > 65535) || (params.xponder[i].netID.length != 6) )
     		  return alert('Only values of 0X0000-0XFFFF are valid for Satellite ID');
       }
       
