@@ -73,6 +73,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 + (BOOL)available {
   NSLog(@":: available");
+  return true;
   if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
     if ([CLLocationManager headingAvailable]) {
       NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -210,6 +211,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)timerAction {
   NSLog(@":: timerAction");
+  deviceHeading += 0.5;
 	[overlayView updateAzimuthLabel:deviceHeading];
 	[overlayView updateElevationLabel:deviceTilt];
 	[self drawSatList];
@@ -352,7 +354,6 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)init {
-  NSLog(@":: init 1");
   self = [super initWithNibName:NSStringFromClass([self class]) bundle:[NSBundle mainBundle]];
   if (self) {
 
@@ -1367,9 +1368,6 @@
     deviceHeading = 125.611473;
   }
 
-  NSLog(@":: init 2");
-
-
   return self;
 }
 
@@ -1444,18 +1442,37 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated {
   NSLog(@":: viewDidAppear");
+  [self.view addSubview:overlayView];
 
   // show the camera!
-  if (showPicker) {
-    if (picker == nil) picker = [[UIImagePickerController alloc] init];
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera]; // << choose camera
-    [picker setShowsCameraControls:NO];
-    [picker setNavigationBarHidden:YES];
-    [picker setWantsFullScreenLayout:YES];
-    [picker setCameraOverlayView:overlayView];
-    [self presentModalViewController:picker animated:NO];
-    showPicker = false;
-  }
+  // if (showPicker) {
+  //   if (picker == nil) picker = [[UIImagePickerController alloc] init];
+  //   [picker setSourceType:UIImagePickerControllerSourceTypeCamera]; // << choose camera
+  //   [picker setShowsCameraControls:NO];
+  //   [picker setNavigationBarHidden:YES];
+  //   [picker setWantsFullScreenLayout:YES];
+  //   [picker setCameraOverlayView:overlayView];
+  //   [self presentModalViewController:picker animated:NO];
+  //   showPicker = false;
+  // }
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (BOOL)shouldAutorotate {
+  NSLog(@":: shouldAutorotate");
+  return false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (NSUInteger)supportedInterfaceOrientations {
+  NSLog(@":: shouldAutorotate");
+  return UIInterfaceOrientationMaskPortrait;
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+  NSLog(@":: preferredInterfaceOrientationForPresentation");
+  return UIInterfaceOrientationPortrait;
 }
 
 //=========================================================================================================================================================
@@ -1467,10 +1484,10 @@
   // NSLog(@"--------------------------------------");
   // NSLog(@":: locationManager didUpdateToLocation");
   // NSLog(@"--------------------------------------");
-  deviceLat = newLocation.coordinate.latitude;
-  deviceLon = newLocation.coordinate.longitude;
-  if (deviceLat == 0.0) deviceLat = 0.000001;
-  if (deviceLon == 0.0) deviceLon = 0.000001;
+  // deviceLat = newLocation.coordinate.latitude;
+  // deviceLon = newLocation.coordinate.longitude;
+  // if (deviceLat == 0.0) deviceLat = 0.000001;
+  // if (deviceLon == 0.0) deviceLon = 0.000001;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1478,12 +1495,12 @@
   // NSLog(@"-----------------------------------");
   // NSLog(@":: locationManager didUpdateHeading");
   // NSLog(@"-----------------------------------");
-  if (0 < newHeading.headingAccuracy) {
-		if (deviceTilt > 45.0)	deviceHeading = fabsf(newHeading.trueHeading - 180.0);
-		else deviceHeading = newHeading.trueHeading;
-  } else {
-    deviceHeading = -999.0;
-  }
+  // if (0 < newHeading.headingAccuracy) {
+		// if (deviceTilt > 45.0)	deviceHeading = fabsf(newHeading.trueHeading - 180.0);
+		// else deviceHeading = newHeading.trueHeading;
+  // } else {
+  //   deviceHeading = -999.0;
+  // }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1505,10 +1522,10 @@
   // NSLog(@"------------------------------");
   // NSLog(@":: accelerometer didAccelerate");
   // NSLog(@"------------------------------");
-  [accelerometerFilter addAcceleration:acceleration];
-  double y = accelerometerFilter.y;
-	double z = accelerometerFilter.z;    
-	deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
+ //  [accelerometerFilter addAcceleration:acceleration];
+ //  double y = accelerometerFilter.y;
+	// double z = accelerometerFilter.z;    
+	// deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
 }
 
 @end
