@@ -210,7 +210,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)timerAction {
   NSLog(@":: timerAction");
-  deviceHeading += 0.5;
 	[overlayView updateAzimuthLabel:deviceHeading];
 	[overlayView updateElevationLabel:deviceTilt];
 	[self drawSatList];
@@ -1394,6 +1393,8 @@
 	if (overlayView == nil) overlayView = [[SatelliteFinderOverlayView alloc] init];
 	
 	UIImageView* bottomBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sf_enabled_favorite_selected_bar.png"]];
+  NSLog(@"%@", bottomBar.image);
+  //  i don't know why this case doesnt handle ~ipad ~iphone image suffixes
 	if (IS_IPAD) [bottomBar setFrame:CGRectMake(410.0, 996.0, 343.0, 23.0)];
   else [bottomBar setFrame:CGRectMake(0.0, 426.0, 320.0, 54.0)];
 	[overlayView addSubview:bottomBar];

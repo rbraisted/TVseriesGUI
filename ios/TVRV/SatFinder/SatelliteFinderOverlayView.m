@@ -62,7 +62,7 @@
 		
 		UIImageView* leftTriangle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sf_triangle_guide.png"]];
 		[leftTriangle setTransform:rotationTransform];
-		if (IS_IPAD) [leftTriangle setTransform:rotationTransform];
+		if (IS_IPAD) [leftTriangle setFrame:CGRectMake(15.0, 494.0, 24.0, 36.0)];
     else [leftTriangle setFrame:CGRectMake(10.0, 202.5, 15.0, 21.0)];
 		[self addSubview:leftTriangle];
 		// [leftTriangle release];
