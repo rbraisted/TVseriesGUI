@@ -10,11 +10,17 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)init {
-  self = [super initWithFrame:CGRectMake(0.0, 0.0, 320.0, 426.0)];
+  if (IS_IPAD) self = [super initWithFrame:CGRectMake(423.0, 0.0, 345.0, 514.0)];
+  else self = [super initWithFrame:CGRectMake(0.0, 0.0, 320.0, 426.0)];
+
   if (self) {
 		[self setOpaque:NO];
 		[self setBackgroundColor:[UIColor clearColor]];
-		UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(20.0, 65.0, 281.0, 280.0)];
+
+		UITextView* textView;
+    if (IS_IPAD) textView = [[UITextView alloc] initWithFrame:CGRectMake(20.0, 85.0, 281.0, 350.0)];
+    else textView = [[UITextView alloc] initWithFrame:CGRectMake(20.0, 65.0, 281.0, 280.0)];
+
 		NSString* text = [[NSString alloc] initWithFormat:@"SatTrac® Satellite Locater\n"];
 		text = [text stringByAppendingString:@"SatTrac uses your mobile device’s camera to display the location of television satellites in the sky. This can be very useful when checking for possible blockage, selecting a satellite, or choosing a docking location with good signal reception.\n\n"];
 		text = [text stringByAppendingString:@"Before you begin\n"];
@@ -36,7 +42,8 @@
 		okButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[okButton setImage:[UIImage imageNamed:@"sf_info_ok_button.png"] forState:UIControlStateNormal];
 		[okButton addTarget:self action:@selector(okButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-		[okButton setFrame:CGRectMake(96.0, 360.0, 128.0, 43.0)];
+    if (IS_IPAD) [okButton setFrame:CGRectMake(90.0, 456.0, 135.0, 46.0)];
+		else [okButton setFrame:CGRectMake(96.0, 360.0, 128.0, 43.0)];
 		[self addSubview:okButton];
   }
   return self;
@@ -49,7 +56,8 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)drawRect:(CGRect)rect {
-	[[UIImage imageNamed:@"sf_info_bg.png"] drawInRect:CGRectMake(9.0, 42.0, 303.0, 374.0)];
+  if (IS_IPAD) [[UIImage imageNamed:@"sf_info_bg.png"] drawInRect:CGRectMake(0.0, 58.0, 322.0, 456.0)];
+	else [[UIImage imageNamed:@"sf_info_bg.png"] drawInRect:CGRectMake(9.0, 42.0, 303.0, 374.0)];
 }
 
 @end

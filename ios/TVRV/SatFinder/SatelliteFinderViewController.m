@@ -221,6 +221,9 @@
 - (void)drawSatList {
   NSLog(@":: drawSatList");
 	int k = [satList count];
+  float hw = (IS_IPAD ? 384.0 : 160.0); // half width
+  float hh = (IS_IPAD ? 384.0 : 160.0); // half height
+
 
 	//	distance of the closest sat
 	NSString* closest = nil;
@@ -259,8 +262,8 @@
     					if (isNaN(y)) y = [self offscreenYPositionForSatelliteWithElevation:satelliteElevation];
 
     					//	get distance. if no visible satellites still, 
-    					float x1 = 160.0;
-    					float y1 = 213.0;
+    					float x1 = hw;
+    					float y1 = hh;
     					float x2 = x;
     					float y2 = y;
     					float dx = (x2 - x1);
@@ -287,8 +290,8 @@
     				satellitesVisible = YES;
 
     				//	get distance
-    				float x1 = 160.0;
-    				float y1 = 213.0;
+            float x1 = hw;
+            float y1 = hh;
     				float x2 = x;
     				float y2 = y;
     				float dx = (x2 - x1);
@@ -320,28 +323,28 @@
   //  check left/right
 	} else {
     //  ON YOUR LEFT
-		if (offscreenClosestX < 160.0) {
+		if (offscreenClosestX < hw) {
       //  LOWER LEFT
-			if (offscreenClosestY > 213.0) {
-				/*LEFT*/if (fabsf(160.0 - offscreenClosestX) > fabsf(offscreenClosestY - 213.0)) [overlayView setCrosshairState:3];
+			if (offscreenClosestY > hh) {
+				/*LEFT*/if (fabsf(hw - offscreenClosestX) > fabsf(offscreenClosestY - hh)) [overlayView setCrosshairState:3];
 				/*DOWN*/else [overlayView setCrosshairState:4];
 
       //  UPPER LEFT
 			} else {
-				/*LEFT*/if (fabsf(160.0 - offscreenClosestX) > fabsf(213.0 - offscreenClosestY)) [overlayView setCrosshairState:3];
+				/*LEFT*/if (fabsf(hw - offscreenClosestX) > fabsf(hh - offscreenClosestY)) [overlayView setCrosshairState:3];
 				/**UP**/else [overlayView setCrosshairState:1];
 			}
 
     //  ON YOUR RIGHT
 		} else {
       //  LOWER RIGHT
-			if (offscreenClosestY > 213.0) {
-				/*RIGHT*/if (fabsf(offscreenClosestX - 160.0) > fabsf(offscreenClosestY - 213.0)) [overlayView setCrosshairState:2];
+			if (offscreenClosestY > hh) {
+				/*RIGHT*/if (fabsf(offscreenClosestX - hw) > fabsf(offscreenClosestY - hh)) [overlayView setCrosshairState:2];
 				/*DOWN**/else [overlayView setCrosshairState:4];
 
       //  UPPER RIGHT
 			} else {//	somewhere up right ...
-				/*RIGHT*/if (fabsf(offscreenClosestX - 160.0) > fabsf(213.0 - offscreenClosestY)) [overlayView setCrosshairState:2];
+				/*RIGHT*/if (fabsf(offscreenClosestX - hw) > fabsf(hh - offscreenClosestY)) [overlayView setCrosshairState:2];
 				/**UP***/else [overlayView setCrosshairState:1];
 			}
 		}
@@ -1392,26 +1395,23 @@
 	if (overlayView == nil) overlayView = [[SatelliteFinderOverlayView alloc] init];
 	
 	UIImageView* bottomBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sf_enabled_favorite_selected_bar.png"]];
-	[bottomBar setFrame:CGRectMake(0.0, 426.0, 320.0, 54.0)];
+	if (IS_IPAD) [bottomBar setFrame:CGRectMake(410.0, 996.0, 343.0, 23.0)];
+  else [bottomBar setFrame:CGRectMake(0.0, 426.0, 320.0, 54.0)];
 	[overlayView addSubview:bottomBar];
-	// [bottomBar release];
 	
 	backButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[backButton setImage:[UIImage imageNamed:@"sf_back_button.png"] forState:UIControlStateNormal];
 	[backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[backButton setFrame:CGRectMake(247.0, 10.0, 63.0, 32.0)];
+  if (IS_IPAD) [backButton setFrame:CGRectMake(659.0, 12.0, 79.0, 40.0)];
+	else [backButton setFrame:CGRectMake(247.0, 10.0, 63.0, 32.0)];
 	[overlayView addSubview:backButton];
 	
 	infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[infoButton setImage:[UIImage imageNamed:@"sf_info_button.png"] forState:UIControlStateNormal];
 	[infoButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	[infoButton setFrame:CGRectMake(194.0, 10.0, 38.0, 32.0)];
+  if (IS_IPAD) [infoButton setFrame:CGRectMake(602.0, 12.0, 48.0, 40.0)];
+	else [infoButton setFrame:CGRectMake(194.0, 10.0, 38.0, 32.0)];
 	[overlayView addSubview:infoButton];
-
-	// demoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	// [demoButton setImage:[UIImage imageNamed:@"sf_demo_button.png"] forState:UIControlStateNormal];
-	// [demoButton setFrame:CGRectMake(113.0, 12.0, 66.0, 34.0)];
-	// [overlayView addSubview:demoButton];
 
 	infoView = [[SatelliteFinderInfoView alloc] init];
 	[overlayView addSubview:infoView];
