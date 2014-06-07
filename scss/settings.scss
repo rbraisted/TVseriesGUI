@@ -309,6 +309,24 @@
   }
 }
 
+.advanced-settings {
+  .input {
+    //  block btn is 130 min width
+    height: 40px;
+    display: inline-block;
+    width: calc(100% - 140px);
+    margin: 0.5em 0 2em;
+    vertical-align: top;
+  }
+
+  .block-btn {
+    min-width: 130px;
+    display: inline-block;
+    float: right;
+    margin-top: 0.5em;
+  }
+}
+
 //	routing
 ////////////////////////////////////////////////////////////////////////////////
 

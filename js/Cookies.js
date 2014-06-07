@@ -12,7 +12,7 @@
     };
   };
 
-  var set = function(key) {
+  var set = function(key, sessionOnly) {
     key = encodeURIComponent(key);
     return function(value) {
       if (value) {

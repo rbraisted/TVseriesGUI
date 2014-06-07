@@ -364,7 +364,9 @@
   //  custom calls for updates page
   TVRO.getLatestSoftware = function(update) {
     var msg = update === 'SatLibrary' ? 'latest_sat_library' : 'latest_software';
-    var url = 'http://www.kvhupdate.com/TVRO/'+update+'/portalMain.php/'+msg;
+    var host = sessionStorage['kvhupdate'] || 'http://www.kvhupdate.com/TVRO/';
+    if (_.last(host) !== '/') host = host + '/';
+    var url = host + update + '/portalMain.php/' + msg;
     var cacheName = 'update_' + update;
     if (cache[cacheName]) return cache[cacheName];
     else return cache[cacheName] = get(msg)(url, 1);

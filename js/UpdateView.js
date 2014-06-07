@@ -137,7 +137,7 @@
           }
 
           if (jQ.hasClass('$connected')) return systemVersion;
-          else return -1;
+          else return NaN;
         });
 
         var getPortalVersion = TVRO.getLatestSoftware(update).then(function(xml) {
@@ -148,7 +148,7 @@
           return portalVersion;
         }, function() {
           jQ.addClass('$not-available');
-          return -1;
+          return NaN;
         });
 
         Promise.all(
@@ -157,6 +157,8 @@
         ).then(function(versions) {
           var systemVersion = versions[0];
           var portalVersion = versions[1];
+          console.log("systemVersion: " + systemVersion);
+          console.log("portalVersion: " + portalVersion);
           jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
         });
 

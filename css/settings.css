@@ -1141,6 +1141,18 @@ a {
     .advanced-settings {
       padding: 20px; } }
 
+.advanced-settings .input, .advanced-settings .dropdown-btn {
+  height: 40px;
+  display: inline-block;
+  width: calc(100% - 140px);
+  margin: 0.5em 0 2em;
+  vertical-align: top; }
+.advanced-settings .block-btn {
+  min-width: 130px;
+  display: inline-block;
+  float: right;
+  margin-top: 0.5em; }
+
 @media screen and (max-width: 880px) {
   body[class=''] .sidebar,
   .\/general .\#general-settings-view,

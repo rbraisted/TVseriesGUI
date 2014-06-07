@@ -87,6 +87,17 @@
     <div class="off">Off</div>
   </div>
 
+  <div class="#tech-mode">
+    <p>
+      Insert copy here. Technicians can enter a URL in this field to get
+      software updates from a custom URL. This URL becomes the source of all
+      the software update information (ie latest available version, location of
+      update file to download) until the browser window is closed.
+    </p>
+    <input placeholder="http://www.kvhupdate.com/TVRO/" class="input update-url #update-url" />
+    <div class="block-btn save-btn #save-btn">Save</div>
+  </div>
+
   <div class="heading">Sleep Mode</div>
   <p>
     Sleep mode locks the antenna in place to conserve power whenever you are
