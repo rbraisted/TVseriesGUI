@@ -35,13 +35,20 @@
 
     var reload = function() {
       $('.\\#spinner', jQ).show();
-      TVRO.getSerialLog(1, 1).then(function(xml) {
-        var serialLog = $('content', xml).text();
-        $('.\\#serial-log', jQ).text(serialLog);
-        $('.\\#spinner', jQ).hide();
-      }, function(error) {
-        //  serial log isn't available yet, start the log and reload.
-        TVRO.startSerialLog({ restart: 'N' }).then(function(){ setTimeout(reload,1000); });
+
+      //  check the current log progress
+      TVRO.serialLogStatus(1, 1).then(function(xml) {
+        var percent = $('percent', xml).text();
+
+        if (percent < 1) TVRO.startSerialLog({ restart: 'N' }).then(function() {
+          setTimeout(reload,1000);
+        });
+
+        else TVRO.getSerialLog(1, 1).then(function(xml) {
+          var serialLog = $('content', xml).text();
+          $('.\\#serial-log', jQ).text(serialLog);
+          $('.\\#spinner', jQ).hide();
+        });
       });
     };
 
