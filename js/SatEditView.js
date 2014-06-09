@@ -126,10 +126,15 @@
           skew: $('.\\#sat-skew', jQ).val(),
           xponder: _.invoke(xponderViews, 'getXponder')
       };
-
+      
+      // Set number of xponders based on what is displayed for LNB type.
+      // the displayed for LNB Type is set from SatInfoView so that another
+      // query does not have to be made.
+      var numXponder = $('.\\#sat-lnb', jQ).text() === 'Circular' ? 2 : 4;
+    
       var i, prefix, id;
       // range checking on transponder parameters
-      for (i = 0; i < 4; i++) {
+      for (i = 0; i < numXponder; i++) {
     	  if ( ((parseInt(params.xponder[i].freq) != 0) && 
                  ((parseInt(params.xponder[i].freq) < 10700) || (parseInt(params.xponder[i].freq) > 12750) ) ) ||
                (params.xponder[i].freq.length != 5))
