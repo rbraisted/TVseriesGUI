@@ -40,7 +40,7 @@
 
         $('.\\#sat-name', row).text(sat.name || 'N/A');
         $('.\\#sat-region', row).text(sat.region || 'N/A');
-        $('.\\#sat-longitude', row).text(TVRO.formatOrbitalSlot(sat.antSatID) || 'N/A');
+        $('.\\#sat-longitude', row).text(TVRO.formatOrbitalSlot(sat.antSatID, sat.lon) || 'N/A');
         row.toggleClass('$favorite', sat.favorite);
 
         TVRO.getInstalledSat().then(function(installedSat) {

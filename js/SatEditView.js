@@ -211,14 +211,14 @@
             //  inputs
             $('.\\#sat-name', jQ).val(sat.name);
             $('.\\#sat-region', jQ).val(sat.region);
-            $('.\\#sat-longitude', jQ).val(TVRO.formatOrbitalSlot(sat.antSatID));
+            $('.\\#sat-longitude', jQ).val(TVRO.formatOrbitalSlot(sat.antSatID, sat.lon));
             $('.\\#sat-skew', jQ).val(sat.skew);
 
             //  plain ol text, dropdown btns
             $('.\\#sat-name', jQ).text(sat.name || 'N/A');
             $('.\\#sat-region', jQ).text(sat.region || 'N/A');
             regionDropdownView.setValue(sat.region || null);
-            $('.\\#sat-longitude', jQ).text(TVRO.formatOrbitalSlot(sat.antSatID) || 'N/A');
+            $('.\\#sat-longitude', jQ).text(TVRO.formatOrbitalSlot(sat.antSatID, sat.lon) || 'N/A');
             $('.\\#sat-skew', jQ).text(sat.skew || 'N/A');
 
             for (var i = 0; i < sat.xponders.length; i++) {
