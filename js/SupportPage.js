@@ -185,7 +185,8 @@ $(function() {
     if (hash === '/operational-log') operationalLogView.startUpdating();
     else operationalLogView.stopUpdating();
 
-    if (hash !== '/remote-diagnostics') remoteDiagnosticsView.stopUpdating();
+    if (hash === '/remote-diagnostics') systemInfoView.reload();
+    else remoteDiagnosticsView.stopUpdating();
 
     if (hash === '/serial-log') serialLogView.reload();
 
