@@ -48,13 +48,27 @@
   TVRO.formatLongitude = _.curry(formatCoordinate, 2)('longitude');
 
 
-  TVRO.formatOrbitalSlot = function(antSatID) {
-      var antLon;
+  TVRO.formatOrbitalSlot = function(antSatID, lon) {
+      var antLon, i, prec, lonStr;
       
-      if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W"))
+      if (antSatID.substring(0, 4) === 'USER') {
+          if (_.isNaN(lon) || lon == '') {
+              antLon = 'N/A';
+          } else {
+              lonStr = lon.toString();
+              i = lonStr.indexOf('.');
+              if (i == -1) {
+                  prec = 0;
+              } else {
+                  prec = lonStr.length - i -1;
+              }
+              antLon = TVRO.formatLongitude(lon, prec);
+          }
+      } else if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W")) {
           antLon = antSatID.substring(0, antSatID.length-1);
-      else
+      } else {
           antLon =  antSatID;
+      }
       
       return antLon;
   };

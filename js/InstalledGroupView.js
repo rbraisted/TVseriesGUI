@@ -7,7 +7,7 @@
 
     var tableView = TVRO.TableView($('.\\#sat-table-view', jQ))
       .onBuild(function(row, sat) {
-        $('.\\#sat-name', row).text(sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID));
+        $('.\\#sat-name', row).text(sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID, sat.lon));
 
         $('.\\#install-btn', row).click(function() {
           if (!row.hasClass('$installed'))
