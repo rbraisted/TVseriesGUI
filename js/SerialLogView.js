@@ -12,8 +12,7 @@
       Promise.all(
         TVRO.getAntennaVersions(),
         TVRO.getAntennaStatus(),
-        TVRO.getSerialLog(1, 1),
-        TVRO.startSerialLog({ restart: 'N' })
+        TVRO.getSerialLog(1, 1)
       ).then(function(xmls) {
         var email = 'support@kvh.com';
         var antModel = $('au model', xmls[0]).text();
