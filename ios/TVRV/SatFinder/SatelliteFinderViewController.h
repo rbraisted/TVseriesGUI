@@ -42,7 +42,8 @@
 
 + (BOOL)available;
 
-- (void)setHostname:(NSString*)hostname;
+- (void)getSatListFromHostname:(NSString*)hostname;
+- (void)getSatListFromBundle;
 
 - (IBAction)infoButtonPressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;

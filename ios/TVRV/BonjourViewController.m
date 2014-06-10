@@ -2,6 +2,7 @@
 #import "BonjourViewController.h"
 #import "WebViewController.h"
 #import "BonjourTableViewCell.h"
+#import "RXMLElement.h"
 #import <arpa/inet.h>
 
 #import "Constants.h"
@@ -263,6 +264,12 @@
 
 - (IBAction)satFinderButtonPressed:(id)sender {
   NSLog(@"1231234134234234234");
+  if (satFinderViewController == NULL) {
+    satFinderViewController = [[SatelliteFinderViewController alloc] init];
+    [satFinderViewController getSatListFromBundle];
+  }
+  [self presentViewController:satFinderViewController animated:YES completion:nil];
+
  //    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
 	// [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
