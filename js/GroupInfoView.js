@@ -18,8 +18,8 @@
         jQ.toggleClass('$n/a', _.isUndefined(sat));
         $('.\\#sat-name', jQ).text(sat ?  sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID, sat.lon)  : 'N/A');
 
-        TVRO.getInstalledSat().then(function(installedSat) {
-          jQ.toggleClass('$installed', installedSat.antSatID === sat.antSatID);
+        TVRO.getSelectedSat().then(function(selectedSat) {
+          jQ.toggleClass('$installed', selectedSat === sat.antSatID);
         });
 
         return self;

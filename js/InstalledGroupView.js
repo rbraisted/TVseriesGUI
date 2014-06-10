@@ -14,8 +14,8 @@
             TVRO.setInstalledSat(sat);
         });
 
-        TVRO.getInstalledSat().then(function(installedSat) {
-          row.toggleClass('$installed', sat.antSatID === installedSat.antSatID);
+        TVRO.getSelectedSat().then(function(selectedSat) {
+          row.toggleClass('$installed', sat.antSatID === selectedSat);
         });
       });
 

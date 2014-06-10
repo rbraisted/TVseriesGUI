@@ -43,8 +43,8 @@
         $('.\\#sat-longitude', row).text(TVRO.formatOrbitalSlot(sat.antSatID, sat.lon) || 'N/A');
         row.toggleClass('$favorite', sat.favorite);
 
-        TVRO.getInstalledSat().then(function(installedSat) {
-          row.toggleClass('$installed', installedSat.antSatID === sat.antSatID);
+        TVRO.getSelectedSat().then(function(selectedSat) {
+          row.toggleClass('$installed', selectedSat === sat.antSatID);
         });
 
         $('.\\#install-btn', row).click(function() {

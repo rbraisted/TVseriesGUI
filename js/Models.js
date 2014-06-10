@@ -183,6 +183,21 @@
     });
   };
 
+  TVRO.getSelectedSat = function() {
+    //  antenna_status doesn't always seem to have full sat
+    //  info on the installed sat - but it usually has the antSatID
+    //  let's just pull the data by matching antSatID with the sat
+    //  from get_satellite_list
+    return Promise.all(
+      TVRO.getAntennaStatus()
+    ).then(function(xmls) {
+      return $('satellite selected', xmls[0]).text();
+
+    });
+  };
+
+  
+  
   TVRO.getInstalledSat = function() {
     //  antenna_status doesn't always seem to have full sat
     //  info on the installed sat - but it usually has the antSatID
