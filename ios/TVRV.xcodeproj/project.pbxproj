@@ -25,6 +25,9 @@
 		AAC014241917F4DA00445E07 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DE1917F4DA00445E07 /* WebViewController.m */; };
 		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
 		E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD94184D670D00E06C33 /* AVFoundation.framework */; };
+		E91915AC1946953D00BD5F43 /* blue-pixel.png in Resources */ = {isa = PBXBuildFile; fileRef = E91915AB1946953D00BD5F43 /* blue-pixel.png */; };
+		E91915AF19469B3500BD5F43 /* sat-finder-button.png in Resources */ = {isa = PBXBuildFile; fileRef = E91915AD19469B3500BD5F43 /* sat-finder-button.png */; };
+		E91915B019469B3500BD5F43 /* sat-finder-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91915AE19469B3500BD5F43 /* sat-finder-button@2x.png */; };
 		E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E46184FD9A1003618D1 /* libz.dylib */; };
 		E91C2E49184FD9AC003618D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E91C2E48184FD9AC003618D1 /* libxml2.dylib */; };
 		E91EEF4219414CCD007829CD /* SatelliteFinderViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91EEF4019414CCD007829CD /* SatelliteFinderViewController~iPad.xib */; };
@@ -203,6 +206,9 @@
 		AAC013DE1917F4DA00445E07 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		E916FD92184D666800E06C33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E916FD94184D670D00E06C33 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E91915AB1946953D00BD5F43 /* blue-pixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-pixel.png"; sourceTree = "<group>"; };
+		E91915AD19469B3500BD5F43 /* sat-finder-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sat-finder-button.png"; sourceTree = "<group>"; };
+		E91915AE19469B3500BD5F43 /* sat-finder-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sat-finder-button@2x.png"; sourceTree = "<group>"; };
 		E91C2E46184FD9A1003618D1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E91C2E48184FD9AC003618D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		E91EEF4019414CCD007829CD /* SatelliteFinderViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SatelliteFinderViewController~iPad.xib"; sourceTree = "<group>"; };
@@ -415,6 +421,7 @@
 		E91EF035194174CA007829CD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E91915AB1946953D00BD5F43 /* blue-pixel.png */,
 				E91EF036194174CA007829CD /* bonjourBG.png */,
 				E91EF037194174CA007829CD /* bonjourBG@2x.png */,
 				E91EF038194174CA007829CD /* bonjourDivider.png */,
@@ -435,6 +442,8 @@
 				E91EF047194174CA007829CD /* KVH_Logo@2x.png */,
 				E91EF048194174CA007829CD /* refreshButton.png */,
 				E91EF049194174CA007829CD /* refreshButton@2x.png */,
+				E91915AD19469B3500BD5F43 /* sat-finder-button.png */,
+				E91915AE19469B3500BD5F43 /* sat-finder-button@2x.png */,
 				E91EF04A194174CA007829CD /* sf_back_button@2x~iphone.png */,
 				E91EF04B194174CA007829CD /* sf_back_button~ipad.png */,
 				E91EF04C194174CA007829CD /* sf_back_button~iphone.png */,
@@ -762,6 +771,7 @@
 				E91EF0E0194174CA007829CD /* sf_pointer_down~ipad.png in Resources */,
 				E91EF11F194174CA007829CD /* TVRV_Launch_640x1136.png in Resources */,
 				AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */,
+				E91915AF19469B3500BD5F43 /* sat-finder-button.png in Resources */,
 				E91EF115194174CA007829CD /* TVRV_icons_60x60.png in Resources */,
 				E91EF0ED194174CA007829CD /* sf_sat_black~iphone.png in Resources */,
 				E91EF0C6194174CA007829CD /* sf_crosshair~ipad.png in Resources */,
@@ -777,11 +787,13 @@
 				E91EF0B1194174CA007829CD /* bonjourDivider@2x.png in Resources */,
 				E91EEF4319414CCD007829CD /* SatelliteFinderViewController~iPhone.xib in Resources */,
 				E91EF0D6194174CA007829CD /* sf_label_azimuth@2x~iphone.png in Resources */,
+				E91915AC1946953D00BD5F43 /* blue-pixel.png in Resources */,
 				E91EF0F7194174CA007829CD /* sf_sat_red@2x~iphone.png in Resources */,
 				E91EF0C7194174CA007829CD /* sf_crosshair~iphone.png in Resources */,
 				E91EF0CE194174CA007829CD /* sf_info_bg~ipad.png in Resources */,
 				E91EF107194174CA007829CD /* TracVisionLogo.png in Resources */,
 				E91EF0EA194174CA007829CD /* sf_pointer_up~iphone.png in Resources */,
+				E91915B019469B3500BD5F43 /* sat-finder-button@2x.png in Resources */,
 				E91EF0E8194174CA007829CD /* sf_pointer_up@2x~iphone.png in Resources */,
 				E91EF0E6194174CA007829CD /* sf_pointer_right~ipad.png in Resources */,
 				E91EF0C0194174CA007829CD /* refreshButton.png in Resources */,

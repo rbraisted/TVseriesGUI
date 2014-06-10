@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *satFinderView;
 
 @end
 
@@ -26,6 +27,7 @@
 @synthesize refreshButton = _refreshButton;
 @synthesize connectButton = _connectButton;
 @synthesize scrollView = _scrollView;
+@synthesize satFinderView = _satFinderView;
 
 #pragma mark - UIViewController methods
 
@@ -248,7 +250,13 @@
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
     //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
-	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+  [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+}
+
+- (IBAction)satFinderButtonPressed:(id)sender {
+  NSLog(@"1231234134234234234");
+ //    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
+	// [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 #pragma mark - Keyboard notifications
