@@ -95,6 +95,9 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 + (BOOL)available {
   NSLog(@":: available");
+  
+  return true;
+
   if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
     if ([CLLocationManager headingAvailable]) {
       NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];

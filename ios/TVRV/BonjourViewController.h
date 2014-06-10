@@ -1,4 +1,5 @@
 
+#import "SatelliteFinderViewController.h"
 #import <UIKit/UIKit.h>
 
 @interface BonjourViewController : UIViewController <NSNetServiceBrowserDelegate, NSNetServiceDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, NSCoding> {
@@ -9,6 +10,8 @@
     UIImage* cellBGImageLight;
 
     CGPoint scrollViewOffset;
+
+    SatelliteFinderViewController* satFinderViewController;
 }
 
 - (id)init;

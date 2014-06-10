@@ -60,6 +60,14 @@
   NSString* appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
   [self.versionLabel setText:[NSString stringWithFormat:@"Version %@", appVersion]];
 
+  if ([SatelliteFinderViewController available]) {
+    if (IS_IPAD) [self.satFinderView setFrame:CGRectMake(0, 0, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
+    else [self.satFinderView setFrame:CGRectMake(0, 698, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
+    [self.scrollView addSubview:self.satFinderView];
+    if (IS_IPAD) [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - 65 + self.satFinderView.frame.size.height)];
+    else [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - 65 + self.satFinderView.frame.size.height)];
+  }
+
   [super viewDidLoad];
 }
 
@@ -75,7 +83,7 @@
   if ([defaults objectForKey:@"default-host"] != nil) {
     [self.textField setText:[defaults objectForKey:@"default-host"]];
   }
-    
+
 	[self resetBonjourHostList];
 }
 

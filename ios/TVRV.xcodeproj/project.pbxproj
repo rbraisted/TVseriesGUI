@@ -18,7 +18,6 @@
 		AAC0141D1917F4DA00445E07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D11917F4DA00445E07 /* Images.xcassets */; };
 		AAC0141E1917F4DA00445E07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D21917F4DA00445E07 /* main.m */; };
 		AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D41917F4DA00445E07 /* RXMLElement.m */; };
-		AAC014201917F4DA00445E07 /* SatFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D61917F4DA00445E07 /* SatFinderViewController.m */; };
 		AAC014211917F4DA00445E07 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D71917F4DA00445E07 /* Settings.bundle */; };
 		AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D81917F4DA00445E07 /* TVRV-Info.plist */; };
 		AAC014231917F4DA00445E07 /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DB1917F4DA00445E07 /* UpdatesManager.m */; };
@@ -194,8 +193,6 @@
 		AAC013D21917F4DA00445E07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAC013D31917F4DA00445E07 /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
 		AAC013D41917F4DA00445E07 /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
-		AAC013D51917F4DA00445E07 /* SatFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SatFinderViewController.h; sourceTree = "<group>"; };
-		AAC013D61917F4DA00445E07 /* SatFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SatFinderViewController.m; sourceTree = "<group>"; };
 		AAC013D71917F4DA00445E07 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		AAC013D81917F4DA00445E07 /* TVRV-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TVRV-Info.plist"; sourceTree = "<group>"; };
 		AAC013D91917F4DA00445E07 /* TVRV-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TVRV-Prefix.pch"; sourceTree = "<group>"; };
@@ -404,8 +401,6 @@
 				AAC013D21917F4DA00445E07 /* main.m */,
 				AAC013D31917F4DA00445E07 /* RXMLElement.h */,
 				AAC013D41917F4DA00445E07 /* RXMLElement.m */,
-				AAC013D51917F4DA00445E07 /* SatFinderViewController.h */,
-				AAC013D61917F4DA00445E07 /* SatFinderViewController.m */,
 				AAC013D71917F4DA00445E07 /* Settings.bundle */,
 				AAC013D81917F4DA00445E07 /* TVRV-Info.plist */,
 				AAC013D91917F4DA00445E07 /* TVRV-Prefix.pch */,
@@ -833,7 +828,6 @@
 			files = (
 				AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */,
 				E9BE2F181940F6B300ADEAF5 /* AccelerometerFilter.m in Sources */,
-				AAC014201917F4DA00445E07 /* SatFinderViewController.m in Sources */,
 				E9BE2F1B1940F6B300ADEAF5 /* SatelliteFinderOverlayView.m in Sources */,
 				E9BE2F1E1940F6B300ADEAF5 /* SatelliteView.m in Sources */,
 				AAC013E51917F4DA00445E07 /* BonjourViewController.m in Sources */,
