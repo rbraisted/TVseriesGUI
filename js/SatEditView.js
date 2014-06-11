@@ -123,9 +123,18 @@
           antSatID: sat.antSatID,
           name: $('.\\#sat-name', jQ).val(),
           region: regionDropdownView.getValue(),
-          skew: $('.\\#sat-skew', jQ).val(),
           xponder: _.invoke(xponderViews, 'getXponder')
       };
+      
+      // Verify Valid Pre-Skew is entered.
+      var preSkew = $('.\\#sat-skew', jQ).val();
+      
+      if(_.isFinite(preSkew)){
+        params.skew = preSkew;
+      }else{
+        alert("Please Enter a valid Pre-Skew.");
+        return;
+      }
       
       // Set number of xponders based on what is displayed for LNB type.
       // the displayed for LNB Type is set from SatInfoView so that another
@@ -159,14 +168,27 @@
 
         // If lonHemisphere is undefined user did not enter E or W
         if(lonHemisphere){
+
           //Extract the number
-          var lon = Number(longitude.substring(0,(longitude.indexOf(lonHemisphere))));
-          // Negate for South latitude or West longitude
+          var lon = Math.abs(Number(longitude.substring(0,(longitude.indexOf(lonHemisphere)))));
+          
+          // Verify whatever is prior to the E or W is a finite number.
+          if(!_.isFinite(lon)){
+            alert("Please Enter a valid Orbital Slot.");
+            return;
+          }
+          
+          // Negate for West longitude
           if (lonHemisphere === 'W'){
             lon = -lon;
           }
         }else{
-          var lon = longitude;
+          if(_.isFinite(longitude)){
+            var lon = longitude;
+          }else{
+            alert("Please Enter a valid Orbital Slot.");
+            return;
+          }
         }
         params.lon = lon;
       }
