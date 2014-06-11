@@ -62,11 +62,13 @@
   [self.versionLabel setText:[NSString stringWithFormat:@"Version %@", appVersion]];
 
   if ([SatelliteFinderViewController available]) {
-    if (IS_IPAD) [self.satFinderView setFrame:CGRectMake(0, 0, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
-    else [self.satFinderView setFrame:CGRectMake(0, 698, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
-    [self.scrollView addSubview:self.satFinderView];
-    if (IS_IPAD) [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - 65 + self.satFinderView.frame.size.height)];
-    else [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - 65 + self.satFinderView.frame.size.height)];
+    if (IS_IPAD) {
+      [self.satFinderView setHidden:FALSE];
+    } else {
+      [self.satFinderView setFrame:CGRectMake(0, 698, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
+	    [self.scrollView addSubview:self.satFinderView];
+      [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - 65 + self.satFinderView.frame.size.height)];
+    }
   }
 
   [super viewDidLoad];
@@ -257,21 +259,17 @@
 }
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
-    //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
-    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
+  //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
+  WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
   [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 - (IBAction)satFinderButtonPressed:(id)sender {
-  NSLog(@"1231234134234234234");
   if (satFinderViewController == NULL) {
     satFinderViewController = [[SatelliteFinderViewController alloc] init];
     [satFinderViewController getSatListFromBundle];
   }
   [self presentViewController:satFinderViewController animated:YES completion:nil];
-
- //    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
-	// [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 #pragma mark - Keyboard notifications
