@@ -107,12 +107,8 @@
   else return UIInterfaceOrientationMaskPortrait;
 }
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  return UIInterfaceOrientationPortrait;
-}
-
 - (void)resetBonjourHostList{
-    [netServiceBrowser stop];
+  [netServiceBrowser stop];
 	[netServiceBrowser searchForServicesOfType:kBonjourServiceType inDomain:@""];
 }
 
