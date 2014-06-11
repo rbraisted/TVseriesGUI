@@ -153,6 +153,7 @@
 
   var get = function(msg) {
   	return function(params, recache) {
+      recache = true;
   		if (cache[msg] && !recache) return cache[msg];
   		else return cache[msg] = Promise(request(msg, params));	
   	}
