@@ -23,36 +23,36 @@
       </td>
     </tr>
     <tr>
-        <td width="200" valign="top">
-            <input type="button" id="button0" value="antenna_status" onclick="SendGetCommand('antenna_status')" style="width:200px" />
-            <input type="button" id="button1" value="antenna_versions" onclick="SendGetCommand('antenna_versions')" style="width:200px" />
-            <input type="button" id="button2" value="get_antenna_config" onclick="SendGetCommand('get_antenna_config')" style="width:200px" />
-            <input type="button" id="button3" value="get_satellite_list" onclick="SendGetCommand('get_satellite_list')" style="width:200px" />
-            <input type="button" id="button4" value="get_satellite_params_header" onclick="SendGetCommand('get_satellite_params_header')" style="width:200px" />
-            <input type="button" id="button5" value="serial_log_status" onclick="SendGetCommand('serial_log_status')" style="width:200px" />
-			<input type="button" id="button6" value="get_gps" onclick="SendGetCommand('get_gps')" style="width:200px" />
-			<input type="button" id="button7" value="get_gps_cities" onclick="SendGetCommand('get_gps_cities')" style="width:200px" />
-            <input type="button" id="button8" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:200px" />
-			<input type="button" id="button9" value="get_nmea_info" onclick="SendGetCommand('get_nmea_info')" style="width:200px" />
-			<input type="button" id="button10" value="get_nmea_config" onclick="SendGetCommand('get_nmea_config')" style="width:200px" />
-            <input type="button" id="button11" value="power" onclick="SendGetCommand('power')" style="width:200px" />
-            <input type="button" id="button12" value="ophours" onclick="SendGetCommand('ophours')" style="width:200px" />
-            <input type="button" id="button13" value="get_message_protocol_version" onclick="SendGetCommand('get_message_protocol_version')" style="width:200px" />
-            <input type="button" id="button14" value="get_vessel_config" onclick="SendGetCommand('get_vessel_config')" style="width:200px" />
-            <input type="button" id="button15" value="get_eth" onclick="SendGetCommand('get_eth')" style="width:200px" />
-            <input type="button" id="button16" value="get_wlan" onclick="SendGetCommand('get_wlan')" style="width:200px" />
-            <input type="button" id="button20" value="get_serial_log" onclick="SendGetCommand('get_serial_log')" style="width:200px" />
-            <input type="button" id="button21" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:200px" />
-            <input type="button" id="button22" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:200px" />
-            <input type="button" id="button23" value="get_product_registration" onclick="SendGetCommand('get_product_registration')" style="width:200px" />
-			<input type="button" id="button24" value="get_satellite_groups" onclick="SendGetCommand('get_satellite_groups')" style="width:200px" />
-			<input type="button" id="button25" value="get_autoswitch_status" onclick="SendGetCommand('get_autoswitch_status')" style="width:200px" />
-			<input type="button" id="button26" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:200px" />
-			<input type="button" id="button27" value="get_satellite_service" onclick="SendGetCommand('get_satellite_service')" style="width:200px" />
-			<input type="button" id="button28" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:200px" />
-            <input type="button" id="button29" value="get_details" onclick="get_details()" style="width:200px" />
-            <input type="button" id="button30" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:200px" />
-            <input type="button" id="button31" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:200px" />
+        <td width="250" valign="top">
+            <input type="button" id="button0" value="antenna_status" onclick="SendGetCommand('antenna_status')" style="width:250px" />
+            <input type="button" id="button1" value="antenna_versions" onclick="SendGetCommand('antenna_versions')" style="width:250px" />
+            <input type="button" id="button2" value="get_antenna_config" onclick="SendGetCommand('get_antenna_config')" style="width:250px" />
+            <input type="button" id="button3" value="get_satellite_list" onclick="SendGetCommand('get_satellite_list')" style="width:250px" />
+            <input type="button" id="button4" value="get_satellite_params_header" onclick="SendGetCommand('get_satellite_params_header')" style="width:250px" />
+            <input type="button" id="button5" value="serial_log_status" onclick="SendGetCommand('serial_log_status')" style="width:250px" />
+			<input type="button" id="button6" value="get_gps" onclick="SendGetCommand('get_gps')" style="width:250px" />
+			<input type="button" id="button7" value="get_gps_cities" onclick="SendGetCommand('get_gps_cities')" style="width:250px" />
+			<input type="button" id="button8" value="get_gps_config" onclick="SendGetCommand('get_gps_config')" style="width:250px" />
+			<input type="button" id="button9" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:250px" />
+			<input type="button" id="button10" value="get_heading_config" onclick="SendGetCommand('get_heading_config')" style="width:250px" />
+            <input type="button" id="button11" value="power" onclick="SendGetCommand('power')" style="width:250px" />
+            <input type="button" id="button12" value="ophours" onclick="SendGetCommand('ophours')" style="width:250px" />
+            <input type="button" id="button13" value="get_message_protocol_version" onclick="SendGetCommand('get_message_protocol_version')" style="width:250px" />
+            <input type="button" id="button14" value="get_vessel_config" onclick="SendGetCommand('get_vessel_config')" style="width:250px" />
+            <input type="button" id="button15" value="get_eth" onclick="SendGetCommand('get_eth')" style="width:250px" />
+            <input type="button" id="button16" value="get_wlan" onclick="SendGetCommand('get_wlan')" style="width:250px" />
+            <input type="button" id="button20" value="get_serial_log" onclick="SendGetCommand('get_serial_log')" style="width:250px" />
+            <input type="button" id="button21" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:250px" />
+            <input type="button" id="button22" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:250px" />
+            <input type="button" id="button23" value="get_product_registration" onclick="SendGetCommand('get_product_registration')" style="width:250px" />
+			<input type="button" id="button24" value="get_satellite_groups" onclick="SendGetCommand('get_satellite_groups')" style="width:250px" />
+			<input type="button" id="button25" value="get_autoswitch_status" onclick="SendGetCommand('get_autoswitch_status')" style="width:250px" />
+			<input type="button" id="button26" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:250px" />
+			<input type="button" id="button27" value="get_satellite_service" onclick="SendGetCommand('get_satellite_service')" style="width:250px" />
+			<input type="button" id="button28" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:250px" />
+            <input type="button" id="button29" value="get_details" onclick="get_details()" style="width:250px" />
+            <input type="button" id="button30" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:250px" />
+            <input type="button" id="button31" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:250px" />
         </td>
         <td valign="top" width="100%">
             <textarea name="response" id="response" rows="40" style=" height:auto; height:100%; width:95%; font-family:monospace,courier,courier new"></textarea>
@@ -170,17 +170,8 @@
                     <td align="left">
                     	<select id="fdinWLANMode" style="width:175px;text-align:center;font-family:monospace,courier,courier new">
                             <option value="OFF">OFF</option>
-                            <option value="ADHOC">ADHOC</option>
+                            <option value="AP">AP</option>
                             <option value="IF">IF</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr id="field_ADHOCMode" class="hideField">
-                	<td id="fdADHOCM" align="left" style="width:100px">&nbsp;</td>
-                    <td align="left">
-                    	<select id="fdinADHOCMode" style="width:175px;text-align:center;font-family:monospace,courier,courier new">
-                            <option value="OFF">OFF</option>
-                            <option value="WEP">WEP</option>
                         </select>
                     </td>
                 </tr>
@@ -198,7 +189,7 @@
                     <td align="left">
                     	<select id="fdinIFSecurityMode" style="width:175px;text-align:center;font-family:monospace,courier,courier new">
                             <option value="OFF">OFF</option>
-                            <option value="WPA_PSK">WPA PSK</option>
+                            <option value="WPA2_PSK">WPA2 PSK</option>
                         </select>
                     </td>
                 </tr>
