@@ -331,6 +331,12 @@
 
 	TVRO.setCheckswitchMode = set('set_checkswitch_mode');
 
+	TVRO.getMultiswitchMode = get('get_multiswitch_mode');
+
+    TVRO.setMultiswitchMode = set('set_multiswitch_mode',[
+        get('get_multiswitch_mode')
+    ]);
+
 	TVRO.setProductRegistration = set('set_product_registration', [
 		get('get_product_registration')
 	]);

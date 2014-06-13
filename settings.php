@@ -109,17 +109,33 @@
     <div class="off">Off</div>
   </div>
 
-  <div class="heading">Sidelobe Mode (TV6 only)</div>
-  <p>
-    Sidelobe Mode ensures the antenna is tracking the main beam of the satellite,
-    and not a weaker sidelobe. Since sidelobes are not strong enough to become a
-    problem in most regions, keep Sidelobe Mode set to off unless directed
-    otherwise by KVH Technical Support.
-  </p>
-  <div class="toggle-btn #sidelobe-mode-btn">
-    <div class="on">On</div>
-    <div class="off">Off</div>
+  <div class="sidelobe-mode">
+    <div class="heading">Sidelobe Mode (TV6 only)</div>
+    <p>
+      Sidelobe Mode ensures the antenna is tracking the main beam of the satellite,
+      and not a weaker sidelobe. Since sidelobes are not strong enough to become a
+      problem in most regions, keep Sidelobe Mode set to off unless directed
+      otherwise by KVH Technical Support.
+    </p>
+    <div class="toggle-btn #sidelobe-mode-btn">
+      <div class="on">On</div>
+      <div class="off">Off</div>
+    </div>
   </div>
+
+  <div class="multiswitch-mode">
+    <div class="heading">Mutiswitch Mode</div>
+    <p>
+      If enabled then the TV-Hub connects to receivers through a mulitswitch
+      and the internal DiSEqC decoder is always used for voltage and tone
+      detection regardless of other IP AutoSwitches that may be present.
+    </p>
+    <div class="toggle-btn #multiswitch-mode-btn">
+      <div class="on">On</div>
+      <div class="off">Off</div>
+    </div>
+  </div>
+
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
