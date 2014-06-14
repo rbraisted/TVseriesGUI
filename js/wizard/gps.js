@@ -187,25 +187,50 @@
     };
 
     var formatGPS = function(isInput,latitude,longitude){
-
+      var lon;
+      var lat;
+    
       if(isInput)
       {
-        // Assuming a xxx.xxxN entry
-        // Extract the hemisphere
-        var latHemisphere = _.find(latitude,function(num){return (num==="N") || (num==='S');})
-        var lonHemisphere = _.find(longitude,function(num){return (num==="E") || (num==='W');})
-
-        //Extract the number
-        var lat = Number(latitude.substring(0,(latitude.indexOf(latHemisphere))));
-        var lon = Number(longitude.substring(0,(longitude.indexOf(lonHemisphere))));
-
-        // Negate for South latitude or West longitude
-        if (latHemisphere === 'S'){
-          lat = -lat;
-        }
-        if (lonHemisphere === 'W'){
-          lon = -lon;
-        }
+    	var validLatRegExpr = /^(-?[0-9]{0,2}[\.]?[0-9]*)(S?|N?)$/ig;
+    	var parseLat = validLatRegExpr.exec(latitude)
+    	
+     	var validLonRegExpr = /^(-?[0-9]{0,3}[\.]?[0-9]*)(E?|W?)$/ig;
+    	var parseLon = validLonRegExpr.exec(longitude)
+    	
+    	if(parseLat && ((parseLat[1] >= -90) && (parseLat[1] <= 90))){
+    		switch(parseLat[2]){
+    		case 'S':
+     		   lat = -(Math.abs(parseLat[1]));
+               break;
+    		case 'N':
+      		   lat = (Math.abs(parseLat[1]));	
+    			break;
+    		default:
+      		   lat = parseLat[1];		
+               break;
+    		}
+    	}else{
+    		alert("Please enter a valid Latitude.")
+    		return Number(-1);
+    	}
+    	
+    	if(parseLon && ((parseLon[1] >= -180) && (parseLon[1] <= 180))){
+    		switch(parseLon[2]){
+    		case 'W':
+     		   lon = -(Math.abs(parseLon[1]));
+               break;
+    		case 'E':
+      		   lon = (Math.abs(parseLon[1]));	
+    			break;
+    		default:
+      		   lon = parseLon[1];		
+               break;
+    		}
+       	}else{
+    		alert("Please enter a valid Longitude.")
+    		return Number(-1);
+    	}
       }else
       {
         if(Number(latitude)< 0)
@@ -242,10 +267,12 @@
               formatGPS(true,latitude,longitude)
           ).then(function(latLonArray){
 
-            TVRO.setGps({
-              lat: latLonArray[0],
-              lon: latLonArray[1]
-            }).then(goToNext);
+        	  if(latLonArray != -1){
+                TVRO.setGps({
+                  lat: latLonArray[0],
+                  lon: latLonArray[1]
+                }).then(goToNext);
+        	  }
           });
         }
         //  CITY selected
