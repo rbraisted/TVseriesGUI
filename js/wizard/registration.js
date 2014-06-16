@@ -85,6 +85,21 @@
         var phone = $('.\\#phone', jQ).val();
         var email = $('.\\#email', jQ).val();
 
+        vessel = vessel.replace("&","&amp;");
+        vessel = vessel.replace("<","&lt;");
+        
+        owner = owner.replace("&","&amp;");
+        owner = owner.replace("<","&lt;");
+        
+        contact = contact.replace("&","&amp;");
+        contact = contact.replace("<","&lt;");
+
+        phone = phone.replace("&","&amp;");
+        phone = phone.replace("<","&lt;");
+        
+        email = email.replace("&","&amp;");
+        email = email.replace("<","&lt;");
+
         return TVRO.setProductRegistration({
           product: {
             vessel_name: vessel
@@ -156,6 +171,18 @@
       var contact = $('.\\#contact', jQ).val();
       var phone = $('.\\#phone', jQ).val();
       var email = $('.\\#email', jQ).val();
+      
+      company = company.replace("&","&amp;");
+      company = company.replace("<","&lt;");
+      
+      contact = contact.replace("&","&amp;");
+      contact = contact.replace("<","&lt;");
+      
+      phone = phone.replace("&","&amp;");
+      phone = phone.replace("<","&lt;");
+      
+      email = email.replace("&","&amp;");
+      email = email.replace("<","&lt;");
 
       TVRO.setProductRegistration({
         dealer: {
