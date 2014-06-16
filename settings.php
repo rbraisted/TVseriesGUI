@@ -126,9 +126,16 @@
   <div class="multiswitch-mode">
     <div class="heading">Mutiswitch Mode</div>
     <p>
-      If enabled then the TV-Hub connects to receivers through a mulitswitch
-      and the internal DiSEqC decoder is always used for voltage and tone
-      detection regardless of other IP AutoSwitches that may be present.
+      Turn on Multiswitch mode only if a multiswitch and an IP AutoSwitch are
+      installed. With Multiswitch mode turned on, the satellite signal output
+      from the TV-Hub’s “Receiver” port is always the band and polarization
+      corresponding to the voltage and tone detected on the cable connected
+      directly to it, regardless of the band/polarization selected by any IP
+      AutoSwitch-equipped master receiver. This mode ensures that all four
+      combinations of band/polarization are available to the multiswitch at
+      all times. With Multiswitch mode turned off (default setting), the
+      TV-Hub’s “Receiver” port outputs whichever band/polarization is currently
+      selected by the master receiver.
     </p>
     <div class="toggle-btn #multiswitch-mode-btn">
       <div class="on">On</div>
