@@ -85,20 +85,20 @@
         var phone = $('.\\#phone', jQ).val();
         var email = $('.\\#email', jQ).val();
 
-        vessel = vessel.replace("&","&amp;");
-        vessel = vessel.replace("<","&lt;");
+        vessel = vessel.replace(/&/g,"&amp;");
+        vessel = vessel.replace(/</g,"&lt;");
         
-        owner = owner.replace("&","&amp;");
-        owner = owner.replace("<","&lt;");
+        owner = owner.replace(/&/g,"&amp;");
+        owner = owner.replace(/</g,"&lt;");
         
         contact = contact.replace("&","&amp;");
         contact = contact.replace("<","&lt;");
 
-        phone = phone.replace("&","&amp;");
-        phone = phone.replace("<","&lt;");
+        phone = phone.replace(/&/g,"&amp;");
+        phone = phone.replace(/</g,"&lt;");
         
-        email = email.replace("&","&amp;");
-        email = email.replace("<","&lt;");
+        email = email.replace(/&/g,"&amp;");
+        email = email.replace(/</g,"&lt;");
 
         return TVRO.setProductRegistration({
           product: {
@@ -172,17 +172,17 @@
       var phone = $('.\\#phone', jQ).val();
       var email = $('.\\#email', jQ).val();
       
-      company = company.replace("&","&amp;");
-      company = company.replace("<","&lt;");
+      company = company.replace(/&/g,"&amp;");
+      company = company.replace(/</g,"&lt;");
       
-      contact = contact.replace("&","&amp;");
-      contact = contact.replace("<","&lt;");
+      contact = contact.replace(/&/g,"&amp;");
+      contact = contact.replace(/</g,"&lt;");
       
-      phone = phone.replace("&","&amp;");
-      phone = phone.replace("<","&lt;");
+      phone = phone.replace(/&/g,"&amp;");
+      phone = phone.replace(/</g,"&lt;");
       
-      email = email.replace("&","&amp;");
-      email = email.replace("<","&lt;");
+      email = email.replace(/&/g,"&amp;");
+      email = email.replace(/</g,"&lt;");
 
       TVRO.setProductRegistration({
         dealer: {
