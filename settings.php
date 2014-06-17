@@ -124,7 +124,7 @@
   </div>
 
   <div class="multiswitch-mode">
-    <div class="heading">Mutiswitch Mode</div>
+    <div class="heading">Multiswitch Mode</div>
     <p>
       Turn on Multiswitch mode only if a multiswitch and an IP AutoSwitch are
       installed. With Multiswitch mode turned on, the satellite signal output
