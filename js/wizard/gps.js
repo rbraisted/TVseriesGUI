@@ -199,7 +199,7 @@
     	var parseLon = validLonRegExpr.exec(longitude)
     	
     	if(parseLat && ((parseLat[1] >= -90) && (parseLat[1] <= 90))){
-    		switch(parseLat[2]){
+    		switch(parseLat[2].toUpperCase()){
     		case 'S':
      		   lat = -(Math.abs(parseLat[1]));
                break;
@@ -216,7 +216,7 @@
     	}
     	
     	if(parseLon && ((parseLon[1] >= -180) && (parseLon[1] <= 180))){
-    		switch(parseLon[2]){
+    		switch(parseLon[2].toUpperCase()){
     		case 'W':
      		   lon = -(Math.abs(parseLon[1]));
                break;
