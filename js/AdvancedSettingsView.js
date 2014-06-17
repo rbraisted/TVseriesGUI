@@ -49,12 +49,12 @@
         var sleepModeOn = $('sleep', xmls[0]).text() === 'ON';
         var sidelobeModeOn = $('sidelobe', xmls[0]).text() === 'ON';
         var multiswitchModeOn = $('enable', xmls[1]).text() === 'Y';
-        var polarization = $('polarization', xmls[2]).text();
-        var model = $('model', xmls[2]).text();
+        var polarization = $('lnb polarization', xmls[2]).text();
+        var model = $('au model', xmls[2]).text();
 
         // Only show the multiswitch block when a linear LNB.
         jQ.toggleClass('$not-linear', polarization !== 'linear');
-        
+
         // Only show the sidelobe block when a TV6.
         jQ.toggleClass('$not-tv6', model !== 'TV6');
 
