@@ -40,8 +40,7 @@
       negStr = 'W';
     }
 
-    coordinate = Number(coordinate).toFixed(places);
-    return coordinate > 0 ? coordinate+posStr : Math.abs(coordinate)+negStr;
+    return coordinate > 0 ? Number(coordinate).toFixed(places) + posStr : Math.abs(Number(coordinate)).toFixed(places) + negStr;
   };
 
   TVRO.formatLatitude = _.curry(formatCoordinate, 2)('latitude');
