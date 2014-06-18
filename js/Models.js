@@ -464,4 +464,16 @@
     });
   };
 
+  TVRO.setSleepMode = function(arg) {
+    return TVRO.setAntennaConfig({
+      sleep: arg ? 'ON' : 'OFF'
+    });
+  };
+
+  TVRO.setSidelobeMode = function(arg) {
+    return TVRO.setAntennaConfig({
+      sidelobe: arg ? 'ON' : 'OFF'
+    });
+  };
+
 }(window.TVRO);

@@ -24,10 +24,10 @@
     };
 
     var sleepModeBtn = TVRO.ToggleBtn(jQ.find('.\\#sleep-mode-btn'))
-    .onClick(setMode('sleep'));
+      .onClick(TVRO.setSleepMode);
 
     var sidelobeModeBtn = TVRO.ToggleBtn(jQ.find('.\\#sidelobe-mode-btn'))
-    .onClick(setMode('sidelobe'));
+      .onClick(TVRO.setSidelobeMode);
 
     var multiswitchModeBtn = TVRO.ToggleBtn(jQ.find('.\\#multiswitch-mode-btn'))
     .onClick(function(isEnabled){
@@ -42,9 +42,9 @@
       $('.\\#update-url', jQ).val(sessionStorage['kvhupdate']);
 
       Promise.all(
-          TVRO.getAntennaConfig(),
-          TVRO.getMultiswitchMode(),
-          TVRO.getAntennaVersions()
+        TVRO.getAntennaConfig(),
+        TVRO.getMultiswitchMode(),
+        TVRO.getAntennaVersions()
       ).then(function(xmls) {
         var sleepModeOn = $('sleep', xmls[0]).text() === 'ON';
         var sidelobeModeOn = $('sidelobe', xmls[0]).text() === 'ON';
