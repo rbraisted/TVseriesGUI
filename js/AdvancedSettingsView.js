@@ -15,14 +15,6 @@
       sessionStorage['kvhupdate'] = $('.\\#update-url', jQ).val();
     });
 
-    var setMode = function(mode) {
-      return function(isEnabled) {
-        var params = {};
-        params[mode] = isEnabled ? 'ON' : 'OFF';
-        TVRO.setAntennaConfig(params).then(reload);
-      };
-    };
-
     var sleepModeBtn = TVRO.ToggleBtn(jQ.find('.\\#sleep-mode-btn'))
       .onClick(TVRO.setSleepMode);
 
