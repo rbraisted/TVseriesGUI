@@ -517,4 +517,38 @@
     });
   };
 
+  TVRO.getService = function() {
+    return TVRO.getSatelliteService().then(function(xml) {
+      return $('service', xml).text();
+    });
+  };
+
+  //  for now, map these
+  var getCheckswitchMode = TVRO.getCheckswitchMode;
+  var setCheckswitchMode = TVRO.setCheckswitchMode;
+
+  TVRO.getCheckswitchMode = function() {
+    return getCheckswitchMode().then(function(xml) {
+      return $('enable', xml).text();
+    });
+  };
+
+  TVRO.setCheckswitchMode = function(arg) {
+    return setCheckswitchMode({
+      enable: arg ? 'Y' : 'N'
+    });
+  };
+
+  TVRO.getWizardComplete = function() {
+    return TVRO.getWizardStatus().then(function(xml) {
+      return $('status', xml).text() === 'SUCCESS';
+    });
+  };
+
+  TVRO.setWizardComplete = function(arg) {
+    return TVRO.setWizardStatus({
+      status: arg ? 'NONE' : 'SUCCESS'
+    });
+  };
+
 }(window.TVRO);
