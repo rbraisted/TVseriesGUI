@@ -505,5 +505,16 @@
     });
   };
 
+  TVRO.getLnbType = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('lnb polarization', xml).text();
+    });
+  };
+
+  TVRO.getAntModel = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('au model', xml).text();
+    });
+  };
 
 }(window.TVRO);
