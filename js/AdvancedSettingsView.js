@@ -22,38 +22,43 @@
       .onClick(TVRO.setSidelobeMode);
 
     var multiswitchModeBtn = TVRO.ToggleBtn(jQ.find('.\\#multiswitch-mode-btn'))
-    .onClick(function(isEnabled){
-      return TVRO.setMultiswitchMode({
-        enable : isEnabled ? 'Y' : 'N'
-      })
-    });
+      .onClick(TVRO.setMultiswitchMode);
 
     var reload = function() {
       techModeBtn.setOn(TVRO.getTechMode());
       $('.\\#tech-mode', jQ).toggle(TVRO.getTechMode());
       $('.\\#update-url', jQ).val(sessionStorage['kvhupdate']);
 
-      Promise.all(
-        TVRO.getAntennaConfig(),
-        TVRO.getMultiswitchMode(),
-        TVRO.getAntennaVersions()
-      ).then(function(xmls) {
-        var sleepModeOn = $('sleep', xmls[0]).text() === 'ON';
-        var sidelobeModeOn = $('sidelobe', xmls[0]).text() === 'ON';
-        var multiswitchModeOn = $('enable', xmls[1]).text() === 'Y';
-        var polarization = $('lnb polarization', xmls[2]).text();
-        var model = $('au model', xmls[2]).text();
 
-        // Only show the multiswitch block when a linear LNB.
-        jQ.toggleClass('$not-linear', polarization !== 'linear');
+      // TVRO.getLnbType
+      // TVRO.getAntType
 
-        // Only show the sidelobe block when a TV6.
-        jQ.toggleClass('$not-tv6', model !== 'TV6');
+      TVRO.getSleepMode().then(sleepModeBtn.setOn);
+      TVRO.getSidelobeMode().then(sidelobeModeBtn.setOn);
+      TVRO.getMultiswitchMode().then(multiswitchModeBtn.setOn);
 
-        sleepModeBtn.setOn(sleepModeOn);
-        sidelobeModeBtn.setOn(sidelobeModeOn);
-        multiswitchModeBtn.setOn(multiswitchModeOn);
-      });
+
+      // Promise.all(
+      //   TVRO.getAntennaConfig(),
+      //   TVRO.getMultiswitchMode(),
+      //   TVRO.getAntennaVersions()
+      // ).then(function(xmls) {
+      //   var sleepModeOn = $('sleep', xmls[0]).text() === 'ON';
+      //   var sidelobeModeOn = $('sidelobe', xmls[0]).text() === 'ON';
+      //   var multiswitchModeOn = $('enable', xmls[1]).text() === 'Y';
+      //   var polarization = $('lnb polarization', xmls[2]).text();
+      //   var model = $('au model', xmls[2]).text();
+
+      //   // Only show the multiswitch block when a linear LNB.
+      //   jQ.toggleClass('$not-linear', polarization !== 'linear');
+
+      //   // Only show the sidelobe block when a TV6.
+      //   jQ.toggleClass('$not-tv6', model !== 'TV6');
+
+      //   sleepModeBtn.setOn(sleepModeOn);
+      //   sidelobeModeBtn.setOn(sidelobeModeOn);
+      //   multiswitchModeBtn.setOn(multiswitchModeOn);
+      // });
     };
 
     return self = {

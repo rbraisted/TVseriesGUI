@@ -195,8 +195,8 @@
   TVRO.getSatelliteService = get('get_satellite_service');
 	  
 	TVRO.setSatelliteService = set('set_satellite_service', [
-	                          		get('get_satellite_service')
-	                                ]);
+		get('get_satellite_service')
+  ]);
 
 	TVRO.getAntennaStatus = get('antenna_status');
 
@@ -255,13 +255,13 @@
 
 	TVRO.reboot = set('reboot');
 
-  	TVRO.resetSoftware = set('reset_software');
+	TVRO.resetSoftware = set('reset_software');
 
-    TVRO.getPower = get('power');
+  TVRO.getPower = get('power');
 
-    TVRO.getOphours = get('ophours');
+  TVRO.getOphours = get('ophours');
 
-    TVRO.getLnbList = get('get_lnb_list');
+  TVRO.getLnbList = get('get_lnb_list');
 
 	TVRO.getVesselConfig = get('get_vessel_config');
 
@@ -333,9 +333,9 @@
 
 	TVRO.getMultiswitchMode = get('get_multiswitch_mode');
 
-    TVRO.setMultiswitchMode = set('set_multiswitch_mode',[
-        get('get_multiswitch_mode')
-    ]);
+  TVRO.setMultiswitchMode = set('set_multiswitch_mode',[
+    get('get_multiswitch_mode')
+  ]);
 
 	TVRO.setProductRegistration = set('set_product_registration', [
 		get('get_product_registration')

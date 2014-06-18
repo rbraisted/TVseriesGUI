@@ -464,9 +464,21 @@
     });
   };
 
+  TVRO.getSleepMode = function() {
+    return TVRO.getAntennaConfig().then(function(xml) {
+      return $('sleep', xml).text() === 'ON';
+    });
+  };
+
   TVRO.setSleepMode = function(arg) {
     return TVRO.setAntennaConfig({
       sleep: arg ? 'ON' : 'OFF'
+    });
+  };
+
+  TVRO.getSidelobeMode = function() {
+    return TVRO.getAntennaConfig().then(function(xml) {
+      return $('sidelobe', xml).text() === 'ON';
     });
   };
 
@@ -475,5 +487,23 @@
       sidelobe: arg ? 'ON' : 'OFF'
     });
   };
+
+  //  for now, save these
+  //  basically remap these from WebService.js
+  var getMultiswitchMode = TVRO.getMultiswitchMode;
+  var setMultiswitchMode = TVRO.setMultiswitchMode;
+
+  TVRO.getMultiswitchMode = function() {
+    return getMultiswitchMode().then(function(xml) {
+      return $('enable', xml).text() === 'Y';
+    });
+  };
+
+  TVRO.setMultiswitchMode = function(arg) {
+    return setMultiswitchMode({
+      enable: arg ? 'Y' : 'N'
+    });
+  };
+
 
 }(window.TVRO);
