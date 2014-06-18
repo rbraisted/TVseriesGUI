@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
 	<message name="get_checkswitch_status" error="0" />
 	<enable>Y</enable>
