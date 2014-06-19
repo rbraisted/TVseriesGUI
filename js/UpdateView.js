@@ -80,11 +80,8 @@
 
           var filename = $('file_name', xml).text();
           if (!filename) return alert('An unexpected error occured. Please try again later.');
-          
-          TVRO.installSoftware({
-            install: 'Y',
-            filename: filename
-          }).then(TVRO.reload);
+
+          TVRO.installFilename(filename).then(TVRO.reload);          
         },
         error: function(jqXHR, textStatus, errorThrown) {
           clearInput();

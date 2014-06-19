@@ -585,4 +585,11 @@
     return TVRO.resetSoftware({ rollback: 'ALL' });
   };
 
+  TVRO.installFilename = function(filename) {
+    return TVRO.installSoftware({
+      install: 'Y',
+      filename: filename
+    });
+  };
+
 }(window.TVRO);
