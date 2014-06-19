@@ -47,10 +47,8 @@ $(function() {
 
   // initialization stuff
 
-  TVRO.getAntennaVersions().then(function(xml) {
-    //  set the ant model name ie TV1, TV3, etc
-    var antModel = $('au model', xml).text();
-    $('.\\#ant-model').text(antModel);
+  TVRO.getAntModel().then(function(model) {
+    $('.\\#ant-model').text(model);
   });
 
   TVRO.getGroupMode().then(function(groupMode) {

@@ -184,12 +184,12 @@ $(function() {
     if (!hash) {
       Promise.all(
           TVRO.getAntennaVersions(),
-          TVRO.getSatelliteService()
+          TVRO.getService()
       ).then(function(xmls) {
         var antModel = $('au model', xmls[0]).text();
         var systemIDModel = $('au systemIDModel', xmls[0]).text();
         var lnbType = $('lnb polarization', xmls[0]).text();
-        var service = $('service', xmls[1]).text();
+        var service = xmls[1];
         var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
 
         if ((lnbType === 'linear') &&

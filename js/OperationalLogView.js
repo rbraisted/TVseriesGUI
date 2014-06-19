@@ -23,12 +23,12 @@
     };
 
 		var startBtn = $('.\\#start-btn', jQ).click(function() {
-			TVRO.startSerialLog({'restart':'N'});
+			TVRO.startSerialLog({ 'restart' : 'N' });
 		});
 
 		var restartBtn = $('.\\#restart-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to restart the antenna?');
-			if (confirmed) TVRO.startSerialLog({'restart':'Y'});
+			if (confirmed) TVRO.startSerialLog({ 'restart' : 'Y' });
 		});
 
 		return self = {

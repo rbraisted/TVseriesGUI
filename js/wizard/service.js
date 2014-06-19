@@ -50,10 +50,7 @@
       window.location = '/wizard/gps.php#/heading-source';
     });
 
-    TVRO.getSatelliteService()
-    .then(function(xml) {
-      return $('service', xml).text();
-    }).then(self.setValue);    
+    TVRO.getService().then(self.setValue);
 
     return self;
   };

@@ -43,10 +43,10 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
-          TVRO.getSatelliteService(),
+          TVRO.getService(),
           TVRO.getAntennaVersions()
         ).then(function(xmls) {
-          var service = $('service', xmls[0]).text();
+          var service = xmls[0];
           var lnbType = $('lnb polarization', xmls[1]).text();
 
           if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/service.php';
@@ -86,10 +86,10 @@ $(function() {
         alert('You must install a satellite to continue!');
       } else {
           Promise.all(
-              TVRO.getSatelliteService(),
+              TVRO.getService(),
               TVRO.getAntennaVersions()
             ).then(function(xmls) {
-              var service = $('service', xmls[0]).text();
+              var service = xmls[0];
               var lnbType = $('lnb polarization', xmls[1]).text();
 
               if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
@@ -105,10 +105,10 @@ $(function() {
         alert('You must install a group to continue!');
       } else {
           Promise.all(
-              TVRO.getSatelliteService(),
+              TVRO.getService(),
               TVRO.getAntennaVersions()
             ).then(function(xmls) {
-              var service = $('service', xmls[0]).text();
+              var service = xmls[0];
               var lnbType = $('lnb polarization', xmls[1]).text();
 
               if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';

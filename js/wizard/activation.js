@@ -8,11 +8,11 @@ $(function() {
   $('.\\#prev-btn').click(function() {
     Promise.all(
       TVRO.getAntennaVersions(),
-      TVRO.getSatelliteService()
+      TVRO.getService()
     ).then(function(xmls) {
       var lnbType = $('lnb polarization', xmls[0]).text();
       var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
-      var service = $('service', xmls[1]).text();
+      var service = xmls[1];
 
       if ((lnbType === 'circular') && (service === 'DIRECTV')) {
         if (isTriAmericas) {
@@ -38,8 +38,7 @@ $(function() {
 
   TVRO.onHashChange(function(hash) {
     if (!hash) {	
-      TVRO.getSatelliteService().then(function(xml) {
-        var service = $('service', xml).text();
+      TVRO.getService().then(function(service) {
         if (service === 'DIRECTV') window.location.hash = '/directv-activation';
         else if (service === 'DISH') window.location.hash = '/dish-activation';
         else if (service === 'BELL') window.location.hash = '/bell-activation';
