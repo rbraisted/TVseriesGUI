@@ -20,23 +20,42 @@ $(function() {
       var updateName = antUpdate ? update : 'Satellite Library';
       $('.\\#update-name', row).text(updateName);
 
-      //  get the system version (the currently installed version)
-      TVRO.getAntennaVersions().then(function(xml) {
-        var connectedAnt = $('au model', xml).text();
-        var connected = update === connectedAnt;
-        var systemVersion = $('current', xml).text();
+      row.toggleClass('$antenna', antUpdate);
+      row.toggleClass('$sat-library', !antUpdate);
 
-        if (antUpdate) {
-          row.addClass('$antenna');
+      if (antUpdate) {
+        TVRO.getAntModel().then(function(model) {
+          var connected = (update === model);
           row.toggle(techMode || connected);
-          row.toggleClass('$connected', connected);
-          $('.\\#system-ver', row).text(systemVersion);
-        } else {
-          row.addClass('$sat-library');
-          systemVersion = $('sat_list ver', xml).text();
-          $('.\\#system-ver', row).text(systemVersion);
-        }
-      });
+        });
+
+        TVRO.getSystemVersion().then(function(version) {
+          $('.\\#system-ver', row).text(version);
+        });
+
+      } else { //  sat lib update
+        TVRO.getSatLibraryVersion().then(function(version) {
+          $('.\\#system-ver', row).text(version);
+        });
+      }
+
+      // //  get the system version (the currently installed version)
+      // TVRO.getAntennaVersions().then(function(xml) {
+      //   var connectedAnt = $('au model', xml).text();
+      //   var connected = update === connectedAnt;
+      //   var systemVersion = $('current', xml).text();
+
+      //   if (antUpdate) {
+      //     row.addClass('$antenna');
+      //     row.toggle(techMode || connected);
+      //     row.toggleClass('$connected', connected);
+      //     $('.\\#system-ver', row).text(systemVersion);
+      //   } else {
+      //     row.addClass('$sat-library');
+      //     systemVersion = $('sat_list ver', xml).text();
+      //     $('.\\#system-ver', row).text(systemVersion);
+      //   }
+      // });
 
       //  get the portal version (latest/avail to download)
       TVRO.getLatestSoftware(update).then(function(xml) {

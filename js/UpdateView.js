@@ -157,8 +157,6 @@
         ).then(function(versions) {
           var systemVersion = versions[0];
           var portalVersion = versions[1];
-          console.log("systemVersion: " + systemVersion);
-          console.log("portalVersion: " + portalVersion);
           jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
         });
 

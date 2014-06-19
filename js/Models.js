@@ -565,4 +565,16 @@
     return TVRO.reboot({ sys: 'ALL' });
   };
 
+  TVRO.getSystemVersion = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('current', xml).text();
+    });
+  };
+
+  TVRO.getSatLibraryVersion = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('sat_list ver', xml).text();
+    });
+  };
+
 }(window.TVRO);
