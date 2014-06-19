@@ -577,4 +577,12 @@
     });
   };
 
+  TVRO.rollbackCurrent = function() {
+    return TVRO.resetSoftware({ rollback: 'CURRENT' });
+  };
+
+  TVRO.rollbackAll = function() {
+    return TVRO.resetSoftware({ rollback: 'ALL' });
+  };
+
 }(window.TVRO);

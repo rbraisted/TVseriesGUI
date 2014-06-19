@@ -8,12 +8,12 @@
 
     var flashCurrentBtn = $('.\\#flash-current-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to flash the current system software?');
-      if (confirmed) TVRO.resetSoftware({ rollback: 'CURRENT' }).then(TVRO.reload);
+      if (confirmed) TVRO.rollbackCurrent().then(TVRO.reload);
     });
     
     var flashAllBtn = $('.\\#flash-all-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to flash all system software?');
-      if (confirmed) TVRO.resetSoftware({ rollback: 'ALL' }).then(TVRO.reload);
+      if (confirmed) TVRO.rollbackAll().then(TVRO.reload);
     });
 
     var downloadBtn = $('.\\#download-btn', jQ).click(function() {
