@@ -15,16 +15,13 @@
       title: 'Create a New Group of Satellites',
       bgimage: 'new-group.svg'
     };
-    Promise.all(
-        TVRO.getAntennaVersions()
-      ).then(function(xmls) {
-         return $('lnb polarization', xmls[0]).text();
-      }).then(function(lnbType){
-        if (lnbType === 'linear'){
-          presetGroup.title = presetGroup.title + '*';
-        }        
-        self.build();
-      });
+
+    TVRO.getLnbType().then(function(lnbType) {
+      if (lnbType === 'linear') {
+        presetGroup.title = presetGroup.title + '*';
+      }        
+      self.build();
+    });
 
     var self = TVRO.TableView($('.\\#table-view', jQ))
       .setValues([singleSat, presetGroup, newGroup])
@@ -43,16 +40,14 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
-          TVRO.getService(),
-          TVRO.getAntennaVersions()
-        ).then(function(xmls) {
-          var service = xmls[0];
-          var lnbType = $('lnb polarization', xmls[1]).text();
-
-          if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/service.php';
-          else window.location = '/wizard/gps.php#/heading-source';
-        });
-      
+        TVRO.getService(),
+        TVRO.getLnbType()
+      ).then(function(res) {
+        var service = res[0];
+        var lnbType = res[1]
+        if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/service.php';
+        else window.location = '/wizard/gps.php#/heading-source';
+      });      
     });
 
     return self;
@@ -73,8 +68,8 @@ $(function() {
 
   //  previous btn on single and group view
   var prevBtnClick = function() {
-      if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
-      else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+    if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
+    else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
   };
 
   var singleViewPrevBtn = $('.\\#single-view .\\#prev-btn').click(prevBtnClick);
@@ -85,16 +80,15 @@ $(function() {
       if (!installedSat) {
         alert('You must install a satellite to continue!');
       } else {
-          Promise.all(
-              TVRO.getService(),
-              TVRO.getAntennaVersions()
-            ).then(function(xmls) {
-              var service = xmls[0];
-              var lnbType = $('lnb polarization', xmls[1]).text();
-
-              if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
-              else window.location = '/wizard/system.php';
-            });
+        Promise.all(
+          TVRO.getService(),
+          TVRO.getLnbType()
+        ).then(function(res) {
+          var service = res[0];
+          var lnbType = res[1]
+          if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
+          else window.location = '/wizard/system.php';
+        });
       }
     });
   });
@@ -104,16 +98,15 @@ $(function() {
       if (!installedGroup) {
         alert('You must install a group to continue!');
       } else {
-          Promise.all(
-              TVRO.getService(),
-              TVRO.getAntennaVersions()
-            ).then(function(xmls) {
-              var service = xmls[0];
-              var lnbType = $('lnb polarization', xmls[1]).text();
-
-              if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
-              else window.location = '/wizard/system.php';
-            });
+        Promise.all(
+          TVRO.getService(),
+          TVRO.getLnbType()
+        ).then(function(res) {
+          var service = res[0];
+          var lnbType = res[1]
+          if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
+          else window.location = '/wizard/system.php';
+        });
       }
     });
   });
@@ -276,13 +269,13 @@ $(function() {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView
       Promise.all(
-        TVRO.getAntennaVersions()
-      ).then(function(xmls) {
-        var antModel = $('au model', xmls[0]).text();
-        var lnbType = $('lnb polarization', xmls[0]).text();
-        var systemIDModel = $('au systemIDModel', xmls[0]).text();
+        TVRO.getAntModel(),
+        TVRO.getLnbType()
+      ).then(function(res) {
+        var model = res[0];
+        var lnbType = res[1];
         if (lnbType === 'circular') window.location.hash = '/circular-options';
-        else if (systemIDModel === 'TV5' || systemIDModel === 'TV6') window.location.hash = '/tv5-manual-options';
+        else if (model === 'TV5' || model === 'TV6') window.location.hash = '/tv5-manual-options';
         else window.location.hash = '/options';
       });
     }
