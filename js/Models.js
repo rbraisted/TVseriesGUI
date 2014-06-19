@@ -511,6 +511,12 @@
     });
   };
 
+  TVRO.getLnbName = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('lnb name', xml).text();
+    });
+  };
+
   TVRO.getAntModel = function() {
     return TVRO.getAntennaVersions().then(function(xml) {
       return $('au model', xml).text();
