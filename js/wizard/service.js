@@ -433,30 +433,24 @@
           if (state === 'TRACKING') {
             clearInterval(interval);
 
-            TVRO.setCheckswitchMode({
-              enable : 'Y'
-            }).then(function() {
-              var isEnabled;
-              var status = 0;
+            TVRO.setCheckswitchMode(true).then(function() {
               intervalID = window.setInterval(function() {
-                //  use TVRO.webserviceCall(1, 1) to force recache
-                TVRO.getCheckswitchMode(1, 1).then(function(xml) {
-                  isEnabled = $('enable', xml).text();
-                  status =  $('status', xml).text();
+                TVRO.getCheckswitchStatus().then(function(status) {
                   $('.\\#ant_status').text("The TV-Hub is preparing for Check Switch mode. Status: " + status);
 
-                  switch (status){
-                  case "IN_PROGRESS":
-                    window.clearInterval(intervalID);
-                    window.location = '/wizard/system.php#/other-system-config';
-                    break;
-                  case "FAILED":
-                    window.clearInterval(intervalID);
-                    alert("Check Switch mode has failed.");
-                    break;
+                  switch (status) {
+                    case "IN_PROGRESS":
+                      window.clearInterval(intervalID);
+                      window.location = '/wizard/system.php#/other-system-config';
+                      break;
+                    case "FAILED":
+                      window.clearInterval(intervalID);
+                      alert("Check Switch mode has failed.");
+                      break;
                   }
                 });
               }, 1000);
+
             }); //End .then for  setCheckswitchMode   
           }else if (state === 'ERROR') {
             clearInterval(interval);

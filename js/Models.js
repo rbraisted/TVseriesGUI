@@ -527,6 +527,12 @@
   var getCheckswitchMode = TVRO.getCheckswitchMode;
   var setCheckswitchMode = TVRO.setCheckswitchMode;
 
+  TVRO.getCheckswitchStatus = function() {
+    return getCheckswitchMode().then(function(xml) {
+      return $('status', xml).text();
+    });
+  };
+
   TVRO.getCheckswitchMode = function() {
     return getCheckswitchMode().then(function(xml) {
       return $('enable', xml).text();
