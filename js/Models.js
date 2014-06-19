@@ -551,4 +551,12 @@
     });
   };
 
+  TVRO.rebootAnt = function() {
+    return TVRO.reboot({ sys: 'ANT' });
+  };
+
+  TVRO.rebootAll = function() {
+    return TVRO.reboot({ sys: 'ALL' });
+  };
+
 }(window.TVRO);
