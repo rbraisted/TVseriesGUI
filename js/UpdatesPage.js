@@ -27,6 +27,7 @@ $(function() {
         TVRO.getAntModel().then(function(model) {
           var connected = (update === model);
           row.toggle(techMode || connected);
+          row.toggleClass('$connected', connected);
         });
 
         TVRO.getSystemVersion().then(function(version) {
@@ -39,28 +40,9 @@ $(function() {
         });
       }
 
-      // //  get the system version (the currently installed version)
-      // TVRO.getAntennaVersions().then(function(xml) {
-      //   var connectedAnt = $('au model', xml).text();
-      //   var connected = update === connectedAnt;
-      //   var systemVersion = $('current', xml).text();
-
-      //   if (antUpdate) {
-      //     row.addClass('$antenna');
-      //     row.toggle(techMode || connected);
-      //     row.toggleClass('$connected', connected);
-      //     $('.\\#system-ver', row).text(systemVersion);
-      //   } else {
-      //     row.addClass('$sat-library');
-      //     systemVersion = $('sat_list ver', xml).text();
-      //     $('.\\#system-ver', row).text(systemVersion);
-      //   }
-      // });
-
       //  get the portal version (latest/avail to download)
-      TVRO.getLatestSoftware(update).then(function(xml) {
-        var portalVersion = $('software_version', xml).text() || $('version', xml).text();
-        $('.\\#portal-ver', row).text(portalVersion);
+      TVRO.getPortalVersion(update).then(function(version) {
+        $('.\\#portal-ver', row).text(version);
       });
 
       TVRO.getDeviceVersions().then(function(deviceVersions) {
