@@ -523,6 +523,28 @@
     });
   };
 
+  TVRO.getAntState = function() {
+    return TVRO.getAntennaStatus().then(function(xml) {
+      return $('antenna state', xml).text();
+    });
+  };
+
+  TVRO.getAzBow = function() {
+    return TVRO.getAntModel().then(function(model) {
+      if (model === 'TV1' || model === 'RV1') return 0;
+      else return TVRO.getAntennaStatus().then(function(xml) {
+        return Math.round(parseFloat($('az_bow', xml).text(), 10));
+      });
+    });
+  };
+
+  TVRO.getHeading = function() {
+    return TVRO.getAntennaStatus().then(function(xml) {
+      var heading = $('antenna brst hdg', xml).text();
+      return heading === '' ? '---' : Number(heading).toFixed(1) + '˚';
+    });
+  };
+
   TVRO.getService = function() {
     return TVRO.getSatelliteService().then(function(xml) {
       return $('service', xml).text();
