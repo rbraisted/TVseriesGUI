@@ -617,4 +617,22 @@
     });
   };
 
+  TVRO.getEventHistory = function() {
+    return TVRO.getEventHistoryCount().then(function(xml){
+      var count = $('event_count',xml).text();
+      return TVRO.getRecentEventHistory({
+        'begin_at_event': 1,
+        'how_many_events' : count
+      }).then(function(xml) {
+        return _.map($('event', xml), function(event) {
+          var text = $(event).text();
+          return {
+            date: text.substr(0, text.indexOf('::')),
+            message: text.substr(text.indexOf('::')+2)
+          }
+        });
+      });
+    });
+  };
+
 }(window.TVRO);
