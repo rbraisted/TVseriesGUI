@@ -188,7 +188,7 @@ $(function() {
         TVRO.getLnbType(),
         TVRO.getLnbName(),
         TVRO.getService()
-      ).then(function(xmls) {
+      ).then(function(res) {
         var model = res[0];
         var lnbType = res[1];
         var service = res[3];

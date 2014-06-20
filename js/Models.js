@@ -679,12 +679,12 @@
     return getSerialLog().then(function(xml) {
       return $('content', xml).text();
     });
-  }
+  };
 
   TVRO.getSerialLogProgress = function() {
     return TVRO.serialLogStatus().then(function(xml) {
       return $('current', xml).text()/$('max', xml).text();
     });
-  }
+  };
 
 }(window.TVRO);

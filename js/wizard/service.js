@@ -3,8 +3,7 @@
 
   var ServiceProviderView = function(jQ) {
     var self = TVRO.TableView($('.\\#table-view', jQ))
-    .setValues([
-                'DIRECTV',
+    .setValues(['DIRECTV',
                 'DISH',
                 'BELL',
                 'OTHER'
@@ -70,7 +69,7 @@
 
       var value = self.getValue();
       if (!value) alert('You must select an option to continue.');
-      else{
+      else {
 
         TVRO.setAutoswitchService({
           enable: 'N',
@@ -78,25 +77,20 @@
           satellite_group: value
         }).then(function() {
           document.body.className = '/spinner';
-
           setTimeout(function() {
             interval = setInterval(function() {
-              TVRO.getAntennaStatus(1,1).then(function(xml) {
-                var state =  $('antenna state', xml).text();
+              TVRO.getAntState().then(function(state) {
                 $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
-                  if(value === 'TRI-AM DUAL'){
-                    window.location = '/wizard/activation.php';
-                  }else{
-                    window.location.hash = '/directv';
-                  }  
-                }else if (state === 'ERROR') {
+                  if (value === 'TRI-AM DUAL') window.location = '/wizard/activation.php';
+                  else window.location.hash = '/directv';
+                } else if (state === 'ERROR') {
                   clearInterval(interval);
                   alert("An error occured installing " + value + ".");
                   window.location.hash = '/tri-am-group';
                 }//End if (state === 'ERROR')
-              });          
+              });
             }, 1000);
           }, 10000);
         });
@@ -168,8 +162,7 @@
 
           setTimeout(function() {
             interval = setInterval(function() {
-              TVRO.getAntennaStatus(1,1).then(function(xml) {
-                var state =  $('antenna state', xml).text();
+              TVRO.getAntState().then(function(state) {
                 $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
@@ -193,8 +186,7 @@
           document.body.className = '/spinner';
           setTimeout(function() {
             interval = setInterval(function() {
-              TVRO.getAntennaStatus(1,1).then(function(xml) {
-                var state =  $('antenna state', xml).text();
+              TVRO.getAntState().then(function(state) {
                 $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
@@ -219,13 +211,12 @@
 
           setTimeout(function() {
             interval = setInterval(function() {
-              TVRO.getAntennaStatus(1,1).then(function(xml) {
-                var state =  $('antenna state', xml).text();
+              TVRO.getAntState().then(function(state) {
                 $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/autoswitch.php#/directv';
-                }else if (state === 'ERROR') {
+                } else if (state === 'ERROR') {
                   clearInterval(interval);
                   alert("An error occured installing " + group + ".");
                   window.location.hash = '/directv';
@@ -242,10 +233,9 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      TVRO.getAntennaVersions().then(function(xmls) {
-        var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
-
-        if (isTriAmericas == true) window.location.hash = '/tri-am-group';
+      TVRO.getLnbName().then(function(name) {
+        var isTriAmericas = name === 'Tri-Americas Circular';
+        if (isTriAmericas) window.location.hash = '/tri-am-group';
         else window.location = '/wizard/service.php';
       });
     });
@@ -256,26 +246,24 @@
         // We grap the installed group since we installed the group for TRI AM
         // LNB in the previous step.
         Promise.all(
-            TVRO.getInstalledGroup(),
-            TVRO.getAntennaVersions()
-        ).then(function(xmls) {
-          var isTriAmericas = $('lnb name', xmls[1]).text() === 'Tri-Americas Circular';
+          TVRO.getInstalledGroup(),
+          TVRO.getLnbName()
+        ).then(function(res) {
+          var isTriAmericas = res[1] === 'Tri-Americas Circular';
 
-          if (isTriAmericas == true){
-            group = xmls[0].name;
+          if (isTriAmericas) {
+            group = res[0].name;
             self.setValues([manualOption, automaticOption]);
-            self.onBuild(function(row, option) {
-              $('.\\#title', row).text(option.title);
-              $('.\\#copy', row).text(option.copy);
-            }).build();
-          }else{
+
+          } else {
             group = 'DIRECTV DUAL';
             self.setValues([singleOption, manualOption, automaticOption]);
-            self.onBuild(function(row, option) {
-              $('.\\#title', row).text(option.title);
-              $('.\\#copy', row).text(option.copy);
-            }).build();
           }
+
+          self.onBuild(function(row, option) {
+            $('.\\#title', row).text(option.title);
+            $('.\\#copy', row).text(option.copy);
+          }).build();
         });
       }
     });    
@@ -334,7 +322,7 @@
           enable: 'Y'
         });
       } else {
-        installPromise = TVRO.selectSatellite({
+        installPromise = TVRO.setInstalledSat({
           antSatID: value
         });
       }
@@ -357,46 +345,35 @@
     });
 
     // Retrieve the installed satellite to update the screen
-    TVRO.getAntennaStatus()
-    .then(function(xml) {   
-      return $('satellite antSatID', xml).text();
-    }).then(satsTableView.setValue);    
+    TVRO.getInstalledSat().then(function(sat) {
+      satsTableView.setValue(sat.antSatID);
+    });
 
     // Retrieve the installed group to update the screen
-    TVRO.getAutoswitchStatus()
-    .then(function(xml) {   
-      return $('satellite_group', xml).text();
-    }).then(groupsTableView.setValue);    
+    TVRO.getInstalledGroup().then(function(group) {
+      groupsTableView.setValue(group.name);
+    });
 
 
     return _.merge(self,{
       reload: function() {
         //Need to exclude Groups and Satellites if TV1 is installed
-        Promise.all(
-            TVRO.getInstalledGroup(),
-            TVRO.getAntennaVersions()
-        ).then(function(xmls) {
-          var antennas = $('au model', xmls[1]).text();
-
-          if (antennas === 'TV1')
-          {
-            groupsTableView.setValues([
-                                       'WESTERN ARC',
+        TVRO.getAntModel().then(function(model) {
+          if (model === 'TV1') {
+            groupsTableView.setValues(['WESTERN ARC',
                                        'LEGACY EAST ARC',
                                        'DISH 500',
                                        'OTHER'
                                        ]).build();
 
-            satsTableView.setValues([
-                                     '61W',
+            satsTableView.setValues(['61W',
                                      '110W',
                                      '119W',
                                      '129W'
                                      ]).build();
 
-          }else{
-            groupsTableView.setValues([
-                                       'WESTERN ARC',
+          } else {
+            groupsTableView.setValues(['WESTERN ARC',
                                        'EASTERN ARC',
                                        'LEGACY EAST ARC',
                                        '72W',
@@ -404,8 +381,7 @@
                                        'OTHER'
                                        ]).build();
 
-            satsTableView.setValues([
-                                     '61W',
+            satsTableView.setValues(['61W',
                                      '72W',
                                      '77WM',
                                      '110W',
@@ -427,26 +403,20 @@
     //  once state is tracking start checkswitch mode
     setTimeout(function() {
       interval = setInterval(function() {
-        TVRO.getAntennaStatus(1,1).then(function(xml) {
-          var state =  $('antenna state', xml).text();
+        TVRO.getAntState().then(function(state) {
           $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
           if (state === 'TRACKING') {
             clearInterval(interval);
-
             TVRO.setCheckswitchMode(true).then(function() {
               intervalID = window.setInterval(function() {
                 TVRO.getCheckswitchStatus().then(function(status) {
                   $('.\\#ant_status').text("The TV-Hub is preparing for Check Switch mode. Status: " + status);
-
-                  switch (status) {
-                    case "IN_PROGRESS":
-                      window.clearInterval(intervalID);
-                      window.location = '/wizard/system.php#/other-system-config';
-                      break;
-                    case "FAILED":
-                      window.clearInterval(intervalID);
-                      alert("Check Switch mode has failed.");
-                      break;
+                  if (status === 'IN_PROGRESS') {
+                    clearInterval(intervalID);
+                    window.location = '/wizard/system.php#/other-system-config';
+                  } else if (status === 'FAILED') {
+                    clearInterval(intervalID);
+                    alert("Check Switch mode has failed.");
                   }
                 });
               }, 1000);
@@ -467,17 +437,11 @@
       // If you are DISH you want to reload to dispose of the spinner class
       // and bring you back to the DISH groups else go to the service
       // provider page (BELL).
-      window.clearInterval(intervalID);
+      clearInterval(intervalID);
       clearInterval(interval);
-
-      TVRO.setCheckswitchMode({
-        enable : 'N'
-      }).then(function() {
-        if(service === "DISH"){
-          TVRO.reload();
-        }else{          
-          window.location = '/wizard/service.php';
-        }
+      TVRO.setCheckswitchMode(false).then(function() {
+        if (service === "DISH") TVRO.reload();
+        else window.location = '/wizard/service.php';
       });
     });  
 

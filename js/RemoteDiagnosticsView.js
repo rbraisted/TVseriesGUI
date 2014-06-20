@@ -13,7 +13,7 @@
     var startInterval = function() {
       stopInterval();
       interval = setInterval(function() {
-        TVRO.getCallhome(1, 1).then(function(xml) {
+        TVRO.getCallhome().then(function(xml) {
           var state = $('status', xml).text();
           $('.\\#state', jQ).text(state);          
         });
