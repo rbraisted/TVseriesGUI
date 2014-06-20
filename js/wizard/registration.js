@@ -20,12 +20,12 @@
       window.location = '/wizard';
     });
 
-    TVRO.getProductRegistration().then(function(xml) {
-      var vessel = $('product vessel_name', xml).text();
-      var company = $('dealer company', xml).text();
-      if (company) self.setValue('CDT'); //  if installer company set, we last chose CDT
-      else if (vessel) self.setValue('DIY'); //  else if vessel name set, we last chose DIY
-      self.build();
+    TVRO.getInstallerInfo().then(function(installerInfo) {
+      if (installerInfo.company) self.setValue('CDT').build(); //  if installer company set, we last chose CDT
+      else TVRO.getVesselInfo().then(function(vesselInfo) {
+        if (vesselInfo.name) self.setValue('DIY').build();
+        else self.build();
+      });
     });
 
     return self;
@@ -64,17 +64,12 @@
   var VesselInfoView = function(jQ) {
     var self = InfoView(jQ);
 
-    TVRO.getProductRegistration().then(function(xml) {
-      var vessel = $('product vessel_name', xml).text();
-      var owner = $('user name', xml).text();
-      var contact = $('user contact', xml).text();
-      var phone = $('user phone', xml).text();
-      var email = $('user email', xml).text();
-      $('.\\#vessel', jQ).val(vessel);
-      $('.\\#owner', jQ).val(owner);
-      $('.\\#contact', jQ).val(contact);
-      $('.\\#phone', jQ).val(phone);
-      $('.\\#email', jQ).val(email);
+    TVRO.getVesselInfo().then(function(vesselInfo) {
+      $('.\\#vessel', jQ).val(vesselInfo.name);
+      $('.\\#owner', jQ).val(vesselInfo.owner);
+      $('.\\#contact', jQ).val(vesselInfo.contact);
+      $('.\\#phone', jQ).val(vesselInfo.phone);
+      $('.\\#email', jQ).val(vesselInfo.email);
     });
 
     return _.merge(self, {
@@ -121,9 +116,8 @@
     var self = VesselInfoView(jQ);
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      TVRO.getAntennaVersions().then(function(xml) {
-        var antModel = $('au model', xml).text();
-        if (antModel === 'TV5' || antModel === 'TV6') window.location = '/wizard/';
+      TVRO.getAntModel().then(function(model) {
+        if (model === 'TV5' || model === 'TV6') window.location = '/wizard/';
         else window.location.hash = '/installer-id';
       });
     });
@@ -243,9 +237,8 @@ $(function() {
     //  TV5 & 6 go to diy vessel info
     //  everybody else goes to installer-id
     if (!hash)
-      TVRO.getAntennaVersions().then(function(xml) {
-        var antModel = $('au model', xml).text();
-        if (antModel === 'TV5' || antModel === 'TV6') window.location.hash = '/cdt-vessel-info';
+      TVRO.getAntModel().then(function(model) {
+        if (model === 'TV5' || model === 'TV6') window.location.hash = '/cdt-vessel-info';
         else window.location.hash = '/installer-id';
       });
 

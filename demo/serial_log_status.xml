@@ -3,6 +3,6 @@
 	<message name="serial_log_status" error="0" />
 	<dt>YYYY-MM-DDTHH:MM:SSZ</dt>
 	<percent>50</percent>
-	<max>2048000</max>
-	<current>1024000</current>
+	<max>1000</max>
+	<current>450</current>
 </ipacu_response>

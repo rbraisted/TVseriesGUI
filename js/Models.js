@@ -523,6 +523,28 @@
     });
   };
 
+  TVRO.getAntState = function() {
+    return TVRO.getAntennaStatus().then(function(xml) {
+      return $('antenna state', xml).text();
+    });
+  };
+
+  TVRO.getAzBow = function() {
+    return TVRO.getAntModel().then(function(model) {
+      if (model === 'TV1' || model === 'RV1') return 0;
+      else return TVRO.getAntennaStatus().then(function(xml) {
+        return Math.round(parseFloat($('az_bow', xml).text(), 10));
+      });
+    });
+  };
+
+  TVRO.getHeading = function() {
+    return TVRO.getAntennaStatus().then(function(xml) {
+      var heading = $('antenna brst hdg', xml).text();
+      return heading === '' ? '---' : Number(heading).toFixed(1) + '˚';
+    });
+  };
+
   TVRO.getService = function() {
     return TVRO.getSatelliteService().then(function(xml) {
       return $('service', xml).text();
@@ -609,5 +631,60 @@
       return $('url', xml).text();
     });
   };
+
+  var getEventHistoryLog = TVRO.getEventHistoryLog;
+  TVRO.getEventHistoryLog = function() {
+    return getEventHistoryLog().then(function(xml) {
+      return $('content', xml).text()
+    });
+  };
+
+  TVRO.getEventHistory = function() {
+    return TVRO.getEventHistoryCount().then(function(xml){
+      var count = $('event_count',xml).text();
+      return TVRO.getRecentEventHistory({
+        'begin_at_event': 1,
+        'how_many_events' : count
+      }).then(function(xml) {
+        return _.map($('event', xml), function(event) {
+          var text = $(event).text();
+          return {
+            date: text.substr(0, text.indexOf('::')),
+            message: text.substr(text.indexOf('::')+2)
+          }
+        });
+      });
+    });
+  };
+
+  TVRO.getVesselInfo = function() {
+    return TVRO.getProductRegistration().then(function(xml) {
+      var name = $('product vessel_name', xml).text();
+      var owner = $('user name', xml).text();
+      var contact = $('user contact', xml).text();
+      var phone = $('user phone', xml).text();
+      var email = $('user email', xml).text();
+      return {
+        name: name,
+        owner: owner,
+        contact: contact,
+        phone: phone,
+        email: email
+      };
+    });
+  };
+
+  var getSerialLog = TVRO.getSerialLog;
+  TVRO.getSerialLog = function() {
+    return getSerialLog().then(function(xml) {
+      return $('content', xml).text();
+    });
+  }
+
+  TVRO.getSerialLogProgress = function() {
+    return TVRO.serialLogStatus().then(function(xml) {
+      return $('current', xml).text()/$('max', xml).text();
+    });
+  }
 
 }(window.TVRO);
