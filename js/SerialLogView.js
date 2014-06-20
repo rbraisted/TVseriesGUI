@@ -10,23 +10,20 @@
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
       Promise.all(
-        TVRO.getAntennaVersions(),
-        TVRO.getAntennaStatus(),
-        TVRO.getSerialLog(1, 1)
-      ).then(function(xmls) {
+        TVRO.getSystemInfo(),
+        TVRO.getSerialLog()
+      ).then(function(res) {
         var email = 'support@kvh.com';
-        var antModel = $('au model', xmls[0]).text();
-        var antSn = $('au sn', xmls[0]).text();
-        var hubSn = $('acu sn', xmls[0]).text();
-        var dateTime = $('gps dt', xmls[1]).text();
+        var systemInfo = res[0];
+        var serialLog = res[1];
 
         var subject = encode(
-          'TV-Hub: ' + antModel + ' ' + hubSn +
-          ' Antenna Unit S/N: ' + antSn +
-          ' Date/Time: ' + dateTime
+          'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
+          ' Antenna Unit S/N: ' + systemInfo.antSn +
+          ' Date/Time: ' + systemInfo.dateTime
         );
 
-        var body = encode($('content', xmls[2]).text());
+        var body = encode(serialLog);
 
         window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
       });
@@ -36,15 +33,12 @@
       $('.\\#spinner', jQ).show();
 
       //  check the current log progress
-      TVRO.serialLogStatus(1, 1).then(function(xml) {
-        var percent = $('percent', xml).text();
-
-        if (percent < 1) TVRO.startSerialLog({ restart: 'N' }).then(function() {
+      TVRO.getSerialLogProgress().then(function(progress) {
+        if (percent < 0.01) TVRO.startSerialLog({ restart: 'N' }).then(function() {
           setTimeout(reload,1000);
         });
 
-        else TVRO.getSerialLog(1, 1).then(function(xml) {
-          var serialLog = $('content', xml).text();
+        else TVRO.getSerialLog().then(function(serialLog) {
           $('.\\#serial-log', jQ).text(serialLog);
           $('.\\#spinner', jQ).hide();
         });

@@ -14,8 +14,8 @@
     var startInterval = function() {
       stopInterval();
       interval = setInterval(function() {
-        TVRO.serialLogStatus(1, 1).then(function(xml) {
-          var percent = $('percent', xml).text();
+        TVRO.getSerialLogProgress().then(function(progress) {
+          var percent = (progress * 100).toFixed(0);
           $('.\\#percent', jQ).text(percent);
           $('.\\#progress', jQ).width(percent + '%');
         });
