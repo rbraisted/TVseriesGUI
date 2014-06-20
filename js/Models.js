@@ -610,4 +610,11 @@
     });
   };
 
+  var getEventHistoryLog = TVRO.getEventHistoryLog;
+  TVRO.getEventHistoryLog = function() {
+    return getEventHistoryLog().then(function(xml) {
+      return $('content', xml).text()
+    });
+  };
+
 }(window.TVRO);

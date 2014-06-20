@@ -45,23 +45,21 @@
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
       Promise.all(
-        TVRO.getAntennaVersions(),
-        TVRO.getAntennaStatus(),
-        TVRO.getEventHistoryLog(1, 1)
-      ).then(function(xmls) {
+        TVRO.getSystemInfo(),
+        TVRO.getEventHistoryLog()
+      ).then(function(res) {
         var email = 'support@kvh.com';
-        var antModel = $('au model', xmls[0]).text();
-        var antSn = $('au sn', xmls[0]).text();
-        var hubSn = $('acu sn', xmls[0]).text();
-        var dateTime = $('gps dt', xmls[1]).text();
+        var systemInfo = res[0];
+        var eventHistoryLog = res[1];
 
         var subject = encode(
-          'TV-Hub: ' + antModel + ' ' + hubSn +
-          ' Antenna Unit S/N: ' + antSn +
-          ' Date/Time: ' + dateTime
+          'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
+          ' Antenna Unit S/N: ' + systemInfo.antSn +
+          ' Date/Time: ' + systemInfo.dateTime
         );
 
-        var body = encode($('content', xmls[2]).text());
+        var body = encode(eventHistoryLog);
+
         window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
       });
     });
