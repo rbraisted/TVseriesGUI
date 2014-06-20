@@ -7,12 +7,13 @@ $(function() {
 
   $('.\\#prev-btn').click(function() {
     Promise.all(
-      TVRO.getAntennaVersions(),
+      TVRO.getLnbType(),
+      TVRO.getLnbName(),
       TVRO.getService()
-    ).then(function(xmls) {
-      var lnbType = $('lnb polarization', xmls[0]).text();
-      var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
-      var service = xmls[1];
+    ).then(function(res) {
+      var lnbType = res[0];
+      var isTriAmericas = res[1] === 'Tri-Americas Circular';
+      var service = res[2];
 
       if ((lnbType === 'circular') && (service === 'DIRECTV')) {
         if (isTriAmericas) {
