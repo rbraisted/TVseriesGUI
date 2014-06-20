@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ipacu_response>
-	<message name="set_checkswitch_status" error="0" />
+	<message name="get_multiswitch_mode" error="0" />
+	<enable>Y</enable>
 </ipacu_response>

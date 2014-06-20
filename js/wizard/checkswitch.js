@@ -3,13 +3,11 @@
 
   var ConfigView = function(jQ) {
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      TVRO.setCheckswitchMode({
-        enable: 'N'
-      });
+      TVRO.setCheckswitchMode(false);
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-        window.location = '/wizard/system.php#/other-system-config';
+      window.location = '/wizard/system.php#/other-system-config';
     });
 
     return {
@@ -31,9 +29,7 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      TVRO.setCheckswitchMode({
-        enable: 'Y'
-      });
+      TVRO.setCheckswitchMode(true);
     });
   };
 

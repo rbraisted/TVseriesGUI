@@ -8,23 +8,26 @@
 
     var flashCurrentBtn = $('.\\#flash-current-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to flash the current system software?');
-      if (confirmed) TVRO.resetSoftware({ rollback: 'CURRENT' }).then(TVRO.reload);
+      if (confirmed) TVRO.rollbackCurrent().then(TVRO.reload);
     });
     
     var flashAllBtn = $('.\\#flash-all-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to flash all system software?');
-      if (confirmed) TVRO.resetSoftware({ rollback: 'ALL' }).then(TVRO.reload);
+      if (confirmed) TVRO.rollbackAll().then(TVRO.reload);
     });
 
     var downloadBtn = $('.\\#download-btn', jQ).click(function() {
-      TVRO.getLatestSoftware(update).then(function(xml) {
-        var portalUrl = $('url', xml).text();
-        var portalVersion = $('software_version', xml).text() || $('version', xml).text();
+      Promise.all(
+        TVRO.getPortalVersion(update),
+        TVRO.getPortalUrl(update)
+      ).then(function(res) {
+        var version = res[0];
+        var url = res[1];
         if (TVRO.getShellMode()) {
-          TVRO.sendShellCommand('download/' + update + '/' + portalVersion + '/' + portalUrl);
+          TVRO.sendShellCommand('download/' + update + '/' + version + '/' + url);
         } else {
-          window.location = portalUrl;
-          TVRO['setDownloaded' + update + 'UpdateVersion'](portalVersion);
+          window.location = url;
+          TVRO['setDownloaded' + update + 'UpdateVersion'](version);
           setTimeout(function() {
             window.location.reload();
           }, 500);
@@ -80,11 +83,8 @@
 
           var filename = $('file_name', xml).text();
           if (!filename) return alert('An unexpected error occured. Please try again later.');
-          
-          TVRO.installSoftware({
-            install: 'Y',
-            filename: filename
-          }).then(TVRO.reload);
+
+          TVRO.installFilename(filename).then(TVRO.reload);          
         },
         error: function(jqXHR, textStatus, errorThrown) {
           clearInput();
@@ -116,54 +116,54 @@
         $('.\\#install-type', jQ).text(installType);
 
         jQ.toggleClass('$tech-mode', TVRO.getTechMode());
+        jQ.toggleClass('$antenna', antUpdate);
+        jQ.toggleClass('$sat-library', !antUpdate);
 
-        var getSystemVersion = TVRO.getAntennaVersions().then(function(xml) {
-          var connectedAnt = $('au model', xml).text();
-          var connected = update === connectedAnt;
-          var systemVersion = $('current', xml).text();
-
-          jQ.removeClass('$antenna $sat-library $connected $up-to-date $has-downloaded-latest');
-
-          if (antUpdate) {
-            jQ.addClass('$antenna');
+        if (antUpdate) {
+          TVRO.getAntModel().then(function(model) {
+            var connected = (update === model);
             jQ.toggleClass('$connected', connected);
-            $('.\\#system-ver', jQ).text(systemVersion);
-            $('#fileToUpload').attr('accept', 'text/kvh');
-          } else {
-            jQ.addClass('$sat-library $connected');
-            systemVersion = $('sat_list ver', xml).text();
-            $('.\\#system-ver', jQ).text(systemVersion);
-            $('#fileToUpload').attr('accept', 'text/xml');
-          }
+          });
 
-          if (jQ.hasClass('$connected')) return systemVersion;
-          else return NaN;
-        });
+          TVRO.getSystemVersion().then(function(version) {
+            $('.\\#system-ver', jQ).text(version);
+          });
 
-        var getPortalVersion = TVRO.getLatestSoftware(update).then(function(xml) {
-          var portalVersion = $('software_version', xml).text() || $('version', xml).text();
-          $('.\\#portal-ver', jQ).text(portalVersion);
+          $('#fileToUpload').attr('accept', 'text/kvh');
 
+        } else { //  sat lib update
+          TVRO.getSatLibraryVersion().then(function(version) {
+            $('.\\#system-ver', jQ).text(version);
+          });
+
+          jQ.addClass('$connected');
+          $('#fileToUpload').attr('accept', 'text/xml');
+        }
+
+        TVRO.getPortalVersion(update).then(function(version) {
+          $('.\\#portal-ver', jQ).text(version);
           jQ.removeClass('$not-available');
-          return portalVersion;
+          return version;
+
         }, function() {
           jQ.addClass('$not-available');
           return NaN;
         });
 
         Promise.all(
-          getSystemVersion,
-          getPortalVersion
-        ).then(function(versions) {
-          var systemVersion = versions[0];
-          var portalVersion = versions[1];
-          console.log("systemVersion: " + systemVersion);
-          console.log("portalVersion: " + portalVersion);
-          jQ.toggleClass('$up-to-date', systemVersion === portalVersion);
+          TVRO.getAntModel(),
+          TVRO.getSystemVersion(),
+          TVRO.getPortalVersion(update)
+        ).then(function(res) {
+          var model = res[0];
+          var systemVersion = res[1];
+          var portalVersion = res[2];
+          var upToDate = (model === update) && (systemVersion === portalVersion);
+          jQ.toggleClass('$up-to-date', upToDate);
         });
 
         Promise.all(
-          getPortalVersion,
+          TVRO.getPortalVersion(update),
           TVRO.getDeviceVersions()
         ).then(function(versions) {
           var portalVersion = versions[0];

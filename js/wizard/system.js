@@ -96,18 +96,19 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
-          TVRO.getAntennaVersions()
-      ).then(function(xmls) {
-        var antModel = $('au model', xmls[0]).text();
-        var systemIDModel = $('au systemIDModel', xmls[0]).text();
-        var lnbType = $('lnb polarization', xmls[0]).text();
+        TVRO.getAntModel(),
+        TVRO.getLnbType()
+      ).then(function(res) {
+        var model = res[0];
+        var lnbType = res[1];
 
         if ((lnbType === 'linear') &&
-            ((antModel === 'TV1') ||
-                (antModel === 'TV3') || 
-                (systemIDModel === 'TV5') ||
-                (systemIDModel === 'TV6'))){ window.location.hash = '/skew-angle';
-        }else{
+            ((model === 'TV1') ||
+             (model === 'TV3') || 
+             (model === 'TV5') ||
+             (model === 'TV6'))) {
+          window.location.hash = '/skew-angle';
+        } else {
           window.location = '/wizard/satellites.php';
         }
       });   
@@ -138,13 +139,13 @@
     };
 
     var self = TVRO.TableView($('.\\#table-view', jQ))
-    .setValues([config1, config2, config3])
-    .onBuild(function(row, config) {
-      $('.\\#title', row).text(config.title);
-      $('.\\#subtitle', row).text(config.subtitle);
-      $('.\\#image', row).css('background-image', 'url(/images/' + config.bgimage + ')');
-    })
-    .build();
+      .setValues([config1, config2, config3])
+      .onBuild(function(row, config) {
+        $('.\\#title', row).text(config.title);
+        $('.\\#subtitle', row).text(config.subtitle);
+        $('.\\#image', row).css('background-image', 'url(/images/' + config.bgimage + ')');
+      })
+      .build();
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var config = self.getValue();
@@ -183,22 +184,29 @@ $(function() {
 
     if (!hash) {
       Promise.all(
-          TVRO.getAntennaVersions(),
-          TVRO.getSatelliteService()
+        TVRO.getAntModel(),
+        TVRO.getLnbType(),
+        TVRO.getLnbName(),
+        TVRO.getService()
       ).then(function(xmls) {
-        var antModel = $('au model', xmls[0]).text();
-        var systemIDModel = $('au systemIDModel', xmls[0]).text();
-        var lnbType = $('lnb polarization', xmls[0]).text();
-        var service = $('service', xmls[1]).text();
-        var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
+        var model = res[0];
+        var lnbType = res[1];
+        var service = res[3];
+        var isTriAmericas = res[2] === 'Tri-Americas';
 
         if ((lnbType === 'linear') &&
-            ((antModel === 'TV1') ||
-                (antModel === 'TV3') || 
-                (systemIDModel === 'TV5') ||
-                (systemIDModel === 'TV6'))){ window.location.hash = '/skew-angle';}
-        else if (service === 'BELL' || service === 'DISH') window.location.hash = '/other-system-config';
-        else if (lnbType === 'linear' || isTriAmericas) window.location.hash = '/linear-system-config';
+            ((model === 'TV1') ||
+             (model === 'TV3') || 
+             (model === 'TV5') ||
+             (model === 'TV6'))) {
+          window.location.hash = '/skew-angle';
+
+        } else if (service === 'BELL' || service === 'DISH') {
+          window.location.hash = '/other-system-config';
+
+        } else if (lnbType === 'linear' || isTriAmericas) {
+          window.location.hash = '/linear-system-config';
+        }
       });
     }
 

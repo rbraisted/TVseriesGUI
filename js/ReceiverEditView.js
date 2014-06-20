@@ -7,10 +7,8 @@
     var isNew = false;
 
     var wizardBtn = $('.\\#wizard-btn', jQ).click(function() {
-      TVRO.setWizardStatus({
-          status: 'NONE'
-      }).then(function(){window.location = '/wizard';});
-      
+      TVRO.setWizardComplete(false)
+        .then(function() { window.location = '/wizard'; });
     });
 
     //  install receiver
@@ -25,7 +23,7 @@
         if (receiverType === 'Receiver'){
           newReceiver.ip = id;
           newReceiver.type = receiverType;
-        }else {
+        } else {
           newReceiver.sn = id;
           newReceiver.type = receiverType;
         }
@@ -58,10 +56,9 @@
       $('.\\#receiver-id-label', jQ).text(receiverIdType);
     });
 
-    TVRO.getSatelliteService().then(function(xml) {
-      var service = $('service', xml).text();
+    TVRO.getService().then(function(service) {
       $('.\\#directv', jQ).toggle(service === 'DIRECTV');
-      $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');
+      $('.\\#ip-autoswitch', jQ).toggle(service !== 'DIRECTV');      
     });
 
     return self = {

@@ -464,4 +464,150 @@
     });
   };
 
+  TVRO.getSleepMode = function() {
+    return TVRO.getAntennaConfig().then(function(xml) {
+      return $('sleep', xml).text() === 'ON';
+    });
+  };
+
+  TVRO.setSleepMode = function(arg) {
+    return TVRO.setAntennaConfig({
+      sleep: arg ? 'ON' : 'OFF'
+    });
+  };
+
+  TVRO.getSidelobeMode = function() {
+    return TVRO.getAntennaConfig().then(function(xml) {
+      return $('sidelobe', xml).text() === 'ON';
+    });
+  };
+
+  TVRO.setSidelobeMode = function(arg) {
+    return TVRO.setAntennaConfig({
+      sidelobe: arg ? 'ON' : 'OFF'
+    });
+  };
+
+  //  for now, save these
+  //  basically remap these from WebService.js
+  var getMultiswitchMode = TVRO.getMultiswitchMode;
+  var setMultiswitchMode = TVRO.setMultiswitchMode;
+
+  TVRO.getMultiswitchMode = function() {
+    return getMultiswitchMode().then(function(xml) {
+      return $('enable', xml).text() === 'Y';
+    });
+  };
+
+  TVRO.setMultiswitchMode = function(arg) {
+    return setMultiswitchMode({
+      enable: arg ? 'Y' : 'N'
+    });
+  };
+
+  TVRO.getLnbType = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('lnb polarization', xml).text();
+    });
+  };
+
+  TVRO.getLnbName = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('lnb name', xml).text();
+    });
+  };
+
+  TVRO.getAntModel = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('au model', xml).text();
+    });
+  };
+
+  TVRO.getService = function() {
+    return TVRO.getSatelliteService().then(function(xml) {
+      return $('service', xml).text();
+    });
+  };
+
+  //  for now, map these
+  var getCheckswitchMode = TVRO.getCheckswitchMode;
+  var setCheckswitchMode = TVRO.setCheckswitchMode;
+
+  TVRO.getCheckswitchStatus = function() {
+    return getCheckswitchMode().then(function(xml) {
+      return $('status', xml).text();
+    });
+  };
+
+  TVRO.getCheckswitchMode = function() {
+    return getCheckswitchMode().then(function(xml) {
+      return $('enable', xml).text();
+    });
+  };
+
+  TVRO.setCheckswitchMode = function(arg) {
+    return setCheckswitchMode({
+      enable: arg ? 'Y' : 'N'
+    });
+  };
+
+  TVRO.getWizardComplete = function() {
+    return TVRO.getWizardStatus().then(function(xml) {
+      return $('status', xml).text() === 'SUCCESS';
+    });
+  };
+
+  TVRO.setWizardComplete = function(arg) {
+    return TVRO.setWizardStatus({
+      status: arg ? 'NONE' : 'SUCCESS'
+    });
+  };
+
+  TVRO.rebootAnt = function() {
+    return TVRO.reboot({ sys: 'ANT' });
+  };
+
+  TVRO.rebootAll = function() {
+    return TVRO.reboot({ sys: 'ALL' });
+  };
+
+  TVRO.getSystemVersion = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('current', xml).text();
+    });
+  };
+
+  TVRO.getSatLibraryVersion = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('sat_list ver', xml).text();
+    });
+  };
+
+  TVRO.rollbackCurrent = function() {
+    return TVRO.resetSoftware({ rollback: 'CURRENT' });
+  };
+
+  TVRO.rollbackAll = function() {
+    return TVRO.resetSoftware({ rollback: 'ALL' });
+  };
+
+  TVRO.installFilename = function(filename) {
+    return TVRO.installSoftware({
+      install: 'Y',
+      filename: filename
+    });
+  };
+
+  TVRO.getPortalVersion = function(arg) {
+    return TVRO.getLatestSoftware(arg).then(function(xml) {
+      return $('software_version', xml).text() || $('version', xml).text();
+    });
+  };
+
+  TVRO.getPortalUrl = function(arg) {
+    return TVRO.getLatestSoftware(arg).then(function(xml) {
+      return $('url', xml).text();
+    });
+  };
+
 }(window.TVRO);
