@@ -50,9 +50,8 @@
       //  getProductRegistration - if installer info exists,
       //  go to registration.php#/installer-info
       //  otherwise registration.php#/diy-vessel-info
-      TVRO.getProductRegistration().then(function(xml) {
-        var company = $('dealer company', xml).text();
-        if (company) window.location = '/wizard/registration.php#/installer-info';
+      TVRO.getInstallerInfo().then(function(installerInfo) {
+        if (installerInfo.company) window.location = '/wizard/registration.php#/installer-info';
         else window.location = '/wizard/registration.php#/diy-vessel-info';
       });
     });

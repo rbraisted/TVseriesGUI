@@ -434,7 +434,7 @@
 
   TVRO.setInstallerInfo = setInstallerInfo;
   TVRO.getInstallerInfo = function() {
-    if (cache['get_installer_info'] && !recache) {
+    if (cache['get_installer_info']) {
       return cache['get_installer_info'];
     } else {
       //  pull from the box first, cookies if they are not set

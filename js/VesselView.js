@@ -51,9 +51,8 @@
         jQ.toggleClass('$vessel', antModel !== 'RV1');
       });
 
-      TVRO.getProductRegistration().then(function(xml) {
-        var vesselName = $('vessel_name', xml).text();
-        $('.\\#vessel-name', jQ).text(vesselName);
+      TVRO.getVesselInfo().then(function(vesselInfo) {
+        $('.\\#vessel-name', jQ).text(vesselInfo.name);
       });
     };
 

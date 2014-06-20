@@ -38,7 +38,7 @@ $(function() {
   });
 
   TVRO.onHashChange(function(hash) {
-    if (!hash) {	
+    if (!hash) {
       TVRO.getService().then(function(service) {
         if (service === 'DIRECTV') window.location.hash = '/directv-activation';
         else if (service === 'DISH') window.location.hash = '/dish-activation';

@@ -635,4 +635,21 @@
     });
   };
 
+  TVRO.getVesselInfo = function() {
+    return TVRO.getProductRegistration().then(function(xml) {
+      var name = $('product vessel_name', xml).text();
+      var owner = $('user name', xml).text();
+      var contact = $('user contact', xml).text();
+      var phone = $('user phone', xml).text();
+      var email = $('user email', xml).text();
+      return {
+        name: name,
+        owner: owner,
+        contact: contact,
+        phone: phone,
+        email: email
+      };
+    });
+  };
+
 }(window.TVRO);
