@@ -87,7 +87,7 @@ $(document).ready(function(e) {
       });
       $(xml).find('antenna').each(function() {
         message+='ANTENNA\n';
-        message+='  State:	'+$(this).find('state').text()+'\n';
+        message+='  State:  '+$(this).find('state').text()+'\n';
         message+='  RF\n';
         $(this).find('rf').each(function() {
           message+='    SNR:  '+$(this).find('snr').text()+'\n';
@@ -127,23 +127,23 @@ $(document).ready(function(e) {
         message+='  Enable: '+$(this).find('enable').text()+'\n';
         $(this).find('master').each(function() {
           message+='  MASTER\n';
-          message+='    SN:	'+$(this).find('sn').text()+'\n';
-          message+='    Sat:	'+$(this).find('sat').text()+'\n\n';
+          message+='    SN: '+$(this).find('sn').text()+'\n';
+          message+='    Sat:    '+$(this).find('sat').text()+'\n\n';
         });
       });
       $(xml).find('heading').each(function() {
         message+='HEADING\n';
-        message+='Status:	'+$(this).find('status').text()+'\n';
-        message+='True:		'+$(this).find('true').text()+'\n';
-        message+='Mag:		'+$(this).find('mag').text()+'\n';
-        message+='DT:		'+$(this).find('dt').text()+'\n\n';
+        message+='Status:   '+$(this).find('status').text()+'\n';
+        message+='True:     '+$(this).find('true').text()+'\n';
+        message+='Mag:      '+$(this).find('mag').text()+'\n';
+        message+='DT:       '+$(this).find('dt').text()+'\n\n';
       });
       $('#response').val( message +'\n');
       return false;
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function antenna_versions(xml)
   {
@@ -151,17 +151,17 @@ $(document).ready(function(e) {
     if('0'==error){
       var message='';
       message+='ANTENNA VERSIONS\n\n';
-      message+='System:		'+$(xml).find('system').text()+'\n';
+      message+='System:     '+$(xml).find('system').text()+'\n';
       $(xml).find('part').each(function () {
         var parentTag=$(this).parent().get(0).tagName;
         var partData=$(this).text();
         if ('ipacu_response' ==parentTag) {
-          message+='Part#:		'+partData+'\n';
+          message+='Part#:      '+partData+'\n';
           parentTag='';
         }
       });
-      message+='Current Ver:	'+$(xml).find('current').text()+'\n';
-      message+='Previous Ver:	'+$(xml).find('previous').text()+'\n\n';
+      message+='Current Ver:    '+$(xml).find('current').text()+'\n';
+      message+='Previous Ver:   '+$(xml).find('previous').text()+'\n\n';
       $(xml).find('acu').each(function() {
         message+='ACU\n';
         message+='  Model:  '+$(this).find('model').text()+'\n';
@@ -180,9 +180,9 @@ $(document).ready(function(e) {
       });
       $(xml).find('rf').each(function() {
         message+='RF\n';
-        message+='  Part:	'+$(this).find('part').text()+'\n';
-        message+='  Rev:	'+$(this).find('rev').text()+'\n';
-        message+='  Ver:	'+$(this).find('ver').text()+'\n\n';
+        message+='  Part:   '+$(this).find('part').text()+'\n';
+        message+='  Rev:    '+$(this).find('rev').text()+'\n';
+        message+='  Ver:    '+$(this).find('ver').text()+'\n\n';
       });
       $(xml).find('az_el').each(function() {
         message+='AZ EL\n';
@@ -224,9 +224,9 @@ $(document).ready(function(e) {
       });
       $(xml).find('sat_list').each(function() {
         message+='SAT LIST\n';
-        message+='  Part:	'+$(this).find('part').text()+'\n';
-        message+='  Rev:	'+$(this).find('rev').text()+'\n';
-        message+='  Ver:	'+$(this).find('ver').text()+'\n\n';
+        message+='  Part:   '+$(this).find('part').text()+'\n';
+        message+='  Rev:    '+$(this).find('rev').text()+'\n';
+        message+='  Ver:    '+$(this).find('ver').text()+'\n\n';
       });
       $(xml).find('fpga').each(function() {
         message+='FPGA\n';
@@ -252,7 +252,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function get_antenna_config(xml)
   {
@@ -261,8 +261,8 @@ $(document).ready(function(e) {
     if('0'==error){
       var message='';
       message+='GET ANTENNA CONFIG\n\n';
-      message+='Sidelobe:	'+$(xml).find('sidelobe').text()+'\n';
-      message+='Sleep:		'+$(xml).find('sleep').text()+'\n';
+      message+='Sidelobe:   '+$(xml).find('sidelobe').text()+'\n';
+      message+='Sleep:      '+$(xml).find('sleep').text()+'\n';
       if('set_antenna_config'==$('#chooseSetting').val()){
         $('#fdinOnOff1').val($(xml).find('sidelobe').text());
         $('#fdinOnOff2').val($(xml).find('sleep').text());
@@ -272,7 +272,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function get_satellite_list(xml)
   {
@@ -302,7 +302,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function get_satellite_params_header(xml)
   {
@@ -331,10 +331,10 @@ $(document).ready(function(e) {
     if('0'==error){
       var message='';
       message+='SERIAL LOG STATUS\n\n';
-      message+='DT:		'+$(xml).find('dt').text()+'\n';
-      message+='Percent:	'+$(xml).find('percent').text()+'\n';
-      message+='Max:		'+$(xml).find('max').text()+'\n';
-      message+='Current:	'+$(xml).find('current').text()+'\n';
+      message+='DT:     '+$(xml).find('dt').text()+'\n';
+      message+='Percent:    '+$(xml).find('percent').text()+'\n';
+      message+='Max:        '+$(xml).find('max').text()+'\n';
+      message+='Current:    '+$(xml).find('current').text()+'\n';
 
       $('#response').val( message +'\n');
       return false;
@@ -391,14 +391,14 @@ $(document).ready(function(e) {
     if('0'==error){
       var message='';
       message+='GET NMEA HEADING\n\n';
-      message+='Status:	'+$(xml).find('status').text()+'\n';
-      message+='True:		'+$(xml).find('true').text()+'\n';
-      message+='Mag:		'+$(xml).find('mag').text()+'\n';
-      message+='Sensor:	'+$(xml).find('sensor').text()+'\n';
-      message+='Dev:		'+$(xml).find('dev').text()+'\n';
-      message+='Var:		'+$(xml).find('var').text()+'\n';
-      message+='DT:		'+$(xml).find('dt').text()+'\n';
-      message+='NMEA:		'+$(xml).find('nmea').text()+'\n\n';
+      message+='Status: '+$(xml).find('status').text()+'\n';
+      message+='True:       '+$(xml).find('true').text()+'\n';
+      message+='Mag:        '+$(xml).find('mag').text()+'\n';
+      message+='Sensor: '+$(xml).find('sensor').text()+'\n';
+      message+='Dev:        '+$(xml).find('dev').text()+'\n';
+      message+='Var:        '+$(xml).find('var').text()+'\n';
+      message+='DT:     '+$(xml).find('dt').text()+'\n';
+      message+='NMEA:       '+$(xml).find('nmea').text()+'\n\n';
       $('#response').val( message +'\n');
       return false;
     }else{
@@ -574,6 +574,18 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function set_lnb(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
   function power(xml)
   {
     var error=$(xml).find('message').attr('error');
@@ -612,7 +624,7 @@ $(document).ready(function(e) {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message ='OPHOURS\n\n';
-      message+='Hours:	'+$(xml).find('hours').text()+'\n';
+      message+='Hours:  '+$(xml).find('hours').text()+'\n';
       $('#response').val( message +'\n');
       return false;
     }else{
@@ -625,8 +637,8 @@ $(document).ready(function(e) {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message ='GET MESSAGE PROTOCOL VERSION\n\n';
-      message+='Version:	'+$(xml).find('version').text()+'\n';
-      message+='System:		'+$(xml).find('system').text()+'\n';
+      message+='Version:    '+$(xml).find('version').text()+'\n';
+      message+='System:     '+$(xml).find('system').text()+'\n';
       $('#response').val( message +'\n');
       return false;
     }else{
@@ -639,9 +651,9 @@ $(document).ready(function(e) {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message ='GET VESSEL CONFIG\n\n';
-      message+='Name:	'+$(xml).find('name').text()+'\n';
-      message+='Feet:	'+$(xml).find('feet').text()+'\n';
-      message+='Mount:	'+$(xml).find('antenna_mount').text()+'\n';
+      message+='Name:   '+$(xml).find('name').text()+'\n';
+      message+='Feet:   '+$(xml).find('feet').text()+'\n';
+      message+='Mount:  '+$(xml).find('antenna_mount').text()+'\n';
       if('set_vessel_config'==$('#chooseSetting').val()){
         $('#fdin1').val($(xml).find('name').text());
         $('#fdin2').val($(xml).find('feet').text());
@@ -1029,8 +1041,8 @@ $(document).ready(function(e) {
       $(xml).find('active_list').each(function() {
         $(this).find('autoswitch').each(function() {
           message+='AUTOSWITCH\n';
-          message+='SN:	'+$(this).find('sn').text()+'\n';
-          message+='Name:	'+$(this).find('name').text()+'\n\n';
+          message+='SN: '+$(this).find('sn').text()+'\n';
+          message+='Name:   '+$(this).find('name').text()+'\n\n';
         });
         $(this).find('receiver').each(function() {
           message+='RECEIVER\n';
@@ -1092,7 +1104,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function get_autoswitch_configured_names(xml)
   {
@@ -1121,7 +1133,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function get_satellite_service(xml)
   {
@@ -1135,7 +1147,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function get_checkswitch_mode(xml)
   {
@@ -1150,9 +1162,29 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
-
+  
+  function get_lnb_list(xml)
+  {
+    //var lnbArray[];
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='';
+      message+='GET LNB LIST\n\n';
+      $(xml).find('lnb_list').each(function() {
+        $(this).find('name').each(function() {
+          message+='LNB: '+$(this).text()+'\n';
+        });
+      });
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
+  
   get_details = function(xml){
     var xmlReq='<ipacu_request><message name="antenna_status" /></ipacu_request>';
     $.ajax({
@@ -1575,6 +1607,11 @@ $(document).ready(function(e) {
       $('#field_AntSatID').removeClass('hideField');
       $('#fdASID').html('AntSatID');
       break;
+    case 'set_lnb':
+      clearWindow();
+      $('#field_Lnb').removeClass('hideField');
+      $('#fdLnb').html('LNB');
+      break;
     case 'set_satellite_identity':
       clearWindow();
       $('#field_AntSatID').removeClass('hideField');
@@ -1751,7 +1788,7 @@ $(document).ready(function(e) {
     if(''==$('#chooseSetting').val()){ 
       $('#field_SendRequest').addClass('hideField');
     }else{
-      if('set_satellite_identity' != $('#chooseSetting').val() && 'set_satellite_params' != $('#chooseSetting').val()){
+      if('set_satellite_identity' != $('#chooseSetting').val() || 'set_satellite_params' != $('#chooseSetting').val()){
         $('#field_SendRequest').removeClass('hideField');
       }
     }
@@ -1883,7 +1920,7 @@ $(document).ready(function(e) {
     }else{
       $('#response').val('ERROR: '+returnError(error)+'\n');
       return false;
-    }	
+    }   
   }
   function set_satellite_params(xml)
   {
@@ -2532,6 +2569,12 @@ $(document).ready(function(e) {
 
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
+    case 'set_lnb':
+      var message='';
+      message+='<name>'+$('#fdinLnb').val()+'</name>';
+
+      SendGetCommand2($('#chooseSetting').val(),message);
+      break;
 
     default:
 
@@ -2732,6 +2775,7 @@ $(document).ready(function(e) {
     $('#field_10').addClass('hideField');
     $('#field_upload').addClass('hideField');
     $('#field_AntSatID').addClass('hideField');
+    $('#field_Lnb').addClass('hideField');
     $('#field_Xponder').addClass('hideField');
     $('#field_Polarity').addClass('hideField');
     $('#field_Band').addClass('hideField');

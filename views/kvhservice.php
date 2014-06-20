@@ -50,9 +50,10 @@
 			<input type="button" id="button26" value="get_autoswitch_configured_names" onclick="SendGetCommand('get_autoswitch_configured_names')" style="width:250px" />
 			<input type="button" id="button27" value="get_satellite_service" onclick="SendGetCommand('get_satellite_service')" style="width:250px" />
 			<input type="button" id="button28" value="get_checkswitch_mode" onclick="SendGetCommand('get_checkswitch_mode')" style="width:250px" />
-            <input type="button" id="button29" value="get_details" onclick="get_details()" style="width:250px" />
-            <input type="button" id="button30" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:250px" />
-            <input type="button" id="button31" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:250px" />
+			<input type="button" id="button29" value="get_lnb_list" onclick="SendGetCommand('get_lnb_list')" style="width:250px" />
+			<input type="button" id="button30" value="get_details" onclick="get_details()" style="width:250px" />
+            <input type="button" id="button31" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:250px" />
+            <input type="button" id="button32" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:250px" />
         </td>
         <td valign="top" width="100%">
             <textarea name="response" id="response" rows="40" style=" height:auto; height:100%; width:95%; font-family:monospace,courier,courier new"></textarea>
@@ -72,7 +73,6 @@
                 <option value="set_gps">set_gps</option>
                 <option value="reboot">reboot</option>
                 <option value="reset_software">reset_software</option>
-				<option value="reset_user_password">reset_user_password</option>
                 <option value="set_vessel_config">set_vessel_config</option>
                 <option value="set_eth">set_eth</option>
                 <option value="set_eth_factory">set_eth_factory</option>
@@ -86,6 +86,7 @@
 				<option value="set_autoswitch_master">set_autoswitch_master</option>
 				<option value="set_satellite_service">set_satellite_service</option>
 				<option value="set_checkswitch_mode">set_checkswitch_mode</option>
+				<option value="set_lnb">set_lnb</option>
 
                 <!--option value="set_config_file">set_config_file</option-->
             </select>
@@ -99,6 +100,22 @@
                     	<select id="fdinAntSatID" style="width:175px;text-align:left;font-family:monospace,courier,courier new">
                         	<option value="">--- Choose One ---</option>
                             <?php if(isset($satList)) echo $satList ?>
+                        </select>
+                    </td>
+                </tr>
+            	<tr id="field_Lnb" class="hideField">
+                	<td id="fdLnb" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left" style="width:225px">
+                    	<select id="fdinLnb" style="width:175px;text-align:left;font-family:monospace,courier,courier new">
+                        	<option value="">--- Choose One ---</option>
+                        	<option value="19-0815 Circular">19-0815 Circular</option>
+                        	<option value="19-0577 Tri-Americas Circular">19-0577 Tri-Americas Circular</option>
+                        	<option value="19-0805 DIRECTV L.A. Circular">19-0805 DIRECTV L.A. Circular</option>
+                        	<option value="19-0444 Linear Universal Single">19-0444 Linear Universal Single</option>
+                        	<option value="19-0298 Linear Universal Dual">19-0298 Linear Universal Dual</option>
+                        	<option value="19-0299 Linear Universal Quad">19-0299 Linear Universal Quad</option>
+                        	<option value="19-0863 Asia Dual Linear">19-0863 Asia Dual Linear</option>
+                        	<option value="19-0864 Aust Dual Linear">19-0864 Aust Dual Linear</option>
                         </select>
                     </td>
                 </tr>
