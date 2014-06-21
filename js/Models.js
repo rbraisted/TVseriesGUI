@@ -115,8 +115,8 @@
 
   TVRO.getInstalledGroup = function() {
     return Promise.all(
-      TVRO.getAutoswitchStatus(1, 1), // don't cache, force new call
-      TVRO.getSatelliteGroups(1, 1)
+      TVRO.getAutoswitchStatus(), // don't cache, force new call
+      TVRO.getSatelliteGroups()
     ).then(function(xmls) {
       //  but if it is enabled, return the correct group
       var installedGroupName = $('satellite_group', xmls[0]).text();
@@ -142,7 +142,7 @@
 
       timeout = setTimeout(function() {
         interval = setInterval(function() {
-          TVRO.getAntennaStatus(1,1).then(function(xml) {
+          TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
             $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
@@ -231,7 +231,7 @@
 
       timeout = setTimeout(function() {
         interval = setInterval(function() {
-          TVRO.getAntennaStatus(1,1).then(function(xml) {
+          TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
             $('.\\#ant_status').text("The TV-Hub is Installing the satellite . Status: " + state);
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
@@ -268,9 +268,9 @@
 
   TVRO.getReceivers = function() {
     return Promise.all(
-        TVRO.getAutoswitchStatus(1, 1), //  don't cache so that we can get active status
-        TVRO.getAutoswitchConfiguredNames(1, 1), //  same here
-        TVRO.getSatelliteService(1,1),
+        TVRO.getAutoswitchStatus(), //  don't cache so that we can get active status
+        TVRO.getAutoswitchConfiguredNames(), //  same here
+        TVRO.getSatelliteService(),
         TVRO.getReceiverType()
     ).then(function(xmls) {
       var service = $('service', xmls[2]).text();
@@ -333,7 +333,7 @@
   };
 
   TVRO.getMasterReceiver = function() {
-    return TVRO.getAutoswitchStatus(1, 1).then(function(xml) {
+    return TVRO.getAutoswitchStatus().then(function(xml) {
       var master = Receiver($('master', xml));
       master.active = true;
       return master;

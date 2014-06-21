@@ -23,7 +23,7 @@
   "use strict";
 
   var TVRO = {};
-  TVRO.debug = 0;
+  TVRO.debug = 1;
 
   //  for formatting longitude/latitude for display
   //  -122.05 becomes 122.05W, etc

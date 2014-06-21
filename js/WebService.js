@@ -150,12 +150,33 @@
   }, 3);
 
   var cache = {};
+  var timeouts = {};
 
-  var get = function(msg) {
+  //  so instead, well do this thing where
+  //  once something has been cached
+  //  we set a timer
+  //  and clear it after x seconds
+  //  but sets should still do the get for the things they do???
+
+  var get = function(msg, expiresAfter) {
+    if (!expiresAfter) {
+      //  defaults to 30 seconds
+      expiresAfter = 30000;
+    }
+
   	return function(params, recache) {
-      recache = true;
   		if (cache[msg] && !recache) return cache[msg];
-  		else return cache[msg] = Promise(request(msg, params));	
+  		else {
+        var cached = Promise(request(msg, params));
+        cache[msg] = cached;
+        cached.then(function() {
+          clearTimeout(timeouts[msg]);
+          timeouts[msg] = setTimeout(function() {
+            cache[msg] = undefined;  
+          }, expiresAfter);
+        });
+        return cached;
+      }
   	}
   };
 
@@ -195,10 +216,11 @@
   TVRO.getSatelliteService = get('get_satellite_service');
 	  
 	TVRO.setSatelliteService = set('set_satellite_service', [
-		get('get_satellite_service')
+		get('get_satellite_service'),
+    get('get_autoswitch_status')
   ]);
 
-	TVRO.getAntennaStatus = get('antenna_status');
+	TVRO.getAntennaStatus = get('antenna_status', 3000);
 
 	TVRO.getAntennaVersions = get('antenna_versions');
 
@@ -223,7 +245,7 @@
 
 	TVRO.getSkew = get('get_skew');
 
-	TVRO.getSatelliteParams = get('get_satellite_params');
+	TVRO.getSatelliteParams = get('get_satellite_params', 250);
 
 	TVRO.setSatelliteParams = set('set_satellite_params');
 
@@ -231,11 +253,11 @@
 
 	TVRO.startSerialLog = set('start_serial_log');
 
-	TVRO.serialLogStatus = get('serial_log_status');
+	TVRO.serialLogStatus = get('serial_log_status', 1000);
 
 	TVRO.setGps = set('set_gps');
 
-	TVRO.getGps = get('get_gps');
+	TVRO.getGps = get('get_gps', 3000);
 
 	TVRO.getGpsCities = get('get_gps_cities');
 
@@ -289,17 +311,17 @@
 		get('get_wlan')
 	]);
 
-	TVRO.getSerialLog = get('get_serial_log');
+	TVRO.getSerialLog = get('get_serial_log', 3000);
 
-	TVRO.getEventHistoryLog = get('get_event_history_log');
+	TVRO.getEventHistoryLog = get('get_event_history_log', 3000);
 
-	TVRO.getRecentEventHistory = get('get_recent_event_history');
+	TVRO.getRecentEventHistory = get('get_recent_event_history', 3000);
 
-	TVRO.getEventHistoryCount = get('get_event_history_count');
+	TVRO.getEventHistoryCount = get('get_event_history_count', 3000);
 
 	TVRO.installSoftware = set('install_software');
 
-	TVRO.getSatelliteGroups = get('get_satellite_groups');
+	TVRO.getSatelliteGroups = get('get_satellite_groups', 3000);
 
 	TVRO.setSatelliteGroup = set('set_satellite_group', [
 		get('antenna_status'),
@@ -307,14 +329,15 @@
 		get('get_autoswitch_status')
 	]);
 
-	TVRO.getAutoswitchStatus = get('get_autoswitch_status'),
+	TVRO.getAutoswitchStatus = get('get_autoswitch_status', 3000),
 
 	TVRO.setAutoswitchService = set('set_autoswitch_service', [
 		get('antenna_status'),
-		get('get_autoswitch_status')
+		get('get_autoswitch_status'),
+    get('get_satellite_service')
 	]);
 
-	TVRO.getAutoswitchConfiguredNames = get('get_autoswitch_configured_names'),
+	TVRO.getAutoswitchConfiguredNames = get('get_autoswitch_configured_names', 3000),
 
 	TVRO.setAutoswitchConfiguredNames = set('set_autoswitch_configured_names', [
 		get('antenna_status'),
@@ -327,9 +350,11 @@
 		get('get_autoswitch_status')
 	]);
 
-	TVRO.getCheckswitchMode = get('get_checkswitch_mode');
+	TVRO.getCheckswitchMode = get('get_checkswitch_mode', 3000);
 
-	TVRO.setCheckswitchMode = set('set_checkswitch_mode');
+	TVRO.setCheckswitchMode = set('set_checkswitch_mode', [
+    get('get_checkswitch_mode')
+  ]);
 
 	TVRO.getMultiswitchMode = get('get_multiswitch_mode');
 
@@ -349,7 +374,7 @@
     get('get_wizard_status')
   ]);
 
-	TVRO.getCallhome = get('get_callhome');
+	TVRO.getCallhome = get('get_callhome', 1000);
 
 	TVRO.setCallhome = set('set_callhome', [
 		get('get_callhome')
@@ -462,13 +487,5 @@
       return cache['get_installer_info'] = Promise.denodeify(getInstallerInfo)();
     }
   };
-
-
-  //  it's easier to just keep getting antenna_status here
-  //  we need it to be updated on all the main gui pages
-  setInterval(function() {
-    //  it's call(params, forceRecache)
-    TVRO.getAntennaStatus({}, 1);
-  }, 3000);
 
 }(window.TVRO);

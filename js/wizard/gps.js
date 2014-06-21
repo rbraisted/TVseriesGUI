@@ -101,7 +101,7 @@
       }).then(function(){
         // Delay so system has time to respond.
         setTimeout(function(){
-          TVRO.getGps(1,1).then(function(xml) {
+          TVRO.getGps().then(function(xml) {
             var latitude = $('lat', xml).text();
             var longitude = $('lon', xml).text();
             var array = [latitude,longitude];
@@ -323,8 +323,7 @@
 
               setTimeout(function() {
                 var interval = setInterval(function() {
-                  TVRO.getAntennaStatus(1,1).then(function(xml) {
-                    var state =  $('antenna state', xml).text();
+                  TVRO.getAntState().then(function(state) {
                     $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
                     if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                       clearInterval(interval);
