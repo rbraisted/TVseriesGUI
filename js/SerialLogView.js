@@ -34,7 +34,7 @@
 
       //  check the current log progress
       TVRO.getSerialLogProgress().then(function(progress) {
-        if (percent < 0.01) TVRO.startSerialLog({ restart: 'N' }).then(function() {
+        if (progress < 0.01) TVRO.startSerialLog({ restart: 'N' }).then(function() {
           setTimeout(reload,1000);
         });
 
