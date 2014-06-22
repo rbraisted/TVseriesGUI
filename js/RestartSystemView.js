@@ -6,7 +6,7 @@
 
     var antennaBtn = $('.\\#antenna-btn', jQ).click(function() {
       var confirmed = confirm('Are you sure you want to restart the antenna?');
-      if (confirmed) TVRO.rebootAntenna();
+      if (confirmed) TVRO.rebootAnt();
     });
 
     var allBtn = $('.\\#all-btn', jQ).click(function() {
