@@ -10,7 +10,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
       var wizardComplete = $('status', xml).text() === 'SUCCESS';
       if (wizardComplete) window.location = '/home.php';
       else window.location = '/wizard';
-    });
+    },function(error){
+      alert("Error: get_wizard_status returned " + error);
+      window.location = '/home.php';
+      });
   });
 </script>
 
