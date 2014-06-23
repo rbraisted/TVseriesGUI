@@ -9,7 +9,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     TVRO.getWizardComplete().then(function(wizardComplete) {
       if (wizardComplete) window.location = '/home.php';
       else window.location = '/wizard';
-    });
+    },function(error){
+      alert("Error: get_wizard_status returned " + error);
+      window.location = '/home.php';
+      });
   });
 </script>
 
