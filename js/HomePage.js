@@ -57,7 +57,7 @@ $(function() {
     $('.\\#master-view').toggle(groupMode);
     $('.\\#manual-installed-group-view').toggle(groupMode);
     $('.\\#automatic-installed-group-view').toggle(groupMode);
-    setInterval(reload, 3000);
+    setInterval(reload, 1000);
     reload();
   });
 });
