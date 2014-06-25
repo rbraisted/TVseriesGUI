@@ -949,7 +949,7 @@ a {
       background-color: #243774; }
     .region-table .table-row, .group-table .table-row {
       background-image: url(/images/right-icon-blue.svg);
-      background-position: right 15px center;
+      background-position: 98% 50%;
       background-repeat: no-repeat;
       background-size: 7px 21px;
       min-height: 7px;
@@ -1328,7 +1328,7 @@ a {
   .group-edit.group-edit .slot,
   .group-info.group-edit .slot {
     background-image: url(/images/right-icon-blue.svg);
-    background-position: right 15px center;
+    background-position: 98% 50%;
     background-repeat: no-repeat;
     background-size: 7px 21px;
     min-height: 7px;
@@ -1406,7 +1406,7 @@ a {
     width: calc(50% + 16px); }
   .group-edit.group-edit .slot {
     background-image: url(/images/right-icon-blue.svg);
-    background-position: right 15px center;
+    background-position: 98% 50%;
     background-repeat: no-repeat;
     background-size: 7px 21px;
     min-height: 7px;

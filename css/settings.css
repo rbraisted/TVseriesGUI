@@ -938,11 +938,11 @@ a {
       background-color: #243774; }
     .menu-table .table-row {
       background-image: url(/images/right-icon-blue.svg);
-      background-position: right 15px center;
+      background-position: 96% 50%;
       background-repeat: no-repeat;
-      background-size: 7px 21px;
+      background-size: 7px auto;
       min-height: 7px;
-      min-width: 21px; } }
+      min-width: auto; } }
 
 .label,
 .value {

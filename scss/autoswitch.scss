@@ -46,7 +46,7 @@
     @include grey-table;
 
     .table-row {
-      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+      @include bgimg('right-icon-blue', 98% 50%, $fine-icon);
       cursor: pointer;
 
       .label,
