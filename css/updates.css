@@ -951,9 +951,9 @@ a {
       background-image: url(/images/right-icon-blue.svg);
       background-position: 98% 50%;
       background-repeat: no-repeat;
-      background-size: 7px 21px;
+      background-size: 7px auto;
       min-height: 7px;
-      min-width: 21px; } }
+      min-width: auto; } }
   .menu-table .update-label {
     text-shadow: 0 1px #000;
     display: inline; }

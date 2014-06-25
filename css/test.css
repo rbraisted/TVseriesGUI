@@ -1507,9 +1507,9 @@ body[class=''] .\#service-provider-view,
       background-image: url(/images/right-icon-blue.svg);
       background-position: 98% 50%;
       background-repeat: no-repeat;
-      background-size: 7px 21px;
+      background-size: 7px auto;
       min-height: 7px;
-      min-width: 21px; } }
+      min-width: auto; } }
 
 .group-table .table-row .install-btn {
   background-image: url(/images/radio-unchecked.svg);
@@ -1930,9 +1930,9 @@ body[class=''] .\#service-provider-view,
     background-image: url(/images/right-icon-blue.svg);
     background-position: 98% 50%;
     background-repeat: no-repeat;
-    background-size: 7px 21px;
+    background-size: 7px auto;
     min-height: 7px;
-    min-width: 21px;
+    min-width: auto;
     cursor: pointer; } }
 .group-edit .slot.\$n\/a .install-btn, .group-edit .slot.\$n\/a .info-btn,
 .group-info .slot.\$n\/a .install-btn,
@@ -2008,9 +2008,9 @@ body[class=''] .\#service-provider-view,
     background-image: url(/images/right-icon-blue.svg);
     background-position: 98% 50%;
     background-repeat: no-repeat;
-    background-size: 7px 21px;
+    background-size: 7px auto;
     min-height: 7px;
-    min-width: 21px;
+    min-width: auto;
     cursor: pointer; } }
 
 .group-info .block-btn.install-btn,
@@ -2396,9 +2396,9 @@ body[class=""] .\#skew-angle-view,
       background-image: url(/images/right-icon-blue.svg);
       background-position: 98% 50%;
       background-repeat: no-repeat;
-      background-size: 7px 21px;
+      background-size: 7px auto;
       min-height: 7px;
-      min-width: 21px;
+      min-width: auto;
       cursor: pointer; }
       .receiver-table .table-row .label,
       .receiver-table .table-row .status-col,

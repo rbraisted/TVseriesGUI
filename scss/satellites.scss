@@ -20,7 +20,7 @@
     }
 
     .table-row {
-      @include bgimg('right-icon-blue', 98% 50%, $fine-icon);
+      @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
     }
   }
 }
@@ -351,7 +351,7 @@
       }
 
       .slot {
-        @include bgimg('right-icon-blue', 98% 50%, $fine-icon);
+        @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
         cursor: pointer;
       }
     }
@@ -416,7 +416,7 @@
       }
 
       .slot {
-        @include bgimg('right-icon-blue', 98% 50%, $fine-icon);
+        @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
         cursor: pointer;
       }
     }
