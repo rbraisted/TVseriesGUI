@@ -653,7 +653,7 @@ body[class=''] .\#service-provider-view,
     }
 
     .table-row {
-      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+      @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
     }
   }
 }
@@ -1029,7 +1029,7 @@ body[class=''] .\#service-provider-view,
       }
 
       .slot {
-        @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+        @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
         cursor: pointer;
       }
     }
@@ -1090,7 +1090,7 @@ body[class=''] .\#service-provider-view,
       }
 
       .slot {
-        @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+        @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
         cursor: pointer;
       }
     }
@@ -1509,7 +1509,7 @@ body[class=""] .\#skew-angle-view,
     @include grey-table;
 
     .table-row {
-      @include bgimg('right-icon-blue', right 15px center, $fine-icon);
+      @include bgimg('right-icon-blue', 98% 50%, $fine-icon, auto);
       cursor: pointer;
 
       .label,

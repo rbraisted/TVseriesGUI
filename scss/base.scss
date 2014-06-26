@@ -147,14 +147,24 @@ a {
 ////////////////////////////////////////////////////////////////////////////////
 
 .header {
-	background: transparent url(/images/header.png) no-repeat center/100%;
+  background-color: transparent;
+  background-image: url(/images/header.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
 	height: $header-height;
 	position: fixed;
 	width: 100%;
 	z-index: $header-index;
 
 	.tracvision-logo {
-		background: transparent url(/images/tracvision-logo.svg) no-repeat center/90%;
+    background-color: transparent;
+    background-image: url(/images/tracvision-logo.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 90% auto;
+
 		height: 100%;
 		margin: auto;
 		width: 150px;
@@ -283,11 +293,16 @@ a {
       $btn-name: nth($nav-btn, 1);
       $icon-width: unquote(nth($nav-btn, 3)/21px*50+'%');
       .#{$btn-name}-btn {
-        background: #000 url(/images/#{$btn-name}-icon-white.svg) no-repeat top 35% center/$icon-width;
+        // background: #000 url(/images/#{$btn-name}-icon-white.svg) no-repeat top 35% center/$icon-width;
+        background-color: #000;
+        background-image: url(/images/#{$btn-name}-icon-white.svg);
+        background-repeat: no-repeat;
+        background-position: 50% 35%;
+        background-size: $icon-width auto;
         cursor: pointer;
         display: block;
         float: left;
-        padding: 22.22% 0 calc(11.11% - 1em);
+        padding: 22% 0 5%;
         text-align: center;
         width: 33%;
 
@@ -300,8 +315,8 @@ a {
         @if $btn-name == satfinder {
           width: 100%;
           padding: 10% 0;
-          background-position: left 10.5% center;
-          background-size: 15%;
+          background-position: 10.5% 50%;
+          background-size: 15% auto;
         }
       }
     }
@@ -755,7 +770,12 @@ a {
 	}
 
 	.sat-signal {
-		background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;
+    background-color: transparent;
+    background-image: url(/images/sat-signal-0.svg);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 60px auto;
+
 		height: 60px;
 		margin-top: -$sidebar-padding;
 		width: 100%;

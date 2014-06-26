@@ -7,7 +7,8 @@
       .onBuild(function(row, value) {
         if (value === 'CDT') $('.\\#value', row).text('Certified Dealer Technician');
         if (value === 'DIY') $('.\\#value', row).text('System Owner (do-it-yourself install)');
-      });
+      })
+      .build();
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
@@ -21,10 +22,9 @@
     });
 
     TVRO.getInstallerInfo().then(function(installerInfo) {
-      if (installerInfo.company) self.setValue('CDT').build(); //  if installer company set, we last chose CDT
+      if (installerInfo.company) self.setValue('CDT'); //  if installer company set, we last chose CDT
       else TVRO.getVesselInfo().then(function(vesselInfo) {
-        if (vesselInfo.name) self.setValue('DIY').build();
-        else self.build();
+        if (vesselInfo.name) self.setValue('DIY');
       });
     });
 

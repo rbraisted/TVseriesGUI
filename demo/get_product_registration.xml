@@ -19,12 +19,12 @@
 		<contact>Elena</contact>
 	</user>
 	<dealer>
-		<company>Lane</company>
-		<state/>
-		<country/>
-		<installer_name>Wheatley</installer_name>
-		<installer_email>installer@email.com</installer_email>
-		<installer_phone>1 (555) 123-4567</installer_phone>
+    <company>Lane</company>
+    <state/>
+    <country/>
+    <installer_name>Wheatley</installer_name>
+    <installer_email>installer@email.com</installer_email>
+    <installer_phone>1 (555) 123-4567</installer_phone>
 	</dealer>
 	<product>
 		<acu_model>TVRO-IPACU</acu_model><!-- VSAT-IPACU | TVRO-IPACU -->

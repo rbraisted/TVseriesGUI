@@ -45,13 +45,21 @@ a {
   text-decoration: inherit; }
 
 .header {
-  background: transparent url(/images/header.png) no-repeat center/100%;
+  background-color: transparent;
+  background-image: url(/images/header.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
   height: 50px;
   position: fixed;
   width: 100%;
   z-index: 4; }
   .header .tracvision-logo {
-    background: transparent url(/images/tracvision-logo.svg) no-repeat center/90%;
+    background-color: transparent;
+    background-image: url(/images/tracvision-logo.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 90% auto;
     height: 100%;
     margin: auto;
     width: 150px;
@@ -141,77 +149,105 @@ a {
     .nav.\$expanded {
       height: 100%; }
     .nav .home-btn {
-      background: black url(/images/home-icon-white.svg) no-repeat top 35% center/42.85714%;
+      background-color: #000;
+      background-image: url(/images/home-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 42.85714% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%; }
       .nav .home-btn:nth-child(3n + 2) {
         width: 34%; }
     .nav .sat-btn {
-      background: black url(/images/sat-icon-white.svg) no-repeat top 35% center/39.28571%;
+      background-color: #000;
+      background-image: url(/images/sat-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 39.28571% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%; }
       .nav .sat-btn:nth-child(3n + 2) {
         width: 34%; }
     .nav .autoswitch-btn {
-      background: black url(/images/autoswitch-icon-white.svg) no-repeat top 35% center/36.90476%;
+      background-color: #000;
+      background-image: url(/images/autoswitch-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 36.90476% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%; }
       .nav .autoswitch-btn:nth-child(3n + 2) {
         width: 34%; }
     .nav .settings-btn {
-      background: black url(/images/settings-icon-white.svg) no-repeat top 35% center/40.47619%;
+      background-color: #000;
+      background-image: url(/images/settings-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 40.47619% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%; }
       .nav .settings-btn:nth-child(3n + 2) {
         width: 34%; }
     .nav .updates-btn {
-      background: black url(/images/updates-icon-white.svg) no-repeat top 35% center/45.2381%;
+      background-color: #000;
+      background-image: url(/images/updates-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 45.2381% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%; }
       .nav .updates-btn:nth-child(3n + 2) {
         width: 34%; }
     .nav .support-btn {
-      background: black url(/images/support-icon-white.svg) no-repeat top 35% center/30.95238%;
+      background-color: #000;
+      background-image: url(/images/support-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 30.95238% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%; }
       .nav .support-btn:nth-child(3n + 2) {
         width: 34%; }
     .nav .satfinder-btn {
-      background: black url(/images/satfinder-icon-white.svg) no-repeat top 35% center/50%;
+      background-color: #000;
+      background-image: url(/images/satfinder-icon-white.svg);
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 50% auto;
       cursor: pointer;
       display: block;
       float: left;
-      padding: 22.22% 0 calc(11.11% - 1em);
+      padding: 22% 0 5%;
       text-align: center;
       width: 33%;
       width: 100%;
       padding: 10% 0;
-      background-position: left 10.5% center;
-      background-size: 15%; }
+      background-position: 10.5% 50%;
+      background-size: 15% auto; }
       .nav .satfinder-btn:nth-child(3n + 2) {
         width: 34%; } }
 @media screen and (min-width: 881px) {
@@ -386,7 +422,11 @@ a {
   bottom: 16px;
   position: absolute; }
 .sidebar .sat-signal {
-  background: transparent url(/images/sat-signal-0.svg) no-repeat right center/60px;
+  background-color: transparent;
+  background-image: url(/images/sat-signal-0.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 60px auto;
   height: 60px;
   margin-top: -16px;
   width: 100%; }
@@ -1009,11 +1049,11 @@ a {
       vertical-align: middle; }
     .receiver-table .table-row {
       background-image: url(/images/right-icon-blue.svg);
-      background-position: right 15px center;
+      background-position: 98% 50%;
       background-repeat: no-repeat;
-      background-size: 7px 21px;
+      background-size: 7px auto;
       min-height: 7px;
-      min-width: 21px;
+      min-width: auto;
       cursor: pointer; }
       .receiver-table .table-row .label,
       .receiver-table .table-row .status-col,
