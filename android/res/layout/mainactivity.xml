@@ -164,7 +164,7 @@
        		android:layout_marginRight="125dp"
        		android:paddingBottom="10dp"
        		android:src="@drawable/kvh_logo"
-       		android:scaleType="centerCrop"
+       		android:layout_gravity="center"
        	/>
         
     </LinearLayout>

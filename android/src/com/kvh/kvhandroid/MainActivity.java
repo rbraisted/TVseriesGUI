@@ -216,9 +216,16 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	public void gotoWebViewActivity(String url) {
 		networkServiceDiscoveryHelper.stopDiscoverServices();
 		
+		//reset the flag
+		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("restartApp", false);
+		// Commit the edits!
+		editor.commit();
+		
 		Intent i = new Intent(this, WebViewActivity.class);
 		i.putExtra("hostName", url);
 		startActivity(i);
-		finish();
+		//finish();
 	}
 }

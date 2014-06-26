@@ -75,7 +75,7 @@ public class NetServDisHelper {
 			@Override
 			public void onServiceFound(NsdServiceInfo serviceInfo) {
 				// A service was found!  Do something with it.
-	            Log.d(TAG, "Service discovery success: " + serviceInfo + " IP: ");
+	            Log.d(TAG, "Service discovery success: " + serviceInfo + " IP: " + serviceInfo.getHost());
 	            
 	            if (!serviceInfo.getServiceType().equals(Constants.kBonjourServiceType)) {
 	                // Service type is the string containing the protocol and
@@ -98,7 +98,6 @@ public class NetServDisHelper {
                     mService = null;
                 }
 			}
-	    	
 	    };
 	}
 	
@@ -107,7 +106,7 @@ public class NetServDisHelper {
 
             @Override
             public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
-                Log.e(TAG, "Resolve failed: " + errorCode + " Service: " + serviceInfo);
+                Log.e(TAG, "Resolve failed: " + errorCode + " Service: " + serviceInfo + " " + serviceInfo);
                 
                 //lets check if a same service has already been resolved and yet the service is still trying to resolve itself even though it should be resolved already
                 //if thats the case then don't reconnect anymore
@@ -127,7 +126,7 @@ public class NetServDisHelper {
                 //it would just stop detecting devices and have to restart the Android device
                 if(!stoppedSearching && retryConnection) {
                 	//lets retry the conenction
-//                	mNsdManager.resolveService(serviceInfo, mResolveListener);
+                	mNsdManager.resolveService(serviceInfo, mResolveListener);
                 }
             }
 

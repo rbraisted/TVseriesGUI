@@ -9,6 +9,7 @@ import com.kvh.kvhandroid.utils.UpdatesManagerCallback;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -237,7 +238,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		super.onPause();
 		Log.i(TAG, "On Pause");
 		
-		updatesManager.unregisterDownloadManager();;
+		updatesManager.unregisterDownloadManager();
 		
 		//lets try to save preferences and then when the user has the bright idea to use App Watch/Task Manager to launch the App
 		//Hopefully that would fix this App Watch/Task Manager problem
@@ -252,8 +253,11 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 	
 	@Override
 	public void onDestroy() {
-		super.onPause();
+		webView.stopLoading();
+		helpWebView.stopLoading();
+		
 		Log.i(TAG, "On Destroy");
+		super.onDestroy();
 	}
 	
 	@Override
@@ -270,6 +274,23 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		super.onResume();
 		
 		updatesManager.registerDownloadManager();
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		
+		Log.i(TAG, "Configuration Changed");
+		// Checks the orientation of the screen
+	    if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+	    	Log.i(TAG, "Orientation Changed");
+	    	
+			SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("restartApp", false);
+			// Commit the edits!
+			editor.commit();
+	    }
 	}
 	
 	public void goBackToMainActivity() {
