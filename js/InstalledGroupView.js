@@ -10,7 +10,9 @@
         $('.\\#sat-name', row).text(sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID, sat.lon));
 
         $('.\\#install-btn', row).click(function() {
-          if (!row.hasClass('$installed'))
+          var installed = row.hasClass('$installed');
+          var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID, sat.lon) + '?');
+          if (confirmed) 
             TVRO.setInstalledSat(sat);
         });
 
