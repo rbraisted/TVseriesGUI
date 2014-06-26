@@ -174,6 +174,9 @@
           timeouts[msg] = setTimeout(function() {
             cache[msg] = undefined;  
           }, expiresAfter);
+        }, function() {
+          clearTimeout(timeouts[msg]);
+          cache[msg] = undefined;
         });
         return cached;
       }
