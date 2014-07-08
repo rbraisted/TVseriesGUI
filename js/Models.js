@@ -563,7 +563,7 @@
 
   TVRO.getCheckswitchMode = function() {
     return getCheckswitchMode().then(function(xml) {
-      return $('enable', xml).text();
+      return $('enable', xml).text() === 'Y';
     });
   };
 
