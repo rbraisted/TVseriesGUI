@@ -1,38 +1,38 @@
-//  requires Cookies.js
+//requires Cookies.js
 !function(TVRO) {
   "use strict";
 
   var jsonAsXml = function(json) {
-  //  user: {
-  //    firstname : 'John',
-  //    lastname : 'Smith',
-  //    city : 'Middletown',
-  //    state : 'Rhode Island'
-  //  },
-  //  sat: [{
-  //    name: 'Sat A',
-  //    antSatID: '11W'
-  //  }, {
-  //    name: 'Sat B',
-  //    antSatID: '22W'
-  //  }]
-  //
-  //  will be sent as:
-  //
-  //  <user>
-  //    <firstname>John</firstname>
-  //    <lastname>Smitch</lastname>
-  //    <city>Middletown</city>
-  //    <state>Rhode Island</state>
-  //  </user>
-  //  <sat>
-  //    <name>Sat A</name>
-  //    <antSatID>11W</antSatID>
-  //  </sat>
-  //  <sat>
-  //    <name>Sat B</name>
-  //    <antSatID>22W</antSatID>
-  //  </sat>
+    //  user: {
+    //    firstname : 'John',
+    //    lastname : 'Smith',
+    //    city : 'Middletown',
+    //    state : 'Rhode Island'
+    //  },
+    //  sat: [{
+    //    name: 'Sat A',
+    //    antSatID: '11W'
+    //  }, {
+    //    name: 'Sat B',
+    //    antSatID: '22W'
+    //  }]
+    //
+    //  will be sent as:
+    //
+    //  <user>
+    //    <firstname>John</firstname>
+    //    <lastname>Smitch</lastname>
+    //    <city>Middletown</city>
+    //    <state>Rhode Island</state>
+    //  </user>
+    //  <sat>
+    //    <name>Sat A</name>
+    //    <antSatID>11W</antSatID>
+    //  </sat>
+    //  <sat>
+    //    <name>Sat B</name>
+    //    <antSatID>22W</antSatID>
+    //  </sat>
 
     var xml = '';
     for (var key in json) {
@@ -42,7 +42,7 @@
         for (var i = 0; i < value.length; i++) {
           xml += '<'+key+'>'+jsonAsXml(value[i])+'</'+key+'>';
         }
-      //  then check for Object
+        //  then check for Object
       } else if (typeof value === 'object') {
         xml += '<'+key+'>'+jsonAsXml(value)+'</'+key+'>';
       } else {
@@ -125,7 +125,7 @@
         // INVALID_UPDATE_FILE      16  The name you provided doesn't start with "HD11-" and end with ".kvh".
         // DUPLICATE_DATA           17  data value already in use
         // -Paul
-        
+
         // I have added a new error code for TV-HUB messages.
         // 18 means configuration error, specifically for
         // TV-HUB this means the LNB is not configured. This
@@ -164,9 +164,9 @@
       expiresAfter = 30000;
     }
 
-  	return function(params, recache) {
-  		if (cache[msg] && !recache) return cache[msg];
-  		else {
+    return function(params, recache) {
+      if (cache[msg] && !recache) return cache[msg];
+      else {
         var cached = Promise(request(msg, params));
         cache[msg] = cached;
         cached.then(function() {
@@ -180,15 +180,15 @@
         });
         return cached;
       }
-  	}
+    }
   };
 
   var set = function(msg, resaves) {
-  	return function(params) {
-  		return Promise(request(msg, params)).then(function(r) {
-  			return Promise.all(_.invoke(resaves, 'call', null, undefined, true));
-  		});
-  	}
+    return function(params) {
+      return Promise(request(msg, params)).then(function(r) {
+        return Promise.all(_.invoke(resaves, 'call', null, undefined, true));
+      });
+    }
   };
 
   //  'getting'
@@ -217,70 +217,70 @@
   //  by giving a backend call the same message name as a custom call here
 
   TVRO.getSatelliteService = get('get_satellite_service');
-	  
-	TVRO.setSatelliteService = set('set_satellite_service', [
-		get('get_satellite_service'),
-    get('get_autoswitch_status')
-  ]);
 
-	TVRO.getAntennaStatus = get('antenna_status', 3000);
+  TVRO.setSatelliteService = set('set_satellite_service', [
+                                                           get('get_satellite_service'),
+                                                           get('get_autoswitch_status')
+                                                           ]);
 
-	TVRO.getAntennaVersions = get('antenna_versions');
+  TVRO.getAntennaStatus = get('antenna_status', 3000);
 
-	TVRO.getAntennaConfig = get('get_antenna_config');
+  TVRO.getAntennaVersions = get('antenna_versions');
 
-	TVRO.setAntennaConfig = set('set_antenna_config', [
-		get('get_antenna_config')
-	]);
+  TVRO.getAntennaConfig = get('get_antenna_config');
 
-	TVRO.getSatelliteList = get('get_satellite_list'),
+  TVRO.setAntennaConfig = set('set_antenna_config', [
+                                                     get('get_antenna_config')
+                                                     ]);
 
-	TVRO.selectSatellite = set('select_satellite', [
-		get('antenna_status'),
-		get('get_autoswitch_status')
-	]);
+  TVRO.getSatelliteList = get('get_satellite_list'),
 
-	TVRO.setSatelliteIdentity = set('set_satellite_identity', [
-		get('antenna_status'),
-		get('get_autoswitch_status'),
-		get('get_satellite_list')
-	]);
+  TVRO.selectSatellite = set('select_satellite', [
+                                                  get('antenna_status', 3000),
+                                                  get('get_autoswitch_status')
+                                                  ]);
 
-	TVRO.getSkew = get('get_skew');
+  TVRO.setSatelliteIdentity = set('set_satellite_identity', [
+                                                             get('antenna_status', 3000),
+                                                             get('get_autoswitch_status'),
+                                                             get('get_satellite_list')
+                                                             ]);
 
-	TVRO.getSatelliteParams = get('get_satellite_params', 250);
+  TVRO.getSkew = get('get_skew');
 
-	TVRO.setSatelliteParams = set('set_satellite_params');
+  TVRO.getSatelliteParams = get('get_satellite_params', 250);
 
-	TVRO.resetSatelliteParams = set('reset_satellite_params');
+  TVRO.setSatelliteParams = set('set_satellite_params');
 
-	TVRO.startSerialLog = set('start_serial_log');
+  TVRO.resetSatelliteParams = set('reset_satellite_params');
 
-	TVRO.serialLogStatus = get('serial_log_status', 1000);
+  TVRO.startSerialLog = set('start_serial_log');
 
-	TVRO.setGps = set('set_gps');
+  TVRO.serialLogStatus = get('serial_log_status', 1000);
 
-	TVRO.getGps = get('get_gps', 3000);
+  TVRO.setGps = set('set_gps');
 
-	TVRO.getGpsCities = get('get_gps_cities');
+  TVRO.getGps = get('get_gps', 3000);
 
-	TVRO.setNmeaGprmc = set('set_nmea_gprmc');
+  TVRO.getGpsCities = get('get_gps_cities');
 
-	TVRO.getNmeaHeading = get('get_nmea_heading');
+  TVRO.setNmeaGprmc = set('set_nmea_gprmc');
 
-	TVRO.setNmeaHeading = set('set_nmea_heading');
+  TVRO.getNmeaHeading = get('get_nmea_heading');
 
-	TVRO.setGpsConfig = set('set_gps_config');
+  TVRO.setNmeaHeading = set('set_nmea_heading');
 
-	TVRO.getGpsConfig = get('get_gps_config');
+  TVRO.setGpsConfig = set('set_gps_config');
 
-	TVRO.setHeadingConfig = set('set_heading_config');
+  TVRO.getGpsConfig = get('get_gps_config');
 
-	TVRO.getHeadingConfig = get('get_heading_config');
+  TVRO.setHeadingConfig = set('set_heading_config');
 
-	TVRO.reboot = set('reboot');
+  TVRO.getHeadingConfig = get('get_heading_config');
 
-	TVRO.resetSoftware = set('reset_software');
+  TVRO.reboot = set('reboot');
+
+  TVRO.resetSoftware = set('reset_software');
 
   TVRO.getPower = get('power');
 
@@ -288,100 +288,100 @@
 
   TVRO.getLnbList = get('get_lnb_list');
 
-	TVRO.getVesselConfig = get('get_vessel_config');
+  TVRO.getVesselConfig = get('get_vessel_config');
 
-	TVRO.setVesselConfig = set('set_vessel_config', [
-		get('get_vessel_config')
-	]);
+  TVRO.setVesselConfig = set('set_vessel_config', [
+                                                   get('get_vessel_config')
+                                                   ]);
 
-	TVRO.getEth = get('get_eth');
+  TVRO.getEth = get('get_eth');
 
-	TVRO.setEth = set('set_eth', [
-		get('get_eth')
-	]);
+  TVRO.setEth = set('set_eth', [
+                                get('get_eth')
+                                ]);
 
-	TVRO.setEthFactory = set('set_eth_factory', [
-		get('get_eth')
-	]);
+  TVRO.setEthFactory = set('set_eth_factory', [
+                                               get('get_eth')
+                                               ]);
 
-	TVRO.getWlan = get('get_wlan');
+  TVRO.getWlan = get('get_wlan');
 
-	TVRO.setWlan = set('set_wlan', [
-		get('get_wlan')
-	]);
+  TVRO.setWlan = set('set_wlan', [
+                                  get('get_wlan')
+                                  ]);
 
-	TVRO.setWlanFactory = set('set_wlan_factory', [
-		get('get_wlan')
-	]);
+  TVRO.setWlanFactory = set('set_wlan_factory', [
+                                                 get('get_wlan')
+                                                 ]);
 
-	TVRO.getSerialLog = get('get_serial_log', 3000);
+  TVRO.getSerialLog = get('get_serial_log', 3000);
 
-	TVRO.getEventHistoryLog = get('get_event_history_log', 3000);
+  TVRO.getEventHistoryLog = get('get_event_history_log', 3000);
 
-	TVRO.getRecentEventHistory = get('get_recent_event_history', 3000);
+  TVRO.getRecentEventHistory = get('get_recent_event_history', 3000);
 
-	TVRO.getEventHistoryCount = get('get_event_history_count', 3000);
+  TVRO.getEventHistoryCount = get('get_event_history_count', 3000);
 
-	TVRO.installSoftware = set('install_software');
+  TVRO.installSoftware = set('install_software');
 
-	TVRO.getSatelliteGroups = get('get_satellite_groups', 3000);
+  TVRO.getSatelliteGroups = get('get_satellite_groups', 3000);
 
-	TVRO.setSatelliteGroup = set('set_satellite_group', [
-		get('antenna_status'),
-		get('get_satellite_groups'),
-		get('get_autoswitch_status')
-	]);
+  TVRO.setSatelliteGroup = set('set_satellite_group', [
+                                                       get('antenna_status', 3000),
+                                                       get('get_satellite_groups'),
+                                                       get('get_autoswitch_status')
+                                                       ]);
 
-	TVRO.getAutoswitchStatus = get('get_autoswitch_status', 3000),
+  TVRO.getAutoswitchStatus = get('get_autoswitch_status', 3000),
 
-	TVRO.setAutoswitchService = set('set_autoswitch_service', [
-		get('antenna_status'),
-		get('get_autoswitch_status'),
-    get('get_satellite_service')
-	]);
+  TVRO.setAutoswitchService = set('set_autoswitch_service', [
+                                                             get('antenna_status', 3000),
+                                                             get('get_autoswitch_status'),
+                                                             get('get_satellite_service')
+                                                             ]);
 
-	TVRO.getAutoswitchConfiguredNames = get('get_autoswitch_configured_names', 3000),
+  TVRO.getAutoswitchConfiguredNames = get('get_autoswitch_configured_names', 3000),
 
-	TVRO.setAutoswitchConfiguredNames = set('set_autoswitch_configured_names', [
-		get('antenna_status'),
-		get('get_autoswitch_status'),
-		get('get_autoswitch_configured_names')
-	]);
+  TVRO.setAutoswitchConfiguredNames = set('set_autoswitch_configured_names', [
+                                                                              get('antenna_status', 3000),
+                                                                              get('get_autoswitch_status'),
+                                                                              get('get_autoswitch_configured_names')
+                                                                              ]);
 
-	TVRO.setAutoswitchMaster = set('set_autoswitch_master', [
-		get('antenna_status'),
-		get('get_autoswitch_status')
-	]);
+  TVRO.setAutoswitchMaster = set('set_autoswitch_master', [
+                                                           get('antenna_status', 3000),
+                                                           get('get_autoswitch_status')
+                                                           ]);
 
-	TVRO.getCheckswitchMode = get('get_checkswitch_mode', 3000);
+  TVRO.getCheckswitchMode = get('get_checkswitch_mode', 3000);
 
-	TVRO.setCheckswitchMode = set('set_checkswitch_mode', [
-    get('get_checkswitch_mode')
-  ]);
+  TVRO.setCheckswitchMode = set('set_checkswitch_mode', [
+                                                         get('get_checkswitch_mode')
+                                                         ]);
 
-	TVRO.getMultiswitchMode = get('get_multiswitch_mode');
+  TVRO.getMultiswitchMode = get('get_multiswitch_mode');
 
   TVRO.setMultiswitchMode = set('set_multiswitch_mode',[
-    get('get_multiswitch_mode')
-  ]);
+                                                        get('get_multiswitch_mode')
+                                                        ]);
 
-	TVRO.setProductRegistration = set('set_product_registration', [
-		get('get_product_registration')
-	]);
+  TVRO.setProductRegistration = set('set_product_registration', [
+                                                                 get('get_product_registration')
+                                                                 ]);
 
-	TVRO.getProductRegistration = get('get_product_registration');
+  TVRO.getProductRegistration = get('get_product_registration');
 
   TVRO.getWizardStatus = get('get_wizard_status');
 
   TVRO.setWizardStatus = set('set_wizard_status', [
-    get('get_wizard_status')
-  ]);
+                                                   get('get_wizard_status')
+                                                   ]);
 
-	TVRO.getCallhome = get('get_callhome', 1000);
+  TVRO.getCallhome = get('get_callhome', 1000);
 
-	TVRO.setCallhome = set('set_callhome', [
-		get('get_callhome')
-	]);
+  TVRO.setCallhome = set('set_callhome', [
+                                          get('get_callhome')
+                                          ]);
 
   //  custom call to get web ui version from version.txt
   TVRO.getWebUIVersion = function() {
