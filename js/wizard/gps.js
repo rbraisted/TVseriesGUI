@@ -306,16 +306,16 @@
         TVRO.getAntennaVersions().then(function(xmls) {
           var antModel = $('au model', xmls[0]).text();
           var lnbType = $('lnb polarization', xmls[0]).text();
-          var lnbName = $('lnb name', xmls[0]).text();
+          var lnbPart = $('lnb part', xmls[0]).text();
           var systemIDModel = $('au systemIDModel', xmls[0]).text();
 
           // CIRCULAR LNB -> select service (service.php)
           if ((lnbType === 'circular') && 
-              (lnbName !== 'Tri-Americas Circular') &&
-              ((lnbName !== 'DIRECTV-LA Circular'))) window.location = '/wizard/service.php';
+              (lnbPart !== '19-0577') &&
+              ((lnbPart !== '19-0805'))) window.location = '/wizard/service.php';
 
           // GALAXY -> directv (service.php#/directv)
-          else if (lnbName === 'DIRECTV-LA Circular'){
+          else if (lnbPart === '19-0805'){
             TVRO.setAutoswitchService({
               enable: 'N',
               satellite_group: 'GALAXY-LA'
@@ -341,7 +341,7 @@
             });
 
             // TRI AMERICAS -> directv (service.php#/directv)
-          }else if (lnbName === 'Tri-Americas Circular') window.location = '/wizard/service.php#/tri-am-group';
+          }else if (lnbPart === '19-0577') window.location = '/wizard/service.php#/tri-am-group';
 
           // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
           else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';

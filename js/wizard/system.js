@@ -190,7 +190,7 @@ $(function() {
         var systemIDModel = $('au systemIDModel', xmls[0]).text();
         var lnbType = $('lnb polarization', xmls[0]).text();
         var service = $('service', xmls[1]).text();
-        var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas';
+        var isTriAmericas = $('lnb part', xmls[0]).text() === '19-0577';
 
         if ((lnbType === 'linear') &&
             ((antModel === 'TV1') ||

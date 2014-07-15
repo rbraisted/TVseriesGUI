@@ -246,7 +246,7 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       TVRO.getAntennaVersions().then(function(xmls) {
-        var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
+        var isTriAmericas = $('lnb part', xmls[0]).text() === '19-0577';
 
         if (isTriAmericas == true) window.location.hash = '/tri-am-group';
         else window.location = '/wizard/service.php';
@@ -262,7 +262,7 @@
             TVRO.getInstalledGroup(),
             TVRO.getAntennaVersions()
         ).then(function(xmls) {
-          var isTriAmericas = $('lnb name', xmls[1]).text() === 'Tri-Americas Circular';
+          var isTriAmericas = $('lnb part', xmls[1]).text() === '19-0577';
 
           if (isTriAmericas == true){
             group = xmls[0].name;

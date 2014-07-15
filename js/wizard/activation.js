@@ -12,12 +12,15 @@ $(function() {
     	        TVRO.getSatelliteService()
     	      ).then(function(xmls) {
     	        var lnbType = $('lnb polarization', xmls[0]).text();
-                var isTriAmericas = $('lnb name', xmls[0]).text() === 'Tri-Americas Circular';
+                var lnbPart = $('lnb part', xmls[0]).text();
+                var isTriAmericas = $('lnb part', xmls[0]).text() === '19-0577';
     	        var service = $('service', xmls[1]).text();
 
                 if((lnbType === 'circular') && (service === 'DIRECTV')){
                   if(isTriAmericas){
                     window.location = '/wizard/service.php#/tri-am-group';
+                  }else if (lnbPart === '19-0805'){ //Galaxy to heading source.
+                    window.location = '/wizard/gps.php#/heading-source';
                   }else{
                     window.location = '/wizard/service.php#/directv'; //directv
                   }
@@ -26,7 +29,6 @@ $(function() {
     	        }else{
     	        	// This handles Linear TV1,TV3,TV5 Manual (Skew);
     	        	// Linear TV5 & TV6
-    	        	// Tri Americas
     	        	// Circular DISH/Bell
     	        	window.location = '/wizard/system.php';
     	        }
@@ -40,10 +42,14 @@ $(function() {
   TVRO.onHashChange(function(hash) {
     if (!hash)
     {	
-      TVRO.getSatelliteService()
-        .then(function(xml) {
-          service =  $('service', xml).text();
-          if (service === 'DIRECTV') window.location.hash = '/directv-activation';
+      Promise.all(
+        TVRO.getSatelliteService(),
+        TVRO.getAntennaVersions()
+      ).then(function(xmls) {
+          service =  $('service', xmls[0]).text();
+          var lnbPart = $('lnb part', xmls[1]).text();
+
+          if (service === 'DIRECTV' && lnbPart !== '19-0805') window.location.hash = '/directv-activation'; // Not Galaxy
           else if (service === 'DISH') window.location.hash = '/dish-activation';
           else if (service === 'BELL') window.location.hash = '/bell-activation';
           else window.location.hash = '/generic-activation';
