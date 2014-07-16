@@ -124,22 +124,20 @@
   </div>
 
   <div class="multiswitch-mode">
-    <div class="heading">Multiswitch Mode</div>
+    <div class="heading">Band/Polarization Control</div>
     <p>
-      Turn on Multiswitch mode only if a multiswitch and an IP AutoSwitch are
-      installed. With Multiswitch mode turned on, the satellite signal output
-      from the TV-Hub’s “Receiver” port is always the band and polarization
-      corresponding to the voltage and tone detected on the cable connected
-      directly to it, regardless of the band/polarization selected by any IP
-      AutoSwitch-equipped master receiver. This mode ensures that all four
-      combinations of band/polarization are available to the multiswitch at
-      all times. With Multiswitch mode turned off (default setting), the
+      With the TV-Hub in control, the satellite signal output from the TV-Hub’s
+      “Receiver” port is always the band and polarization corresponding to the
+      voltage and tone detected on the cable connected directly to it, regardless
+      of the band/polarization selected by any IP AutoSwitch-equipped master
+      receiver. With the master receiver in control (default setting), the
       TV-Hub’s “Receiver” port outputs whichever band/polarization is currently
-      selected by the master receiver.
+      selected by the master receiver. Always select "TV-Hub" for a linear system
+      equipped with a multiswitch and an IP AutoSwitch.
     </p>
     <div class="toggle-btn #multiswitch-mode-btn">
-      <div class="on">On</div>
-      <div class="off">Off</div>
+      <div class="on">TV-Hub<br>&nbsp;</div>
+      <div class="off">Master<br>Receiver</div>
     </div>
   </div>
 

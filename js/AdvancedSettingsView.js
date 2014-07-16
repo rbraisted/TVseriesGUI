@@ -53,7 +53,7 @@
         var model = $('au model', xmls[2]).text();
 
         // Only show the multiswitch block when a linear LNB.
-        jQ.toggleClass('$not-linear', polarization !== 'linear');
+        //jQ.toggleClass('$not-linear', polarization !== 'linear');
 
         // Only show the sidelobe block when a TV6.
         jQ.toggleClass('$not-tv6', model !== 'TV6');

@@ -88,7 +88,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
    --><span class="table-col info-col info-btn #info-btn"></span>
     </div>
   </div>
-
+   <div class="copy">
+   <br>
+    If you select Configuration 4, be sure to set Band/Polarization Control to
+    “TV-Hub” when you exit the Wizard (go to Settings &gt; Advanced Settings).
+  </div>
+    
   <div class="bottom-bar">
     <a class="prev-btn #prev-btn">Previous</a>
     <a class="next-btn #next-btn">Next</a>
