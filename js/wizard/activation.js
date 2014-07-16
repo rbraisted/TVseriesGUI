@@ -49,10 +49,15 @@ $(function() {
           service =  $('service', xmls[0]).text();
           var lnbPart = $('lnb part', xmls[1]).text();
 
-          if (service === 'DIRECTV' && lnbPart !== '19-0805') window.location.hash = '/directv-activation'; // Not Galaxy
-          else if (service === 'DISH') window.location.hash = '/dish-activation';
-          else if (service === 'BELL') window.location.hash = '/bell-activation';
-          else window.location.hash = '/generic-activation';
+          if ((service === 'DIRECTV') && (lnbPart !== '19-0805')) {
+            window.location.hash = '/directv-activation'; // Not Galaxy
+          }else if (service === 'DISH') {
+            window.location.hash = '/dish-activation';
+          }else if (service === 'BELL') {
+            window.location.hash = '/bell-activation';
+          }else {
+            window.location.hash = '/generic-activation';
+          }
         });
     }
     document.body.className = hash;

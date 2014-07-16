@@ -300,65 +300,66 @@
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var interval;
       var value = self.getValue();
-      if (!value) alert('You must select an option to continue.');
-      else setSource(TVRO.setHeadingConfig, value)
-      .then(function() {
-        TVRO.getAntennaVersions().then(function(xmls) {
-          var antModel = $('au model', xmls[0]).text();
-          var lnbType = $('lnb polarization', xmls[0]).text();
-          var lnbPart = $('lnb part', xmls[0]).text();
-          var systemIDModel = $('au systemIDModel', xmls[0]).text();
+      if (!value) {
+        alert('You must select an option to continue.');
+      }else {
+        setSource(TVRO.setHeadingConfig, value)
+        .then(function() {
+          TVRO.getAntennaVersions().then(function(xmls) {
+            var antModel = $('au model', xmls[0]).text();
+            var lnbType = $('lnb polarization', xmls[0]).text();
+            var lnbPart = $('lnb part', xmls[0]).text();
+            var systemIDModel = $('au systemIDModel', xmls[0]).text();
 
-          // CIRCULAR LNB -> select service (service.php)
-          if ((lnbType === 'circular') && 
-              (lnbPart !== '19-0577') &&
-              ((lnbPart !== '19-0805'))) window.location = '/wizard/service.php';
+            // CIRCULAR LNB -> select service (service.php)
+            if ((lnbType === 'circular') && 
+                (lnbPart !== '19-0577') &&
+                (lnbPart !== '19-0805')) {
+              window.location = '/wizard/service.php';
+            }else if (lnbPart === '19-0805'){// GALAXY -> directv (service.php#/directv)
+              TVRO.setAutoswitchService({
+                enable: 'N',
+                satellite_group: 'GALAXY-LA'
+              }).then(function() {
+                document.body.className = '/spinner';
 
-          // GALAXY -> directv (service.php#/directv)
-          else if (lnbPart === '19-0805'){
-            TVRO.setAutoswitchService({
-              enable: 'N',
-              satellite_group: 'GALAXY-LA'
-            }).then(function() {
-              document.body.className = '/spinner';
-
-              setTimeout(function() {
-                var interval = setInterval(function() {
-                  TVRO.getAntennaStatus(1,1).then(function(xml) {
-                    var state =  $('antenna state', xml).text();
-                    $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
-                    if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-                      clearInterval(interval);
-                      window.location = '/wizard/activation.php';
-                    }else if (state === 'ERROR') {
-                      clearInterval(interval);
-                      alert("An error occured installing GALAXY-LA.");
-                      window.location.hash = '/heading-source';
-                    }//End if (state === 'ERROR')
-                  });          
-                }, 1000);
-              }, 10000);
-            });
-
-            // TRI AMERICAS -> directv (service.php#/directv)
-          }else if (lnbPart === '19-0577') window.location = '/wizard/service.php#/tri-am-group';
-
-          // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
-          else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') window.location = '/wizard/satellites.php#/options';
-
-          // TV5 + MANUAL -> select satellites (satellites.php)
-          else window.location = '/wizard/satellites.php#/tv5-manual-options';
-
+                setTimeout(function() {
+                  var interval = setInterval(function() {
+                    TVRO.getAntennaStatus(1,1).then(function(xml) {
+                      var state =  $('antenna state', xml).text();
+                      $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                      if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+                        clearInterval(interval);
+                        window.location = '/wizard/activation.php';
+                      }else if (state === 'ERROR') {
+                        clearInterval(interval);
+                        alert("An error occured installing GALAXY-LA.");
+                        window.location.hash = '/heading-source';
+                      }//End if (state === 'ERROR')
+                    });          
+                  }, 1000);
+                }, 10000);
+              });
+              // TRI AMERICAS -> directv (service.php#/directv)
+            }else if (lnbPart === '19-0577') {
+              window.location = '/wizard/service.php#/tri-am-group';
+              // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
+            }else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') {
+              window.location = '/wizard/satellites.php#/options';
+              // TV5 + MANUAL -> select satellites (satellites.php)
+            }else {
+              window.location = '/wizard/satellites.php#/tv5-manual-options';
+            }
+          });
         });
-      });
-
+      }
+      
       $('.\\#exit-btn').click(function(){
         clearInterval(interval);
         TVRO.reload();
-      });  
-
+      });
+      
     });
-
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       window.location.hash = '/vessel-location';
@@ -377,7 +378,6 @@
       var value = _.find(values, 'selected') || _.find(values, { display: 'None' });
       self.setValue(value);
     });
-
 
     return self;
   };
