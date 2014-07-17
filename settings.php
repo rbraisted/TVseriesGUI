@@ -126,14 +126,15 @@
   <div class="multiswitch-mode">
     <div class="heading">Band/Polarization Control</div>
     <p>
-      With the TV-Hub in control, the satellite signal output from the TV-Hub’s
-      “Receiver” port is always the band and polarization corresponding to the
-      voltage and tone detected on the cable connected directly to it, regardless
-      of the band/polarization selected by any IP AutoSwitch-equipped master
-      receiver. With the master receiver in control (default setting), the
+      With the master receiver in control (default setting), the
       TV-Hub’s “Receiver” port outputs whichever band/polarization is currently
-      selected by the master receiver. Always select "TV-Hub" for a linear system
-      equipped with a multiswitch and an IP AutoSwitch.
+      selected by the master receiver. With the TV-Hub in control, the
+      satellite signal output from the TV-Hub’s “Receiver” port is always the
+      band and polarization corresponding to the voltage and tone detected on
+      the cable connected directly to it, regardless of the band/polarization
+      selected by any IP AutoSwitch-equipped master receiver. Always select
+      "TV-Hub" for a linear system equipped with a multiswitch and an IP
+      AutoSwitch.
     </p>
     <div class="toggle-btn #multiswitch-mode-btn">
       <div class="on">TV-Hub<br>&nbsp;</div>
