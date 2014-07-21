@@ -29,13 +29,15 @@
       $('.\\#tech-mode', jQ).toggle(TVRO.getTechMode());
       $('.\\#update-url', jQ).val(sessionStorage['kvhupdate']);
 
+        // Only show the sidelobe block when a TV6.
       TVRO.getAntModel().then(function(model) {
         jQ.toggleClass('$not-tv6', model !== 'TV6');
       });
 
-      TVRO.getLnbType().then(function(type) {
-        jQ.toggleClass('$not-linear', type !== 'linear');
-      });
+        // Only show the multiswitch block when a linear LNB.
+      //TVRO.getLnbType().then(function(type) {
+      //  jQ.toggleClass('$not-linear', type !== 'linear');
+      //});
 
       TVRO.getSleepMode().then(sleepModeBtn.setOn);
       TVRO.getSidelobeMode().then(sidelobeModeBtn.setOn);

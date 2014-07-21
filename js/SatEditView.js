@@ -155,8 +155,8 @@
 
     	  prefix = params.xponder[i].netID.substring(0,2);
     	  id = parseInt(params.xponder[i].netID.substring(2), 16);
-    	  if ((prefix !== '0X') || (id < 0) || (id > 65535) || (params.xponder[i].netID.length != 6) )
-    		  return alert('Only values of 0X0000-0XFFFF are valid for Satellite ID');
+    	  if ((prefix !== '0X') || (id < 0) || (id > 65534) || (params.xponder[i].netID.length != 6) )
+    		  return alert('Only values of 0X0000-0XFFFE are valid for Satellite ID');
       }
       
       if (!sat.predefined) {
@@ -190,7 +190,13 @@
             return;
           }
         }
-        params.lon = lon;
+
+        // This with take the lon string and truncate to 2 decimal places.
+        // It will then force to 2 decimal places if it was not already.
+        // This process protects against unintended rounding with toFixed().
+        var number_truncated = parseFloat(lon.toString().match(/-?\d*\.?\d{0,2}/)).toFixed(2);
+        
+        params.lon = number_truncated;
       }
 
       $('.\\#spinner', jQ).show();
