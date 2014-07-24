@@ -10,22 +10,37 @@
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
       Promise.all(
-        TVRO.getSystemInfo(),
-        TVRO.getSerialLog()
+          TVRO.getSystemInfo(),
+          TVRO.getSerialLog()
       ).then(function(res) {
         var email = 'support@kvh.com';
         var systemInfo = res[0];
         var serialLog = res[1];
 
         var subject = encode(
-          'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
-          ' Antenna Unit S/N: ' + systemInfo.antSn +
-          ' Date/Time: ' + systemInfo.dateTime
+            'TV-Hub: ' + systemInfo.antModel + ' ' + systemInfo.hubSn +
+            ' Antenna Unit S/N: ' + systemInfo.antSn +
+            ' Date/Time: ' + systemInfo.dateTime
         );
 
         var body = encode(serialLog);
 
-        window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+        var isMobile = navigator.userAgent.match(/Mobi/i) !== null;
+
+        if (isMobile) {
+          window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+        } else {
+
+          var emailInfoWindow = window.open("", "", "width="+screen.availWidth*.95+", height=200");
+
+          emailInfoWindow.document.write("<p>Please compose an email with the following information:<br><br>Recipent: <b>"
+                                         + decode(email)
+                                         +"</b><br>Subject: <b>"
+                                         + decode(subject)
+                                         + "</b><br>Body: <b>Please save the log and attach it to the E-mail.</b>"
+                                         + "</p>");
+        }
       });
     });
 
@@ -46,7 +61,7 @@
     };
 
     return self = {
-      reload: reload
+        reload: reload
     };
   };
 
