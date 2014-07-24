@@ -517,9 +517,21 @@
     });
   };
 
+  TVRO.getLnbPart = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('lnb part', xml).text();
+    });
+  };
+
   TVRO.getAntModel = function() {
     return TVRO.getAntennaVersions().then(function(xml) {
       return $('au model', xml).text();
+    });
+  };
+
+  TVRO.getAntSysIdModel = function() {
+    return TVRO.getAntennaVersions().then(function(xml) {
+      return $('au systemIDModel', xml).text();
     });
   };
 

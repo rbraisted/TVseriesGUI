@@ -1,19 +1,19 @@
 !function(TVRO) {
   var OptionsView = function(jQ) {
-    
+
     var singleSat = {
-      title: 'Choose a Single Satellite',
-      bgimage: 'single-sat.svg'
+        title: 'Choose a Single Satellite',
+        bgimage: 'single-sat.svg'
     };
 
     var presetGroup = {
-      title: 'Choose a Preset Group of Satellites',
-      bgimage: 'preset-group.svg'
+        title: 'Choose a Preset Group of Satellites',
+        bgimage: 'preset-group.svg'
     };
 
     var newGroup = {
-      title: 'Create a New Group of Satellites',
-      bgimage: 'new-group.svg'
+        title: 'Create a New Group of Satellites',
+        bgimage: 'new-group.svg'
     };
 
     TVRO.getLnbType().then(function(lnbType) {
@@ -24,11 +24,11 @@
     });
 
     var self = TVRO.TableView($('.\\#table-view', jQ))
-      .setValues([singleSat, presetGroup, newGroup])
-      .onBuild(function(row, option) {
-        $('.\\#title', row).text(option.title);
-        $('.\\#image', row).css('background-image', 'url(/images/' + option.bgimage + ')');
-      });
+    .setValues([singleSat, presetGroup, newGroup])
+    .onBuild(function(row, option) {
+      $('.\\#title', row).text(option.title);
+      $('.\\#image', row).css('background-image', 'url(/images/' + option.bgimage + ')');
+    });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var option = self.getValue();
@@ -40,8 +40,8 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
-        TVRO.getService(),
-        TVRO.getLnbType()
+          TVRO.getService(),
+          TVRO.getLnbType()
       ).then(function(res) {
         var service = res[0];
         var lnbType = res[1]
@@ -81,8 +81,8 @@ $(function() {
         alert('You must install a satellite to continue!');
       } else {
         Promise.all(
-          TVRO.getService(),
-          TVRO.getLnbType()
+            TVRO.getService(),
+            TVRO.getLnbType()
         ).then(function(res) {
           var service = res[0];
           var lnbType = res[1]
@@ -99,8 +99,8 @@ $(function() {
         alert('You must install a group to continue!');
       } else {
         Promise.all(
-          TVRO.getService(),
-          TVRO.getLnbType()
+            TVRO.getService(),
+            TVRO.getLnbType()
         ).then(function(res) {
           var service = res[0];
           var lnbType = res[1]
@@ -111,53 +111,53 @@ $(function() {
     });
   });
 
-//  single views 
-////////////////////////////////////////////////////////////////////////////////
+//single views 
+
 
   var regionTableView = TVRO.TableView($('.\\#region-table-view'))
-    .setValues([
-      'Africa',
-      'Asia',
-      'Australia',
-      'Central/South America',
-      'Europe',
-      'North America',
-      'All'
-    ])
-    .setValue('All')
-    .onClick(function(region) {
-      window.location.hash = '/regions/'+encode(region);
-    })
-    .onBuild(function(row, region) {
-      $('.\\#region-name', row).text(region);
-    })
-    .build();
+  .setValues([
+              'Africa',
+              'Asia',
+              'Australia',
+              'Central/South America',
+              'Europe',
+              'North America',
+              'All'
+              ])
+              .setValue('All')
+              .onClick(function(region) {
+                window.location.hash = '/regions/'+encode(region);
+              })
+              .onBuild(function(row, region) {
+                $('.\\#region-name', row).text(region);
+              })
+              .build();
 
   var singleSatTableView = TVRO.SatTableView(
-    $('.\\#single-sat-table-view')
+      $('.\\#single-sat-table-view')
       .find('.\\#back-btn')
-        .click(function() {
-          window.location.hash = '/regions';
-        })
-        .end()
+      .click(function() {
+        window.location.hash = '/regions';
+      })
+      .end()
   );
 
-//  group views
-////////////////////////////////////////////////////////////////////////////////
+//group views
+
 
   var groupTableView = TVRO.GroupTableView($('.\\#group-table-view'))
-    .onClick(function(group) {
-      window.location.hash = '/groups/' + encode(group.name);
-    });
+  .onClick(function(group) {
+    window.location.hash = '/groups/' + encode(group.name);
+  });
 
   var groupSatTableView = TVRO.SatTableView(
-    $('.\\#group-sat-table-view')
+      $('.\\#group-sat-table-view')
       .find('.\\#back-btn')
-        .click(function() {
-          var group = window.location.hash.split('/')[2];
-          window.location.hash = '/groups/' + group + '/edit';
-        })
-        .end()
+      .click(function() {
+        var group = window.location.hash.split('/')[2];
+        window.location.hash = '/groups/' + group + '/edit';
+      })
+      .end()
   ).onClick(function(sat) {
     var slot = window.location.hash.slice(-1);
     var group = window.location.hash.split('/')[2];
@@ -166,49 +166,49 @@ $(function() {
   }).setRegion('All');
 
   var groupEditView = TVRO.GroupEditView(
-    $('.\\#group-edit-view')
+      $('.\\#group-edit-view')
       .find('.\\#back-btn')
-        .click(function() {
-          var group = encode(groupEditView.getGroup() ? groupEditView.getGroup().name : '');
-          window.location.hash = '/groups' + (group ? '/' + group : '');
-        })
-        .end()
+      .click(function() {
+        var group = encode(groupEditView.getGroup() ? groupEditView.getGroup().name : '');
+        window.location.hash = '/groups' + (group ? '/' + group : '');
+      })
+      .end()
       .find('.\\#sat-view')
-        .click(function() {
-          var group = window.location.hash.split('/')[2];
-          var satView = $(this);
-          var slot;
-          if (satView.is('.\\#sat-a-view')) slot = 'A';
-          if (satView.is('.\\#sat-b-view')) slot = 'B';
-          if (satView.is('.\\#sat-c-view')) slot = 'C';
-          if (satView.is('.\\#sat-d-view')) slot = 'D';
-          window.location.hash = '/groups/' + group + '/edit/' + slot;
-        })
-        .end()
+      .click(function() {
+        var group = window.location.hash.split('/')[2];
+        var satView = $(this);
+        var slot;
+        if (satView.is('.\\#sat-a-view')) slot = 'A';
+        if (satView.is('.\\#sat-b-view')) slot = 'B';
+        if (satView.is('.\\#sat-c-view')) slot = 'C';
+        if (satView.is('.\\#sat-d-view')) slot = 'D';
+        window.location.hash = '/groups/' + group + '/edit/' + slot;
+      })
+      .end()
   );
 
   var groupInfoView = TVRO.GroupInfoView(
-    $('.\\#group-info-view')
+      $('.\\#group-info-view')
       .find('.\\#back-btn')
-        .click(function() {
-          window.location.hash = '/groups';
-        })
-        .end()
+      .click(function() {
+        window.location.hash = '/groups';
+      })
+      .end()
       .find('.\\#edit-btn')
-        .click(function() {
-          var group = encode(groupInfoView.getGroup().name);
-          window.location.hash = '/groups/' + group + '/edit';
-        })
-        .end()
+      .click(function() {
+        var group = encode(groupInfoView.getGroup().name);
+        window.location.hash = '/groups/' + group + '/edit';
+      })
+      .end()
   );
 
   var createGroupBtn = $('.\\#group-view .\\#new-btn')
-    .click(function() {
-      window.location.hash = '/groups/new/edit';
-    });
+  .click(function() {
+    window.location.hash = '/groups/new/edit';
+  });
 
-//  routing
-////////////////////////////////////////////////////////////////////////////////
+//routing
+
 
   TVRO.onHashChange(function(hash) {
 
@@ -229,7 +229,7 @@ $(function() {
       singleSatTableView.reload();
 
 
-    //  group mode
+      //  group mode
     } else if (hash.match(/\/groups/)) {
       className = '/groups';
 
@@ -252,7 +252,7 @@ $(function() {
         if (group.name === 'new') groupEditView.createNew();
         else groupEditView.setGroup(group);
         className += '/edit';
- 
+
         //  /groups/GroupName/edit/Slot (A, B, C, D)
         if (split.length > 3) {
           groupSatTableView.reload();
@@ -269,14 +269,19 @@ $(function() {
       //  send them to either
       //  optionsView, circularOptionsView, or tv5ManualOptionsView
       Promise.all(
-        TVRO.getAntModel(),
-        TVRO.getLnbType()
+          TVRO.getAntSysIdModel(),
+          TVRO.getLnbType()
       ).then(function(res) {
-        var model = res[0];
+        var sysIdModel = res[0];
         var lnbType = res[1];
-        if (lnbType === 'circular') window.location.hash = '/circular-options';
-        else if (model === 'TV5' || model === 'TV6') window.location.hash = '/tv5-manual-options';
-        else window.location.hash = '/options';
+
+        if (lnbType === 'circular') {
+          window.location.hash = '/circular-options';
+        }else if (sysIdModel === 'TV5' || sysIdModel === 'TV6') {
+          window.location.hash = '/tv5-manual-options';
+        }else {
+          window.location.hash = '/options';
+        }
       });
     }
 

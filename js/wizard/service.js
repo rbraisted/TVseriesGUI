@@ -357,9 +357,9 @@
 
     return _.merge(self,{
       reload: function() {
-        //Need to exclude Groups and Satellites if TV1 is installed
+        //Need to exclude Groups and Satellites if TV1 or RV1 is installed
         TVRO.getAntModel().then(function(model) {
-          if (model === 'TV1') {
+          if ((model === 'TV1') || (model === 'RV1')) {
             groupsTableView.setValues(['WESTERN ARC',
                                        'LEGACY EAST ARC',
                                        'DISH 500',

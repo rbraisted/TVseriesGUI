@@ -8,11 +8,11 @@ $(function() {
   $('.\\#prev-btn').click(function() {
     Promise.all(
       TVRO.getLnbType(),
-      TVRO.getLnbName(),
+      TVRO.getLnbPart(),
       TVRO.getService()
     ).then(function(res) {
       var lnbType = res[0];
-      var isTriAmericas = res[1] === 'Tri-Americas Circular';
+      var isTriAmericas = res[1] === '19-0577';
       var service = res[2];
 
       if ((lnbType === 'circular') && (service === 'DIRECTV')) {
@@ -26,7 +26,6 @@ $(function() {
       } else {
       	// This handles Linear TV1,TV3,TV5 Manual (Skew);
       	// Linear TV5 & TV6
-      	// Tri Americas
       	// Circular DISH/Bell
       	window.location = '/wizard/system.php';
       }

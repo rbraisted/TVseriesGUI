@@ -97,16 +97,18 @@
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
         TVRO.getAntModel(),
+        TVRO.getAntSysIdModel(),
         TVRO.getLnbType()
       ).then(function(res) {
         var model = res[0];
-        var lnbType = res[1];
+        var sysIdModel = res[1];
+        var lnbType = res[2];
 
         if ((lnbType === 'linear') &&
             ((model === 'TV1') ||
              (model === 'TV3') || 
-             (model === 'TV5') ||
-             (model === 'TV6'))) {
+             (sysIdModel === 'TV5') ||
+             (sysIdModel === 'TV6'))) {
           window.location.hash = '/skew-angle';
         } else {
           window.location = '/wizard/satellites.php';
@@ -185,20 +187,22 @@ $(function() {
     if (!hash) {
       Promise.all(
         TVRO.getAntModel(),
+        TVRO.getAntSysIdModel(),
         TVRO.getLnbType(),
-        TVRO.getLnbName(),
+        TVRO.getLnbPart(),
         TVRO.getService()
       ).then(function(res) {
         var model = res[0];
-        var lnbType = res[1];
-        var service = res[3];
-        var isTriAmericas = res[2] === 'Tri-Americas';
+        var sysIdModel = res[1];
+        var lnbType = res[2];
+        var service = res[4];
+        var isTriAmericas = res[3] === '19-0577';
 
         if ((lnbType === 'linear') &&
             ((model === 'TV1') ||
              (model === 'TV3') || 
-             (model === 'TV5') ||
-             (model === 'TV6'))) {
+             (sysIdModel === 'TV5') ||
+             (sysIdModel === 'TV6'))) {
           window.location.hash = '/skew-angle';
 
         } else if (service === 'BELL' || service === 'DISH') {
