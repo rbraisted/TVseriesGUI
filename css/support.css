@@ -1232,6 +1232,8 @@ a {
   height: 300px;
   margin-bottom: 26px; }
 .command-line .btn-tray .input, .command-line .btn-tray .dropdown-btn {
+  background-color: #FFFFFF;
+  color: #000000;
   height: 40px;
   display: inline-block;
   width: calc(100% - 140px);

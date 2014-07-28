@@ -36,6 +36,7 @@
   <style type="text/css">
     body {
       color: #000000;
+      background-color: #FFFFFF;
       font-family: Helvetica, Arial, sans-serif;
       font-size: 16px;
       font-weight: lighter;
