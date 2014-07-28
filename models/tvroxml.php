@@ -235,6 +235,21 @@
             return($this->doSimple(__FUNCTION__, $extra));
         }
 
+        function get_heading_config()
+        {
+            return($this->doSimple(__FUNCTION__));
+        }
+        
+        function get_gps_config()
+        {
+            return($this->doSimple(__FUNCTION__));
+        }
+        
+        function get_lnb_list()
+        {
+            return($this->doSimple(__FUNCTION__));
+        }
+
         function reboot($sbc,$ant)
         {
             $extra  = "<sbc>$sbc</sbc>";

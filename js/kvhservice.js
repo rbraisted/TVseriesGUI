@@ -1,5 +1,5 @@
 $(document).ready(function(e) {
-
+  
   SendGetCommand = function(cmd){
     var recData='<ipacu_request><message name="'+cmd+'" />';
     recData+='</ipacu_request>';
@@ -48,7 +48,7 @@ $(document).ready(function(e) {
     });
   }
   function antenna_status(xml)
-  {
+  {home.php
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message='ANTENNA STATUS\n\n';
@@ -246,6 +246,9 @@ $(document).ready(function(e) {
         message+='  LO2 Frequency: '+$(this).find('LO2_freq').text()+'\n';
         message+='  LO2 Convert:   '+$(this).find('LO2_convert').text()+'\n';
         message+='  LO2 Tone:      '+$(this).find('LO2_tone').text()+'\n\n';
+        if('set_lnb'==$('#chooseSetting').val()){
+          $('#fdinLnb').val($(this).find('part').text() + ' ' + $(this).find('name').text());
+        }
       });
       $('#response').val( message +'\n');
       return false;
@@ -411,10 +414,11 @@ $(document).ready(function(e) {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message='';
-      message+='GET NMEA INFO\n\n';
+      message+='GET GPS CONFIG\n\n';
       $(xml).find('nmea0183').each(function() {
         message+='NMEA 0183\n';
-        message+='  Enabled: '+$(this).find('enable').text()+'\n\n';
+        message+='  Enabled: '+ $(this).find('enable').text()+'\n\n';
+        var is0183Enabled = $(this).find('enable').text() === 'Y';
         $(this).find('message_list').each(function() {
           $(this).find('nmea_message').each(function() {
             message+='  NMEA MESSAGE:\n';
@@ -422,14 +426,19 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            if('set_gps_config'==$('#chooseSetting').val()){
+              if(is0183Enabled){
+                $('#fdinNmeaGpsSource').val($(this).find('nmea_source').text());
+              } 
+            }
           });
         });
-
       });
       message+='\n';
       $(xml).find('nmea2000').each(function() {
         message+='NMEA 2000\n';
         message+='  Enabled: '+$(this).find('enable').text()+'\n\n';
+        var is2000Enabled = $(this).find('enable').text() === 'Y';
         $(this).find('message_list').each(function() {
           $(this).find('nmea_message').each(function() {
             message+='  NMEA MESSAGE:\n';
@@ -437,9 +446,13 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            if('set_gps_config'==$('#chooseSetting').val()){
+              if(is2000Enabled){
+                $('#fdinNmeaGpsSource').val($(this).find('nmea_source').text());
+              } 
+            }
           });
         });
-
       });
       $('#response').val( message +'\n');
       return false;
@@ -453,10 +466,11 @@ $(document).ready(function(e) {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message='';
-      message+='GET NMEA INFO\n\n';
+      message+='GET HEADING CONFIG\n\n';
       $(xml).find('nmea0183').each(function() {
         message+='NMEA 0183\n';
         message+='  Enabled: '+$(this).find('enable').text()+'\n\n';
+        var is0183Enabled = $(this).find('enable').text() === 'Y';
         $(this).find('message_list').each(function() {
           $(this).find('nmea_message').each(function() {
             message+='  NMEA MESSAGE:\n';
@@ -464,14 +478,19 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            if('set_heading_config'==$('#chooseSetting').val()){
+              if(is0183Enabled){
+                $('#fdinNmeaHeadSource').val('0183/'+ $(this).find('nmea_source').text());
+              } 
+            }
           });
         });
-
       });
       message+='\n';
       $(xml).find('nmea2000').each(function() {
         message+='NMEA 2000\n';
         message+='  Enabled: '+$(this).find('enable').text()+'\n\n';
+        var is2000Enabled = $(this).find('enable').text() === 'Y';
         $(this).find('message_list').each(function() {
           $(this).find('nmea_message').each(function() {
             message+='  NMEA MESSAGE:\n';
@@ -479,9 +498,13 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            if('set_heading_config'==$('#chooseSetting').val()){
+              if(is2000Enabled){
+                $('#fdinNmeaHeadSource').val('2000/'+ $(this).find('nmea_source').text());
+              } 
+            }
           });
         });
-
       });
       $('#response').val( message +'\n');
       return false;
@@ -574,7 +597,43 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function set_multiswitch_mode(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
   function set_lnb(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
+  function set_heading_config(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
+  function set_gps_config(xml)
   {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
@@ -882,6 +941,19 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function clear_event_history(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
   function get_event_history_count(xml)
   {
     var error=$(xml).find('message').attr('error');
@@ -1106,15 +1178,34 @@ $(document).ready(function(e) {
       return false;
     }   
   }
-  function get_autoswitch_configured_names(xml)
+  function get_multiswitch_mode(xml)
   {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message='';
+      message+='GET MUTLTISWITCH MODE\n\n';
+      message+='Enable: '+$(xml).find('enable').text()+'\n';
+      if('set_multiswitch_mode'==$('#chooseSetting').val()){
+        $('#fdinYesNo1').val($(xml).find('enable').text());
+      }
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }   
+  }
+  function get_autoswitch_configured_names(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message = '';
+      var type = '';
       message+='GET AUTOSWITCH CONFIGURED NAMES\n\n';
       message+='Available: '+$(xml).find('available').text()+'\n';
       message+='Enable:    '+$(xml).find('enable').text()+'\n\n';
       $(xml).find('autoswitch_list').each(function() {
+        type = 'AUTOSWITCH';
         $(this).find('autoswitch').each(function() {
           message+='AUTOSWITCH\n';
           message+='SN:        '+$(this).find('sn').text()+'\n';
@@ -1122,12 +1213,25 @@ $(document).ready(function(e) {
         });
       });
       $(xml).find('receiver_list').each(function() {
+        type = 'RECEIVER';
         $(this).find('receiver').each(function() {
           message+='RECEIVER\n';
           message+='IP Address: '+$(this).find('ip_address').text()+'\n';
           message+='Name:       '+$(this).find('name').text()+'\n\n';
         });
       });
+      if('set_autoswitch_configured_names'==$('#chooseSetting').val()){
+        if('RECEIVER' === type)
+        {
+          $('#fd6').html('IP Address');
+          $('#fdAN').html('IP Address');
+
+        }else{
+          $('#fd6').html('Serial Number');
+          $('#fdAN').html('Serial Number');
+
+        }
+      }
       $('#response').val( message +'\n');
       return false;
     }else{
@@ -1141,7 +1245,7 @@ $(document).ready(function(e) {
     if('0'==error){
       var message='';
       message+='GET SATELLITE SERVICE\n\n';
-      message+='Service:     '+$(xml).find('service').text()+'\n\n';
+      message+='Service: '+$(xml).find('service').text()+'\n\n';
       $('#response').val( message +'\n');
       return false;
     }else{
@@ -1157,6 +1261,11 @@ $(document).ready(function(e) {
       message+='GET CHECKSWITCH MODE\n\n';
       message+='Enable: '+$(xml).find('enable').text()+'\n';
       message+='Status: '+$(xml).find('status').text()+'\n\n';
+      
+      if('set_checkswitch_mode'==$('#chooseSetting').val()){
+        $('#fdinYesNo1').val($(xml).find('enable').text());        
+      }
+      
       $('#response').val( message +'\n');
       return false;
     }else{
@@ -1164,7 +1273,7 @@ $(document).ready(function(e) {
       return false;
     }   
   }
-  
+ 
   function get_lnb_list(xml)
   {
     //var lnbArray[];
@@ -1611,6 +1720,7 @@ $(document).ready(function(e) {
       clearWindow();
       $('#field_Lnb').removeClass('hideField');
       $('#fdLnb').html('LNB');
+      SendGetCommand('antenna_versions');
       break;
     case 'set_satellite_identity':
       clearWindow();
@@ -1673,48 +1783,6 @@ $(document).ready(function(e) {
       $('#fdWLANM').html('Mode');
       SendGetCommand('get_wlan');
       break;
-    case 'set_smartswitch':
-      clearWindow();
-      $('#field_YesNo1').removeClass('hideField');
-      $('#fdYN1').html('Enable');
-      $('#field_YesNo2').removeClass('hideField');
-      $('#fdYN2').html('Autoselect');
-      $('#field_AB').removeClass('hideField');
-      $('#fdAB').html('Input');
-      $('#field_123').removeClass('hideField');
-      $('#fd123').html('Output');
-      SendGetCommand('get_smartswitch_status');
-      break;
-    case 'set_smartswitch_config':
-      clearWindow();
-      $('#field_1').removeClass('hideField');
-      $('#fd1').html('Input A Name');
-      $('#field_YesNo1').removeClass('hideField');
-      $('#fdYN1').html('Enable');
-      $('#field_2').removeClass('hideField');
-      $('#fd2').html('Input B Name');
-      $('#field_YesNo2').removeClass('hideField');
-      $('#fdYN2').html('Enable');
-      $('#field_3').removeClass('hideField');
-      $('#fd3').html('Output 1 Name');
-      $('#field_YesNo3').removeClass('hideField');
-      $('#fdYN3').html('Enable');
-      $('#field_4').removeClass('hideField');
-      $('#fd4').html('Output 2 Name');
-      $('#field_YesNo4').removeClass('hideField');
-      $('#fdYN4').html('Enable');
-      $('#field_5').removeClass('hideField');
-      $('#fd5').html('Output 3 Name');
-      $('#field_YesNo5').removeClass('hideField');
-      $('#fdYN5').html('Enable');
-      SendGetCommand('get_smartswitch_config');
-      break;
-    case 'set_dualdome_config':
-      clearWindow();
-      $('#field_MasterSlaveMode').removeClass('hideField');
-      $('#fdMSM').html('Mode');
-      SendGetCommand('get_dualdome_status');
-      break;
     case 'get_recent_event_history':
       clearWindow();
       $('#field_NavCount').removeClass('hideField');
@@ -1759,9 +1827,9 @@ $(document).ready(function(e) {
       $('#field_AddDelAll').removeClass('hideField');
       $('#fdADA').html('Command');
       $('#field_6').removeClass('hideField');
-      $('#fd6').html('Serial Number');
       $('#field_7').removeClass('hideField');
       $('#fd7').html('Name');
+      SendGetCommand('get_autoswitch_configured_names');
       break;
     case 'set_autoswitch_master':
       clearWindow();
@@ -1772,11 +1840,31 @@ $(document).ready(function(e) {
       clearWindow();
       $('#field_Sat_Service').removeClass('hideField');
       $('#fdSatServ').html('Service');
+      SendGetCommand('get_satellite_service');
       break;
     case 'set_checkswitch_mode':
       clearWindow();
       $('#field_YesNo1').removeClass('hideField');
       $('#fdYN1').html('Enable');
+      SendGetCommand('get_checkswitch_mode');
+      break;
+    case 'set_multiswitch_mode':
+      clearWindow();
+      $('#field_YesNo1').removeClass('hideField');
+      $('#fdYN1').html('Enable');
+      SendGetCommand('get_multiswitch_mode');
+      break;
+    case 'set_heading_config':
+      clearWindow();
+      $('#field_NmeaHeadSource').removeClass('hideField');
+      $('#fdNmeaHeadSource').html('NMEA Source');
+      SendGetCommand('get_heading_config');
+      break;
+    case 'set_gps_config':
+      clearWindow();
+      $('#field_NmeaGpsSource').removeClass('hideField');
+      $('#fdNmeaGpsSource').html('NMEA Source');
+      SendGetCommand('get_gps_config');
       break;
 
     default:
@@ -1816,18 +1904,17 @@ $(document).ready(function(e) {
       $('#field_6').addClass('hideField');
       $('#field_7').addClass('hideField');
       $('#field_AutoswitchNames').removeClass('hideField');
-      $('#fdAN').html('Serial Number');
     }else if('DELETE_ALL'==$('#fdinAddDelAll').val()){ 
       $('#field_6').addClass('hideField');
       $('#field_7').addClass('hideField');
       $('#field_AutoswitchNames').addClass('hideField');
     }else{
       $('#field_6').removeClass('hideField');
-      $('#fd6').html('Serial Number');
       $('#field_7').removeClass('hideField');
       $('#fd7').html('Name');
       $('#field_AutoswitchNames').addClass('hideField');
     }
+    SendGetCommand('get_autoswitch_configured_names');
   });
   function set_antenna_config(xml)
   {
@@ -2536,18 +2623,25 @@ $(document).ready(function(e) {
       break;
 
     case 'set_autoswitch_configured_names':
+      // This command is able to use 'autoswitch' tag reguardless if it is an
+      // autoswitch or receiver. To simplify code, autoswitch will be used
+      // instead of trying to query for the service.
       var message='';
       if('DELETE'==$('#fdinAddDelAll').val()){
         message+='<command>DELETE</command>';
+        message+='<autoswitch>';
         message+='<sn>'+$('#fdinAutoswitchNames').val()+'</sn>';
+        message+='</autoswitch>';
 
       }else if('DELETE_ALL'==$('#fdinAddDelAll').val()){
         message+='<command>DELETE_ALL</command>';
 
       }else{
         message+='<command>ADD</command>';
+        message+='<autoswitch>';
         message+='<sn>'+$('#fdin6').val()+'</sn>';
         message+='<name>'+$('#fdin7').val()+'</name>';
+        message+='</autoswitch>';
       }
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
@@ -2569,13 +2663,76 @@ $(document).ready(function(e) {
 
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
+    case 'set_multiswitch_mode':
+      var message='';
+      message+='<enable>'+$('#fdinYesNo1').val()+'</enable>';
+
+      SendGetCommand2($('#chooseSetting').val(),message);
+      break;
     case 'set_lnb':
       var message='';
       message+='<name>'+$('#fdinLnb').val()+'</name>';
 
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
+    case 'set_heading_config':
+      var message='';
+      var parseSource='';
+      var nmeaSpec='';
+      var source='';
+      var msgBody='';
+      
+      // create substrings based upon parse character (Set in controllers/kvhservices.php)
+      parseSource = $('#fdinNmeaHeadSource').val().split("/");
 
+      nmeaSpec = parseSource[0];
+      source   = parseSource[1];
+      
+      msgBody = '<enable>Y</enable><nmea_source>' + source + '</nmea_source>';
+      
+      if("0183" === nmeaSpec){
+        //Construct the Nmea0183 block 
+        message += '<nmea0183>' + msgBody + '</nmea0183>';
+        // Need to disable nmea2000 device if it was enabled
+        message += '<nmea2000><enable>N</enable><nmea_source></nmea_source></nmea2000>';
+      }else if ("2000" === nmeaSpec){
+        //Construct the Nmea2000 block 
+        message += '<nmea2000>' + msgBody + '</nmea2000>';
+        // Need to disable nmea0183 device if it was enabled
+        message += '<nmea0183><enable>N</enable><nmea_source></nmea_source></nmea0183>';
+      }
+
+      SendGetCommand2($('#chooseSetting').val(),message);
+      break;
+    case 'set_gps_config':
+      var message='';
+      var parseSource='';
+      var nmeaSpec='';
+      var source='';
+      var msgBody='';
+      
+      // create substrings based upon parse character (Set in controllers/kvhservices.php)
+      parseSource = $('#fdinNmeaGpsSource').val().split("/");
+
+      nmeaSpec = parseSource[0];
+      source   = parseSource[1];
+      
+      msgBody = '<enable>Y</enable><nmea_source>' + source + '</nmea_source>';
+      
+      if("0183" === nmeaSpec){
+        //Construct the Nmea0183 block 
+        message += '<nmea0183>' + msgBody + '</nmea0183>';
+        // Need to disable nmea2000 device if it was enabled
+        message += '<nmea2000><enable>N</enable><nmea_source></nmea_source></nmea2000>';
+      }else if ("2000" === nmeaSpec){
+        //Construct the Nmea2000 block 
+        message += '<nmea2000>' + msgBody + '</nmea2000>';
+        // Need to disable nmea0183 device if it was enabled
+        message += '<nmea0183><enable>N</enable><nmea_source></nmea_source></nmea0183>';
+      }
+
+      SendGetCommand2($('#chooseSetting').val(),message);
+      break;
     default:
 
       break;
@@ -2776,6 +2933,8 @@ $(document).ready(function(e) {
     $('#field_upload').addClass('hideField');
     $('#field_AntSatID').addClass('hideField');
     $('#field_Lnb').addClass('hideField');
+    $('#field_NmeaHeadSource').addClass('hideField');
+    $('#field_NmeaGpsSource').addClass('hideField');
     $('#field_Xponder').addClass('hideField');
     $('#field_Polarity').addClass('hideField');
     $('#field_Band').addClass('hideField');
