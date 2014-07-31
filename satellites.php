@@ -437,7 +437,7 @@ and also .#group-table-view (group mode)
   </div>
   <div class="sat-table single-sat-table #table-view">
     <div class="table-head #table-head">
-      <div class="table-col install-col">Installed</div><!--
+      <div class="table-col install-col">Selected</div><!--
      --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
      --><div class="table-col orb-slot-col sort-btn #sort-btn #lon-btn">Orbital Slot</div><!--
      --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div><!--
@@ -478,28 +478,28 @@ and also .#group-table-view (group mode)
     <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
-    <div class="slot-foot">Installed</div>
+    <div class="slot-foot">Selected</div>
   </div><!--
  --><div class="slot #sat-view #sat-b-view $n/a">
     <div class="slot-head">Slot B</div>
     <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
-    <div class="slot-foot">Installed</div>
+    <div class="slot-foot">Selected</div>
   </div><!--
  --><div class="slot #sat-view #sat-c-view $n/a">
     <div class="slot-head">Slot C</div>
     <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
-    <div class="slot-foot">Installed</div>
+    <div class="slot-foot">Selected</div>
   </div><!--
  --><div class="slot #sat-view #sat-d-view $n/a">
     <div class="slot-head">Slot D</div>
     <div class="sat-name #sat-name">N/A</div>
     <div class="install-btn #install-btn"></div>
     <div class="info-btn #info-btn"></div>
-    <div class="slot-foot">Installed</div>
+    <div class="slot-foot">Selected</div>
   </div>
   <div class="btn-tray">
     <div class="block-btn first delete-btn #delete-btn">Delete Group</div><!--
@@ -550,7 +550,7 @@ and also .#group-table-view (group mode)
     </div>
     <div class="sat-table group-sat-table #table-view">
       <div class="table-head #table-head">
-        <div class="table-col install-col">Installed</div><!--
+        <div class="table-col install-col">Selected</div><!--
      --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
      --><div class="table-col orb-slot-col sort-btn #sort-btn #lon-btn">Orbital Slot</div><!--
      --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div><!--

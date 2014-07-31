@@ -110,7 +110,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     <div class="right single-sat-table #single-sat-table-view">
       <div class="sat-table #table-view">
         <div class="table-head #table-head">
-          <div class="table-col install-col">Installed</div><!--
+          <div class="table-col install-col">Selected</div><!--
          --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
          --><div class="table-col orb-slot-col sort-btn #sort-btn #lon-btn">Orbital Slot</div><!--
          --><div class="table-col region-col sort-btn #sort-btn #region-btn">Region</div>
@@ -162,22 +162,22 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
       <div class="slot first #sat-view #sat-a-view $n/a">
         <div class="slot-head">Slot A</div>
         <div class="sat-name #sat-name">N/A</div>
-        <div class="slot-foot">Installed</div>
+        <div class="slot-foot">Selected</div>
       </div><!--
      --><div class="slot #sat-view #sat-b-view $n/a">
         <div class="slot-head">Slot B</div>
         <div class="sat-name #sat-name">N/A</div>
-        <div class="slot-foot">Installed</div>
+        <div class="slot-foot">Selected</div>
       </div><!--
      --><div class="slot #sat-view #sat-c-view $n/a">
         <div class="slot-head">Slot C</div>
         <div class="sat-name #sat-name">N/A</div>
-        <div class="slot-foot">Installed</div>
+        <div class="slot-foot">Selected</div>
       </div><!--
      --><div class="slot #sat-view #sat-d-view $n/a">
         <div class="slot-head">Slot D</div>
         <div class="sat-name #sat-name">N/A</div>
-        <div class="slot-foot">Installed</div>
+        <div class="slot-foot">Selected</div>
       </div>
       <div class="block-btn install-btn #install-btn">Install Group</div>
     </div>
