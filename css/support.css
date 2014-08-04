@@ -1134,6 +1134,9 @@ a {
   color: #4f7abd;
   text-decoration: underline;
   cursor: pointer; }
+.event-log .btn-tray .clear-btn {
+  float: left;
+  margin-left: 0; }
 .event-log .event-table {
   width: 100%;
   position: relative;
@@ -1215,9 +1218,16 @@ a {
     top: 0; }
   .event-log .btn-tray .save-btn {
     display: none; }
+  .event-log .btn-tray .clear-btn {
+    width: 40%;
+    margin-bottom: 0;
+    float: left;
+    display: inline-block; }
   .event-log .btn-tray .email-btn {
-    width: 100%;
-    margin-bottom: 0; } }
+    width: 40%;
+    margin-bottom: 0;
+    float: right;
+    display: inline-block; } }
 
 @media screen and (max-width: 880px) {
   .restart-system .restart-ant-btn {

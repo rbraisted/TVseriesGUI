@@ -15,6 +15,10 @@
       window.document.location = 'logfile.php?file=majorError.log';
     });
 
+    var clearBtn = $('.\\#clear-btn', jQ).click(function() {
+      TVRO.clearEventHistoryLog();
+    });
+
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
       Promise.all(
           TVRO.getSystemInfo(),

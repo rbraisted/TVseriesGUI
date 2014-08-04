@@ -643,6 +643,10 @@
       return $('url', xml).text();
     });
   };
+  
+  TVRO.clearEventHistoryLog = function() {
+    return TVRO.clearEventHistory();
+  };
 
   var getEventHistoryLog = TVRO.getEventHistoryLog;
   TVRO.getEventHistoryLog = function() {

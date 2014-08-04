@@ -316,6 +316,8 @@
 
   TVRO.getSerialLog = get('get_serial_log', 3000);
 
+  TVRO.clearEventHistory = get('clear_event_history');
+  
   TVRO.getEventHistoryLog = get('get_event_history_log', 3000);
 
   TVRO.getRecentEventHistory = get('get_recent_event_history', 3000);

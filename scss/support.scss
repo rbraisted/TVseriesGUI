@@ -235,62 +235,78 @@
     cursor: pointer;
   }
 
-	.event-table {
-		@include alt-table;
+  .btn-tray {
+    .clear-btn {
+      float:left;
+      margin-left: 0;
+    }
+  }
+
+  .event-table {
+    @include alt-table;
     background-color: $light-grey;
-		height: 400px;
-		overflow: auto;
-		margin-bottom: 30px;
+    height: 400px;
+    overflow: auto;
+    margin-bottom: 30px;
 
-		.table-head {
-			background-color: $light-blue;
-			font-size: $fine-font;
-			min-height: $lil-bump;
+    .table-head {
+      background-color: $light-blue;
+      font-size: $fine-font;
+      min-height: $lil-bump;
 
-			.table-col { padding: 7px 15px; }
-		}
+      .table-col { padding: 7px 15px; }
+    }
 
-		.table-row {
-			font-size: $small-font;
-		}
+    .table-row {
+      font-size: $small-font;
+    }
 
-		.table-head+.table-row {
-			margin-top: $lil-bump;
-		}
+    .table-head+.table-row {
+      margin-top: $lil-bump;
+    }
 
-		.date-col {
-			width: 20%;
-		}
+    .date-col {
+      width: 20%;
+    }
 
-		.message-col {
-			width: 80%;
-		}
-	}
+    .message-col {
+      width: 80%;
+    }
+  }
 
-	@include breakpoint($mobile) {
-		p {
-			display: none;
-		}
+  @include breakpoint($mobile) {
+    p {
+      display: none;
+    }
 
-		.event-table {
-			bottom: 60px;
-			height: auto;
-			margin-bottom: 0;
-			position: absolute;
-			top: 0;
-		}
+    .event-table {
+      bottom: 60px;
+      height: auto;
+      margin-bottom: 0;
+      position: absolute;
+      top: 0;
+    }
 
-		.btn-tray {
-			.save-btn {
-				display: none;
-			}
+    .btn-tray {
+      .save-btn {
+        display: none;
+      }
 
-			.email-btn {
-				width: 100%;
-				margin-bottom: 0;
-			}
-		}
-	}
+      .clear-btn{
+        width: 40%;
+        margin-bottom: 0;
+        float:left;
+        display: inline-block;
+      }
+			
+      .email-btn {
+        width: 40%;
+        margin-bottom: 0;
+        float:right;
+        display: inline-block;
+      }
+    }
+  }
 }
 
 .restart-system {

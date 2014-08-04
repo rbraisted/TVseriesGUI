@@ -218,6 +218,7 @@
 	<div class="btn-tray">
 		<div class="block-btn save-btn #save-btn">Save Log</div>
 		<div class="block-btn email-btn #email-btn">Email Log</div>
+        <div class="block-btn clear-btn #clear-btn">Clear Log</div>
  	</div>
 </div>
 
