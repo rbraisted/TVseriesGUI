@@ -16,7 +16,7 @@
     });
 
     var clearBtn = $('.\\#clear-btn', jQ).click(function() {
-      TVRO.clearEventHistoryLog();
+      TVRO.clearEventHistoryLog().then(self.reload);
     });
 
     var emailBtn = $('.\\#email-btn', jQ).click(function() {
