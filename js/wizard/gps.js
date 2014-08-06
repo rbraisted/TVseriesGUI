@@ -28,8 +28,8 @@
   var setSource = _.curry(function(webServiceCall, source) {
     //  default - the 'None' option
     var params = {
-        nmea0183: { enable: 'N', nmea_source: '' },
-        nmea2000: { enable: 'N', nmea_source: '' }
+                  nmea0183: { enable: 'N', nmea_source: '' },
+                  nmea2000: { enable: 'N', nmea_source: '' }
     };
 
     if (source['type']) {
@@ -78,6 +78,8 @@
     var coordinatesView = $('.\\#coordinates-view', jQ).detach();
     var cityView = $('.\\#city-view', jQ).detach();
 
+    var latHemInput = $('.\\#lat-hem', coordinatesView);
+    var lonHemInput = $('.\\#lon-hem', coordinatesView);
     var latitudeInput = $('.\\#latitude', coordinatesView);
     var longitudeInput = $('.\\#longitude', coordinatesView).click(function(event) {
       event.stopPropagation();
@@ -88,6 +90,40 @@
       cityDropdownView.show(cityDropdownBtn.offset());
       self.setValue('CITY');
     };
+
+    var setLatHem = function(hem) {
+      $('.\\#lat-hem', jQ).text(hem);
+      latHemDropdownView.setValue(hem);
+    };
+
+    var setLonHem = function(hem) {
+      $('.\\#lon-hem', jQ).text(hem);
+      lonHemDropdownView.setValue(hem);
+    };
+
+    var latHemBtn = $('.\\#lat-hem-btn',coordinatesView).click(function() {
+      latHemDropdownView.show(latHemBtn.offset());
+    });
+
+    var latHemDropdownView = TVRO.DropdownView($('.\\#lat-hem-dropdown-view'))
+    .setValues([
+                'N',
+                'S'
+                ])
+                .onClick(setLatHem)
+                .build();
+
+    var lonHemBtn = $('.\\#lon-hem-btn',coordinatesView).click(function() {
+      lonHemDropdownView.show(lonHemBtn.offset());
+    });
+
+    var lonHemDropdownView = TVRO.DropdownView($('.\\#lon-hem-dropdown-view'))
+    .setValues([
+                'E',
+                'W'
+                ])
+                .onClick(setLonHem)
+                .build();
 
     var cityLabel = $('.\\#city', cityView);
     var cityDropdownView = TVRO.DropdownView($('.\\#city-dropdown-view'))
@@ -107,10 +143,12 @@
             var array = [latitude,longitude];
             return array; 
           }).then(function(LatLonArray){
-            return formatGPS(false,LatLonArray[0],LatLonArray[1]);
+            return TVRO.formatGPS('inputDisplay',LatLonArray[0],LatLonArray[1]);
           }).then(function(array){
-            latitudeInput.val(array[0]);
-            longitudeInput.val(array[1]);
+            setLatHem(array[0][1]);
+            setLonHem(array[1][1]);
+            latitudeInput.val(array[0][0]);
+            longitudeInput.val(array[1][0]);
           });
         },500);
       });
@@ -120,9 +158,9 @@
 
     TVRO.getGpsCities().then(function(xml) {
       cityDropdownView.setValues(
-          _.map($('city', xml), function(element) {
-            return $(element).text();
-          })
+                                 _.map($('city', xml), function(element) {
+                                   return $(element).text();
+                                 })
       ).build();
     });
 
@@ -159,7 +197,7 @@
         var array = [latitude,longitude];
         return array;
       }).then(function(LatLonArray){
-        return formatGPS(false,LatLonArray[0],LatLonArray[1]);
+        return TVRO.formatGPS('inputDisplay',LatLonArray[0],LatLonArray[1]);
       }).then(function(array){
         if(city){
           self.setValue('CITY');
@@ -168,8 +206,10 @@
         }else{
           self.setValue('COORDINATES');
         }
-        latitudeInput.val(array[0]);
-        longitudeInput.val(array[1]);
+        setLatHem(array[0][1]);
+        setLonHem(array[1][1]);
+        latitudeInput.val(array[0][0]);
+        longitudeInput.val(array[1][0]);
       });
     });
 
@@ -185,71 +225,6 @@
       });
     };
 
-    var formatGPS = function(isInput,latitude,longitude){
-      var lon;
-      var lat;
-    
-      if(isInput)
-      {
-    	var validLatRegExpr = /^(-?[0-9]{0,2}[\.]?[0-9]*)(S?|N?)$/ig;
-    	var parseLat = validLatRegExpr.exec(latitude)
-    	
-     	var validLonRegExpr = /^(-?[0-9]{0,3}[\.]?[0-9]*)(E?|W?)$/ig;
-    	var parseLon = validLonRegExpr.exec(longitude)
-    	
-    	if(parseLat && ((parseLat[1] >= -90) && (parseLat[1] <= 90))){
-    		switch(parseLat[2].toUpperCase()){
-    		case 'S':
-     		   lat = -(Math.abs(parseLat[1]));
-               break;
-    		case 'N':
-      		   lat = (Math.abs(parseLat[1]));	
-    			break;
-    		default:
-      		   lat = parseLat[1];		
-               break;
-    		}
-    	}else{
-    		alert("Please enter a valid Latitude.")
-    		return Number(-1);
-    	}
-    	
-    	if(parseLon && ((parseLon[1] >= -180) && (parseLon[1] <= 180))){
-    		switch(parseLon[2].toUpperCase()){
-    		case 'W':
-     		   lon = -(Math.abs(parseLon[1]));
-               break;
-    		case 'E':
-      		   lon = (Math.abs(parseLon[1]));	
-    			break;
-    		default:
-      		   lon = parseLon[1];		
-               break;
-    		}
-       	}else{
-    		alert("Please enter a valid Longitude.")
-    		return Number(-1);
-    	}
-      }else
-      {
-        if(Number(latitude)< 0)
-          {
-            lat= Math.abs(Number(latitude)) + "S";
-          }else{
-            lat= Number(latitude) + "N";
-          }
-        if(Number(longitude)< 0)
-        {
-          lon= Math.abs(Number(longitude)) + "W";
-        }else{
-          lon= Number(longitude) + "E";
-        }
-      }
-
-      var latLonArray = [lat.toString(),lon.toString()];
-      return latLonArray;
-    };
-
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
       var value = self.getValue();
       if (!value) {
@@ -257,21 +232,27 @@
 
         //  custom COORDINATES selected
       } else if (value === 'COORDINATES') {
-        var latitude = latitudeInput.val();
+        var latitude  = latitudeInput.val();
         var longitude = longitudeInput.val();
+        var latHem    = latHemDropdownView.getValue();
+        var lonHem    = lonHemDropdownView.getValue();
 
-        if (!latitude || !longitude) alert('You must enter a latitude and longitude to continue.');
-        else{
+        if (!latitude || !longitude) {
+          alert('You must enter a latitude and longitude to continue.');
+        }else if(!latHem || !lonHem){
+          alert('You must enter a Hemisphere to continue.');
+        }else{
           Promise.all(
-              formatGPS(true,latitude,longitude)
+                      // Append the hemisphere to the latitude and longitude
+                      TVRO.formatGPS('input', latitude + latHem, longitude + lonHem)
           ).then(function(latLonArray){
 
-        	  if(latLonArray != -1){
-                TVRO.setGps({
-                  lat: latLonArray[0],
-                  lon: latLonArray[1]
-                }).then(goToNext);
-        	  }
+            if(latLonArray != -1){
+              TVRO.setGps({
+                lat: latLonArray[0],
+                lon: latLonArray[1]
+              }).then(goToNext);
+            }
           });
         }
         //  CITY selected
@@ -309,8 +290,8 @@
 
           // CIRCULAR LNB -> select service (service.php)
           if ((lnbType === 'circular') && 
-              (lnbPart !== '19-0577') &&
-              ((lnbPart !== '19-0805'))) window.location = '/wizard/service.php';
+                  (lnbPart !== '19-0577') &&
+                  ((lnbPart !== '19-0805'))) window.location = '/wizard/service.php';
 
           // GALAXY -> directv (service.php#/directv)
           else if (lnbPart === '19-0805'){
@@ -341,11 +322,11 @@
           }else if (lnbPart === '19-0577') {
             window.location = '/wizard/service.php#/tri-am-group';
 
-          // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
+            // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
           }else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') {
             window.location = '/wizard/satellites.php#/options';
 
-          // TV5 + MANUAL -> select satellites (satellites.php)
+            // TV5 + MANUAL -> select satellites (satellites.php)
           }else {
             window.location = '/wizard/satellites.php#/tv5-manual-options';
           }

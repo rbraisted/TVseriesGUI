@@ -40,12 +40,21 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="coordinates-view #coordinates-view">
     <span class="coordinates-label label">Enter your coordinates</span>
     <span class="label">Latitude:</span>
-    <input type="text" placeholder="XX.XXXS or XX.XXXN" class="input latitude #latitude">
-    <span class="label">xx.xxxN or xx.xxxS</span>
+    <input type="text" maxlength="7" class="gps-input latitude #latitude">
+    <span>&deg;</span>
+    <div class="hem-dropdown-btn #lat-hem-btn">
+      <div class="#lat-hem"></div>
+      <div class="dropdown-icon"></div>
+    </div>
     <br>
     <span class="label">Longitude:</span>
-    <input type="text" placeholder="XXX.XXXE or XXX.XXXW" class="input longitude #longitude">
-    <span class="label">xxx.xxxE or xxx.xxxW</span>
+    <input type="text" maxlength="8" class="gps-input longitude #longitude">
+    <span>&deg;</span>
+    <div class="hem-dropdown-btn #lon-hem-btn">
+      <div class="#lon-hem"></div>
+      <div class="dropdown-icon"></div>
+    </div>
+    
   </div>
 
   <div class="city-view #city-view">
@@ -88,7 +97,35 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 </div>
 
+<div class="dropdown #lat-hem-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">Hemisphere</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+      --><span class="table-col #dropdown-value"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="dropdown #lon-hem-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">Hemisphere</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+      --><span class="table-col #dropdown-value"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="view heading-source #heading-source-view">
   <div class="view-head">Heading Source</div>

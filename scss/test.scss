@@ -429,15 +429,12 @@ html {
     line-height: 1.6;
     margin-top: 30px;
     text-align: center;
+    font-size: $small-font;
 
     @include breakpoint($mobile) {
-      font-size: $small-font;
       padding: 0 20px;
     }
 
-    @include breakpoint($desktop) {
-      font-size: $medium-font;
-    }
   }
 
   //  for the value column
@@ -482,11 +479,19 @@ html {
         margin-left: 12px;
       }
     }
-
+    
     .input {
       margin: -2px 0 0;
-      width: 200px;
+      min-width: 200px;
       font-size: $small-font;
+    }
+    
+    .gps-input {
+      @extend .input;
+      min-width: 75px;
+      width: 75px;
+      min-height: 28px;
+      text-align: center;
     }
 
     .dropdown-btn {
@@ -494,13 +499,20 @@ html {
       margin-bottom: -5px;
       margin-left: 10px;
       min-height: 28px;
-      min-width: 100px;
+      min-width: 200px;
 
       @media screen and (max-width: 540px) {
         display: block;
         margin: 10px 0 0;
       }
     }
+    
+    .hem-dropdown-btn {
+      @extend .dropdown-btn;
+      min-width: 54px;
+      margin-bottom: -9px;
+    }
+    
   }
 }
 

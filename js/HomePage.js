@@ -24,9 +24,18 @@ $(function() {
     TVRO.getAntennaStatus().then(function(xml) {
       var latitude = $('gps lat', xml).text();
       var longitude = $('gps lon', xml).text();      
-      var source = $('gps source', xml).text();      
-      $('.\\#gps-latitude').text(TVRO.formatLatitude(latitude, 4));
-      $('.\\#gps-longitude').text(TVRO.formatLongitude(longitude, 4));
+      var source = $('gps source', xml).text();
+      var state = $('gps state', xml).text();
+      
+      var latLonArray = TVRO.formatGPS('homePage',latitude,longitude);
+
+      // Only display state if an Error
+      if (state === 'ERROR'){
+        $('.\\#gps-state').text(state);
+      }
+
+      $('.\\#gps-latitude').text(latLonArray[0]);
+      $('.\\#gps-longitude').text(latLonArray[1]);
       $('.\\#gps-source').text(source);
     });
 

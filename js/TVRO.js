@@ -48,30 +48,135 @@
 
 
   TVRO.formatOrbitalSlot = function(antSatID, lon) {
-      var antLon, i, prec, lonStr;
-      
-      if (antSatID.substring(0, 4) === 'USER') {
-          if (_.isNaN(lon) || lon == '') {
-              antLon = 'N/A';
-          } else {
-              lonStr = lon.toString();
-              i = lonStr.indexOf('.');
-              if (i == -1) {
-                  prec = 0;
-              } else {
-                  prec = lonStr.length - i -1;
-              }
-              antLon = TVRO.formatLongitude(lon, prec);
-          }
-      } else if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W")) {
-          antLon = antSatID.substring(0, antSatID.length-1);
+    var antLon, i, prec, lonStr;
+
+    if (antSatID.substring(0, 4) === 'USER') {
+      if (_.isNaN(lon) || lon == '') {
+        antLon = 'N/A';
       } else {
-          antLon =  antSatID;
+        lonStr = lon.toString();
+        i = lonStr.indexOf('.');
+        if (i == -1) {
+          prec = 0;
+        } else {
+          prec = lonStr.length - i -1;
+        }
+        antLon = TVRO.formatLongitude(lon, prec);
+      }
+    } else if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W")) {
+      antLon = antSatID.substring(0, antSatID.length-1);
+    } else {
+      antLon =  antSatID;
+    }
+
+    return antLon;
+  };
+
+  TVRO.formatGPS = function(formatType, latitude, longitude){
+    var lon;
+    var lat;
+
+    if (formatType === 'input')
+    {
+      var validLat  = /^([0-9]{1,2}[\.]?[0-9]{0,4})(N{1}|S{1})$/ig;
+      var validLon  = /^([0-9]{1,3}[\.]?[0-9]{0,4})(E{1}|W{1})$/ig;
+
+      var parseLat  = validLat.exec(latitude);
+      var parseLon  = validLon.exec(longitude);
+
+      if (parseLat){
+        lat = parseLat[1];
+
+        if(parseLat[2].toUpperCase() === "S"){
+          lat = -lat;
+        }
+
+        if ((lat > 90) || (lat < -90)){
+          alert("Latitude is out of range.\nPlease enter a valid Latitude.")
+          return Number(-1);            
+        }
+      }else{
+        alert("Please enter a valid Latitude.");
+        return Number(-1);
+      }
+
+      if (parseLon){
+        lon = parseLon[1];
+
+        if(parseLon[2].toUpperCase() === "W"){
+          lon = -lon;
+        }
+
+        if ((lon > 180) || (lon < -180)){
+          alert("Longitude is out of range.\nPlease enter a valid Longitude.")
+          return Number(-1);            
+        }
+      }else{
+        alert("Please enter a valid Longitude.");
+        return Number(-1);
+      }
+
+      var latLonArray = [lat.toString(),lon.toString()];
+
+    }else if (formatType === 'inputDisplay') {
+      var lonArray;
+      var latArray;
+
+      lat = (Math.abs(latitude).toFixed(0));
+      lon = (Math.abs(longitude).toFixed(0));
+
+      if(latitude < 0)
+      {
+        var latArray = [lat, 'S']
+      }else{
+        var latArray  = [lat, 'N']
+      }
+
+      if(longitude < 0)
+      {
+        var lonArray = [lon, 'W']
+      }else{
+        var lonArray  = [lon, 'E']
       }
       
-      return antLon;
+      var latLonArray = [latArray, lonArray];
+      
+    }else if (formatType === 'homePage') {
+      
+      // Parse the incoming lat/lon which is in decimal degree format.
+      var parsedLat = latitude.split('.');
+      var parsedLon = longitude.split('.');
+
+      // Take absolute of the parsed degree since it is pos/neg in the message.
+      var latDeg = Math.abs(parsedLat[0]);
+      var lonDeg = Math.abs(parsedLon[0]);
+
+      // Calculate the decimal minute part. Must prepend the decimal since it
+      // was striped in the parse.
+      var latMin = (('.' + parsedLat[1]) * 60).toFixed(2);
+      var lonMin = (('.' + parsedLon[1]) * 60).toFixed(2);
+
+      // Create the formated GPS string with non-breaking spaces so that HTML
+      // does not collapse the space.
+      if(latitude < 0)
+      {
+        lat = latDeg + '\xB0\u00A0\u00A0' + latMin + "'\u00A0\u00A0S";
+      }else{
+        lat = latDeg + '\xB0\u00A0\u00A0' + latMin + "'\u00A0\u00A0N";
+      }
+
+      if(longitude < 0)
+      {
+        lon = lonDeg  + '\xB0\u00A0\u00A0' + lonMin + "'\u00A0\u00A0W";
+      }else{
+        lon = lonDeg  + '\xB0\u00A0\u00A0'+ lonMin + "'\u00A0\u00A0E";
+      }
+      var latLonArray = [lat,lon];
+    }
+
+    return latLonArray;
   };
-  
+
   //  for routing, hash changes
 
   var hash;
@@ -116,7 +221,7 @@
     iFrame.parentNode.removeChild(iFrame);
     iFrame = null;
   };
-  
+
   TVRO.showHelp = function(mapNo) {
     TVRO.getAntModel().then(function(model) {
       var helpUrl = RH_GetHelpUrlWithMapNo('help/' + model + '_Help' + '/index.htm', mapNo);
