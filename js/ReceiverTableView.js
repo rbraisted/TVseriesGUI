@@ -23,7 +23,6 @@
           $('.\\#receiver-id-label', row).text(receiverIdType);
         }).then(TVRO.getHubReceiver).then(function(hub) {
 					if (receiver.id === hub.id) $('.\\#receiver-name-label', row).text('TV-Hub');
-					row.toggleClass('$hub', receiver.id === hub.id);
 				});
 
         TVRO.getMasterReceiver().then(function(master) {
