@@ -1,7 +1,7 @@
 $(function() {
 
   $('.\\#next-btn').click(function() {
-    TVRO.setWizardComplete(false)
+    TVRO.setWizardComplete(true)
       .then(function() { window.location.hash = '/complete-activation'; });
   });
 

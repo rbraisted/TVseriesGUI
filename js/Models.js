@@ -593,7 +593,7 @@
 
   TVRO.setWizardComplete = function(arg) {
     return TVRO.setWizardStatus({
-      status: arg ? 'NONE' : 'SUCCESS'
+      status: arg ? 'SUCCESS' : 'NONE'
     });
   };
 
