@@ -779,7 +779,9 @@ a {
       right: 0 !important;
       top: auto !important; } }
 
-.input, .dropdown-btn {
+.input, .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .city-view .hem-dropdown-btn, .vessel-location .coordinates-view .gps-input,
+.vessel-location .city-view .gps-input {
   -webkit-border-radius: 0;
   -ms-border-radius: 0;
   -moz-border-radius: 0;
@@ -825,11 +827,13 @@ a {
     display: block;
     margin: 16px; }
 
-.dropdown-btn {
+.dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .city-view .hem-dropdown-btn {
   cursor: pointer;
   min-height: 28px;
   position: relative; }
-  .dropdown-btn .dropdown-icon {
+  .dropdown-btn .dropdown-icon, .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
+  .vessel-location .city-view .hem-dropdown-btn .dropdown-icon {
     background-image: url(/images/down-icon-white.svg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -1141,14 +1145,30 @@ a {
     .popup .btn-tray .save-btn.first + .block-btn + .block-btn,
     .popup .btn-tray .reset-btn.first + .block-btn + .block-btn {
       margin-left: 0; } }
-.popup .input, .popup .dropdown-btn,
-.popup .dropdown-btn {
+.popup .input, .popup .dropdown-btn, .popup .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .popup .hem-dropdown-btn,
+.popup .vessel-location .city-view .hem-dropdown-btn,
+.vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .popup .gps-input,
+.popup .vessel-location .city-view .gps-input,
+.vessel-location .city-view .popup .gps-input,
+.popup .dropdown-btn,
+.popup .vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .popup .hem-dropdown-btn,
+.popup .vessel-location .city-view .hem-dropdown-btn,
+.vessel-location .city-view .popup .hem-dropdown-btn {
   display: inline-block;
   width: 180px;
   margin-left: 0; }
 @media screen and (max-width: 440px) {
-  .popup .input, .popup .dropdown-btn,
+  .popup .input, .popup .dropdown-btn, .popup .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .popup .hem-dropdown-btn,
+  .popup .vessel-location .city-view .hem-dropdown-btn,
+  .vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .popup .gps-input,
+  .popup .vessel-location .city-view .gps-input,
+  .vessel-location .city-view .popup .gps-input,
   .popup .dropdown-btn,
+  .popup .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .coordinates-view .popup .hem-dropdown-btn,
+  .popup .vessel-location .city-view .hem-dropdown-btn,
+  .vessel-location .city-view .popup .hem-dropdown-btn,
   .popup .label {
     display: block;
     width: calc(100% - 20px); }
@@ -1187,7 +1207,201 @@ a {
     .advanced-settings {
       padding: 20px; } }
 
-.advanced-settings .input, .advanced-settings .dropdown-btn {
+@media screen and (min-width: 881px) {
+  .view {
+    max-width: 800px;
+    align: center;
+    min-height: 100px; }
+    .view .view-head {
+      border-bottom: 1px solid #4f7abd;
+      font-size: 26px;
+      margin: 0 0 30px 0;
+      padding: 20px 0; } }
+
+.headline {
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 15px; }
+  @media screen and (min-width: 881px) {
+    .headline {
+      font-size: 21px; } }
+  @media screen and (max-width: 880px) {
+    .headline {
+      font-size: 16px;
+      margin-top: 30px;
+      padding: 0 20px; } }
+
+.clear-table {
+  width: 100%;
+  position: relative; }
+  .clear-table .table-head {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle;
+    position: absolute;
+    z-index: 1; }
+  .clear-table .table-row {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle; }
+  .clear-table .table-col {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    vertical-align: middle; }
+  @media screen and (min-width: 881px) {
+    .clear-table {
+      max-width: 680px;
+      margin: auto; }
+      .clear-table .table-col {
+        font-size: 16px;
+        padding: 22.5px; } }
+  @media screen and (max-width: 880px) {
+    .clear-table {
+      margin: 0 20px;
+      width: calc(100% - 40px); }
+      .clear-table .table-col {
+        font-size: 13px;
+        padding: 15px; } }
+  .clear-table .table-row {
+    cursor: pointer; }
+    .clear-table .table-row .install-btn {
+      background-image: url(/images/radio-unchecked.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 21px 21px;
+      min-height: 21px;
+      min-width: 21px;
+      display: inline-block;
+      padding: 0;
+      cursor: pointer; }
+    .clear-table .table-row.\$selected .install-btn {
+      background-image: url(/images/radio-checked.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 21px 21px;
+      min-height: 21px;
+      min-width: 21px; }
+
+@media screen and (min-width: 881px) {
+  .mobile {
+    display: none; } }
+
+@media screen and (max-width: 880px) {
+  .desktop {
+    display: none; } }
+
+@media screen and (min-width: 881px) {
+  .vessel-location .headline {
+    margin: 60px 0 30px; } }
+.vessel-location .note {
+  line-height: 1.6;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 13px; }
+  @media screen and (max-width: 880px) {
+    .vessel-location .note {
+      padding: 0 20px; } }
+.vessel-location .clear-table .table-row .table-col + .table-col {
+  width: calc(100% - 21px); }
+
+.vessel-location .note {
+  padding-bottom: 60px; }
+.vessel-location .block-btn {
+  margin-top: 20px;
+  max-width: 75px;
+  min-width: 75px;
+  display: block;
+  margin-left: 45%; }
+  @media screen and (max-width: 880px) {
+    .vessel-location .block-btn {
+      max-width: initial;
+      min-width: initial;
+      margin-left: initial; } }
+.vessel-location .coordinates-view,
+.vessel-location .city-view {
+  line-height: 1.4; }
+  .vessel-location .coordinates-view .label,
+  .vessel-location .city-view .label {
+    display: inline-block;
+    margin-top: 5px;
+    color: #fff;
+    text-align: left;
+    width: initial;
+    margin-bottom: initial; }
+    @media screen and (max-width: 400px) {
+      .vessel-location .coordinates-view .label,
+      .vessel-location .city-view .label {
+        display: block;
+        margin-left: 12px;
+        margin-top: 10px; } }
+    @media screen and (min-width: 401px) {
+      .vessel-location .coordinates-view .label,
+      .vessel-location .city-view .label {
+        min-width: 90px; } }
+  .vessel-location .coordinates-view .coordinates-label,
+  .vessel-location .city-view .coordinates-label {
+    margin-top: 0; }
+    @media screen and (min-width: 401px) {
+      .vessel-location .coordinates-view .coordinates-label,
+      .vessel-location .city-view .coordinates-label {
+        display: block; } }
+  .vessel-location .coordinates-view .city-label,
+  .vessel-location .city-view .city-label {
+    margin-top: 0; }
+    @media screen and (max-width: 540px) {
+      .vessel-location .coordinates-view .city-label,
+      .vessel-location .city-view .city-label {
+        margin-left: 12px; } }
+  .vessel-location .coordinates-view .input, .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .gps-input,
+  .vessel-location .city-view .input,
+  .vessel-location .city-view .dropdown-btn,
+  .vessel-location .city-view .hem-dropdown-btn,
+  .vessel-location .city-view .gps-input {
+    margin: -2px 0 0;
+    min-width: 200px;
+    font-size: 13px; }
+  .vessel-location .coordinates-view .gps-input,
+  .vessel-location .city-view .gps-input {
+    min-width: 75px;
+    width: 75px;
+    min-height: 28px;
+    text-align: center; }
+  .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .city-view .dropdown-btn,
+  .vessel-location .city-view .hem-dropdown-btn {
+    display: inline-block;
+    margin-bottom: -5px;
+    margin-left: 10px;
+    min-height: 28px;
+    min-width: 200px; }
+    @media screen and (max-width: 540px) {
+      .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+      .vessel-location .city-view .dropdown-btn,
+      .vessel-location .city-view .hem-dropdown-btn {
+        display: block;
+        margin: 10px 0 0; } }
+  .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .city-view .hem-dropdown-btn {
+    min-width: 54px;
+    margin-bottom: -9px; }
+    @media screen and (max-width: 540px) {
+      .vessel-location .coordinates-view .hem-dropdown-btn,
+      .vessel-location .city-view .hem-dropdown-btn {
+        display: inline-block; } }
+
+.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .advanced-settings .hem-dropdown-btn,
+.advanced-settings .vessel-location .city-view .hem-dropdown-btn,
+.vessel-location .city-view .advanced-settings .hem-dropdown-btn, .advanced-settings .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .advanced-settings .gps-input,
+.advanced-settings .vessel-location .city-view .gps-input,
+.vessel-location .city-view .advanced-settings .gps-input {
   height: 40px;
   display: inline-block;
   width: calc(100% - 140px);
@@ -1202,6 +1416,7 @@ a {
 @media screen and (max-width: 880px) {
   body[class=''] .sidebar,
   .\/general .\#general-settings-view,
+  .\/vessel-location .\#vessel-location-view,
   .\/advanced .\#advanced-settings-view,
   .\/network .\#network-settings-view,
   .\/network\/ethernet .\#ethernet-settings-view,
@@ -1211,6 +1426,7 @@ a {
   .sidebar,
   body[class=''] .\#general-settings-view,
   .\/general .\#general-settings-view,
+  .\/vessel-location .\#vessel-location-view,
   .\/advanced .\#advanced-settings-view,
   .\/network .\#network-settings-view,
   .\/network\/ethernet .\#ethernet-settings-view,

@@ -93,6 +93,10 @@ $(function() {
       menuTableView.setValue('General');
       generalSettingsView.reload();
 
+    } else if (hash.match(/\/vessel-location/)) {
+      menuTableView.setValue('General');
+      generalSettingsView.reload();
+
     } else if (hash.match(/\/advanced/)) {
       menuTableView.setValue('Advanced');
       advancedSettingsView.reload();

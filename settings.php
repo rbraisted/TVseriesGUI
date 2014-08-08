@@ -5,6 +5,7 @@
 <script type="text/javascript" src="/js/AdvancedSettingsView.js"></script>
 <script type="text/javascript" src="/js/EthernetSettingsView.js"></script>
 <script type="text/javascript" src="/js/WirelessSettingsView.js"></script>
+<script type="text/javascript" src="/js/SetLocationView.js"></script>
 
 <script type="text/javascript" src="/js/SettingsPage.js"></script>
 
@@ -23,6 +24,7 @@
   </div>
 </div>
 
+
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="view general-settings #general-settings-view">
@@ -39,6 +41,15 @@
     or removing devices.
   </p>
   <div class="block-btn #wizard-btn">Setup Wizard</div>
+
+  <div class="heading">Location Coordinates</div>
+  <p>
+  Manually enter your location if your system does not have a GNSS input. The
+  antenna will use your position data to speed up satellite acquisition. In
+  addition, if the antenna has a linear LNB, it will calculate the correct skew
+  angle for your location. 
+  </p>
+  <div class="block-btn #gps-location-btn">Set Location</div>
 
   <div class="checkswitch-mode">
     <div class="heading">Check Switch Mode</div>
@@ -66,6 +77,121 @@
   <div class="toggle-btn #demo-mode-btn">
     <div class="on">On</div>
     <div class="off">Off</div>
+  </div>
+</div>
+
+<!-- GPS Location -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<div class="view vessel-location #vessel-location-view">
+  <div class="view-head">
+    Vessel Location
+    <div class="back-btn #back-btn"></div>
+  </div>
+
+  <div class="headline">
+    <div class="desktop">
+      Choose the source you would like to use
+      for your location coordinates.
+    </div>
+    <div class="mobile">
+      Choose the source you would like to use
+      for your location coordinates.
+    </div>
+  </div>
+
+  <div class="clear-table #table-view">
+    <div class="table-row #table-row">
+      <span class="table-col install-btn"></span><!--
+    --><span class="table-col #value"></span>
+    </div>
+  </div>
+
+  <div class="coordinates-view #coordinates-view">
+    <span class="coordinates-label label">Enter your coordinates</span>
+    <span class="label">Latitude:</span>
+    <input type="text" maxlength="7" class="gps-input latitude #latitude">
+    <span>&deg;</span>
+    <div class="hem-dropdown-btn #lat-hem-btn">
+      <div class="#lat-hem"></div>
+      <div class="dropdown-icon"></div>
+    </div>
+    <br>
+    <span class="label">Longitude:</span>
+    <input type="text" maxlength="8" class="gps-input longitude #longitude">
+    <span>&deg;</span>
+    <div class="hem-dropdown-btn #lon-hem-btn">
+      <div class="#lon-hem"></div>
+      <div class="dropdown-icon"></div>
+    </div>
+    
+  </div>
+
+  <div class="city-view #city-view">
+    <span class="city-label label">Choose your nearest major city</span>
+    <div class="dropdown-btn #city-btn">
+      <div class="#city">Select a City</div>
+      <div class="dropdown-icon"></div>
+    </div>
+  </div>
+  
+  <div class="block-btn #apply-gps-btn">Apply</div>
+
+  <div class="note">
+    This location will allow the antenna to find
+    the satellite(s) more quickly.
+    <br>
+    <br>
+    If your system has a linear LNB, be sure to
+    enter your latitude/longitude to ensure an
+    accurate skew calculation.
+  </div>
+    
+</div>
+
+
+<div class="dropdown #city-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">Cities</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+      --><span class="table-col #dropdown-value"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown #lat-hem-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">Hemisphere</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+      --><span class="table-col #dropdown-value"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown #lon-hem-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">Hemisphere</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+      --><span class="table-col #dropdown-value"></span>
+      </div>
+    </div>
   </div>
 </div>
 

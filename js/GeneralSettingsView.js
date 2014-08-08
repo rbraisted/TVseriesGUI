@@ -18,6 +18,10 @@
         .then(function() { window.location = '/wizard'; });
     });
 
+    var gpsLocationBtn = jQ.find('.\\#gps-location-btn').click(function() {
+      window.location.hash = '/vessel-location';
+    });
+
     var reload = function() {
       demoModeBtn.setOn(TVRO.getDemoMode());
 
