@@ -11,7 +11,7 @@
     var sortReverse;
 
     //  all these sort btns are in the #table-view #table-head
-    //  so set them up before you set up the #table-view because you'll
+    //  so set them up before you set up the #table-view because
     //  TVRO.TableView will remove #table-head from the DOM on creation
 
     var sortBtns = $('.\\#sort-btn', jQ)
