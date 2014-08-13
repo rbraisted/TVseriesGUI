@@ -48,7 +48,7 @@ $(document).ready(function(e) {
     });
   }
   function antenna_status(xml)
-  {home.php
+  {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
       var message='ANTENNA STATUS\n\n';
@@ -2623,7 +2623,7 @@ $(document).ready(function(e) {
       break;
 
     case 'set_autoswitch_configured_names':
-      // This command is able to use 'autoswitch' tag reguardless if it is an
+      // This command is able to use 'autoswitch' tag regardless if it is an
       // autoswitch or receiver. To simplify code, autoswitch will be used
       // instead of trying to query for the service.
       var message='';
