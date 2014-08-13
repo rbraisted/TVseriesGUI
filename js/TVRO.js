@@ -72,76 +72,73 @@
     return antLon;
   };
 
-  TVRO.formatGPS = function(formatType, latitude, longitude){
+  TVRO.formatGPS = function(formatType, latitude, longitude) {
     var lon;
     var lat;
 
-    if (formatType === 'input')
-    {
+    if (formatType === 'input') {
       var validLat  = /^([0-9]{1,2}[\.]?[0-9]{0,4})(N{1}|S{1})$/ig;
       var validLon  = /^([0-9]{1,3}[\.]?[0-9]{0,4})(E{1}|W{1})$/ig;
 
       var parseLat  = validLat.exec(latitude);
       var parseLon  = validLon.exec(longitude);
 
-      if (parseLat){
+      if (parseLat) {
         lat = parseLat[1];
 
-        if(parseLat[2].toUpperCase() === "S"){
+        if (parseLat[2].toUpperCase() === "S") {
           lat = -lat;
         }
 
-        if ((lat > 90) || (lat < -90)){
+        if ((lat > 90) || (lat < -90)) {
           alert("Latitude is out of range.\nPlease enter a valid Latitude.")
           return Number(-1);            
         }
-      }else{
+      } else {
         alert("Please enter a valid Latitude.");
         return Number(-1);
       }
 
-      if (parseLon){
+      if (parseLon) {
         lon = parseLon[1];
 
-        if(parseLon[2].toUpperCase() === "W"){
+        if (parseLon[2].toUpperCase() === "W") {
           lon = -lon;
         }
 
-        if ((lon > 180) || (lon < -180)){
+        if ((lon > 180) || (lon < -180)) {
           alert("Longitude is out of range.\nPlease enter a valid Longitude.")
           return Number(-1);            
         }
-      }else{
+      } else {
         alert("Please enter a valid Longitude.");
         return Number(-1);
       }
 
       var latLonArray = [lat.toString(),lon.toString()];
 
-    }else if (formatType === 'inputDisplay') {
+    } else if (formatType === 'inputDisplay') {
       var lonArray;
       var latArray;
 
       lat = (Math.abs(latitude).toFixed(0));
       lon = (Math.abs(longitude).toFixed(0));
 
-      if(latitude < 0)
-      {
+      if (latitude < 0) {
         var latArray = [lat, 'S']
-      }else{
+      } else {
         var latArray  = [lat, 'N']
       }
 
-      if(longitude < 0)
-      {
+      if (longitude < 0) {
         var lonArray = [lon, 'W']
-      }else{
+      } else {
         var lonArray  = [lon, 'E']
       }
       
       var latLonArray = [latArray, lonArray];
       
-    }else if (formatType === 'homePage') {
+    } else if (formatType === 'homePage') {
       
       // Parse the incoming lat/lon which is in decimal degree format.
       var parsedLat = latitude.split('.');
@@ -152,26 +149,24 @@
       var lonDeg = Math.abs(parsedLon[0]);
 
       // Calculate the decimal minute part. Must prepend the decimal since it
-      // was striped in the parse.
+      // was stripped in the parse.
       var latMin = (('.' + parsedLat[1]) * 60).toFixed(2);
       var lonMin = (('.' + parsedLon[1]) * 60).toFixed(2);
 
       // Create the formated GPS string with non-breaking spaces so that HTML
       // does not collapse the space.
-      if(latitude < 0)
-      {
+      if (latitude < 0) {
         lat = latDeg + '\xB0\u00A0\u00A0' + latMin + "'\u00A0\u00A0S";
-      }else{
+      } else {
         lat = latDeg + '\xB0\u00A0\u00A0' + latMin + "'\u00A0\u00A0N";
       }
 
-      if(longitude < 0)
-      {
+      if(longitude < 0) {
         lon = lonDeg  + '\xB0\u00A0\u00A0' + lonMin + "'\u00A0\u00A0W";
-      }else{
+      } else {
         lon = lonDeg  + '\xB0\u00A0\u00A0'+ lonMin + "'\u00A0\u00A0E";
       }
-      var latLonArray = [lat,lon];
+      var latLonArray = [lat, lon];
     }
 
     return latLonArray;
@@ -183,7 +178,9 @@
   var hashCallbacks = [];
 
   hashCallbacks.push(function(hash) {
-    if (TVRO.debug) console.log("-> #: " + hash);
+    if (TVRO.debug) {
+      console.log("-> #: " + hash);
+    }
   });
 
   TVRO.onHashChange = function(arg) {
@@ -201,7 +198,9 @@
   };
 
   TVRO.reload = function() {
-    if (TVRO.debug) console.log("-> #: reloading...");
+    if (TVRO.debug) {
+      console.log("-> #: reloading...");
+    }
 
     hash = window.location.hash.substring(1);
     _.invoke(hashCallbacks, 'call', null, hash);
@@ -225,17 +224,18 @@
   TVRO.showHelp = function(mapNo) {
     TVRO.getAntModel().then(function(model) {
       var helpUrl = RH_GetHelpUrlWithMapNo('help/' + model + '_Help' + '/index.htm', mapNo);
-      if (TVRO.getShellMode()) TVRO.sendShellCommand(helpUrl);
-      else window.open('/' + helpUrl, 'TVHub Help', 'width=400,height=600,scrollbars=yes');
+      
+      if (TVRO.getShellMode()) {
+        TVRO.sendShellCommand(helpUrl);
+      } else {
+        window.open('/' + helpUrl, 'TVHub Help', 'width=400,height=600,scrollbars=yes');
+      }
     });    
   };
-
 
   window.TVRO = TVRO;
 
 }(window);
-
-
 
 $(function() {
   FastClick.attach(document.body);
