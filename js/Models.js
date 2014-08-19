@@ -699,7 +699,13 @@
 
   TVRO.getSerialLogProgress = function() {
     return TVRO.serialLogStatus().then(function(xml) {
-      return $('current', xml).text()/$('max', xml).text();
+      var max = $('max', xml).text();
+      
+      if (max === '0'){
+        return 0;
+      }else {
+        return $('current', xml).text()/max;
+      }
     });
   };
 
