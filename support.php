@@ -259,8 +259,8 @@
     Only KVH-authorized technicians should use this interface.
   </p>
 
-	<!-- src set in CmdLineView -->
-	<iframe src="" class="output #output"></iframe>
+	<!-- data set in CmdLineView -->
+	<object type="text/html" data="" class="#output"></object>
 	<div class="btn-tray">
 		<input placeholder="Enter your commands here." class="input #input" /><!--
 	--><div class="block-btn #send-btn">Send</div>
