@@ -10,7 +10,7 @@
     // if "Enter" key on key board pressed send the command
     $('.\\#input').keypress(function(event){
       var keycode = (event.keyCode ? event.keyCode : event.which);
-      if(keycode == '13') {
+      if (keycode == '13') {
         $(".\\#send-btn").click();
       }
     });
@@ -19,9 +19,8 @@
       var command = input.val();
 
       if (command) {
-        self.stopOutput();
-
         $.ajax({
+          async: false,
           type: 'post',
           url: 'systemCMD.php',
           dataType : 'xml',
@@ -30,8 +29,6 @@
             input.val(''); //  clear input
           }
         });
-
-        self.startOutput();
       }
     });
 
