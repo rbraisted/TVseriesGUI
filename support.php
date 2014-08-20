@@ -260,7 +260,9 @@
   </p>
 
 	<!-- data set in CmdLineView -->
-	<object type="text/html" data="" class="#output"></object>
+  <span class="#output"></span>
+  <!-- <object type="text/html" data="none" class="#output"></object> -->
+
 	<div class="btn-tray">
 		<input placeholder="Enter your commands here." class="input #input" /><!--
 	--><div class="block-btn #send-btn">Send</div>

@@ -1236,12 +1236,14 @@ a {
 .command-line p {
   background-color: #c51313;
   padding: 13px; }
+.command-line iframe,
 .command-line object {
   background-color: #FFFFFF;
   color: #000000;
   width: 100%;
   height: 300px;
-  margin-bottom: 26px; }
+  margin-bottom: 26px;
+  display: block; }
 .command-line .btn-tray .input, .command-line .btn-tray .dropdown-btn {
   background-color: #FFFFFF;
   color: #000000;
@@ -1259,6 +1261,7 @@ a {
     padding-top: 0; }
   .command-line p {
     display: none; }
+  .command-line iframe,
   .command-line object {
     height: calc(100% - 60px);
     margin: 0; }

@@ -10,7 +10,7 @@
     // if "Enter" key on key board pressed send the command
     $('.\\#input').keypress(function(event){
       var keycode = (event.keyCode ? event.keyCode : event.which);
-      if(keycode == '13'){
+      if(keycode == '13') {
         $(".\\#send-btn").click();
       }
     });
@@ -19,25 +19,29 @@
       var command = input.val();
 
       if (command) {
+        self.stopOutput();
+
         $.ajax({
           type: 'post',
           url: 'systemCMD.php',
           dataType : 'xml',
           data : "cmd="+command,
-          success: function(response){
+          success: function (response) {
             input.val(''); //  clear input
           }
         });
+
+        self.startOutput();
       }
     });
 
     return self = {
                    stopOutput: function() {
-                     output.attr('data', '');
+                    output.empty();
                    },
 
                    startOutput: function() {
-                     output.attr('data', '/print2screen.php');
+                     output.empty().append('<iframe type="text/html" src="/print2screen.php"></iframe>');
                    }
     };
   };
