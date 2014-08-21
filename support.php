@@ -51,7 +51,7 @@
     <div class="view-head">TV-Hub</div>
     <span class="label">Serial Number</span><span class="value #hub-sn"></span>
     <span class="label">Date/Time</span><span class="value #date-time"></span>
-    <span class="label">Version</span><span class="value #hub-ver"></span>
+    <span class="label">Application Version</span><span class="value #hub-ver"></span>
     <span class="label">Web UI Version</span><span class="value #webui-ver"></span>
     <span class="label">Satellite Library Version</span><span class="value #sat-ver"></span>
     <span class="label">Satellite Service</span><span class="value #sat-service"></span>
