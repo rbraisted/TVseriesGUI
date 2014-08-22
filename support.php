@@ -249,26 +249,25 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="view command-line #command-line-view">
-	<div class="view-head">
-		Command Line
-		<div class="back-btn #back-btn"></div>
-	</div>
+  <div class="view-head">
+    Command Line
+    <div class="back-btn #back-btn"></div>
+  </div>
 
-	<p>
+  <p>
     Improper use of antenna commands can directly impact performance.
     Only KVH-authorized technicians should use this interface.
   </p>
 
-	<!-- data set in CmdLineView -->
+  <!-- data set in CmdLineView -->
   <span class="#output"></span>
-  <!-- <object type="text/html" data="none" class="#output"></object> -->
 
-	<div class="btn-tray">
-		<input placeholder="Enter your commands here." class="input #input" /><!--
-	--><div class="block-btn #send-btn">Send</div>
+    <div class="btn-tray">
+      <input placeholder="Enter your commands here." class="input #input" />
+	  <div class="block-btn #send-btn">Send</div>
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	</body>
+</body>
 </html>
