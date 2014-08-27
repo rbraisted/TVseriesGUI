@@ -214,10 +214,16 @@
     });
   };
 
-  TVRO.setInstalledSat = function(sat) {
+  TVRO.setInstalledSat = function(sat, install) {
     return TVRO.selectSatellite({
-      antSatID: sat.antSatID 
-    }).then(function(){  
+      antSatID: sat.antSatID,
+      install: install ? 'Y' : 'N'
+    }).then(function(){
+      // If we are not installing reload and skip the spinner jazz.
+      if(!install){
+        TVRO.reload();
+        return;
+      }
       document.body.className = '/spinner';
 
       var interval;

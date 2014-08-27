@@ -7,9 +7,9 @@
 
     var installBtn = $('.\\#install-btn', jQ).click(function() {
       var installed = jQ.hasClass('$installed');
-      var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID, sat.lon) + '?');
+      var confirmed = installed ? false : confirm('Are you sure you want to select ' + sat.name + ' - ' + TVRO.formatOrbitalSlot(sat.antSatID, sat.lon) + '?');
       if (confirmed) 
-        TVRO.setInstalledSat(sat);
+        TVRO.setInstalledSat(sat, false);
     });
 
     return self = {

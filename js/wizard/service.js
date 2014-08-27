@@ -323,7 +323,8 @@
         });
       } else {
         installPromise = TVRO.setInstalledSat({
-          antSatID: value
+          antSatID: value,
+          install: true
         });
       }
 
