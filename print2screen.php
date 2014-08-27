@@ -1,11 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <title>KVH TVHUB Text Only webCONTROL</title>
+  <style type="text/css">
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: lighter;
+      line-height: 1.4;
+
+      @media screen and (max-width: 440px) {
+        font-size: 13px;
+      }
+    }
+  </style>
+
+  <title>KVH TVHUB Text Only webCONTROL</title>
     <script language="javascript" type="text/javascript">
-
         // Scrolls the page as the data from the antenna is received
         function pageScroll()
         {
@@ -24,8 +36,6 @@
 
 		}
 
-
-
 		//pageScroll();
 		setInterval(pageScroll, 100);
 
@@ -33,23 +43,9 @@
 
 </head>
 <body onunload="pageClosing()" onload="pageScroll()">
-  <style type="text/css">
-    body {
-      color: #000000;
-      background-color: #FFFFFF;
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      font-weight: lighter;
-      line-height: 1.4;
-
-      @media screen and (max-width: 440px) {
-        font-size: 13px;
-      }
-    }
-  </style>
-	<form name="myTelnet" method="POST" action="#">
+	<form name="myTelnet" method="post" action="#">
         <input type="hidden" name="exitingPage" />
-        <div id="tnet" style='height:96%; width:98%; position:absolute' >
+        <div id="tnet" style='height:96%; width:98%; position:absolute; overflow:auto; -webkit-overflow-scrolling: touch;'>
             <?php
 
                 // Opens a telnet session to receive data from the antenna
@@ -71,9 +67,7 @@
 								fclose($fp);
 
 							}
-
 						}
-
 					}
 
 					echo 'Connection lost. Try refreshing the browser (F5)';

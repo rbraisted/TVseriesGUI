@@ -51,7 +51,7 @@
     <div class="view-head">TV-Hub</div>
     <span class="label">Serial Number</span><span class="value #hub-sn"></span>
     <span class="label">Date/Time</span><span class="value #date-time"></span>
-    <span class="label">Version</span><span class="value #hub-ver"></span>
+    <span class="label">Application Version</span><span class="value #hub-ver"></span>
     <span class="label">Web UI Version</span><span class="value #webui-ver"></span>
     <span class="label">Satellite Library Version</span><span class="value #sat-ver"></span>
     <span class="label">Satellite Service</span><span class="value #sat-service"></span>
@@ -249,24 +249,25 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="view command-line #command-line-view">
-	<div class="view-head">
-		Command Line
-		<div class="back-btn #back-btn"></div>
-	</div>
+  <div class="view-head">
+    Command Line
+    <div class="back-btn #back-btn"></div>
+  </div>
 
-	<p>
+  <p>
     Improper use of antenna commands can directly impact performance.
     Only KVH-authorized technicians should use this interface.
   </p>
 
-	<!-- src set in CmdLineView -->
-	<iframe src="" class="output #output"></iframe>
-	<div class="btn-tray">
-		<input placeholder="Enter your commands here." class="input #input" /><!--
-	--><div class="block-btn #send-btn">Send</div>
+  <!-- data set in CmdLineView -->
+  <span class="#output"></span>
+
+    <div class="btn-tray">
+      <input placeholder="Enter your commands here." class="input #input" />
+	  <div class="block-btn #send-btn">Send</div>
 	</div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	</body>
+</body>
 </html>

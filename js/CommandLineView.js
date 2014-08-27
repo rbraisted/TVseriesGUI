@@ -1,46 +1,48 @@
 !function(TVRO) {
   "use strict";
 
-	var CommandLineView = function(jQ) {
-		var self;
+  var CommandLineView = function(jQ) {
+    var self;
 
-		var output = $('.\\#output', jQ);
-		var input = $('.\\#input', jQ);
-		
-		// if "Enter" key on key board pressed send the command
-		$('.\\#input').keypress(function(event){
-		    var keycode = (event.keyCode ? event.keyCode : event.which);
-		    if(keycode == '13'){
-		    	$(".\\#send-btn").click();
-		    }
-		});
-		
-		var sendBtn = $('.\\#send-btn', jQ).click(function() {
-			var command = input.val();
-			if (command) {
-		    $.ajax({
-		        type: 'post',
-		        url: 'systemCMD.php',
-		        dataType : 'xml',
-		        data : "cmd="+command,
-		        success: function(response){
-							input.val(''); //  clear input
-		        }
-		    });
-			}
-		});
+    var output = $('.\\#output', jQ);
+    var input = $('.\\#input', jQ);
 
-		return self = {
-			stopOutput: function() {
-				output.attr('src', '');
-			},
+    // if "Enter" key on key board pressed send the command
+    $('.\\#input').keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+        $(".\\#send-btn").click();
+      }
+    });
 
-			startOutput: function() {
-				output.attr('src', '/print2screen.php');
-			}
-		};
-	};
+    var sendBtn = $('.\\#send-btn', jQ).click(function() {
+      var command = input.val();
 
-	TVRO.CommandLineView = CommandLineView;
+      if (command) {
+        $.ajax({
+          async: false,
+          type: 'post',
+          url: 'systemCMD.php',
+          dataType : 'xml',
+          data : "cmd="+command,
+          success: function (response) {
+            input.val(''); //  clear input
+          }
+        });
+      }
+    });
+
+    return self = {
+                   stopOutput: function() {
+                    output.empty();
+                   },
+
+                   startOutput: function() {
+                     output.empty().append('<iframe type="text/html" src="/print2screen.php"></iframe>');
+                   }
+    };
+  };
+
+  TVRO.CommandLineView = CommandLineView;
 
 }(window.TVRO);
