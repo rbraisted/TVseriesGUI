@@ -25,20 +25,28 @@
 
         var body = encode(serialLog);
 
-
         var isMobile = navigator.userAgent.match(/Mobi/i) !== null;
+        var isAndroid = navigator.userAgent.match(/Android/i) !== null;
 
         if (isMobile) {
-          window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+          if (isAndroid) {
+            // The Android email App has a limit near 71850 Characters prior
+            // to encoding for the message body size. Encoding dramatically
+            // increases the size. 
+            var truncatedBody = encode(serialLog.substring(0, 71850));
+            window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + truncatedBody;
+          } else {
+            window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+          }
         } else {
 
-          var emailInfoWindow = window.open("", "", "width="+screen.availWidth*.95+", height=200");
+          var emailInfoWindow = window.open("", "", "width=" + screen.availWidth*.95 + ", height=200");
 
           emailInfoWindow.document.write("<p>Please compose an email with the following information:<br><br>Recipent: <b>"
                                          + decode(email)
                                          +"</b><br>Subject: <b>"
                                          + decode(subject)
-                                         + "</b><br>Body: <b>Please save the log and attach it to the E-mail.</b>"
+                                         + "</b><br>Body: <b>Please save the log and attach it to the email.</b>"
                                          + "</p>");
         }
       });
@@ -49,14 +57,16 @@
 
       //  check the current log progress
       TVRO.getSerialLogProgress().then(function(progress) {
-        if (progress < 0.01) TVRO.startSerialLog({ restart: 'N' }).then(function() {
-          setTimeout(reload,1000);
-        });
-
-        else TVRO.getSerialLog().then(function(serialLog) {
-          $('.\\#serial-log', jQ).text(serialLog);
-          $('.\\#spinner', jQ).hide();
-        });
+        if (progress < 0.01) {
+          TVRO.startSerialLog({ restart: 'N' }).then(function() {
+            setTimeout(reload,1000);
+          });
+        } else {
+          TVRO.getSerialLog().then(function(serialLog) {
+            $('.\\#serial-log', jQ).text(serialLog);
+            $('.\\#spinner', jQ).hide();
+          });
+        }
       });
     };
 
