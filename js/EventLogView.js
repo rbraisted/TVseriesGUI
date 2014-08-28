@@ -35,9 +35,18 @@
         var body = encode(eventHistoryLog);
 
         var isMobile = navigator.userAgent.match(/Mobi/i) !== null;
+        var isAndroid = navigator.userAgent.match(/Android/i) !== null;
 
         if (isMobile) {
-          window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+          if (isAndroid) {
+            // The Android email App has a limit near 71850 Characters prior
+            // to encoding for the message body size. Encoding dramatically
+            // increases the size. 
+            var truncatedBody = encode(eventHistoryLog.substring(0, 71850));
+            window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + truncatedBody;
+          } else {
+            window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+          }
         } else {
 
           var emailInfoWindow = window.open("", "", "width=" + screen.availWidth * .95 + ", height=200");
@@ -46,7 +55,7 @@
                                          + decode(email)
                                          +"</b><br>Subject: <b>"
                                          + decode(subject)
-                                         + "</b><br>Body: <b>Please save the log and attach it to the E-mail.</b>"
+                                         + "</b><br>Body: <b>Please save the log and attach it to the email.</b>"
                                          + "</p>");
         }
       });
