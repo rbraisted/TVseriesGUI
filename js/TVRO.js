@@ -149,29 +149,29 @@
       // math functions.
       
       if (!parsedLat[0]) {
-        var latDeg = 0;
+        parsedLat[0] = 0;
       }
       
       if (!parsedLon[0]) {
-        var lonDeg = 0;
+        parsedLon[0] = 0;
       }
 
       if (!parsedLat[1]) {
-        var latMin = 0;
+        parsedLat[1] = 0;
       }
       
       if (!parsedLon[1]) {
-        var lonMin = 0;
+        parsedLon[1] = 0;
       }
       
       // Take absolute of the parsed degree since it is pos/neg in the message.
-      latDeg = Math.abs(parsedLat[0]);
-      lonDeg = Math.abs(parsedLon[0]);
+      var latDeg = Math.abs(parsedLat[0]);
+      var lonDeg = Math.abs(parsedLon[0]);
 
       // Calculate the decimal minute part. Must prepend the decimal since it
       // was stripped in the parse.
-      latMin = (('.' + parsedLat[1]) * 60).toFixed(2);
-      lonMin = (('.' + parsedLon[1]) * 60).toFixed(2);
+      var latMin = (('.' + parsedLat[1]) * 60).toFixed(2);
+      var lonMin = (('.' + parsedLon[1]) * 60).toFixed(2);
 
       // Create the formated GPS string with non-breaking spaces so that HTML
       // does not collapse the space.
