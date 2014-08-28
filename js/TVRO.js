@@ -144,14 +144,34 @@
       var parsedLat = latitude.split('.');
       var parsedLon = longitude.split('.');
 
+      // The following four conditionals test to make sure the parsed array is
+      // not undefined for some reason, so it does not display a NaN after the
+      // math functions.
+      
+      if (!parsedLat[0]) {
+        var latDeg = 0;
+      }
+      
+      if (!parsedLon[0]) {
+        var lonDeg = 0;
+      }
+
+      if (!parsedLat[1]) {
+        var latMin = 0;
+      }
+      
+      if (!parsedLon[1]) {
+        var lonMin = 0;
+      }
+      
       // Take absolute of the parsed degree since it is pos/neg in the message.
-      var latDeg = Math.abs(parsedLat[0]);
-      var lonDeg = Math.abs(parsedLon[0]);
+      latDeg = Math.abs(parsedLat[0]);
+      lonDeg = Math.abs(parsedLon[0]);
 
       // Calculate the decimal minute part. Must prepend the decimal since it
       // was stripped in the parse.
-      var latMin = (('.' + parsedLat[1]) * 60).toFixed(2);
-      var lonMin = (('.' + parsedLon[1]) * 60).toFixed(2);
+      latMin = (('.' + parsedLat[1]) * 60).toFixed(2);
+      lonMin = (('.' + parsedLon[1]) * 60).toFixed(2);
 
       // Create the formated GPS string with non-breaking spaces so that HTML
       // does not collapse the space.
