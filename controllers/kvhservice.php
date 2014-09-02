@@ -113,14 +113,14 @@ class Kvhservice extends Mc
                 // Create data array of options adding 0183/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea2000 devices.
-                $data['nmeaHeadSources'] .= '<option value="0183/'.$nmeaHeadSource->nmea_source.'">'.$nmeaHeadSource->nmea_source.'</option>';
+                $data['nmeaHeadSources'] .= '<option value="0183/' . htmlentities($nmeaHeadSource->nmea_source) . '">' . $nmeaHeadSource->nmea_source . '</option>';
             }
 
             foreach ($sxe->nmea2000->message_list->nmea_message as $nmeaHeadSource) {
                 // Create data array of options adding 2000/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea0183 devices.
-                $data['nmeaHeadSources'] .= '<option value="2000/'.$nmeaHeadSource->nmea_source.'">'.$nmeaHeadSource->nmea_source.'</option>';
+                $data['nmeaHeadSources'] .= '<option value="2000/' . htmlentities($nmeaHeadSource->nmea_source) . '">' . $nmeaHeadSource->nmea_source . '</option>';
             }
         }
 
@@ -132,14 +132,14 @@ class Kvhservice extends Mc
                 // Create data array of options adding 0183/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea2000 devices.
-                $data['nmeaGpsSources'] .= '<option value="0183/'.$nmeaGpsSource->nmea_source.'">'.$nmeaGpsSource->nmea_source.'</option>';
+                $data['nmeaGpsSources'] .= '<option value="0183/' . htmlentities($nmeaGpsSource->nmea_source) . '">' . $nmeaGpsSource->nmea_source . '</option>';
             }
 
             foreach ($sxe->nmea2000->message_list->nmea_message as $nmeaGpsSource) {
                 // Create data array of options adding 2000/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea0183 devices.
-                $data['nmeaGpsSources'] .= '<option value="2000/'.$nmeaGpsSource->nmea_source.'">'.$nmeaGpsSource->nmea_source.'</option>';
+                $data['nmeaGpsSources'] .= '<option value="2000/' . htmlentities($nmeaGpsSource->nmea_source) . '">' . $nmeaGpsSource->nmea_source . '</option>';
             }
         }
 
@@ -148,7 +148,7 @@ class Kvhservice extends Mc
 
         if ( isset($sxe) ) {
             foreach ($sxe->lnb_list->name as $lnbList) {
-                $data['lnbList'] .= '<option value="'.$lnbList.'">'.$lnbList.'</option>';
+                $data['lnbList'] .= '<option value="' . $lnbList.'">' . $lnbList . '</option>';
             }
         }
 
