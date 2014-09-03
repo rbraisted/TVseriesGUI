@@ -51,7 +51,7 @@
       TVRO.getSelectedSat().then(function(selectedSat) {
         row.toggleClass('$installed', selectedSat === sat.antSatID);
         // When we are at the row with the installed Sat, set the scroll.
-        if(selectedSat === sat.antSatID){
+        if (selectedSat === sat.antSatID) {
           //Get the row top (relation to the page then subtract off the top of
           //the table and table header(stationary in the table).
           $('.\\#table-view', jQ).scrollTop(row.offset().top - ($('.\\#table-view', jQ).offset().top + $('.\\#table-view .\\table-head', jQ).height()));
@@ -59,10 +59,8 @@
       });
 
       $('.\\#install-btn', row).click(function() {
-        var installed = row.hasClass('$installed');
-        //  if not installed, ask for confirmation
-        var confirmed = installed ? false : confirm('Are you sure you want to install ' + sat.name + '?');
-        if (confirmed){
+        var confirmed = confirm('Are you sure you want to install ' + sat.name + '?');
+        if (confirmed) {
           TVRO.setInstalledSat(sat, true);
         }
       });

@@ -144,7 +144,7 @@
         interval = setInterval(function() {
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
-            $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+            $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
@@ -239,7 +239,7 @@
         interval = setInterval(function() {
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
-            $('.\\#ant_status').text("The TV-Hub is Installing the satellite . Status: " + state);
+            $('.\\#ant_status').text("The TV-Hub is installing the satellite . Status: " + state);
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
