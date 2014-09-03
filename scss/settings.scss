@@ -434,12 +434,10 @@
     max-width: 75px;
     min-width: 75px;
     display: block;
-    margin-left: 45%;
     
     @include breakpoint($mobile) {
     max-width: initial;
     min-width: initial;
-    margin-left: initial;
     }
   }
 
