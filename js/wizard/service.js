@@ -80,7 +80,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   if (value === 'TRI-AM DUAL') window.location = '/wizard/activation.php';
@@ -163,7 +163,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the satellite. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/activation.php';
@@ -187,7 +187,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/activation.php';
@@ -212,7 +212,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/autoswitch.php#/directv';
