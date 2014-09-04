@@ -83,8 +83,11 @@
                 $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
-                  if (value === 'TRI-AM DUAL') window.location = '/wizard/activation.php';
-                  else window.location.hash = '/directv';
+                  if (value === 'TRI-AM DUAL') {
+                    window.location = '/wizard/activation.php';
+                  } else {
+                    window.location = '/wizard/autoswitch.php#/directv';
+                  }
                 } else if (state === 'ERROR') {
                   clearInterval(interval);
                   alert("An error occured installing " + value + ".");
