@@ -229,9 +229,14 @@
     var goToNext = function() {
       TVRO.getAntennaVersions().then(function(xml) {
         var antModel = $('au model', xml).text();
+        var polarization = $('lnb polarization', xml).text();
 
-        if (antModel === 'RV1') {
+        if (antModel === 'RV1' && polarization === 'circular') {
+          // Bypass the heading screen and go to the service.
           window.location = '/wizard/service.php';
+        } else if (antModel === 'RV1' && polarization === 'linear'){
+          // Bypass the heading screen and go to the Sat selection.
+          window.location = '/wizard/satellites.php#/tv5-manual-options';
         } else {
           window.location.hash = '/heading-source';
         }

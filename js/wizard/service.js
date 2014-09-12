@@ -46,7 +46,13 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/gps.php#/heading-source';
+      TVRO.getAntModel().then(function(antModel){
+        if (antModel === 'RV1') {
+          window.location = '/wizard/gps.php#/vessel-location';
+        } else {
+          window.location = '/wizard/gps.php#/heading-source';
+        }      
+      });
     });
 
     TVRO.getService().then(self.setValue);
