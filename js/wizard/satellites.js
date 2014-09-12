@@ -284,10 +284,10 @@ $(function() {
 
         if (lnbType === 'circular') {
           window.location.hash = '/circular-options';
-        }else if (sysIdModel === 'TV5' || sysIdModel === 'TV6') {
-          window.location.hash = '/tv5-manual-options';
-        }else {
+        }else if (sysIdModel === 'TV5SK' || sysIdModel === 'TV6SK') {
           window.location.hash = '/options';
+        }else {
+          window.location.hash = '/tv5-manual-options';
         }
       });
     }
