@@ -146,17 +146,38 @@
   NSLog(@":: backButtonPressed");
 
   //  very old code, this is not the way to do it
+    NSLog(@"!!!");
+    [self.presentingViewController dismissModalViewControllerAnimated:NO];
 
-	[self dismissModalViewControllerAnimated:NO];//camera
+//        [self dismissModalViewControllerAnimated:NO];
+    
+    
+//    [self dismissViewControllerAnimated:NO completion:^{
+//        //  kill the timer
+//        //  do it here or timer will restart because viewWillAppear
+        if (timer != nil) {
+            [timer invalidate];
+            timer = nil;    
+        }
+//
+//        [self dismissModalViewControllerAnimated:NO];
+////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
+//    }];
 
-  //  kill the timer
-  //  do it here or timer will restart because viewWillAppear
-  if (timer != nil) {
-    [timer invalidate];
-    timer = nil;    
-  }
+//  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+//   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+//  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    
+//    [self dismissModalViewControllerAnimated:NO];//camera
 
-  [self dismissModalViewControllerAnimated:NO];//the actual view
+//  //  kill the timer
+//  //  do it here or timer will restart because viewWillAppear
+//  if (timer != nil) {
+//    [timer invalidate];
+//    timer = nil;    
+//  }
+
+//  [self dismissModalViewControllerAnimated:NO];//the actual view
 
 	showPicker = true;
 }
@@ -260,7 +281,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)timerAction {
-  // NSLog(@":: timerAction");
+   NSLog(@":: timerAction");
 	[overlayView updateAzimuthLabel:deviceHeading];
 	[overlayView updateElevationLabel:deviceTilt];
 	[self drawSatList];

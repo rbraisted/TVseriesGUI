@@ -50,7 +50,7 @@
   [helpTopBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
   [helpTopBar setBackgroundColor:[UIColor blackColor]];
   [helpTopBar addSubview:helpTopBarLabel];
-  
+
   [helpWebView addSubview:helpTopBar];
   [helpWebView addSubview:helpCloseButton];
   
