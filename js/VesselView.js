@@ -10,8 +10,8 @@
 
       TVRO.getAntModel().then(function(model) {
         //  set the vessel/rv image depending on whether you're a vessel/rv
-        jQ.toggleClass('$rv', model === 'RV1');
-        jQ.toggleClass('$vessel', model !== 'RV1');
+        jQ.toggleClass('$rv', model === 'RV1' || model === 'A9');
+        jQ.toggleClass('$vessel', model !== 'RV1' && model !== 'A9');
       });
 
       TVRO.getVesselInfo().then(function(vesselInfo) {
