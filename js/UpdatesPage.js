@@ -7,12 +7,13 @@ $(function() {
 
   var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
     .setValues([
-      'SatLibrary',
-      'TV1',
-      'TV3',
-      'TV5',
-      'TV6',
-      'RV1'
+        'SatLibrary',
+        'TV1',
+        'TV3',
+        'TV5',
+        'TV6',
+        'RV1',
+        'A9'
     ])
     .onBuild(function(row, update) {
       var techMode = TVRO.getTechMode();

@@ -29,7 +29,7 @@
 	<product>
 		<acu_model>TVRO-IPACU</acu_model><!-- VSAT-IPACU | TVRO-IPACU -->
 		<acu_sn/>
-		<ant_model>TV1</ant_model><!-- TV1 | TV3 | TV5 | TV6 | RV1 -->
+		<ant_model>TV1</ant_model><!-- TV1 | TV3 | TV5 | TV6 | RV1 | A9 -->
 		<ant_sn/>
 		<market/>
 		<sector/>
