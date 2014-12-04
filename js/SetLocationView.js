@@ -216,7 +216,7 @@
     })
     .end()
 
-    var applyGpsBtn = $('.\\#apply-gps-btn', jQ).click(function() {
+    var applyGpsBtn = $('.\\#apply-gps-btn', coordinatesView).click(function() {
       var value = self.getValue();
       if (!value) {
         alert('You must select an option to continue.');

@@ -25,23 +25,23 @@
 require_once('mc.php');
 require($_SERVER['DOCUMENT_ROOT'] . '/models/tvroxml.php');
 
-class Kvhservice extends Mc 
+class Kvhservice extends Mc
 {
 	function __construct()
 	{
 		parent::Mc();
 		$this->tvroXml=new TvroXml();
 	}
-	
+
 	function index($data=array())
 	{
 		$data['extrahead']= parent::js('/js/jquery-1.10.2.min.js') .
 							parent::js('/js/error_key.js') .
 							parent::js('/js/kvhservice.js');
-		
+
 		// Displays the list of satellites according to the users last sort
 		list($err, $sxe)=$this->tvroXml->get_satellite_list('','');
-		
+
 		if('0'==$err){
 			$ct = 0;
 			if ( isset($sxe) ) {
@@ -61,7 +61,7 @@ class Kvhservice extends Mc
 					}
 
 				}
-			
+
 			}
 
 			$structure = '';
@@ -78,13 +78,13 @@ class Kvhservice extends Mc
 					$orbitalList .= '<option value="'.$orbitalPosition.'">'.substr($masterParamsArray[$ct]['name'],0,18) . '    ';
 					$orbitalList .= $masterParamsArray[$ct]['orbitalPosition'].'</option>';
 				}
-			
+
 			}
 
 			$data['satList'] = $structure;
 			$data['orbitalList'] = $orbitalList;
 		}
-		
+
 		// Displays the list of satellites according to the users last sort
 		list($err, $sxe)=$this->tvroXml->get_satellite_groups();
 
@@ -94,7 +94,7 @@ class Kvhservice extends Mc
 
 			}
 		}
-		
+
 		// Displays the list of satellites according to the users last sort
 		list($err, $sxe)=$this->tvroXml->get_autoswitch_configured_names();
 
@@ -113,15 +113,15 @@ class Kvhservice extends Mc
                 // Create data array of options adding 0183/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea2000 devices.
-                $data['nmeaHeadSources'] .= '<option value="0183/'.$nmeaHeadSource->nmea_source.'">'.$nmeaHeadSource->nmea_source.'</option>';
-            } 
-       
+                $data['nmeaHeadSources'] .= '<option value="0183/' . htmlentities($nmeaHeadSource->nmea_source) . '">' . $nmeaHeadSource->nmea_source . '</option>';
+            }
+
             foreach ($sxe->nmea2000->message_list->nmea_message as $nmeaHeadSource) {
                 // Create data array of options adding 2000/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea0183 devices.
-                $data['nmeaHeadSources'] .= '<option value="2000/'.$nmeaHeadSource->nmea_source.'">'.$nmeaHeadSource->nmea_source.'</option>';
-            }        
+                $data['nmeaHeadSources'] .= '<option value="2000/' . htmlentities($nmeaHeadSource->nmea_source) . '">' . $nmeaHeadSource->nmea_source . '</option>';
+            }
         }
 
         // Displays the list of NMEA GPS Devices
@@ -132,15 +132,15 @@ class Kvhservice extends Mc
                 // Create data array of options adding 0183/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea2000 devices.
-                $data['nmeaGpsSources'] .= '<option value=0183/"'.$nmeaGpsSource->nmea_source.'">'.$nmeaGpsSource->nmea_source.'</option>';
-            } 
-       
+                $data['nmeaGpsSources'] .= '<option value="0183/' . htmlentities($nmeaGpsSource->nmea_source) . '">' . $nmeaGpsSource->nmea_source . '</option>';
+            }
+
             foreach ($sxe->nmea2000->message_list->nmea_message as $nmeaGpsSource) {
                 // Create data array of options adding 2000/ to be able to
                 // parse later since this will be in one drop down with
                 // nmea0183 devices.
-                $data['nmeaGpsSources'] .= '<option value=2000/"'.$nmeaGpsSource->nmea_source.'">'.$nmeaGpsSource->nmea_source.'</option>';
-            }        
+                $data['nmeaGpsSources'] .= '<option value="2000/' . htmlentities($nmeaGpsSource->nmea_source) . '">' . $nmeaGpsSource->nmea_source . '</option>';
+            }
         }
 
         // Displays the list of LNBs
@@ -148,23 +148,23 @@ class Kvhservice extends Mc
 
         if ( isset($sxe) ) {
             foreach ($sxe->lnb_list->name as $lnbList) {
-                $data['lnbList'] .= '<option value="'.$lnbList.'">'.$lnbList.'</option>';
-            }        
+                $data['lnbList'] .= '<option value="' . $lnbList.'">' . $lnbList . '</option>';
+            }
         }
-		
+
 		$this->loadView('kvhservice.php', $data);
 	}
-	
+
 	function filetransfer($data=array())
 	{
 		$data['extrahead']= parent::js('/js/jquery.js') .
 							parent::js('/js/error_key.js') .
 							parent::js('/js/kvhservicefiletransfer.js') .
 							parent::js('/js/ajaxfileupload.js');
-		
+
 		$data['response']=isset($_GET['fnf'])?$_GET['fnf']:'';
 		$data['filename']=isset($_GET['fn'])?$_GET['fn']:'';
-		
+
 		$this->loadView('kvhservicefiletransfer.php', $data);
 	}
 }

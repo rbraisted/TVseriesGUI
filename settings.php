@@ -47,7 +47,7 @@
   Manually enter your location if your system does not have a GNSS input. The
   antenna will use your position data to speed up satellite acquisition. In
   addition, if the antenna has a linear LNB, it will calculate the correct skew
-  angle for your location. 
+  angle for your location.
   </p>
   <div class="block-btn #gps-location-btn">Set Location</div>
 
@@ -124,7 +124,7 @@
       <div class="#lon-hem"></div>
       <div class="dropdown-icon"></div>
     </div>
-    
+    <div class="block-btn #apply-gps-btn">Apply</div>
   </div>
 
   <div class="city-view #city-view">
@@ -134,8 +134,6 @@
       <div class="dropdown-icon"></div>
     </div>
   </div>
-  
-  <div class="block-btn #apply-gps-btn">Apply</div>
 
   <div class="note">
     This location will allow the antenna to find
@@ -146,7 +144,7 @@
     enter your latitude/longitude to ensure an
     accurate skew calculation.
   </div>
-    
+
 </div>
 
 

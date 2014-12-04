@@ -105,7 +105,8 @@
         var lnbType = res[2];
 
         if ((lnbType === 'linear') &&
-            ((model === 'TV1') ||
+            ((model === 'RV1') ||
+             (model === 'TV1') ||
              (model === 'TV3') || 
              (sysIdModel === 'TV5') ||
              (sysIdModel === 'TV6'))) {
@@ -199,7 +200,8 @@ $(function() {
         var isTriAmericas = res[3] === '19-0577';
 
         if ((lnbType === 'linear') &&
-            ((model === 'TV1') ||
+            ((model === 'RV1') ||
+             (model === 'TV1') ||
              (model === 'TV3') || 
              (sysIdModel === 'TV5') ||
              (sysIdModel === 'TV6'))) {

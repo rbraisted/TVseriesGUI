@@ -144,6 +144,26 @@
       var parsedLat = latitude.split('.');
       var parsedLon = longitude.split('.');
 
+      // The following four conditionals test to make sure the parsed array is
+      // not undefined for some reason, so it does not display a NaN after the
+      // math functions.
+      
+      if (!parsedLat[0]) {
+        parsedLat[0] = 0;
+      }
+      
+      if (!parsedLon[0]) {
+        parsedLon[0] = 0;
+      }
+
+      if (!parsedLat[1]) {
+        parsedLat[1] = 0;
+      }
+      
+      if (!parsedLon[1]) {
+        parsedLon[1] = 0;
+      }
+      
       // Take absolute of the parsed degree since it is pos/neg in the message.
       var latDeg = Math.abs(parsedLat[0]);
       var lonDeg = Math.abs(parsedLon[0]);

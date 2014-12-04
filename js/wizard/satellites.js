@@ -41,12 +41,19 @@
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       Promise.all(
           TVRO.getService(),
-          TVRO.getLnbType()
+          TVRO.getLnbType(),
+          TVRO.getAntModel()
       ).then(function(res) {
         var service = res[0];
         var lnbType = res[1]
-        if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/service.php';
-        else window.location = '/wizard/gps.php#/heading-source';
+        var antModel = res[2]
+        if (service === 'OTHER' && lnbType === 'circular') {
+          window.location = '/wizard/service.php';
+        } else if (antModel === 'RV1') {
+          window.location = '/wizard/gps.php#/vessel-location';
+        } else {
+          window.location = '/wizard/gps.php#/heading-source';
+        }
       });      
     });
 
@@ -277,10 +284,10 @@ $(function() {
 
         if (lnbType === 'circular') {
           window.location.hash = '/circular-options';
-        }else if (sysIdModel === 'TV5' || sysIdModel === 'TV6') {
-          window.location.hash = '/tv5-manual-options';
-        }else {
+        }else if (sysIdModel === 'TV5SK' || sysIdModel === 'TV6SK') {
           window.location.hash = '/options';
+        }else {
+          window.location.hash = '/tv5-manual-options';
         }
       });
     }

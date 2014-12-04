@@ -426,9 +426,10 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            var isSelected = $(this).find('selected').text() === 'Y';
             if('set_gps_config'==$('#chooseSetting').val()){
-              if(is0183Enabled){
-                $('#fdinNmeaGpsSource').val($(this).find('nmea_source').text());
+              if(is0183Enabled && isSelected){
+                $('#fdinNmeaGpsSource').val('0183/' + $(this).find('nmea_source').text());
               } 
             }
           });
@@ -446,9 +447,10 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            var isSelected = $(this).find('selected').text() === 'Y';
             if('set_gps_config'==$('#chooseSetting').val()){
-              if(is2000Enabled){
-                $('#fdinNmeaGpsSource').val($(this).find('nmea_source').text());
+              if(is2000Enabled && isSelected){
+                $('#fdinNmeaGpsSource').val('2000/' + $(this).find('nmea_source').text());
               } 
             }
           });
@@ -478,9 +480,10 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            var isSelected = $(this).find('selected').text() === 'Y';
             if('set_heading_config'==$('#chooseSetting').val()){
-              if(is0183Enabled){
-                $('#fdinNmeaHeadSource').val('0183/'+ $(this).find('nmea_source').text());
+              if(is0183Enabled && isSelected){
+                $('#fdinNmeaHeadSource').val('0183/' + $(this).find('nmea_source').text());
               } 
             }
           });
@@ -498,8 +501,9 @@ $(document).ready(function(e) {
             message+='    Source: '+$(this).find('nmea_source').text()+'\n';
             message+='    State: '+$(this).find('state').text()+'\n';
             message+='    Selected: '+$(this).find('selected').text()+'\n';
+            var isSelected = $(this).find('selected').text() === 'Y';
             if('set_heading_config'==$('#chooseSetting').val()){
-              if(is2000Enabled){
+              if(is2000Enabled && isSelected){
                 $('#fdinNmeaHeadSource').val('2000/'+ $(this).find('nmea_source').text());
               } 
             }

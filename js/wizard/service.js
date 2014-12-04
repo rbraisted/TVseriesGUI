@@ -46,7 +46,13 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/gps.php#/heading-source';
+      TVRO.getAntModel().then(function(antModel){
+        if (antModel === 'RV1') {
+          window.location = '/wizard/gps.php#/vessel-location';
+        } else {
+          window.location = '/wizard/gps.php#/heading-source';
+        }      
+      });
     });
 
     TVRO.getService().then(self.setValue);
@@ -80,11 +86,14 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
-                  if (value === 'TRI-AM DUAL') window.location = '/wizard/activation.php';
-                  else window.location.hash = '/directv';
+                  if (value === 'TRI-AM DUAL') {
+                    window.location = '/wizard/activation.php';
+                  } else {
+                    window.location = '/wizard/autoswitch.php#/directv';
+                  }
                 } else if (state === 'ERROR') {
                   clearInterval(interval);
                   alert("An error occured installing " + value + ".");
@@ -163,7 +172,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/activation.php';
@@ -187,7 +196,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/activation.php';
@@ -212,7 +221,7 @@
           setTimeout(function() {
             interval = setInterval(function() {
               TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
                 if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
                   window.location = '/wizard/autoswitch.php#/directv';
@@ -307,6 +316,12 @@
       var isGroup = groupsView.is(':visible');
       var value = isGroup ? groupsTableView.getValue() : satsTableView.getValue();
 
+      // Handles the case where other was selected and next is clicked.
+      if (value === 'OTHER') {
+        satsView.show();
+        groupsView.hide();        
+      }
+      
       if (!value) {
         alert('You must select an option to continue.');
         return; // RETURN
@@ -322,8 +337,9 @@
           enable: 'Y'
         });
       } else {
-        installPromise = TVRO.setInstalledSat({
-          antSatID: value
+        installPromise = TVRO.selectSatellite({
+          antSatID: value,
+          install: 'Y'
         });
       }
 
@@ -331,29 +347,30 @@
       //  we want to follow up with the same thing
       installPromise.then(function() {
         document.body.className = '/spinner';
-        startCheckswitchMode("DISH");
+        startCheckswitchMode("DISH", isGroup);
       }); //end installPromise
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       if (groupsView.is(':visible')) {
         window.location = '/wizard/service.php';
-      }else{
+      } else {
         groupsView.show();
         satsView.hide(); 	
       }
-    });
-
-    // Retrieve the installed satellite to update the screen
+    });    
+    
+    // selects the group and satellite installed on the page.
+    // The Sat is done first since if Sat promise is rejected that means there
+    // is no Sat or Group installed for DISH, thus not selecting anything. If
+    // Sat returns but Group is rejected that means a single DISH Sat is
+    // installed so select Other as a group.
     TVRO.getInstalledSat().then(function(sat) {
       satsTableView.setValue(sat.antSatID);
+      TVRO.getInstalledGroup().then(function(group) {
+          groupsTableView.setValue(group.name);
+      }, groupsTableView.setValue('OTHER'));
     });
-
-    // Retrieve the installed group to update the screen
-    TVRO.getInstalledGroup().then(function(group) {
-      groupsTableView.setValue(group.name);
-    });
-
 
     return _.merge(self,{
       reload: function() {
@@ -394,9 +411,11 @@
     }); 
   };
 
-  function startCheckswitchMode(service){
+  function startCheckswitchMode(service, isGroup){
     var intervalID;
     var interval;
+    
+    var installTypeText = isGroup ? 'group' : 'satellite';
     //  wait 10 seconds to allow antenna to switch
     //  service/groups and avoid false tracking.
     //  every second after, check if state is TRACKING
@@ -404,7 +423,7 @@
     setTimeout(function() {
       interval = setInterval(function() {
         TVRO.getAntState().then(function(state) {
-          $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+          $('.\\#ant_status').text("The TV-Hub is installing the " + installTypeText + ". Status: " + state);
           if (state === 'TRACKING') {
             clearInterval(interval);
             TVRO.setCheckswitchMode(true).then(function() {
@@ -420,9 +439,8 @@
                   }
                 });
               }, 1000);
-
             }); //End .then for  setCheckswitchMode   
-          }else if (state === 'ERROR') {
+          } else if (state === 'ERROR') {
             clearInterval(interval);
             alert("An error occured installing " + group + ".");
             window.location.hash = '/dish-network';

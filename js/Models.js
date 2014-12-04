@@ -144,7 +144,7 @@
         interval = setInterval(function() {
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
-            $('.\\#ant_status').text("The TV-Hub is Installing the group. Status: " + state);
+            $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
@@ -214,10 +214,16 @@
     });
   };
 
-  TVRO.setInstalledSat = function(sat) {
+  TVRO.setInstalledSat = function(sat, install) {
     return TVRO.selectSatellite({
-      antSatID: sat.antSatID 
-    }).then(function(){  
+      antSatID: sat.antSatID,
+      install: install ? 'Y' : 'N'
+    }).then(function(){
+      // If we are not installing reload and skip the spinner jazz.
+      if(!install){
+        TVRO.reload();
+        return;
+      }
       document.body.className = '/spinner';
 
       var interval;
@@ -233,7 +239,7 @@
         interval = setInterval(function() {
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
-            $('.\\#ant_status').text("The TV-Hub is Installing the satellite . Status: " + state);
+            $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
             if ((state === 'SEARCHING') || (state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
@@ -398,8 +404,6 @@
   TVRO.getSystemInfo = function() {
     return Promise.all(
       TVRO.getAntennaVersions(),
-      TVRO.getAutoswitchStatus(),
-      TVRO.getAntennaStatus(),
       TVRO.getWebUIVersion(),
       TVRO.getSatelliteService()
     ).then(function(xmls) {
@@ -421,8 +425,8 @@
       systemInfo.skewVer = $('skew_xaz ver', xmls[0]).text();
       systemInfo.lnbName = $('lnb name', xmls[0]).text();
       systemInfo.lnbVer = $('lnb ver', xmls[0]).text();
-      systemInfo.service = $('service', xmls[4]).text();
-      systemInfo.webUIVer = xmls[3];
+      systemInfo.service = $('service', xmls[2]).text();
+      systemInfo.webUIVer = xmls[1];
       return systemInfo;
     });
   };
@@ -699,7 +703,13 @@
 
   TVRO.getSerialLogProgress = function() {
     return TVRO.serialLogStatus().then(function(xml) {
-      return $('current', xml).text()/$('max', xml).text();
+      var max = $('max', xml).text();
+      
+      if (max === '0'){
+        return 0;
+      }else {
+        return $('current', xml).text()/max;
+      }
     });
   };
 
