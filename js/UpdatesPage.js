@@ -13,7 +13,8 @@ $(function() {
         'TV5',
         'TV6',
         'RV1',
-        'A9'
+        'A9',
+        'TV8'
     ])
     .onBuild(function(row, update) {
       var techMode = TVRO.getTechMode();

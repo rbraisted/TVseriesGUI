@@ -49,6 +49,7 @@
   TVRO.getDownloadedTV6UpdateVersion = get('tvro-downloaded-tv6-update-version');
   TVRO.getDownloadedRV1UpdateVersion = get('tvro-downloaded-rv1-update-version');
   TVRO.getDownloadedA9UpdateVersion  = get('tvro-downloaded-a9-update-version');
+  TVRO.getDownloadedTV8UpdateVersion = get('tvro-downloaded-tv8-update-version');
 
   TVRO.setDownloadedSatLibraryUpdateVersion = set('tvro-downloaded-sat-library-update-version');
   TVRO.setDownloadedTV1UpdateVersion = set('tvro-downloaded-tv1-update-version');
@@ -57,5 +58,6 @@
   TVRO.setDownloadedTV6UpdateVersion = set('tvro-downloaded-tv6-update-version');
   TVRO.setDownloadedRV1UpdateVersion = set('tvro-downloaded-rv1-update-version');
   TVRO.setDownloadedA9UpdateVersion  = set('tvro-downloaded-a9-update-version');
+  TVRO.setDownloadedTV8UpdateVersion = set('tvro-downloaded-tv8-update-version');
 
 }(window.TVRO);

@@ -442,7 +442,8 @@
         TV5: TVRO.getDownloadedTV5UpdateVersion(),
         TV6: TVRO.getDownloadedTV6UpdateVersion(),
         RV1: TVRO.getDownloadedRV1UpdateVersion(),
-        A9: TVRO.getDownloadedA9UpdateVersion()
+        A9:  TVRO.getDownloadedA9UpdateVersion(),
+        TV8: TVRO.getDownloadedTV6UpdateVersion()
     });
 
     return cache['get_device_versions'];

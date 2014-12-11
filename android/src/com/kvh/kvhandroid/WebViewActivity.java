@@ -468,8 +468,9 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		String tv6DeviceVersion = updatesManager.deviceVersionForUpdateType("tv6");
 		String rv1DeviceVersion = updatesManager.deviceVersionForUpdateType("rv1");
 		String a9DeviceVersion  = updatesManager.deviceVersionForUpdateType("a9");
+		String tv8DeviceVersion = updatesManager.deviceVersionForUpdateType("tv8");
 		
-		String jString = "TVRO.setDeviceVersions({ SatLibrary: '" + satLibraryDeviceVersion + "', TV1: '" + tv1DeviceVersion + "', TV3: '" + tv3DeviceVersion + "', TV5: '" + tv5DeviceVersion + "', TV6: '" + tv6DeviceVersion + "', RV1: '" + rv1DeviceVersion + "' , A9: '" + a9DeviceVersion + "' });";
+		String jString = "TVRO.setDeviceVersions({ SatLibrary: '" + satLibraryDeviceVersion + "', TV1: '" + tv1DeviceVersion + "', TV3: '" + tv3DeviceVersion + "', TV5: '" + tv5DeviceVersion + "', TV6: '" + tv6DeviceVersion + "', RV1: '" + rv1DeviceVersion + "' , A9: '" + a9DeviceVersion + "', TV8: '" + tv8DeviceVersion + "' });";
 		
 		Log.i(TAG, "Set Device Versions JavaScript: " + jString);
 		

@@ -377,6 +377,7 @@
   NSString* tv6DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv6"];
   NSString* rv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"rv1"];
   NSString* a9DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"a9"];
+  NSString* tv8DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv8"];
 
   //	on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
   NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', RV1: '%@' , A9: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, rv1DeviceVersion, a9DeviceVersion];
