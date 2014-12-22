@@ -192,6 +192,38 @@
     return latLonArray;
   };
 
+  TVRO.getClientGps = function (){
+      var deferred = $.Deferred();
+      var clientGpsResult;
+
+      var geo_options = {
+              enableHighAccuracy: true, 
+              maximumAge        : 3000, 
+              timeout           : 30000,
+      };
+
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position){
+              var latitude  = position.coords.latitude;
+              var longitude = position.coords.longitude;
+              var accuracy  = position.coords.accuracy;
+              var time      = new Date(position.timestamp);
+
+              clientGpsResult = [latitude,longitude,accuracy,time];
+
+              deferred.resolve(clientGpsResult);
+          }, function(error){
+              clientGpsResult = "Geolocation error: " + error.code + "\n";
+              alert(clientGpsResult);
+              deferred.reject(clientGpsResult);
+          }, geo_options);
+
+          return deferred.promise();
+      } else {
+          alert("Geolocation not available.");
+      }
+  }
+
   //  for routing, hash changes
 
   var hash;

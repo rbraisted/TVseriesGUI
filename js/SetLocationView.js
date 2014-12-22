@@ -66,6 +66,28 @@
     var coordinatesView = $('.\\#coordinates-view', jQ).detach();    
     var cityView        = $('.\\#city-view', jQ).detach();
 
+    //Client GPS Test
+    var clientGps = $('.\\#client-gps', coordinatesView)[0];
+    //console.log(clientGps);
+    var techMode = TVRO.getTechMode();
+    if(false === techMode) {
+        clientGps.style.display = 'none';
+    } else {
+        clientGps.style.display = 'block';
+        TVRO.getClientGps(
+        ).then(function(clientGpsData){
+            var clientLat       = $('.\\#client-lat', coordinatesView);
+            var clientLon       = $('.\\#client-lon', coordinatesView);
+            var clientAccuracy  = $('.\\#client-accuracy', coordinatesView);
+            var clientTime      = $('.\\#client-time', coordinatesView);
+            
+            clientLat.text(clientGpsData[0]);
+            clientLon.text(clientGpsData[1]);
+            clientAccuracy.text(clientGpsData[2]);
+            clientTime.text(clientGpsData[3]);
+        });
+    }
+    
     var latHemInput    = $('.\\#lat-hem', coordinatesView);
     var lonHemInput    = $('.\\#lon-hem', coordinatesView);
     var latitudeInput  = $('.\\#latitude', coordinatesView);

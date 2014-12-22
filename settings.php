@@ -37,7 +37,7 @@
   <p>
     The Setup Wizard guides you through setting up the system, step by step.
     The Setup Wizard should be run after initial installation and repeated
-    whenever you make a change to your system’s configuration, such as adding
+    whenever you make a change to your systemâ€™s configuration, such as adding
     or removing devices.
   </p>
   <div class="block-btn #wizard-btn">Setup Wizard</div>
@@ -125,6 +125,14 @@
       <div class="dropdown-icon"></div>
     </div>
     <div class="block-btn #apply-gps-btn">Apply</div>
+    
+    <!-- Client GPS Test-->
+    <div class="#client-gps">
+      <div><span class="label">Client Latitude:</span><span class="value #client-lat"></span></div>
+      <div><span class="label">Client Longitude:</span><span class="value #client-lon"></span></div>
+      <div><span class="label">Client Accuracy:</span><span class="value #client-accuracy"></span></div>
+      <div><span class="label">Client Time:</span><span class="value #client-time"></span></div>
+    </div>    
   </div>
 
   <div class="city-view #city-view">
@@ -134,7 +142,7 @@
       <div class="dropdown-icon"></div>
     </div>
   </div>
-
+ 
   <div class="note">
     This location will allow the antenna to find
     the satellite(s) more quickly.
@@ -251,9 +259,9 @@
     <div class="heading">Band/Polarization Control</div>
     <p>
       With the master receiver in control (default setting), the
-      TV-Hub’s “Receiver” port outputs whichever band/polarization is currently
+      TV-Hubâ€™s â€œReceiverâ€� port outputs whichever band/polarization is currently
       selected by the master receiver. With the TV-Hub in control, the
-      satellite signal output from the TV-Hub’s “Receiver” port is always the
+      satellite signal output from the TV-Hubâ€™s â€œReceiverâ€� port is always the
       band and polarization corresponding to the voltage and tone detected on
       the cable connected directly to it, regardless of the band/polarization
       selected by any IP AutoSwitch-equipped master receiver. Always select
