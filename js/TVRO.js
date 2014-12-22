@@ -196,16 +196,16 @@
       var deferred = $.Deferred();
       var clientGpsResult;
 
-      // These are the available options to sent to the Geolocation API
+      // These are the available options to be sent to the Geolocation API
       // enableHighAccuracy: provides a hint the application would like the
       //                     best possible results. With this false and a
       //                     mobile device connected to the TV-Hub, the API
       //                     call does not seem to use the GPS.
       // maximumAge: Indicates in milliseconds the time period the application
-      //             is willing to use a cashed position.
-      // timeout: Maximum time in miliseconds that is allowed to pass from the
+      //             is willing to use a cached position.
+      // timeout: Maximum time in milliseconds that is allowed to pass from the
       //          API call to the corresponding success callback not including
-      //          the time the user take to allow the call.
+      //          the time the user takes to allow the call.
       var geo_options = {
               enableHighAccuracy: true, 
               maximumAge        : 3000, 
