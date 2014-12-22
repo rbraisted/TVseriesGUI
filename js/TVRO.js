@@ -196,23 +196,38 @@
       var deferred = $.Deferred();
       var clientGpsResult;
 
+      // These are the available options to sent to the Geolocation API
+      // enableHighAccuracy: provides a hint the application would like the
+      //                     best possible results. With this false and a
+      //                     mobile device connected to the TV-Hub, the API
+      //                     call does not seem to use the GPS.
+      // maximumAge: Indicates in milliseconds the time period the application
+      //             is willing to use a cashed position.
+      // timeout: Maximum time in miliseconds that is allowed to pass from the
+      //          API call to the corresponding success callback not including
+      //          the time the user take to allow the call.
       var geo_options = {
               enableHighAccuracy: true, 
               maximumAge        : 3000, 
               timeout           : 30000,
       };
 
+      // navigator.geolocation is the browser API functionality for the
+      // Geolocation.
       if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position){
+          // getCurrentPosition is the HTML API call to get the current
+          // Geolocation one time that consists of a success callback,
+          // failure callback, and options.
+          navigator.geolocation.getCurrentPosition(function(position) {
               var latitude  = position.coords.latitude;
               var longitude = position.coords.longitude;
               var accuracy  = position.coords.accuracy;
               var time      = new Date(position.timestamp);
 
-              clientGpsResult = [latitude,longitude,accuracy,time];
+              clientGpsResult = [latitude, longitude, accuracy, time];
 
               deferred.resolve(clientGpsResult);
-          }, function(error){
+          }, function(error) {
               clientGpsResult = "Geolocation error: " + error.code + "\n";
               alert(clientGpsResult);
               deferred.reject(clientGpsResult);

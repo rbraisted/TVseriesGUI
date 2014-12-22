@@ -37,7 +37,7 @@
   <p>
     The Setup Wizard guides you through setting up the system, step by step.
     The Setup Wizard should be run after initial installation and repeated
-    whenever you make a change to your systemâ€™s configuration, such as adding
+    whenever you make a change to your system's configuration, such as adding
     or removing devices.
   </p>
   <div class="block-btn #wizard-btn">Setup Wizard</div>
@@ -259,9 +259,9 @@
     <div class="heading">Band/Polarization Control</div>
     <p>
       With the master receiver in control (default setting), the
-      TV-Hubâ€™s â€œReceiverâ€� port outputs whichever band/polarization is currently
+      TV-Hub's Receiver port outputs whichever band/polarization is currently
       selected by the master receiver. With the TV-Hub in control, the
-      satellite signal output from the TV-Hubâ€™s â€œReceiverâ€� port is always the
+      satellite signal output from the TV-Hub's Receiver port is always the
       band and polarization corresponding to the voltage and tone detected on
       the cable connected directly to it, regardless of the band/polarization
       selected by any IP AutoSwitch-equipped master receiver. Always select
