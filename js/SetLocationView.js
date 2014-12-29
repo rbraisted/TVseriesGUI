@@ -40,8 +40,6 @@
     return webServiceCall(params);
   });
 
-
-
   var GpsSourceView = function(jQ) {
     //  use as base for BackupGpsView + VesselLocationView
     var self = TVRO.TableView($('.\\#table-view', jQ));
@@ -58,36 +56,90 @@
           nmeaSources.push({ display: 'None' });
           return nmeaSources;
         });
-      }
+      },
     });
   };
 
   var VesselLocationView = function(jQ) {
+
+      // Define a function to retrieve the values for NMEA/Manual GPS.
+      var getVesselLocationValues = function(){
+
+          latitudeInput[0].value  = "";
+          longitudeInput[0].value = "";
+
+          setLatHem("");
+          setLonHem("");
+
+          self.getNmeaSources()
+          .then(function(values) {
+              var city;
+              //  insert CITY and COORDINATES before None
+              var none = values.pop();
+              values = values.concat(['COORDINATES', 'CITY']);
+              self.setValues(values).build();
+
+              //  get the selected value
+              //  check nmea values first
+              var value = _.find(values, 'selected');
+              if (value) {
+                  self.setValue(value);
+                  //  then check for CITY or COORDINATES
+              } else {
+                  TVRO.getGps().then(function(xml) {
+                      var latitude  = $('lat', xml).text();
+                      var longitude = $('lon', xml).text();
+
+                      city = $('city', xml).text();
+
+                      var array = [latitude,longitude];
+                      return array;
+                  }).then(function(LatLonArray){
+                      return TVRO.formatGPS('inputDisplay',LatLonArray[0],LatLonArray[1]);
+                  }).then(function(array){
+                      if (city) {
+                          self.setValue('CITY');
+                          cityLabel.text(city);
+                          cityDropdownView.setValue(city);
+                      } else {
+                          self.setValue('COORDINATES');
+                      }
+                      setLatHem(array[0][1]);
+                      setLonHem(array[1][1]);
+                      latitudeInput.val(array[0][0]);
+                      longitudeInput.val(array[1][0]);
+                  });
+              }
+          });
+      }
+      
+      var clientGPSTest = function(){
+          //Client GPS Test
+          var clientGps = $('.\\#client-gps', coordinatesView)[0];
+          //console.log(clientGps);
+          var techMode = TVRO.getTechMode();
+          if(false === techMode) {
+              clientGps.style.display = 'none';
+          } else {
+              clientGps.style.display = 'block';
+              TVRO.getClientGps(
+              ).then(function(clientGpsData){
+                  var clientLat       = $('.\\#client-lat', coordinatesView);
+                  var clientLon       = $('.\\#client-lon', coordinatesView);
+                  var clientAccuracy  = $('.\\#client-accuracy', coordinatesView);
+                  var clientTime      = $('.\\#client-time', coordinatesView);
+
+                  clientLat.text(clientGpsData[0]);
+                  clientLon.text(clientGpsData[1]);
+                  clientAccuracy.text(clientGpsData[2]);
+                  clientTime.text(clientGpsData[3]);
+              });
+          }
+      }
+    
     var coordinatesView = $('.\\#coordinates-view', jQ).detach();    
     var cityView        = $('.\\#city-view', jQ).detach();
-
-    //Client GPS Test
-    var clientGps = $('.\\#client-gps', coordinatesView)[0];
-    //console.log(clientGps);
-    var techMode = TVRO.getTechMode();
-    if(false === techMode) {
-        clientGps.style.display = 'none';
-    } else {
-        clientGps.style.display = 'block';
-        TVRO.getClientGps(
-        ).then(function(clientGpsData){
-            var clientLat       = $('.\\#client-lat', coordinatesView);
-            var clientLon       = $('.\\#client-lon', coordinatesView);
-            var clientAccuracy  = $('.\\#client-accuracy', coordinatesView);
-            var clientTime      = $('.\\#client-time', coordinatesView);
-            
-            clientLat.text(clientGpsData[0]);
-            clientLon.text(clientGpsData[1]);
-            clientAccuracy.text(clientGpsData[2]);
-            clientTime.text(clientGpsData[3]);
-        });
-    }
-    
+        
     var latHemInput    = $('.\\#lat-hem', coordinatesView);
     var lonHemInput    = $('.\\#lon-hem', coordinatesView);
     var latitudeInput  = $('.\\#latitude', coordinatesView);
@@ -192,47 +244,6 @@
       }
     });
 
-    self.getNmeaSources()
-    .then(function(values) {
-      var city;
-      //  insert CITY and COORDINATES before None
-      var none = values.pop();
-      values = values.concat(['COORDINATES', 'CITY']);
-      self.setValues(values).build();
-
-      //  get the selected value
-      //  check nmea values first
-      var value = _.find(values, 'selected');
-      if (value) {
-        self.setValue(value);
-        //  then check for CITY or COORDINATES
-      } else {
-        TVRO.getGps().then(function(xml) {
-          var latitude  = $('lat', xml).text();
-          var longitude = $('lon', xml).text();
-
-          city = $('city', xml).text();
-
-          var array = [latitude,longitude];
-          return array;
-        }).then(function(LatLonArray){
-          return TVRO.formatGPS('inputDisplay',LatLonArray[0],LatLonArray[1]);
-        }).then(function(array){
-          if (city) {
-            self.setValue('CITY');
-            cityLabel.text(city);
-            cityDropdownView.setValue(city);
-          } else {
-            self.setValue('COORDINATES');
-          }
-          setLatHem(array[0][1]);
-          setLonHem(array[1][1]);
-          latitudeInput.val(array[0][0]);
-          longitudeInput.val(array[1][0]);
-        });
-      }
-    });
-
     var backBtn = $('.\\#back-btn', jQ).click(function() {
       window.location.hash = '/general';
     })
@@ -292,17 +303,21 @@
       }
     });
 
-    return self;
-  };
+    // Call the function to retrieve the values from NMEA/Manual
+    getVesselLocationValues();
+    clientGPSTest();
+    
+    var reload = function() { 
+        clientGPSTest();
+        getVesselLocationValues();
+    };
 
+    return _.merge(self, {
+        reload: reload
+    });
+
+  };
 
   TVRO.VesselLocationView = VesselLocationView;
 
 }(window.TVRO);
-
-
-$(function() {
-  var vesselLocationView = TVRO.VesselLocationView($('.\\#vessel-location-view'));
-
-  TVRO.reload();
-});

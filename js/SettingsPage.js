@@ -37,6 +37,15 @@ $(function() {
                 })
                 .end()
     );
+    
+    var vesselLocationView = TVRO.VesselLocationView(
+                    $('.\\#vessel-location-view')
+                        .find('.\\#back-btn')
+                            .click(function() {
+                                window.location.hash = '';
+                            })
+                            .end()
+                );
 
   var networkSettingsView = TVRO.NetworkSettingsView(
     $('.\\#network-settings-view')
@@ -95,7 +104,7 @@ $(function() {
 
     } else if (hash.match(/\/vessel-location/)) {
       menuTableView.setValue('General');
-      generalSettingsView.reload();
+      vesselLocationView.reload();
 
     } else if (hash.match(/\/advanced/)) {
       menuTableView.setValue('Advanced');
