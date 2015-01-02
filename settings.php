@@ -124,7 +124,6 @@
       <div class="#lon-hem"></div>
       <div class="dropdown-icon"></div>
     </div>
-    <div class="block-btn #apply-gps-btn">Apply</div>
     
     <!-- Client GPS Test-->
     <div class="#client-gps">
@@ -142,6 +141,8 @@
       <div class="dropdown-icon"></div>
     </div>
   </div>
+ 
+  <div class="block-btn #apply-gps-btn">Apply</div>
  
   <div class="note">
     This location will allow the antenna to find

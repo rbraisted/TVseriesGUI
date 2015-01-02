@@ -870,13 +870,11 @@ a {
 @keyframes spin {
   from {
     -webkit-transform: rotate(360deg); }
-
   to {
     -webkit-transform: rotate(0deg); } }
 @-webkit-keyframes spin {
   from {
     -webkit-transform: rotate(360deg); }
-
   to {
     -webkit-transform: rotate(0deg); } }
 .popup-spinner {
@@ -1315,6 +1313,8 @@ a {
 .vessel-location .note {
   padding-bottom: 60px; }
 .vessel-location .block-btn {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 20px;
   max-width: 75px;
   min-width: 75px;
