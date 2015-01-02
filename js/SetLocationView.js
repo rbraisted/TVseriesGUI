@@ -61,12 +61,14 @@
   };
 
   var VesselLocationView = function(jQ) {
-
+      
+      var citiesCoordArray = [];
+      
       // Define a function to retrieve the values for NMEA/Manual GPS.
       var getVesselLocationValues = function(){
-
-          latitudeInput[0].value  = "";
-          longitudeInput[0].value = "";
+          
+          latitudeInput.val("");
+          longitudeInput.val("");
 
           setLatHem("");
           setLonHem("");
@@ -191,39 +193,36 @@
     var cityDropdownView = TVRO.DropdownView($('.\\#city-dropdown-view'))
     .onClick(function(city) {
       cityLabel.text(city);
+      
+      var selectedCity = _.findWhere(citiesCoordArray,{city_name:city});
 
-      // Set GPS from city selection so that it can be displayed in the
-      // coordinates box.
-      TVRO.setGps({
-        city: city
-      }).then(function(){
-        // Delay so system has time to respond.
-        setTimeout(function(){
-          TVRO.getGps().then(function(xml) {
-            var latitude  = $('lat', xml).text();
-            var longitude = $('lon', xml).text();
-            var array     = [latitude,longitude];
-            return array; 
-          }).then(function(LatLonArray){
-            return TVRO.formatGPS('inputDisplay', LatLonArray[0], LatLonArray[1]);
-          }).then(function(array){
-            setLatHem(array[0][1]);
-            setLonHem(array[1][1]);
-            latitudeInput.val(array[0][0]);
-            longitudeInput.val(array[1][0]);
-          });
-        },500);
-      });
+      Promise.all(
+          TVRO.formatGPS('inputDisplay', selectedCity.lat, selectedCity.lon)
+      ).then(function(latLonResultArray){
+          setLatHem(latLonResultArray[0][1]);
+          setLonHem(latLonResultArray[1][1]);
+          latitudeInput.val(latLonResultArray[0][0]);
+          longitudeInput.val(latLonResultArray[1][0]);
+      })
     });
 
     var cityDropdownBtn = $('.\\#city-btn', cityView).click(showCityDropdownView);
 
     TVRO.getGpsCities().then(function(xml) {
-      cityDropdownView.setValues(
-                                 _.map($('city', xml), function(element) {
-                                   return $(element).text();
-                                 })
-      ).build();
+
+        cityDropdownView.setValues(
+                        _.map($('city', xml), function(element) {
+                            var cityArray;
+
+                            cityArray = {city_name:$(element.getElementsByTagName('city_name')).text(),
+                                            lat:$(element.getElementsByTagName('lat')).text(),
+                                            lon:$(element.getElementsByTagName('lon')).text()};
+                            
+                            citiesCoordArray[citiesCoordArray.length] = cityArray;
+                            
+                            return cityArray.city_name;
+                        })
+        ).build();
     });
 
     var self = GpsSourceView(jQ)

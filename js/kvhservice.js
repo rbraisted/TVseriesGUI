@@ -376,7 +376,9 @@ $(document).ready(function(e) {
       message+='GET GPS CITIES\n\n';
       $(xml).find('cities').each(function() {
         $(xml).find('city').each(function() {
-          message+='City: '+$(this).text()+'\n';
+          message+='City: '+$(this).find('city_name').text()+'\n';
+          message+='      Latitude:  '+$(this).find('lat').text()+'\n';
+          message+='      Longitude: '+$(this).find('lon').text()+'\n';
         });
       });
 
