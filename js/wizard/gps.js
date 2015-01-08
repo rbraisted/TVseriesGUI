@@ -187,7 +187,7 @@
         // Get the current Table
         var tableValues = self.getValues();
 
-        // Retrieve a selected NEMA if it is there.
+        // Retrieve a selected NMEA if it is there.
         var value = _.find(tableValues, 'selected');
         
         // Clear the error label.
