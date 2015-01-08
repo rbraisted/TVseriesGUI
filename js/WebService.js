@@ -385,6 +385,8 @@
                                           get('get_callhome')
                                           ]);
 
+  TVRO.setDT = set('set_date_time');
+
   //  custom call to get web ui version from version.txt
   TVRO.getWebUIVersion = function() {
     return Promise(function(resolve, reject) {

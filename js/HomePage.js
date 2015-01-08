@@ -16,6 +16,26 @@ $(function() {
   var automaticInstalledGroupView = TVRO.InstalledGroupView($('.\\#automatic-installed-group-view'));
   var vesselView = TVRO.VesselView($('.\\#vessel-view'));
 
+  
+  TVRO.getGps().then(function(xml) {
+      var latitude  = $('lat', xml).text();
+      var longitude = $('lon', xml).text();
+
+      source = $('source', xml).text();
+      city   = $('city', xml).text();
+
+      if(source === 'CLIENT') {
+          TVRO.getClientGps().then(function(clientGpsData){
+
+              TVRO.setGps({
+                  source: 'CLIENT',
+                  lat: clientGpsData[0],
+                  lon: clientGpsData[1]
+              }).then(TVRO.setDateTime(clientGpsData[2]));
+          });
+      }
+  });
+
   var reload = function() {
     headerView.reload();
     installedSatView.reload();

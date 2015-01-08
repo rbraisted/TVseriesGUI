@@ -448,6 +448,37 @@ html {
     padding-bottom: 60px;
   }
 
+  .block-btn {
+    // margin-left/right:auto centers a block element
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    max-width: 75px;
+    min-width: 75px;
+    display: block;
+    
+    @include breakpoint($mobile) {
+    max-width: initial;
+    min-width: initial;
+    }
+  }
+  
+  p {
+    color: $grey;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .client-geoloc-view{
+    margin-top: 20px;
+    border-bottom: 1px solid $bright-blue;
+  }
+  
+  .toggle-btn{
+    margin-bottom: 20px;
+  }
+  
+  .client-geoloc-view,
   .coordinates-view,
   .city-view {
     line-height: 1.4;

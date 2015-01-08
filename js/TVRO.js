@@ -208,8 +208,8 @@
       //          the time the user takes to allow the call.
       var geo_options = {
               enableHighAccuracy: true, 
-              maximumAge        : 3000, 
-              timeout           : 30000,
+              maximumAge        : 5000, 
+              timeout           : 15000,
       };
 
       // navigator.geolocation is the browser API functionality for the
@@ -221,10 +221,9 @@
           navigator.geolocation.getCurrentPosition(function(position) {
               var latitude  = position.coords.latitude;
               var longitude = position.coords.longitude;
-              var accuracy  = position.coords.accuracy;
               var time      = new Date(position.timestamp);
 
-              clientGpsResult = [latitude, longitude, accuracy, time];
+              clientGpsResult = [latitude, longitude, time];
 
               deferred.resolve(clientGpsResult);
           }, function(error) {

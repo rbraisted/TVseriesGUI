@@ -64,6 +64,18 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
       <div class="dropdown-icon"></div>
     </div>
   </div>
+  
+  <div class="clear-table client-geoloc-view">
+    <div class="label">Client Geolocation</div>
+    <p>
+      Turn this option on to get your coordinates and time from the web client
+      (Browser/Mobile App).
+    </p>
+    <div class="toggle-btn #client-geoloc-btn">
+      <div class="on">On</div>
+      <div class="off">Off</div>
+    </div>
+  </div>
 
   <div class="note">
     This location will allow the antenna to find

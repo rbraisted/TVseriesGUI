@@ -713,4 +713,21 @@
     });
   };
 
+  TVRO.setDateTime = function(time) {
+      // Construct a string in the form of YYYY-MM-DDTHH:MM:SSZ
+      // to send in the XML message.
+      var year  = time.getUTCFullYear();
+      var month = time.getUTCMonth();
+      var day   = time.getUTCDate();
+      var hour  = time.getUTCHours();
+      var min   = time.getUTCMinutes();
+      var sec   = time.getUTCSeconds();
+
+      var dt = year + '-' + month + '-' + day + 'T' + hour + ':' + min+ ':' + sec + 'Z';
+
+      TVRO.setDT({
+          dt: dt
+      });
+  };
+ 
 }(window.TVRO);

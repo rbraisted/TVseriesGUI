@@ -124,14 +124,6 @@
       <div class="#lon-hem"></div>
       <div class="dropdown-icon"></div>
     </div>
-    
-    <!-- Client GPS Test-->
-    <div class="#client-gps">
-      <div><span class="label">Client Latitude:</span><span class="value #client-lat"></span></div>
-      <div><span class="label">Client Longitude:</span><span class="value #client-lon"></span></div>
-      <div><span class="label">Client Accuracy:</span><span class="value #client-accuracy"></span></div>
-      <div><span class="label">Client Time:</span><span class="value #client-time"></span></div>
-    </div>    
   </div>
 
   <div class="city-view #city-view">
@@ -139,6 +131,18 @@
     <div class="dropdown-btn #city-btn">
       <div class="#city">Select a City</div>
       <div class="dropdown-icon"></div>
+    </div>
+  </div>
+ 
+  <div class="clear-table client-geoloc-view">
+    <div class="label">Client Geolocation</div>
+    <p>
+      Turn this option on to get your coordinates and time from the web client
+      (Browser/Mobile App).
+    </p>
+    <div class="toggle-btn #client-geoloc-btn">
+      <div class="on">On</div>
+      <div class="off">Off</div>
     </div>
   </div>
  
