@@ -71,6 +71,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
       Turn this option on to get your GNSS coordinates and time from the web client
       (Browser/Mobile App).
     </p>
+    <p class="#geoloc_error"> </p>
     <div class="toggle-btn #client-geoloc-btn">
       <div class="on">On</div>
       <div class="off">Off</div>

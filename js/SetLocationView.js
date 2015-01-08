@@ -73,6 +73,9 @@
 
           setLatHem("");
           setLonHem("");
+          
+          // Clear the error label.
+          $('.\\#geoloc_error').text("");
 
           self.getNmeaSources()
           .then(function(values) {
@@ -170,6 +173,9 @@
 
         // Retrieve a selected NEMA if it is there.
         var value = _.find(tableValues, 'selected');
+        
+        // Clear the error label.
+        $('.\\#geoloc_error').text("");
 
         if(geoLocMode) {
             // Remove the Manual and city entry rows.

@@ -208,8 +208,8 @@
       //          the time the user takes to allow the call.
       var geo_options = {
               enableHighAccuracy: true, 
-              maximumAge        : 5000, 
-              timeout           : 15000,
+              maximumAge        : 60000, 
+              timeout           : 20000,
       };
 
       // navigator.geolocation is the browser API functionality for the
@@ -227,14 +227,28 @@
 
               deferred.resolve(clientGpsResult);
           }, function(error) {
-              clientGpsResult = "Geolocation error: " + error.code + "\n";
-              alert(clientGpsResult);
-              deferred.reject(clientGpsResult);
+
+              switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  $('.\\#geoloc_error').text("User denied the request for Geolocation.");
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  $('.\\#geoloc_error').text("Location information is unavailable.");
+                  break;
+              case error.TIMEOUT:
+                  $('.\\#geoloc_error').text("The request to get user location timed out.");
+                  break;
+              case error.UNKNOWN_ERROR:
+                  $('.\\#geoloc_error').text("An unknown error occurred.");
+                  break;
+              }
+              
+              deferred.reject();
           }, geo_options);
 
           return deferred.promise();
       } else {
-          alert("Geolocation not available.");
+          $('.\\#geoloc_error').text("Geolocation is not available on the web client.");
       }
   }
 
