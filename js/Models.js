@@ -717,13 +717,11 @@
       // Construct a string in the form of YYYY-MM-DDTHH:MM:SSZ
       // to send in the XML message.
       var year  = time.getUTCFullYear();
-      var month = time.getUTCMonth()+1; //getUTCMonth() ranges from 0 to 11
-      var day   = time.getUTCDate();
-      var hour  = time.getUTCHours();
-      var min   = time.getUTCMinutes();
-      var sec   = time.getUTCSeconds();
-
-      
+      var month = ('0' + (time.getUTCMonth() + 1)).slice(-2); //getUTCMonth() ranges from 0 to 11
+      var day   = ('0' + time.getUTCDate()).slice(-2);
+      var hour  = ('0' + time.getUTCHours()).slice(-2);
+      var min   = ('0' + time.getUTCMinutes()).slice(-2);
+      var sec   = ('0' + time.getUTCSeconds()).slice(-2);
       
       var dt = year + '-' + month + '-' + day + 'T' + hour + ':' + min+ ':' + sec + 'Z';
 
