@@ -22,7 +22,7 @@
 			<key>Key</key>
 			<string>demo-mode</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 	</array>
 	<key>StringsTable</key>
