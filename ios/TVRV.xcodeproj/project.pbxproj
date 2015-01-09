@@ -322,7 +322,6 @@
 		E9B97C6A1829A14A007AA4A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E9B97C6E1829A14A007AA4A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E9B97C831829A14A007AA4A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E9BE2F091940F6B300ADEAF5 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
 		E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		E9BE2F0B1940F6B300ADEAF5 /* Satellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Satellite.h; sourceTree = "<group>"; };
@@ -548,7 +547,6 @@
 				E9B97C6A1829A14A007AA4A3 /* Foundation.framework */,
 				E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */,
 				E9B97C6E1829A14A007AA4A3 /* UIKit.framework */,
-				E9B97C831829A14A007AA4A3 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

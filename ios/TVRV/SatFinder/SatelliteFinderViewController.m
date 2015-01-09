@@ -269,7 +269,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)drawSatList {
   // NSLog(@":: drawSatList");
-	int k = [satList count];
+  NSUInteger k = [satList count];
   float hw = (IS_IPAD ? 384.0 : 160.0); // half width
   float hh = (IS_IPAD ? 384.0 : 160.0); // half height
 
