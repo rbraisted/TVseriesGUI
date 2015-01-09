@@ -245,7 +245,7 @@
 	
 	double boundDiff = topBound - bottomBound;
 	double positionAtBoundScale;
-	double y;
+	double y = 0.0;
 	
 	if (satelliteElevation <= bottomBound) {
 		positionAtBoundScale = (bottomBound - satelliteElevation)/boundDiff;
@@ -616,7 +616,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
   NSLog(@":: connectionDidFinishLoading");
-  NSLog(@":: xmlData length: %d", [xmlData length]);
+  NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
   NSLog(@":: xmlData: %@", xmlData);
 
   NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];

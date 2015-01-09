@@ -138,7 +138,7 @@
 }
 
 - (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data {
-	NSLog(@"connection:%@ didReceiveData:%d", _connection, [data length]);
+	NSLog(@"connection:%@ didReceiveData:%lu", _connection, (unsigned long)[data length]);
   [fileData appendData:data];
   
   NSNumber* resourceLength = [NSNumber numberWithUnsignedInteger:[fileData length]];

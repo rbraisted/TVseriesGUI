@@ -19,7 +19,6 @@
 		AAC0141E1917F4DA00445E07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D21917F4DA00445E07 /* main.m */; };
 		AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D41917F4DA00445E07 /* RXMLElement.m */; };
 		AAC014211917F4DA00445E07 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D71917F4DA00445E07 /* Settings.bundle */; };
-		AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D81917F4DA00445E07 /* TVRV-Info.plist */; };
 		AAC014231917F4DA00445E07 /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DB1917F4DA00445E07 /* UpdatesManager.m */; };
 		AAC014241917F4DA00445E07 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DE1917F4DA00445E07 /* WebViewController.m */; };
 		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
@@ -603,7 +602,7 @@
 		E9B97C5F1829A14A007AA4A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					E9B97C661829A14A007AA4A3 = {
 						DevelopmentTeam = YYEW9VQ5XU;
@@ -722,7 +721,6 @@
 				E91EF10D194174CA007829CD /* TVRV_icons_120x120.png in Resources */,
 				E91EF0E0194174CA007829CD /* sf_pointer_down~ipad.png in Resources */,
 				E91EF11F194174CA007829CD /* TVRV_Launch_640x1136.png in Resources */,
-				AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */,
 				E91915AF19469B3500BD5F43 /* sat-finder-button.png in Resources */,
 				E91EF115194174CA007829CD /* TVRV_icons_60x60.png in Resources */,
 				E91EF0ED194174CA007829CD /* sf_sat_black~iphone.png in Resources */,
@@ -891,7 +889,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
@@ -911,7 +909,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";

@@ -59,6 +59,6 @@
 - (void)timerAction;
 
 - (void)drawSatList;
-- (void)drawClarkeBelt;
+//- (void)drawClarkeBelt;
 
 @end
