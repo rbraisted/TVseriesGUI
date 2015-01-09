@@ -80,9 +80,20 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		//	enable javascript
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		webView.getSettings().setGeolocationEnabled(true);
 		
+
 		webView.setWebChromeClient(new WebChromeClient() {
 			
+            // Essential for Geolocation API to work in webView.
+			// Generates the required Geolocation permissions. 
+			public void onGeolocationPermissionsShowPrompt(String origin,
+					GeolocationPermissions.Callback callback) {
+				// Always grant permission since the app itself requires location
+				// permission and the user has therefore already granted it
+				callback.invoke(origin, true, false);
+			}
+
 			// Commenting this chunk out because Google removed this functionality in 4.3
 			// they said they'll put in a fix at some point.
 			// Source: https://code.google.com/p/android/issues/detail?id=62220
