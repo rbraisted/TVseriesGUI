@@ -70,7 +70,70 @@
           selfd.getNmeaSources()
           .then(function(values) {
               selfd.setValues(values).build();
+              
+              // Hide the NMEA table when no NMEA device are connected
+              jQ.toggleClass('$hide-view', values == 0);
+
+              // This block sets the proper header text for the NMEA and Manual
+              // blocks based upon if there is a internal GPS or NMEA connected.
+              Promise.all(
+                  TVRO.isGpsAnt(),
+                  TVRO.getAntSysIdModel(),
+                  TVRO.getLnbType()
+              )
+              .then(function(results){
+                  var isGpsAnt = results[0];
+                  
+                  // Is the antenna a Linear LNB with manual skew
+                  var isLinManSkew = (((results[1] == 'TV5SK') || (results[1] == 'TV5SK')) && (results[2] == 'LINEAR')) ? true : false;
+                  
+                  if (isGpsAnt) {
+                      if(values == 0) {
+                          // System with GPS and no NMEA
+                          $('.\\#nmea-desktop-header').text("");
+                          $('.\\#nmea-mobile-header').text("");
+                          
+                          $('.\\#manual-desktop-header').text("Choose the backup source for your location coordinates. The antenna will use this source if GPS is unavailable.");
+                          $('.\\#manual-mobile-header').text("Choose the backup source for your location coordinates. The antenna will use this source if GPS is unavailable.");
+                      } else {
+                          // System with GPS and a NMEA
+                          $('.\\#nmea-desktop-header').text("Choose the backup source for your location coordinates. The antenna will use this source if GPS is unavailable.");
+                          $('.\\#nmea-mobile-header').text("Choose the backup source for your location coordinates. The antenna will use this source if GPS is unavailable.");
+                          
+                          $('.\\#manual-desktop-header').text("Choose the alternate source to use if both GPS and NMEA are unavailable.");
+                          $('.\\#manual-mobile-header').text("Choose the alternate source to use if both GPS and NMEA are unavailable.");
+                      }
+                  }else {
+                      if(values == 0) {
+                          // System with no GPS and no NMEA
+                          $('.\\#nmea-desktop-header').text("");
+                          $('.\\#nmea-mobile-header').text("");
+                          
+                          if(isLinManSkew) {
+                              $('.\\#manual-desktop-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion and is required to ensure an accurate skew calculation.");
+                              $('.\\#manual-mobile-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion and is required to ensure an accurate skew calculation.");
+                          } else {
+                              $('.\\#manual-desktop-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion.");
+                              $('.\\#manual-mobile-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion.");                              
+                          }
+                      } else {
+                          // System with no GPS and a NMEA
+                          if(isLinManSkew) {
+                              $('.\\#nmea-desktop-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion and is required to ensure an accurate skew calculation.");
+                              $('.\\#nmea-mobile-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion and is required to ensure an accurate skew calculation.");
+                          } else {
+                              $('.\\#nmea-desktop-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion.");
+                              $('.\\#nmea-mobile-header').text("Choose the source for your location coordinates. This data will expedite satellite acquistion.");                              
+                          }
+                          
+                          $('.\\#manual-desktop-header').text("Choose the backup source to use if NMEA is unavailable.");
+                          $('.\\#manual-mobile-header').text("Choose the backup source to use if NMEA is unavailable.");
+                      }
+                  }
+              });
+              
               var value = _.find(values, 'selected');
+              
               if(value) {
                   selfd.setValue(value);
               }
@@ -79,62 +142,62 @@
         
       // Define a function to retrieve the values for NMEA Devices.
       var getManualCoord = function() {
-        
+
           selfm.setValue("");
           latitudeInput.val("");
           longitudeInput.val("");
 
           setLatHem("");
           setLonHem("");
-          
+
           // Clear the error label.
           $('.\\#geoloc_error').text("");
 
-              var city;
-              var source;
-              //values = selfm.getValues();
-              var values = ['COORDINATES', 'CITY', 'GEO'];
-              // Build the table
-              selfm.setValues(values).build();
+          var city;
+          var source;
+          //values = selfm.getValues();
+          var values = ['COORDINATES', 'CITY', 'GEO'];
+          // Build the table
+          selfm.setValues(values).build();
 
-              TVRO.getGps().then(function(xml) {
-                  var latitude  = $('lat', xml).text();
-                  var longitude = $('lon', xml).text();
+          TVRO.getGps().then(function(xml) {
+              var latitude  = $('lat', xml).text();
+              var longitude = $('lon', xml).text();
 
-                  source = $('source', xml).text();
-                  city   = $('city', xml).text();
+              source = $('source', xml).text();
+              city   = $('city', xml).text();
 
-                  if(source === 'CLIENT') {
-                      TVRO.getClientGps().then(function(clientGpsData) {
-                          latitude  = clientGpsData[0];
-                          longitude = clientGpsData[1];
-                          var time  = clientGpsData[2];
+              if(source === 'CLIENT') {
+                  TVRO.getClientGps().then(function(clientGpsData) {
+                      latitude  = clientGpsData[0];
+                      longitude = clientGpsData[1];
+                      var time  = clientGpsData[2];
 
-                          TVRO.setGps({
-                              source: 'CLIENT',
-                              lat: latitude,
-                              lon: longitude
-                          }).then(TVRO.setDateTime(time));
-                      });
-                  }
+                      TVRO.setGps({
+                          source: 'CLIENT',
+                          lat: latitude,
+                          lon: longitude
+                      }).then(TVRO.setDateTime(time));
+                  });
+              }
 
-                  var array = [latitude,longitude];
-                  return array;
+              var array = [latitude,longitude];
+              return array;
 
-              }).then(function(LatLonArray) {
-                  return setCoordDisplay(LatLonArray[0],LatLonArray[1]);
-              }).then(function() {
+          }).then(function(LatLonArray) {
+              return setCoordDisplay(LatLonArray[0],LatLonArray[1]);
+          }).then(function() {
 
-                      if (city) {
-                          selfm.setValue('CITY');
-                          cityLabel.text(city);
-                          cityDropdownView.setValue(city);
-                      } else if(source === 'MANUAL') {
-                          selfm.setValue('COORDINATES');
-                      } else if(source === 'CLIENT') {
-                          selfm.setValue('GEO');
-                      }
-              });
+              if (city) {
+                  selfm.setValue('CITY');
+                  cityLabel.text(city);
+                  cityDropdownView.setValue(city);
+              } else if(source === 'MANUAL') {
+                  selfm.setValue('COORDINATES');
+              } else if(source === 'CLIENT') {
+                  selfm.setValue('GEO');
+              }
+          });
       };
 
     var coordinatesView = $('.\\#coordinates-view', jQ).detach();    
@@ -479,15 +542,15 @@
 //    });
     
     var reload = function() {
-        
+
         TVRO.getAntModel().then(function(model){
-            if (model === 'RV1') {
+            if (model === 'RV1' || model === 'A9') {
                 $('.\\#location-header').text("Vehicle Location");
             } else {
                 $('.\\#location-header').text("Vessel Location");
             }
         });
-        
+
         getNmeaDevices();
         getManualCoord();
     };

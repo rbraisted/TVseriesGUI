@@ -214,6 +214,10 @@
   display: none;
 }
 
+.\$hide-view .nmea-view {
+  display: none;
+}
+
 .\$wlan-sec-off .wireless-settings {
   .password-label, .password-value, .password-input, .password-info-label {
     display: none;
@@ -322,11 +326,11 @@
 .view {
   @include breakpoint($desktop) {
     max-width: 800px;
-    align: center;
+    //align: center;
     min-height: 100px;
     
     .view-head {
-      border-bottom: 1px solid $bright-blue;
+      border-bottom: 3px solid $bright-blue;
       font-size: 26px;
       margin: 0 0 30px 0;
       padding: 20px 0;
@@ -335,7 +339,7 @@
 }
 
 .headline {
-  text-align: center;
+  //text-align: center;
   line-height: 1.6;
   margin-bottom: 15px;
 
@@ -354,8 +358,8 @@
   @include table;
 
   @include breakpoint($desktop) {
-    max-width: 680px;
-    margin: auto;
+    //max-width: 680px;
+    //margin: auto;
 
     .table-col {
       font-size: $medium-font;
@@ -365,7 +369,7 @@
 
   @include breakpoint($mobile) {
     margin: 0 20px;
-    width: calc(100% - 40px);
+    //width: calc(100% - 40px);
 
     .table-col {
       font-size: $small-font;
@@ -428,6 +432,12 @@
   .note {
     padding-bottom: 60px;
   }
+  
+  .nmea-view,
+  .manual-view {
+    border-bottom: 2px solid $bright-blue;
+   padding-bottom: 40px;
+  }
     
   .block-btn {
     // margin-left/right:auto centers a block element
@@ -450,10 +460,6 @@
     margin-bottom: 20px;
   }
   
-  .client-geoloc-view{
-    margin-top: 20px;
-    border-bottom: 1px solid $bright-blue;
-  }
   
   .toggle-btn{
     margin-bottom: 20px;

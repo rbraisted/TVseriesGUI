@@ -544,6 +544,12 @@
       return $('antenna state', xml).text();
     });
   };
+  
+  TVRO.isGpsAnt = function() {
+      return TVRO.getAntennaStatus().then(function(xml) {
+        return $('gps source', xml).text() === 'Antenna' ? true : false;
+      });
+    };
 
   TVRO.getAzBow = function() {
     return TVRO.getAntModel().then(function(model) {

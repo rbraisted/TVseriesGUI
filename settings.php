@@ -44,9 +44,9 @@
 
   <div class="heading">Location Coordinates</div>
   <p>
-  Manually enter your location if your system does not have a GNSS input. The
-  antenna will use your position data to speed up satellite acquisition. In
-  addition, if the antenna has a linear LNB, it will calculate the correct skew
+  Choose a source and/or backup source(s) for your location coordinates. The
+  antenna will use this position data to expedite satellite acquisition. In
+  addition, if the antenna has a linear LNB with manual skew, the Setup Wizard will calculate the correct skew
   angle for your location.
   </p>
   <div class="block-btn #gps-location-btn">Set Location</div>
@@ -90,15 +90,15 @@
     <div class="back-btn #back-btn"></div>
   </div>
 
+
+
+<div class="nmea-view">
     <div class="headline">
-      <div class="desktop">
-        Choose the source you would like to use
-        for your location coordinates.
+      <div class="desktop #nmea-desktop-header">
+        <!--Choose the source you would like to use
+        for your location coordinates.-->
       </div>
-      <div class="mobile">
-      Choose the source you would like to use
-      for your location coordinates.
-    </div>
+      <div class="mobile #nmea-mobile-header"></div>
   </div>
 
   <div class="clear-table #nmea-table-view">
@@ -108,7 +108,9 @@
     </div>
   </div>
 
-  <div class="block-btn #apply-nmea-btn">Set</div>
+  <div class="block-btn #apply-nmea-btn">Save</div>
+
+</div>
 
 
 
@@ -119,17 +121,10 @@
 
 
 
-
-
+<div class="manual-view">
   <div class="headline">
-    <div class="desktop">
-      Choose the alternate source you would like to use
-      for your location coordinates.
-    </div>
-    <div class="mobile">
-      Choose the alternate source you would like to use
-      for your location coordinates.
-    </div>
+    <div class="desktop #manual-desktop-header"> </div>
+    <div class="mobile #manual-mobile-header"> </div>
   </div>
 
   <div class="clear-table #manual-table-view">
@@ -169,16 +164,15 @@
 
   <div class="geoloc-view #geoloc-view">
     <span class="geoloc-label label">
-      Get your GNSS(GPS) coordinates and time from the web client
-      (browser/mobile app).
+      Get your GPS(GNSS) location and time from your mobile device/computer. <p class="geoloc-label label #geoloc_error"> </p>
     </span>
-    <p class="#geoloc_error"> </p>
   </div>
 
-  <div class="block-btn #apply-manual-btn">Set</div>
+  <div class="block-btn #apply-manual-btn">Save</div>
+</div>
 
 
- 
+<!-- 
   <div class="note">
     This location will allow the antenna to find
     the satellite(s) more quickly.
@@ -190,7 +184,7 @@
   </div>
 
 </div>
-
+-->
 
 <div class="dropdown #city-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
