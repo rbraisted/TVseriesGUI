@@ -779,9 +779,9 @@ a {
       right: 0 !important;
       top: auto !important; } }
 
-.input, .dropdown-btn, .vessel-location .client-geoloc-view .hem-dropdown-btn,
+.input, .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .hem-dropdown-btn,
-.vessel-location .city-view .hem-dropdown-btn, .vessel-location .client-geoloc-view .gps-input,
+.vessel-location .city-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
 .vessel-location .coordinates-view .gps-input,
 .vessel-location .city-view .gps-input {
   -webkit-border-radius: 0;
@@ -829,13 +829,13 @@ a {
     display: block;
     margin: 16px; }
 
-.dropdown-btn, .vessel-location .client-geoloc-view .hem-dropdown-btn,
+.dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .city-view .hem-dropdown-btn {
   cursor: pointer;
   min-height: 28px;
   position: relative; }
-  .dropdown-btn .dropdown-icon, .vessel-location .client-geoloc-view .hem-dropdown-btn .dropdown-icon,
+  .dropdown-btn .dropdown-icon, .vessel-location .geoloc-view .hem-dropdown-btn .dropdown-icon,
   .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
   .vessel-location .city-view .hem-dropdown-btn .dropdown-icon {
     background-image: url(/images/down-icon-white.svg);
@@ -1147,18 +1147,18 @@ a {
     .popup .btn-tray .save-btn.first + .block-btn + .block-btn,
     .popup .btn-tray .reset-btn.first + .block-btn + .block-btn {
       margin-left: 0; } }
-.popup .input, .popup .dropdown-btn, .popup .vessel-location .client-geoloc-view .hem-dropdown-btn, .vessel-location .client-geoloc-view .popup .hem-dropdown-btn,
+.popup .input, .popup .dropdown-btn, .popup .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .popup .hem-dropdown-btn,
 .popup .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .popup .hem-dropdown-btn,
 .popup .vessel-location .city-view .hem-dropdown-btn,
-.vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .client-geoloc-view .gps-input, .vessel-location .client-geoloc-view .popup .gps-input,
+.vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .popup .gps-input,
 .popup .vessel-location .coordinates-view .gps-input,
 .vessel-location .coordinates-view .popup .gps-input,
 .popup .vessel-location .city-view .gps-input,
 .vessel-location .city-view .popup .gps-input,
 .popup .dropdown-btn,
-.popup .vessel-location .client-geoloc-view .hem-dropdown-btn,
-.vessel-location .client-geoloc-view .popup .hem-dropdown-btn,
+.popup .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .geoloc-view .popup .hem-dropdown-btn,
 .popup .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .popup .hem-dropdown-btn,
 .popup .vessel-location .city-view .hem-dropdown-btn,
@@ -1167,18 +1167,18 @@ a {
   width: 180px;
   margin-left: 0; }
 @media screen and (max-width: 440px) {
-  .popup .input, .popup .dropdown-btn, .popup .vessel-location .client-geoloc-view .hem-dropdown-btn, .vessel-location .client-geoloc-view .popup .hem-dropdown-btn,
+  .popup .input, .popup .dropdown-btn, .popup .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .popup .hem-dropdown-btn,
   .popup .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .popup .hem-dropdown-btn,
   .popup .vessel-location .city-view .hem-dropdown-btn,
-  .vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .client-geoloc-view .gps-input, .vessel-location .client-geoloc-view .popup .gps-input,
+  .vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .popup .gps-input,
   .popup .vessel-location .coordinates-view .gps-input,
   .vessel-location .coordinates-view .popup .gps-input,
   .popup .vessel-location .city-view .gps-input,
   .vessel-location .city-view .popup .gps-input,
   .popup .dropdown-btn,
-  .popup .vessel-location .client-geoloc-view .hem-dropdown-btn,
-  .vessel-location .client-geoloc-view .popup .hem-dropdown-btn,
+  .popup .vessel-location .geoloc-view .hem-dropdown-btn,
+  .vessel-location .geoloc-view .popup .hem-dropdown-btn,
   .popup .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .popup .hem-dropdown-btn,
   .popup .vessel-location .city-view .hem-dropdown-btn,
@@ -1348,11 +1348,11 @@ a {
   border-bottom: 1px solid #4f7abd; }
 .vessel-location .toggle-btn {
   margin-bottom: 20px; }
-.vessel-location .client-geoloc-view,
+.vessel-location .geoloc-view,
 .vessel-location .coordinates-view,
 .vessel-location .city-view {
   line-height: 1.4; }
-  .vessel-location .client-geoloc-view .label,
+  .vessel-location .geoloc-view .label,
   .vessel-location .coordinates-view .label,
   .vessel-location .city-view .label {
     display: inline-block;
@@ -1362,36 +1362,42 @@ a {
     width: initial;
     margin-bottom: initial; }
     @media screen and (max-width: 400px) {
-      .vessel-location .client-geoloc-view .label,
+      .vessel-location .geoloc-view .label,
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         display: block;
         margin-left: 12px;
         margin-top: 10px; } }
     @media screen and (min-width: 401px) {
-      .vessel-location .client-geoloc-view .label,
+      .vessel-location .geoloc-view .label,
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         min-width: 90px; } }
-  .vessel-location .client-geoloc-view .coordinates-label,
+  .vessel-location .geoloc-view .geoloc-label,
+  .vessel-location .geoloc-view .coordinates-label,
+  .vessel-location .coordinates-view .geoloc-label,
   .vessel-location .coordinates-view .coordinates-label,
+  .vessel-location .city-view .geoloc-label,
   .vessel-location .city-view .coordinates-label {
     margin-top: 0; }
     @media screen and (min-width: 401px) {
-      .vessel-location .client-geoloc-view .coordinates-label,
+      .vessel-location .geoloc-view .geoloc-label,
+      .vessel-location .geoloc-view .coordinates-label,
+      .vessel-location .coordinates-view .geoloc-label,
       .vessel-location .coordinates-view .coordinates-label,
+      .vessel-location .city-view .geoloc-label,
       .vessel-location .city-view .coordinates-label {
         display: block; } }
-  .vessel-location .client-geoloc-view .city-label,
+  .vessel-location .geoloc-view .city-label,
   .vessel-location .coordinates-view .city-label,
   .vessel-location .city-view .city-label {
     margin-top: 0; }
     @media screen and (max-width: 540px) {
-      .vessel-location .client-geoloc-view .city-label,
+      .vessel-location .geoloc-view .city-label,
       .vessel-location .coordinates-view .city-label,
       .vessel-location .city-view .city-label {
         margin-left: 12px; } }
-  .vessel-location .client-geoloc-view .input, .vessel-location .client-geoloc-view .dropdown-btn, .vessel-location .client-geoloc-view .hem-dropdown-btn, .vessel-location .client-geoloc-view .gps-input,
+  .vessel-location .geoloc-view .input, .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
   .vessel-location .coordinates-view .input,
   .vessel-location .coordinates-view .dropdown-btn,
   .vessel-location .coordinates-view .hem-dropdown-btn,
@@ -1403,14 +1409,14 @@ a {
     margin: -2px 0 0;
     min-width: 200px;
     font-size: 13px; }
-  .vessel-location .client-geoloc-view .gps-input,
+  .vessel-location .geoloc-view .gps-input,
   .vessel-location .coordinates-view .gps-input,
   .vessel-location .city-view .gps-input {
     min-width: 75px;
     width: 75px;
     min-height: 28px;
     text-align: center; }
-  .vessel-location .client-geoloc-view .dropdown-btn, .vessel-location .client-geoloc-view .hem-dropdown-btn,
+  .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .dropdown-btn,
   .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .city-view .dropdown-btn,
@@ -1421,29 +1427,29 @@ a {
     min-height: 28px;
     min-width: 200px; }
     @media screen and (max-width: 540px) {
-      .vessel-location .client-geoloc-view .dropdown-btn, .vessel-location .client-geoloc-view .hem-dropdown-btn,
+      .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
       .vessel-location .coordinates-view .dropdown-btn,
       .vessel-location .coordinates-view .hem-dropdown-btn,
       .vessel-location .city-view .dropdown-btn,
       .vessel-location .city-view .hem-dropdown-btn {
         display: block;
         margin: 10px 0 0; } }
-  .vessel-location .client-geoloc-view .hem-dropdown-btn,
+  .vessel-location .geoloc-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn {
     min-width: 54px;
     margin-bottom: -9px; }
     @media screen and (max-width: 540px) {
-      .vessel-location .client-geoloc-view .hem-dropdown-btn,
+      .vessel-location .geoloc-view .hem-dropdown-btn,
       .vessel-location .coordinates-view .hem-dropdown-btn,
       .vessel-location .city-view .hem-dropdown-btn {
         display: inline-block; } }
 
-.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .client-geoloc-view .hem-dropdown-btn, .vessel-location .client-geoloc-view .advanced-settings .hem-dropdown-btn,
+.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .city-view .hem-dropdown-btn,
-.vessel-location .city-view .advanced-settings .hem-dropdown-btn, .advanced-settings .vessel-location .client-geoloc-view .gps-input, .vessel-location .client-geoloc-view .advanced-settings .gps-input,
+.vessel-location .city-view .advanced-settings .hem-dropdown-btn, .advanced-settings .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .advanced-settings .gps-input,
 .advanced-settings .vessel-location .coordinates-view .gps-input,
 .vessel-location .coordinates-view .advanced-settings .gps-input,
 .advanced-settings .vessel-location .city-view .gps-input,

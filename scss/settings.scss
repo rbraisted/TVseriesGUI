@@ -459,7 +459,7 @@
     margin-bottom: 20px;
   }
   
-  .client-geoloc-view,
+  .geoloc-view,
   .coordinates-view,
   .city-view {
     line-height: 1.4;
@@ -483,6 +483,7 @@
       }
     }
 
+    .geoloc-label,
     .coordinates-label {
       margin-top: 0;
       @media screen and (min-width: 401px) {

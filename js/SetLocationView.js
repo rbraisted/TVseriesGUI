@@ -1,6 +1,6 @@
 !function(TVRO) {
   "use strict";
-
+  
   //  getSources('nmea0183', xml)
   //  can use for gps and heading sources
   var getSources = function(type, xml) {
@@ -40,34 +40,47 @@
     return webServiceCall(params);
   });
 
-  var GpsSourceView = function(jQ) {
-    //  use as base for BackupGpsView + VesselLocationView
-    var self = TVRO.TableView($('.\\#table-view', jQ));
+  var NmeaSourceView = function(jQ) {
+    var nmeaTable = TVRO.TableView($('.\\#nmea-table-view', jQ));
 
-    return _.merge(self, {
+    return _.merge(nmeaTable, {
       setNmeaSource: setSource(TVRO.setGpsConfig),
       getNmeaSources: function() {
         return TVRO.getGpsConfig().then(function(xml) {
           var nmea0183Sources = getSources('nmea0183', xml);
           var nmea2000Sources = getSources('nmea2000', xml);
           var nmeaSources     = nmea0183Sources.concat(nmea2000Sources);
-          //  include a 'None' option
-          //  see self.onBuild and setNmeaSource
-          nmeaSources.push({ display: 'None' });
           return nmeaSources;
         });
       },
     });
   };
 
+  var ManualSourceView = function(jQ) {
+      return TVRO.TableView($('.\\#manual-table-view', jQ));
+  };
+
+  
   var VesselLocationView = function(jQ) {
 
       var citiesCoordArray = [];
 
-      // Define a function to retrieve the values for NMEA/Manual GPS.
-      var getVesselLocationValues = function() {
-
-          self.setValue("");
+      // Define a function to retrieve the values for NMEA Devices.
+      var getNmeaDevices = function() {
+          selfd.getNmeaSources()
+          .then(function(values) {
+              selfd.setValues(values).build();
+              var value = _.find(values, 'selected');
+              if(value) {
+                  selfd.setValue(value);
+              }
+          });
+      };
+        
+      // Define a function to retrieve the values for NMEA Devices.
+      var getManualCoord = function() {
+        
+          selfm.setValue("");
           latitudeInput.val("");
           longitudeInput.val("");
 
@@ -77,12 +90,12 @@
           // Clear the error label.
           $('.\\#geoloc_error').text("");
 
-          self.getNmeaSources()
-          .then(function(values) {
               var city;
               var source;
-
-              var none = values.pop();
+              //values = selfm.getValues();
+              var values = ['COORDINATES', 'CITY', 'GEO'];
+              // Build the table
+              selfm.setValues(values).build();
 
               TVRO.getGps().then(function(xml) {
                   var latitude  = $('lat', xml).text();
@@ -92,8 +105,6 @@
                   city   = $('city', xml).text();
 
                   if(source === 'CLIENT') {
-
-                      clientGeoLocBtn.setOn(true);
                       TVRO.getClientGps().then(function(clientGpsData) {
                           latitude  = clientGpsData[0];
                           longitude = clientGpsData[1];
@@ -105,13 +116,7 @@
                               lon: longitude
                           }).then(TVRO.setDateTime(time));
                       });
-                  } else {
-                      values = values.concat(['COORDINATES', 'CITY']);
-
-                      clientGeoLocBtn.setOn(false);
                   }
-                  // Build the table
-                  self.setValues(values).build();
 
                   var array = [latitude,longitude];
                   return array;
@@ -119,28 +124,22 @@
               }).then(function(LatLonArray) {
                   return setCoordDisplay(LatLonArray[0],LatLonArray[1]);
               }).then(function() {
-                  //  get the selected value
-                  //  check nmea values first
-                  var value = _.find(values, 'selected');
 
-                  if (value) {
-                      self.setValue(value);
-                      //  then check for CITY or COORDINATES
-                  } else {
                       if (city) {
-                          self.setValue('CITY');
+                          selfm.setValue('CITY');
                           cityLabel.text(city);
                           cityDropdownView.setValue(city);
                       } else if(source === 'MANUAL') {
-                          self.setValue('COORDINATES');
+                          selfm.setValue('COORDINATES');
+                      } else if(source === 'CLIENT') {
+                          selfm.setValue('GEO');
                       }
-                  }
               });
-          });
       };
 
     var coordinatesView = $('.\\#coordinates-view', jQ).detach();    
     var cityView        = $('.\\#city-view', jQ).detach();
+    var geoLocView      = $('.\\#geoloc-view', jQ).detach();    
         
     var latHemInput    = $('.\\#lat-hem', coordinatesView);
     var lonHemInput    = $('.\\#lon-hem', coordinatesView);
@@ -161,28 +160,27 @@
         });
     };
     
-    var clientGeoLocBtn = TVRO.ToggleBtn(jQ.find('.\\#client-geoloc-btn'))
-    .onClick(function(geoLocMode) {
+    var clientGeoLoc = function() {
 
         var source;
         var latitude;
         var longitude;
 
         // Get the current Table
-        var tableValues = self.getValues();
+        var tableValues = selfm.getValues();
 
         // Retrieve a selected NMEA if it is there.
-        var value = _.find(tableValues, 'selected');
+        //var value = _.find(tableValues, 'selected');
         
         // Clear the error label.
         $('.\\#geoloc_error').text("");
 
-        if(geoLocMode) {
+        //if(geoLocMode) {
             // Remove the Manual and city entry rows.
-            tableValues = _.without(tableValues, 'COORDINATES','CITY')
+            //tableValues = _.without(tableValues, 'COORDINATES','CITY')
 
             // Set the table with the proper rows and build.
-            self.setValues(tableValues).build();
+            //self.setValues(tableValues).build();
 
             // Call the geolocation when the button is set to on and no NEMA
             // is selected.
@@ -193,6 +191,7 @@
                 source    = 'CLIENT';
                 return clientGpsData[2];
             }).then(function(time){
+                setCoordDisplay(latitude, longitude);
 
                 // Call set_gps to set the changed source/lat-lon
                 TVRO.setGps({
@@ -203,49 +202,49 @@
                     TVRO.setDateTime(time);
                 });
 
-                self.setValue(value);
+                //self.setValue(value);
 
             });
-        } else {
+        //} else {
             // Push the manual Coord and city row back on the table.
-            tableValues.push('COORDINATES');
-            tableValues.push('CITY');
+            //tableValues.push('COORDINATES');
+            //tableValues.push('CITY');
 
 
             // Set the table with the proper rows and build.
-            self.setValues(tableValues).build();
+           // self.setValues(tableValues).build();
 
             // Retrieve the lat-lon so that set_gps can be called to set the
             // source.
-            TVRO.getGps().then(function(xml) {
-                latitude  = $('lat', xml).text();
-                longitude = $('lon', xml).text();
-                source    = 'MANUAL';
-            }).then(function(){
+//            TVRO.getGps().then(function(xml) {
+//                latitude  = $('lat', xml).text();
+//                longitude = $('lon', xml).text();
+//                source    = 'MANUAL';
+//            }).then(function(){
 
                 // Display the coordinates.
-                setCoordDisplay(latitude, longitude);
+//                setCoordDisplay(latitude, longitude);
 
                 // Call set_gps to set the changed source/lat-lon
-                TVRO.setGps({
-                    source: source,
-                    lat: latitude,
-                    lon: longitude
-                });
+ //               TVRO.setGps({
+//                    source: source,
+//                    lat: latitude,
+//                    lon: longitude
+//                });
 
                 // Set the proper check radial
-                if (value) {
-                    self.setValue(value);
-                } else {
-                    self.setValue('COORDINATES');
-                }
-            });
-        }
-    });
+                //if (value) {
+                 //   self.setValue(value);
+                //} else {
+                //    self.setValue('COORDINATES');
+                //}
+//            });
+       // }
+    };
 
     var showCityDropdownView = function() {
       cityDropdownView.show(cityDropdownBtn.offset());
-      self.setValue('CITY');
+      selfm.setValue('CITY');
     };
 
     var setLatHem = function(hem) {
@@ -311,22 +310,40 @@
         ).build();
     });
 
-    var self = GpsSourceView(jQ)
+    var selfd = NmeaSourceView(jQ)
     .onBuild(function(row, value) {
-      if (value === 'COORDINATES') { 
-        $('.\\#value', row).append(coordinatesView);
-      } else if (value === 'CITY') {
-        $('.\\#value', row).append(cityView);
-      } else {
-        $('.\\#value', row).text(value.display);
-      }
+//      if (value === 'COORDINATES') { 
+//        $('.\\#value', row).append(coordinatesView);
+//      } else if (value === 'CITY') {
+//        $('.\\#value', row).append(cityView);
+//      } else {
+        $('.\\#nmea-value', row).text(value.display);
+//      }
     })
     .onClick(function(value) {
-      if (value === 'COORDINATES') {
-        latitudeInput.focus();
-      } else if (value === 'CITY') {
-        showCityDropdownView();
-      }
+//      if (value === 'COORDINATES') {
+//        latitudeInput.focus();
+//      } else if (value === 'CITY') {
+//        showCityDropdownView();
+//      }
+    });
+    
+    var selfm = ManualSourceView(jQ)
+    .onBuild(function(row, value) {
+        if (value === 'COORDINATES') { 
+            $('.\\#man-coord-value', row).append(coordinatesView);
+        } else if (value === 'CITY') {
+            $('.\\#man-coord-value', row).append(cityView);
+        } else if (value === 'GEO') {
+            $('.\\#man-coord-value', row).append(geoLocView);
+        }
+    })
+    .onClick(function(value) {
+//      if (value === 'COORDINATES') {
+//      latitudeInput.focus();
+//      } else if (value === 'CITY') {
+//      showCityDropdownView();
+//      }
     });
 
     var backBtn = $('.\\#back-btn', jQ).click(function() {
@@ -334,62 +351,145 @@
     })
     .end()
 
-    var applyGpsBtn = $('.\\#apply-gps-btn', jQ).click(function() {
-      var value = self.getValue();
-      if (!value) {
-        alert('You must select an option to continue.');
-        //  custom COORDINATES selected
-      } else if (value === 'COORDINATES') {
-        var latitude  = latitudeInput.val();
-        var longitude = longitudeInput.val();
-        var latHem    = latHemDropdownView.getValue();
-        var lonHem    = lonHemDropdownView.getValue();
-
-        if (!latitude || !longitude) {
-          alert('You must enter a latitude and longitude to continue.');
-        } else if (!latHem || !lonHem) {
-          alert('You must enter a Hemisphere to continue.');
-        } else {
-          Promise.all(
-              // Append the hemisphere to the latitude and longitude
-              TVRO.formatGPS('input', latitude + latHem, longitude + lonHem)
-          ).then(function(latLonArray){
-
-            if(latLonArray != -1){
-              var confirmed = confirm('Are you sure you want to apply a new location?');
-              if (confirmed) {
-                TVRO.setGps({
-                  lat: latLonArray[0],
-                  lon: latLonArray[1]
-                });
-              }
+    
+    var applyNmeaBtn = $('.\\#apply-nmea-btn', jQ).click(function() {
+        var value = selfd.getValue();
+        alert(value);
+        if (!value) {
+            alert('You must select an option to continue.');
+        }else {
+            var confirmed = confirm('Are you sure you want to apply a new location?');
+            if (confirmed) {
+                selfd.setNmeaSource(value);
             }
-          });
         }
-        //  CITY selected
-      } else if (value === 'CITY') {
-        var city = cityDropdownView.getValue();
-        if (!city) {
-          alert('You must select a city to continue.');
-        }else { 
-          var confirmed = confirm('Are you sure you want to apply a new location?');
-          if (confirmed) {
-            TVRO.setGps({
-              city: city
-            });
-          }
-        }
-        //  NMEA source selected
-      } else { 
-        var confirmed = confirm('Are you sure you want to apply a new location?');
-        if (confirmed) {
-          self.setNmeaSource(value);
-        }
-      }
     });
     
-    var reload = function() { 
-        getVesselLocationValues();
+    var applyManualBtn = $('.\\#apply-manual-btn', jQ).click(function() {
+      var value = selfm.getValue();
+
+      if (!value) {
+          alert('You must select an option to continue.');
+          //  custom COORDINATES selected
+      } else if (value === 'COORDINATES') {
+          var latitude  = latitudeInput.val();
+          var longitude = longitudeInput.val();
+          var latHem    = latHemDropdownView.getValue();
+          var lonHem    = lonHemDropdownView.getValue();
+
+          if (!latitude || !longitude) {
+              alert('You must enter a latitude and longitude to continue.');
+          } else if (!latHem || !lonHem) {
+              alert('You must enter a Hemisphere to continue.');
+          } else {
+              Promise.all(
+                              // Append the hemisphere to the latitude and longitude
+                              TVRO.formatGPS('input', latitude + latHem, longitude + lonHem)
+              ).then(function(latLonArray){
+
+                  if(latLonArray != -1){
+                      var confirmed = confirm('Are you sure you want to apply a new location?');
+                      if (confirmed) {
+                          TVRO.setGps({
+                              source: 'MANUAL',
+                              lat: latLonArray[0],
+                              lon: latLonArray[1]
+                          });
+                      }
+                  }
+              });
+          }
+          //  CITY selected
+      } else if (value === 'CITY') {
+          var city = cityDropdownView.getValue();
+          if (!city) {
+              alert('You must select a city to continue.');
+          }else { 
+              var confirmed = confirm('Are you sure you want to apply a new location?');
+              if (confirmed) {
+                  TVRO.setGps({
+                      source: 'MANUAL',
+                      city: city
+                  });
+              }
+          }
+    } else if (value === 'GEO') {
+            var confirmed = confirm('Are you sure you want to turn on Geolocation?');
+            if (confirmed) {
+                
+                clientGeoLoc();
+                
+                
+            }
+        }
+    });
+    
+//    var applyGpsBtn = $('.\\#apply-gps-btn', jQ).click(function() {
+//      var value = self.getValue();
+//      if (!value) {
+//        alert('You must select an option to continue.');
+//        //  custom COORDINATES selected
+//      } else if (value === 'COORDINATES') {
+//        var latitude  = latitudeInput.val();
+//        var longitude = longitudeInput.val();
+//        var latHem    = latHemDropdownView.getValue();
+//        var lonHem    = lonHemDropdownView.getValue();
+//
+//        if (!latitude || !longitude) {
+//          alert('You must enter a latitude and longitude to continue.');
+//        } else if (!latHem || !lonHem) {
+//          alert('You must enter a Hemisphere to continue.');
+//        } else {
+//          Promise.all(
+//              // Append the hemisphere to the latitude and longitude
+//              TVRO.formatGPS('input', latitude + latHem, longitude + lonHem)
+//          ).then(function(latLonArray){
+//
+//            if(latLonArray != -1){
+//              var confirmed = confirm('Are you sure you want to apply a new location?');
+//              if (confirmed) {
+//                TVRO.setGps({
+//                  lat: latLonArray[0],
+//                  lon: latLonArray[1]
+//                });
+//              }
+//            }
+//          });
+//        }
+//        //  CITY selected
+//      } else if (value === 'CITY') {
+//        var city = cityDropdownView.getValue();
+//        if (!city) {
+//          alert('You must select a city to continue.');
+//        }else { 
+//          var confirmed = confirm('Are you sure you want to apply a new location?');
+//          if (confirmed) {
+//            TVRO.setGps({
+//              city: city
+//            });
+//          }
+//        }
+//        //  NMEA source selected
+//      } else { 
+//        var confirmed = confirm('Are you sure you want to apply a new location?');
+//        if (confirmed) {
+//          self.setNmeaSource(value);
+//        }
+//      }
+//    });
+    
+    var reload = function() {
+        
+        TVRO.getAntModel().then(function(model){
+            if (model === 'RV1') {
+                $('.\\#location-header').text("Vehicle Location");
+            } else {
+                $('.\\#location-header').text("Vessel Location");
+            }
+        });
+        
+        getNmeaDevices();
+        getManualCoord();
     };
 
     return _.merge(self, {

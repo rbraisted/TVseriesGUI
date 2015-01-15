@@ -85,27 +85,60 @@
 
 <div class="view vessel-location #vessel-location-view">
   <div class="view-head">
-    Vessel Location
+    <!--Vessel Location-->
+    <span class="#location-header"</span>
     <div class="back-btn #back-btn"></div>
   </div>
 
-  <div class="headline">
-    <div class="desktop">
-      Choose the source you would like to use
-      for your location coordinates.
-    </div>
-    <div class="mobile">
+    <div class="headline">
+      <div class="desktop">
+        Choose the source you would like to use
+        for your location coordinates.
+      </div>
+      <div class="mobile">
       Choose the source you would like to use
       for your location coordinates.
     </div>
   </div>
 
-  <div class="clear-table #table-view">
+  <div class="clear-table #nmea-table-view">
     <div class="table-row #table-row">
       <span class="table-col install-btn"></span><!--
-    --><span class="table-col #value"></span>
+    --><span class="table-col #nmea-value"></span>
     </div>
   </div>
+
+  <div class="block-btn #apply-nmea-btn">Set</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="headline">
+    <div class="desktop">
+      Choose the alternate source you would like to use
+      for your location coordinates.
+    </div>
+    <div class="mobile">
+      Choose the alternate source you would like to use
+      for your location coordinates.
+    </div>
+  </div>
+
+  <div class="clear-table #manual-table-view">
+    <div class="table-row #table-row">
+      <span class="table-col install-btn"></span><!--
+    --><span class="table-col #man-coord-value"></span>
+    </div>
+  </div>
+
 
   <div class="coordinates-view #coordinates-view">
     <span class="coordinates-label label">Enter your coordinates</span>
@@ -133,21 +166,18 @@
       <div class="dropdown-icon"></div>
     </div>
   </div>
- 
-  <div class="clear-table client-geoloc-view">
-    <div class="label">Client Geolocation</div>
-    <p>
-      Turn this option on to get your GNSS coordinates and time from the web client
-      (Browser/Mobile App).
-    </p>
+
+  <div class="geoloc-view #geoloc-view">
+    <span class="geoloc-label label">
+      Get your GNSS(GPS) coordinates and time from the web client
+      (browser/mobile app).
+    </span>
     <p class="#geoloc_error"> </p>
-    <div class="toggle-btn #client-geoloc-btn">
-      <div class="on">On</div>
-      <div class="off">Off</div>
-    </div>
   </div>
- 
-  <div class="block-btn #apply-gps-btn">Apply</div>
+
+  <div class="block-btn #apply-manual-btn">Set</div>
+
+
  
   <div class="note">
     This location will allow the antenna to find
