@@ -65,7 +65,7 @@ static UIImage *nameBg = nil;
 		else if(type == 4)  [blackDot drawInRect:rect];
 
 		[[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] set];
-		[satelliteName drawInRect:nameRect withFont:[UIFont fontWithName:@"Helvetica" size:15.0] lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+		[satelliteName drawInRect:nameRect withFont:[UIFont fontWithName:@"Helvetica" size:15.0] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
 	}
 }
 

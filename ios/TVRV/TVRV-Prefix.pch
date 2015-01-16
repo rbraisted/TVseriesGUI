@@ -25,12 +25,13 @@
 
 //  NOTE: this camera info is pretty old
 //  camera fov stuff
-#define vfov 53
-#define hfov 39.5 // << but this is what i got using a ruler etc 3gs
+//#define vfov 53
+//#define hfov 39.5 // << but this is what i got using a ruler etc 3gs
 //  camera view - doesnt take entire screen
-#define camviewwidth 320.0
-#define camviewheight 426.0
+//#define camviewwidth 320.0
+//#define camviewheight 426.0
 
+//TODO this whole file and concept needs to be refactored to account for different new iOS devices
 #define vfov (IS_IPAD ? 44.5 : 53)
 #define hfov (IS_IPAD ? 34.1 : 39.5)
 #define camviewwidth (IS_IPAD ? 768.0 : 320.0)

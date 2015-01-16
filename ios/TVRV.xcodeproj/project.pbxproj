@@ -19,7 +19,6 @@
 		AAC0141E1917F4DA00445E07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D21917F4DA00445E07 /* main.m */; };
 		AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D41917F4DA00445E07 /* RXMLElement.m */; };
 		AAC014211917F4DA00445E07 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D71917F4DA00445E07 /* Settings.bundle */; };
-		AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D81917F4DA00445E07 /* TVRV-Info.plist */; };
 		AAC014231917F4DA00445E07 /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DB1917F4DA00445E07 /* UpdatesManager.m */; };
 		AAC014241917F4DA00445E07 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DE1917F4DA00445E07 /* WebViewController.m */; };
 		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
@@ -155,9 +154,6 @@
 		E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
 		E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */; };
 		E9B97C6F1829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
-		E9B97C841829A14A007AA4A3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C831829A14A007AA4A3 /* XCTest.framework */; };
-		E9B97C851829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
-		E9B97C861829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
 		E9BE2F181940F6B300ADEAF5 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */; };
 		E9BE2F191940F6B300ADEAF5 /* Satellite.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0C1940F6B300ADEAF5 /* Satellite.m */; };
 		E9BE2F1A1940F6B300ADEAF5 /* SatelliteFinderInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0E1940F6B300ADEAF5 /* SatelliteFinderInfoView.m */; };
@@ -166,16 +162,6 @@
 		E9BE2F1E1940F6B300ADEAF5 /* SatelliteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F151940F6B300ADEAF5 /* SatelliteView.m */; };
 		E9BE2F1F1940F6B300ADEAF5 /* SatelliteViewCrosshairView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F171940F6B300ADEAF5 /* SatelliteViewCrosshairView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E9B97C871829A14A007AA4A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9B97C5F1829A14A007AA4A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9B97C661829A14A007AA4A3;
-			remoteInfo = TVRO;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -336,8 +322,6 @@
 		E9B97C6A1829A14A007AA4A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E9B97C6E1829A14A007AA4A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVRVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9B97C831829A14A007AA4A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E9BE2F091940F6B300ADEAF5 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
 		E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		E9BE2F0B1940F6B300ADEAF5 /* Satellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Satellite.h; sourceTree = "<group>"; };
@@ -366,16 +350,6 @@
 				E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */,
 				E9B97C6F1829A14A007AA4A3 /* UIKit.framework in Frameworks */,
 				E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9B97C7F1829A14A007AA4A3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E9B97C841829A14A007AA4A3 /* XCTest.framework in Frameworks */,
-				E9B97C861829A14A007AA4A3 /* UIKit.framework in Frameworks */,
-				E9B97C851829A14A007AA4A3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,7 +533,6 @@
 			isa = PBXGroup;
 			children = (
 				E9B97C671829A14A007AA4A3 /* TVRV.app */,
-				E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -574,7 +547,6 @@
 				E9B97C6A1829A14A007AA4A3 /* Foundation.framework */,
 				E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */,
 				E9B97C6E1829A14A007AA4A3 /* UIKit.framework */,
-				E9B97C831829A14A007AA4A3 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -622,37 +594,16 @@
 			productReference = E9B97C671829A14A007AA4A3 /* TVRV.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E9B97C811829A14A007AA4A3 /* TVRVTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E9B97C961829A14A007AA4A3 /* Build configuration list for PBXNativeTarget "TVRVTests" */;
-			buildPhases = (
-				E9B97C7E1829A14A007AA4A3 /* Sources */,
-				E9B97C7F1829A14A007AA4A3 /* Frameworks */,
-				E9B97C801829A14A007AA4A3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E9B97C881829A14A007AA4A3 /* PBXTargetDependency */,
-			);
-			name = TVRVTests;
-			productName = TVROTests;
-			productReference = E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E9B97C5F1829A14A007AA4A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					E9B97C661829A14A007AA4A3 = {
 						DevelopmentTeam = QL999G4CE6;
-					};
-					E9B97C811829A14A007AA4A3 = {
-						TestTargetID = E9B97C661829A14A007AA4A3;
 					};
 				};
 			};
@@ -669,7 +620,6 @@
 			projectRoot = "";
 			targets = (
 				E9B97C661829A14A007AA4A3 /* TVRV */,
-				E9B97C811829A14A007AA4A3 /* TVRVTests */,
 			);
 		};
 /* End PBXProject section */
@@ -769,7 +719,6 @@
 				E91EF10D194174CA007829CD /* TVRV_icons_120x120.png in Resources */,
 				E91EF0E0194174CA007829CD /* sf_pointer_down~ipad.png in Resources */,
 				E91EF11F194174CA007829CD /* TVRV_Launch_640x1136.png in Resources */,
-				AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */,
 				E91915AF19469B3500BD5F43 /* sat-finder-button.png in Resources */,
 				E91EF115194174CA007829CD /* TVRV_icons_60x60.png in Resources */,
 				E91EF0ED194174CA007829CD /* sf_sat_black~iphone.png in Resources */,
@@ -816,13 +765,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9B97C801829A14A007AA4A3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -847,22 +789,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9B97C7E1829A14A007AA4A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E9B97C881829A14A007AA4A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E9B97C661829A14A007AA4A3 /* TVRV */;
-			targetProxy = E9B97C871829A14A007AA4A3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AAC013991917F4DA00445E07 /* InfoPlist.strings */ = {
@@ -960,7 +887,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
@@ -980,7 +907,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
@@ -991,46 +918,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		E9B97C971829A14A007AA4A3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVRV.app/TVRV";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TVRO/TVRO-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TVROTests/TVROTests-Info.plist";
-				PRODUCT_NAME = TVRVTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		E9B97C981829A14A007AA4A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVRV.app/TVRV";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TVRO/TVRO-Prefix.pch";
-				INFOPLIST_FILE = "TVROTests/TVROTests-Info.plist";
-				PRODUCT_NAME = TVRVTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1051,15 +938,6 @@
 			buildConfigurations = (
 				E9B97C941829A14A007AA4A3 /* Debug */,
 				E9B97C951829A14A007AA4A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E9B97C961829A14A007AA4A3 /* Build configuration list for PBXNativeTarget "TVRVTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E9B97C971829A14A007AA4A3 /* Debug */,
-				E9B97C981829A14A007AA4A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

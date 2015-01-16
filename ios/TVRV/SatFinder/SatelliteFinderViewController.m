@@ -149,35 +149,35 @@
     NSLog(@"!!!");
     [self.presentingViewController dismissModalViewControllerAnimated:NO];
 
-//        [self dismissModalViewControllerAnimated:NO];
+    //        [self dismissModalViewControllerAnimated:NO];
     
     
-//    [self dismissViewControllerAnimated:NO completion:^{
-//        //  kill the timer
-//        //  do it here or timer will restart because viewWillAppear
-        if (timer != nil) {
-            [timer invalidate];
-            timer = nil;    
-        }
-//
-//        [self dismissModalViewControllerAnimated:NO];
-////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
-//    }];
+    //    [self dismissViewControllerAnimated:NO completion:^{
+    //        //  kill the timer
+    //        //  do it here or timer will restart because viewWillAppear
+    if (timer != nil) {
+        [timer invalidate];
+        timer = nil;
+    }
+    //
+    //        [self dismissModalViewControllerAnimated:NO];
+    ////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
+    //    }];
 
-//  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-//   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-//  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
     
-//    [self dismissModalViewControllerAnimated:NO];//camera
+    //    [self dismissModalViewControllerAnimated:NO];//camera
 
-//  //  kill the timer
-//  //  do it here or timer will restart because viewWillAppear
-//  if (timer != nil) {
-//    [timer invalidate];
-//    timer = nil;    
-//  }
-
-//  [self dismissModalViewControllerAnimated:NO];//the actual view
+    //  //  kill the timer
+    //  //  do it here or timer will restart because viewWillAppear
+    //  if (timer != nil) {
+    //    [timer invalidate];
+    //    timer = nil;
+    //  }
+    
+    //  [self dismissModalViewControllerAnimated:NO];//the actual view
 
 	showPicker = true;
 }
@@ -266,7 +266,7 @@
 	
 	double boundDiff = topBound - bottomBound;
 	double positionAtBoundScale;
-	double y;
+	double y = 0.0;
 	
 	if (satelliteElevation <= bottomBound) {
 		positionAtBoundScale = (bottomBound - satelliteElevation)/boundDiff;
@@ -290,7 +290,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)drawSatList {
   // NSLog(@":: drawSatList");
-	int k = [satList count];
+  NSUInteger k = [satList count];
   float hw = (IS_IPAD ? 384.0 : 160.0); // half width
   float hh = (IS_IPAD ? 384.0 : 160.0); // half height
 
@@ -637,7 +637,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
   NSLog(@":: connectionDidFinishLoading");
-  NSLog(@":: xmlData length: %d", [xmlData length]);
+  NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
   NSLog(@":: xmlData: %@", xmlData);
 
   NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
