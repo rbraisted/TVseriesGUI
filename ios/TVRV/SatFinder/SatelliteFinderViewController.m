@@ -281,9 +281,10 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)timerAction {
-   NSLog(@":: timerAction");
+//   NSLog(@":: timerAction");
 	[overlayView updateAzimuthLabel:deviceHeading];
 	[overlayView updateElevationLabel:deviceTilt];
+    [self drawClarkeBelt];
 	[self drawSatList];
 }
 
@@ -419,6 +420,34 @@
 			}
 		}
 	}
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)drawClarkeBelt {
+    // enumerate through satellites
+    NSString* satelliteName;
+    for( double satelliteLongitude = 0.0; satelliteLongitude < 359.0; satelliteLongitude += 5.0 ) {
+        satelliteName = @"dot";
+        satelliteName = [satelliteName stringByAppendingFormat:@"%lf",satelliteLongitude];
+        if(satelliteLongitude) {
+            // use jacob's alg to calc azimuth & elevation of satellite
+            NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:satelliteLongitude];
+            if(satelliteAzimuthAndElevation) {
+                double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
+                double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
+                double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
+                double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
+                if(satelliteElevation>0.0) {
+                    if(isNaN(x) || isNaN(y)) {
+                        [overlayView hideViewForSatelliteWithName:satelliteName];
+                        continue;
+                    } else {
+                        [overlayView updateViewForSatelliteWithName:satelliteName AtX:x andY:y withType:0];
+                    }
+                }
+            } else continue;
+        } else continue;                                                                     
+    }
 }
 
 //=========================================================================================================================================================

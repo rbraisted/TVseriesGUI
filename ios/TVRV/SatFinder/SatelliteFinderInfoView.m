@@ -30,7 +30,7 @@
 		text = [text stringByAppendingString:@"Checking for blockage\n"];
 		text = [text stringByAppendingString:@"Since the antenna requires a clear view of the satellite, objects such as masts, buildings, bridges, trees, and other mounted hardware might interfere with the antenna’s signal collection. If you determine blockage is present, move the vessel, source of blockage, or switch to a different satellite.\n\n"];
 		text = [text stringByAppendingString:@"Custom settings\n"];
-		text = [text stringByAppendingString:@"Once launched while connected to the TracVision HD11 system, satellites are colored according to your TracVision HD11 system preferences. For example, satellites designated as “Favorites” are shown in red. Refer to the onscreen color key for details.\n\n"];
+		text = [text stringByAppendingString:@"Once launched while connected to the TV-series system, satellites displayed are based on what is installed in your TV-series system.\n\n"];
 		[textView setText:text];
 		[textView setEditable:NO];
 		[textView setTextColor:[UIColor whiteColor]];
