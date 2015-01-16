@@ -236,7 +236,7 @@
                   $('.\\#geoloc_error').text("Location information is unavailable.");
                   break;
               case error.TIMEOUT:
-                  $('.\\#geoloc_error').text("The request to get user location timed out.");
+                  $('.\\#geoloc_error').text("\nThe request to get user location timed out.");
                   break;
               case error.UNKNOWN_ERROR:
                   $('.\\#geoloc_error').text("An unknown error occurred.");
@@ -245,12 +245,13 @@
               
               deferred.reject();
           }, geo_options);
-
-          return deferred.promise();
       } else {
-          $('.\\#geoloc_error').text("Geolocation is not available on the web client.");
+          $('.\\#geoloc_error').text("Geolocation is not available.");
+          deferred.reject();
       }
-  }
+      
+      return deferred.promise();
+  };
 
   //  for routing, hash changes
 

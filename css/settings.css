@@ -871,20 +871,20 @@ a {
         height: 100%;
         width: 100%; } }
 
-@keyframes spin {
-  from {
-    -webkit-transform: rotate(360deg); }
-  to {
-    -webkit-transform: rotate(0deg); } }
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotate(360deg); }
+    -webkit-transform: rotate(0deg); }
   to {
-    -webkit-transform: rotate(0deg); } }
-.popup-spinner {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
+.popup-spinner, .spinner {
   position: relative;
   overflow: hidden; }
-  .popup-spinner:after {
+  .popup-spinner:after, .spinner:after {
     content: "";
     position: absolute;
     width: 200%;
@@ -892,7 +892,7 @@ a {
     top: -50%;
     left: -50%;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
-    animation: spin 1s steps(8) infinite;
+    -moz-animation: spin 1s steps(8) infinite;
     -webkit-animation: spin 1s steps(8) infinite; }
 
 .popup-spinner {
@@ -1119,6 +1119,9 @@ a {
 .\$not-tv6 .sidelobe-mode {
   display: none; }
 
+.\$hide-view .nmea-view {
+  display: none; }
+
 .\$wlan-sec-off .wireless-settings .password-label, .\$wlan-sec-off .wireless-settings .password-value, .\$wlan-sec-off .wireless-settings .password-input, .\$wlan-sec-off .wireless-settings .password-info-label {
   display: none; }
 
@@ -1224,7 +1227,6 @@ a {
 @media screen and (min-width: 881px) {
   .view {
     max-width: 800px;
-    align: center;
     min-height: 100px; }
     .view .view-head {
       border-bottom: 1px solid #4f7abd;
@@ -1233,7 +1235,6 @@ a {
       padding: 20px 0; } }
 
 .headline {
-  text-align: center;
   line-height: 1.6;
   margin-bottom: 15px; }
   @media screen and (min-width: 881px) {
@@ -1271,16 +1272,12 @@ a {
     padding: 15px;
     vertical-align: middle; }
   @media screen and (min-width: 881px) {
-    .clear-table {
-      max-width: 680px;
-      margin: auto; }
-      .clear-table .table-col {
-        font-size: 16px;
-        padding: 22.5px; } }
+    .clear-table .table-col {
+      font-size: 16px;
+      padding: 22.5px; } }
   @media screen and (max-width: 880px) {
     .clear-table {
-      margin: 0 20px;
-      width: calc(100% - 40px); }
+      margin: 0 20px; }
       .clear-table .table-col {
         font-size: 13px;
         padding: 15px; } }
@@ -1314,20 +1311,17 @@ a {
 
 @media screen and (min-width: 881px) {
   .vessel-location .headline {
-    margin: 60px 0 30px; } }
+    margin: 40px 0 30px; } }
 .vessel-location .note {
-  line-height: 1.6;
-  margin-top: 30px;
-  text-align: center;
+  line-height: 1.5;
+  margin-top: 20px;
   font-size: 13px; }
-  @media screen and (max-width: 880px) {
-    .vessel-location .note {
-      padding: 0 20px; } }
 .vessel-location .clear-table .table-row .table-col + .table-col {
   width: calc(100% - 21px); }
 
-.vessel-location .note {
-  padding-bottom: 60px; }
+.vessel-location .nmea-view {
+  border-bottom: 2px solid #4f7abd;
+  padding-bottom: 40px; }
 .vessel-location .block-btn {
   margin-left: auto;
   margin-right: auto;
@@ -1343,9 +1337,6 @@ a {
   color: #cbcaca;
   line-height: 1.6;
   margin-bottom: 20px; }
-.vessel-location .client-geoloc-view {
-  margin-top: 20px;
-  border-bottom: 1px solid #4f7abd; }
 .vessel-location .toggle-btn {
   margin-bottom: 20px; }
 .vessel-location .geoloc-view,
@@ -1366,7 +1357,6 @@ a {
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         display: block;
-        margin-left: 12px;
         margin-top: 10px; } }
     @media screen and (min-width: 401px) {
       .vessel-location .geoloc-view .label,
@@ -1379,7 +1369,7 @@ a {
   .vessel-location .coordinates-view .coordinates-label,
   .vessel-location .city-view .geoloc-label,
   .vessel-location .city-view .coordinates-label {
-    margin-top: 0; }
+    margin-top: 10px; }
     @media screen and (min-width: 401px) {
       .vessel-location .geoloc-view .geoloc-label,
       .vessel-location .geoloc-view .coordinates-label,
@@ -1392,11 +1382,6 @@ a {
   .vessel-location .coordinates-view .city-label,
   .vessel-location .city-view .city-label {
     margin-top: 0; }
-    @media screen and (max-width: 540px) {
-      .vessel-location .geoloc-view .city-label,
-      .vessel-location .coordinates-view .city-label,
-      .vessel-location .city-view .city-label {
-        margin-left: 12px; } }
   .vessel-location .geoloc-view .input, .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
   .vessel-location .coordinates-view .input,
   .vessel-location .coordinates-view .dropdown-btn,
@@ -1444,6 +1429,15 @@ a {
       .vessel-location .coordinates-view .hem-dropdown-btn,
       .vessel-location .city-view .hem-dropdown-btn {
         display: inline-block; } }
+
+.\/spinner .\#spinner-view {
+  display: block; }
+
+.spinner {
+  width: 200px;
+  height: 200px;
+  margin: 30px auto;
+  display: block; }
 
 .advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn,

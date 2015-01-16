@@ -326,11 +326,10 @@
 .view {
   @include breakpoint($desktop) {
     max-width: 800px;
-    //align: center;
     min-height: 100px;
     
     .view-head {
-      border-bottom: 3px solid $bright-blue;
+      border-bottom: 1px solid $bright-blue;
       font-size: 26px;
       margin: 0 0 30px 0;
       padding: 20px 0;
@@ -339,7 +338,6 @@
 }
 
 .headline {
-  //text-align: center;
   line-height: 1.6;
   margin-bottom: 15px;
 
@@ -358,9 +356,6 @@
   @include table;
 
   @include breakpoint($desktop) {
-    //max-width: 680px;
-    //margin: auto;
-
     .table-col {
       font-size: $medium-font;
       padding: $table-row-padding * 1.5;
@@ -369,7 +364,6 @@
 
   @include breakpoint($mobile) {
     margin: 0 20px;
-    //width: calc(100% - 40px);
 
     .table-col {
       font-size: $small-font;
@@ -407,19 +401,13 @@
 
 .vessel-location{
   .headline {
-    @include breakpoint($desktop) { margin: 60px 0 30px; }
+    @include breakpoint($desktop) { margin: 40px 0 30px; }
   }
   
   .note {
-    line-height: 1.6;
-    margin-top: 30px;
-    text-align: center;
+    line-height: 1.5;
+    margin-top: 20px;
     font-size: $small-font;
-
-    @include breakpoint($mobile) {
-      padding: 0 20px;
-    }
-
   }
 
   //  for the value column
@@ -429,12 +417,8 @@
 }
 
 .vessel-location {
-  .note {
-    padding-bottom: 60px;
-  }
   
-  .nmea-view,
-  .manual-view {
+  .nmea-view{
     border-bottom: 2px solid $bright-blue;
    padding-bottom: 40px;
   }
@@ -469,7 +453,7 @@
   .coordinates-view,
   .city-view {
     line-height: 1.4;
-
+ 
     .label {
       display: inline-block;
       margin-top: 5px;
@@ -480,7 +464,6 @@
 
       @media screen and (max-width: 400px) {
         display: block;
-        margin-left: 12px;
         margin-top: 10px;
       }
 
@@ -488,10 +471,10 @@
         min-width: 90px;
       }
     }
-
+    
     .geoloc-label,
     .coordinates-label {
-      margin-top: 0;
+      margin-top: 10px;
       @media screen and (min-width: 401px) {
         display: block;
       }
@@ -499,9 +482,6 @@
 
     .city-label {
       margin-top: 0;
-      @media screen and (max-width: 540px) {
-        margin-left: 12px;
-      }
     }
     
     .input {
@@ -540,6 +520,20 @@
       }
     }
   }
+}
+//  spinner
+////////////////////////////////////////////////////////////////////////////////
+
+.\/spinner .\#spinner-view{
+  display: block;
+}
+
+.spinner {
+  @extend %animated-spinner;
+  width: 200px;
+  height: 200px;
+  margin: 30px auto;
+  display: block; 
 }
 
 //  Advaced Settings Page
