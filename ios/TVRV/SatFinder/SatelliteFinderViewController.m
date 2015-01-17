@@ -35,7 +35,8 @@
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/webservice.php", hostname]]];
   [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
   [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+//  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_autoswitch_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
   NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
 
   connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -44,24 +45,25 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)getSatListFromXmlString:(NSString*)satListXmlString {
-  NSLog(@":: getSatListFromXmlString");
-  RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+    NSLog(@":: getSatListFromXmlString");
+    [satList removeAllObjects];
 
-  [satList removeAllObjects];
-
-  [satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
-    Satellite* sat = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text
-                                        withAntSatID:[satElement child:@"antSatID"].text
-                                        withTriSatID:[satElement child:@"triSatID"].text
-                                        withName:[satElement child:@"name"].text
-                                        withRegion:[satElement child:@"region"].text
-                                        withDegLon:[[satElement child:@"lon"].text floatValue]
-                                        isFavorite:[[satElement child:@"favorite"].text boolValue]
-                                        isEnabled:[[satElement child:@"enabled"].text boolValue]
-                                        isSelectable:[[satElement child:@"select"].text boolValue]];
-
-    [satList addObject:sat];
-  }];
+    RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+    RXMLElement* satElement = [satListXml child:@"satellites.A"];
+    Satellite* satA = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satA];
+    
+    satElement = [satListXml child:@"satellites.B"];
+    Satellite* satB = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satB];
+    
+    satElement = [satListXml child:@"satellites.C"];
+    Satellite* satC = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satC];
+    
+    satElement = [satListXml child:@"satellites.D"];
+    Satellite* satD = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satD];
 }
 
 
@@ -667,7 +669,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
   NSLog(@":: connectionDidFinishLoading");
   NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
-  NSLog(@":: xmlData: %@", xmlData);
+//  NSLog(@":: xmlData: %@", xmlData);
 
   NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
   [self getSatListFromXmlString:satListXmlString];

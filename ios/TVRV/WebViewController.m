@@ -303,8 +303,10 @@
     //	tvro://sat-finder
     //    shows the sat finder - desktop has no sat finder
     if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] init];
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]) [satFinderViewController getSatListFromBundle];
-    else [satFinderViewController getSatListFromHostname:hostName];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"])
+        [satFinderViewController getSatListFromBundle];
+    else
+        [satFinderViewController getSatListFromHostname:hostName];
     [self presentViewController:satFinderViewController animated:YES completion:nil];
 
     
