@@ -544,7 +544,8 @@
       return $('antenna state', xml).text();
     });
   };
-  
+
+  // This function returns true if the antenna's gps source is the puck.
   TVRO.isGpsAnt = function() {
       return TVRO.getAntennaStatus().then(function(xml) {
         return $('gps source', xml).text() === 'Antenna' ? true : false;

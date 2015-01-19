@@ -8,7 +8,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 <div class="view spinner-view #spinner-view">
   <div class="view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
-  <br>
+  </br>
   <p class="headline ant_status #ant_status"></p>
   <div class="spinner"></div>
   <div class="bottom-bar">
@@ -20,7 +20,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <div class="view spinner-view #geo-spinner-view">
   <div class="headline">Getting location coordinates, please wait...</div>
-  <br>
+  </br>
   <div class="spinner"></div>
 </div>
 
@@ -66,7 +66,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
         <div class="#lat-hem"></div>
         <div class="dropdown-icon"></div>
       </div>
-      <br>
+      </br>
       <span class="label">Longitude:</span>
       <input type="text" maxlength="8" class="gps-input longitude #longitude">
       <span>&deg;</span>

@@ -30,9 +30,8 @@
 <!-- Spinner
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <div class="spin-view spinner-view #spinner-view">
-  <!--<div class="spin-view-head">Installing Satellites</div>-->
   <div class="headline">Getting location coordinates, please wait...</div>
-  <br>
+  </br>
   <div class="spinner"></div>
 </div>
 
@@ -138,7 +137,7 @@
         <div class="#lat-hem"></div>
         <div class="dropdown-icon"></div>
       </div>
-      <br>
+      </br>
       <span class="label">Longitude:</span>
       <input type="text" maxlength="8" class="gps-input longitude #longitude">
       <span>&deg;</span>

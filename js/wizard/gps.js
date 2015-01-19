@@ -61,7 +61,7 @@
                     var nmeaSources     = nmea0183Sources.concat(nmea2000Sources);
                     return nmeaSources;
                 });
-            },
+            }
         });
     };
 
@@ -84,11 +84,11 @@
                 // Build the NMEA table.
                 nmea.setValues(values).build();
 
-                // Hide the NMEA table when no NMEA device are connected
+                // Hide the NMEA table when no NMEA devices are connected
                 jQ.toggleClass('$hide-view', values == 0);
 
                 // This block sets the proper header text for the NMEA and Manual
-                // blocks based upon if there is a internal GPS or NMEA connected.
+                // blocks based upon if there is an internal GPS or NMEA connected.
                 Promise.all(
                     TVRO.isGpsAnt(),
                     TVRO.getAntSysIdModel(),
@@ -97,7 +97,7 @@
                     var isGpsAnt = results[0];
 
                     // Is the antenna a Linear LNB with manual skew
-                    var isLinManSkew = (((results[1] == 'TV5SK') || (results[1] == 'TV5SK')) && (results[2] == 'LINEAR')) ? true : false;
+                    var isLinManSkew = (((results[1] !== 'TV5SK') || (results[1] !== 'TV6SK')) && (results[2] == 'LINEAR')) ? true : false;
 
                     if (isGpsAnt) {
                         if (values == 0) {
@@ -152,7 +152,7 @@
             });
         };
 
-        // Define a function to retrieve the values for NMEA Devices.
+        // Define a function to retrieve the values for manual coordinates.
         var getManualCoord = function() {
 
             manual.setValue("");
@@ -288,7 +288,7 @@
         };    
 
         var showCityDropdownView = function() {
-            cityDropdownView.show(cityDropdownBtn.offset());
+            cityDropdownView.show();
             self.setValue('CITY');
         };
 
@@ -303,7 +303,7 @@
         };
 
         var latHemBtn = $('.\\#lat-hem-btn',coordinatesView).click(function() {
-            latHemDropdownView.show(latHemBtn.offset());
+            latHemDropdownView.show();
         });
 
         var latHemDropdownView = TVRO.DropdownView($('.\\#lat-hem-dropdown-view'))
@@ -315,7 +315,7 @@
                     .build();
 
         var lonHemBtn = $('.\\#lon-hem-btn',coordinatesView).click(function() {
-            lonHemDropdownView.show(lonHemBtn.offset());
+            lonHemDropdownView.show();
         });
 
         var lonHemDropdownView = TVRO.DropdownView($('.\\#lon-hem-dropdown-view'))
