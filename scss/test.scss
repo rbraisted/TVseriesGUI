@@ -418,23 +418,59 @@ html {
 
 //  gps
 ////////////////////////////////////////////////////////////////////////////////
+.\$hide-view .nmea-view {
+  display: none;
+}
 
 .vessel-location,
 .heading-source {
   .headline {
+    text-align: left;
     @include breakpoint($desktop) { margin: 60px 0 30px; }
   }
 
   .note {
     line-height: 1.6;
     margin-top: 30px;
-    text-align: center;
+    text-align: left;
     font-size: $small-font;
+  }
 
-    @include breakpoint($mobile) {
-      padding: 0 20px;
+  .clear-table {
+    @include table;
+    max-width: 100%;
+  
+    @include breakpoint($desktop) {
+   
+      .table-col {
+        font-size: $medium-font;
+        padding: $table-row-padding * 1.5;
+      }
     }
 
+    @include breakpoint($mobile) {
+      margin: 0 20px;
+
+      .table-col {
+        font-size: $small-font;
+        padding: $table-row-padding;
+      }
+    }
+
+    .table-row {
+      cursor: pointer;
+
+      .install-btn {
+        @include bgimg('radio-unchecked');
+        display: inline-block;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      &.\$selected .install-btn {
+        @include bgimg('radio-checked');
+      }
+    }
   }
 
   //  for the value column
@@ -444,15 +480,23 @@ html {
 }
 
 .vessel-location {
-  .note {
-    padding-bottom: 60px;
+
+  .nmea-view{
+    border-bottom: 2px solid $bright-blue;
+    margin-bottom: 55px;
   }
+  
+  .manual-view{
+   margin-bottom: 55px;
+  }
+
 
   .block-btn {
     // margin-left/right:auto centers a block element
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
+    margin-bottom: 30px;
     max-width: 75px;
     min-width: 75px;
     display: block;
@@ -468,17 +512,12 @@ html {
     line-height: 1.6;
     margin-bottom: 20px;
   }
-  
-  .client-geoloc-view{
-    margin-top: 20px;
-    border-bottom: 1px solid $bright-blue;
-  }
-  
-  .toggle-btn{
+    
+  .toggle-btn {
     margin-bottom: 20px;
   }
-  
-  .client-geoloc-view,
+    
+  .geoloc-view,
   .coordinates-view,
   .city-view {
     line-height: 1.4;
@@ -486,9 +525,13 @@ html {
     .label {
       display: inline-block;
       margin-top: 5px;
+      color: #fff;
+      text-align: left;
+      width: initial;
+      margin-bottom: initial;
+      
       @media screen and (max-width: 400px) {
         display: block;
-        margin-left: 12px;
         margin-top: 10px;
       }
 
@@ -497,8 +540,9 @@ html {
       }
     }
 
+    .geoloc-label,
     .coordinates-label {
-      margin-top: 0;
+      margin-top: 10px;
       @media screen and (min-width: 401px) {
         display: block;
       }
@@ -506,9 +550,6 @@ html {
 
     .city-label {
       margin-top: 0;
-      @media screen and (max-width: 540px) {
-        margin-left: 12px;
-      }
     }
     
     .input {
@@ -532,8 +573,7 @@ html {
       min-height: 28px;
       min-width: 200px;
 
-      @media screen and (max-width: 540px) {
-        display: block;
+      @media screen and (max-width: 400px) {
         margin: 10px 0 0;
       }
     }
@@ -542,6 +582,11 @@ html {
       @extend .dropdown-btn;
       min-width: 54px;
       margin-bottom: -9px;
+      @media screen and (max-width: 400px) {
+        display: inline-block;
+        max-width: 54px;
+      }
+      
     }
     
   }
@@ -1966,6 +2011,7 @@ body[class=""] .\#skew-angle-view,
 ////////////////////////////////////////////////////////////////////////////////
 
 .\/spinner .\#spinner-view,
+.\/geo-spinner .\#geo-spinner-view,
 .\/checkswitch-spinner .\#checkswitch-spinner-view {
   display: block;
 }
