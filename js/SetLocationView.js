@@ -81,7 +81,7 @@
                     var isGpsAnt = results[0];
 
                     // Is the antenna a Linear LNB with manual skew
-                    var isLinManSkew = (((results[1] !== 'TV5SK') && (results[1] !== 'TV6SK')) && (results[2] === 'LINEAR')) ? true : false;
+                    var isLinManSkew = (((results[1] !== 'TV5SK') && (results[1] !== 'TV6SK')) && (results[2] === 'linear')) ? true : false;
 
                     if (isGpsAnt) {
                         if (values == 0) {
