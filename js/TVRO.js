@@ -226,6 +226,7 @@
 
                   clientGpsResult = [latitude, longitude, time];
 
+                  clearTimeout(failSafe);
                   deferred.resolve(clientGpsResult);
 
               }, function(error) {
@@ -244,19 +245,20 @@
                       $('.\\#geoloc_error').text("An unknown error occurred.");
                       break;
                   }
-
+                  clearTimeout(failSafe);
                   deferred.reject();
 
               }, geo_options);
 
       } else {
           $('.\\#geoloc_error').text("Geolocation is not available.");
+          clearTimeout(failSafe);
           deferred.reject();
      }
       
       // This is a secondary timeout to handle issues when geolocation gets
       // stuck.
-      setTimeout(function() {
+      var failSafe = setTimeout(function() {
           $('.\\#geoloc_error').text("The request to get user location timed out.");
           deferred.reject();
       }, 30000);
