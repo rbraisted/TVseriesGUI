@@ -31,7 +31,7 @@
 
         // Only show the sidelobe block when a TV6.
       TVRO.getAntModel().then(function(model) {
-        jQ.toggleClass('$not-tv6', model !== 'TV6');
+        jQ.toggleClass('$not-tv6', model !== 'TV6'&& model !== 'TV8');
       });
 
         // Only show the multiswitch block when a linear LNB.

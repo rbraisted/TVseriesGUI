@@ -109,7 +109,8 @@
              (model === 'TV1') ||
              (model === 'TV3') || 
              (sysIdModel === 'TV5') ||
-             (sysIdModel === 'TV6'))) {
+             (sysIdModel === 'TV6') ||
+             (sysIdModel === 'TV8'))) {
           window.location.hash = '/skew-angle';
         } else {
           window.location = '/wizard/satellites.php';
@@ -204,7 +205,8 @@ $(function() {
              (model === 'TV1') ||
              (model === 'TV3') || 
              (sysIdModel === 'TV5') ||
-             (sysIdModel === 'TV6'))) {
+             (sysIdModel === 'TV6') ||
+             (sysIdModel === 'TV8'))) {
           window.location.hash = '/skew-angle';
 
         } else if (service === 'BELL' || service === 'DISH') {

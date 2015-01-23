@@ -94,10 +94,12 @@
                     TVRO.getAntSysIdModel(),
                     TVRO.getLnbType()
                 ).then(function(results) {
-                    var isGpsAnt = results[0];
+                    var isGpsAnt     = results[0];
+                    var sysModelId   = results[1];
+                    var polarization = results[2];
 
                     // Is the antenna a Linear LNB with manual skew
-                    var isLinManSkew = (((results[1] !== 'TV5SK') && (results[1] !== 'TV6SK')) && (results[2] == 'linear')) ? true : false;
+                    var isLinManSkew = (((sysModelId !== 'TV5SK') && (sysModelId !== 'TV6SK') && (sysModelId !== 'TV8SK')) && (polarization === 'linear')) ? true : false;
 
                     if (isGpsAnt) {
                         if (values == 0) {
@@ -540,8 +542,8 @@
                         } else if (lnbPart === '19-0577') {
                             window.location = '/wizard/service.php#/tri-am-group';
 
-                            // LINEAR LNB TV5/6 with motorized skew -> options (single satellite, predfined group, user-defined group
-                        } else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK') {
+                            // LINEAR LNB TV5/6/8 with motorized skew -> options (single satellite, predfined group, user-defined group
+                        } else if (systemIDModel === 'TV5SK' || systemIDModel === 'TV6SK' || systemIDModel === 'TV8SK') {
                             window.location = '/wizard/satellites.php#/options';
 
                             // TV5 + MANUAL -> select satellites (satellites.php)

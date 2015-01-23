@@ -284,7 +284,7 @@ $(function() {
 
         if (lnbType === 'circular') {
           window.location.hash = '/circular-options';
-        }else if (sysIdModel === 'TV5SK' || sysIdModel === 'TV6SK') {
+        }else if (sysIdModel === 'TV5SK' || sysIdModel === 'TV6SK' || sysIdModel === 'TV8SK') {
           window.location.hash = '/options';
         }else {
           window.location.hash = '/tv5-manual-options';

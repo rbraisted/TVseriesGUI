@@ -252,7 +252,7 @@
   </div>
 
   <div class="sidelobe-mode">
-    <div class="heading">Sidelobe Mode (TV6 only)</div>
+    <div class="heading">Sidelobe Mode</div>
     <p>
       Sidelobe Mode ensures the antenna is tracking the main beam of the satellite,
       and not a weaker sidelobe. Since sidelobes are not strong enough to become a

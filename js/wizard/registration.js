@@ -117,7 +117,7 @@
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       TVRO.getAntModel().then(function(model) {
-        if (model === 'TV5' || model === 'TV6') window.location = '/wizard/';
+        if (model === 'TV5' || model === 'TV6' || model === 'TV8') window.location = '/wizard/';
         else window.location.hash = '/installer-id';
       });
     });
@@ -234,11 +234,11 @@ $(function() {
   var installerInfoView = TVRO.InstallerInfoView($('.\\#installer-info-view'));
 
   TVRO.onHashChange(function(hash) {
-    //  TV5 & 6 go to diy vessel info
+    //  TV5, 6, 8 go to cdt vessel info
     //  everybody else goes to installer-id
     if (!hash)
       TVRO.getAntModel().then(function(model) {
-        if (model === 'TV5' || model === 'TV6') window.location.hash = '/cdt-vessel-info';
+        if (model === 'TV5' || model === 'TV6' || model === 'TV8') window.location.hash = '/cdt-vessel-info';
         else window.location.hash = '/installer-id';
       });
 
