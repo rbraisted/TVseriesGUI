@@ -214,8 +214,9 @@
   display: none;
 }
 
-.\$hide-view .nmea-view {
-  display: none;
+.\$hide-view .nmea-view,
+.\$hide-view .sidelobe-mode {
+ display: none;
 }
 
 .\$wlan-sec-off .wireless-settings {

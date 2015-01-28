@@ -42,8 +42,8 @@ TVRO = {
 		TV5: 'tv5',
 		TV6: 'tv6',
 	        TV8: 'tv8',
-	        TV8: 'rv1',
-	        TV8: 'a9'
+	        RV1: 'rv1',
+	        A9 : 'a9'
 	},
 
 	init: function() {

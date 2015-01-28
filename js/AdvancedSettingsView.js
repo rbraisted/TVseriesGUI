@@ -29,9 +29,9 @@
       $('.\\#tech-mode', jQ).toggle(TVRO.getTechMode());
       $('.\\#update-url', jQ).val(sessionStorage['kvhupdate']);
 
-        // Only show the sidelobe block when a TV6.
+        // Only show the sidelobe block when a TV6 or TV8.
       TVRO.getAntModel().then(function(model) {
-        jQ.toggleClass('$not-tv6', model !== 'TV6'&& model !== 'TV8');
+        jQ.toggleClass('$hide-view', model !== 'TV6' && model !== 'TV8');
       });
 
         // Only show the multiswitch block when a linear LNB.

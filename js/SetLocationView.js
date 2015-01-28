@@ -83,7 +83,7 @@
                     var polarization = results[2];
 
                     // Is the antenna a Linear LNB with manual skew
-                    var isLinManSkew = (((sysModelId !== 'TV5SK') && (sysModelId !== 'TV6SK') && (results[1] !== 'TV8SK')) && (polarization === 'linear')) ? true : false;
+                    var isLinManSkew = (((sysModelId !== 'TV5SK') && (sysModelId !== 'TV6SK') && (sysModelId !== 'TV8SK')) && (polarization === 'linear')) ? true : false;
 
                     if (isGpsAnt) {
                         if (values == 0) {
