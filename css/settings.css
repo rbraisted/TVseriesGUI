@@ -1117,9 +1117,6 @@ a {
 .\$not-linear .multiswitch-mode {
   display: none; }
 
-.\$not-tv6 .sidelobe-mode {
-  display: none; }
-
 .\$hide-view .nmea-view,
 .\$hide-view .sidelobe-mode {
   display: none; }
