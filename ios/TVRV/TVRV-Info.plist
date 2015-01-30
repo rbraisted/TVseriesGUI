@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Permissions Message for App when in use</string>
+	<string>KVH TV antenna system uses mobile device&apos;s GPS location to allow faster acquisition of TV satellite</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Message for App even when not in use</string>
+	<string>KVH TV antenna system uses mobile device&apos;s GPS location to allow faster acquisition of TV satellite</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
