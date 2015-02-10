@@ -255,7 +255,7 @@
 }
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
-  //Connect to the Updates website (http://www.kvhupdate.com/mobile/tvhub/v1)
+  //Connect to the Updates website
   WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
   [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
