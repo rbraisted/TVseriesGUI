@@ -254,7 +254,7 @@
   <div class="sidelobe-mode">
     <div class="heading">Sidelobe Mode</div>
     <p>
-      Sidelobe Mode ensures the antenna is tracking the main beam of the satellite,
+      Sidelobe Mode ensures the antenna is tracking the main beam of the satellite
       and not a weaker sidelobe. <span class="#sidelobe-info"/>
     </p>
     <div class="toggle-btn #sidelobe-mode-btn">
