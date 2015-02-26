@@ -255,9 +255,7 @@
     <div class="heading">Sidelobe Mode</div>
     <p>
       Sidelobe Mode ensures the antenna is tracking the main beam of the satellite,
-      and not a weaker sidelobe. Since sidelobes are not strong enough to become a
-      problem in most regions, keep Sidelobe Mode set to off unless directed
-      otherwise by KVH Technical Support.
+      and not a weaker sidelobe. <span class="#sidelobe-info"/>
     </p>
     <div class="toggle-btn #sidelobe-mode-btn">
       <div class="on">On</div>
