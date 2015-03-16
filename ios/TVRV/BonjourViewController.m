@@ -255,9 +255,10 @@
 }
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
-  //Connect to the Updates website
-  WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
-  [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+    //Connect to the Updates website
+    ApplicationDelegate.isNavigateToUpdateScreen = YES;
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
+    [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 - (IBAction)satFinderButtonPressed:(id)sender {

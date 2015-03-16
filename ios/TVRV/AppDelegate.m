@@ -3,6 +3,7 @@
 #import "BonjourViewController.h"
 
 @implementation AppDelegate
+@synthesize isNavigateToUpdateScreen;
 
 #pragma mark - UIApplicationDelegate protocol methods
 

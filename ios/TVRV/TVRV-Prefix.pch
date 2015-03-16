@@ -5,6 +5,7 @@
 //
 
 #import <Availability.h>
+#import "AppDelegate.h"
 
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
@@ -22,6 +23,7 @@
 #define isNaN(x) (x != x)
 
 #define IS_IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+#define ApplicationDelegate                 ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 //  NOTE: this camera info is pretty old
 //  camera fov stuff
