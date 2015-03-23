@@ -250,6 +250,11 @@
 }
 
 - (IBAction)connectButtonPressed:(id)sender {
+    if ([self.textField.text length] == 0) {
+        UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Please enter IP Address or Hostname."] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertError show];
+        return;
+    }
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
