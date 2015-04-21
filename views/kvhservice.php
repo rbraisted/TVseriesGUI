@@ -93,7 +93,8 @@
                 <option value="reset_software">reset_software</option>
                 <option value="get_config_file">get_config_file</option>
                 <option value="update_satellite_config">update_satellite_config</option>
-
+                <option value="factory_reset">TV-Hub_factory_reset</option>
+                
             </select>
             <br />
             <br />
