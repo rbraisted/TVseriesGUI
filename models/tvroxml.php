@@ -327,6 +327,11 @@
         {
             return($this->doSimple(__FUNCTION__));
         }
-
+        
+        function factory_reset()
+        {
+        	return($this->doSimple(__FUNCTION__));
+        }
+        
     }
 ?>
