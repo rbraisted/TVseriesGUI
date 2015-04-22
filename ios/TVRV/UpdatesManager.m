@@ -22,6 +22,8 @@
 	if (![defaults stringForKey:@"tv5-device-version"]) [defaults setValue:@"" forKey:@"tv5-device-version"];
 	if (![defaults stringForKey:@"tv6-device-version"]) [defaults setValue:@"" forKey:@"tv6-device-version"];
 	if (![defaults stringForKey:@"rv1-device-version"]) [defaults setValue:@"" forKey:@"rv1-device-version"];
+	if (![defaults stringForKey:@"a9-device-version"]) [defaults setValue:@"" forKey:@"a9-device-version"];
+	if (![defaults stringForKey:@"tv8-device-version"]) [defaults setValue:@"" forKey:@"tv8-device-version"];
 	
 	fileData = [[NSMutableData alloc] init];
   
@@ -138,7 +140,7 @@
 }
 
 - (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data {
-	NSLog(@"connection:%@ didReceiveData:%d", _connection, [data length]);
+	NSLog(@"connection:%@ didReceiveData:%lu", _connection, (unsigned long)[data length]);
   [fileData appendData:data];
   
   NSNumber* resourceLength = [NSNumber numberWithUnsignedInteger:[fileData length]];

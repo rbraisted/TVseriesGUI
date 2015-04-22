@@ -396,12 +396,14 @@
 
       if (TVRO.getShellMode()) TVRO.sendShellCommand('get-device-versions');
       else TVRO.setDeviceVersions({
-        SatLibrary: TVRO.getDownloadedSatLibraryUpdateVersion(),
-        TV1: TVRO.getDownloadedTV1UpdateVersion(),
-        TV3: TVRO.getDownloadedTV3UpdateVersion(),
-        TV5: TVRO.getDownloadedTV5UpdateVersion(),
-        TV6: TVRO.getDownloadedTV6UpdateVersion(),
-        RV1: TVRO.getDownloadedRV1UpdateVersion()
+          SatLibrary: TVRO.getDownloadedSatLibraryUpdateVersion(),
+          TV1: TVRO.getDownloadedTV1UpdateVersion(),
+          TV3: TVRO.getDownloadedTV3UpdateVersion(),
+          TV5: TVRO.getDownloadedTV5UpdateVersion(),
+          TV6: TVRO.getDownloadedTV6UpdateVersion(),
+          TV8: TVRO.getDownloadedTV8UpdateVersion(),
+          RV1: TVRO.getDownloadedRV1UpdateVersion(),
+          A9: TVRO.getDownloadedA9UpdateVersion()
       });
 
       return cache['get_device_versions'];

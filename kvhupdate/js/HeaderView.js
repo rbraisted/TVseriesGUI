@@ -7,7 +7,8 @@
     //  goes to wizard if wizard has not been completed
     //  goes to home if wizard has been completed
     var homeBtn = $('.\\#home-btn', jQ).click(function() {
-      window.location = '/';
+//      window.location = '/';
+		if (TVRO.getShellMode()) TVRO.sendShellCommand('restart');
     });
 
     var navJq = $('.\\#nav-view');

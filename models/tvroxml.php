@@ -292,9 +292,9 @@
             return($this->doSimple(__FUNCTION__, $extra));
         }
 
-        function set_date_time($date, $time)
+        function set_date_time($date_time)
         {
-            $extra = "<date>$date</date><time>$time</time>";
+            $extra = "<dt>$date_time</dt>";
 
             return($this->doSimple(__FUNCTION__, $extra));
         }
@@ -327,6 +327,11 @@
         {
             return($this->doSimple(__FUNCTION__));
         }
-
+        
+        function factory_reset()
+        {
+        	return($this->doSimple(__FUNCTION__));
+        }
+        
     }
 ?>

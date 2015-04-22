@@ -685,7 +685,8 @@ a {
     height: auto;
     min-height: auto;
     min-width: 280px;
-    width: auto; }
+    width: auto;
+    margin: 0px 0px; }
   .dropdown .table {
     width: 100%;
     position: relative;
@@ -863,18 +864,16 @@ a {
         height: 100%;
         width: 100%; } }
 
-@keyframes spin {
-  from {
-    -webkit-transform: rotate(360deg); }
-
-  to {
-    -webkit-transform: rotate(0deg); } }
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotate(360deg); }
-
+    -webkit-transform: rotate(0deg); }
   to {
-    -webkit-transform: rotate(0deg); } }
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
 .popup-spinner {
   position: relative;
   overflow: hidden; }
@@ -886,7 +885,7 @@ a {
     top: -50%;
     left: -50%;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
-    animation: spin 1s steps(8) infinite;
+    -moz-animation: spin 1s steps(8) infinite;
     -webkit-animation: spin 1s steps(8) infinite; }
 
 .popup-spinner {

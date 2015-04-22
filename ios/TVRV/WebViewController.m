@@ -113,6 +113,7 @@
     [timeoutTimer invalidate];
     [loadingView setHidden:TRUE];
   }
+    [self addBackButton];
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -232,8 +233,31 @@
     [defaults synchronize];
   }
   
-	[timeoutTimer invalidate];
+  [timeoutTimer invalidate];
   [loadingView setHidden:TRUE];
+    [self addBackButton];
+}
+
+- (void)addBackButton
+{
+    if (ApplicationDelegate.isNavigateToUpdateScreen) {
+        ApplicationDelegate.isNavigateToUpdateScreen = NO;
+        UIImage* imgBackButton = [UIImage imageNamed:@"backButton"];
+        UIButton* btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnBack setFrame:CGRectMake(5, 0, 32.0, 48.0)];
+        [btnBack setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+        [btnBack setImage:imgBackButton forState:UIControlStateNormal];
+        [btnBack setBackgroundColor:[UIColor clearColor]];
+        [btnBack addTarget:self action:@selector(callMainScreen) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnBack];
+        [self.view bringSubviewToFront:btnBack];
+    }
+}
+
+
+- (void)callMainScreen {
+    BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
+    [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
@@ -293,7 +317,6 @@
 		[helpWebView loadRequest:helpRequest];
     [helpWebView setHidden:NO];
     
-    
   } else if ([url.host isEqualToString:@"change-hostname"]) {
     //	tvro://change-hostname
     //    brings you back to the bonjour list view
@@ -303,13 +326,13 @@
     //	tvro://sat-finder
     //    shows the sat finder - desktop has no sat finder
     if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] init];
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"]) [satFinderViewController getSatListFromBundle];
-    else [satFinderViewController getSatListFromHostname:hostName];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"])
+        [satFinderViewController getSatListFromBundle];
+    else
+        [satFinderViewController getSatListFromHostname:hostName];
     [self presentViewController:satFinderViewController animated:YES completion:nil];
 
-    
-    
-	} else if ([url.host isEqualToString:@"set-installer-company"]
+  } else if ([url.host isEqualToString:@"set-installer-company"]
           || [url.host isEqualToString:@"set-installer-contact"]
 					|| [url.host isEqualToString:@"set-installer-phone"]
 					|| [url.host isEqualToString:@"set-installer-email"]) {
@@ -317,7 +340,6 @@
 		NSString* value = [url.path substringFromIndex:1];
 		[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
 		[[NSUserDefaults standardUserDefaults] synchronize];
-
 
   } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
     //	tvro://set-tech-mode/{ true || false }
@@ -330,14 +352,12 @@
     BOOL value = [[pathComponents objectAtIndex:1] isEqualToString:@"true"];
     [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    
+      
   } else if ([url.host isEqualToString:@"get-device-versions"]) {
     //	tvro://get-device-versions
     //    gets versions of the stored update files
     //    makes a javascript call that gives the web code the device versions
     [self setDeviceVersions];
-    
     
   } else if ([url.host isEqualToString:@"download"]) {
     //  tvro://download/{ update-type-to-download }/{ portal-version-to-store-for-device-versions-call }/{ portal-url-to-download-update-from }
@@ -350,8 +370,7 @@
     NSString* portalVersion = [NSString stringWithString:pathComponents[2]];
     NSString* portalUrl = [[pathComponents subarrayWithRange:NSMakeRange(3, [pathComponents count]-3)] componentsJoinedByString:@"/"];
     [updatesManager startDownloadForUpdateType:updateType portalVersion:portalVersion portalUrl:[NSURL URLWithString:portalUrl]];
-    
-    
+      
   } else if ([url.host isEqualToString:@"upload"]) {
     //  tvro://upload/{ update-type-to-upload-and-install }
     //    calls the install_software method of the backend
@@ -361,6 +380,9 @@
     NSString* uploadURLString = [NSString stringWithFormat:@"http://%@/xmlservices.php/set_config_file", hostName];
     NSURL* uploadURL = [NSURL URLWithString:uploadURLString];
     [updatesManager startUploadForUpdateType:updateType uploadUrl:uploadURL];
+  } else if ([url.host isEqualToString:@"restart"]) {
+      NSLog(@"user requested restart launch page");
+      [self goBackToHostSelect];
   }
   
   //invalidate timer otherwise we will be kicked back to the bonjour
@@ -375,10 +397,12 @@
   NSString* tv3DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv3"];
   NSString* tv5DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv5"];
   NSString* tv6DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv6"];
+  NSString* tv8DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv8"];
   NSString* rv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"rv1"];
+  NSString* a9DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"a9"];
 
   //	on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
-  NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', RV1: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, rv1DeviceVersion];
+  NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', TV8: '%@', RV1: '%@' , A9: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, tv8DeviceVersion, rv1DeviceVersion, a9DeviceVersion];
   
   [webView stringByEvaluatingJavaScriptFromString:jsString];
 }

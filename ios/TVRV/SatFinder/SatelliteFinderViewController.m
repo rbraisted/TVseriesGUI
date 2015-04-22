@@ -35,7 +35,8 @@
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/webservice.php", hostname]]];
   [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
   [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+//  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_autoswitch_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
   NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
 
   connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -44,24 +45,25 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)getSatListFromXmlString:(NSString*)satListXmlString {
-  NSLog(@":: getSatListFromXmlString");
-  RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+    NSLog(@":: getSatListFromXmlString");
+    [satList removeAllObjects];
 
-  [satList removeAllObjects];
-
-  [satListXml iterateWithRootXPath:@"//satellite" usingBlock: ^(RXMLElement *satElement) {
-    Satellite* sat = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text
-                                        withAntSatID:[satElement child:@"antSatID"].text
-                                        withTriSatID:[satElement child:@"triSatID"].text
-                                        withName:[satElement child:@"name"].text
-                                        withRegion:[satElement child:@"region"].text
-                                        withDegLon:[[satElement child:@"lon"].text floatValue]
-                                        isFavorite:[[satElement child:@"favorite"].text boolValue]
-                                        isEnabled:[[satElement child:@"enabled"].text boolValue]
-                                        isSelectable:[[satElement child:@"select"].text boolValue]];
-
-    [satList addObject:sat];
-  }];
+    RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+    RXMLElement* satElement = [satListXml child:@"satellites.A"];
+    Satellite* satA = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satA];
+    
+    satElement = [satListXml child:@"satellites.B"];
+    Satellite* satB = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satB];
+    
+    satElement = [satListXml child:@"satellites.C"];
+    Satellite* satC = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satC];
+    
+    satElement = [satListXml child:@"satellites.D"];
+    Satellite* satD = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    [satList addObject:satD];
 }
 
 
@@ -149,35 +151,35 @@
     NSLog(@"!!!");
     [self.presentingViewController dismissModalViewControllerAnimated:NO];
 
-//        [self dismissModalViewControllerAnimated:NO];
+    //        [self dismissModalViewControllerAnimated:NO];
     
     
-//    [self dismissViewControllerAnimated:NO completion:^{
-//        //  kill the timer
-//        //  do it here or timer will restart because viewWillAppear
-        if (timer != nil) {
-            [timer invalidate];
-            timer = nil;    
-        }
-//
-//        [self dismissModalViewControllerAnimated:NO];
-////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
-//    }];
+    //    [self dismissViewControllerAnimated:NO completion:^{
+    //        //  kill the timer
+    //        //  do it here or timer will restart because viewWillAppear
+    if (timer != nil) {
+        [timer invalidate];
+        timer = nil;
+    }
+    //
+    //        [self dismissModalViewControllerAnimated:NO];
+    ////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
+    //    }];
 
-//  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-//   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-//  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
     
-//    [self dismissModalViewControllerAnimated:NO];//camera
+    //    [self dismissModalViewControllerAnimated:NO];//camera
 
-//  //  kill the timer
-//  //  do it here or timer will restart because viewWillAppear
-//  if (timer != nil) {
-//    [timer invalidate];
-//    timer = nil;    
-//  }
-
-//  [self dismissModalViewControllerAnimated:NO];//the actual view
+    //  //  kill the timer
+    //  //  do it here or timer will restart because viewWillAppear
+    //  if (timer != nil) {
+    //    [timer invalidate];
+    //    timer = nil;
+    //  }
+    
+    //  [self dismissModalViewControllerAnimated:NO];//the actual view
 
 	showPicker = true;
 }
@@ -266,7 +268,7 @@
 	
 	double boundDiff = topBound - bottomBound;
 	double positionAtBoundScale;
-	double y;
+	double y = 0.0;
 	
 	if (satelliteElevation <= bottomBound) {
 		positionAtBoundScale = (bottomBound - satelliteElevation)/boundDiff;
@@ -281,16 +283,17 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)timerAction {
-   NSLog(@":: timerAction");
+//   NSLog(@":: timerAction");
 	[overlayView updateAzimuthLabel:deviceHeading];
 	[overlayView updateElevationLabel:deviceTilt];
+    [self drawClarkeBelt];
 	[self drawSatList];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)drawSatList {
   // NSLog(@":: drawSatList");
-	int k = [satList count];
+  NSUInteger k = [satList count];
   float hw = (IS_IPAD ? 384.0 : 160.0); // half width
   float hh = (IS_IPAD ? 384.0 : 160.0); // half height
 
@@ -419,6 +422,34 @@
 			}
 		}
 	}
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)drawClarkeBelt {
+    // enumerate through satellites
+    NSString* satelliteName;
+    for( double satelliteLongitude = 0.0; satelliteLongitude < 359.0; satelliteLongitude += 5.0 ) {
+        satelliteName = @"dot";
+        satelliteName = [satelliteName stringByAppendingFormat:@"%lf",satelliteLongitude];
+        if(satelliteLongitude) {
+            // use jacob's alg to calc azimuth & elevation of satellite
+            NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:satelliteLongitude];
+            if(satelliteAzimuthAndElevation) {
+                double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
+                double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
+                double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
+                double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
+                if(satelliteElevation>0.0) {
+                    if(isNaN(x) || isNaN(y)) {
+                        [overlayView hideViewForSatelliteWithName:satelliteName];
+                        continue;
+                    } else {
+                        [overlayView updateViewForSatelliteWithName:satelliteName AtX:x andY:y withType:0];
+                    }
+                }
+            } else continue;
+        } else continue;                                                                     
+    }
 }
 
 //=========================================================================================================================================================
@@ -637,8 +668,8 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
   NSLog(@":: connectionDidFinishLoading");
-  NSLog(@":: xmlData length: %d", [xmlData length]);
-  NSLog(@":: xmlData: %@", xmlData);
+  NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
+//  NSLog(@":: xmlData: %@", xmlData);
 
   NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
   [self getSatListFromXmlString:satListXmlString];

@@ -376,7 +376,9 @@ $(document).ready(function(e) {
       message+='GET GPS CITIES\n\n';
       $(xml).find('cities').each(function() {
         $(xml).find('city').each(function() {
-          message+='City: '+$(this).text()+'\n';
+          message+='City: '+$(this).find('city_name').text()+'\n';
+          message+='      Latitude:  '+$(this).find('lat').text()+'\n';
+          message+='      Longitude: '+$(this).find('lon').text()+'\n';
         });
       });
 
@@ -1870,6 +1872,9 @@ $(document).ready(function(e) {
       $('#fdNmeaGpsSource').html('NMEA Source');
       SendGetCommand('get_gps_config');
       break;
+    case 'factory_reset':
+        clearWindow();
+        break;
 
     default:
       clearWindow();
@@ -2196,6 +2201,18 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function factory_reset(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
 
   var upperLimit=0;
   var beginAt   =0;
@@ -2464,6 +2481,9 @@ $(document).ready(function(e) {
       message+='<rollback>'+$('#fdinResetSoftware').val()+'</rollback>';
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
+    case 'factory_reset':
+        SendGetCommand($('#chooseSetting').val());
+        break;
     case 'reset_user_password':
       var method=eval('(reset_user_password)');
       $.ajax({

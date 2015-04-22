@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A64116F1ABAAC7D00412DFD /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A64116D1ABAAC7D00412DFD /* backButton.png */; };
+		8A6411701ABAAC7D00412DFD /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A64116E1ABAAC7D00412DFD /* backButton@2x.png */; };
 		AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138F1917F4DA00445E07 /* AppDelegate.m */; };
 		AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013911917F4DA00445E07 /* BonjourTableViewCell.m */; };
 		AAC013E21917F4DA00445E07 /* BonjourTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC013921917F4DA00445E07 /* BonjourTableViewCell~ipad.xib */; };
@@ -19,7 +21,6 @@
 		AAC0141E1917F4DA00445E07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D21917F4DA00445E07 /* main.m */; };
 		AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013D41917F4DA00445E07 /* RXMLElement.m */; };
 		AAC014211917F4DA00445E07 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D71917F4DA00445E07 /* Settings.bundle */; };
-		AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC013D81917F4DA00445E07 /* TVRV-Info.plist */; };
 		AAC014231917F4DA00445E07 /* UpdatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DB1917F4DA00445E07 /* UpdatesManager.m */; };
 		AAC014241917F4DA00445E07 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013DE1917F4DA00445E07 /* WebViewController.m */; };
 		E916FD93184D666800E06C33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E916FD92184D666800E06C33 /* CoreLocation.framework */; };
@@ -155,9 +156,6 @@
 		E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
 		E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */; };
 		E9B97C6F1829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
-		E9B97C841829A14A007AA4A3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C831829A14A007AA4A3 /* XCTest.framework */; };
-		E9B97C851829A14A007AA4A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6A1829A14A007AA4A3 /* Foundation.framework */; };
-		E9B97C861829A14A007AA4A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B97C6E1829A14A007AA4A3 /* UIKit.framework */; };
 		E9BE2F181940F6B300ADEAF5 /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */; };
 		E9BE2F191940F6B300ADEAF5 /* Satellite.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0C1940F6B300ADEAF5 /* Satellite.m */; };
 		E9BE2F1A1940F6B300ADEAF5 /* SatelliteFinderInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F0E1940F6B300ADEAF5 /* SatelliteFinderInfoView.m */; };
@@ -167,17 +165,9 @@
 		E9BE2F1F1940F6B300ADEAF5 /* SatelliteViewCrosshairView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BE2F171940F6B300ADEAF5 /* SatelliteViewCrosshairView.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E9B97C871829A14A007AA4A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9B97C5F1829A14A007AA4A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9B97C661829A14A007AA4A3;
-			remoteInfo = TVRO;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		8A64116D1ABAAC7D00412DFD /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
+		8A64116E1ABAAC7D00412DFD /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAC0138F1917F4DA00445E07 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AAC013901917F4DA00445E07 /* BonjourTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourTableViewCell.h; sourceTree = "<group>"; };
@@ -336,8 +326,6 @@
 		E9B97C6A1829A14A007AA4A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E9B97C6E1829A14A007AA4A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVRVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9B97C831829A14A007AA4A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E9BE2F091940F6B300ADEAF5 /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
 		E9BE2F0A1940F6B300ADEAF5 /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		E9BE2F0B1940F6B300ADEAF5 /* Satellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Satellite.h; sourceTree = "<group>"; };
@@ -366,16 +354,6 @@
 				E9B97C6D1829A14A007AA4A3 /* CoreGraphics.framework in Frameworks */,
 				E9B97C6F1829A14A007AA4A3 /* UIKit.framework in Frameworks */,
 				E9B97C6B1829A14A007AA4A3 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9B97C7F1829A14A007AA4A3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E9B97C841829A14A007AA4A3 /* XCTest.framework in Frameworks */,
-				E9B97C861829A14A007AA4A3 /* UIKit.framework in Frameworks */,
-				E9B97C851829A14A007AA4A3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +397,8 @@
 		E91EF035194174CA007829CD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8A64116D1ABAAC7D00412DFD /* backButton.png */,
+				8A64116E1ABAAC7D00412DFD /* backButton@2x.png */,
 				E91915AB1946953D00BD5F43 /* blue-pixel.png */,
 				E91EF036194174CA007829CD /* bonjourBG.png */,
 				E91EF037194174CA007829CD /* bonjourBG@2x.png */,
@@ -559,7 +539,6 @@
 			isa = PBXGroup;
 			children = (
 				E9B97C671829A14A007AA4A3 /* TVRV.app */,
-				E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -574,7 +553,6 @@
 				E9B97C6A1829A14A007AA4A3 /* Foundation.framework */,
 				E9B97C6C1829A14A007AA4A3 /* CoreGraphics.framework */,
 				E9B97C6E1829A14A007AA4A3 /* UIKit.framework */,
-				E9B97C831829A14A007AA4A3 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -622,37 +600,16 @@
 			productReference = E9B97C671829A14A007AA4A3 /* TVRV.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E9B97C811829A14A007AA4A3 /* TVRVTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E9B97C961829A14A007AA4A3 /* Build configuration list for PBXNativeTarget "TVRVTests" */;
-			buildPhases = (
-				E9B97C7E1829A14A007AA4A3 /* Sources */,
-				E9B97C7F1829A14A007AA4A3 /* Frameworks */,
-				E9B97C801829A14A007AA4A3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E9B97C881829A14A007AA4A3 /* PBXTargetDependency */,
-			);
-			name = TVRVTests;
-			productName = TVROTests;
-			productReference = E9B97C821829A14A007AA4A3 /* TVRVTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E9B97C5F1829A14A007AA4A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					E9B97C661829A14A007AA4A3 = {
-						DevelopmentTeam = QL999G4CE6;
-					};
-					E9B97C811829A14A007AA4A3 = {
-						TestTargetID = E9B97C661829A14A007AA4A3;
+						DevelopmentTeam = YYEW9VQ5XU;
 					};
 				};
 			};
@@ -669,7 +626,6 @@
 			projectRoot = "";
 			targets = (
 				E9B97C661829A14A007AA4A3 /* TVRV */,
-				E9B97C811829A14A007AA4A3 /* TVRVTests */,
 			);
 		};
 /* End PBXProject section */
@@ -689,6 +645,7 @@
 				E91EF0EE194174CA007829CD /* sf_sat_blue@2x~iphone.png in Resources */,
 				AAC0141D1917F4DA00445E07 /* Images.xcassets in Resources */,
 				E91EF108194174CA007829CD /* TracVisionLogo@2x.png in Resources */,
+				8A64116F1ABAAC7D00412DFD /* backButton.png in Resources */,
 				E91EF0F9194174CA007829CD /* sf_sat_red~iphone.png in Resources */,
 				E91EF0BD194174CA007829CD /* iPadKVHLogo@2x.png in Resources */,
 				E91EF0FC194174CA007829CD /* sf_triangle_guide~iphone.png in Resources */,
@@ -769,7 +726,6 @@
 				E91EF10D194174CA007829CD /* TVRV_icons_120x120.png in Resources */,
 				E91EF0E0194174CA007829CD /* sf_pointer_down~ipad.png in Resources */,
 				E91EF11F194174CA007829CD /* TVRV_Launch_640x1136.png in Resources */,
-				AAC014221917F4DA00445E07 /* TVRV-Info.plist in Resources */,
 				E91915AF19469B3500BD5F43 /* sat-finder-button.png in Resources */,
 				E91EF115194174CA007829CD /* TVRV_icons_60x60.png in Resources */,
 				E91EF0ED194174CA007829CD /* sf_sat_black~iphone.png in Resources */,
@@ -806,6 +762,7 @@
 				E91EF119194174CA007829CD /* TVRV_icons_iTunesArtwork.png in Resources */,
 				E91EF0CC194174CA007829CD /* sf_horizontal_axis~iphone.png in Resources */,
 				E91EF0DE194174CA007829CD /* sf_line_dot~iphone.png in Resources */,
+				8A6411701ABAAC7D00412DFD /* backButton@2x.png in Resources */,
 				E91EF101194174CA007829CD /* tableCellBGDark.png in Resources */,
 				E91EF0FD194174CA007829CD /* tableCellArrow.png in Resources */,
 				E91EF0B7194174CA007829CD /* horizontal2_nu~iphone.png in Resources */,
@@ -813,13 +770,6 @@
 				E91EF111194174CA007829CD /* TVRV_icons_40x40.png in Resources */,
 				E91EF110194174CA007829CD /* TVRV_icons_29x29.png in Resources */,
 				E91EF10C194174CA007829CD /* TVRV_icons_114x114.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9B97C801829A14A007AA4A3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,22 +797,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9B97C7E1829A14A007AA4A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E9B97C881829A14A007AA4A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E9B97C661829A14A007AA4A3 /* TVRV */;
-			targetProxy = E9B97C871829A14A007AA4A3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AAC013991917F4DA00445E07 /* InfoPlist.strings */ = {
@@ -892,8 +827,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Softweb Solutions Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Softweb Solutions Inc.";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -911,7 +846,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
+				PROVISIONING_PROFILE = "0BC09522-7E93-43A0-9A0A-DD3185CBCE48";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -934,8 +869,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Softweb Solutions Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Softweb Solutions Inc.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -946,7 +881,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PROVISIONING_PROFILE = "A101E32C-1420-4C41-BDBE-A7FA99FA735F";
+				PROVISIONING_PROFILE = "0BC09522-7E93-43A0-9A0A-DD3185CBCE48";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -960,14 +895,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Softweb Solutions Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Softweb Solutions Inc.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TVRV;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0BC09522-7E93-43A0-9A0A-DD3185CBCE48";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
@@ -980,57 +915,17 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Softweb Solutions Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Softweb Solutions Inc.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TVRV;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0BC09522-7E93-43A0-9A0A-DD3185CBCE48";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		E9B97C971829A14A007AA4A3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVRV.app/TVRV";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TVRO/TVRO-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TVROTests/TVROTests-Info.plist";
-				PRODUCT_NAME = TVRVTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		E9B97C981829A14A007AA4A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVRV.app/TVRV";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TVRO/TVRO-Prefix.pch";
-				INFOPLIST_FILE = "TVROTests/TVROTests-Info.plist";
-				PRODUCT_NAME = TVRVTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1051,15 +946,6 @@
 			buildConfigurations = (
 				E9B97C941829A14A007AA4A3 /* Debug */,
 				E9B97C951829A14A007AA4A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E9B97C961829A14A007AA4A3 /* Build configuration list for PBXNativeTarget "TVRVTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E9B97C971829A14A007AA4A3 /* Debug */,
-				E9B97C981829A14A007AA4A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

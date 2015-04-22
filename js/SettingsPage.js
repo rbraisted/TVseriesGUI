@@ -6,37 +6,46 @@ $(function() {
     headerView.reload();
   }, 3000);
 
-	var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
-		.setValues([
-			'General',
-			'Network',
-			'Advanced'
-		])
-		.onClick(function(value) {
-			window.location.hash = '/' + value.toLowerCase();
-		})
-		.onBuild(function(row, value) {
-			$('.\\#menu-item', row).text(value);
-		})
-		.build();
+    var menuTableView = TVRO.TableView($('.\\#menu-table-view'))
+        .setValues([
+            'General',
+            'Network',
+            'Advanced'
+        ])
+        .onClick(function(value) {
+            window.location.hash = '/' + value.toLowerCase();
+        })
+        .onBuild(function(row, value) {
+            $('.\\#menu-item', row).text(value);
+        })
+        .build();
 
-	var generalSettingsView = TVRO.GeneralSettingsView(
-		$('.\\#general-settings-view')
-			.find('.\\#back-btn')
-				.click(function() {
-					window.location.hash = '';
-				})
-				.end()
-	);
+    var generalSettingsView = TVRO.GeneralSettingsView(
+        $('.\\#general-settings-view')
+            .find('.\\#back-btn')
+                .click(function() {
+                    window.location.hash = '';
+                })
+                .end()
+    );
 
-	var advancedSettingsView = TVRO.AdvancedSettingsView(
-		$('.\\#advanced-settings-view')
-			.find('.\\#back-btn')
-				.click(function() {
-					window.location.hash = '';
-				})
-				.end()
-	);
+    var advancedSettingsView = TVRO.AdvancedSettingsView(
+        $('.\\#advanced-settings-view')
+            .find('.\\#back-btn')
+                .click(function() {
+                    window.location.hash = '';
+                })
+                .end()
+    );
+    
+    var vesselLocationView = TVRO.VesselLocationView(
+                    $('.\\#vessel-location-view')
+                        .find('.\\#back-btn')
+                            .click(function() {
+                                window.location.hash = '';
+                            })
+                            .end()
+                );
 
   var networkSettingsView = TVRO.NetworkSettingsView(
     $('.\\#network-settings-view')
@@ -82,7 +91,7 @@ $(function() {
   //  /network/ethernet
   //  /network/wireless
 
-	TVRO.onHashChange(function(hash) {
+    TVRO.onHashChange(function(hash) {
     headerView.reload();
     
     if (!hash) {
@@ -95,7 +104,7 @@ $(function() {
 
     } else if (hash.match(/\/vessel-location/)) {
       menuTableView.setValue('General');
-      generalSettingsView.reload();
+      vesselLocationView.reload();
 
     } else if (hash.match(/\/advanced/)) {
       menuTableView.setValue('Advanced');
@@ -109,8 +118,8 @@ $(function() {
       else if (hash.match(/\/wireless/)) wirelessSettingsView.reload();
     }
 
-		document.body.className = hash; 
-	});
+        document.body.className = hash; 
+    });
 
-	TVRO.reload();
+    TVRO.reload();
 });

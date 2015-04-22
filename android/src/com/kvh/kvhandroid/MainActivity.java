@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements NetServDisCallback, OnClickListener, ServiceTableRowCallback {
 	private MainActivity a = this;
@@ -30,13 +31,13 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	
 	//from layout file
 	LinearLayout tableLayout;
-	
+	EditText hostNameEditText;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_main);
 		setContentView(R.layout.mainactivity);
-		
+		hostNameEditText = (EditText)findViewById(R.id.hostEditText);
 		//IMPORTANT:
 		//initalize the Constants
 		Constants.init();
@@ -170,11 +171,20 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.refreshButton)
+		{
 			refreshButtonClicked();
+		}
 		else if(v.getId() == R.id.connectButton)
-			connectButtonClicked();
+		{
+			if(!hostNameEditText.getText().toString().equalsIgnoreCase(""))
+				connectButtonClicked();
+			else
+				Toast.makeText(this, "Please enter IP Address or Hostname", Toast.LENGTH_SHORT).show();
+		}
 		else if(v.getId() == R.id.viewUpdatesButton)
+		{
 			viewUpdatesButtonClicked();
+		}
 	}
 	
 	public void refreshButtonClicked() {

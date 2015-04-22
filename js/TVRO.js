@@ -192,6 +192,80 @@
     return latLonArray;
   };
 
+  TVRO.getClientGps = function (){
+      var deferred = $.Deferred();
+      var clientGpsResult;
+
+      // These are the available options to be sent to the Geolocation API
+      // enableHighAccuracy: provides a hint the application would like the
+      //                     best possible results. With this false and a
+      //                     mobile device connected to the TV-Hub, the API
+      //                     call does not seem to use the GPS.
+      // maximumAge: Indicates in milliseconds the time period the application
+      //             is willing to use a cached position.
+      // timeout: Maximum time in milliseconds that is allowed to pass from the
+      //          API call to the corresponding success callback not including
+      //          the time the user takes to allow the call.
+      var geo_options = {
+              enableHighAccuracy: true, 
+              maximumAge        : 60000, 
+              timeout           : 20000
+      };
+
+      // navigator.geolocation is the browser API functionality for the
+      // Geolocation.
+      if (navigator.geolocation) {
+
+              // getCurrentPosition is the HTML API call to get the current
+              // Geolocation one time that consists of a success callback,
+              // failure callback, and options.
+              navigator.geolocation.getCurrentPosition(function(position) {
+                  var latitude  = position.coords.latitude;
+                  var longitude = position.coords.longitude;
+                  var time      = new Date(position.timestamp);
+
+                  clientGpsResult = [latitude, longitude, time];
+
+                  clearTimeout(failSafe);
+                  deferred.resolve(clientGpsResult);
+
+              }, function(error) {
+
+                  switch(error.code) {
+                  case error.PERMISSION_DENIED:
+                      $('.\\#geoloc_error').text("User denied the request for Geolocation.");
+                      break;
+                  case error.POSITION_UNAVAILABLE:
+                      $('.\\#geoloc_error').text("Location information is unavailable.");
+                      break;
+                  case error.TIMEOUT:
+                      $('.\\#geoloc_error').text("The request to get user location timed out.");
+                      break;
+                  case error.UNKNOWN_ERROR:
+                      $('.\\#geoloc_error').text("An unknown error occurred.");
+                      break;
+                  }
+                  clearTimeout(failSafe);
+                  deferred.reject();
+
+              }, geo_options);
+
+      } else {
+          $('.\\#geoloc_error').text("Geolocation is not available.");
+          clearTimeout(failSafe);
+          deferred.reject();
+     }
+      
+      // This is a secondary timeout to handle issues when geolocation gets
+      // stuck.
+      var failSafe = setTimeout(function() {
+          $('.\\#geoloc_error').text("The request to get user location timed out.");
+          deferred.reject();
+      }, 30000);
+      
+      return deferred.promise();
+  };
+
   //  for routing, hash changes
 
   var hash;

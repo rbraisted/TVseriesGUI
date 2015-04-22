@@ -545,6 +545,13 @@
     });
   };
 
+  // This function returns true if the antenna's gps source is the puck.
+  TVRO.isGpsAnt = function() {
+      return TVRO.getAntennaStatus().then(function(xml) {
+        return $('gps source', xml).text() === 'Antenna' ? true : false;
+      });
+    };
+
   TVRO.getAzBow = function() {
     return TVRO.getAntModel().then(function(model) {
       if (model === 'TV1' || model === 'RV1') return 0;
@@ -713,4 +720,21 @@
     });
   };
 
+  TVRO.setDateTime = function(time) {
+      // Construct a string in the form of YYYY-MM-DDTHH:MM:SSZ
+      // to send in the XML message.
+      var year  = time.getUTCFullYear();
+      var month = ('0' + (time.getUTCMonth() + 1)).slice(-2); //getUTCMonth() ranges from 0 to 11
+      var day   = ('0' + time.getUTCDate()).slice(-2);
+      var hour  = ('0' + time.getUTCHours()).slice(-2);
+      var min   = ('0' + time.getUTCMinutes()).slice(-2);
+      var sec   = ('0' + time.getUTCSeconds()).slice(-2);
+      
+      var dt = year + '-' + month + '-' + day + 'T' + hour + ':' + min+ ':' + sec + 'Z';
+
+      TVRO.setDT({
+          dt: dt
+      });
+  };
+ 
 }(window.TVRO);

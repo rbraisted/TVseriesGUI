@@ -80,9 +80,20 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		//	enable javascript
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		webView.getSettings().setGeolocationEnabled(true);
 		
+
 		webView.setWebChromeClient(new WebChromeClient() {
 			
+            // Essential for Geolocation API to work in webView.
+			// Generates the required Geolocation permissions. 
+			public void onGeolocationPermissionsShowPrompt(String origin,
+					GeolocationPermissions.Callback callback) {
+				// Always grant permission since the app itself requires location
+				// permission and the user has therefore already granted it
+				callback.invoke(origin, true, false);
+			}
+
 			// Commenting this chunk out because Google removed this functionality in 4.3
 			// they said they'll put in a fix at some point.
 			// Source: https://code.google.com/p/android/issues/detail?id=62220
@@ -467,8 +478,10 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		String tv5DeviceVersion = updatesManager.deviceVersionForUpdateType("tv5");
 		String tv6DeviceVersion = updatesManager.deviceVersionForUpdateType("tv6");
 		String rv1DeviceVersion = updatesManager.deviceVersionForUpdateType("rv1");
+		String a9DeviceVersion  = updatesManager.deviceVersionForUpdateType("a9");
+		String tv8DeviceVersion = updatesManager.deviceVersionForUpdateType("tv8");
 		
-		String jString = "TVRO.setDeviceVersions({ SatLibrary: '" + satLibraryDeviceVersion + "', TV1: '" + tv1DeviceVersion + "', TV3: '" + tv3DeviceVersion + "', TV5: '" + tv5DeviceVersion + "', TV6: '" + tv6DeviceVersion + "', RV1: '" + rv1DeviceVersion + "' });";
+		String jString = "TVRO.setDeviceVersions({ SatLibrary: '" + satLibraryDeviceVersion + "', TV1: '" + tv1DeviceVersion + "', TV3: '" + tv3DeviceVersion + "', TV5: '" + tv5DeviceVersion + "', TV6: '" + tv6DeviceVersion + "', RV1: '" + rv1DeviceVersion + "' , A9: '" + a9DeviceVersion + "', TV8: '" + tv8DeviceVersion + "' });";
 		
 		Log.i(TAG, "Set Device Versions JavaScript: " + jString);
 		

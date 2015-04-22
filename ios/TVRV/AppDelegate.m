@@ -3,6 +3,7 @@
 #import "BonjourViewController.h"
 
 @implementation AppDelegate
+@synthesize isNavigateToUpdateScreen;
 
 #pragma mark - UIApplicationDelegate protocol methods
 
@@ -17,7 +18,7 @@
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	if ([defaults objectForKey:@"default-host"] == nil) [defaults setObject:kDefaultHostname forKey:@"default-host"];
   if ([defaults objectForKey:@"tech-mode"] == nil) [defaults setBool:false forKey:@"tech-mode"];
-  if ([defaults objectForKey:@"demo-mode"] == nil) [defaults setBool:true forKey:@"demo-mode"];
+  if ([defaults objectForKey:@"demo-mode"] == nil) [defaults setBool:false forKey:@"demo-mode"];
   [defaults synchronize];
 
   BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];

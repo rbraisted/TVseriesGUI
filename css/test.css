@@ -685,7 +685,8 @@ a {
     height: auto;
     min-height: auto;
     min-width: 280px;
-    width: auto; }
+    width: auto;
+    margin: 0px 0px; }
   .dropdown .table {
     width: 100%;
     position: relative;
@@ -779,8 +780,10 @@ a {
       right: 0 !important;
       top: auto !important; } }
 
-.input, .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
-.vessel-location .city-view .hem-dropdown-btn, .vessel-location .coordinates-view .gps-input,
+.input, .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .city-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
+.vessel-location .coordinates-view .gps-input,
 .vessel-location .city-view .gps-input {
   -webkit-border-radius: 0;
   -ms-border-radius: 0;
@@ -827,12 +830,14 @@ a {
     display: block;
     margin: 16px; }
 
-.dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+.dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .city-view .hem-dropdown-btn {
   cursor: pointer;
   min-height: 28px;
   position: relative; }
-  .dropdown-btn .dropdown-icon, .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
+  .dropdown-btn .dropdown-icon, .vessel-location .geoloc-view .hem-dropdown-btn .dropdown-icon,
+  .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
   .vessel-location .city-view .hem-dropdown-btn .dropdown-icon {
     background-image: url(/images/down-icon-white.svg);
     background-position: center center;
@@ -867,18 +872,16 @@ a {
         height: 100%;
         width: 100%; } }
 
-@keyframes spin {
-  from {
-    -webkit-transform: rotate(360deg); }
-
-  to {
-    -webkit-transform: rotate(0deg); } }
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotate(360deg); }
-
+    -webkit-transform: rotate(0deg); }
   to {
-    -webkit-transform: rotate(0deg); } }
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
 .popup-spinner, .spinner {
   position: relative;
   overflow: hidden; }
@@ -890,7 +893,7 @@ a {
     top: -50%;
     left: -50%;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
-    animation: spin 1s steps(8) infinite;
+    -moz-animation: spin 1s steps(8) infinite;
     -webkit-animation: spin 1s steps(8) infinite; }
 
 .popup-spinner {
@@ -1245,27 +1248,39 @@ html {
 .installer-info .label {
   font-size: 13px;
   margin: 20px 0 10px 10px; }
-.cdt-vessel-info .input, .cdt-vessel-info .dropdown-btn, .cdt-vessel-info .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .cdt-vessel-info .hem-dropdown-btn,
+.cdt-vessel-info .input, .cdt-vessel-info .dropdown-btn, .cdt-vessel-info .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .cdt-vessel-info .hem-dropdown-btn,
+.cdt-vessel-info .vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .cdt-vessel-info .hem-dropdown-btn,
 .cdt-vessel-info .vessel-location .city-view .hem-dropdown-btn,
-.vessel-location .city-view .cdt-vessel-info .hem-dropdown-btn, .cdt-vessel-info .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .cdt-vessel-info .gps-input,
+.vessel-location .city-view .cdt-vessel-info .hem-dropdown-btn, .cdt-vessel-info .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .cdt-vessel-info .gps-input,
+.cdt-vessel-info .vessel-location .coordinates-view .gps-input,
+.vessel-location .coordinates-view .cdt-vessel-info .gps-input,
 .cdt-vessel-info .vessel-location .city-view .gps-input,
 .vessel-location .city-view .cdt-vessel-info .gps-input,
 .diy-vessel-info .input,
 .diy-vessel-info .dropdown-btn,
+.diy-vessel-info .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .geoloc-view .diy-vessel-info .hem-dropdown-btn,
 .diy-vessel-info .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .diy-vessel-info .hem-dropdown-btn,
 .diy-vessel-info .vessel-location .city-view .hem-dropdown-btn,
 .vessel-location .city-view .diy-vessel-info .hem-dropdown-btn,
+.diy-vessel-info .vessel-location .geoloc-view .gps-input,
+.vessel-location .geoloc-view .diy-vessel-info .gps-input,
 .diy-vessel-info .vessel-location .coordinates-view .gps-input,
 .vessel-location .coordinates-view .diy-vessel-info .gps-input,
 .diy-vessel-info .vessel-location .city-view .gps-input,
 .vessel-location .city-view .diy-vessel-info .gps-input,
 .installer-info .input,
 .installer-info .dropdown-btn,
+.installer-info .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .geoloc-view .installer-info .hem-dropdown-btn,
 .installer-info .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .installer-info .hem-dropdown-btn,
 .installer-info .vessel-location .city-view .hem-dropdown-btn,
 .vessel-location .city-view .installer-info .hem-dropdown-btn,
+.installer-info .vessel-location .geoloc-view .gps-input,
+.vessel-location .geoloc-view .installer-info .gps-input,
 .installer-info .vessel-location .coordinates-view .gps-input,
 .vessel-location .coordinates-view .installer-info .gps-input,
 .installer-info .vessel-location .city-view .gps-input,
@@ -1313,60 +1328,184 @@ html {
 .\/installer-info .\#installer-info-view {
   display: block; }
 
-@media screen and (min-width: 881px) {
-  .vessel-location .headline,
-  .heading-source .headline {
-    margin: 60px 0 30px; } }
+.\$hide-view .nmea-view {
+  display: none; }
+
+.vessel-location .headline,
+.heading-source .headline {
+  text-align: left; }
+  @media screen and (min-width: 881px) {
+    .vessel-location .headline,
+    .heading-source .headline {
+      margin: 60px 0 30px; } }
 .vessel-location .note,
 .heading-source .note {
   line-height: 1.6;
   margin-top: 30px;
-  text-align: center;
+  text-align: left;
   font-size: 13px; }
+.vessel-location .clear-table, .vessel-location .skew-angle .skew-table, .skew-angle .vessel-location .skew-table,
+.heading-source .clear-table,
+.heading-source .skew-angle .skew-table,
+.skew-angle .heading-source .skew-table {
+  width: 100%;
+  position: relative;
+  max-width: 100%; }
+  .vessel-location .clear-table .table-head, .vessel-location .skew-angle .skew-table .table-head, .skew-angle .vessel-location .skew-table .table-head,
+  .heading-source .clear-table .table-head,
+  .heading-source .skew-angle .skew-table .table-head,
+  .skew-angle .heading-source .skew-table .table-head {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle;
+    position: absolute;
+    z-index: 1; }
+  .vessel-location .clear-table .table-row, .vessel-location .skew-angle .skew-table .table-row, .skew-angle .vessel-location .skew-table .table-row,
+  .heading-source .clear-table .table-row,
+  .heading-source .skew-angle .skew-table .table-row,
+  .skew-angle .heading-source .skew-table .table-row {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    border-bottom: 1px solid #4f7abd;
+    position: relative;
+    vertical-align: middle; }
+  .vessel-location .clear-table .table-col, .vessel-location .skew-angle .skew-table .table-col, .skew-angle .vessel-location .skew-table .table-col,
+  .heading-source .clear-table .table-col,
+  .heading-source .skew-angle .skew-table .table-col,
+  .skew-angle .heading-source .skew-table .table-col {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    padding: 15px;
+    vertical-align: middle; }
+  @media screen and (min-width: 881px) {
+    .vessel-location .clear-table .table-col, .vessel-location .skew-angle .skew-table .table-col, .skew-angle .vessel-location .skew-table .table-col,
+    .heading-source .clear-table .table-col,
+    .heading-source .skew-angle .skew-table .table-col,
+    .skew-angle .heading-source .skew-table .table-col {
+      font-size: 16px;
+      padding: 22.5px; } }
   @media screen and (max-width: 880px) {
-    .vessel-location .note,
-    .heading-source .note {
-      padding: 0 20px; } }
+    .vessel-location .clear-table, .vessel-location .skew-angle .skew-table, .skew-angle .vessel-location .skew-table,
+    .heading-source .clear-table,
+    .heading-source .skew-angle .skew-table,
+    .skew-angle .heading-source .skew-table {
+      margin: 0 20px; }
+      .vessel-location .clear-table .table-col, .vessel-location .skew-angle .skew-table .table-col, .skew-angle .vessel-location .skew-table .table-col,
+      .heading-source .clear-table .table-col,
+      .heading-source .skew-angle .skew-table .table-col,
+      .skew-angle .heading-source .skew-table .table-col {
+        font-size: 13px;
+        padding: 15px; } }
+  .vessel-location .clear-table .table-row, .vessel-location .skew-angle .skew-table .table-row, .skew-angle .vessel-location .skew-table .table-row,
+  .heading-source .clear-table .table-row,
+  .heading-source .skew-angle .skew-table .table-row,
+  .skew-angle .heading-source .skew-table .table-row {
+    cursor: pointer; }
+    .vessel-location .clear-table .table-row .install-btn, .vessel-location .skew-angle .skew-table .table-row .install-btn, .skew-angle .vessel-location .skew-table .table-row .install-btn,
+    .heading-source .clear-table .table-row .install-btn,
+    .heading-source .skew-angle .skew-table .table-row .install-btn,
+    .skew-angle .heading-source .skew-table .table-row .install-btn {
+      background-image: url(/images/radio-unchecked.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 21px 21px;
+      min-height: 21px;
+      min-width: 21px;
+      display: inline-block;
+      padding: 0;
+      cursor: pointer; }
+    .vessel-location .clear-table .table-row.\$selected .install-btn, .vessel-location .skew-angle .skew-table .table-row.\$selected .install-btn, .skew-angle .vessel-location .skew-table .table-row.\$selected .install-btn,
+    .heading-source .clear-table .table-row.\$selected .install-btn,
+    .heading-source .skew-angle .skew-table .table-row.\$selected .install-btn,
+    .skew-angle .heading-source .skew-table .table-row.\$selected .install-btn {
+      background-image: url(/images/radio-checked.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 21px 21px;
+      min-height: 21px;
+      min-width: 21px; }
 .vessel-location .clear-table .table-row .table-col + .table-col, .vessel-location .skew-angle .skew-table .table-row .table-col + .table-col, .skew-angle .vessel-location .skew-table .table-row .table-col + .table-col,
 .heading-source .clear-table .table-row .table-col + .table-col,
 .heading-source .skew-angle .skew-table .table-row .table-col + .table-col,
 .skew-angle .heading-source .skew-table .table-row .table-col + .table-col {
   width: calc(100% - 21px); }
 
-.vessel-location .note {
-  padding-bottom: 60px; }
+.vessel-location .nmea-view {
+  border-bottom: 2px solid #4f7abd;
+  margin-bottom: 55px; }
+.vessel-location .manual-view {
+  margin-bottom: 55px; }
+.vessel-location .block-btn {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  max-width: 75px;
+  min-width: 75px;
+  display: block; }
+  @media screen and (max-width: 880px) {
+    .vessel-location .block-btn {
+      max-width: initial;
+      min-width: initial; } }
+.vessel-location p {
+  color: #cbcaca;
+  line-height: 1.6;
+  margin-bottom: 20px; }
+.vessel-location .toggle-btn {
+  margin-bottom: 20px; }
+.vessel-location .geoloc-view,
 .vessel-location .coordinates-view,
 .vessel-location .city-view {
   line-height: 1.4; }
+  .vessel-location .geoloc-view .label,
   .vessel-location .coordinates-view .label,
   .vessel-location .city-view .label {
     display: inline-block;
-    margin-top: 5px; }
+    margin-top: 5px;
+    color: #fff;
+    text-align: left;
+    width: initial;
+    margin-bottom: initial; }
     @media screen and (max-width: 400px) {
+      .vessel-location .geoloc-view .label,
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         display: block;
-        margin-left: 12px;
         margin-top: 10px; } }
     @media screen and (min-width: 401px) {
+      .vessel-location .geoloc-view .label,
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         min-width: 90px; } }
+  .vessel-location .geoloc-view .geoloc-label,
+  .vessel-location .geoloc-view .coordinates-label,
+  .vessel-location .coordinates-view .geoloc-label,
   .vessel-location .coordinates-view .coordinates-label,
+  .vessel-location .city-view .geoloc-label,
   .vessel-location .city-view .coordinates-label {
-    margin-top: 0; }
+    margin-top: 10px; }
     @media screen and (min-width: 401px) {
+      .vessel-location .geoloc-view .geoloc-label,
+      .vessel-location .geoloc-view .coordinates-label,
+      .vessel-location .coordinates-view .geoloc-label,
       .vessel-location .coordinates-view .coordinates-label,
+      .vessel-location .city-view .geoloc-label,
       .vessel-location .city-view .coordinates-label {
         display: block; } }
+  .vessel-location .geoloc-view .city-label,
   .vessel-location .coordinates-view .city-label,
   .vessel-location .city-view .city-label {
     margin-top: 0; }
-    @media screen and (max-width: 540px) {
-      .vessel-location .coordinates-view .city-label,
-      .vessel-location .city-view .city-label {
-        margin-left: 12px; } }
-  .vessel-location .coordinates-view .input, .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .gps-input,
+  .vessel-location .geoloc-view .input, .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
+  .vessel-location .coordinates-view .input,
+  .vessel-location .coordinates-view .dropdown-btn,
+  .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .coordinates-view .gps-input,
   .vessel-location .city-view .input,
   .vessel-location .city-view .dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn,
@@ -1374,13 +1513,16 @@ html {
     margin: -2px 0 0;
     min-width: 200px;
     font-size: 13px; }
+  .vessel-location .geoloc-view .gps-input,
   .vessel-location .coordinates-view .gps-input,
   .vessel-location .city-view .gps-input {
     min-width: 75px;
     width: 75px;
     min-height: 28px;
     text-align: center; }
-  .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+  .vessel-location .coordinates-view .dropdown-btn,
+  .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .city-view .dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn {
     display: inline-block;
@@ -1388,16 +1530,24 @@ html {
     margin-left: 10px;
     min-height: 28px;
     min-width: 200px; }
-    @media screen and (max-width: 540px) {
-      .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+    @media screen and (max-width: 400px) {
+      .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+      .vessel-location .coordinates-view .dropdown-btn,
+      .vessel-location .coordinates-view .hem-dropdown-btn,
       .vessel-location .city-view .dropdown-btn,
       .vessel-location .city-view .hem-dropdown-btn {
-        display: block;
         margin: 10px 0 0; } }
+  .vessel-location .geoloc-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn {
     min-width: 54px;
     margin-bottom: -9px; }
+    @media screen and (max-width: 400px) {
+      .vessel-location .geoloc-view .hem-dropdown-btn,
+      .vessel-location .coordinates-view .hem-dropdown-btn,
+      .vessel-location .city-view .hem-dropdown-btn {
+        display: inline-block;
+        max-width: 54px; } }
 
 .\/vessel-location .\#vessel-location-view,
 .\/heading-source .\#heading-source-view,
@@ -2685,17 +2835,25 @@ body[class=""] .\#skew-angle-view,
     .receiver-info .value,
     .receiver-edit .value {
       margin: 0 0 30px 10px; }
-    .receiver-info .input, .receiver-info .dropdown-btn, .receiver-info .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .receiver-info .hem-dropdown-btn,
+    .receiver-info .input, .receiver-info .dropdown-btn, .receiver-info .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .receiver-info .hem-dropdown-btn,
+    .receiver-info .vessel-location .coordinates-view .hem-dropdown-btn,
+    .vessel-location .coordinates-view .receiver-info .hem-dropdown-btn,
     .receiver-info .vessel-location .city-view .hem-dropdown-btn,
-    .vessel-location .city-view .receiver-info .hem-dropdown-btn, .receiver-info .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .receiver-info .gps-input,
+    .vessel-location .city-view .receiver-info .hem-dropdown-btn, .receiver-info .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .receiver-info .gps-input,
+    .receiver-info .vessel-location .coordinates-view .gps-input,
+    .vessel-location .coordinates-view .receiver-info .gps-input,
     .receiver-info .vessel-location .city-view .gps-input,
     .vessel-location .city-view .receiver-info .gps-input,
     .receiver-edit .input,
     .receiver-edit .dropdown-btn,
+    .receiver-edit .vessel-location .geoloc-view .hem-dropdown-btn,
+    .vessel-location .geoloc-view .receiver-edit .hem-dropdown-btn,
     .receiver-edit .vessel-location .coordinates-view .hem-dropdown-btn,
     .vessel-location .coordinates-view .receiver-edit .hem-dropdown-btn,
     .receiver-edit .vessel-location .city-view .hem-dropdown-btn,
     .vessel-location .city-view .receiver-edit .hem-dropdown-btn,
+    .receiver-edit .vessel-location .geoloc-view .gps-input,
+    .vessel-location .geoloc-view .receiver-edit .gps-input,
     .receiver-edit .vessel-location .coordinates-view .gps-input,
     .vessel-location .coordinates-view .receiver-edit .gps-input,
     .receiver-edit .vessel-location .city-view .gps-input,
@@ -2764,10 +2922,14 @@ body[class=""] .\#skew-angle-view,
     .receiver-info .label,
     .receiver-info .input,
     .receiver-info .dropdown-btn,
+    .receiver-info .vessel-location .geoloc-view .hem-dropdown-btn,
+    .vessel-location .geoloc-view .receiver-info .hem-dropdown-btn,
     .receiver-info .vessel-location .coordinates-view .hem-dropdown-btn,
     .vessel-location .coordinates-view .receiver-info .hem-dropdown-btn,
     .receiver-info .vessel-location .city-view .hem-dropdown-btn,
     .vessel-location .city-view .receiver-info .hem-dropdown-btn,
+    .receiver-info .vessel-location .geoloc-view .gps-input,
+    .vessel-location .geoloc-view .receiver-info .gps-input,
     .receiver-info .vessel-location .coordinates-view .gps-input,
     .vessel-location .coordinates-view .receiver-info .gps-input,
     .receiver-info .vessel-location .city-view .gps-input,
@@ -2775,10 +2937,14 @@ body[class=""] .\#skew-angle-view,
     .receiver-edit .label,
     .receiver-edit .input,
     .receiver-edit .dropdown-btn,
+    .receiver-edit .vessel-location .geoloc-view .hem-dropdown-btn,
+    .vessel-location .geoloc-view .receiver-edit .hem-dropdown-btn,
     .receiver-edit .vessel-location .coordinates-view .hem-dropdown-btn,
     .vessel-location .coordinates-view .receiver-edit .hem-dropdown-btn,
     .receiver-edit .vessel-location .city-view .hem-dropdown-btn,
     .vessel-location .city-view .receiver-edit .hem-dropdown-btn,
+    .receiver-edit .vessel-location .geoloc-view .gps-input,
+    .vessel-location .geoloc-view .receiver-edit .gps-input,
     .receiver-edit .vessel-location .coordinates-view .gps-input,
     .vessel-location .coordinates-view .receiver-edit .gps-input,
     .receiver-edit .vessel-location .city-view .gps-input,
@@ -2790,17 +2956,25 @@ body[class=""] .\#skew-angle-view,
       color: #bac7da;
       padding-left: 11px;
       top: 80px; }
-    .receiver-info .input, .receiver-info .dropdown-btn, .receiver-info .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .receiver-info .hem-dropdown-btn,
+    .receiver-info .input, .receiver-info .dropdown-btn, .receiver-info .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .receiver-info .hem-dropdown-btn,
+    .receiver-info .vessel-location .coordinates-view .hem-dropdown-btn,
+    .vessel-location .coordinates-view .receiver-info .hem-dropdown-btn,
     .receiver-info .vessel-location .city-view .hem-dropdown-btn,
-    .vessel-location .city-view .receiver-info .hem-dropdown-btn, .receiver-info .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .receiver-info .gps-input,
+    .vessel-location .city-view .receiver-info .hem-dropdown-btn, .receiver-info .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .receiver-info .gps-input,
+    .receiver-info .vessel-location .coordinates-view .gps-input,
+    .vessel-location .coordinates-view .receiver-info .gps-input,
     .receiver-info .vessel-location .city-view .gps-input,
     .vessel-location .city-view .receiver-info .gps-input,
     .receiver-edit .input,
     .receiver-edit .dropdown-btn,
+    .receiver-edit .vessel-location .geoloc-view .hem-dropdown-btn,
+    .vessel-location .geoloc-view .receiver-edit .hem-dropdown-btn,
     .receiver-edit .vessel-location .coordinates-view .hem-dropdown-btn,
     .vessel-location .coordinates-view .receiver-edit .hem-dropdown-btn,
     .receiver-edit .vessel-location .city-view .hem-dropdown-btn,
     .vessel-location .city-view .receiver-edit .hem-dropdown-btn,
+    .receiver-edit .vessel-location .geoloc-view .gps-input,
+    .vessel-location .geoloc-view .receiver-edit .gps-input,
     .receiver-edit .vessel-location .coordinates-view .gps-input,
     .vessel-location .coordinates-view .receiver-edit .gps-input,
     .receiver-edit .vessel-location .city-view .gps-input,
@@ -2931,6 +3105,7 @@ body[class=""] .\#skew-angle-view,
   display: block; }
 
 .\/spinner .\#spinner-view,
+.\/geo-spinner .\#geo-spinner-view,
 .\/checkswitch-spinner .\#checkswitch-spinner-view {
   display: block; }
 
