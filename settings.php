@@ -50,7 +50,8 @@
     whenever you make a change to your system's configuration, such as adding
     or removing devices.
   </p>
-  <div class="block-btn #wizard-btn">Setup Wizard</div>
+  <!--<div class="block-btn #wizard-btn">Setup Wizard</div>-->
+	<a class="block-btn #wizard-btn">Setup Wizard</a>
 
   <div class="heading">Location Coordinates</div>
   <p>
@@ -59,8 +60,8 @@
   addition, if the antenna has a linear LNB with manual skew, the Setup Wizard will calculate the correct skew
   angle for your location.
   </p>
-  <div class="block-btn #gps-location-btn">Set Location</div>
-
+  <!--<div class="block-btn #gps-location-btn">Set Location</div>-->
+	<a class="block-btn #gps-location-btn">Set Location</a>
   <div class="checkswitch-mode">
     <div class="heading">Check Switch Mode</div>
     <p>
@@ -157,12 +158,15 @@
 
     <div class="geoloc-view #geoloc-view">
       <span class="geoloc-label label">
-        Get your GPS(GNSS) location and time from your mobile device/computer.<p class="#geoloc_error"></p>
+        Get your GPS(GNSS) location and time from your mobile device/computer.<p class="blink_me #geoloc_error"></p>
       </span>
       <span class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</span>
     </div>
 
-    <div class="block-btn #apply-manual-btn">Save</div>
+    <!--<div class="block-btn #apply-manual-btn spaceBot">Save</div>-->
+
+	<a class="block-btn spaceBot #apply-manual-btn">Save</a>
+
   </div>
 </div>
 
@@ -209,7 +213,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -252,10 +255,12 @@
   </div>
 
   <div class="sidelobe-mode">
-    <div class="heading">Sidelobe Mode</div>
+    <div class="heading">Sidelobe Mode (TV6 only)</div>
     <p>
-      Sidelobe Mode ensures the antenna is tracking the main beam of the satellite
-      and not a weaker sidelobe. <span class="#sidelobe-info"/>
+      Sidelobe Mode ensures the antenna is tracking the main beam of the satellite,
+      and not a weaker sidelobe. Since sidelobes are not strong enough to become a
+      problem in most regions, keep Sidelobe Mode set to off unless directed
+      otherwise by KVH Technical Support.
     </p>
     <div class="toggle-btn #sidelobe-mode-btn">
       <div class="on">On</div>

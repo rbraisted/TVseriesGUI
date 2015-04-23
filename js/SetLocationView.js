@@ -79,11 +79,9 @@
                     TVRO.getLnbType()
                 ).then(function(results) {
                     var isGpsAnt = results[0];
-                    var sysModelId   = results[1];
-                    var polarization = results[2];
 
                     // Is the antenna a Linear LNB with manual skew
-                    var isLinManSkew = (((sysModelId !== 'TV5SK') && (sysModelId !== 'TV6SK') && (sysModelId !== 'TV8SK')) && (polarization === 'linear')) ? true : false;
+                    var isLinManSkew = (((results[1] !== 'TV5SK') && (results[1] !== 'TV6SK')) && (results[2] === 'linear')) ? true : false;
 
                     if (isGpsAnt) {
                         if (values == 0) {
@@ -380,7 +378,7 @@
             }
         });
 
-        var applyManualBtn = $('.\\#apply-manual-btn', jQ).click(function() {
+        var applyManualBtn = $('.\\#apply-manual-btn').click(function() {
             var value = manual.getValue();
 
             if (!value) {
