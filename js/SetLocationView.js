@@ -346,6 +346,7 @@
             $('.\\#nmea-value', row).text(value.display);
         })
         .onClick(function(value) {
+        	$('.\\#geoloc_error').text("");
         });
 
         var manual = ManualSourceView(jQ)
@@ -359,6 +360,7 @@
             }
         })
         .onClick(function(value) {
+        	$('.\\#geoloc_error').text("");
         });
 
         var backBtn = $('.\\#back-btn', jQ).click(function() {
