@@ -250,14 +250,20 @@
 }
 
 - (IBAction)connectButtonPressed:(id)sender {
+    if ([self.textField.text length] == 0) {
+        UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Please enter IP Address or Hostname."] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertError show];
+        return;
+    }
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
 	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
-  //Connect to the Updates website
-  WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
-  [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+    //Connect to the Updates website
+    ApplicationDelegate.isNavigateToUpdateScreen = YES;
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:kWebSvcPortal];
+    [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 - (IBAction)satFinderButtonPressed:(id)sender {

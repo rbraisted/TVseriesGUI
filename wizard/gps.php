@@ -85,9 +85,12 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     </div>
 
     <div class="geoloc-view #geoloc-view">
+	<p class="blink_me #geoloc_error" style="position:absolute;top:50%;margin-top:-10px;"></p>
       <span class="geoloc-label label">
-        Get your GPS(GNSS) location and time from your mobile device/computer.<p class="#geoloc_error"></p>
+        Get your GPS(GNSS) location and time from your mobile device/computer.
+	<p style="height:35px;margin-bottom:10px;padding:0;">&nbsp;</p>
       </span>
+	
       <span class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</span>
     </div>
     

@@ -1,4 +1,3 @@
-
 #import <UIKit/UIKit.h>
 
 @class 	WebViewController;
@@ -8,5 +7,6 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,readwrite) BOOL isNavigateToUpdateScreen;
 
 @end

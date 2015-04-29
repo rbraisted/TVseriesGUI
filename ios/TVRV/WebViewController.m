@@ -113,10 +113,11 @@
     [timeoutTimer invalidate];
     [loadingView setHidden:TRUE];
   }
+    [self addBackButton];
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%ld", _webView == webView ? @"webView" : @"helpWebView", request, navigationType);
+  NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%d", _webView == webView ? @"webView" : @"helpWebView", request, navigationType);
   NSLog(@"request.URL.path is %@", request.URL.path);
   
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
@@ -234,6 +235,29 @@
   
   [timeoutTimer invalidate];
   [loadingView setHidden:TRUE];
+    [self addBackButton];
+}
+
+- (void)addBackButton
+{
+    if (ApplicationDelegate.isNavigateToUpdateScreen) {
+        ApplicationDelegate.isNavigateToUpdateScreen = NO;
+        UIImage* imgBackButton = [UIImage imageNamed:@"backButton"];
+        UIButton* btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnBack setFrame:CGRectMake(5, 0, 32.0, 48.0)];
+        [btnBack setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+        [btnBack setImage:imgBackButton forState:UIControlStateNormal];
+        [btnBack setBackgroundColor:[UIColor clearColor]];
+        [btnBack addTarget:self action:@selector(callMainScreen) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnBack];
+        [self.view bringSubviewToFront:btnBack];
+    }
+}
+
+
+- (void)callMainScreen {
+    BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
+    [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {

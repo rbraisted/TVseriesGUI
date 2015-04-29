@@ -916,7 +916,7 @@ a {
         background-size: 200px 200px; } }
 
 html {
-  background-position: top center; }
+  background-position: top center; background-size:cover; }
 
 .header .status-btn,
 .header .nav-btn {
@@ -1348,9 +1348,9 @@ html {
 .heading-source .clear-table,
 .heading-source .skew-angle .skew-table,
 .skew-angle .heading-source .skew-table {
-  width: 100%;
+  /*width: 100%;  max-width: 100%;*/
   position: relative;
-  max-width: 100%; }
+ }
   .vessel-location .clear-table .table-head, .vessel-location .skew-angle .skew-table .table-head, .skew-angle .vessel-location .skew-table .table-head,
   .heading-source .clear-table .table-head,
   .heading-source .skew-angle .skew-table .table-head,
@@ -1453,7 +1453,7 @@ html {
       max-width: initial;
       min-width: initial; } }
 .vessel-location p {
-  color: #cbcaca;
+  color: #ff0000;
   line-height: 1.6;
   margin-bottom: 20px; }
 .vessel-location .toggle-btn {
@@ -3117,3 +3117,46 @@ body[class=""] .\#skew-angle-view,
 
 .spinner-view .exit-btn {
   cursor: pointer; }
+  
+  
+.geoloc-label p { /*addedd by softweb: 12 Mar 15*/
+  color:#AB141A;
+/*position: relative;
+    top: 10px;*/
+margin-top:11px;
+}  
+
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
