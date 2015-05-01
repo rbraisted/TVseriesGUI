@@ -117,7 +117,7 @@
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%d", _webView == webView ? @"webView" : @"helpWebView", request, navigationType);
+    NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%ld", _webView == webView ? @"webView" : @"helpWebView", request, (long)navigationType);
   NSLog(@"request.URL.path is %@", request.URL.path);
   
 	NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
