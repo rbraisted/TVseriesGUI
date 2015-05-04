@@ -245,7 +245,6 @@
         UIImage* imgBackButton = [UIImage imageNamed:@"backButton"];
         UIButton* btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnBack setFrame:CGRectMake(5, 0, 32.0, 48.0)];
-        [btnBack setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [btnBack setImage:imgBackButton forState:UIControlStateNormal];
         [btnBack setBackgroundColor:[UIColor clearColor]];
         [btnBack addTarget:self action:@selector(callMainScreen) forControlEvents:UIControlEventTouchUpInside];
