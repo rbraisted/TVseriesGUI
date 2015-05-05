@@ -318,10 +318,10 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		//	set tech and demo mode - the device's settings should override the
 		//	cookies set by the gui - we basically brute force this by setting the cookies
 		//	with the device's setting values on every page load
-		boolean demoMode = settings.getBoolean("demo-mode", true);
+		boolean demoMode = settings.getBoolean("demo-mode", false);
 		String demoModeString = "TVRO.setDemoMode(" + (demoMode ? "true" : "false") + ");";
 		
-		boolean techMode = settings.getBoolean("tech-mode", true);
+		boolean techMode = settings.getBoolean("tech-mode", false);
 		String techModeString = "TVRO.setTechMode(" + (techMode ? "true" : "false") + ");";
 		
 		//  get the string, check for single quotes and escape them
