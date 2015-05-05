@@ -1209,6 +1209,7 @@ a {
 @media screen and (max-width: 880px) {
   .receiver-info,
   .receiver-edit {
+    margin-bottom: 60px;
     padding: 20px; }
     .receiver-info .wizard,
     .receiver-edit .wizard {
