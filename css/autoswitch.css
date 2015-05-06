@@ -583,7 +583,10 @@ a {
     left: 0;
     position: absolute;
     right: 0;
-    top: 96px; }
+    top: 96px;
+     overflow-y:scroll;
+height:410px;
+	}
     .popup .view-head, .popup .spin-view-head {
       background-color: #000;
       border-bottom: 1px solid #4f7abd;
@@ -685,8 +688,7 @@ a {
     height: auto;
     min-height: auto;
     min-width: 280px;
-    width: auto;
-    margin: 0px 0px; }
+    width: auto; }
   .dropdown .table {
     width: 100%;
     position: relative;
@@ -864,16 +866,18 @@ a {
         height: 100%;
         width: 100%; } }
 
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(360deg); }
+
+  to {
+    -webkit-transform: rotate(0deg); } }
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotate(0deg); }
+    -webkit-transform: rotate(360deg); }
+
   to {
-    -webkit-transform: rotate(360deg); } }
-@-moz-keyframes spin {
-  from {
-    -moz-transform: rotate(0deg); }
-  to {
-    -moz-transform: rotate(360deg); } }
+    -webkit-transform: rotate(0deg); } }
 .popup-spinner {
   position: relative;
   overflow: hidden; }
@@ -885,7 +889,7 @@ a {
     top: -50%;
     left: -50%;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
-    -moz-animation: spin 1s steps(8) infinite;
+    animation: spin 1s steps(8) infinite;
     -webkit-animation: spin 1s steps(8) infinite; }
 
 .popup-spinner {
@@ -1209,8 +1213,7 @@ a {
 @media screen and (max-width: 880px) {
   .receiver-info,
   .receiver-edit {
-    margin-bottom: 60px;
-    padding: 20px; }
+    padding: 20px;}
     .receiver-info .wizard,
     .receiver-edit .wizard {
       border-bottom: 1px solid #4f7abd;

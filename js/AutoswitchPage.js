@@ -52,6 +52,11 @@ $(function() {
   );
 
   var createReceiverBtn = $('.\\#new-btn').click(function(argument) {
+	var windowHeight = $(window).height();
+	var variableHeight = ((windowHeight*31)/100);
+	
+	var popupHeight = windowHeight - variableHeight;
+	$('.popup').height(popupHeight);
     window.location.hash = '/new/edit';
   });
 
