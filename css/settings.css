@@ -1507,19 +1507,21 @@ user-select: none !important;
     min-height: 600px; } }
 
 .blink_me {
+font-weight: bold !important;
+font-size: 16px !important;
     -webkit-animation-name: blinker;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: ease-out;
     -webkit-animation-iteration-count: infinite;
     
     -moz-animation-name: blinker;
-    -moz-animation-duration: 1s;
-    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 2s;
+    -moz-animation-timing-function: ease-out;
     -moz-animation-iteration-count: infinite;
     
     animation-name: blinker;
-    animation-duration: 1s;
-    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
     animation-iteration-count: infinite;
 }
 

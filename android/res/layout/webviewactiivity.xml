@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:keepScreenOn="true"
-    >
+    android:keepScreenOn="true" >
 
     <WebView
         android:id="@+id/webView"
@@ -11,51 +10,60 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
-	
+
+    <ImageButton
+        android:id="@+id/arrowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:adjustViewBounds="true"
+        android:background="#00000000"
+        android:paddingBottom="10dp"
+        android:paddingTop="3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_back"
+        android:visibility="gone" />
+
     <RelativeLayout
         android:id="@+id/helpLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
-        
+        android:visibility="gone" >
+
         <WebView
-	        android:id="@+id/helpWebView"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent" />
-        
+            android:id="@+id/helpWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff000000">
-            
-            <TextView 
-		       	android:layout_width="wrap_content"
-		       	android:layout_height="wrap_content"
-		        android:layout_centerHorizontal="true"
-		        android:layout_centerInParent="true"
-		        android:layout_marginRight="20dp"
-		       	android:textColor="#ffffffff"
-		       	android:textSize="21sp"
-		       	android:singleLine="true"
-		       	android:text="Help Center"
-	       	/>
-     		    
-     		<ImageButton 
-	        	android:id="@+id/closeButton"
-	        	android:layout_width="wrap_content"
-	        	android:layout_height="wrap_content"
-	        	android:background="#00000000"
-	        	android:adjustViewBounds="true"
-	        	android:src="@drawable/close_button"
-	        	android:layout_marginRight="10dp"
-	        	android:layout_alignParentRight="true"
-	       		android:scaleType="centerCrop"
-	       		android:paddingTop="10dp"
-	       		android:paddingBottom="10dp"
-       		/>
-            
+            android:background="#ff000000" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="20dp"
+                android:singleLine="true"
+                android:text="Help Center"
+                android:textColor="#ffffffff"
+                android:textSize="21sp" />
+
+            <ImageButton
+                android:id="@+id/closeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="true"
+                android:background="#00000000"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/close_button" />
         </RelativeLayout>
-        
     </RelativeLayout>
-    
+
 </RelativeLayout>
