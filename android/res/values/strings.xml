@@ -4,5 +4,21 @@
     <string name="app_name">KVH TV/RV</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="err_code_4">User authentication failed on server</string>
+    <string name="err_code_12">Malformed URL</string>
+    <string name="err_code_11">Failed to perform SSL handshake</string>
+    <string name="err_code_6">Failed to connect to the server</string>
+    <string name="err_code_13">Generic file error</string>
+    <string name="err_code_14">File not found </string>
+    <string name="err_code_2">The Internet connection appears to be offline Or a server with the specified hostname could not be found</string>
+    <string name="err_code_7">Failed to read or write to the server </string>
+    <string name="err_code_5">User authentication failed on proxy</string>
+    <string name="err_code_9">Too many redirects</string>
+    <string name="err_code_8">Connection timed out</string>
+    <string name="err_code_15">Too many requests during this load</string>
+    <string name="err_code_1">Generic error</string>
+    <string name="err_code_3">Unsupported authentication scheme</string>
+    <string name="err_code_10">Unsupported URI scheme </string>
+    <string name="err_default">Oops!!! Something went wrong. Please try again later.</string>
 
 </resources>

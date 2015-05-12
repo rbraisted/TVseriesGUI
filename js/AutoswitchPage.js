@@ -16,6 +16,11 @@ $(function() {
     $('.\\#receiver-table-view')
       .find('.\\#edit-btn')
         .click(function(event) {
+var windowHeight = $(window).height();
+	var variableHeight = ((windowHeight*31)/100);
+	
+	var popupHeight = windowHeight - variableHeight;
+	$('.popup').height(popupHeight);
           event.stopPropagation();
           var index = $('.\\#receiver-table-view .\\#edit-btn').index(this);
           var receiver = encode(receiverTableView.getValues()[index].id);
@@ -35,6 +40,11 @@ $(function() {
         .end()
       .find('.\\#edit-btn')
         .click(function() {
+	var windowHeight = $(window).height();
+	var variableHeight = ((windowHeight*31)/100);
+	
+	var popupHeight = windowHeight - variableHeight;
+	$('.popup').height(popupHeight);
           var receiver = encode(receiverInfoView.getReceiver().id);
           window.location.hash = '/' + receiver + '/edit';
         })
@@ -45,14 +55,28 @@ $(function() {
     $('.\\#receiver-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
+	if(window.location.hash.match(/\/create/))
+	{
+		window.location.hash='';
+	}
+	else
+	{
+		var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
           window.location.hash = (receiver ? '/' + receiver : '');
+
+	}
+
         })
         .end()
   );
 
   var createReceiverBtn = $('.\\#new-btn').click(function(argument) {
-    window.location.hash = '/new/edit';
+	var windowHeight = $(window).height();
+	var variableHeight = ((windowHeight*31)/100);
+	
+	var popupHeight = windowHeight - variableHeight;
+	$('.popup').height(popupHeight);
+    window.location.hash = '/new/edit/create';
   });
 
 
