@@ -18,11 +18,11 @@ div{user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important; }
 input {
-  user-select: text;
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text; }
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -khtml-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important; }
 
 html {
   background: #04122a url(/images/gradient.png) no-repeat;
