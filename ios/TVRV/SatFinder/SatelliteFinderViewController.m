@@ -148,7 +148,12 @@
     NSLog(@":: backButtonPressed");
     
     [self nilSatelliteFinderViewObjects];
-    [self.presentingViewController dismissModalViewControllerAnimated:NO];
+    
+    if (IS_OS_7_OR_LATER) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.presentingViewController dismissModalViewControllerAnimated:NO];
+    }
     if (timer != nil) {
         [timer invalidate];
         timer = nil;
@@ -465,6 +470,15 @@
         [accelerometer setDelegate:self];
         
         locationManager = [[CLLocationManager alloc] init];
+        if (IS_OS_8_OR_LATER) {
+            if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) { // iOS8+
+                // Sending a message to avoid compile time error
+                [[UIApplication sharedApplication] sendAction:@selector(requestWhenInUseAuthorization)
+                                                           to:locationManager
+                                                         from:self
+                                                     forEvent:nil];
+            }
+        }
         [locationManager setDelegate:self];
         [locationManager setDistanceFilter:kCLDistanceFilterNone];
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -565,7 +579,11 @@
         [picker setNavigationBarHidden:YES];
         [picker setWantsFullScreenLayout:YES];
         [picker setCameraOverlayView:overlayView];
-        [self presentModalViewController:picker animated:NO];
+        if (IS_OS_7_OR_LATER) {
+            [self presentViewController:picker animated:NO completion:nil];
+        } else {
+            [self presentModalViewController:picker animated:NO];
+        }
         showPicker = false;
     }
 }

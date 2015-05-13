@@ -200,61 +200,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				Log.i(TAG, "onReceivedError: " + errorCode + " | " + description + " | " + failingUrl);
 
-				String txtMsg = "";
-
-				switch (errorCode) {
-				case  -1:
-					txtMsg = getString(R.string.err_code_1);
-					break;
-				case  -2:
-					txtMsg = getString(R.string.err_code_2);
-					break;
-				case  -3:
-					txtMsg = getString(R.string.err_code_3);
-					break;
-				case  -4:
-					txtMsg = getString(R.string.err_code_4);
-					break;
-				case  -5:
-					txtMsg = getString(R.string.err_code_5);
-					break;
-				case  -6:
-					txtMsg = getString(R.string.err_code_6);
-					break;
-				case  -7:
-					txtMsg = getString(R.string.err_code_7);
-					break;
-				case  -8:
-					txtMsg = getString(R.string.err_code_8);
-					break;
-				case  -9:
-					txtMsg = getString(R.string.err_code_9);
-					break;
-				case  -10:
-					txtMsg = getString(R.string.err_code_10);
-					break;
-				case  -11:
-					txtMsg = getString(R.string.err_code_11);
-					break;
-				case  -12:
-					txtMsg = getString(R.string.err_code_12);
-					break;
-				case  -13:
-					txtMsg = getString(R.string.err_code_13);
-					break;
-				case  -14:
-					txtMsg = getString(R.string.err_code_14);
-					break;
-				case  -15:
-					txtMsg = getString(R.string.err_code_15);
-					break;
-
-				default:
-					txtMsg = getString(R.string.err_default);
-					break;
-				}
-
-				Toast.makeText(WebViewActivity.this, txtMsg, Toast.LENGTH_LONG).show();
+				Toast.makeText(WebViewActivity.this, getString(R.string.str_connection_failed), Toast.LENGTH_LONG).show();
 
 				//if there is an error found let us go back to the main screen like in iOS
 				goBackToMainActivity();

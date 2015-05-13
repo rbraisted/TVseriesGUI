@@ -11,6 +11,8 @@
 
 #pragma mark - UIViewController methods
 
+#define ConnectionAlert @"Connection to TV-hub failed."
+
 - (void)viewDidLoad {
     updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
     
@@ -116,15 +118,11 @@
     //	check for this case now in order to prevent the timeoutTimer from kicking us
     //	back to the bonjour view after a redirect (or even if the user has fast fingers)
     
-    if (error.code == NSURLErrorCancelled) {
+    if (error.code == NSURLErrorCancelled || error.code == NSURLErrorCannotFindHost  || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet)
+    {
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
-    }
-    
-    if ([[error userInfo] valueForKey:@"NSLocalizedDescription"] == nil) {
-        [self goBackToHostSelect:@"Oops!!! Something went wrong. Please try again later."];
-    } else {
-        [self goBackToHostSelect:[[error userInfo] valueForKey:@"NSLocalizedDescription"]];
+        [self goBackToHostSelect:ConnectionAlert];
     }
     [self addBackButton];
 }
@@ -189,7 +187,7 @@
 {
     NSLog(@"webView URL Request Timeout");
     webView.delegate = nil;
-    [self goBackToHostSelect:@"The request timed out."];
+    [self goBackToHostSelect:ConnectionAlert];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView
@@ -261,7 +259,6 @@
         UIImage* imgBackButton = [UIImage imageNamed:@"backButton"];
         UIButton* btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnBack setFrame:CGRectMake(5, 0, 32.0, 48.0)];
-        [btnBack setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [btnBack setImage:imgBackButton forState:UIControlStateNormal];
         [btnBack setBackgroundColor:[UIColor clearColor]];
         [btnBack addTarget:self action:@selector(callMainScreen) forControlEvents:UIControlEventTouchUpInside];
