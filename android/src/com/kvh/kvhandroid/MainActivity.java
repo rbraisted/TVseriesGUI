@@ -32,7 +32,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 	//from layout file
 	LinearLayout tableLayout;
 	EditText hostNameEditText;
-	@Override
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_main);
@@ -41,7 +41,6 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		//IMPORTANT:
 		//initalize the Constants
 		Constants.init();
-		
 		
 		SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
 		
@@ -80,6 +79,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		updatesButton.setOnClickListener(this);
 		
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+					
 	}
 	
 	@Override
@@ -95,7 +95,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		onDestroy();
 	}
 
-	@Override
+	
 	public void foundService(NsdServiceInfo serviceInfo) {
 		//don't add if there is already an existing service info
 		boolean toAdd = true;
@@ -107,6 +107,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		}
 		
 		if(toAdd) {
+			
 			nsdServiceInfos.add(serviceInfo);
 			
 			Log.i(TAG, "Added a Service Info: " + nsdServiceInfos.size());
@@ -126,17 +127,23 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 						String serviceName = serviceInfoItem.getServiceName();
 						serviceName = serviceName.replaceAll("\\\\", "");
 						serviceName = serviceName.replaceAll("032", " ");
-						if(serviceName.length() > 13) {
+						/*if(serviceName.length() > 13) {
 							serviceName = serviceName.substring(0, 12);
 							serviceName = serviceName + "...";
-						}
+						}*/									
 						
-						//Create a row
-						ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
-						serviceTableRow.setTag(i);
-						serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfoItem.getHost().getHostAddress());
-						
-						tableLayout.addView(serviceTableRow);
+						int index = serviceName.indexOf("tvhub-");
+						if(index>=0)
+						{
+							serviceName = serviceName.substring(index + 6, serviceName.length());							
+							
+							//Create a row
+							ServiceTableRow serviceTableRow = new ServiceTableRow(a, a);
+							serviceTableRow.setTag(i);
+							serviceTableRow.setServiceInformation("S/N: " + serviceName, serviceInfoItem.getHost().getHostAddress());
+							tableLayout.addView(serviceTableRow);
+							
+						}					
 					}
 					
 					//refresh colors
@@ -158,7 +165,7 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		}
 	}
 
-	@Override
+	
 	public void serviceTableRowClicked(ServiceTableRow item) {
 		NsdServiceInfo serviceInfo = nsdServiceInfos.get(item.getTagValue());
 		
@@ -168,7 +175,6 @@ public class MainActivity extends Activity implements NetServDisCallback, OnClic
 		gotoWebViewActivity(serviceInfo.getHost().getHostAddress());
 	}
 
-	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.refreshButton)
 		{
