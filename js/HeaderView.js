@@ -4,7 +4,23 @@
   var HeaderView = function(jQ) {
     var self;
 
-    //  show or hide sat finder
+	$('input').click(function(){
+		$('.\\#header-view').css("position","absolute");
+		//$('.btn-tray').css("position","absolute");
+		
+		$('.popup .ethernet-settings .view-head:first-child').css("position","absolute");
+		$('.popup .ethernet-settings .view-head:first-child').css("top","-46px");
+	});
+
+	$('input').focusout(function(){
+
+		$('.\\#header-view').css("position","fixed");
+		//$('.btn-tray').css("position","fixed");
+		
+		$('.popup .ethernet-settings .view-head:first-child').css("position","fixed");
+		$('.popup .ethernet-settings .view-head:first-child').css("top","50px");
+	});
+	    //  show or hide sat finder
     $('.\\#satfinder-btn').toggleClass('$available', TVRO.getSatfinderMode());
 
     var homeBtn = $('.\\#home-btn', jQ).click(function() {
