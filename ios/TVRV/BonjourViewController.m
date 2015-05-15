@@ -282,9 +282,9 @@
   CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
   CGFloat kbHeight = 0.0f;
   
-  if (IS_IPAD) kbHeight = kbSize.width;
-  else kbHeight = kbSize.height;
-  
+  //if (IS_IPAD) kbHeight = kbSize.width;
+  //else kbHeight = kbSize.height;
+  kbHeight = kbSize.height;
   scrollViewOffset = self.scrollView.contentOffset;
   CGPoint pt;
   CGRect rc = [self.textField bounds];
@@ -297,7 +297,8 @@
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
-  [self.scrollView setContentOffset:scrollViewOffset animated:YES];
+  //[self.scrollView setContentOffset:scrollViewOffset animated:YES];
+     [self.scrollView setContentOffset:CGPointZero animated:YES];
   [self.textField resignFirstResponder];
 }
 
