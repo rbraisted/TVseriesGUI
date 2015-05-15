@@ -1263,7 +1263,7 @@ height:410px;
     .receiver-edit .remove-btn {
       width: 100%;
       margin-top: 30px;
-      margin-top: 70px;
+      margin-bottom: 70px;
       background-color: #c51313; }
     .receiver-info .label,
     .receiver-edit .label {
