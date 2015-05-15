@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     
     <string name="str_connection_failed">Connection to TV-hub failed</string>    
+    <string name="failure_to_connect_with_updates_site">Failure to connect with the updates site</string>
+     
 
 </resources>
