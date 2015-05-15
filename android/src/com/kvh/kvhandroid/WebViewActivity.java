@@ -3,6 +3,7 @@ package com.kvh.kvhandroid;
 import java.net.URI;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -37,6 +38,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 	private ImageButton closeButton;
 	private String hostName;
 	private UpdatesManager updatesManager;
+	private ProgressDialog progressBar; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,9 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 		webView.getSettings().setGeolocationEnabled(true);
 
+		progressBar = ProgressDialog.show(WebViewActivity.this, null,
+				null);		
+		
 
 		webView.setWebChromeClient(new WebChromeClient() {
 
@@ -182,6 +187,10 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			@Override
 			public void onPageFinished(WebView view, String url) {
 				Log.i(TAG, "On Page Finished: " + url);
+				
+				if (progressBar.isShowing()) {
+					progressBar.dismiss();
+				}
 
 				webviewOnPageFinished(view, url);
 			}
@@ -200,6 +209,10 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				Log.i(TAG, "onReceivedError: " + errorCode + " | " + description + " | " + failingUrl);
 
+				if (progressBar.isShowing()) {
+					progressBar.dismiss();
+				}
+				
 				Toast.makeText(WebViewActivity.this, getString(R.string.str_connection_failed), Toast.LENGTH_LONG).show();
 
 				//if there is an error found let us go back to the main screen like in iOS
