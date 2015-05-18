@@ -12,6 +12,7 @@
 #pragma mark - UIViewController methods
 
 #define ConnectionAlert @"Connection to TV-hub failed."
+#define ConnectionFailureUpdateAlert @"failure to connect with the updates site."
 
 - (void)viewDidLoad {
     updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
@@ -122,7 +123,17 @@
     {
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
-        [self goBackToHostSelect:ConnectionAlert];
+        if (ApplicationDelegate.isNavigateToUpdateScreen) {
+            if (error.code == NSURLErrorNotConnectedToInternet) {
+                [self goBackToHostSelect:ConnectionFailureUpdateAlert];
+            }
+            else {
+                [self goBackToHostSelect:ConnectionAlert];
+            }
+        }
+        else {
+            [self goBackToHostSelect:ConnectionAlert];
+        }
     }
     [self addBackButton];
 }
