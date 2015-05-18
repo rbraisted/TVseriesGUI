@@ -1115,7 +1115,7 @@ a {
 .\$not-linear .multiswitch-mode {
   display: none; }
 
-.\$not-tv6 .sidelobe-mode {
+.\$hide-view .sidelobe-mode {
   display: none; }
 
 .\$wlan-sec-off .wireless-settings .password-label, .\$wlan-sec-off .wireless-settings .password-value, .\$wlan-sec-off .wireless-settings .password-input, .\$wlan-sec-off .wireless-settings .password-info-label {
