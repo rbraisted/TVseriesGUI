@@ -11,7 +11,7 @@
 
 #pragma mark - UIViewController methods
 
-#define ConnectionAlert @"Connection to TV-hub failed."
+#define ConnectionAlert @"Connection to TV-Hub failed."
 
 - (void)viewDidLoad {
     updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
