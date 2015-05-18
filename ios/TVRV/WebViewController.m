@@ -11,8 +11,8 @@
 
 #pragma mark - UIViewController methods
 
-#define ConnectionAlert @"Connection to TV-hub failed."
-#define ConnectionFailureUpdateAlert @"failure to connect with the updates site."
+#define ConnectionAlert @"Connection to TV-Hub failed."
+#define ConnectionFailureUpdateAlert @"Failure to connect with the updates site."
 
 - (void)viewDidLoad {
     updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
