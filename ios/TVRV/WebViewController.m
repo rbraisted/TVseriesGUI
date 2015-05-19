@@ -119,6 +119,11 @@
     //	check for this case now in order to prevent the timeoutTimer from kicking us
     //	back to the bonjour view after a redirect (or even if the user has fast fingers)
     
+    
+    if ([_webView.request.URL.path isEqualToString:@"/support.php"]) {
+        // call when go back to the command screen...
+        return;
+    }
     if (error.code == NSURLErrorCancelled || error.code == NSURLErrorCannotFindHost  || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet)
     {
         [timeoutTimer invalidate];
