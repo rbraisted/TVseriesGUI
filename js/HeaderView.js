@@ -10,6 +10,11 @@
 		
 		$('.popup .ethernet-settings .view-head:first-child').css("position","absolute");
 		$('.popup .ethernet-settings .view-head:first-child').css("top","-46px");
+		
+		$('.popup .sat-edit .view-head').css("position","absolute");  
+		$('.popup .sat-edit .view-head').css("top","-46px"); 
+		
+		
 	});
 
 	$('input').focusout(function(){
@@ -19,6 +24,10 @@
 		
 		$('.popup .ethernet-settings .view-head:first-child').css("position","fixed");
 		$('.popup .ethernet-settings .view-head:first-child').css("top","50px");
+		
+		$('.popup .sat-edit .view-head').css("position","fixed");
+		$('.popup .sat-edit .view-head').css("top","50px");		
+		
 	});
 	    //  show or hide sat finder
     $('.\\#satfinder-btn').toggleClass('$available', TVRO.getSatfinderMode());

@@ -614,7 +614,7 @@ a {
       background-color: #000;
       bottom: 0;
       padding: 10px;
-      position: fixed;
+      position:absolute;
       left: 0;
       right: 0;
       height: 60px; } }
@@ -1474,7 +1474,7 @@ a {
 @media screen and (max-width: 880px) {
   .sat-info.popup-guts,
   .sat-edit.popup-guts {
-    padding: 30px; }
+    padding: 30px; position:relative; }
   .sat-info .btn-tray .edit-btn,
   .sat-edit .btn-tray .edit-btn {
     width: 100%; }
@@ -2082,3 +2082,7 @@ a {
 
 .spinner-view .exit-btn {
   cursor: pointer; }
+  
+@media screen and (max-width: 480px) {  
+.sat-info .link, .sat-edit .link{width:100%; text-align:center; white-space:inherit; line-height:23px; }	
+}
