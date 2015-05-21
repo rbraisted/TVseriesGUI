@@ -351,10 +351,34 @@
                         
                         // if ([satellite.antSatID isEqualToString:APPDEL.connectedSatellite.antSatID]) [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:4];
                         // else if (satellite.favorite && satellite.enabled)                            [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
-                        if (satellite.favorite && satellite.enabled)       [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
-                        else if (satellite.enabled && !satellite.favorite) [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:2];
-                        else if (satellite.favorite && !satellite.enabled) [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:3];
-                        else continue;
+                        
+                        /*if (satellite.favorite && satellite.enabled)
+                         [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
+                         else if (satellite.enabled && !satellite.favorite)
+                         [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:2];
+                         else if (satellite.favorite && !satellite.enabled)
+                         [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:3];
+                         else
+                         continue;*/
+                        
+                        // check current status of satelite and set DOT...
+                        if (satellite.enabled)
+                        {
+                            // if enabled = TRUE
+                            // Type 1 = Purple DOT
+                            [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
+                        }
+                        else if (satellite.selectable)
+                        {
+                            // if selectable = TRUE
+                            // Type 2 = Black DOT
+                            [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:2];
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                        
                         
                         satellitesVisible = YES;
                         
@@ -649,7 +673,7 @@
     // NSLog(@":: accelerometer didAccelerate");
     [accelerometerFilter addAcceleration:acceleration];
     double y = accelerometerFilter.y;
-    double z = accelerometerFilter.z;    
+    double z = accelerometerFilter.z;
     deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
 }
 
