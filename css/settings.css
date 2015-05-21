@@ -5,24 +5,29 @@
   cursor: inherit;
   font-size-adjust: 0.55;
   text-rendering: optimizeLegibility;
-  user-select: none;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none; }
-
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important; }
+div{user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important; }
 input {
-  user-select: text;
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text; }
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -khtml-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important; }
 
 html {
   background: #04122a url(/images/gradient.png) no-repeat;
   height: 100%;
-  width: 100%; }
+  width: 100%;background-size:100% 100%;  }
   @media screen and (max-width: 880px) {
     html {
       background-position: top center; } }
@@ -38,7 +43,8 @@ body {
   font-weight: lighter;
   height: 100%;
   line-height: 1;
-  width: 100%; }
+  width: 100%;
+}
 
 a {
   color: inherit;
@@ -52,9 +58,8 @@ a {
   background-size: 100% 100%;
   height: 50px;
   position: fixed;
-  width: 100%; top:0px;
+  width: 100%;
   z-index: 4; }
-  
   .header .tracvision-logo {
     background-color: transparent;
     background-image: url(/images/tracvision-logo.svg);
@@ -615,7 +620,7 @@ a {
       background-color: #000;
       bottom: 0;
       padding: 10px;
-      position:absolute;
+      position: fixed;
       left: 0;
       right: 0;
       height: 60px; } }
@@ -686,7 +691,8 @@ a {
     height: auto;
     min-height: auto;
     min-width: 280px;
-    width: auto; }
+    width: auto;
+    margin: 0px 0px; }
   .dropdown .table {
     width: 100%;
     position: relative;
@@ -780,8 +786,10 @@ a {
       right: 0 !important;
       top: auto !important; } }
 
-.input, .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
-.vessel-location .city-view .hem-dropdown-btn, .vessel-location .coordinates-view .gps-input,
+.input, .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .city-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
+.vessel-location .coordinates-view .gps-input,
 .vessel-location .city-view .gps-input {
   -webkit-border-radius: 0;
   -ms-border-radius: 0;
@@ -828,12 +836,14 @@ a {
     display: block;
     margin: 16px; }
 
-.dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+.dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .city-view .hem-dropdown-btn {
   cursor: pointer;
   min-height: 28px;
   position: relative; }
-  .dropdown-btn .dropdown-icon, .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
+  .dropdown-btn .dropdown-icon, .vessel-location .geoloc-view .hem-dropdown-btn .dropdown-icon,
+  .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
   .vessel-location .city-view .hem-dropdown-btn .dropdown-icon {
     background-image: url(/images/down-icon-white.svg);
     background-position: center center;
@@ -868,22 +878,20 @@ a {
         height: 100%;
         width: 100%; } }
 
-@keyframes spin {
-  from {
-    -webkit-transform: rotate(360deg); }
-
-  to {
-    -webkit-transform: rotate(0deg); } }
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotate(360deg); }
-
+    -webkit-transform: rotate(0deg); }
   to {
-    -webkit-transform: rotate(0deg); } }
-.popup-spinner {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
+.popup-spinner, .spinner {
   position: relative;
   overflow: hidden; }
-  .popup-spinner:after {
+  .popup-spinner:after, .spinner:after {
     content: "";
     position: absolute;
     width: 200%;
@@ -891,7 +899,7 @@ a {
     top: -50%;
     left: -50%;
     background: transparent url(/images/spinner.png) no-repeat center center/50% 50%;
-    animation: spin 1s steps(8) infinite;
+    -moz-animation: spin 1s steps(8) infinite;
     -webkit-animation: spin 1s steps(8) infinite; }
 
 .popup-spinner {
@@ -1115,6 +1123,7 @@ a {
 .\$not-linear .multiswitch-mode {
   display: none; }
 
+.\$hide-view .nmea-view,
 .\$hide-view .sidelobe-mode {
   display: none; }
 
@@ -1128,7 +1137,7 @@ a {
     left: 0; } }
 @media screen and (max-width: 880px) {
   .popup .popup-guts {
-    padding-top: 46px; position:relative; }
+    padding-top: 46px; }
   .popup .label {
     width: 45%; }
   .popup .btn-tray .cancel-btn {
@@ -1146,12 +1155,18 @@ a {
     .popup .btn-tray .save-btn.first + .block-btn + .block-btn,
     .popup .btn-tray .reset-btn.first + .block-btn + .block-btn {
       margin-left: 0; } }
-.popup .input, .popup .dropdown-btn, .popup .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .popup .hem-dropdown-btn,
+.popup .input, .popup .dropdown-btn, .popup .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .popup .hem-dropdown-btn,
+.popup .vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .popup .hem-dropdown-btn,
 .popup .vessel-location .city-view .hem-dropdown-btn,
-.vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .popup .gps-input,
+.vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .popup .gps-input,
+.popup .vessel-location .coordinates-view .gps-input,
+.vessel-location .coordinates-view .popup .gps-input,
 .popup .vessel-location .city-view .gps-input,
 .vessel-location .city-view .popup .gps-input,
 .popup .dropdown-btn,
+.popup .vessel-location .geoloc-view .hem-dropdown-btn,
+.vessel-location .geoloc-view .popup .hem-dropdown-btn,
 .popup .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .popup .hem-dropdown-btn,
 .popup .vessel-location .city-view .hem-dropdown-btn,
@@ -1160,12 +1175,18 @@ a {
   width: 180px;
   margin-left: 0; }
 @media screen and (max-width: 440px) {
-  .popup .input, .popup .dropdown-btn, .popup .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .popup .hem-dropdown-btn,
+  .popup .input, .popup .dropdown-btn, .popup .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .popup .hem-dropdown-btn,
+  .popup .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .coordinates-view .popup .hem-dropdown-btn,
   .popup .vessel-location .city-view .hem-dropdown-btn,
-  .vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .popup .gps-input,
+  .vessel-location .city-view .popup .hem-dropdown-btn, .popup .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .popup .gps-input,
+  .popup .vessel-location .coordinates-view .gps-input,
+  .vessel-location .coordinates-view .popup .gps-input,
   .popup .vessel-location .city-view .gps-input,
   .vessel-location .city-view .popup .gps-input,
   .popup .dropdown-btn,
+  .popup .vessel-location .geoloc-view .hem-dropdown-btn,
+  .vessel-location .geoloc-view .popup .hem-dropdown-btn,
   .popup .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .popup .hem-dropdown-btn,
   .popup .vessel-location .city-view .hem-dropdown-btn,
@@ -1211,7 +1232,6 @@ a {
 @media screen and (min-width: 881px) {
   .view {
     max-width: 800px;
-    align: center;
     min-height: 100px; }
     .view .view-head {
       border-bottom: 1px solid #4f7abd;
@@ -1220,7 +1240,6 @@ a {
       padding: 20px 0; } }
 
 .headline {
-  text-align: center;
   line-height: 1.6;
   margin-bottom: 15px; }
   @media screen and (min-width: 881px) {
@@ -1231,9 +1250,9 @@ a {
       font-size: 16px;
       margin-top: 30px;
       padding: 0 20px; } }
-
+.manual-view{padding-bottom:20px;}
 .clear-table {
-  width: 100%;
+  /*width: 100%;*/
   position: relative; }
   .clear-table .table-head {
     display: block;
@@ -1258,16 +1277,12 @@ a {
     padding: 15px;
     vertical-align: middle; }
   @media screen and (min-width: 881px) {
-    .clear-table {
-      max-width: 680px;
-      margin: auto; }
-      .clear-table .table-col {
-        font-size: 16px;
-        padding: 22.5px; } }
+    .clear-table .table-col {
+      font-size: 16px;
+      padding: 22.5px; } }
   @media screen and (max-width: 880px) {
     .clear-table {
-      margin: 0 20px;
-      width: calc(100% - 40px); }
+      margin: 0 20px; }
       .clear-table .table-col {
         font-size: 13px;
         padding: 15px; } }
@@ -1301,32 +1316,46 @@ a {
 
 @media screen and (min-width: 881px) {
   .vessel-location .headline {
-    margin: 60px 0 30px; } }
+    margin: 40px 0 30px; } }
 .vessel-location .note {
-  line-height: 1.6;
-  margin-top: 30px;
-  text-align: center;
+  line-height: 1.5;
+  margin-top: 20px;
   font-size: 13px; }
-  @media screen and (max-width: 880px) {
-    .vessel-location .note {
-      padding: 0 20px; } }
 .vessel-location .clear-table .table-row .table-col + .table-col {
   width: calc(100% - 21px); }
 
-.vessel-location .note {
-  padding-bottom: 60px; }
+.vessel-location .nmea-view {
+  border-bottom: 2px solid #4f7abd;
+  padding-bottom: 40px; }
 .vessel-location .block-btn {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 20px;
   max-width: 75px;
   min-width: 75px;
-  display: block; }
+  display: block;
+user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
   @media screen and (max-width: 880px) {
     .vessel-location .block-btn {
-      max-width: initial;
+     /* max-width: initial;*/
       min-width: initial; } }
+.vessel-location p {
+  color: #ff0000;
+  line-height: 1.6;
+  margin-bottom: 20px; }
+.vessel-location .toggle-btn {
+  margin-bottom: 20px; }
+.vessel-location .geoloc-view,
 .vessel-location .coordinates-view,
 .vessel-location .city-view {
   line-height: 1.4; }
+  .vessel-location .geoloc-view .label,
   .vessel-location .coordinates-view .label,
   .vessel-location .city-view .label {
     display: inline-block;
@@ -1336,30 +1365,40 @@ a {
     width: initial;
     margin-bottom: initial; }
     @media screen and (max-width: 400px) {
+      .vessel-location .geoloc-view .label,
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         display: block;
-        margin-left: 12px;
         margin-top: 10px; } }
     @media screen and (min-width: 401px) {
+      .vessel-location .geoloc-view .label,
       .vessel-location .coordinates-view .label,
       .vessel-location .city-view .label {
         min-width: 90px; } }
+  .vessel-location .geoloc-view .geoloc-label,
+  .vessel-location .geoloc-view .coordinates-label,
+  .vessel-location .coordinates-view .geoloc-label,
   .vessel-location .coordinates-view .coordinates-label,
+  .vessel-location .city-view .geoloc-label,
   .vessel-location .city-view .coordinates-label {
-    margin-top: 0; }
+    margin-top: 10px; }
     @media screen and (min-width: 401px) {
+      .vessel-location .geoloc-view .geoloc-label,
+      .vessel-location .geoloc-view .coordinates-label,
+      .vessel-location .coordinates-view .geoloc-label,
       .vessel-location .coordinates-view .coordinates-label,
+      .vessel-location .city-view .geoloc-label,
       .vessel-location .city-view .coordinates-label {
         display: block; } }
+  .vessel-location .geoloc-view .city-label,
   .vessel-location .coordinates-view .city-label,
   .vessel-location .city-view .city-label {
     margin-top: 0; }
-    @media screen and (max-width: 540px) {
-      .vessel-location .coordinates-view .city-label,
-      .vessel-location .city-view .city-label {
-        margin-left: 12px; } }
-  .vessel-location .coordinates-view .input, .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .gps-input,
+  .vessel-location .geoloc-view .input, .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
+  .vessel-location .coordinates-view .input,
+  .vessel-location .coordinates-view .dropdown-btn,
+  .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .coordinates-view .gps-input,
   .vessel-location .city-view .input,
   .vessel-location .city-view .dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn,
@@ -1367,13 +1406,16 @@ a {
     margin: -2px 0 0;
     min-width: 200px;
     font-size: 13px; }
+  .vessel-location .geoloc-view .gps-input,
   .vessel-location .coordinates-view .gps-input,
   .vessel-location .city-view .gps-input {
     min-width: 75px;
     width: 75px;
     min-height: 28px;
     text-align: center; }
-  .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+  .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+  .vessel-location .coordinates-view .dropdown-btn,
+  .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .city-view .dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn {
     display: inline-block;
@@ -1382,23 +1424,40 @@ a {
     min-height: 28px;
     min-width: 200px; }
     @media screen and (max-width: 540px) {
-      .vessel-location .coordinates-view .dropdown-btn, .vessel-location .coordinates-view .hem-dropdown-btn,
+      .vessel-location .geoloc-view .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
+      .vessel-location .coordinates-view .dropdown-btn,
+      .vessel-location .coordinates-view .hem-dropdown-btn,
       .vessel-location .city-view .dropdown-btn,
       .vessel-location .city-view .hem-dropdown-btn {
         display: block;
         margin: 10px 0 0; } }
+  .vessel-location .geoloc-view .hem-dropdown-btn,
   .vessel-location .coordinates-view .hem-dropdown-btn,
   .vessel-location .city-view .hem-dropdown-btn {
     min-width: 54px;
     margin-bottom: -9px; }
     @media screen and (max-width: 540px) {
+      .vessel-location .geoloc-view .hem-dropdown-btn,
       .vessel-location .coordinates-view .hem-dropdown-btn,
       .vessel-location .city-view .hem-dropdown-btn {
         display: inline-block; } }
 
-.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn, .vessel-location .coordinates-view .advanced-settings .hem-dropdown-btn,
+.\/spinner .\#spinner-view {
+  display: block; }
+
+.spinner {
+  width: 200px;
+  height: 200px;
+  margin: 30px auto;
+  display: block; }
+
+.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .advanced-settings .hem-dropdown-btn,
+.advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn,
+.vessel-location .coordinates-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .city-view .hem-dropdown-btn,
-.vessel-location .city-view .advanced-settings .hem-dropdown-btn, .advanced-settings .vessel-location .coordinates-view .gps-input, .vessel-location .coordinates-view .advanced-settings .gps-input,
+.vessel-location .city-view .advanced-settings .hem-dropdown-btn, .advanced-settings .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .advanced-settings .gps-input,
+.advanced-settings .vessel-location .coordinates-view .gps-input,
+.vessel-location .coordinates-view .advanced-settings .gps-input,
 .advanced-settings .vessel-location .city-view .gps-input,
 .vessel-location .city-view .advanced-settings .gps-input {
   height: 40px;
@@ -1446,3 +1505,40 @@ a {
     width: 100%;
     height: 100%;
     min-height: 600px; } }
+
+.blink_me {
+font-weight: bold !important;
+font-size: 16px !important;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 2s;
+    -moz-animation-timing-function: ease-out;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
