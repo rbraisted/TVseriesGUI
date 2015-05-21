@@ -51,7 +51,7 @@
 	[self.tableView setDataSource:self];
   [self.tableView registerNib:[UINib nibWithNibName:@"BonjourTableViewCell" bundle:nil] forCellReuseIdentifier:@"BonjourTableCell"];
 
-  [self registerForKeyboardNotifications];
+  //[self registerForKeyboardNotifications];
 
   cellBGImageDark  =  [UIImage imageNamed:@"tableCellBGDark.png"];
   cellBGImageLight =  [UIImage imageNamed:@"tableCellBGLight.png"];
@@ -61,7 +61,7 @@
   NSString* appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
   [self.versionLabel setText:[NSString stringWithFormat:@"Version %@", appVersion]];
 
-  if ([SatelliteFinderViewController available]) {
+  if ([SatelliteFinderViewController available]) { // Work in only iPhone and iPad
     if (IS_IPAD) {
       [self.satFinderView setHidden:FALSE];
     } else {
@@ -239,8 +239,38 @@
 	return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-//	NSLog(@"textFieldDidEndEditing");
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField:textField up:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField:textField up:NO];
+}
+
+-(void)animateTextField:(UITextField*)textField up:(BOOL)up
+{
+    int movementDistance = 0;
+    if (IS_IPAD)
+        movementDistance = MovementDistance;
+    else {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        if (screenSize.height > 480.0f) {
+            // Use for Above 4.0 inch
+            movementDistance = MovementDistance;
+        } else {
+            // Use for Below 4.0 inch
+            movementDistance = IPhone_MovementDistance;
+        }
+    }
+    
+    int movement = (up ? movementDistance : -movementDistance);
+    [UIView beginAnimations: @"animateTextField" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: kAnimationDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
 }
 
 #pragma mark - UIButton actions

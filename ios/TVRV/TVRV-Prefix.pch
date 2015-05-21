@@ -12,8 +12,8 @@
 #endif
 
 #ifdef __OBJC__
-	#import <UIKit/UIKit.h>
-	#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #endif
 
 #import "Constants.h"
@@ -28,6 +28,12 @@
 #define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
 #define IS_OS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
+
+#define MovementDistance   -185
+#define IPhone_MovementDistance -273
+#define kAnimationDuration 0.3
+
 
 //  NOTE: this camera info is pretty old
 //  camera fov stuff
