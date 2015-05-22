@@ -50,8 +50,14 @@ $(function() {
     $('.\\#receiver-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
-          window.location.hash = (receiver ? '/' + receiver : '');
+        	// Since both edit and new screens are an edit screen look for new
+        	// hash to navigate back to the correct location.
+        	if(location.hash.match(/\/new/)){
+        		window.location.hash = '';
+        	}else{
+                var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
+                window.location.hash = (receiver ? '/' + receiver : '');
+        	}
         })
         .end()
   );
