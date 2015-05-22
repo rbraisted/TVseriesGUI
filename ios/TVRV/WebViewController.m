@@ -124,8 +124,9 @@
         // call when go back to the command screen...
         return;
     }
-    if (error.code == NSURLErrorCancelled || error.code == NSURLErrorCannotFindHost  || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet)
-    {
+    if (error.code == NSURLErrorCancelled) {
+        return;
+    } else if (error.code == NSURLErrorCannotFindHost  || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet) {
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
         if (ApplicationDelegate.isNavigateToUpdateScreen) {
@@ -202,8 +203,8 @@
 - (void)webViewURLRequestTimeout
 {
     NSLog(@"webView URL Request Timeout");
-    webView.delegate = nil;
-    [self goBackToHostSelect:ConnectionAlert];
+    //webView.delegate = nil;
+    //[self goBackToHostSelect:ConnectionAlert];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView

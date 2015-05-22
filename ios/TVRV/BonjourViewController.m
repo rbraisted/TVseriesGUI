@@ -286,7 +286,7 @@
         return;
     }
     WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
-	[UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
+    [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
 - (IBAction)viewUpdatesButtonPressed:(id)sender {
