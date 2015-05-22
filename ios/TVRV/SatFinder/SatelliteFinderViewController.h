@@ -43,6 +43,7 @@
 + (BOOL)available;
 
 - (void)getSatListFromHostname:(NSString*)hostname;
+- (void)getAntennaStatusFromHostname:(NSString*)hostname;
 - (void)getSatListFromBundle;
 
 - (IBAction)infoButtonPressed:(id)sender;

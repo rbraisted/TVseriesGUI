@@ -14,6 +14,7 @@
   BOOL      favorite;
   BOOL      enabled;
   BOOL      selectable;
+  BOOL      selected;
 
   float     rAzLook180;
   float     rElLook180;
@@ -40,6 +41,7 @@
 @property (nonatomic) BOOL  favorite;
 @property (nonatomic) BOOL  enabled;
 @property (nonatomic) BOOL  selectable;
+@property (nonatomic) BOOL  selected;
 
 @property (nonatomic) float rAzLook180;
 @property (nonatomic) float rElLook180;
@@ -52,6 +54,7 @@
       withDegLon:(float)_degLon
       isFavorite:(BOOL)_favorite
       isEnabled:(BOOL)_enabled
-      isSelectable:(BOOL)_selectable;
+      isSelectable:(BOOL)_selectable
+      isSelected:(BOOL)_selected;
 
 @end

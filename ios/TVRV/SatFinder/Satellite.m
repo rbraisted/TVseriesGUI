@@ -4,7 +4,7 @@
 
 @implementation Satellite
 
-@synthesize listID, antSatID, triSatID, name, region, degLon, favorite, enabled, selectable, rAzLook180, rElLook180;
+@synthesize listID, antSatID, triSatID, name, region, degLon, favorite, enabled, selectable, selected, rAzLook180, rElLook180;
 
 // note to self: with vs and        andSlot:
 //=========================================================================================================================================================
@@ -30,7 +30,8 @@
           withDegLon:(float)_degLon
 		  isFavorite:(BOOL)_favorite
 		   isEnabled:(BOOL)_enabled
-		isSelectable:(BOOL)_selectable {
+		isSelectable:(BOOL)_selectable
+          isSelected:(BOOL)_selected {
 
 	self = [super init];
 	if (self) {
@@ -42,6 +43,7 @@
 		favorite = _favorite;
 		enabled = _enabled;
         selectable = _selectable;
+        selected = _selected;
         triSatID = _triSatID;
 	}
 	return self;

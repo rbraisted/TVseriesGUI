@@ -50,20 +50,65 @@
     
     RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
     RXMLElement* satElement = [satListXml child:@"satellites.A"];
-    Satellite* satA = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    Satellite* satA = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue] isSelected:FALSE];
     [satList addObject:satA];
     
     satElement = [satListXml child:@"satellites.B"];
-    Satellite* satB = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    Satellite* satB = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue] isSelected:FALSE];
     [satList addObject:satB];
     
     satElement = [satListXml child:@"satellites.C"];
-    Satellite* satC = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    Satellite* satC = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue] isSelected:FALSE];
     [satList addObject:satC];
     
     satElement = [satListXml child:@"satellites.D"];
-    Satellite* satD = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue]];
+    Satellite* satD = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue] isSelected:FALSE];
     [satList addObject:satD];
+
+    // find the selected satellite from antenna_status
+    [self getAntennaStatusFromHostname:[[NSUserDefaults standardUserDefaults] objectForKey:@"default-host"]];
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)getAntennaStatusFromHostname:(NSString*)hostname {
+    NSLog(@":: getAntennaStatusFromHostname");
+    if (connection) {
+        [connection cancel];
+        connection = nil;
+    }
+    
+    if (xmlData) [xmlData setLength:0];
+    else xmlData = [[NSMutableData alloc] init];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/webservice.php", hostname]]];
+    [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
+    [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"antenna_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+    NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
+    
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)getAntennaStatusFromXmlString:(NSString*)satListXmlString {
+    NSLog(@":: getAntennaStatusFromXmlString");
+    
+    RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+    RXMLElement* satElement = [satListXml child:@"satellite"];
+
+    NSString* selectedAntSatID = [[NSString alloc] init];
+    selectedAntSatID = [satElement child:@"selected"].text;
+    
+    NSUInteger k = [satList count];
+    while (k--) {
+        Satellite* satellite = (Satellite*)[satList objectAtIndex:k];
+        if ([satellite.antSatID isEqualToString:selectedAntSatID]) {
+            satellite.selected = true;
+        } else {
+            satellite.selected = false;
+        }
+    }
 }
 
 
@@ -348,38 +393,13 @@
                         
                         continue;
                     } else {
-                        
-                        // if ([satellite.antSatID isEqualToString:APPDEL.connectedSatellite.antSatID]) [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:4];
-                        // else if (satellite.favorite && satellite.enabled)                            [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
-                        
-                        /*if (satellite.favorite && satellite.enabled)
-                         [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
-                         else if (satellite.enabled && !satellite.favorite)
-                         [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:2];
-                         else if (satellite.favorite && !satellite.enabled)
-                         [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:3];
-                         else
-                         continue;*/
-                        
-                        // check current status of satelite and set DOT...
-                        if (satellite.enabled)
-                        {
-                            // if enabled = TRUE
-                            // Type 1 = Purple DOT
-                            [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
-                        }
-                        else if (satellite.selectable)
-                        {
-                            // if selectable = TRUE
-                            // Type 2 = Black DOT
+                        if (satellite.selected)
                             [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:2];
-                        }
+                        else if (satellite.enabled)
+                            [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
                         else
-                        {
-                            continue;
-                        }
-                        
-                        
+                             continue;
+
                         satellitesVisible = YES;
                         
                         //	get distance
@@ -705,7 +725,10 @@
     //  NSLog(@":: xmlData: %@", xmlData);
     
     NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
-    [self getSatListFromXmlString:satListXmlString];
+    if ([satListXmlString containsString:@"antenna_status"])
+        [self getAntennaStatusFromXmlString:satListXmlString];
+    else if ([satListXmlString containsString:@"get_autoswitch_status"])
+        [self getSatListFromXmlString:satListXmlString];
 }
 
 @end
