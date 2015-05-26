@@ -275,11 +275,7 @@
 
         var showCityDropdownView = function() {
 	
-		if(citiesCoordArray[0].city_name != '')
-		{
-			cityDropdownView.show();
-		}
-		
+		cityDropdownView.show();
             
             manual.setValue('CITY');
         };
@@ -334,12 +330,21 @@
 
             cityDropdownView.setValues(
                             _.map($('city', xml), function(element) {
-                                var cityArray;
 
-                                cityArray = {city_name:$(element.getElementsByTagName('city_name')).text(),
+                                var cityArray;
+				if($(element).find('city_name').length > 0)
+				{
+					cityArray = {city_name:$(element.getElementsByTagName('city_name')).text(),
                                                 lat:$(element.getElementsByTagName('lat')).text(),
                                                 lon:$(element.getElementsByTagName('lon')).text()};
-
+				}
+				else
+				{
+					cityArray = {city_name:$(element).text()};
+				}
+                                
+				/*cityArray = {city_name:$(element).text()};*/
+				
                                 citiesCoordArray[citiesCoordArray.length] = cityArray;
 
                                 return cityArray.city_name;
