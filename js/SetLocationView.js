@@ -274,7 +274,13 @@
         };
 
         var showCityDropdownView = function() {
-            cityDropdownView.show();
+	
+		if(citiesCoordArray[0].city_name != '')
+		{
+			cityDropdownView.show();
+		}
+		
+            
             manual.setValue('CITY');
         };
 
