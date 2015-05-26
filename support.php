@@ -263,7 +263,7 @@
   <span class="#output"></span>
 
     <div class="btn-tray">
-      <input placeholder="Enter your commands here." class="input #input" />
+      <input placeholder="Enter your commands here." class="input #input" autocorrect="off" />
 	  <div class="block-btn #send-btn">Send</div>
 	</div>
 </div>

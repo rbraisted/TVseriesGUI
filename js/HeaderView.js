@@ -4,31 +4,106 @@
   var HeaderView = function(jQ) {
     var self;
 
-	$('input').click(function(){
+// window load
+if($(window).width() <= 880){
+  // do your stuff
+	$('input').focus(function(){
 		$('.\\#header-view').css("position","absolute");
-		//$('.btn-tray').css("position","absolute");
-		
+	
 		$('.popup .ethernet-settings .view-head:first-child').css("position","absolute");
 		$('.popup .ethernet-settings .view-head:first-child').css("top","-46px");
 		
 		$('.popup .sat-edit .view-head').css("position","absolute");  
 		$('.popup .sat-edit .view-head').css("top","-46px"); 
 		
+		$('.vessel-location .view-head').css("position","absolute");  
+		$('.vessel-location .view-head').css("top","-46px"); 		
+		
+		$('.popup .wireless-settings .view-head:first-child').css("position","absolute");
+		$('.popup .wireless-settings .view-head:first-child').css("top","-46px");		
+		
+		$('.popup .wireless-settings .btn-tray').css("position","absolute");
+		
+		$('.ethernet-setting-page .btn-tray').css("position","absolute");		
 		
 	});
 
-	$('input').focusout(function(){
-
+	$('input').blur(function(){
 		$('.\\#header-view').css("position","fixed");
-		//$('.btn-tray').css("position","fixed");
-		
+	
 		$('.popup .ethernet-settings .view-head:first-child').css("position","fixed");
 		$('.popup .ethernet-settings .view-head:first-child').css("top","50px");
 		
 		$('.popup .sat-edit .view-head').css("position","fixed");
 		$('.popup .sat-edit .view-head').css("top","50px");		
 		
+		
+		$('.vessel-location .view-head').css("position","fixed");
+		$('.vessel-location .view-head').css("top","50px");		
+		
+		$('.popup .wireless-settings .view-head:first-child').css("position","fixed");
+		$('.popup .wireless-settings .view-head:first-child').css("top","50px");
+		
+		$('.popup .wireless-settings .btn-tray').css("position","fixed");	 		 	
+		
+		$('.ethernet-setting-page .btn-tray').css("position","fixed");	  		 			
 	});
+	
+}		
+// window load
+
+// window Resize
+$(window).resize(function(){
+	if ($(window).width() <= 880){	  
+  // do your stuff
+	$('input').focus(function(){
+		$('.\\#header-view').css("position","absolute");
+	
+		$('.popup .ethernet-settings .view-head:first-child').css("position","absolute");
+		$('.popup .ethernet-settings .view-head:first-child').css("top","-46px");
+		
+		$('.popup .sat-edit .view-head').css("position","absolute");  
+		$('.popup .sat-edit .view-head').css("top","-46px"); 
+		
+		$('.vessel-location .view-head').css("position","absolute");  
+		$('.vessel-location .view-head').css("top","-46px"); 		
+		
+		$('.popup .wireless-settings .view-head:first-child').css("position","absolute");
+		$('.popup .wireless-settings .view-head:first-child').css("top","-46px");		
+		
+		$('.popup .wireless-settings .btn-tray').css("position","absolute");
+		
+		$('.ethernet-setting-page .btn-tray').css("position","absolute");		
+		
+	});
+
+	$('input').blur(function(){
+		$('.\\#header-view').css("position","fixed");
+	
+		$('.popup .ethernet-settings .view-head:first-child').css("position","fixed");
+		$('.popup .ethernet-settings .view-head:first-child').css("top","50px");
+		
+		$('.popup .sat-edit .view-head').css("position","fixed");
+		$('.popup .sat-edit .view-head').css("top","50px");		
+		
+		
+		$('.vessel-location .view-head').css("position","fixed");
+		$('.vessel-location .view-head').css("top","50px");		
+		
+		$('.popup .wireless-settings .view-head:first-child').css("position","fixed");
+		$('.popup .wireless-settings .view-head:first-child').css("top","50px");
+		
+		$('.popup .wireless-settings .btn-tray').css("position","fixed");	 		 	
+		
+		$('.ethernet-setting-page .btn-tray').css("position","fixed");	  		 			
+	});
+	
+	}	
+});	
+// window Resize
+
+
+
 	    //  show or hide sat finder
     $('.\\#satfinder-btn').toggleClass('$available', TVRO.getSatfinderMode());
 

@@ -21,7 +21,6 @@ input {
 
 html {
   background: #04122a url(/images/gradient.png) no-repeat;
-  height: 100%;
   width: 100%; }
   @media screen and (max-width: 880px) {
     html {
@@ -36,7 +35,6 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: lighter;
-  height: 100%;
   line-height: 1;
   width: 100%; }
 
@@ -955,11 +953,9 @@ html {
   position: fixed;
   right: 0;
   text-align: center;
-  top: 50px;
   z-index: 2;
   bottom: 0;
   margin: 0;
-  top: auto;
   border: 0; }
   .bottom-bar .next-btn,
   .bottom-bar .prev-btn,
@@ -3163,3 +3159,15 @@ font-size: 16px !important;
     50% { opacity: 0.0; }
     100% { opacity: 1.0; }
 }
+@media screen and (max-width: 880px) {
+.bottom-bar{ height:46px; }   
+.header{top:0px; }
+.vessel-location .block-btn{margin-bottom:0px; }
+body .registrationpage{position:relative;  }
+body .gpspage{position:relative; }
+body .gpspage .manual-view{ padding-bottom:45px; margin-bottom:0px; }
+
+	
+}
+	  
+	  

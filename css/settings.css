@@ -26,7 +26,6 @@ input {
 
 html {
   background: #04122a url(/images/gradient.png) no-repeat;
-  height: 100%;
   width: 100%;background-size:100% 100%;  }
   @media screen and (max-width: 880px) {
     html {
@@ -41,7 +40,6 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: lighter;
-  height: 100%;
   line-height: 1;
   width: 100%;
 }
@@ -1516,7 +1514,7 @@ font-size: 16px !important;
     
     -moz-animation-name: blinker;
     -moz-animation-duration: 2s;
-    -moz-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out; 
     -moz-animation-iteration-count: infinite;
     
     animation-name: blinker;
@@ -1536,9 +1534,16 @@ font-size: 16px !important;
     50% { opacity: 0.0; }
     100% { opacity: 1.0; }
 }
-
+ 
 @keyframes blinker {  
     0% { opacity: 1.0; }
     50% { opacity: 0.0; }
     100% { opacity: 1.0; }
+}
+
+@media screen and (max-width: 880px) {
+body .wireless-settings-page{position:relative; }
+body .ethernet-setting-page{position:relative; } 
+
+.header{top:0px; }
 }

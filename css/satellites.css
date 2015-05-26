@@ -2064,7 +2064,39 @@ a {
     .headline {
       font-size: 16px;
       margin-top: 30px;
-      padding: 0 20px; } }
+      padding: 0 20px; } 
+.sat-info .name-block, .sat-edit .name-block{padding-left:0px; }
+.sat-info .region-block .label, .sat-info .region-block .value, .sat-edit .region-block .label, .sat-edit .region-block .value{border-left:0px!important; padding-left:0px; }
+.sat-info .skew-block .label, .sat-info .skew-block .value, .sat-edit .skew-block .label, .sat-edit .skew-block .value{border-left:0px!important; padding-left:0px;}
+.sat-info .lo1-block .label, .sat-info .lo1-block .value, .sat-edit .lo1-block .label, .sat-edit .lo1-block .value{border-left:0px!important; padding-left:0px;}
+.sat-edit .input, .sat-edit .dropdown-btn, .sat-edit .dropdown-btn{width:93%; margin-left:0px; }
+.sat-info .fav-block, .sat-edit .fav-block{right:14px; }
+.sat-edit .orb-slot-block .label{padding-left:0px; }
+.sat-edit .lnb-block .label, .sat-edit .lnb-block .value{padding-left:0px; }
+.sat-edit .region-block, .sat-edit .orb-slot-block, .sat-edit .skew-block, .sat-edit .lnb-block, .sat-edit .lo1-block, .sat-edit .lo2-block{min-height:94px; }   
+
+.sat-edit .orb-slot-block, .sat-edit .lnb-block, .sat-edit .lo2-block{ float:right; }   
+.sat-info .fav-block .heart-btn.\$on, .sat-edit .fav-block .heart-btn.\$on{background-size:30px 30px; min-height:30px; min-width:30px; }
+.fav-block .heart-btn{margin-top:20px; }
+
+    .sat-info .fav-block .heart-btn,
+    .sat-edit .fav-block .heart-btn {
+      background-image: url(/images/heart-icon-blue.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 30px 30px;
+      min-height: 30px;
+      min-width: 30px; }
+      .sat-info .fav-block .heart-btn.\$on,
+      .sat-edit .fav-block .heart-btn.\$on {
+        background-image: url(/images/heart-icon-white.svg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 30px 30px;
+        min-height: 30px;
+        min-width: 30px; }
+
+}
 
 .\/spinner .sidebar,
 .\/spinner .header,
@@ -2085,4 +2117,10 @@ a {
   
 @media screen and (max-width: 480px) {  
 .sat-info .link, .sat-edit .link{width:100%; text-align:center; white-space:inherit; line-height:23px; }	
+.sat-info.popup-guts, .sat-edit.popup-guts {padding: 30px 16px ;}
+.group-edit .name-block, .group-edit .slot, .group-info .name-block, .group-info .slot{width:calc(100% - 30px); }
+  
+  
+  
 }
+

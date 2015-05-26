@@ -305,7 +305,7 @@
     <span class="label broadcast-label">Broadcast</span><span class="value broadcast-value #eth-broadcast"></span>
     <div class="block-btn edit-btn #ethernet-btn">Edit</div>
   </div>
-
+ 
   <div class="wireless-settings">
     <div class="view-head">Wireless Settings</div>
     <span class="label mode-label">Wireless Mode</span><span class="value #wlan-mode"></span>
@@ -323,7 +323,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="popup #ethernet-settings-view">
+<div class="popup #ethernet-settings-view ethernet-setting-page"> 
   <div class="popup-guts ethernet-settings">
     <div class="view-head">
       Ethernet Settings
@@ -381,7 +381,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="popup #wireless-settings-view">
+<div class="popup #wireless-settings-view wireless-settings-page">
   <div class="popup-guts wireless-settings">
     <div class="view-head">
       Wireless Settings

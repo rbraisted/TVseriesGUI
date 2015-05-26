@@ -22,7 +22,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 </div>
 
-<div class="view diy-vessel-info #diy-vessel-info-view">
+<div class="view diy-vessel-info #diy-vessel-info-view ">
   <div class="view-head">Vessel Information</div>
   <div class="form">
     <div class="label">Vessel Name *</div>
@@ -49,7 +49,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 </div>
 
-<div class="view cdt-vessel-info #cdt-vessel-info-view">
+<div class="view cdt-vessel-info #cdt-vessel-info-view registrationpage">
   <div class="view-head">Vessel Information</div>
   <div class="form">
     <div class="label">Vessel Name *</div>
@@ -76,7 +76,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 </div>
 
-<div class="view installer-info #installer-info-view">
+<div class="view installer-info #installer-info-view registrationpage">
   <div class="view-head">Installer Information</div>
   <div class="form">
     <div class="label">Installer Company *</div>
@@ -102,5 +102,62 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>
-  </div>
+  </div> 
 </div>
+
+<script type="text/javascript">
+if($(window).width() <= 880){
+$('input').focus(function(){
+		$('.\\#header-view').css("position","absolute");
+		$('.cdt-vessel-info .bottom-bar').css("position","absolute");  		
+		$('.cdt-vessel-info .view-head:first-child').css("position","absolute");
+		$('.cdt-vessel-info .view-head:first-child').css("top","-66px"); 	
+		
+		$('.installer-info .bottom-bar').css("position","absolute");  				
+		$('.installer-info .view-head:first-child').css("position","absolute");
+		$('.installer-info .view-head:first-child').css("top","-66px"); 			
+	});
+
+	$('input').blur(function(){  
+
+		$('.\\#header-view').css("position","fixed");
+		$('.cdt-vessel-info .bottom-bar').css("position","fixed"); 		
+		$('.cdt-vessel-info .view-head:first-child').css("position","fixed"); 
+		$('.cdt-vessel-info .view-head:first-child').css("top","50px"); 
+		
+		$('.installer-info .bottom-bar').css("position","fixed"); 				
+		$('.installer-info .view-head:first-child').css("position","fixed"); 
+		$('.installer-info .view-head:first-child').css("top","50px"); 		
+	
+	});
+}
+
+// window Resize
+$(window).resize(function(){
+	if ($(window).width() <= 880){	
+$('input').focus(function(){
+		$('.\\#header-view').css("position","absolute");
+		$('.cdt-vessel-info .bottom-bar').css("position","absolute");  		
+		$('.cdt-vessel-info .view-head:first-child').css("position","absolute");
+		$('.cdt-vessel-info .view-head:first-child').css("top","-66px"); 	
+		
+		$('.installer-info .bottom-bar').css("position","absolute");  				
+		$('.installer-info .view-head:first-child').css("position","absolute");
+		$('.installer-info .view-head:first-child').css("top","-66px"); 			
+	});
+
+	$('input').blur(function(){  
+
+		$('.\\#header-view').css("position","fixed");
+		$('.cdt-vessel-info .bottom-bar').css("position","fixed"); 		
+		$('.cdt-vessel-info .view-head:first-child').css("position","fixed"); 
+		$('.cdt-vessel-info .view-head:first-child').css("top","50px"); 
+		
+		$('.installer-info .bottom-bar').css("position","fixed"); 				
+		$('.installer-info .view-head:first-child').css("position","fixed"); 
+		$('.installer-info .view-head:first-child').css("top","50px"); 		
+	
+	});
+}
+	});
+</script>

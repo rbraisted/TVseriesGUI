@@ -24,7 +24,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <div class="spinner"></div>
 </div>
 
-<div class="view vessel-location #vessel-location-view">
+<div class="view vessel-location #vessel-location-view gpspage">
   <div class="view-head #location-header"></div>
 
   <div class="nmea-view">
@@ -160,7 +160,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     Sources are listed in the recommended order.
   </div>
 
-  <div class="clear-table #table-view">
+  <div class="clear-table #table-view"> 
     <div class="table-row #table-row">
       <span class="table-col install-btn"></span><!--
     --><span class="table-col #value"></span>
@@ -172,3 +172,47 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     <div class="next-btn #next-btn">Next</div>
   </div>
 </div>
+<script type="text/javascript">
+if($(window).width() <= 880){
+$('input').focus(function(){
+		$('.\\#header-view').css("position","absolute");
+		$('.vessel-location .bottom-bar').css("position","relative");  		
+		$('.vessel-location .view-head:first-child').css("position","absolute");
+		$('.vessel-location .view-head:first-child').css("top","-75px"); 	
+	
+		
+	});
+
+	$('input').blur(function(){   
+
+		$('.\\#header-view').css("position","fixed");
+		$('.vessel-location .bottom-bar').css("position","fixed"); 		
+		$('.vessel-location .view-head:first-child').css("position","fixed"); 
+		$('.vessel-location .view-head:first-child').css("top","50px"); 
+
+	});
+}
+
+// window Resize
+$(window).resize(function(){
+	if ($(window).width() <= 880){	
+$('input').focus(function(){
+		$('.\\#header-view').css("position","absolute");
+		$('.vessel-location .bottom-bar').css("position","relative");  		
+		$('.vessel-location .view-head:first-child').css("position","absolute");
+		$('.vessel-location .view-head:first-child').css("top","-75px"); 	
+	
+		
+	});
+
+	$('input').blur(function(){   
+
+		$('.\\#header-view').css("position","fixed");
+		$('.vessel-location .bottom-bar').css("position","fixed"); 		
+		$('.vessel-location .view-head:first-child').css("position","fixed"); 
+		$('.vessel-location .view-head:first-child').css("top","50px"); 
+
+	});
+}
+	});
+</script>
