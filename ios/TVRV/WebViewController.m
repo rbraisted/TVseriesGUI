@@ -424,6 +424,19 @@
     [webView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
+#pragma mark - Orientations methods
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    if (IS_IPAD) {
+        return UIInterfaceOrientationMaskLandscape;
+    } else {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+}
+
 - (void)closeHelpWebView {
     [helpWebView setHidden:YES];
 }
