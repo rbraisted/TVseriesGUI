@@ -1,3 +1,4 @@
+
 @import url(reset.css);
 * {
   box-sizing: border-box;
@@ -2119,8 +2120,17 @@ a {
 .sat-info .link, .sat-edit .link{width:100%; text-align:center; white-space:inherit; line-height:23px; }	
 .sat-info.popup-guts, .sat-edit.popup-guts {padding: 30px 16px ;}
 .group-edit .name-block, .group-edit .slot, .group-info .name-block, .group-info .slot{width:calc(100% - 30px); }
-  
-  
-  
 }
 
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+	
+	
+	
+}
+@media screen and (min-width:801px) and (max-width:1100px){
+.sat-info.popup-guts{margin-top:-320px; } 
+body .popup div.sat-edit{margin-top:-320px!important;}            
+}

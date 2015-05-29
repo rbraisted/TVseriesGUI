@@ -1547,3 +1547,10 @@ body .ethernet-setting-page{position:relative; }
 
 .header{top:0px; }
 }
+
+
+
+
+@media screen and (min-width:801px) and (max-width:1100px){
+.general-settings, .advanced-settings{padding:0px 20px; }       
+}
