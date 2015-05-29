@@ -126,7 +126,7 @@
     }
     if (error.code == NSURLErrorCancelled) {
         return;
-    } else if (error.code == NSURLErrorCannotFindHost  || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet) {
+    } else if (error.code == NSURLErrorCannotFindHost  || error.code == NSURLErrorCannotConnectToHost || error.code == NSURLErrorNotConnectedToInternet || error.code == NSURLErrorTimedOut) {
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
         if (ApplicationDelegate.isNavigateToUpdateScreen) {
