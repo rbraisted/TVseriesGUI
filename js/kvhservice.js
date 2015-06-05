@@ -789,8 +789,10 @@ $(document).ready(function(e) {
 
         $(xml).find('ap_mode').each(function() {
           message+='Network Mode: '+$(this).find('mode:first').text()+'\n\n';
+          
 
-          message+='ESSID: '+$(this).find('essid').text()+'\n\n';
+          message+='ESSID:   '+$(this).find('essid').text()+'\n\n';
+          message+='Channel: '+$(xml).find('channel').text()+'\n\n'
 
           message+='IP:         '+$(this).find('ip').text()+'\n';
           message+='Netmask:    '+$(this).find('netmask').text()+'\n';
@@ -800,6 +802,11 @@ $(document).ready(function(e) {
           if('set_wlan'==$('#chooseSetting').val()){
             $('#field_2').removeClass('hideField');
             $('#field_4').removeClass('hideField');
+            
+            $('#field_WLANChan').removeClass('hideField');
+            $('#fdWLANC').html('Channel');
+            $('#fdinWLANChan').val($(xml).find('channel').text());
+
             $('#fdin2').val($(this).find('essid').text());
             $('#fd2').html('ESSID');
             $('#fdin4').val($(this).find('ip').text());
@@ -2525,6 +2532,7 @@ $(document).ready(function(e) {
       var message='';
       switch ( $('#fdinWLANMode').val()){ 
       case 'AP':
+        message+='<channel>'+$('#fdinWLANChan').val()+'</channel>';
         message+='<mode>AP (Access Point)</mode>';
         message+='<ap_mode>';
         message+='<essid>'+$('#fdin2').val()+'</essid>';
@@ -2540,6 +2548,7 @@ $(document).ready(function(e) {
         message+='</ap_mode>';
         break;
       case 'IF':
+        message+='<channel></channel>';
         message+='<mode>IF (Infrastructure)</mode>';
         message+='<if_mode>';
         message+='<mode>'+$('#fdinIFMode').val()+'</mode>';
@@ -2850,10 +2859,15 @@ $(document).ready(function(e) {
         $('#field_6').addClass('hideField');
         $('#field_7').addClass('hideField');
 
+        $('#field_WLANChan').removeClass('hideField');
+        $('#fdWLANC').html('Channel');
+
         $('#field_2').removeClass('hideField');
         $('#fd2').html('ESSID');
+        
         $('#field_4').removeClass('hideField');
         $('#fd4').html('IP');
+        
         $('#field_IFSecurityMode').removeClass('hideField');
         $('#fdIFSec').html('Security');
         break;
@@ -2861,15 +2875,18 @@ $(document).ready(function(e) {
         $('#field_1').addClass('hideField');
         $('#field_2').addClass('hideField');
         $('#field_3').addClass('hideField');
+        $('#field_WLANChan').addClass('hideField');
+
         $('#field_4').removeClass('hideField');
         $('#field_IFMode').removeClass('hideField');
         $('#fdIFM').html('Mode');
         break;
       default:
         clearSelections();
-      $('#field_IFMode').addClass('hideField');
-      $('#field_IFSecurityMode').addClass('hideField');
-      break;
+        $('#field_IFMode').addClass('hideField');
+        $('#field_IFSecurityMode').addClass('hideField');
+        $('#field_WLANChan').addClass('hideField');
+        break;
       }
     }
   });
@@ -2979,6 +2996,7 @@ $(document).ready(function(e) {
     $('#field_ResetSoftware').addClass('hideField');
     $('#field_ETHMode').addClass('hideField');
     $('#field_WLANMode').addClass('hideField');
+    $('#field_WLANChan').addClass('hideField');
     $('#field_IFMode').addClass('hideField');
     $('#field_IFSecurityMode').addClass('hideField');
     $('#field_MasterSlaveMode').addClass('hideField');

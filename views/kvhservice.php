@@ -218,6 +218,16 @@
                         </select>
                     </td>
                 </tr>
+                <tr id="field_WLANChan" class="hideField">
+                    <td id="fdWLANC" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                        <select id="fdinWLANChan" style="width:175px;text-align:center;font-family:monospace,courier,courier new">
+                            <option value="1">Channel 1</option>
+                            <option value="6">Channel 6</option>
+                            <option value="11">Channel 11</option>
+                        </select>
+                    </td>
+                </tr>
                 <tr id="field_IFSecurityMode" class="hideField">
                     <td id="fdIFSec" align="left" style="width:100px">&nbsp;</td>
                     <td align="left">
