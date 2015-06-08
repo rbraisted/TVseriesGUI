@@ -37,11 +37,11 @@
     });
 
     var getConfirmation = function() {
-      var confirmed = confirm('You are about to update the software on your TV-Hub, are you sure you want to proceed?');
+      var confirmed = confirm('Software update takes up to 30 minutes during which TV programming is unavailable. Are you sure you want to proceed?');
       //  ran into a strange error here where confirmation alerts would stack up
       //  if you selected "Cancel" on the 2nd confirmation
       //  not sure why, but this seemed to fix it
-      if (confirmed && jQ.hasClass('$antenna')) return confirmed = confirm('This operation may take up to 30 minutes during which you will not be able to obtain a satellite signal, are you sure you want to proceed?');
+      if (confirmed && jQ.hasClass('$antenna')) return confirmed = confirm('Please Note:\nTV-Hub loses network connection during software updates. If using Wi-Fi, you must reconnect to your TV-Hub network when it becomes available.');
       else return confirmed;
     };
 
