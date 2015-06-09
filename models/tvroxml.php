@@ -245,6 +245,11 @@
             return($this->doSimple(__FUNCTION__));
         }
         
+        function get_nmea_instance()
+        {
+        	return($this->doSimple(__FUNCTION__));
+        }
+        
         function get_lnb_list()
         {
             return($this->doSimple(__FUNCTION__));

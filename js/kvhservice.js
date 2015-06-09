@@ -465,6 +465,29 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function get_nmea_instance(xml)
+  {
+	    var error=$(xml).find('message').attr('error');
+	    
+	    if('0'==error) {
+	        var message='';
+	        message+='  ECU Instance:          '+$(xml).find('ecu').text()+'\n';
+	        message+='  Function Instance:     '+$(xml).find('function').text()+'\n';
+	        message+='  Device Class Instance: '+$(xml).find('device').text()+'\n';
+
+	        if('set_nmea_instance'==$('#chooseSetting').val()){
+                $('#fdin1').val($(xml).find('ecu').text());
+                $('#fdin2').val($(xml).find('function').text());
+                $('#fdin3').val($(xml).find('device').text());
+              }
+
+	        $('#response').val( message +'\n');
+	        return false;
+	    } else {
+	        $('#response').val('ERROR: '+returnError(error)+'\n');
+	        return false;
+	    }
+  }
   function get_heading_config(xml)
   {
     var error=$(xml).find('message').attr('error');
@@ -640,6 +663,18 @@ $(document).ready(function(e) {
     }
   }
   function set_gps_config(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
+  function set_nmea_instance(xml)
   {
     var error=$(xml).find('message').attr('error');
     if('0'==error){
@@ -1879,6 +1914,17 @@ $(document).ready(function(e) {
       $('#fdNmeaGpsSource').html('NMEA Source');
       SendGetCommand('get_gps_config');
       break;
+    case 'set_nmea_instance':
+        clearWindow();
+        $('#field_1').removeClass('hideField');
+        $('#field_2').removeClass('hideField');
+        $('#field_3').removeClass('hideField');
+        $('#fd1').html('ECU Instance');
+        $('#fd2').html('Function Instance');
+        $('#fd3').html('Device Class Instance');
+
+        SendGetCommand('get_nmea_instance');
+        break;
     case 'factory_reset':
         clearWindow();
         break;
@@ -2766,6 +2812,41 @@ $(document).ready(function(e) {
 
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
+    case 'set_nmea_instance':
+        var message = '';
+        
+        // Retrieve the value, if it is empty it will assign to -1.
+        var ecu = $('#fdin1').val() || -1;
+        var func = $('#fdin2').val() || -1;
+        var device = $('#fdin3').val() || -1;
+        
+        // Convert to number for the conditionals.
+        var ecuNum = Number(ecu);
+        var funcNum = Number(func);
+        var deviceNum = Number(device);
+
+        // Perform some range checks. If any fail notify user and end processing.
+        if(ecuNum < 0 || ecuNum > 7 || isNaN(ecuNum)){
+          $('#response').val('ERROR: ECU Instance is outside range (0-7).\n');
+          break;
+        } else {
+            message+='<ecu>' + ecu +'</ecu>';
+        }
+        if(funcNum < 0 || funcNum > 31 || isNaN(funcNum)){
+          $('#response').val('ERROR: Function Instance is outside range (0-31).\n');
+          break;
+        } else {
+            message+='<function>' + func +'</function>';
+        }
+        if(deviceNum < 0 || deviceNum> 15 || isNaN(deviceNum)){
+          $('#response').val('ERROR: Device Class Instance is outside range (0-15).\n');
+          break;
+        } else {
+            message+='<device>' + device +'</device>';
+        }
+
+        SendGetCommand2($('#chooseSetting').val(),message);
+        break;
     default:
 
       break;
