@@ -39,6 +39,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 	private String hostName;
 	private UpdatesManager updatesManager;
 	private ProgressDialog progressBar; 
+	private String errorMsg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,20 +77,16 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 
 			if(tempHostName.charAt(tempHostName.length() - 1) == '/')
 				hostName = tempHostName.substring(0, tempHostName.length() - 1);
-			else
-				hostName = tempHostName;			
+			else				
+				hostName = tempHostName;
 			
 			if(hostName.equalsIgnoreCase(Constants.kWebSvcPortal))
+			{				
+				errorMsg = getString(R.string.failure_to_connect_with_updates_site);				
+			}
+			else
 			{
-				ImageButton arrowButton = (ImageButton)findViewById(R.id.arrowButton);
-				arrowButton.setVisibility(View.VISIBLE);
-				arrowButton.setOnClickListener(new View.OnClickListener() {
-
-			        @Override
-			        public void onClick(View v) {
-			           finish();
-			        }
-			});
+				errorMsg = getString(R.string.str_connection_failed);
 			}
 
 			shellhostName = "http://" + hostName + "/shell.php";
@@ -104,7 +101,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 		webView.getSettings().setGeolocationEnabled(true);
 
 		progressBar = ProgressDialog.show(WebViewActivity.this, null,
-				null);		
+				null);
 		
 
 		webView.setWebChromeClient(new WebChromeClient() {
@@ -159,6 +156,10 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 					handleCustomURL(url);
 					return false;
 				}
+				else if(url.substring(0, 5).contains("inapp") && url.contains("GoToHomePage")){
+					finish();
+					return true;
+				}
 				else if(scheme.contains("about:blank")) {
 					//	were trying to go to about:blank for some reason lets negate that
 					return true;
@@ -180,7 +181,6 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
 				Log.i(TAG, "On Page Started: " + url);
-
 
 			}
 
@@ -213,7 +213,7 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 					progressBar.dismiss();
 				}
 				
-				Toast.makeText(WebViewActivity.this, getString(R.string.str_connection_failed), Toast.LENGTH_LONG).show();
+				Toast.makeText(WebViewActivity.this, errorMsg, Toast.LENGTH_LONG).show();
 
 				//if there is an error found let us go back to the main screen like in iOS
 				goBackToMainActivity();
@@ -301,6 +301,9 @@ public class WebViewActivity extends Activity implements UpdatesManagerCallback 
 
 	@Override
 	public void onDestroy() {
+		if (progressBar.isShowing()) {
+			progressBar.dismiss();
+		}
 		webView.stopLoading();
 		helpWebView.stopLoading();
 

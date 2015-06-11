@@ -141,7 +141,6 @@
             [self goBackToHostSelect:ConnectionAlert];
         }
     }
-    [self addBackButton];
 }
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -150,9 +149,20 @@
     NSLog(@"request.URL.path is %@", request.URL.path);
     
     NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
-    if (request.URL.port) _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
+    if (request.URL.port)
+        _hostName = [NSString stringWithFormat:@"%@:%@", _hostName, request.URL.port];
     
     [helpWebView setHidden:YES];
+    
+    
+    // Use this action when pressed Home button in update page
+    // Use for in application only
+    if ([request.URL.scheme isEqualToString:@"inapp"]) {
+        if ([request.URL.host isEqualToString:@"GoToHomePage"]) {
+            [self navigateToLaunchPage];
+        }
+        return NO;
+    }
     
     //	check if it's a javascript to ios/android command
     //	being called with a the scheme "tvro"
@@ -266,25 +276,9 @@
     
     [timeoutTimer invalidate];
     [loadingView setHidden:TRUE];
-    [self addBackButton];
 }
 
-- (void)addBackButton
-{
-    if (ApplicationDelegate.isNavigateToUpdateScreen) {
-        ApplicationDelegate.isNavigateToUpdateScreen = NO;
-        UIImage* imgBackButton = [UIImage imageNamed:@"backButton"];
-        UIButton* btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnBack setFrame:CGRectMake(5, 0, 32.0, 48.0)];
-        [btnBack setImage:imgBackButton forState:UIControlStateNormal];
-        [btnBack setBackgroundColor:[UIColor clearColor]];
-        [btnBack addTarget:self action:@selector(callMainScreen) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnBack];
-        [self.view bringSubviewToFront:btnBack];
-    }
-}
-
-- (void)callMainScreen {
+- (void)navigateToLaunchPage {
     BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
     [UIApplication sharedApplication].delegate.window.rootViewController = bonjourViewController;
 }

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A64116F1ABAAC7D00412DFD /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A64116D1ABAAC7D00412DFD /* backButton.png */; };
-		8A6411701ABAAC7D00412DFD /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A64116E1ABAAC7D00412DFD /* backButton@2x.png */; };
 		AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138F1917F4DA00445E07 /* AppDelegate.m */; };
 		AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013911917F4DA00445E07 /* BonjourTableViewCell.m */; };
 		AAC013E21917F4DA00445E07 /* BonjourTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC013921917F4DA00445E07 /* BonjourTableViewCell~ipad.xib */; };
@@ -166,8 +164,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8A64116D1ABAAC7D00412DFD /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
-		8A64116E1ABAAC7D00412DFD /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAC0138F1917F4DA00445E07 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AAC013901917F4DA00445E07 /* BonjourTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourTableViewCell.h; sourceTree = "<group>"; };
@@ -397,8 +393,6 @@
 		E91EF035194174CA007829CD /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				8A64116D1ABAAC7D00412DFD /* backButton.png */,
-				8A64116E1ABAAC7D00412DFD /* backButton@2x.png */,
 				E91915AB1946953D00BD5F43 /* blue-pixel.png */,
 				E91EF036194174CA007829CD /* bonjourBG.png */,
 				E91EF037194174CA007829CD /* bonjourBG@2x.png */,
@@ -645,7 +639,6 @@
 				E91EF0EE194174CA007829CD /* sf_sat_blue@2x~iphone.png in Resources */,
 				AAC0141D1917F4DA00445E07 /* Images.xcassets in Resources */,
 				E91EF108194174CA007829CD /* TracVisionLogo@2x.png in Resources */,
-				8A64116F1ABAAC7D00412DFD /* backButton.png in Resources */,
 				E91EF0F9194174CA007829CD /* sf_sat_red~iphone.png in Resources */,
 				E91EF0BD194174CA007829CD /* iPadKVHLogo@2x.png in Resources */,
 				E91EF0FC194174CA007829CD /* sf_triangle_guide~iphone.png in Resources */,
@@ -762,7 +755,6 @@
 				E91EF119194174CA007829CD /* TVRV_icons_iTunesArtwork.png in Resources */,
 				E91EF0CC194174CA007829CD /* sf_horizontal_axis~iphone.png in Resources */,
 				E91EF0DE194174CA007829CD /* sf_line_dot~iphone.png in Resources */,
-				8A6411701ABAAC7D00412DFD /* backButton@2x.png in Resources */,
 				E91EF101194174CA007829CD /* tableCellBGDark.png in Resources */,
 				E91EF0FD194174CA007829CD /* tableCellArrow.png in Resources */,
 				E91EF0B7194174CA007829CD /* horizontal2_nu~iphone.png in Resources */,
