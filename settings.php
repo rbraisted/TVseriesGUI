@@ -160,7 +160,7 @@
       <span class="geoloc-label label">
         Get your GPS(GNSS) location and time from your mobile device/computer.<p class="blink_me #geoloc_error"></p>
       </span>
-      <span class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</span>
+      <div class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</div>
     </div>
 
     <!--<div class="block-btn #apply-manual-btn spaceBot">Save</div>-->

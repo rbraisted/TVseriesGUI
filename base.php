@@ -65,7 +65,7 @@
 
 <div class="popup flashing-view #flashing-view">
   <div class="popup-guts">
-    <div class="view-head">Updating...</div>
+    <div class="view-head #head"></div>
     <div class="#line-1"></div>
     <div class="#line-2"></div>
   </div>

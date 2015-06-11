@@ -33,6 +33,7 @@
             'SEARCHING': '$warning',
             'IDLE': '$warning',
             'CABLE UNWRAP': '$warning',
+            'DISCONNECTED': '$error',
             'ERROR': '$error'
           }[state]);
       });

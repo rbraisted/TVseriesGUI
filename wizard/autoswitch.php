@@ -83,7 +83,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 --><div class="come-back-copy copy">
     You can come back to this later if you are not ready to finish the AutoSwitching setup.
   </div>
-
+  <br>
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>

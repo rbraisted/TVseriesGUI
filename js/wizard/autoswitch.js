@@ -1,7 +1,20 @@
 $(function() {
 
   var prevBtn = $('.\\#prev-btn').click(function() {
-    window.history.go(-1);
+	  Promise.all(
+			  TVRO.getLnbType(),
+			  TVRO.getService()
+	  ).then(function(res) {
+		  var lnbType    = res[0];
+		  var satService = res[1];
+		  if (satService === 'DISH' || satService === 'BELL') {
+			  window.location = '/wizard/checkswitch.php#/complete-3';
+		  } else if (satService === 'DIRECTV') {
+			  window.location = '/wizard/service.php/directv#/directv';
+		  } else if (lnbType === 'linear'){
+			  window.location = '/wizard/system.php#/linear-system-config';
+		  }
+	  });
   });
 
   var nextBtn = $('.\\#next-btn').click(function() {
@@ -41,8 +54,14 @@ $(function() {
     $('.\\#receiver-edit-view')
       .find('.\\#back-btn')
         .click(function() {
-          var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
-          window.location.hash = (receiver ? '/' + receiver : '');
+        	// Since both edit and new screens are an edit screen look for new
+        	// hash to navigate back to the correct location.
+        	if(location.hash.match(/\/new/)){
+        		window.location.hash = '';
+        	}else{
+                var receiver = encode(receiverEditView.getReceiver() ? receiverEditView.getReceiver().id : '');
+                window.location.hash = (receiver ? '/' + receiver : '');
+        	}
         })
         .end()
   );

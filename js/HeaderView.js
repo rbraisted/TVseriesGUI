@@ -174,6 +174,9 @@ $(window).resize(function(){
 
         $('.\\#flashing-view')
           .toggle(isFlashing)
+          .find('.\\#head')
+            .text("Updating...")
+            .end()
           .find('.\\#line-1')
             .text(line1)
             .end()

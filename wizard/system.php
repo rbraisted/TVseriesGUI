@@ -48,14 +48,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     </div>
 
     Do not attempt to adjust the LNB with the antenna powered on.
-    The antenna’s moving parts can cause injury. Just note the skew
+    The antenna's moving parts can cause injury. Just note the skew
     angle for now. When you complete the wizard, disconnect power
     from the antenna then adjust the LNB to the proper skew angle.
   </div><!--
 --><div class="column">
     <img src="/images/wizard-skew.svg" class="skew-image">
     <a href="javascript:TVRO.showHelp(902);" class="link">
-      Learn how to adjust the LNB’s skew angle.
+      Learn how to adjust the LNB's skew angle.
     </a>
   </div>
 
@@ -88,12 +88,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
    --><span class="table-col info-col info-btn #info-btn"></span>
     </div>
   </div>
-   <div class="copy">
-   <br>
+  <div class="note">
     If you select Configuration 4, be sure to set Band/Polarization Control to
-    “TV-Hub” when you exit the Wizard (go to Settings &gt; Advanced Settings).
+    'TV-Hub' when you exit the Wizard (go to Settings > Advanced Settings).
   </div>
-    
+  <br>
   <div class="bottom-bar">
     <a class="prev-btn #prev-btn">Previous</a>
     <a class="next-btn #next-btn">Next</a>
