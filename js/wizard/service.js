@@ -92,7 +92,7 @@
                   if (value === 'TRI-AM DUAL') {
                     window.location = '/wizard/activation.php';
                   } else {
-                    window.location = '/wizard/autoswitch.php#/directv';
+                    window.location.hash = '/directv';
                   }
                 } else if (state === 'ERROR') {
                   clearInterval(interval);
@@ -124,7 +124,8 @@
   var DirectvView = function(jQ) {
 
     var group = '';
-
+    var isTriAmericas;
+    
     var singleOption = {
         title: 'Single Satellite',
         copy: 'For programming on the 101 satellite, you are ready to activate ' +
@@ -156,94 +157,109 @@
     $('.\\#cities-119-view .\\#back-btn').click(function() { window.location.hash = '/directv'; });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      var interval;
+    	var interval;
 
-      var option = self.getValue();
-      if (!option) alert('You must select an option to continue.');
+    	var option = self.getValue();
+    	if (!option) alert('You must select an option to continue.');
 
-      else if (option === singleOption)
-        TVRO.setAutoswitchService({
-          enable: 'N',
-          service: 'DIRECTV',
-          satellite_group: '101W'
-        }).then(function() {
-          document.body.className = '/spinner';
+    	else if (option === singleOption)
+    		TVRO.setAutoswitchService({
+    			enable: 'N',
+    			service: 'DIRECTV',
+    			satellite_group: '101W'
+    		}).then(function() {
+    			document.body.className = '/spinner';
 
-          setTimeout(function() {
-            interval = setInterval(function() {
-              TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
-                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-                  clearInterval(interval);
-                  window.location = '/wizard/activation.php';
-                }else if (state === 'ERROR') {
-                  clearInterval(interval);
-                  alert("An error occured installing 101W.");
-                  window.location.hash = '/directv';
-                }//End if (state === 'ERROR')
-              });          
-            }, 1000);
-          }, 10000);
-        });
+    			setTimeout(function() {
+    				interval = setInterval(function() {
+    					TVRO.getAntState().then(function(state) {
+    						$('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
+    						if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+    							clearInterval(interval);
+    							window.location = '/wizard/activation.php';
+    						}else if (state === 'ERROR') {
+    							clearInterval(interval);
+    							alert("An error occured installing 101W.");
+    							window.location.hash = '/directv';
+    						}//End if (state === 'ERROR')
+    					});          
+    				}, 1000);
+    			}, 10000);
+    		});
 
-      else if (option === manualOption){          
-        TVRO.setAutoswitchService({
-          enable: 'N',
-          service: 'DIRECTV',
-          satellite_group: group
-        }).then(function() {
-          document.body.className = '/spinner';
-          setTimeout(function() {
-            interval = setInterval(function() {
-              TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
-                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-                  clearInterval(interval);
-                  window.location = '/wizard/activation.php';
-                }else if (state === 'ERROR') {
-                  clearInterval(interval);
-                  alert("An error occured installing " + group + ".");
-                  window.location.hash = '/directv';
-                }//End if (state === 'ERROR')
-              });          
-            }, 1000);
-          }, 10000);
-        });
+    	else if (option === manualOption){
+    		// If Tri AM the group was already installed, just need to set
+    		// autoswitch.
+    		if (isTriAmericas){
+    			TVRO.setAutoswitchEnabled(false).then(function(){
+    				window.location = '/wizard/activation.php';
+    			});
+    		} else {
+    			TVRO.setAutoswitchService({
+    				enable: 'N',
+    				service: 'DIRECTV',
+    				satellite_group: group
+    			}).then(function() {
+    				document.body.className = '/spinner';
+    				setTimeout(function() {
+    					interval = setInterval(function() {
+    						TVRO.getAntState().then(function(state) {
+    							$('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
+    							if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+    								clearInterval(interval);
+    								window.location = '/wizard/activation.php';
+    							}else if (state === 'ERROR') {
+    								clearInterval(interval);
+    								alert("An error occured installing " + group + ".");
+    								window.location.hash = '/directv';
+    							}//End if (state === 'ERROR')
+    						});          
+    					}, 1000);
+    				}, 10000);
+    			});
+    		}
+    	}else if (option === automaticOption)
+    		// If Tri AM the group was already installed, just need to set
+    		// autoswitch.
+    		if (isTriAmericas){
+    			TVRO.setAutoswitchEnabled(true).then(function(){
+    				window.location = '/wizard/autoswitch.php';
+    			});
+    		} else {
+    			TVRO.setAutoswitchService({
+    				enable: 'Y',
+    				service: 'DIRECTV',
+    				satellite_group: group
+    			}).then(function() {
+    				document.body.className = '/spinner';
 
-      }else if (option === automaticOption)
-        TVRO.setAutoswitchService({
-          enable: 'Y',
-          service: 'DIRECTV',
-          satellite_group: group
-        }).then(function() {
-          document.body.className = '/spinner';
-
-          setTimeout(function() {
-            interval = setInterval(function() {
-              TVRO.getAntState().then(function(state) {
-                $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
-                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-                  clearInterval(interval);
-                  window.location = '/wizard/autoswitch.php#/directv';
-                } else if (state === 'ERROR') {
-                  clearInterval(interval);
-                  alert("An error occured installing " + group + ".");
-                  window.location.hash = '/directv';
-                }//End if (state === 'ERROR')
-              });          
-            }, 1000);
-          }, 10000);
-        });
-
-      $('.\\#exit-btn').click(function(){
-        clearInterval(interval);
-        TVRO.reload();
-      });  
+    				setTimeout(function() {
+    					interval = setInterval(function() {
+    						TVRO.getAntState().then(function(state) {
+    							$('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
+    							if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+    								clearInterval(interval);
+    								window.location = '/wizard/autoswitch.php';
+    							} else if (state === 'ERROR') {
+    								clearInterval(interval);
+    								alert("An error occured installing " + group + ".");
+    								window.location.hash = '/directv';
+    							}//End if (state === 'ERROR')
+    						});          
+    					}, 1000);
+    				}, 10000);
+    			});
+    		}
+    	
+    	$('.\\#exit-btn').click(function(){
+    		clearInterval(interval);
+    		TVRO.reload();
+    	});  
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      TVRO.getLnbName().then(function(name) {
-        var isTriAmericas = name === 'Tri-Americas Circular';
+      TVRO.getLnbPart().then(function(name) {
+        var isTriAmericas = name === '19-0577';
         if (isTriAmericas) window.location.hash = '/tri-am-group';
         else window.location = '/wizard/service.php';
       });
@@ -256,9 +272,9 @@
         // LNB in the previous step.
         Promise.all(
           TVRO.getInstalledGroup(),
-          TVRO.getLnbName()
+          TVRO.getLnbPart()
         ).then(function(res) {
-          var isTriAmericas = res[1] === 'Tri-Americas Circular';
+          isTriAmericas = res[1] === '19-0577';
 
           if (isTriAmericas) {
             group = res[0].name;

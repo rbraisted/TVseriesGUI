@@ -45,18 +45,19 @@
             <input type="button" id="button17" value="get_gps" onclick="SendGetCommand('get_gps')" style="width:250px" />
             <input type="button" id="button18" value="get_gps_cities" onclick="SendGetCommand('get_gps_cities')" style="width:250px" />
             <input type="button" id="button19" value="get_gps_config" onclick="SendGetCommand('get_gps_config')" style="width:250px" />
-            <input type="button" id="button20" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:250px" />
-            <input type="button" id="button21" value="get_heading_config" onclick="SendGetCommand('get_heading_config')" style="width:250px" />
-            <input type="button" id="button22" value="serial_log_status" onclick="SendGetCommand('serial_log_status')" style="width:250px" />
-            <input type="button" id="button23" value="get_serial_log" onclick="SendGetCommand('get_serial_log')" style="width:250px" />
-            <input type="button" id="button24" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:250px" />
-            <input type="button" id="button25" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:250px" />
-            <input type="button" id="button26" value="clear_event_history_log" onclick="SendGetCommand('clear_event_history')" style="width:250px" />
-            <input type="button" id="button27" value="power" onclick="SendGetCommand('power')" style="width:250px" />
-            <input type="button" id="button28" value="ophours" onclick="SendGetCommand('ophours')" style="width:250px" />
-            <input type="button" id="button29" value="get_details" onclick="get_details()" style="width:250px" />
-            <input type="button" id="button30" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:250px" />
-            <input type="button" id="button31" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:250px" />
+            <input type="button" id="button20" value="get_nmea_instance" onclick="SendGetCommand('get_nmea_instance')" style="width:250px" />
+            <input type="button" id="button21" value="get_nmea_heading" onclick="SendGetCommand('get_nmea_heading')" style="width:250px" />
+            <input type="button" id="button22" value="get_heading_config" onclick="SendGetCommand('get_heading_config')" style="width:250px" />
+            <input type="button" id="button23" value="serial_log_status" onclick="SendGetCommand('serial_log_status')" style="width:250px" />
+            <input type="button" id="button24" value="get_serial_log" onclick="SendGetCommand('get_serial_log')" style="width:250px" />
+            <input type="button" id="button25" value="get_event_history_count" onclick="SendGetCommand('get_event_history_count')" style="width:250px" />
+            <input type="button" id="button26" value="get_event_history_log" onclick="SendGetCommand('get_event_history_log')" style="width:250px" />
+            <input type="button" id="button27" value="clear_event_history_log" onclick="SendGetCommand('clear_event_history')" style="width:250px" />
+            <input type="button" id="button28" value="power" onclick="SendGetCommand('power')" style="width:250px" />
+            <input type="button" id="button29" value="ophours" onclick="SendGetCommand('ophours')" style="width:250px" />
+            <input type="button" id="button30" value="get_details" onclick="get_details()" style="width:250px" />
+            <input type="button" id="button31" value="file_transfer" onclick="window.open('../kvhservicefiletransfer.php')" style="width:250px" />
+            <input type="button" id="button32" value="telnet_connect" onclick="window.open('../kvhserviceCL.php')" style="width:250px" />
         </td>
         <td valign="top" width="100%">
             <textarea name="response" id="response" rows="40" style=" height:auto; height:100%; width:95%; font-family:monospace,courier,courier new"></textarea>
@@ -87,6 +88,7 @@
                 <option value="set_gps">set_gps</option>
                 <option value="set_gps_config">set_gps_config</option>
                 <option value="set_heading_config">set_heading_config</option>
+                <option value="set_nmea_instance">set_nmea_instance</option>
                 <option value="start_serial_log">start_serial_log</option>
                 <option value="get_recent_event_history">get_recent_event_history</option>
                 <option value="reboot">reboot</option>
@@ -215,6 +217,16 @@
                         <select id="fdinIFMode" style="width:175px;text-align:center;font-family:monospace,courier,courier new">
                             <option value="DYNAMIC">DYNAMIC</option>
                             <option value="STATIC">STATIC</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="field_WLANChan" class="hideField">
+                    <td id="fdWLANC" align="left" style="width:100px">&nbsp;</td>
+                    <td align="left">
+                        <select id="fdinWLANChan" style="width:175px;text-align:center;font-family:monospace,courier,courier new">
+                            <option value="1">Channel 1</option>
+                            <option value="6">Channel 6</option>
+                            <option value="11">Channel 11</option>
                         </select>
                     </td>
                 </tr>

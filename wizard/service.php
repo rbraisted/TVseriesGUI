@@ -27,7 +27,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     --><span class="table-col #value"></span>
     </div>
   </div>
-
+  <br>
+  
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>
@@ -77,7 +78,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view directv #directv-view">
   <div class="view-head">DIRECTV</div>
-  <div class="headline">Success! You’re now set up for all your DIRECTV programming!</div>
+  <div class="headline">Success! You're now set up for all your DIRECTV programming!</div>
   <div class="link #cityDropdown" align="center">See which cities have their local channels on 119W.</div>
   <br>
   <div class="grey-box-table #table-view">
@@ -87,7 +88,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
       <div class="radio-icon"></div>
     </div>
   </div>
-
+  <br>
+  
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>
     <div class="next-btn #next-btn">Next</div>

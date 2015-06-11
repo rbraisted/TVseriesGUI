@@ -141,6 +141,20 @@
           console.log(errorThrown);
           console.log('\n');
         }
+        
+        // Pops up the 'flashing' screen to give an alert when connection to
+        // the Hub is lost.
+        $('.\\#flashing-view')
+        .toggle(true)
+        .find('.\\#head')
+          .text("Lost Connection to the TV-Hub...")
+          .end()
+        .find('.\\#line-1')
+          .text("Please check your network connection to the TV-Hub.")
+          .end()
+        .find('.\\#line-2')
+          .text("")
+          .end();
 
         if (requestUrl !== liveUrl || requestUrl !== demoUrl) {
           errorCallback(errorThrown);

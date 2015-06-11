@@ -465,6 +465,29 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function get_nmea_instance(xml)
+  {
+	    var error=$(xml).find('message').attr('error');
+	    
+	    if('0'==error) {
+	        var message='';
+	        message+='  ECU Instance:          '+$(xml).find('ecu').text()+'\n';
+	        message+='  Function Instance:     '+$(xml).find('function').text()+'\n';
+	        message+='  Device Class Instance: '+$(xml).find('device').text()+'\n';
+
+	        if('set_nmea_instance'==$('#chooseSetting').val()){
+                $('#fdin1').val($(xml).find('ecu').text());
+                $('#fdin2').val($(xml).find('function').text());
+                $('#fdin3').val($(xml).find('device').text());
+              }
+
+	        $('#response').val( message +'\n');
+	        return false;
+	    } else {
+	        $('#response').val('ERROR: '+returnError(error)+'\n');
+	        return false;
+	    }
+  }
   function get_heading_config(xml)
   {
     var error=$(xml).find('message').attr('error');
@@ -651,6 +674,18 @@ $(document).ready(function(e) {
       return false;
     }
   }
+  function set_nmea_instance(xml)
+  {
+    var error=$(xml).find('message').attr('error');
+    if('0'==error){
+      var message='Successfully Sent';
+      $('#response').val( message +'\n');
+      return false;
+    }else{
+      $('#response').val('ERROR: '+returnError(error)+'\n');
+      return false;
+    }
+  }
   function power(xml)
   {
     var error=$(xml).find('message').attr('error');
@@ -789,8 +824,10 @@ $(document).ready(function(e) {
 
         $(xml).find('ap_mode').each(function() {
           message+='Network Mode: '+$(this).find('mode:first').text()+'\n\n';
+          
 
-          message+='ESSID: '+$(this).find('essid').text()+'\n\n';
+          message+='ESSID:   '+$(this).find('essid').text()+'\n\n';
+          message+='Channel: '+$(xml).find('channel').text()+'\n\n'
 
           message+='IP:         '+$(this).find('ip').text()+'\n';
           message+='Netmask:    '+$(this).find('netmask').text()+'\n';
@@ -800,6 +837,11 @@ $(document).ready(function(e) {
           if('set_wlan'==$('#chooseSetting').val()){
             $('#field_2').removeClass('hideField');
             $('#field_4').removeClass('hideField');
+            
+            $('#field_WLANChan').removeClass('hideField');
+            $('#fdWLANC').html('Channel');
+            $('#fdinWLANChan').val($(xml).find('channel').text());
+
             $('#fdin2').val($(this).find('essid').text());
             $('#fd2').html('ESSID');
             $('#fdin4').val($(this).find('ip').text());
@@ -1872,6 +1914,17 @@ $(document).ready(function(e) {
       $('#fdNmeaGpsSource').html('NMEA Source');
       SendGetCommand('get_gps_config');
       break;
+    case 'set_nmea_instance':
+        clearWindow();
+        $('#field_1').removeClass('hideField');
+        $('#field_2').removeClass('hideField');
+        $('#field_3').removeClass('hideField');
+        $('#fd1').html('ECU Instance');
+        $('#fd2').html('Function Instance');
+        $('#fd3').html('Device Class Instance');
+
+        SendGetCommand('get_nmea_instance');
+        break;
     case 'factory_reset':
         clearWindow();
         break;
@@ -2525,6 +2578,7 @@ $(document).ready(function(e) {
       var message='';
       switch ( $('#fdinWLANMode').val()){ 
       case 'AP':
+        message+='<channel>'+$('#fdinWLANChan').val()+'</channel>';
         message+='<mode>AP (Access Point)</mode>';
         message+='<ap_mode>';
         message+='<essid>'+$('#fdin2').val()+'</essid>';
@@ -2540,6 +2594,7 @@ $(document).ready(function(e) {
         message+='</ap_mode>';
         break;
       case 'IF':
+        message+='<channel></channel>';
         message+='<mode>IF (Infrastructure)</mode>';
         message+='<if_mode>';
         message+='<mode>'+$('#fdinIFMode').val()+'</mode>';
@@ -2757,6 +2812,41 @@ $(document).ready(function(e) {
 
       SendGetCommand2($('#chooseSetting').val(),message);
       break;
+    case 'set_nmea_instance':
+        var message = '';
+        
+        // Retrieve the value, if it is empty it will assign to -1.
+        var ecu = $('#fdin1').val() || -1;
+        var func = $('#fdin2').val() || -1;
+        var device = $('#fdin3').val() || -1;
+        
+        // Convert to number for the conditionals.
+        var ecuNum = Number(ecu);
+        var funcNum = Number(func);
+        var deviceNum = Number(device);
+
+        // Perform some range checks. If any fail notify user and end processing.
+        if(ecuNum < 0 || ecuNum > 7 || isNaN(ecuNum)){
+          $('#response').val('ERROR: ECU Instance is outside range (0-7).\n');
+          break;
+        } else {
+            message+='<ecu>' + ecu +'</ecu>';
+        }
+        if(funcNum < 0 || funcNum > 31 || isNaN(funcNum)){
+          $('#response').val('ERROR: Function Instance is outside range (0-31).\n');
+          break;
+        } else {
+            message+='<function>' + func +'</function>';
+        }
+        if(deviceNum < 0 || deviceNum> 15 || isNaN(deviceNum)){
+          $('#response').val('ERROR: Device Class Instance is outside range (0-15).\n');
+          break;
+        } else {
+            message+='<device>' + device +'</device>';
+        }
+
+        SendGetCommand2($('#chooseSetting').val(),message);
+        break;
     default:
 
       break;
@@ -2850,10 +2940,15 @@ $(document).ready(function(e) {
         $('#field_6').addClass('hideField');
         $('#field_7').addClass('hideField');
 
+        $('#field_WLANChan').removeClass('hideField');
+        $('#fdWLANC').html('Channel');
+
         $('#field_2').removeClass('hideField');
         $('#fd2').html('ESSID');
+        
         $('#field_4').removeClass('hideField');
         $('#fd4').html('IP');
+        
         $('#field_IFSecurityMode').removeClass('hideField');
         $('#fdIFSec').html('Security');
         break;
@@ -2861,15 +2956,18 @@ $(document).ready(function(e) {
         $('#field_1').addClass('hideField');
         $('#field_2').addClass('hideField');
         $('#field_3').addClass('hideField');
+        $('#field_WLANChan').addClass('hideField');
+
         $('#field_4').removeClass('hideField');
         $('#field_IFMode').removeClass('hideField');
         $('#fdIFM').html('Mode');
         break;
       default:
         clearSelections();
-      $('#field_IFMode').addClass('hideField');
-      $('#field_IFSecurityMode').addClass('hideField');
-      break;
+        $('#field_IFMode').addClass('hideField');
+        $('#field_IFSecurityMode').addClass('hideField');
+        $('#field_WLANChan').addClass('hideField');
+        break;
       }
     }
   });
@@ -2979,6 +3077,7 @@ $(document).ready(function(e) {
     $('#field_ResetSoftware').addClass('hideField');
     $('#field_ETHMode').addClass('hideField');
     $('#field_WLANMode').addClass('hideField');
+    $('#field_WLANChan').addClass('hideField');
     $('#field_IFMode').addClass('hideField');
     $('#field_IFSecurityMode').addClass('hideField');
     $('#field_MasterSlaveMode').addClass('hideField');

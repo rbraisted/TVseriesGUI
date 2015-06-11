@@ -1315,6 +1315,10 @@ a {
 @media screen and (min-width: 881px) {
   .vessel-location .headline {
     margin: 40px 0 30px; } }
+.spinner-view .headline {
+	text-align: center;
+	margin-top:20px;
+}    
 .vessel-location .note {
   line-height: 1.5;
   margin-top: 20px;
@@ -1346,7 +1350,8 @@ user-select: none !important;
 .vessel-location p {
   color: #ff0000;
   line-height: 1.6;
-  margin-bottom: 20px; }
+  margin-top: 15px;
+  margin-bottom: 15px; }
 .vessel-location .toggle-btn {
   margin-bottom: 20px; }
 .vessel-location .geoloc-view,
