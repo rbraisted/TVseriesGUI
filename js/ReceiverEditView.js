@@ -30,12 +30,12 @@
 
         if (isNew) {
           TVRO.addReceiver(newReceiver).then(function() {
-            window.location.hash = '/' + newReceiver.id;
+            window.location.hash = '/' + id;
           });
         } else {
           TVRO.removeReceiver(receiver).then(function() {
             TVRO.addReceiver(newReceiver).then(function() {
-              window.location.hash = '/' + newReceiver.id;
+              window.location.hash = '/' + id;
             });
           });
         }

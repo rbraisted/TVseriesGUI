@@ -25,7 +25,11 @@
 
   var CompleteView = function(jQ) {
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      window.location = '/wizard/activation.php';
+    	if(window.location.hash.match('\complete-3')) {
+    		window.location = '/wizard/autoswitch.php';
+    	} else {
+            window.location = '/wizard/activation.php';
+        }
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
