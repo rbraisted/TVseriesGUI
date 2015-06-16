@@ -8,6 +8,31 @@
 #import "Satellite.h"
 #import "RXMLElement.h"
 
+@interface CUIImagePickerController : UIImagePickerController
+@end
+@implementation CUIImagePickerController
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return NO;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+@end
+
+
 @implementation SatelliteFinderViewController
 
 //=========================================================================================================================================================
@@ -64,7 +89,7 @@
     satElement = [satListXml child:@"satellites.D"];
     Satellite* satD = [[Satellite alloc] initWithListID:[satElement child:@"listID"].text withAntSatID:[satElement child:@"antSatID"].text withTriSatID:[satElement child:@"triSatID"].text withName:[satElement child:@"name"].text withRegion:[satElement child:@"region"].text withDegLon:[[satElement child:@"lon"].text floatValue] isFavorite:[[satElement child:@"favorite"].text boolValue] isEnabled:[[satElement child:@"enable"].text boolValue] isSelectable:[[satElement child:@"select"].text boolValue] isSelected:FALSE];
     [satList addObject:satD];
-
+    
     // find the selected satellite from antenna_status
     [self getAntennaStatusFromHostname:[[NSUserDefaults standardUserDefaults] objectForKey:@"default-host"]];
 }
@@ -96,7 +121,7 @@
     
     RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
     RXMLElement* satElement = [satListXml child:@"satellite"];
-
+    
     NSString* selectedAntSatID = [[NSString alloc] init];
     selectedAntSatID = [satElement child:@"selected"].text;
     
@@ -193,12 +218,13 @@
     NSLog(@":: backButtonPressed");
     
     [self nilSatelliteFinderViewObjects];
-    
-    if (IS_OS_7_OR_LATER) {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+
+    /*if (IS_OS_7_OR_LATER) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self.presentingViewController dismissModalViewControllerAnimated:NO];
-    }
+    }*/
     if (timer != nil) {
         [timer invalidate];
         timer = nil;
@@ -213,8 +239,12 @@
 -(void)nilSatelliteFinderViewObjects
 {
     // nil UIAccelerometer Object...
-    [accelerometer setDelegate:nil];
-    accelerometer = nil;
+    //[accelerometer setDelegate:nil];
+    //accelerometer = nil;
+    
+    // stop & nil CMMotionManager Object...
+    [motionManager stopAccelerometerUpdates];
+    motionManager = nil;
     
     // nil CLLocationManager Object...
     [locationManager setDelegate:nil];
@@ -226,7 +256,8 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth {
+- (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth
+{
     // NSLog(@":: xPositionForSatelliteWithAzimuth");
     satelliteAzimuth += (0.0 > satelliteAzimuth) ? 360.0 : 0.0;
     
@@ -234,14 +265,20 @@
     double rightBound = deviceHeading + (hfov/2.0);
     
     double positionAtBoundScale;
-    if (leftBound > rightBound)	{
-        if (satelliteAzimuth <= rightBound) {
+    if (leftBound > rightBound)
+    {
+        if (satelliteAzimuth <= rightBound)
+        {
             positionAtBoundScale = ((360.0 - leftBound) + satelliteAzimuth)/hfov;
-        } else if (satelliteAzimuth >= leftBound) {
+        }
+        else if (satelliteAzimuth >= leftBound)
+        {
             positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
         }
         else return NAN;
-    } else {
+    }
+    else
+    {
         if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)) positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
         else return NAN;
     }
@@ -286,23 +323,28 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (double)yPositionForSatelliteWithElevation:(double)satelliteElevation {
+- (double)yPositionForSatelliteWithElevation:(double)satelliteElevation
+{
     // NSLog(@":: yPositionForSatelliteWithElevation");
     double topBound = deviceTilt + (vfov/2.0);
     double bottomBound = deviceTilt - (vfov/2.0);
     
-    if ((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
+    if ((satelliteElevation > bottomBound) && (satelliteElevation < topBound))
+    {
         double boundDiff = topBound - bottomBound;
         double positionAtBoundScale = (satelliteElevation - bottomBound)/boundDiff;
         double y = camviewheight - (camviewheight * positionAtBoundScale);
         return y;
-    } else {
+    }
+    else
+    {
         return NAN;
     }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (double)offscreenYPositionForSatelliteWithElevation:(double)satelliteElevation {
+- (double)offscreenYPositionForSatelliteWithElevation:(double)satelliteElevation
+{
     // NSLog(@":: offscreenYPositionForSatelliteWithElevation");
     double topBound = deviceTilt + (vfov/2.0);
     double bottomBound = deviceTilt - (vfov/2.0);
@@ -311,10 +353,13 @@
     double positionAtBoundScale;
     double y = 0.0;
     
-    if (satelliteElevation <= bottomBound) {
+    if (satelliteElevation <= bottomBound)
+    {
         positionAtBoundScale = (bottomBound - satelliteElevation)/boundDiff;
         y = camviewheight + (camviewheight * positionAtBoundScale);
-    } else if (satelliteElevation >= topBound) {
+    }
+    else if (satelliteElevation >= topBound)
+    {
         positionAtBoundScale = (satelliteElevation - topBound)/boundDiff;
         y = 0.0 - (camviewheight * positionAtBoundScale);
     }
@@ -332,7 +377,8 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)drawSatList {
+- (void)drawSatList
+{
     // NSLog(@":: drawSatList");
     NSUInteger k = [satList count];
     float hw = (IS_IPAD ? 384.0 : 160.0); // half width
@@ -349,28 +395,36 @@
     float offscreenClosestX = 0.0;
     float offscreenClosestY = 0.0;
     
-    while (k--) {
+    while (k--)
+    {
         Satellite* satellite = (Satellite*)[satList objectAtIndex:k];
         NSNumber* satelliteLongitude = [NSNumber numberWithFloat:satellite.degLon];
         
-        if (satelliteLongitude) {
+        if (satelliteLongitude)
+        {
             NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:[satelliteLongitude doubleValue]];
-            if (satelliteAzimuthAndElevation) {
+            
+            if (satelliteAzimuthAndElevation)
+            {
                 double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
                 double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
                 double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
                 double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
                 
-                if (0.0 < satelliteElevation) {
-                    if (isNaN(x) || isNaN(y)) {
+                if (0.0 < satelliteElevation)
+                {
+                    if (isNaN(x) || isNaN(y))
+                    {
                         //	satellite is offscreen. hide it.
                         [overlayView hideViewForSatelliteWithName:satellite.antSatID];
                         
                         //	if we already have a visible satellite, do not calculate direction/distance of offscreen satellite.
-                        if (satellitesVisible) {
+                        if (satellitesVisible)
+                        {
                             continue;
-                            
-                        } else {
+                        }
+                        else
+                        {
                             //	if we have no visible satellites yet, go ahead and calculate the distance and offscreen x & y
                             if (isNaN(x)) x = [self offscreenXPositionForSatelliteWithAzimuth:satelliteAzimuth];
                             if (isNaN(y)) y = [self offscreenYPositionForSatelliteWithElevation:satelliteElevation];
@@ -384,22 +438,24 @@
                             float dy = (y2 - y1);
                             float d = sqrt(dx*dx + dy*dy);
                             
-                            if (d < offscreenClosestD) {
+                            if (d < offscreenClosestD)
+                            {
                                 offscreenClosestD = d;
                                 offscreenClosestX = x;
                                 offscreenClosestY = y;
                             }
                         }
-                        
                         continue;
-                    } else {
+                    }
+                    else
+                    {
                         if (satellite.selected)
                             [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:2];
                         else if (satellite.enabled)
                             [overlayView updateViewForSatelliteWithName:satellite.antSatID AtX:x andY:y withType:1];
                         else
-                             continue;
-
+                            continue;
+                        
                         satellitesVisible = YES;
                         
                         //	get distance
@@ -411,14 +467,19 @@
                         float dy = (y2 - y1);
                         float d = sqrt(dx*dx + dy*dy);
                         
-                        if (d < closestD) {
+                        if (d < closestD)
+                        {
                             closestD = d;
                             closest = satellite.antSatID;
                         }
                     }
                 }
-            } else continue;
-        } else continue;
+            }
+            else
+                continue;
+        }
+        else
+            continue;
     }
     
     //	set closest if sats visible
@@ -465,30 +526,46 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)drawClarkeBelt {
+- (void)drawClarkeBelt
+{
     // enumerate through satellites
     NSString* satelliteName;
-    for( double satelliteLongitude = 0.0; satelliteLongitude < 359.0; satelliteLongitude += 5.0 ) {
+    //    for( double satelliteLongitude = 0.0; satelliteLongitude < 359.0; satelliteLongitude += 5.0 ) {
+    for( double satelliteLongitude = 0.0; satelliteLongitude < 500.0; satelliteLongitude += 5.0 )
+    {
         satelliteName = @"dot";
         satelliteName = [satelliteName stringByAppendingFormat:@"%lf",satelliteLongitude];
-        if(satelliteLongitude) {
+        
+        if(satelliteLongitude)
+        {
             // use jacob's alg to calc azimuth & elevation of satellite
             NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:satelliteLongitude];
-            if(satelliteAzimuthAndElevation) {
+            
+            if(satelliteAzimuthAndElevation)
+            {
                 double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
                 double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
                 double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
                 double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
-                if(satelliteElevation>0.0) {
-                    if(isNaN(x) || isNaN(y)) {
+                
+                if(satelliteElevation>0.0)
+                {
+                    if(isNaN(x) || isNaN(y))
+                    {
                         [overlayView hideViewForSatelliteWithName:satelliteName];
                         continue;
-                    } else {
+                    }
+                    else
+                    {
                         [overlayView updateViewForSatelliteWithName:satelliteName AtX:x andY:y withType:0];
                     }
                 }
-            } else continue;
-        } else continue;
+            }
+            else
+                continue;
+        }
+        else
+            continue;
     }
 }
 
@@ -497,21 +574,33 @@
 #pragma mark UIViewController Methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (id)init {
-    if (IS_IPAD) self = [super initWithNibName:@"SatelliteFinderViewController~iPad" bundle:[NSBundle mainBundle]];
-    else self = [super initWithNibName:@"SatelliteFinderViewController~iPhone" bundle:[NSBundle mainBundle]];
+- (id)init
+{
+    if (IS_IPAD)
+        self = [super initWithNibName:@"SatelliteFinderViewController~iPad" bundle:[NSBundle mainBundle]];
+    else
+        self = [super initWithNibName:@"SatelliteFinderViewController~iPhone" bundle:[NSBundle mainBundle]];
     
-    if (self) {
-        
+    if (self)
+    {
         satList = [[NSMutableArray alloc] init];
         
         double accelerometerFrequency = (1.0 / 24.0);
         accelerometerFilter = [[LowpassFilter alloc] initWithSampleRate:accelerometerFrequency cutoffFrequency:5.0];
         [accelerometerFilter setAdaptive:YES];
         
-        accelerometer = [UIAccelerometer sharedAccelerometer];
-        [accelerometer setUpdateInterval:accelerometerFrequency];
-        [accelerometer setDelegate:self];
+        //accelerometer = [UIAccelerometer sharedAccelerometer];
+        //[accelerometer setUpdateInterval:accelerometerFrequency];
+        //[accelerometer setDelegate:self];
+        motionManager = [[CMMotionManager alloc] init];
+        motionManager.accelerometerUpdateInterval = accelerometerFrequency;
+        [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error) {
+            [self outputAccelertionData:accelerometerData.acceleration];
+            if(error){
+                NSLog(@"%@", error);
+            }
+        }];
+        
         
         locationManager = [[CLLocationManager alloc] init];
         if (IS_OS_8_OR_LATER) {
@@ -527,7 +616,9 @@
         [locationManager setDistanceFilter:kCLDistanceFilterNone];
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
         [locationManager setHeadingFilter:kCLHeadingFilterNone];
-        [locationManager setPurpose:@"Satellite Finder needs your location to find satellites!"];  //  deprecated, we may still need for older ios versions
+        // deprecated, we may still need for older ios versions
+        // If we set the target above iOS 6 then this warning can be removed.
+        [locationManager setPurpose:@"Satellite Finder needs your location to find satellites!"];
         [locationManager startUpdatingLocation];
         if ([CLLocationManager headingAvailable]) {
             [locationManager startUpdatingHeading];
@@ -549,8 +640,10 @@
     showPicker = true;
     
     // in case i dont have net
-    if (!deviceLat) deviceLat =  41.521705;
-    if (!deviceLon) deviceLon = -71.298824;
+    if (!deviceLat)
+        deviceLat =  41.521705;
+    if (!deviceLon)
+        deviceLon = -71.298824;
     
     NSMutableDictionary* _satelliteLongitudes = [[NSMutableDictionary alloc] init];
     
@@ -563,9 +656,12 @@
     
     UIImageView* bottomBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sf_enabled_favorite_selected_bar.png"]];
     NSLog(@"%@", bottomBar.image);
+    
     //  i don't know why this case doesnt handle ~ipad ~iphone image suffixes
-    if (IS_IPAD) [bottomBar setFrame:CGRectMake(410.0, 996.0, 343.0, 23.0)];
-    else [bottomBar setFrame:CGRectMake(0.0, 426.0, 320.0, 54.0)];
+    if (IS_IPAD)
+        [bottomBar setFrame:CGRectMake(410.0, 996.0, 343.0, 23.0)];
+    else
+        [bottomBar setFrame:CGRectMake(0.0, 426.0, 320.0, 54.0)];
     [overlayView addSubview:bottomBar];
     
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -585,8 +681,26 @@
     infoView = [[SatelliteFinderInfoView alloc] init];
     [overlayView addSubview:infoView];
     
+    [self setPortraitDeviceOrientation];
     [super viewDidLoad];
 }
+
+-(void)setPortraitDeviceOrientation
+{
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+    
+}
+
+-(void) orientationChanged:(NSNotification *)notification
+{
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
+}
+
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated {
@@ -611,42 +725,58 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     NSLog(@":: viewDidAppear");
     // [self.view addSubview:overlayView];
     
     // show the camera!
-    if (showPicker) {
-        if (picker == nil) picker = [[UIImagePickerController alloc] init];
+    if (showPicker)
+    {
+        if (picker == nil) picker = [[CUIImagePickerController alloc] init];
         [picker setSourceType:UIImagePickerControllerSourceTypeCamera]; // << choose camera
         [picker setShowsCameraControls:NO];
         [picker setNavigationBarHidden:YES];
         [picker setWantsFullScreenLayout:YES];
         [picker setCameraOverlayView:overlayView];
-        if (IS_OS_7_OR_LATER) {
+        [self presentViewController:picker animated:NO completion:nil];
+
+        /*if (IS_OS_7_OR_LATER){
             [self presentViewController:picker animated:NO completion:nil];
         } else {
-            [self presentModalViewController:picker animated:NO];
-        }
+            [self presentViewController:picker animated:NO completion:nil];
+        }*/
+        
         showPicker = false;
     }
 }
 
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (BOOL)shouldAutorotate {
-    NSLog(@":: shouldAutorotate");
-    return false;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)shouldAutorotate
+{
+    //UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
+    //NSLog(@":: shouldAutorotate Width : %d", [[UIScreen mainScreen] bounds].size.width ? 320 : 568);
+    //NSLog(@"interfaceOrientation : %d", interfaceOrientation);
+    return NO;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSUInteger)supportedInterfaceOrientations {
-    NSLog(@":: shouldAutorotate");
+- (NSUInteger)supportedInterfaceOrientations
+{
+    //NSLog(@":: supportedInterfaceOrientations");
     return UIInterfaceOrientationMaskPortrait;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    NSLog(@":: preferredInterfaceOrientationForPresentation");
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    //NSLog(@":: preferredInterfaceOrientationForPresentation");
     return UIInterfaceOrientationPortrait;
 }
 
@@ -669,8 +799,13 @@
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
     // NSLog(@":: locationManager didUpdateHeading");
     if (0 < newHeading.headingAccuracy) {
-        if (deviceTilt > 45.0)	deviceHeading = fabsf(newHeading.trueHeading - 180.0);
-        else deviceHeading = newHeading.trueHeading;
+        if (deviceTilt > 45.0) {
+            //deviceHeading = fabsf(newHeading.trueHeading - 180.0);
+            deviceHeading = fabs(newHeading.trueHeading - 180.0);
+        }
+        else {
+            deviceHeading = newHeading.trueHeading;
+        }
     } else {
         deviceHeading = -999.0;
     }
@@ -689,21 +824,31 @@
 #pragma mark UIAccelerometer Delegate Methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
     // NSLog(@":: accelerometer didAccelerate");
+    //[accelerometerFilter addAcceleration:acceleration];
+    //double y = accelerometerFilter.y;
+    //double z = accelerometerFilter.z;
+    //deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
+    //NSLog(@"deviceTilt : %f",deviceTilt);
+}
+
+-(void)outputAccelertionData:(CMAcceleration)acceleration
+{
     [accelerometerFilter addAcceleration:acceleration];
     double y = accelerometerFilter.y;
     double z = accelerometerFilter.z;
     deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
+    
 }
-
-
 //=========================================================================================================================================================
 #pragma mark -
 #pragma mark - NSURLConnectionDelegate protocol methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response
+{
     NSLog(@":: connection didReceiveResponse");
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A4E79671B2FE34000E41037 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4E79661B2FE34000E41037 /* CoreMotion.framework */; };
 		AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138F1917F4DA00445E07 /* AppDelegate.m */; };
 		AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013911917F4DA00445E07 /* BonjourTableViewCell.m */; };
 		AAC013E21917F4DA00445E07 /* BonjourTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAC013921917F4DA00445E07 /* BonjourTableViewCell~ipad.xib */; };
@@ -164,6 +165,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A4E79661B2FE34000E41037 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAC0138F1917F4DA00445E07 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AAC013901917F4DA00445E07 /* BonjourTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourTableViewCell.h; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A4E79671B2FE34000E41037 /* CoreMotion.framework in Frameworks */,
 				E91C2E49184FD9AC003618D1 /* libxml2.dylib in Frameworks */,
 				E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */,
 				E916FD95184D670D00E06C33 /* AVFoundation.framework in Frameworks */,
@@ -540,6 +543,7 @@
 		E9B97C691829A14A007AA4A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A4E79661B2FE34000E41037 /* CoreMotion.framework */,
 				E91C2E48184FD9AC003618D1 /* libxml2.dylib */,
 				E91C2E46184FD9A1003618D1 /* libz.dylib */,
 				E916FD94184D670D00E06C33 /* AVFoundation.framework */,
