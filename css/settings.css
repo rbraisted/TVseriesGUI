@@ -26,6 +26,7 @@ input {
 
 html {
   background: #04122a url(/images/gradient.png) no-repeat;
+  height: 100%;
   width: 100%;background-size:100% 100%;  }
   @media screen and (max-width: 880px) {
     html {
@@ -40,6 +41,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: lighter;
+  height: 100%;
   line-height: 1;
   width: 100%;
 }
@@ -1315,10 +1317,6 @@ a {
 @media screen and (min-width: 881px) {
   .vessel-location .headline {
     margin: 40px 0 30px; } }
-.spinner-view .headline {
-	text-align: center;
-	margin-top:20px;
-}    
 .vessel-location .note {
   line-height: 1.5;
   margin-top: 20px;
@@ -1350,8 +1348,7 @@ user-select: none !important;
 .vessel-location p {
   color: #ff0000;
   line-height: 1.6;
-  margin-top: 15px;
-  margin-bottom: 15px; }
+  margin-bottom: 20px; }
 .vessel-location .toggle-btn {
   margin-bottom: 20px; }
 .vessel-location .geoloc-view,
@@ -1519,7 +1516,7 @@ font-size: 16px !important;
     
     -moz-animation-name: blinker;
     -moz-animation-duration: 2s;
-    -moz-animation-timing-function: ease-out; 
+    -moz-animation-timing-function: ease-out;
     -moz-animation-iteration-count: infinite;
     
     animation-name: blinker;
@@ -1539,23 +1536,17 @@ font-size: 16px !important;
     50% { opacity: 0.0; }
     100% { opacity: 1.0; }
 }
- 
+
 @keyframes blinker {  
     0% { opacity: 1.0; }
     50% { opacity: 0.0; }
     100% { opacity: 1.0; }
 }
 
-@media screen and (max-width: 880px) {
-body .wireless-settings-page{position:relative; }
-body .ethernet-setting-page{position:relative; } 
+.advanced-settings .lnb-view .dropdown-btn .\#lnb{padding:7px 0px; }
+.advanced-settings .lnb-view .dropdown-btn .dropdown-icon{height:38px; width:38px; }
 
-.header{top:0px; }
-}
-
-
-
-
-@media screen and (min-width:801px) and (max-width:1100px){
-.general-settings, .advanced-settings{padding:0px 20px; }       
+@media screen and (max-width:767px) {
+.advanced-settings .lnb-view .dropdown-btn{width:100%; }	
+.advanced-settings .\#update-url{width:100%; }
 }
