@@ -160,7 +160,7 @@
       <span class="geoloc-label label">
         Get your GPS(GNSS) location and time from your mobile device/computer.<p class="blink_me #geoloc_error"></p>
       </span>
-      <div class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</div>
+      <span class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</span>
     </div>
 
     <!--<div class="block-btn #apply-manual-btn spaceBot">Save</div>-->
@@ -181,6 +181,23 @@
         <span class="table-col dropdown-icon"></span><!--
         --><span class="table-col #dropdown-value"></span>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="dropdown #lnb-dropdown-view">
+  <div class="dropdown-guts #dropdown-content">
+    <div class="view-head">
+      <span class="#dropdown-title">LNB</span>
+      <div class="back-btn #close-btn"></div>
+    </div>
+    <div class="table lnb" style="overflow-y:scroll;max-height:300px">
+      <!--<div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span>
+      	<span class="table-col #dropdown-value">19-0398 US DBS Stacked</span>
+      </div>-->
+     
     </div>
   </div>
 </div>
@@ -241,7 +258,15 @@
       download, until the browser window is closed.
     </p>
     <input placeholder="http://www.kvhupdate.com/TVRO/" class="input update-url #update-url" />
-    <div class="block-btn save-btn #save-btn">Save</div>
+    
+    <div class="block-btn save-btn #save-btn" style="float:none;">Save</div>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    <div class="lnb-view #lnb-view">
+      <div class="dropdown-btn lnb-btn #lnb-btn">
+        <div class="#lnb">Select a LNB</div>
+        <div class="dropdown-icon"></div>
+      </div>
+    </div>
   </div>
 
   <div class="heading">Sleep Mode</div>
@@ -305,7 +330,7 @@
     <span class="label broadcast-label">Broadcast</span><span class="value broadcast-value #eth-broadcast"></span>
     <div class="block-btn edit-btn #ethernet-btn">Edit</div>
   </div>
- 
+
   <div class="wireless-settings">
     <div class="view-head">Wireless Settings</div>
     <span class="label mode-label">Wireless Mode</span><span class="value #wlan-mode"></span>
@@ -323,7 +348,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="popup #ethernet-settings-view ethernet-setting-page"> 
+<div class="popup #ethernet-settings-view">
   <div class="popup-guts ethernet-settings">
     <div class="view-head">
       Ethernet Settings
@@ -381,7 +406,7 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<div class="popup #wireless-settings-view wireless-settings-page">
+<div class="popup #wireless-settings-view">
   <div class="popup-guts wireless-settings">
     <div class="view-head">
       Wireless Settings
