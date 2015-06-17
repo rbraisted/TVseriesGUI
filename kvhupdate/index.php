@@ -1,5 +1,5 @@
 <head>
-    <title>KVH TracVision</title>
+    <title>KVH TracVision</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
@@ -46,12 +46,14 @@
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="header #header-view">
+      
   <div class="tracvision-logo #home-btn"></div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <div class="sidebar">
+  <a class="HomeButton" href="inapp://GoToHomePage">Home</a>   	
   <div class="menu-table #menu-table-view">
     <div class="table-row #table-row">
       <div class="table-col">

@@ -1018,6 +1018,11 @@ a {
     bottom: auto;
     top: 50px; }
 
-.\#update-view{
+.\#update-view{   
   top: 50px;
+}
+.HomeButton{display:none; }
+
+@media screen and (max-width: 880px) {
+.HomeButton{background:url("../images/home-icon-white.svg") no-repeat scroll; width:30px; height:30px; font-size:0px; color:#fff; position:fixed; left:15px; margin-top:-38px; z-index:999999; cursor:pointer; display:block; background-size:100% 80%; }
 }
