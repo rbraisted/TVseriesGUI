@@ -13,7 +13,8 @@
 //=========================================================================================================================================================
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (id)init {
+- (id)init
+{
 	self = [super init];
 	return self;
 }
@@ -22,19 +23,11 @@
 //- (id)initWithRegion:(NSString*)_region withAntSatID:(NSString*)_antSatID withName:(NSString*)_name 
 //          withDegLon:(float)_degLon withAzLook180:(float)_rAzLook180 withElLook180:(float)_rElLook180
 //          isFavorite:(BOOL)_favorite isEnabled:(BOOL)_enabled isSelectable:(BOOL)_selectable isTriSat:(NSString*)_triSat {
-- (id)initWithListID:(NSString*)_listID
-		withAntSatID:(NSString*)_antSatID
-		withTriSatID:(NSString*)_triSatID
-			withName:(NSString*)_name 
-		  withRegion:(NSString*)_region
-          withDegLon:(float)_degLon
-		  isFavorite:(BOOL)_favorite
-		   isEnabled:(BOOL)_enabled
-		isSelectable:(BOOL)_selectable
-          isSelected:(BOOL)_selected {
-
+- (id)initWithListID:(NSString*)_listID withAntSatID:(NSString*)_antSatID withTriSatID:(NSString*)_triSatID withName:(NSString*)_name withRegion:(NSString*)_region withDegLon:(float)_degLon isFavorite:(BOOL)_favorite isEnabled:(BOOL)_enabled isSelectable:(BOOL)_selectable isSelected:(BOOL)_selected
+{
 	self = [super init];
-	if (self) {
+	if (self)
+    {
 		listID = [_listID copy];
 		antSatID = [_antSatID copy];
 		name = [_name copy];

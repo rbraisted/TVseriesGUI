@@ -10,8 +10,6 @@
     UIImage* cellBGImageLight;
 
     CGPoint scrollViewOffset;
-
-    SatelliteFinderViewController* satFinderViewController;
 }
 
 - (id)init;

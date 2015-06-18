@@ -12,8 +12,8 @@
 @class SatelliteFinderInfoView;
 
 
-@interface SatelliteFinderViewController : UIViewController <CLLocationManagerDelegate, UIAccelerometerDelegate, NSURLConnectionDelegate> {
-    // UIButton*	demoButton;
+@interface SatelliteFinderViewController : UIViewController <CLLocationManagerDelegate, UIAccelerometerDelegate, NSURLConnectionDelegate>
+{
     UIButton*	infoButton;
     UIButton*	backButton;
     

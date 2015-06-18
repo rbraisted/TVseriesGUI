@@ -1,4 +1,5 @@
 
+
 #import "SatelliteView.h"
 
 @implementation SatelliteView
@@ -12,8 +13,10 @@ static UIImage *nameBg = nil;
 
 @synthesize satelliteName, closest;
 
-+ (void)initialize {
-    if (self == [SatelliteView class]) {
++ (void)initialize
+{
+    if (self == [SatelliteView class])
+    {
         blackDot = [UIImage imageNamed:@"sf_sat_black.png"];
         //blueDot = [UIImage imageNamed:@"sf_sat_blue.png"];
         purpleDot = [UIImage imageNamed:@"sf_sat_purple.png"];
@@ -23,11 +26,15 @@ static UIImage *nameBg = nil;
     }
 }
 
-- (id)initWithType:(int)_type {
-    if (IS_IPAD) self = [super initWithFrame:CGRectMake(0.0, 0.0, 142.0, 54.0)];
-    else self = [super initWithFrame:CGRectMake(0.0, 0.0, 126.0, 46.0)];
+- (id)initWithType:(int)_type
+{
+    if (IS_IPAD)
+        self = [super initWithFrame:CGRectMake(0.0, 0.0, 142.0, 54.0)];
+    else
+        self = [super initWithFrame:CGRectMake(0.0, 0.0, 126.0, 46.0)];
     
-    if (self) {
+    if (self)
+    {
         [self setOpaque:NO];
         [self setBackgroundColor:[UIColor clearColor]];
         type = _type;
@@ -36,27 +43,38 @@ static UIImage *nameBg = nil;
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
-    if (!type) {
-        if (IS_IPAD) [yellowDot drawInRect:CGRectMake(63.5, 19.5, 15.0, 15.0)];
-        else [yellowDot drawInRect:CGRectMake(59.0, 19.0, 8.0, 8.0)];
-    } else {
+- (void)drawRect:(CGRect)rect
+{
+    if (!type)
+    {
+        if (IS_IPAD)
+            [yellowDot drawInRect:CGRectMake(63.5, 19.5, 15.0, 15.0)];
+        else
+            [yellowDot drawInRect:CGRectMake(59.0, 19.0, 8.0, 8.0)];
+    }
+    else
+    {
         CGPoint closestPoint;
         CGRect rect;
         CGRect nameRect;
         
-        if (IS_IPAD) {
+        if (IS_IPAD)
+        {
             closestPoint = CGPointMake(71.0, 0.0);
             rect = CGRectMake(61.5, 17.5, 19.0, 19.0);
             nameRect = CGRectMake(71.0, 2.0, 71.0, 21.0);
-        } else {
+        }
+        else
+        {
             closestPoint = CGPointMake(63.0, 0.0);
             rect = CGRectMake(54.5, 15.0, 17.0, 16.0);
             nameRect = CGRectMake(63.0, 2.0, 63.0, 21.0);
         }
         
-        if (closest)  [nameBg drawAtPoint:closestPoint blendMode:kCGBlendModeNormal alpha:1.0];
-        else          [nameBg drawAtPoint:closestPoint blendMode:kCGBlendModeNormal alpha:0.25];
+        if (closest)
+            [nameBg drawAtPoint:closestPoint blendMode:kCGBlendModeNormal alpha:1.0];
+        else
+            [nameBg drawAtPoint:closestPoint blendMode:kCGBlendModeNormal alpha:0.25];
         
         /*if(type == 1)       [purpleDot drawInRect:rect];
          else if(type == 2)  [blueDot drawInRect:rect];
