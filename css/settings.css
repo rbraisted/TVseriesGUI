@@ -1543,10 +1543,11 @@ font-size: 16px !important;
     100% { opacity: 1.0; }
 }
 
-.advanced-settings .lnb-view .dropdown-btn .\#lnb{padding:7px 0px; }
+.advanced-settings .lnb-view .dropdown-btn .\#lnb{padding:7px 0px; width:50%;}
 .advanced-settings .lnb-view .dropdown-btn .dropdown-icon{height:38px; width:38px; }
+.advanced-settings .lnb-view .dropdown-btn{width:50%; }	
+.advanced-settings .lnb-view .save-btn{float:none;}	
 
 @media screen and (max-width:767px) {
-.advanced-settings .lnb-view .dropdown-btn{width:100%; }	
 .advanced-settings .\#update-url{width:100%; }
 }

@@ -302,6 +302,8 @@
 
   TVRO.getLnbList = get('get_lnb_list');
 
+  TVRO.setLnb = set('set_lnb');
+
   TVRO.getVesselConfig = get('get_vessel_config');
 
   TVRO.setVesselConfig = set('set_vessel_config', [

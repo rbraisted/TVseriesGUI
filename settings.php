@@ -189,15 +189,14 @@
 <div class="dropdown #lnb-dropdown-view">
   <div class="dropdown-guts #dropdown-content">
     <div class="view-head">
-      <span class="#dropdown-title">LNB</span>
+      <span class="#dropdown-title">LNBs</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table lnb" style="overflow-y:scroll;max-height:300px">
-      <!--<div class="table-row #table-row">
-        <span class="table-col dropdown-icon"></span>
-      	<span class="table-col #dropdown-value">19-0398 US DBS Stacked</span>
-      </div>-->
-     
+    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+      <div class="table-row #table-row">
+        <span class="table-col dropdown-icon"></span><!--
+        --><span class="table-col #dropdown-value"></span>
+      </div>
     </div>
   </div>
 </div>
@@ -258,16 +257,22 @@
       download, until the browser window is closed.
     </p>
     <input placeholder="http://www.kvhupdate.com/TVRO/" class="input update-url #update-url" />
-    
     <div class="block-btn save-btn #save-btn" style="float:none;">Save</div>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    
+    <p>
+       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+       Lorem Ipsum has been the industry's standard dummy text ever since the
+       1500s, when an unknown printer took a galley of type and scrambled it to
+       make a type specimen book.
+    </p>
     <div class="lnb-view #lnb-view">
-      <div class="dropdown-btn lnb-btn #lnb-btn">
-        <div class="#lnb">Select a LNB</div>
+      <div class="dropdown-btn #lnb-btn">
+        <div class="#lnb">Select an LNB</div>
         <div class="dropdown-icon"></div>
       </div>
+      <span class="block-btn save-btn #select-btn">Select</span>
     </div>
-  </div>
+  </div><!-- End Tech Mode div -->
 
   <div class="heading">Sleep Mode</div>
   <p>

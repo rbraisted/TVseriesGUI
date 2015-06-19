@@ -3,7 +3,7 @@
 
     var AdvancedSettingsView = function(jQ) {
         var self;
-	var lnbView        = $('.\\#lnb-view', jQ)
+        
         var techModeBtn = TVRO.ToggleBtn(jQ.find('.\\#tech-mode-btn'))
         .onClick(function(techMode) {
             TVRO.setTechMode(techMode);
@@ -13,88 +13,36 @@
         
         
         /** technician mode dropdown start **/
-        
-        var name_array = [];
-        var setSource = _.curry(function(webServiceCall, source) {
-       // console.log(webServiceCall);
-	
-		var params = {
-		                name: $('#lnb').html()
-		};
-		return webServiceCall(params);
-	    });
-        
-        var getSources = function(type, xml) {
-	   return  _.map($(type, xml), function(element) {
-	        var nameArray;
-	        nameArray = {lnb_name:$(element).text()};
-	        name_array[name_array.length] = nameArray;
-	        return nameArray.lnb_name;
-	    })
-	};
-	
+
+        var lnbView  = $('.\\#lnb-view', jQ);
         var lnbLabel = $('.\\#lnb', lnbView);
-        var lnbDropdownView = TVRO.DropdownView($('.\\#lnb-dropdown-view'));
-        var showLnbDropdownView = function(val) {
-        
-        	TVRO.getLnbList().then(function(xml) {
-        	$('.lnb').html("");
-        	
-        	var selectedPart;
-			_.map($('installed_lnb', xml), function(installed) {
-				_.map($('part', installed), function(part) {
-					//alert($(part).text());
-					selectedPart = $(part).text();
-				})
-			})
-		
-			_.map($('lnb_list', xml), function(element) {
 
-				var listSources = getSources('name', element);
-		       		for(var i=0; i<listSources.length; i++)
-		       		{
-		       			//alert(listSources[i].split(" ")[0]);
-		       			if(selectedPart == listSources[i].split(" ")[0])
-		       			{
-		       				$('.\\#lnb').html(listSources[i]);
-		       				$("<div class='table-row lnb-row #table-row $selected'><span class='table-col dropdown-icon'></span><span class='table-col #dropdown-value'>"+listSources[i]+"</span></div>").appendTo(".lnb");
-		       			}
-		       			else
-		       			{
-		       				$("<div class='table-row lnb-row #table-row'><span class='table-col dropdown-icon'></span><span class='table-col #dropdown-value'>"+listSources[i]+"</span></div>").appendTo(".lnb");
-		       			}
-		       		}
-			})
+        var lnbDropdownView = TVRO.DropdownView($('.\\#lnb-dropdown-view'))
+        .onClick(function(lnb) {
+        	lnbLabel.text(lnb);
+        });
 
-                });
-                if(val == "hide")
-                {
-                	lnbDropdownView.hide();
-                }
-                else
-                {
-                	lnbDropdownView.show();
-                }
-
-            setTimeout(function() {
-            	 $('.lnb-row').click(function(){
-			 $('.lnb-row').removeClass('$selected');
-			 $(this).addClass('$selected');
-			$('.\\#lnb').html($(this).children().next().html());
-			TVRO.DropdownView($('.\\#lnb-dropdown-view')).hide();
-			setSource(TVRO.setLnb)
-		});
-            
-            }, 500);
+        var showLnbDropdownView = function() {
+        	lnbDropdownView.show();
         };
-        
-        showLnbDropdownView("hide");
+
         var lnbDropdownBtn = $('.\\#lnb-btn', lnbView).click(showLnbDropdownView);
-        
-        
-	/** technician mode dropdown end **/
-	
-	
+
+        TVRO.getLnbList().then(function(xml) {
+
+        	lnbDropdownView.setValues(
+        			_.map($('lnb_list name', xml), function(element) {
+        				return $(element).text();
+        			})	
+        	).build();
+        });
+
+        var selectBtn = $('.\\#select-btn', lnbView).click(function() {
+        	TVRO.setLnb({name:lnbDropdownView.getValue()});
+        });        
+
+        /** technician mode dropdown end **/
+
         var saveBtn = $('.\\#save-btn', jQ).click(function() {
             sessionStorage['kvhupdate'] = $('.\\#update-url', jQ).val();
         });
@@ -114,7 +62,16 @@
             $('.\\#update-url', jQ).val(sessionStorage['kvhupdate']);
 
             // Only show the sidelobe block for a TV6 or TV8.
-            TVRO.getAntModel().then(function(model) {
+            Promise.all(
+            TVRO.getAntModel(),
+            TVRO.getLnbList()
+            ).then(function(res) {
+            	var model = res[0];
+            	// Get the installed LNB and format to the list.
+            	var lnb = $('installed_lnb part', res[1]).text() + " " + $('installed_lnb name', res[1]).text();
+
+            	lnbLabel.text(lnb);
+                lnbDropdownView.setValue(lnb);
 
                 if ('TV8' === model) {
                     $('.\\#sidelobe-info').text("Keep Sidelobe Mode set to " +
