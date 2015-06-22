@@ -92,6 +92,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 
   <div class="bottom-bar">
-    <div class="exit-btn #exit-btn">Finish</div>
+    <div class="exit-btn #exit-btn">Done</div>
   </div>
 </div>

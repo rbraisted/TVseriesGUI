@@ -65,8 +65,8 @@
     .setValues(['TRI-AM DUAL',
                 'TRI-AM TRISAT'])
                 .onBuild(function(row, value) {
-                  if (value === 'TRI-AM DUAL') $('.\\#value', row).text('TRI-AM DUAL (101\u00B0W, 95\u00B0W)');
-                  else if (value === 'TRI-AM TRISAT') $('.\\#value', row).text('TRI-AM TRISAT (101\u00B0W, 119\u00B0W, 95\u00B0W)');
+                  if (value === 'TRI-AM DUAL') $('.\\#value', row).text('TRI-AM DUAL (101W, 95W)');
+                  else if (value === 'TRI-AM TRISAT') $('.\\#value', row).text('TRI-AM TRISAT (101W, 119W, 95W)');
                 })
                 .build();
 
@@ -128,21 +128,17 @@
     
     var singleOption = {
         title: 'Single Satellite',
-        copy: 'For programming on the 101 satellite, you are ready to activate ' +
-        'your system!'
+        copy: 'Select this option for the 101W satellite only.'
     };
 
     var manualOption = {
         title: 'Manual Switching',
-        copy: 'For programming on the 101 & 119 satellites with manual ' +
-        'switching between them, you are ready to activate your system!'
+        copy: 'Select this option for manual switching between the 101W and 119W satellites.'
     };
 
     var automaticOption = {
         title: 'Automatic Switching',
-        copy: 'For programming on the 101 & 119 satellites with automatic ' +
-        'switching between them, you need to set up the system for ' +
-        'automatic switching.'
+        copy: 'Select this option for automatic switching between the 101W and 119W satellites.'
     };
 
     var self = TVRO.TableView($('.\\#table-view', jQ));
@@ -308,11 +304,11 @@
     var groupsTableView= TVRO.TableView($('.\\#table-view', groupsView))
     .onClick(onClick)
     .onBuild(function(row, value) {
-      if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110\u00B0W, 119\u00B0W, 129\u00B0W)');
-      if (value === 'EASTERN ARC') $('.\\#value', row).text('Eastern Arc (61\u00B0W, 72\u00B0W, 77\u00B0W)');
-      if (value === 'LEGACY EAST ARC') $('.\\#value', row).text('Legacy East Arc (61\u00B0W, 110\u00B0W, 119\u00B0W)');
-      if (value === '72W') $('.\\#value', row).text('72W (72\u00B0W)');
-      if (value === 'DISH 500') $('.\\#value', row).text('Dish 500 (110\u00B0W, 119\u00B0W)');
+      if (value === 'WESTERN ARC') $('.\\#value', row).text('Western Arc (110W, 119W, 129W)');
+      if (value === 'EASTERN ARC') $('.\\#value', row).text('Eastern Arc (61W, 72W, 77W)');
+      if (value === 'LEGACY EAST ARC') $('.\\#value', row).text('Legacy East Arc (61W, 110W, 119W)');
+      if (value === '72W') $('.\\#value', row).text('72W (72W)');
+      if (value === 'DISH 500') $('.\\#value', row).text('Dish 500 (110W, 119W)');
       if (value === 'OTHER') $('.\\#value', row).text('Other');
     });
 
@@ -320,12 +316,12 @@
     var satsTableView = TVRO.TableView($('.\\#table-view', satsView))
     .onClick(onClick)
     .onBuild(function(row, value) {
-      if (value === '61W') $('.\\#value', row).text('61\u00B0W');
-      if (value === '72W') $('.\\#value', row).text('72\u00B0W');
-      if (value === '77WM') $('.\\#value', row).text('77\u00B0W');
-      if (value === '110W') $('.\\#value', row).text('110\u00B0W');
-      if (value === '119W') $('.\\#value', row).text('119\u00B0W');
-      if (value === '129W') $('.\\#value', row).text('129\u00B0W');
+      if (value === '61W') $('.\\#value', row).text('61W');
+      if (value === '72W') $('.\\#value', row).text('72W');
+      if (value === '77WM') $('.\\#value', row).text('77W');
+      if (value === '110W') $('.\\#value', row).text('110W');
+      if (value === '119W') $('.\\#value', row).text('119W');
+      if (value === '129W') $('.\\#value', row).text('129W');
     });
 
     var nextBtn = $('.\\#next-btn', jQ).click(function() {

@@ -35,7 +35,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   </div>
 
   <div class="copy #directv">
-    The following receivers have been set up for automatic satellite
+    The following receivers, if any, have been set up for automatic satellite
     switching. The master receiver controls satellite selection. You may
     choose the master by selecting it below. To add a receiver to the
     list, enter its IP address and assign it a unique name.
