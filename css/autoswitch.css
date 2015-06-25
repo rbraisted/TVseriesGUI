@@ -259,7 +259,7 @@ a {
     width: 100%;
     z-index: 3; }
     .nav .home-btn {
-      background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -271,7 +271,7 @@ a {
         background-image: url(/images/home-icon-white.svg);
         color: #fff; }
     .nav .sat-btn {
-      background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px 21px;
+      background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -281,7 +281,7 @@ a {
         background-image: url(/images/sat-icon-white.svg);
         color: #fff; }
     .nav .autoswitch-btn {
-      background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -291,7 +291,7 @@ a {
         background-image: url(/images/autoswitch-icon-white.svg);
         color: #fff; }
     .nav .settings-btn {
-      background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -301,7 +301,7 @@ a {
         background-image: url(/images/settings-icon-white.svg);
         color: #fff; }
     .nav .updates-btn {
-      background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -311,7 +311,7 @@ a {
         background-image: url(/images/updates-icon-white.svg);
         color: #fff; }
     .nav .support-btn {
-      background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px 21px;
+      background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -321,7 +321,7 @@ a {
         background-image: url(/images/support-icon-white.svg);
         color: #fff; }
     .nav .satfinder-btn {
-      background: transparent url(/images/satfinder-icon-grey.svg) no-repeat left 10px center/21px 21px;
+      background: transparent url(/images/satfinder-icon-grey.svg) no-repeat left 10px center/21px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -373,7 +373,7 @@ a {
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
-      background-size: 21px 21px;
+      background-size: auto 21px;
       min-height: 21px;
       min-width: 21px;
       cursor: pointer;
@@ -495,7 +495,7 @@ a {
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
-      background-size: 21px 21px;
+      background-size: auto 21px;
       min-height: 21px;
       min-width: 21px;
       cursor: pointer;
@@ -603,7 +603,7 @@ height:410px;
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
-      background-size: 21px 21px;
+      background-size: auto 21px;
       min-height: 21px;
       min-width: 21px;
       cursor: pointer;
@@ -836,7 +836,7 @@ height:410px;
     background-image: url(/images/down-icon-white.svg);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 7px 21px;
+    background-size: 7px auto;
     min-height: 7px;
     min-width: 21px;
     background-color: #4f7abd;

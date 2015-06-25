@@ -265,7 +265,7 @@ a {
     width: 100%;
     z-index: 3; }
     .nav .home-btn {
-      background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      background: transparent url(/images/home-icon-grey.svg) no-repeat left 10px center/17px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -277,7 +277,7 @@ a {
         background-image: url(/images/home-icon-white.svg);
         color: #fff; }
     .nav .sat-btn {
-      background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px 21px;
+      background: transparent url(/images/sat-icon-grey.svg) no-repeat left 10px center/18px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -287,7 +287,7 @@ a {
         background-image: url(/images/sat-icon-white.svg);
         color: #fff; }
     .nav .autoswitch-btn {
-      background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      background: transparent url(/images/autoswitch-icon-grey.svg) no-repeat left 10px center/19px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -297,7 +297,7 @@ a {
         background-image: url(/images/autoswitch-icon-white.svg);
         color: #fff; }
     .nav .settings-btn {
-      background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px 21px;
+      background: transparent url(/images/settings-icon-grey.svg) no-repeat left 10px center/17px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -307,7 +307,7 @@ a {
         background-image: url(/images/settings-icon-white.svg);
         color: #fff; }
     .nav .updates-btn {
-      background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px 21px;
+      background: transparent url(/images/updates-icon-grey.svg) no-repeat left 10px center/19px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -317,7 +317,7 @@ a {
         background-image: url(/images/updates-icon-white.svg);
         color: #fff; }
     .nav .support-btn {
-      background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px 21px;
+      background: transparent url(/images/support-icon-grey.svg) no-repeat left 10px center/13px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -327,7 +327,7 @@ a {
         background-image: url(/images/support-icon-white.svg);
         color: #fff; }
     .nav .satfinder-btn {
-      background: transparent url(/images/satfinder-icon-grey.svg) no-repeat left 10px center/21px 21px;
+      background: transparent url(/images/satfinder-icon-grey.svg) no-repeat left 10px center/21px auto;
       color: #bac7da;
       cursor: pointer;
       display: inline-block;
@@ -379,7 +379,7 @@ a {
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
-      background-size: 21px 21px;
+      background-size: auto 21px;
       min-height: 21px;
       min-width: 21px;
       cursor: pointer;
@@ -501,7 +501,7 @@ a {
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
-      background-size: 21px 21px;
+      background-size: auto 21px;
       min-height: 21px;
       min-width: 21px;
       cursor: pointer;
@@ -606,7 +606,7 @@ a {
       background-image: url(/images/prev-icon-blue.svg);
       background-position: left 10px center;
       background-repeat: no-repeat;
-      background-size: 21px 21px;
+      background-size: auto 21px;
       min-height: 21px;
       min-width: 21px;
       cursor: pointer;
@@ -790,7 +790,8 @@ a {
 .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .city-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
 .vessel-location .coordinates-view .gps-input,
-.vessel-location .city-view .gps-input {
+.vessel-location .city-view .gps-input,
+.advanced-settings .lnb-view .dropdown-btn {
   -webkit-border-radius: 0;
   -ms-border-radius: 0;
   -moz-border-radius: 0;
@@ -838,17 +839,19 @@ a {
 
 .dropdown-btn, .vessel-location .geoloc-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .hem-dropdown-btn,
-.vessel-location .city-view .hem-dropdown-btn {
+.vessel-location .city-view .hem-dropdown-btn,
+.advanced-settings .lnb-view .dropdown-btn {
   cursor: pointer;
   min-height: 28px;
   position: relative; }
   .dropdown-btn .dropdown-icon, .vessel-location .geoloc-view .hem-dropdown-btn .dropdown-icon,
   .vessel-location .coordinates-view .hem-dropdown-btn .dropdown-icon,
-  .vessel-location .city-view .hem-dropdown-btn .dropdown-icon {
+  .vessel-location .city-view .hem-dropdown-btn .dropdown-icon,
+  .advanced-settings .lnb-view .dropdown-btn .dropdown-icon {
     background-image: url(/images/down-icon-white.svg);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 7px 21px;
+    background-size: 7px auto;
     min-height: 7px;
     min-width: 21px;
     background-color: #4f7abd;
@@ -857,6 +860,9 @@ a {
     right: 0;
     height: 26px;
     width: 26px; }
+    
+  .advanced-settings .lnb-view .dropdown-btn .dropdown-icon {
+    background-size: 10px auto;}
 
 .flashing-view {
   z-index: 3; }
@@ -1123,8 +1129,10 @@ a {
 .\$not-linear .multiswitch-mode {
   display: none; }
 
-.\$hide-view .nmea-view,
-.\$hide-view .sidelobe-mode {
+.\$hide-view .nmea-view {
+  display: none; }
+  
+.\$hide-view{
   display: none; }
 
 .\$wlan-sec-off .wireless-settings .password-label, .\$wlan-sec-off .wireless-settings .password-value, .\$wlan-sec-off .wireless-settings .password-input, .\$wlan-sec-off .wireless-settings .password-info-label {
@@ -1220,8 +1228,10 @@ a {
     margin-bottom: 32px;
     padding: 7px 10px;
     min-width: 50px; }
+    
   .general-settings .block-btn,
-  .advanced-settings .block-btn {
+  .advanced-settings .block-btn,
+  .advanced-settings .lnb-view .block-btn {
     margin-top: 16px;
     margin-bottom: 32px; }
   @media screen and (max-width: 880px) {
@@ -1451,7 +1461,7 @@ user-select: none !important;
   margin: 30px auto;
   display: block; }
 
-.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .advanced-settings .hem-dropdown-btn,
+.advanced-settings .input, .advanced-settings .dropdown-btn, .advanced-settings .lnb-view .dropdown-btn, .advanced-settings .vessel-location .geoloc-view .hem-dropdown-btn, .vessel-location .geoloc-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .city-view .hem-dropdown-btn,
@@ -1465,7 +1475,7 @@ user-select: none !important;
   width: calc(100% - 140px);
   margin: 0.5em 0 2em;
   vertical-align: top; }
-.advanced-settings .block-btn {
+.advanced-settings .block-btn, .advanced-settings .lnb-view .block-btn {
   min-width: 130px;
   display: inline-block;
   float: right;
@@ -1543,11 +1553,13 @@ font-size: 16px !important;
     100% { opacity: 1.0; }
 }
 
-.advanced-settings .lnb-view .dropdown-btn .\#lnb{padding:7px 0px; width:50%;}
-.advanced-settings .lnb-view .dropdown-btn .dropdown-icon{height:38px; width:38px; }
-.advanced-settings .lnb-view .dropdown-btn{width:50%; }	
-.advanced-settings .lnb-view .save-btn{float:none;}	
+.advanced-settings .lnb-view .dropdown-btn .\#lnb {padding:7px 0px;}
+.advanced-settings .lnb-view .dropdown-btn .dropdown-icon {height:38px; width:38px;}
+.advanced-settings .lnb-view .dropdown-btn {max-width:20em}	
 
 @media screen and (max-width:767px) {
 .advanced-settings .\#update-url{width:100%; }
+
+.advanced-settings .lnb-view .dropdown-btn .\#lnb {width:100%; overflow:hidden; white-space: nowrap;}
+.advanced-settings .lnb-view .dropdown-btn {width:100%;}	
 }

@@ -27,6 +27,7 @@
 
       TVRO.getService().then(function(service) {
         jQ.toggleClass('$dtv-service', (service !== "DISH" && service !== "BELL"));
+        TVRO.resizeSidebar("general");
       });
 
       TVRO.getCheckswitchMode().then(checkSwitchModeBtn.setOn);

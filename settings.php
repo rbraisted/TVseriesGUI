@@ -163,8 +163,6 @@
       <span class="note">Note: GPS(GNSS) location is refreshed each time the Home page of this user interface is visited.</span>
     </div>
 
-    <!--<div class="block-btn #apply-manual-btn spaceBot">Save</div>-->
-
 	<a class="block-btn spaceBot #apply-manual-btn">Save</a>
 
   </div>
@@ -192,7 +190,7 @@
       <span class="#dropdown-title">LNBs</span>
       <div class="back-btn #close-btn"></div>
     </div>
-    <div class="table #table-view" style="overflow-y:scroll;max-height:300px">
+    <div class="table #table-view" style="overflow-y:scroll;">
       <div class="table-row #table-row">
         <span class="table-col dropdown-icon"></span><!--
         --><span class="table-col #dropdown-value"></span>
@@ -238,42 +236,6 @@
     Advanced Settings
     <div class="back-btn #back-btn"></div>
   </div>
-
-  <div class="heading">Technician Mode</div>
-  <p>
-    Turn on Technician mode to view the software updates for all TracVision
-    system models. Keep Technician mode set to off for normal operation.
-  </p>
-  <div class="toggle-btn #tech-mode-btn">
-    <div class="on">On</div>
-    <div class="off">Off</div>
-  </div>
-
-  <div class="#tech-mode">
-    <p>
-      Technicians can enter a URL in this field to get software updates from a
-      custom URL. This URL becomes the source of all the software update
-      information, i.e. the location of the latest unreleased update file to
-      download, until the browser window is closed.
-    </p>
-    <input placeholder="http://www.kvhupdate.com/TVRO/" class="input update-url #update-url" />
-    <div class="block-btn save-btn #save-btn" style="float:none;">Save</div>
-    
-    <p>
-       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-       Lorem Ipsum has been the industry's standard dummy text ever since the
-       1500s, when an unknown printer took a galley of type and scrambled it to
-       make a type specimen book.
-    </p>
-    <div class="lnb-view #lnb-view">
-      <div class="dropdown-btn #lnb-btn">
-        <div class="#lnb">Select an LNB</div>
-        <div class="dropdown-icon"></div>
-      </div>
-      <span class="block-btn save-btn #select-btn">Select</span>
-    </div>
-  </div><!-- End Tech Mode div -->
-
   <div class="heading">Sleep Mode</div>
   <p>
     Sleep mode locks the antenna in place to conserve power whenever you are
@@ -311,11 +273,53 @@
       AutoSwitch.
     </p>
     <div class="toggle-btn #multiswitch-mode-btn">
-      <div class="on">TV-Hub<br>&nbsp;</div>
+      <!-- Line-height used to center the text to align with the other toggle
+           48px - 16px(top-margin)-->
+      <div class="on" style=" line-height: 32px">TV-Hub</div>
       <div class="off">Master<br>Receiver</div>
     </div>
   </div>
 
+    <div class="heading">Technician Mode</div>
+  <p>
+    Turn on Technician mode to view the software updates for all TracVision
+    system models. Keep Technician mode set to off for normal operation.
+  </p>
+  <div class="toggle-btn #tech-mode-btn">
+    <div class="on">On</div>
+    <div class="off">Off</div>
+  </div>
+
+  <div class="#tech-mode">
+    <div class="heading">Alternate Source of Software Updates</div>
+  
+    <p>
+    To temporarily change the source of all software update files, enter the
+    web address of the alternate source, provided by KVH Technical Support. This
+    allows you to download unreleased software from KVH to help resolve an issue.
+    The TV-Hub will revert to the standard source of updates when you close your
+    browser window.
+    </p>
+    <input placeholder="http://www.kvhupdate.com/TVRO/" class="input update-url #update-url" />
+    <div class="block-btn save-btn #save-btn" style="float:none;">Save</div>
+    
+    <div class="lnb-view #lnb-view">
+        <div class="heading">LNB Type</div>
+    <p>
+    The antenna’s main board needs to know which type of LNB is installed. If
+    you replace the main board, or you replace the LNB with a different type
+    of LNB, select the type of LNB that is now installed in the antenna. This
+    will update the setting on the main board.
+    </p>
+    
+      <div class="dropdown-btn #lnb-btn">
+        <div class="#lnb">Select an LNB</div>
+        <div class="dropdown-icon"></div>
+      </div>
+      <span class="block-btn save-btn #select-btn" style="float:none;">Select</span>
+    </div>
+  </div><!-- End Tech Mode div -->
+  
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
