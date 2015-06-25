@@ -461,6 +461,7 @@
 
             getNmeaDevices();
             getManualCoord();
+            TVRO.resizeSidebar("location");
         };
 
         return _.merge(self, {
