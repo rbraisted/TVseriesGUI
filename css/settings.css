@@ -791,7 +791,8 @@ a {
 .vessel-location .city-view .hem-dropdown-btn, .vessel-location .geoloc-view .gps-input,
 .vessel-location .coordinates-view .gps-input,
 .vessel-location .city-view .gps-input,
-.advanced-settings .lnb-view .dropdown-btn {
+.advanced-settings .lnb-view .dropdown-btn,
+.advanced-settings .input {
   -webkit-border-radius: 0;
   -ms-border-radius: 0;
   -moz-border-radius: 0;
@@ -1465,6 +1466,7 @@ user-select: none !important;
 .advanced-settings .vessel-location .coordinates-view .hem-dropdown-btn,
 .vessel-location .coordinates-view .advanced-settings .hem-dropdown-btn,
 .advanced-settings .vessel-location .city-view .hem-dropdown-btn,
+.advanced-settings .lnb-view .dropdown-btn,
 .vessel-location .city-view .advanced-settings .hem-dropdown-btn, .advanced-settings .vessel-location .geoloc-view .gps-input, .vessel-location .geoloc-view .advanced-settings .gps-input,
 .advanced-settings .vessel-location .coordinates-view .gps-input,
 .vessel-location .coordinates-view .advanced-settings .gps-input,
@@ -1479,7 +1481,10 @@ user-select: none !important;
   min-width: 130px;
   display: inline-block;
   float: right;
-  margin-top: 0.5em; }
+  margin-top: 0.6em; 
+  height:38px;}
+.advanced-settings .lnb-view .block-btn {
+  margin-top: 0.55em;}
 
 @media screen and (max-width: 880px) {
   body[class=''] .sidebar,

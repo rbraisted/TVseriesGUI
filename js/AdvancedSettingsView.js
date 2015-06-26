@@ -6,9 +6,9 @@
                            "Stacked Circular",
                            "TriAmericas Circular",
                            "DIRECTV-L.A.",
-                           "Single Linear",
+                           "Linear Single",
                            "Linear Universal Dual",
-                           "Linear Universial Quad",
+                           "Linear Universal Quad",
                            "",
                            "",
                            ""];
@@ -82,6 +82,8 @@
         case "19-0863":
         case "19-0864":
         case "19-0837":
+            return "Custom LNB";
+            break;
         default:
             return "Unknown LNB";
         break;
