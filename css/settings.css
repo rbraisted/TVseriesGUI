@@ -1481,10 +1481,8 @@ user-select: none !important;
   min-width: 130px;
   display: inline-block;
   float: right;
-  margin-top: 0.6em; 
+  margin-top: 9px; 
   height:38px;}
-.advanced-settings .lnb-view .block-btn {
-  margin-top: 0.55em;}
 
 @media screen and (max-width: 880px) {
   body[class=''] .sidebar,
