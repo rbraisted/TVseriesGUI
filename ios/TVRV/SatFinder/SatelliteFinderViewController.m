@@ -9,8 +9,11 @@
 #import "RXMLElement.h"
 
 @interface CUIImagePickerController : UIImagePickerController
+
 @end
+
 @implementation CUIImagePickerController
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return NO;
@@ -32,7 +35,6 @@
 }
 @end
 
-
 @implementation SatelliteFinderViewController
 
 //=========================================================================================================================================================
@@ -40,34 +42,32 @@
 #pragma mark SatelliteFinderViewController Methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)getSatListFromBundle
-{
-    NSLog(@":: getSatListFromBundle");
-    NSString* satListXmlString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"satellites" ofType:@"xml"] encoding:NSUTF8StringEncoding error:NULL];
-    [self getSatListFromXmlString:satListXmlString];
+- (void)getSatListFromBundle {
+  NSLog(@":: getSatListFromBundle");
+  NSString* satListXmlString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"satellites" ofType:@"xml"] encoding:NSUTF8StringEncoding error:NULL];
+  [self getSatListFromXmlString:satListXmlString];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)getSatListFromHostname:(NSString*)hostname
-{
-    NSLog(@":: setHostname");
-    if (connection) {
-        [connection cancel];
-        connection = nil;
-    }
-    
-    if (xmlData) [xmlData setLength:0];
-    else xmlData = [[NSMutableData alloc] init];
-    
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/webservice.php", hostname]]];
-    [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
-    [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    //  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_autoswitch_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
-    NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
-    
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [connection start];
+- (void)getSatListFromHostname:(NSString*)hostname {
+  NSLog(@":: setHostname");
+  if (connection) {
+    [connection cancel];
+    connection = nil;
+  }
+  
+  if (xmlData) [xmlData setLength:0];
+  else xmlData = [[NSMutableData alloc] init];
+
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/webservice.php", hostname]]];
+  [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
+  [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_autoswitch_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
+  NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
+
+  connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+  [connection start];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,10 +94,9 @@
     [satList addObject:satD];
     
     // find the selected satellite from antenna_status
-    [self getAntennaStatusFromHostname:[[NSUserDefaults standardUserDefaults] objectForKey:@"default-host"]];
+    //[self getAntennaStatusFromHostname:[[NSUserDefaults standardUserDefaults] objectForKey:@"default-host"]];
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)getAntennaStatusFromHostname:(NSString*)hostname
 {
     NSLog(@":: getAntennaStatusFromHostname");
@@ -121,157 +120,130 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)getAntennaStatusFromXmlString:(NSString*)satListXmlString
-{
-    NSLog(@":: getAntennaStatusFromXmlString");
+- (NSArray*)azimuthAndElevationOfSatelliteAtLongitude:(double)satelliteLongitude {
+  // NSLog(@":: azimuthAndElevationOfSatelliteAtLongitude");
+  //  these guys are set whenever our current location is updated
+  double drLatDeg = deviceLat; //23.04
+  double drLongDeg = deviceLon; //72.50
+
+  double drLongDegSat = satelliteLongitude; // 0
+  double drLongRadSat = degreesToRadians(drLongDegSat); // 0
     
-    RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
-    RXMLElement* satElement = [satListXml child:@"satellite"];
+  double drAzimuth,
+         drElevation,
+         drDelta,
+         drLatRad,
+         drLongRad,
+         drY;
     
-    NSString* selectedAntSatID = [[NSString alloc] init];
-    selectedAntSatID = [satElement child:@"selected"].text;
-    
-    NSUInteger k = [satList count];
-    while (k--)
-    {
-        Satellite* satellite = (Satellite*)[satList objectAtIndex:k];
-        if ([satellite.antSatID isEqualToString:selectedAntSatID])
-        {
-            satellite.selected = true;
-        }
-        else
-        {
-            satellite.selected = false;
-        }
+  double drCosDelta,
+         drCosLat,
+         drSinLat,
+         drAbsDelta;
+  
+  double drA = 0.15127;
+  
+  /* Convert degrees to radians */
+  drLatRad  = degreesToRadians(drLatDeg); // 0.402
+  drLongRad = degreesToRadians(drLongDeg); // 1.265
+
+  drCosLat   = cos(drLatRad); // 0.920
+  drSinLat   = sin(drLatRad); // 0.391
+  
+  drDelta = drLongRad - drLongRadSat; // 1.265
+  drAbsDelta = fabs(drDelta);// 1.265
+  drCosDelta = cos(drAbsDelta);// 0.300
+
+  drY = acos(drCosLat * drCosDelta); // 1.290
+
+  /* Compute azimuth */
+  if (drDelta > 0.0)  {
+    drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat); // 4.589
+  } else  {
+    drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
+  }
+
+  drAzimuth = radiansToDegrees(drAzimuth); // 262.968
+  drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0; // -97.031
+  
+  /* Compute elevation */
+  drElevation = atan2(cos(drY) - drA, sin(drY)); // 0.12968
+
+  drElevation = radiansToDegrees(drElevation); // 7.430
+  
+  // now, rElevation and rAzimuth are correct.  use them to place the satellite.
+  return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
++ (BOOL)available {
+  NSLog(@":: available");
+  if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
+    if ([CLLocationManager headingAvailable]) {
+      NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+      if ([videoDevices count]) return true;
     }
+  }
+  
+  return false;
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSArray*)azimuthAndElevationOfSatelliteAtLongitude:(double)satelliteLongitude
-{
-    //  these guys are set whenever our current location is updated
-    double drLatDeg = deviceLat;
-    double drLongDeg = deviceLon;
-    
-    double drLongDegSat = satelliteLongitude;
-    double drLongRadSat = degreesToRadians(drLongDegSat);
-    
-    double drAzimuth,
-    drElevation,
-    drDelta,
-    drLatRad,
-    drLongRad,
-    drY;
-    
-    double drCosDelta,
-    drCosLat,
-    drSinLat,
-    drAbsDelta;
-    
-    double drA = 0.15127;
-    
-    /* Convert degrees to radians */
-    drLatRad  = degreesToRadians(drLatDeg);
-    drLongRad = degreesToRadians(drLongDeg);
-    
-    drCosLat   = cos(drLatRad);
-    drSinLat   = sin(drLatRad);
-    
-    drDelta = drLongRad - drLongRadSat;
-    drAbsDelta = fabs(drDelta);
-    drCosDelta = cos(drAbsDelta);
-    
-    drY = acos(drCosLat * drCosDelta);
-    
-    /* Compute azimuth */
-    if (drDelta > 0.0)
-    {
-        drAzimuth = M_PI + atan2(tan(drAbsDelta),drSinLat);
-    }
-    else
-    {
-        drAzimuth = M_PI - atan2(tan(drAbsDelta),drSinLat);
-    }
-    
-    drAzimuth = radiansToDegrees(drAzimuth);
-    drAzimuth += (180.0 < drAzimuth) ? -360.0 : 0.0;
-    
-    /* Compute elevation */
-    drElevation = atan2(cos(drY) - drA, sin(drY));
-    
-    drElevation = radiansToDegrees(drElevation);
-    
-    // now, rElevation and rAzimuth are correct.  use them to place the satellite.
-    return [NSArray arrayWithObjects:[NSNumber numberWithDouble:drAzimuth], [NSNumber numberWithDouble:drElevation], nil];
+- (IBAction)infoButtonPressed:(id)sender {
+  NSLog(@":: infoButtonPressed");
+	[infoView setHidden:!infoView.hidden];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-+ (BOOL)available
-{
-    NSLog(@":: available");
-    if ([CLLocationManager respondsToSelector:@selector(headingAvailable)])
-    {
-        if ([CLLocationManager headingAvailable])
-        {
-            NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-            if ([videoDevices count])
-                return true;
-        }
-    }
-    return false;
-}
+- (IBAction)backButtonPressed:(id)sender {
+  NSLog(@":: backButtonPressed");
 
+  //  very old code, this is not the way to do it
+    NSLog(@"!!!");
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (IBAction)infoButtonPressed:(id)sender
-{
-    [infoView setHidden:!infoView.hidden];
-}
-
-//---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (IBAction)backButtonPressed:(id)sender
-{
-    [self nilSatelliteFinderViewObjects];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    if (timer != nil)
-    {
+    //        [self dismissModalViewControllerAnimated:NO];
+    
+    
+    //    [self dismissViewControllerAnimated:NO completion:^{
+    //        //  kill the timer
+    //        //  do it here or timer will restart because viewWillAppear
+    if (timer != nil) {
         [timer invalidate];
         timer = nil;
     }
-    showPicker = true;
-}
+    //
+    //        [self dismissModalViewControllerAnimated:NO];
+    ////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
+    //    }];
 
+    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+    
+    //    [self dismissModalViewControllerAnimated:NO];//camera
 
-#pragma mark -
-#pragma mark Release Satellite Finder Objects
--(void)nilSatelliteFinderViewObjects
-{
-    // nil UIAccelerometer Object...
-    //[accelerometer setDelegate:nil];
-    //accelerometer = nil;
+    //  //  kill the timer
+    //  //  do it here or timer will restart because viewWillAppear
+    //  if (timer != nil) {
+    //    [timer invalidate];
+    //    timer = nil;
+    //  }
     
-    // stop & nil CMMotionManager Object...
-    [motionManager stopAccelerometerUpdates];
-    motionManager = nil;
-    
-    // nil CLLocationManager Object...
-    [locationManager setDelegate:nil];
-    locationManager = nil;
-    
-    // nil NSURLConnection Object...
-    [connection cancel];
-    connection = nil;
+    //  [self dismissModalViewControllerAnimated:NO];//the actual view
+
+	showPicker = true;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth
 {
+    // NSLog(@":: xPositionForSatelliteWithAzimuth");
     satelliteAzimuth += (0.0 > satelliteAzimuth) ? 360.0 : 0.0;
     
     double leftBound = deviceHeading - (hfov/2.0);
     double rightBound = deviceHeading + (hfov/2.0);
-    
     double positionAtBoundScale;
     if (leftBound > rightBound)
     {
@@ -287,117 +259,112 @@
     }
     else
     {
-        if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound)) positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
-        else return NAN;
+        if ((satelliteAzimuth > leftBound) && (satelliteAzimuth < rightBound))
+            positionAtBoundScale = (satelliteAzimuth - leftBound)/hfov;
+        else
+            return NAN;
     }
-    double x = camviewwidth * positionAtBoundScale;
+    //double x = camviewwidth * positionAtBoundScale;
+    double x = ApplicationDelegate.screenSize.width * positionAtBoundScale;
     return x;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (double)offscreenXPositionForSatelliteWithAzimuth:(double)satelliteAzimuth
-{
-    double leftBound = deviceHeading - (hfov/2.0);
-    double rightBound = deviceHeading + (hfov/2.0);
-    double invisibleBoundsDiff = (360.0 - hfov);
-    double positionAtBoundScale;
-    
-    if (leftBound > rightBound)
-    {
-        if (satelliteAzimuth >= (leftBound - (invisibleBoundsDiff/2.0)))
-        {
-            // it's to the left
-            positionAtBoundScale = (leftBound - satelliteAzimuth)/hfov;
-            return (0.0 - (camviewwidth * positionAtBoundScale));
-        }
-        else
-        {
-            // it's to the right
-            positionAtBoundScale = (satelliteAzimuth - rightBound)/hfov;
-            return (camviewwidth + (camviewwidth * positionAtBoundScale));
-        }
-    }
-    else
-    {
-        if (satelliteAzimuth <= leftBound)
-        {
-            // it's to the left
-            positionAtBoundScale = (leftBound - satelliteAzimuth)/hfov;
-            return (0.0 - (camviewwidth * positionAtBoundScale));
-        }
-        else if (satelliteAzimuth >= (rightBound + (invisibleBoundsDiff/2.0)))
-        {
-            // it's to the left
-            positionAtBoundScale = ((360.0 - satelliteAzimuth) + leftBound)/hfov;
-            return (0.0 - (camviewwidth * positionAtBoundScale));
-        }
-        else
-        {
-            // it's to the right
-            positionAtBoundScale = (satelliteAzimuth - rightBound)/hfov;
-            return (camviewwidth + (camviewwidth * positionAtBoundScale));
-        }
-    }
+- (double)offscreenXPositionForSatelliteWithAzimuth:(double)satelliteAzimuth {
+  // NSLog(@":: offscreenXPositionForSatelliteWithAzimuth");
+	double leftBound = deviceHeading - (hfov/2.0);
+	double rightBound = deviceHeading + (hfov/2.0);
+	double invisibleBoundsDiff = (360.0 - hfov);
+	double positionAtBoundScale;
+
+	if (leftBound > rightBound)	{
+		if (satelliteAzimuth >= (leftBound - (invisibleBoundsDiff/2.0))) {
+			// it's to the left
+			positionAtBoundScale = (leftBound - satelliteAzimuth)/hfov;
+			//return (0.0 - (camviewwidth * positionAtBoundScale));
+            return (0.0 - (ApplicationDelegate.screenSize.width * positionAtBoundScale));
+		} else {
+			// it's to the right
+			positionAtBoundScale = (satelliteAzimuth - rightBound)/hfov;
+			//return (camviewwidth + (camviewwidth * positionAtBoundScale));
+            return (ApplicationDelegate.screenSize.width + (ApplicationDelegate.screenSize.width * positionAtBoundScale));
+		}
+
+	} else {
+		if (satelliteAzimuth <= leftBound) {
+			// it's to the left
+			positionAtBoundScale = (leftBound - satelliteAzimuth)/hfov;
+			//return (0.0 - (camviewwidth * positionAtBoundScale));
+            return (0.0 - (ApplicationDelegate.screenSize.width * positionAtBoundScale));
+		} else if (satelliteAzimuth >= (rightBound + (invisibleBoundsDiff/2.0))) {
+			// it's to the left
+			positionAtBoundScale = ((360.0 - satelliteAzimuth) + leftBound)/hfov;
+			//return (0.0 - (camviewwidth * positionAtBoundScale));
+            return (0.0 - (ApplicationDelegate.screenSize.width * positionAtBoundScale));
+		} else {
+			// it's to the right
+			positionAtBoundScale = (satelliteAzimuth - rightBound)/hfov;
+			//return (camviewwidth + (camviewwidth * positionAtBoundScale));
+            return (ApplicationDelegate.screenSize.width + (ApplicationDelegate.screenSize.width * positionAtBoundScale));
+		}
+	}
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (double)yPositionForSatelliteWithElevation:(double)satelliteElevation
-{
+- (double)yPositionForSatelliteWithElevation:(double)satelliteElevation {
+    // NSLog(@":: yPositionForSatelliteWithElevation");
     double topBound = deviceTilt + (vfov/2.0);
     double bottomBound = deviceTilt - (vfov/2.0);
     
-    if ((satelliteElevation > bottomBound) && (satelliteElevation < topBound))
-    {
+    if ((satelliteElevation > bottomBound) && (satelliteElevation < topBound)) {
         double boundDiff = topBound - bottomBound;
         double positionAtBoundScale = (satelliteElevation - bottomBound)/boundDiff;
         double y = camviewheight - (camviewheight * positionAtBoundScale);
         return y;
-    }
-    else
-    {
+    } else {
         return NAN;
     }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (double)offscreenYPositionForSatelliteWithElevation:(double)satelliteElevation
-{
-    double topBound = deviceTilt + (vfov/2.0);
-    double bottomBound = deviceTilt - (vfov/2.0);
-    
-    double boundDiff = topBound - bottomBound;
-    double positionAtBoundScale;
-    double y = 0.0;
-    
-    if (satelliteElevation <= bottomBound)
+- (double)offscreenYPositionForSatelliteWithElevation:(double)satelliteElevation {
+  // NSLog(@":: offscreenYPositionForSatelliteWithElevation");
+	double topBound = deviceTilt + (vfov/2.0);
+	double bottomBound = deviceTilt - (vfov/2.0);
+	
+	double boundDiff = topBound - bottomBound;
+	double positionAtBoundScale;
+	double y = 0.0;
+	
+	if (satelliteElevation <= bottomBound)
     {
-        positionAtBoundScale = (bottomBound - satelliteElevation)/boundDiff;
-        y = camviewheight + (camviewheight * positionAtBoundScale);
-    }
+		positionAtBoundScale = (bottomBound - satelliteElevation)/boundDiff;
+		y = camviewheight + (camviewheight * positionAtBoundScale);
+	}
     else if (satelliteElevation >= topBound)
     {
-        positionAtBoundScale = (satelliteElevation - topBound)/boundDiff;
-        y = 0.0 - (camviewheight * positionAtBoundScale);
-    }
-    
-    return y;
+		positionAtBoundScale = (satelliteElevation - topBound)/boundDiff;
+		y = 0.0 - (camviewheight * positionAtBoundScale);
+	}
+
+	return y;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)timerAction
-{
-    [overlayView updateAzimuthLabel:deviceHeading];
-    [overlayView updateElevationLabel:deviceTilt];
+- (void)timerAction {
+//   NSLog(@":: timerAction");
+	[overlayView updateAzimuthLabel:deviceHeading];
+	[overlayView updateElevationLabel:deviceTilt];
     [self drawClarkeBelt];
-    [self drawSatList];
+	[self drawSatList];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)drawSatList
-{
+- (void)drawSatList {
     NSUInteger k = [satList count];
-    float hw = (IS_IPAD ? 384.0 : 160.0); // half width
-    float hh = (IS_IPAD ? 384.0 : 160.0); // half height
+    
+    float hw = (IS_IPAD ? 384.0 :  ApplicationDelegate.screenSize.width/2); // half width
+    float hh = (IS_IPAD ? 384.0 : camviewheight/2); // half height
     
     
     //	distance of the closest sat
@@ -555,46 +522,30 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)drawClarkeBelt
-{
+- (void)drawClarkeBelt {
     // enumerate through satellites
     NSString* satelliteName;
-    //    for( double satelliteLongitude = 0.0; satelliteLongitude < 359.0; satelliteLongitude += 5.0 ) {
-    for( double satelliteLongitude = 0.0; satelliteLongitude < 500.0; satelliteLongitude += 5.0 )
-    {
+    for( double satelliteLongitude = 0.0; satelliteLongitude < 359.0; satelliteLongitude += 5.0 ) {
         satelliteName = @"dot";
         satelliteName = [satelliteName stringByAppendingFormat:@"%lf",satelliteLongitude];
-        
-        if(satelliteLongitude)
-        {
+        if(satelliteLongitude) {
             // use jacob's alg to calc azimuth & elevation of satellite
             NSArray* satelliteAzimuthAndElevation = [self azimuthAndElevationOfSatelliteAtLongitude:satelliteLongitude];
-            
-            if(satelliteAzimuthAndElevation)
-            {
+            if(satelliteAzimuthAndElevation) {
                 double satelliteAzimuth = [[satelliteAzimuthAndElevation objectAtIndex:0] doubleValue];
                 double satelliteElevation = [[satelliteAzimuthAndElevation objectAtIndex:1] doubleValue];
                 double x = [self xPositionForSatelliteWithAzimuth:satelliteAzimuth];
                 double y = [self yPositionForSatelliteWithElevation:satelliteElevation];
-                
-                if(satelliteElevation>0.0)
-                {
-                    if(isNaN(x) || isNaN(y))
-                    {
+                if(satelliteElevation>0.0) {
+                    if(isNaN(x) || isNaN(y)) {
                         [overlayView hideViewForSatelliteWithName:satelliteName];
                         continue;
-                    }
-                    else
-                    {
+                    } else {
                         [overlayView updateViewForSatelliteWithName:satelliteName AtX:x andY:y withType:0];
                     }
                 }
-            }
-            else
-                continue;
-        }
-        else
-            continue;
+            } else continue;
+        } else continue;                                                                     
     }
 }
 
@@ -603,15 +554,12 @@
 #pragma mark UIViewController Methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (id)init
-{
-    if (IS_IPAD)
-        self = [super initWithNibName:@"SatelliteFinderViewController~iPad" bundle:[NSBundle mainBundle]];
-    else
-        self = [super initWithNibName:@"SatelliteFinderViewController~iPhone" bundle:[NSBundle mainBundle]];
+- (id)init {
+    if (IS_IPAD) self = [super initWithNibName:@"SatelliteFinderViewController~iPad" bundle:[NSBundle mainBundle]];
+    else self = [super initWithNibName:@"SatelliteFinderViewController~iPhone" bundle:[NSBundle mainBundle]];
     
-    if (self)
-    {
+    if (self) {
+        
         satList = [[NSMutableArray alloc] init];
         
         double accelerometerFrequency = (1.0 / 24.0);
@@ -621,19 +569,20 @@
         //accelerometer = [UIAccelerometer sharedAccelerometer];
         //[accelerometer setUpdateInterval:accelerometerFrequency];
         //[accelerometer setDelegate:self];
+        
         motionManager = [[CMMotionManager alloc] init];
         motionManager.accelerometerUpdateInterval = accelerometerFrequency;
         [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error)
-        {
-            [self outputAccelertionData:accelerometerData.acceleration];
-            if(error)
-            {
-                NSLog(@"%@", error);
-            }
-        }];
-        
+         {
+             [self outputAccelertionData:accelerometerData.acceleration];
+             if(error)
+             {
+                 NSLog(@"%@", error);
+             }
+         }];
         
         locationManager = [[CLLocationManager alloc] init];
+        [locationManager setDelegate:self];
         if (IS_OS_8_OR_LATER)
         {
             if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
@@ -645,19 +594,14 @@
                                                      forEvent:nil];
             }
         }
-        [locationManager setDelegate:self];
         [locationManager setDistanceFilter:kCLDistanceFilterNone];
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
         [locationManager setHeadingFilter:kCLHeadingFilterNone];
-        // deprecated, we may still need for older ios versions
-        // If we set the target above iOS 6 then this warning can be removed.
-        [locationManager setPurpose:@"Satellite Finder needs your location to find satellites!"];
-        [locationManager startUpdatingLocation];
-        if ([CLLocationManager headingAvailable])
-        {
+        [locationManager setPurpose:@"Satellite Finder needs your location to find satellites!"];  //  deprecated, we may still need for older ios versions
+        if ([CLLocationManager headingAvailable]) {
             [locationManager startUpdatingHeading];
         }
-        
+
         //  DEBUGGING
         // deviceLat = 34.043918;
         // deviceLon = -118.252480;
@@ -669,8 +613,7 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@":: viewDidLoad");
     showPicker = true;
@@ -689,17 +632,23 @@
     //------------Heigth of overlay-----------//
     if (overlayView == nil)
         overlayView = [[SatelliteFinderOverlayView alloc] init];
-    
-        overlayView.frame = [[UIScreen mainScreen] bounds];
+    overlayView.backgroundColor = [UIColor clearColor];
+    overlayView.frame = [[UIScreen mainScreen] bounds];
     
     //-------------Bottom Bar-------------//
-    UIImageView* bottomBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sf_enabled_favorite_selected_bar.png"]];
-    
+    UIImage *imgBottom;
+    UIImageView* bottomBar = [[UIImageView alloc] init];
     //  i don't know why this case doesnt handle ~ipad ~iphone image suffixes
-    if (IS_IPAD)
+    if (IS_IPAD) {
+        imgBottom = [UIImage imageNamed:@"sf_enabled_favorite_selected_bar_ipad.png"];
         [bottomBar setFrame:CGRectMake(410.0, 996.0, 343.0, 23.0)];
-    else
-        [bottomBar setFrame:CGRectMake(0.0, overlayView.frame.size.height - 54.0, overlayView.frame.size.width, 54.0)];
+    }
+    else {
+        imgBottom = [UIImage imageNamed:@"sf_enabled_favorite_selected_bar.png"];
+        [bottomBar setFrame:CGRectMake(0.0, overlayView.frame.size.height -54.0, overlayView.frame.size.width,54.0)];
+    }
+    bottomBar.image = imgBottom;
+    bottomBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     [overlayView addSubview:bottomBar];
     
     //--------------Back Button----------------//
@@ -743,31 +692,26 @@
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
 }
 
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@":: viewWillAppear");
-    [locationManager startUpdatingLocation];
-    if ([CLLocationManager headingAvailable])
-        [locationManager startUpdatingHeading];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"satFinderInfoShown"])
-    {
-        [infoView setHidden:YES];
-    }
-    else
-    {
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"satFinderInfoShown"];
-        [infoView setHidden:NO];
-    }
-    
-    //  start the timer
-    if (timer == nil)
-    {
-        timer = [NSTimer timerWithTimeInterval:(1.0 / 5.0) target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-    }
+- (void)viewWillAppear:(BOOL)animated {  
+  NSLog(@":: viewWillAppear");
+  [locationManager startUpdatingLocation];
+  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
+  
+  // [demoButton setHidden:!APPDEL.demoMode];
+
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"satFinderInfoShown"]) {
+    [infoView setHidden:YES];
+  } else {
+    [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"satFinderInfoShown"];
+    [infoView setHidden:NO];
+  } 
+
+  //  start the timer
+  if (timer == nil) {
+    timer = [NSTimer timerWithTimeInterval:(1.0 / 5.0) target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -783,40 +727,35 @@
         [picker setNavigationBarHidden:YES];
         [picker setWantsFullScreenLayout:YES];
         
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        float cameraAspectRatio = 4.0 / 3.0;
-        float imageWidth = floorf(screenSize.width * cameraAspectRatio);
-        float scale = ceilf((screenSize.height / imageWidth) * 10.0) / 10.0;
+        if (!IS_IPAD) {
+            float cameraAspectRatio = 4.0 / 3.0;
+            float imageWidth = floorf(ApplicationDelegate.screenSize.width * cameraAspectRatio);
+            float scale = ceilf((ApplicationDelegate.screenSize.height / imageWidth) * 1.0) / 1.0;
+            picker.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
+        }
         
-        picker.cameraViewTransform = CGAffineTransformMakeScale(scale, scale);
         [picker setCameraOverlayView:overlayView];
         [self presentViewController:picker animated:NO completion:nil];
         showPicker = false;
     }
 }
 
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (BOOL)shouldAutorotate
-{
-    return NO;
+- (BOOL)shouldAutorotate {
+  NSLog(@":: shouldAutorotate");
+  return false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
+- (NSUInteger)supportedInterfaceOrientations {
+  NSLog(@":: shouldAutorotate");
+  return UIInterfaceOrientationMaskPortrait;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+  NSLog(@":: preferredInterfaceOrientationForPresentation");
+  return UIInterfaceOrientationPortrait;
 }
 
 //=========================================================================================================================================================
@@ -824,39 +763,35 @@
 #pragma mark CLLocationManager Delegate Methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    deviceLat = newLocation.coordinate.latitude;
-    deviceLon = newLocation.coordinate.longitude;
-    if (deviceLat == 0.0) deviceLat = 0.000001;
-    if (deviceLon == 0.0) deviceLon = 0.000001;
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+  // NSLog(@"--------------------------------------");
+  // NSLog(@":: locationManager didUpdateToLocation");
+  // NSLog(@"--------------------------------------");
+  deviceLat = newLocation.coordinate.latitude;
+  deviceLon = newLocation.coordinate.longitude;
+
+  if (deviceLat == 0.0)
+      deviceLat = 0.000001;
+  if (deviceLon == 0.0)
+      deviceLon = 0.000001;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading
-{
-    if (0 < newHeading.headingAccuracy)
-    {
-        if (deviceTilt > 45.0)
-        {
-            deviceHeading = fabs(newHeading.trueHeading - 180.0);
-        }
-        else
-        {
-            deviceHeading = newHeading.trueHeading;
-        }
-    }
-    else
-    {
-        deviceHeading = -999.0;
-    }
+- (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
+  // NSLog(@":: locationManager didUpdateHeading");
+  if (0 < newHeading.headingAccuracy) {
+		if (deviceTilt > 45.0)	deviceHeading = fabs(newHeading.trueHeading - 180.0);
+		else deviceHeading = newHeading.trueHeading;
+  } else {
+    deviceHeading = -999.0;
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
-{
-    [manager dismissHeadingCalibrationDisplay];
-    return NO;
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
+  // NSLog(@":: locationManagerShouldDisplayHeadingCalibration");
+	[manager dismissHeadingCalibrationDisplay];
+  return NO;
 }
 
 
@@ -865,58 +800,52 @@
 #pragma mark UIAccelerometer Delegate Methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
-{
-    // NSLog(@":: accelerometer didAccelerate");
-    //[accelerometerFilter addAcceleration:acceleration];
-    //double y = accelerometerFilter.y;
-    //double z = accelerometerFilter.z;
-    //deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
-    //NSLog(@"deviceTilt : %f",deviceTilt);
-}
+//- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+//  // NSLog(@":: accelerometer didAccelerate");
+//  [accelerometerFilter addAcceleration:acceleration];
+//  double y = accelerometerFilter.y;
+//	double z = accelerometerFilter.z;    
+//	deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
+//}
 
 -(void)outputAccelertionData:(CMAcceleration)acceleration
 {
+    //NSLog(@":: accelerometer didAccelerate");
     [accelerometerFilter addAcceleration:acceleration];
     double y = accelerometerFilter.y;
     double z = accelerometerFilter.z;
     deviceTilt = radiansToDegrees(atan2(y, z)) + 90.0;
-    
+    //NSLog(@"deviceTilt : %f",deviceTilt);
 }
+
 //=========================================================================================================================================================
 #pragma mark -
 #pragma mark - NSURLConnectionDelegate protocol methods
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@":: connection didReceiveResponse");
+- (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response {
+  NSLog(@":: connection didReceiveResponse");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data
-{
-    NSLog(@":: connection didReceiveData");
-    [xmlData appendData:data];
+- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data {
+  NSLog(@":: connection didReceiveData");
+  [xmlData appendData:data];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)error
-{
-    NSLog(@":: connection didFailWithError");
+- (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)error {
+  NSLog(@":: connection didFailWithError");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)connectionDidFinishLoading:(NSURLConnection *)_connection
-{
-    NSLog(@":: connectionDidFinishLoading");
-    NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
-    
-    NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
-    if ([satListXmlString containsString:@"antenna_status"])
-        [self getAntennaStatusFromXmlString:satListXmlString];
-    else if ([satListXmlString containsString:@"get_autoswitch_status"])
-        [self getSatListFromXmlString:satListXmlString];
+- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
+  NSLog(@":: connectionDidFinishLoading");
+  NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
+//  NSLog(@":: xmlData: %@", xmlData);
+
+  NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
+  [self getSatListFromXmlString:satListXmlString];
 }
 
 @end

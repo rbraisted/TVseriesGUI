@@ -4,26 +4,39 @@
 
 @implementation AppDelegate
 @synthesize isNavigateToUpdateScreen;
+@synthesize screenSize;
 
 #pragma mark - UIApplicationDelegate protocol methods
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  [self.window makeKeyAndVisible];
-	
-  //	set default values -
-  //	even though we set these in the settings bundle,
-  //	iOS doesn't actually use those defaults on first launch
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if ([defaults objectForKey:@"default-host"] == nil) [defaults setObject:kDefaultHostname forKey:@"default-host"];
-  if ([defaults objectForKey:@"tech-mode"] == nil) [defaults setBool:false forKey:@"tech-mode"];
-  if ([defaults objectForKey:@"demo-mode"] == nil) [defaults setBool:false forKey:@"demo-mode"];
-  [defaults synchronize];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
+    self.window.backgroundColor = [UIColor orangeColor];
+    [self getscreenSize];
+    NSLog(@"Current screen Size is : %@", NSStringFromCGSize(screenSize));
+    
+    //	set default values -
+    //	even though we set these in the settings bundle,
+    //	iOS doesn't actually use those defaults on first launch
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"default-host"] == nil) [defaults setObject:kDefaultHostname forKey:@"default-host"];
+    if ([defaults objectForKey:@"tech-mode"] == nil) [defaults setBool:false forKey:@"tech-mode"];
+    if ([defaults objectForKey:@"demo-mode"] == nil) [defaults setBool:false forKey:@"demo-mode"];
+    [defaults synchronize];
+    
+    BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
+    self.window.rootViewController = bonjourViewController;
+    
+    return YES;
+}
 
-  BonjourViewController* bonjourViewController = [[BonjourViewController alloc] init];
-	self.window.rootViewController = bonjourViewController;
-
-	return YES;
+- (void)getscreenSize
+{
+    screenSize = [UIScreen mainScreen].bounds.size;
+    if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        screenSize = CGSizeMake(screenSize.height, screenSize.width);
+    }
 }
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window  {

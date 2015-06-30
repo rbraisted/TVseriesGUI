@@ -47,7 +47,7 @@
 
 #import <UIKit/UIKit.h>
 
-// Basic filter object. 
+// Basic filter object.
 @interface AccelerometerFilter : NSObject
 {
     BOOL adaptive;

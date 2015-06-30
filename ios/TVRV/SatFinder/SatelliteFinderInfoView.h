@@ -6,7 +6,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SatelliteFinderInfoView : UIView {
+@interface SatelliteFinderInfoView : UIView
+{
 	UIButton*	okButton;
 }
 

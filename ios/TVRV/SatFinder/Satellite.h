@@ -3,21 +3,21 @@
 #import <Foundation/Foundation.h>
 
 @interface Satellite : NSObject {
-  NSString* listID;
-  NSString* antSatID;
-  NSString* triSatID;
-  NSString* name;
-  NSString* region;
-
-  float     degLon;
-
-  BOOL      favorite;
-  BOOL      enabled;
-  BOOL      selectable;
-  BOOL      selected;
-
-  float     rAzLook180;
-  float     rElLook180;
+    NSString* listID;
+    NSString* antSatID;
+    NSString* triSatID;
+    NSString* name;
+    NSString* region;
+    
+    float     degLon;
+    
+    BOOL      favorite;
+    BOOL      enabled;
+    BOOL      selectable;
+    BOOL      selected;
+    
+    float     rAzLook180;
+    float     rElLook180;
 }
 
 //<listID>21</listID>
@@ -47,14 +47,14 @@
 @property (nonatomic) float rElLook180;
 
 - (id)initWithListID:(NSString*)_listID
-      withAntSatID:(NSString*)_antSatID
-      withTriSatID:(NSString*)_triSatID
-      withName:(NSString*)_name 
-      withRegion:(NSString*)_region
-      withDegLon:(float)_degLon
-      isFavorite:(BOOL)_favorite
-      isEnabled:(BOOL)_enabled
-      isSelectable:(BOOL)_selectable
-      isSelected:(BOOL)_selected;
+        withAntSatID:(NSString*)_antSatID
+        withTriSatID:(NSString*)_triSatID
+            withName:(NSString*)_name
+          withRegion:(NSString*)_region
+          withDegLon:(float)_degLon
+          isFavorite:(BOOL)_favorite
+           isEnabled:(BOOL)_enabled
+        isSelectable:(BOOL)_selectable
+          isSelected:(BOOL)_selected;
 
 @end
