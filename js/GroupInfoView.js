@@ -44,7 +44,7 @@
     var satDView = SatView($('.\\#sat-d-view', jQ));
 
     //  install group
-    var installBtn = $(':not(.\\#sat-view) .\\#install-btn', jQ).click(function() {
+    var installBtn = $('.\\#install-btn', jQ).click(function() {
       var installed = jQ.hasClass('$installed');
       //  if !installed, ask for confirmation
       var confirmed = installed ? false : confirm('Are you sure you want to install ' + group.name + '?');
