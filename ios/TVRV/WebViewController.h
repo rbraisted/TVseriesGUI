@@ -12,7 +12,7 @@
   UIView*    loadingView;
   NSTimer*   timeoutTimer;
 
-  SatelliteFinderViewController* satFinderViewController;
+  //SatelliteFinderViewController* satFinderViewController;
   UpdatesManager*          updatesManager;
 }
 

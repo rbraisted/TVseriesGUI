@@ -136,7 +136,7 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
 {
-  NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
+  //NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
   [netService setDelegate:self];
   [netService resolveWithTimeout:5];
   [netServices addObject:netService];
@@ -145,14 +145,14 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didRemoveService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
 {
-	NSLog(@"netServiceBrowser didRemoveService:%@ moreComing:%d", netService, moreServicesComing);
+	//NSLog(@"netServiceBrowser didRemoveService:%@ moreComing:%d", netService, moreServicesComing);
 	[netServices removeObject:netService];
 	[self.tableView reloadData];
 }
 
 - (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)netServiceBrowser
 {
-	NSLog(@"netServiceBrowserWillSearch");
+	//NSLog(@"netServiceBrowserWillSearch");
 	[netServices removeAllObjects];
 }
 
@@ -160,18 +160,18 @@
 
 - (void)netServiceDidResolveAddress:(NSNetService *)netService
 {
-	NSLog(@"netServiceDidResolveAddress:%@", netService);
+	//NSLog(@"netServiceDidResolveAddress:%@", netService);
 	[self.tableView reloadData];
 }
 
 - (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorDict
 {
-	NSLog(@"netService:%@ didNotResolve:%@", netService, errorDict);
+	//NSLog(@"netService:%@ didNotResolve:%@", netService, errorDict);
 }
 
 - (void)netServiceDidStop:(NSNetService *)netService
 {
-	NSLog(@"netServiceDidStop:%@", netService);
+	//NSLog(@"netServiceDidStop:%@", netService);
 }
 
 #pragma mark - UITableViewDelegate protocol methods

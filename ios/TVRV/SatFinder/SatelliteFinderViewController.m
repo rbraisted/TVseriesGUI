@@ -43,14 +43,14 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)getSatListFromBundle {
-  NSLog(@":: getSatListFromBundle");
+  //NSLog(@":: getSatListFromBundle");
   NSString* satListXmlString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"satellites" ofType:@"xml"] encoding:NSUTF8StringEncoding error:NULL];
   [self getSatListFromXmlString:satListXmlString];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)getSatListFromHostname:(NSString*)hostname {
-  NSLog(@":: setHostname");
+  //NSLog(@":: setHostname");
   if (connection) {
     [connection cancel];
     connection = nil;
@@ -60,11 +60,10 @@
   else xmlData = [[NSMutableData alloc] init];
 
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/webservice.php", hostname]]];
-  [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
+  [request setHTTPMethod:@"POST"];
   [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-//  [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_satellite_list\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
   [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"get_autoswitch_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
-  NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
+  //NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
 
   connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
   [connection start];
@@ -73,7 +72,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)getSatListFromXmlString:(NSString*)satListXmlString
 {
-    NSLog(@":: getSatListFromXmlString");
+    //NSLog(@":: getSatListFromXmlString");
     [satList removeAllObjects];
     
     RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
@@ -94,12 +93,12 @@
     [satList addObject:satD];
     
     // find the selected satellite from antenna_status
-    //[self getAntennaStatusFromHostname:[[NSUserDefaults standardUserDefaults] objectForKey:@"default-host"]];
+    [self getAntennaStatusFromHostname:[[NSUserDefaults standardUserDefaults] objectForKey:@"default-host"]];
 }
 
 - (void)getAntennaStatusFromHostname:(NSString*)hostname
 {
-    NSLog(@":: getAntennaStatusFromHostname");
+    //NSLog(@":: getAntennaStatusFromHostname");
     if (connection)
     {
         [connection cancel];
@@ -113,10 +112,30 @@
     [request setHTTPMethod:@"POST"];// request.HTTPMethod = @"POST";
     [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:[@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ipacu_request><message name=\"antenna_status\"/></ipacu_request>" dataUsingEncoding:NSUTF8StringEncoding]];
-    NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
-    
+    //NSLog(@":: request.HTTPBodyL %@", request.HTTPBody);
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [connection start];
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)getAntennaStatusFromXmlString:(NSString*)satListXmlString
+{
+    //NSLog(@":: getAntennaStatusFromXmlString");
+    RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
+    RXMLElement* satElement = [satListXml child:@"satellite"];
+    
+    NSString* selectedAntSatID = [[NSString alloc] init];
+    selectedAntSatID = [satElement child:@"selected"].text;
+    
+    NSUInteger k = [satList count];
+    while (k--) {
+        Satellite* satellite = (Satellite*)[satList objectAtIndex:k];
+        if ([satellite.antSatID isEqualToString:selectedAntSatID]) {
+            satellite.selected = true;
+        } else {
+            satellite.selected = false;
+        }
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -177,65 +196,57 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 + (BOOL)available {
-  NSLog(@":: available");
+  //NSLog(@":: available");
   if ([CLLocationManager respondsToSelector:@selector(headingAvailable)]) {
     if ([CLLocationManager headingAvailable]) {
       NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
       if ([videoDevices count]) return true;
     }
   }
-  
   return false;
 }
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (IBAction)infoButtonPressed:(id)sender {
-  NSLog(@":: infoButtonPressed");
+  //NSLog(@":: infoButtonPressed");
 	[infoView setHidden:!infoView.hidden];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (IBAction)backButtonPressed:(id)sender {
-  NSLog(@":: backButtonPressed");
-
-  //  very old code, this is not the way to do it
-    NSLog(@"!!!");
-    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-
-    //        [self dismissModalViewControllerAnimated:NO];
-    
-    
-    //    [self dismissViewControllerAnimated:NO completion:^{
-    //        //  kill the timer
-    //        //  do it here or timer will restart because viewWillAppear
-    if (timer != nil) {
+- (IBAction)backButtonPressed:(id)sender
+{
+    [self nilSatelliteFinderViewObjects];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if (timer != nil)
+    {
         [timer invalidate];
         timer = nil;
     }
-    //
-    //        [self dismissModalViewControllerAnimated:NO];
-    ////        [(UINavigationController *)self.presentingViewController popToRootViewControllerAnimated:YES];
-    //    }];
-
-    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-    //   ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-    //  ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-    
-    //    [self dismissModalViewControllerAnimated:NO];//camera
-
-    //  //  kill the timer
-    //  //  do it here or timer will restart because viewWillAppear
-    //  if (timer != nil) {
-    //    [timer invalidate];
-    //    timer = nil;
-    //  }
-    
-    //  [self dismissModalViewControllerAnimated:NO];//the actual view
-
-	showPicker = true;
+    showPicker = true;
 }
 
+
+#pragma mark -
+#pragma mark Release Satellite Finder Objects
+-(void)nilSatelliteFinderViewObjects
+{
+    // nil UIAccelerometer Object...
+    //[accelerometer setDelegate:nil];
+    //accelerometer = nil;
+    
+    // stop & nil CMMotionManager Object...
+    [motionManager stopAccelerometerUpdates];
+    motionManager = nil;
+    
+    // nil CLLocationManager Object...
+    [locationManager setDelegate:nil];
+    locationManager = nil;
+    
+    // nil NSURLConnection Object...
+    [connection cancel];
+    connection = nil;
+}
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (double)xPositionForSatelliteWithAzimuth:(double)satelliteAzimuth
 {
@@ -615,7 +626,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@":: viewDidLoad");
+    //NSLog(@":: viewDidLoad");
     showPicker = true;
     
     // in case i dont have net
@@ -694,7 +705,7 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated {  
-  NSLog(@":: viewWillAppear");
+  //NSLog(@":: viewWillAppear");
   [locationManager startUpdatingLocation];
   if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
   
@@ -717,7 +728,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@":: viewDidAppear");
+    //NSLog(@":: viewDidAppear");
     // show the camera!
     if (showPicker)
     {
@@ -742,19 +753,19 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)shouldAutorotate {
-  NSLog(@":: shouldAutorotate");
+  //NSLog(@":: shouldAutorotate");
   return false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSUInteger)supportedInterfaceOrientations {
-  NSLog(@":: shouldAutorotate");
+  //NSLog(@":: shouldAutorotate");
   return UIInterfaceOrientationMaskPortrait;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  NSLog(@":: preferredInterfaceOrientationForPresentation");
+  //NSLog(@":: preferredInterfaceOrientationForPresentation");
   return UIInterfaceOrientationPortrait;
 }
 
@@ -824,28 +835,31 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response {
-  NSLog(@":: connection didReceiveResponse");
+  //NSLog(@":: connection didReceiveResponse");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data {
-  NSLog(@":: connection didReceiveData");
+  //NSLog(@":: connection didReceiveData");
   [xmlData appendData:data];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)error {
-  NSLog(@":: connection didFailWithError");
+  //NSLog(@":: connection didFailWithError");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
-  NSLog(@":: connectionDidFinishLoading");
-  NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
-//  NSLog(@":: xmlData: %@", xmlData);
-
-  NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
-  [self getSatListFromXmlString:satListXmlString];
+- (void)connectionDidFinishLoading:(NSURLConnection *)_connection
+{
+    //NSLog(@":: connectionDidFinishLoading");
+    //NSLog(@":: xmlData length: %lu", (unsigned long)[xmlData length]);
+    
+    NSString* satListXmlString = [[NSString alloc] initWithBytes:[xmlData bytes] length:[xmlData length] encoding:NSUTF8StringEncoding];
+    if ([satListXmlString containsString:@"antenna_status"])
+        [self getAntennaStatusFromXmlString:satListXmlString];
+    else if ([satListXmlString containsString:@"get_autoswitch_status"])
+        [self getSatListFromXmlString:satListXmlString];
 }
 
 @end

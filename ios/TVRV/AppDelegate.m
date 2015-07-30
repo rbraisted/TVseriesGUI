@@ -12,9 +12,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-    self.window.backgroundColor = [UIColor orangeColor];
+    self.window.backgroundColor = [UIColor clearColor];
     [self getscreenSize];
-    NSLog(@"Current screen Size is : %@", NSStringFromCGSize(screenSize));
     
     //	set default values -
     //	even though we set these in the settings bundle,
