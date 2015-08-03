@@ -89,31 +89,9 @@ a {
       .header .status-btn .status-light.\$off {
         background-color: #4c5269; }
   .header .help-icon {
-    background: transparent url(/images/help_icon.png) no-repeat center 0/ 24px auto;
-    float:right;
-    margin: 5px;
-    cursor: pointer;
-    font-size:13px;
-    padding-top:28px;
     display:none;}
-  .header .nav-btn {
-    cursor: pointer;
-    font-size: 13px;
-    height: 100%;
-    text-align: center;
-    width: 50px;
-    float: right; }
-    @media screen and (min-width: 881px) {
-      .header .nav-btn {
-        display: none; } }
-    .header .nav-btn .nav-light {
-      background-color: #fff;
-      display: inline-block;
-      height: 10px;
-      margin: 7px 3px 2px 0;
-      width: 10px; }
-    .header .nav-btn .nav-light:nth-child(n+3) {
-      margin-top: 0; }
+  .header .nav-icon {
+    display:none;}
 
 .status {
   position: fixed;
