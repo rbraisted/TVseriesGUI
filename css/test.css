@@ -88,6 +88,14 @@ a {
         background-color: #c51313; }
       .header .status-btn .status-light.\$off {
         background-color: #4c5269; }
+  .header .help-icon {
+    background: transparent url(/images/help_icon.png) no-repeat center 0/ 24px auto;
+    float:right;
+    margin: 5px;
+    cursor: pointer;
+    font-size:13px;
+    padding-top:28px;
+    display:none;}
   .header .nav-btn {
     cursor: pointer;
     font-size: 13px;

@@ -49,17 +49,11 @@
  --><div title="Power" class="status-light power-status #status-power-color"></div>
     Status
   </div>
-
-  <div class="nav-btn #nav-btn">
-    <div class="nav-light"></div><!--
- --><div class="nav-light"></div><!--
- --><div class="nav-light"></div><!--
- --><div class="nav-light"></div><!--
- --><div class="nav-light"></div><!--
- --><div class="nav-light"></div>
-    Menu
-  </div>
-
+  
+  <div class="nav-icon #nav-btn">Menu</div>
+  
+  <div class="help-icon #help-btn">Help</div>
+  
   <div class="tracvision-logo #home-btn"></div>
 </div>
 

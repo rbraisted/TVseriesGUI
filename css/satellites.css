@@ -91,24 +91,27 @@ a {
         background-color: #c51313; }
       .header .status-btn .status-light.\$off {
         background-color: #4c5269; }
-  .header .nav-btn {
-    cursor: pointer;
+  .header .help-icon {
+    background: transparent url(/images/help-icon.png) no-repeat center 7px / auto 26px;
     font-size: 13px;
-    height: 100%;
+    padding-top: 34px;
     text-align: center;
-    width: 50px;
-    float: right; }
+    float:right;
+    cursor: pointer;
+    width: 41px;
+    height: 50px;}
+  .header .nav-icon {
+    background: transparent url(/images/menu-icon.png) no-repeat center 7px / auto 26px;
+    font-size: 13px;
+    padding-top: 34px;
+    text-align: center;
+    float: right;
+	cursor: pointer;
+	width: 50px;
+    height: 50px;}
     @media screen and (min-width: 881px) {
-      .header .nav-btn {
+      .header .nav-icon {
         display: none; } }
-    .header .nav-btn .nav-light {
-      background-color: #fff;
-      display: inline-block;
-      height: 10px;
-      margin: 7px 3px 2px 0;
-      width: 10px; }
-    .header .nav-btn .nav-light:nth-child(n+3) {
-      margin-top: 0; }
 
 .status {
   position: fixed;
