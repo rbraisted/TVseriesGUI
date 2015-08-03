@@ -97,7 +97,7 @@ a {
       .header .status-btn .status-light.\$off {
         background-color: #4c5269; }
   .header .help-icon {
-    background: transparent url(/images/help-icon.png) no-repeat center 7px / auto 26px;
+    background: transparent url(/images/help-icon.svg) no-repeat center 7px / auto 24px;
     font-size: 13px;
     padding-top: 34px;
     text-align: center;
@@ -106,7 +106,7 @@ a {
     width: 41px;
     height: 50px;}
   .header .nav-icon {
-    background: transparent url(/images/menu-icon.png) no-repeat center 7px / auto 26px;
+    background: transparent url(/images/menu-icon.svg) no-repeat center 7px / auto 24px;
     font-size: 13px;
     padding-top: 34px;
     text-align: center;
