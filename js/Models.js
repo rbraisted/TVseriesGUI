@@ -618,7 +618,7 @@
 
   TVRO.getSystemVersion = function() {
     return TVRO.getAntennaVersions().then(function(xml) {
-      return $('current', xml).text();
+      return [$('current', xml).text(), $('ver_sync', xml).text()];
     });
   };
 

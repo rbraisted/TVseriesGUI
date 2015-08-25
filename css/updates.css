@@ -43,6 +43,14 @@ body {
 a {
   color: inherit;
   text-decoration: inherit; }
+  
+.green {
+	color: #acd038;
+}
+
+.hide {
+	display: none;
+}
 
 .header {
   background-color: transparent;
@@ -939,7 +947,7 @@ a {
     min-height: 46px;
     border-bottom: 1px solid #4f7abd;
     position: relative;
-    vertical-align: middle; }
+    vertical-align: middle;}
   .menu-table .table-col {
     display: inline-block;
     height: 100%;
@@ -960,7 +968,7 @@ a {
     display: block;
     width: 100%;
     min-height: 46px;
-    border-bottom: 1px solid #4f7abd;
+    border-bottom: 5px solid black;
     position: relative;
     vertical-align: middle;
     background-color: #243774; }
@@ -1007,8 +1015,6 @@ a {
     display: block; }
   .menu-table .\$sat-library .antenna-version-label {
     display: block; }
-  .menu-table .device-version-label {
-    display: none; }
 
 .update .install-btn,
 .update .download-btn,
@@ -1046,8 +1052,6 @@ a {
     width: 100%;
     border-bottom: 3px solid #bbb;
     z-index: 0; }
-  .update .section .desktop-version .bg {
-    height: 75px; }
   .update .section .version {
     color: #bac7da;
     padding-top: 8px; }
@@ -1090,8 +1094,6 @@ a {
     opacity: 0.01;
     width: 100%;
     display: none; }
-.update .mobile-version {
-  display: none; }
 .update .connected-label,
 .update .not-available-label {
   display: none; }
