@@ -58,7 +58,7 @@ $(function() {
                     // This block displays the proper update text.
                     // Checks if the application version is greater than or
                     // equal to the portal version in a case of a portal
-                    // version being taken down.
+                    // version being rolled back.
                     if ((sysSynched) &&
                         (Number(appsVer) >= Number(portalVer))) {
                         $('.\\#update-req', row).text("Software up-to-date");

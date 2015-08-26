@@ -153,7 +153,7 @@
                         if (antUpdate) {
                             // Checks if the application version is greater
                         	// than or equal to the portal version in a case
-                        	// of a portal version being taken down. Also, the
+                        	// of a portal version being rolled back. Also, the
                         	// ant versions compared in the hub must match.
                             var sysUpToDate = (Number(appsVer) >= Number(portalVer)) && sysSynched;
 

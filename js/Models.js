@@ -618,7 +618,7 @@
 
   TVRO.getSystemVersion = function() {
 	  return TVRO.getAntennaVersions().then(function(xml) {
-		  // grab the applicatyion version from acu->ver which is in the
+		  // grab the application version from acu->ver which is in the
 		  // /kvh/conf/manifest.conf on the hub.
 		  return [$('acu ver', xml).text(), $('ver_sync', xml).text()];
 	  });
