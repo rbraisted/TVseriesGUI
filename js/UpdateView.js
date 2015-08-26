@@ -127,8 +127,8 @@
                             TVRO.getAntState()
                     ).then(function(ret) {
                         var portalVer      = ret[0];
-                        var apps_ver       = ret[1][0];
-                        var sys_synched    = ret[1][1] === 'Y' ? true : false;
+                        var appsVer       = ret[1][0];
+                        var sysSynched    = ret[1][1] === 'Y' ? true : false;
                         var deviceVersions = ret[2];
                         var antState       = ret[3];
 
@@ -151,9 +151,11 @@
                         $('.\\#portal-ver', jQ).text(portalVer);
                         
                         if (antUpdate) {
-                        	// If your your installed version matches the
-                        	// portal and the TV-Hub sends a synched flag.
-                            var sysUpToDate = (apps_ver === portalVer) && sys_synched;
+                            // Checks if the application version is greater
+                        	// than or equal to the portal version in a case
+                        	// of a portal version being taken down. Also, the
+                        	// ant versions compared in the hub must match.
+                            var sysUpToDate = (Number(appsVer) >= Number(portalVer)) && sysSynched;
 
                             jQ.toggleClass('$up-to-date', sysUpToDate);
 
@@ -167,7 +169,7 @@
                             if (sysUpToDate) {
                                 $('.\\system-version .\\#download-type', jQ).toggleClass("hide", false);
                                 $('.\\#system-ver', jQ).toggleClass("green", false);
-                                $('.\\#system-ver', jQ).text(apps_ver + " installed");
+                                $('.\\#system-ver', jQ).text(appsVer + " installed");
                             } else {
                                 $('.\\system-version .\\#download-type', jQ).toggleClass("hide", true);
                                 $('.\\#system-ver', jQ).toggleClass("green", true);

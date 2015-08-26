@@ -50,16 +50,19 @@ $(function() {
                 row.toggleClass('$connected', connected);
 
                 TVRO.getSystemVersion().then(function(arg) {
-                    var apps_ver    = arg[0];
-                    var sys_synched = arg[1] === 'Y' ? true : false;
+                    var appsVer    = arg[0];
+                    var sysSynched = arg[1] === 'Y' ? true : false;
+
+                    $('.\\#update-req', row).toggleClass("green", true);
 
                     // This block displays the proper update text.
-                    if ((sys_synched) &&
-                        (portalVer === apps_ver)) {
-                        $('.\\#update-req', row).toggleClass("green", true);
+                    // Checks if the application version is greater than or
+                    // equal to the portal version in a case of a portal
+                    // version being taken down.
+                    if ((sysSynched) &&
+                        (Number(appsVer) >= Number(portalVer))) {
                         $('.\\#update-req', row).text("Software up-to-date");
                     } else {
-                        $('.\\#update-req', row).toggleClass("green", true);
                         $('.\\#update-req', row).text("Software Update Required");
                     }
                 });
