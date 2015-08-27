@@ -21,23 +21,27 @@ $(function() {
         var techMode   = TVRO.getTechMode();
         var antUpdate  = update !== 'SatLibrary';
         var updateName = antUpdate ? update : 'Satellite Library';
+        var portalVer  = "N/A"
         
         $('.\\#update-name', row).text(updateName);
 
         row.toggleClass('$antenna', antUpdate);
         row.toggleClass('$sat-library', !antUpdate);
 
+        TVRO.getPortalVersion(update).then(function(version){
+        	portalVer = version;
+
+        	// Display the portal versions
+            $('.\\#portal-ver', row).text(portalVer);
+
+        });
+        
         Promise.all(
-                TVRO.getPortalVersion(update),
                 TVRO.getAntModel(),
                 TVRO.getAntState()
         ).then(function(args) {
-            var portalVer = args[0];
-            var model     = args[1];
-            var antState  = args[2];
-
-            // Display the portal versions
-            $('.\\#portal-ver', row).text(portalVer);
+            var model     = args[0];
+            var antState  = args[1];
 
             // Display only the Sat Lib and ant model unless tech mode.
             row.toggle(techMode || (update === model) || !antUpdate);

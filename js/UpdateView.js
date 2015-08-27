@@ -110,7 +110,8 @@
                     var updateName  = antUpdate ? model : 'Satellite Library';
                     var updateType  = antUpdate ? 'System Software' : 'Satellite Library';
                     var installType = antUpdate ? model + ' System Software' : ' Satellite Library';
-                    
+                    var portalVer   = "N/A";
+
                     $('.\\#update-name', jQ).text(updateName);
                     $('.\\#update-type', jQ).text(updateType);
                     $('.\\#download-type', jQ).text(installType + " Version ");
@@ -119,18 +120,31 @@
                     jQ.toggleClass('$tech-mode', TVRO.getTechMode());
                     jQ.toggleClass('$antenna', antUpdate);
                     jQ.toggleClass('$sat-library', !antUpdate);
+                    
+                    // Add the css not-available class to the portal download
+                    // button
+                    jQ.addClass('$not-available');
+                    
+                    TVRO.getPortalVersion(model).then(function(version){
+                    	portalVer = version;
+                    	
+                        jQ.removeClass('$not-available');
 
+                    	// Display the Portal software version (Ant and SatLib)
+                        $('.\\#portal-ver', jQ).text(portalVer);
+
+                    	return portalVer
+                    });
+                    
                     Promise.all(
-                            TVRO.getPortalVersion(model),
                             TVRO.getSystemVersion(),
                             TVRO.getDeviceVersions(),
                             TVRO.getAntState()
                     ).then(function(ret) {
-                        var portalVer      = ret[0];
-                        var appsVer       = ret[1][0];
-                        var sysSynched    = ret[1][1] === 'Y' ? true : false;
-                        var deviceVersions = ret[2];
-                        var antState       = ret[3];
+                        var appsVer        = ret[0][0];
+                        var sysSynched     = ret[0][1] === 'Y' ? true : false;
+                        var deviceVersions = ret[1];
+                        var antState       = ret[2];
 
                         var downloadedVersionForThisUpdate = deviceVersions[model];
 
@@ -145,10 +159,6 @@
                         // detected on the User Device.
                         jQ.toggleClass('$has-downloaded-latest', downloadedVersionForThisUpdate === portalVer);
 
-                        jQ.removeClass('$not-available');
-
-                        // Display the Portal software version (Ant and SatLib)
-                        $('.\\#portal-ver', jQ).text(portalVer);
                         
                         if (antUpdate) {
                             // Checks if the application version is greater
@@ -163,6 +173,7 @@
                             // display the connected block which hides the
                             // red x
                             var connected = (antState !== "DISCONNECTED");
+
                             jQ.toggleClass('$connected', connected);
 
                             // This block displays the proper update text.
@@ -193,9 +204,6 @@
                             jQ.addClass('$connected');
                             $('#fileToUpload').attr('accept', 'text/xml');
                         } // End Sat Lib Else
-                    }, function() {
-                        jQ.addClass('$not-available');
-                        return NaN;
                     }); // End Promise.all then.
                 } // End setUpdate method
         };
