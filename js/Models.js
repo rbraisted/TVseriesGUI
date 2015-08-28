@@ -648,6 +648,8 @@
   TVRO.getPortalVersion = function(arg) {
     return TVRO.getLatestSoftware(arg).then(function(xml) {
       return $('software_version', xml).text() || $('version', xml).text();
+    }, function(){
+    	return "N/A";
     });
   };
 

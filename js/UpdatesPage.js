@@ -21,62 +21,68 @@ $(function() {
         var techMode   = TVRO.getTechMode();
         var antUpdate  = update !== 'SatLibrary';
         var updateName = antUpdate ? update : 'Satellite Library';
-        var portalVer  = "N/A"
         
         $('.\\#update-name', row).text(updateName);
 
         row.toggleClass('$antenna', antUpdate);
         row.toggleClass('$sat-library', !antUpdate);
 
-        TVRO.getPortalVersion(update).then(function(version){
-        	portalVer = version;
-
-        	// Display the portal versions
-            $('.\\#portal-ver', row).text(portalVer);
-
-        });
-        
         Promise.all(
                 TVRO.getAntModel(),
                 TVRO.getAntState()
-        ).then(function(args) {
-            var model     = args[0];
-            var antState  = args[1];
-
+        ).then(function(ret){
+            var model     = ret[0];
+            var antState  = ret[1];
+            
             // Display only the Sat Lib and ant model unless tech mode.
             row.toggle(techMode || (update === model) || !antUpdate);
-
+            
             if (antUpdate) {
                 // Check to see if the Ant is connected, if so
                 // display the connected block which hides the
                 // red x
                 var connected = (update === model) && (antState !== "DISCONNECTED");
                 row.toggleClass('$connected', connected);
-
-                TVRO.getSystemVersion().then(function(arg) {
-                    var appsVer    = arg[0];
-                    var sysSynched = arg[1] === 'Y' ? true : false;
-
-                    $('.\\#update-req', row).toggleClass("green", true);
-
-                    // This block displays the proper update text.
-                    // Checks if the application version is greater than or
-                    // equal to the portal version in a case of a portal
-                    // version being rolled back.
-                    if ((sysSynched) &&
-                        (Number(appsVer) >= Number(portalVer))) {
-                        $('.\\#update-req', row).text("Software up-to-date");
-                    } else {
-                        $('.\\#update-req', row).text("Software Update Required");
-                    }
-                });
-
-            } else { //  sat lib update
+            } else {
                 TVRO.getSatLibraryVersion().then(function(version) {
                     $('.\\#update-req', row).toggleClass("green", false);
                     $('.\\#update-req', row).text("Installed version: " + version);
                 });
             }
+        }).then(function(){
+
+
+            TVRO.getPortalVersion(update).then(function(portalVer) {
+
+            	// Display the portal versions
+                $('.\\#portal-ver', row).text(portalVer);
+
+                if (antUpdate) {
+
+                    TVRO.getSystemVersion().then(function(arg) {
+                        var appsVer    = arg[0];
+                        var sysSynched = arg[1] === 'Y' ? true : false;
+
+                        $('.\\#update-req', row).toggleClass("green", true);
+
+                        // This block displays the proper update text.
+                        // Checks if the application version is greater than or
+                        // equal to the portal version in a case of a portal
+                        // version being rolled back.
+                        if ((sysSynched) &&
+                                (Number(appsVer) >= Number(portalVer))) {
+                            $('.\\#update-req', row).text("Software up-to-date");
+                        } else {
+                            if (portalVer === "N/A" && sysSynched) {
+                                $('.\\#update-req', row).text("");
+                            } else {
+                                $('.\\#update-req', row).text("Software Update Required");
+                            }
+                        }
+                    });
+
+                }
+            });
         });
     })
     .onClick(function(update) {

@@ -110,8 +110,7 @@
                     var updateName  = antUpdate ? model : 'Satellite Library';
                     var updateType  = antUpdate ? 'System Software' : 'Satellite Library';
                     var installType = antUpdate ? model + ' System Software' : ' Satellite Library';
-                    var portalVer   = "N/A";
-
+                    
                     $('.\\#update-name', jQ).text(updateName);
                     $('.\\#update-type', jQ).text(updateType);
                     $('.\\#download-type', jQ).text(installType + " Version ");
@@ -120,36 +119,23 @@
                     jQ.toggleClass('$tech-mode', TVRO.getTechMode());
                     jQ.toggleClass('$antenna', antUpdate);
                     jQ.toggleClass('$sat-library', !antUpdate);
-                    
-                    // Add the css not-available class to the portal download
-                    // button
-                    jQ.addClass('$not-available');
-                    
-                    TVRO.getPortalVersion(model).then(function(version){
-                    	portalVer = version;
-                    	
-                        jQ.removeClass('$not-available');
 
-                    	// Display the Portal software version (Ant and SatLib)
-                        $('.\\#portal-ver', jQ).text(portalVer);
-
-                    	return portalVer
-                    });
-                    
                     Promise.all(
+                            TVRO.getPortalVersion(model),
                             TVRO.getSystemVersion(),
                             TVRO.getDeviceVersions(),
                             TVRO.getAntState()
                     ).then(function(ret) {
-                        var appsVer        = ret[0][0];
-                        var sysSynched     = ret[0][1] === 'Y' ? true : false;
-                        var deviceVersions = ret[1];
-                        var antState       = ret[2];
+                        var portalVer      = ret[0];
+                        var appsVer        = ret[1][0];
+                        var sysSynched     = ret[1][1] === 'Y' ? true : false;
+                        var deviceVersions = ret[2];
+                        var antState       = ret[3];
 
                         var downloadedVersionForThisUpdate = deviceVersions[model];
 
                         // Displays if software is detected from cache on the User Device.
-                        if (downloadedVersionForThisUpdate === undefined) {
+                        if (downloadedVersionForThisUpdate === undefined || downloadedVersionForThisUpdate === "") {
                             $('.\\#usr-dev-sw', jQ).text("No software detected");
                         } else {
                             $('.\\#usr-dev-sw', jQ).text(installType + " Version " + downloadedVersionForThisUpdate + " detected");
@@ -159,13 +145,17 @@
                         // detected on the User Device.
                         jQ.toggleClass('$has-downloaded-latest', downloadedVersionForThisUpdate === portalVer);
 
+                        jQ.toggleClass('$not-available', portalVer === "N/A");
+                        
+                        // Display the Portal software version (Ant and SatLib)
+                        $('.\\#portal-ver', jQ).text(portalVer);
                         
                         if (antUpdate) {
                             // Checks if the application version is greater
                         	// than or equal to the portal version in a case
                         	// of a portal version being rolled back. Also, the
                         	// ant versions compared in the hub must match.
-                            var sysUpToDate = (Number(appsVer) >= Number(portalVer)) && sysSynched;
+                            var sysUpToDate = ((Number(appsVer) >= Number(portalVer)) && sysSynched);
 
                             jQ.toggleClass('$up-to-date', sysUpToDate);
 
@@ -173,11 +163,10 @@
                             // display the connected block which hides the
                             // red x
                             var connected = (antState !== "DISCONNECTED");
-
                             jQ.toggleClass('$connected', connected);
 
                             // This block displays the proper update text.
-                            if (sysUpToDate) {
+                            if (sysUpToDate || (portalVer === "N/A") && sysSynched) {
                                 $('.\\system-version .\\#download-type', jQ).toggleClass("hide", false);
                                 $('.\\#system-ver', jQ).toggleClass("green", false);
                                 $('.\\#system-ver', jQ).text(appsVer + " installed");

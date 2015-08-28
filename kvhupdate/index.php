@@ -92,28 +92,26 @@
 
   <div class="section portal-version">
     <div class="bg"></div>
-    <div class="label">Latest Software Available</div>
+    <div class="label">Latest <span class ="#update-type"></span> Available</div>
     <div class="version available-label">
-      Software Version
+      <span class ="#download-type"></span>
       <span class="#portal-ver"></span>
       available to download
     </div>
     <div class="version not-available-label">
-      Latest Software Version not available
+      Latest software version not available
     </div>
     <div class="download-btn #download-btn"></div>
-    <div class="cta available-label">Download Update</div>
+    <div class="cta available-label">Download update</div>
     <div class="cta not-available-label">Not available</div>
   </div>
 
   <div class="section device-version">
     <div class="mobile-version #device-ver-label">
       <div class="bg"></div>
-      <div class="label">On Device</div>
+      <div class="label">On User Device</div>
       <div class="version">
-        Software Version
-        <span class="#device-ver"></span>
-        downloaded
+        <span class="#usr-dev-sw"></span>
       </div>
     </div>
   </div>
