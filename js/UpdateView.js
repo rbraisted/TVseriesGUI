@@ -166,7 +166,9 @@
                             jQ.toggleClass('$connected', connected);
 
                             // This block displays the proper update text.
-                            if (sysUpToDate || (portalVer === "N/A") && sysSynched) {
+                            if ((sysUpToDate) || 
+                                ((portalVer === "N/A") &&
+                                (sysSynched))) {
                                 $('.\\system-version .\\#download-type', jQ).toggleClass("hide", false);
                                 $('.\\#system-ver', jQ).toggleClass("green", false);
                                 $('.\\#system-ver', jQ).text(appsVer + " installed");

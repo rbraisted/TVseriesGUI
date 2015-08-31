@@ -148,7 +148,7 @@
           console.log('\n');
        }
 
-        // Don not display popup if url is http (updates)
+        // Do not display popup if url is http (updates)
         if (errorCount > 3 && requestUrl.match(/http/) == null) {
 
         // Pops up the 'flashing' screen to give an alert when connection to
