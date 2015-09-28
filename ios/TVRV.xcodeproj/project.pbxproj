@@ -122,29 +122,6 @@
 		E91EF108194174CA007829CD /* TracVisionLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF090194174CA007829CD /* TracVisionLogo@2x.png */; };
 		E91EF109194174CA007829CD /* tracVisionLogoiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF091194174CA007829CD /* tracVisionLogoiPad.png */; };
 		E91EF10A194174CA007829CD /* tracVisionLogoiPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF092194174CA007829CD /* tracVisionLogoiPad@2x.png */; };
-		E91EF10B194174CA007829CD /* TVRV_icons_100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF093194174CA007829CD /* TVRV_icons_100x100.png */; };
-		E91EF10C194174CA007829CD /* TVRV_icons_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF094194174CA007829CD /* TVRV_icons_114x114.png */; };
-		E91EF10D194174CA007829CD /* TVRV_icons_120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF095194174CA007829CD /* TVRV_icons_120x120.png */; };
-		E91EF10E194174CA007829CD /* TVRV_icons_144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF096194174CA007829CD /* TVRV_icons_144x144.png */; };
-		E91EF10F194174CA007829CD /* TVRV_icons_152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF097194174CA007829CD /* TVRV_icons_152x152.png */; };
-		E91EF110194174CA007829CD /* TVRV_icons_29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF098194174CA007829CD /* TVRV_icons_29x29.png */; };
-		E91EF111194174CA007829CD /* TVRV_icons_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF099194174CA007829CD /* TVRV_icons_40x40.png */; };
-		E91EF112194174CA007829CD /* TVRV_icons_50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF09A194174CA007829CD /* TVRV_icons_50x50.png */; };
-		E91EF113194174CA007829CD /* TVRV_icons_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF09B194174CA007829CD /* TVRV_icons_57x57.png */; };
-		E91EF114194174CA007829CD /* TVRV_icons_58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF09C194174CA007829CD /* TVRV_icons_58x58.png */; };
-		E91EF115194174CA007829CD /* TVRV_icons_60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF09D194174CA007829CD /* TVRV_icons_60x60.png */; };
-		E91EF116194174CA007829CD /* TVRV_icons_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF09E194174CA007829CD /* TVRV_icons_72x72.png */; };
-		E91EF117194174CA007829CD /* TVRV_icons_76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF09F194174CA007829CD /* TVRV_icons_76x76.png */; };
-		E91EF118194174CA007829CD /* TVRV_icons_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A0194174CA007829CD /* TVRV_icons_80x80.png */; };
-		E91EF119194174CA007829CD /* TVRV_icons_iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A1194174CA007829CD /* TVRV_icons_iTunesArtwork.png */; };
-		E91EF11A194174CA007829CD /* TVRV_icons_iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A2194174CA007829CD /* TVRV_icons_iTunesArtwork@2x.png */; };
-		E91EF11B194174CA007829CD /* TVRV_Launch_1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A3194174CA007829CD /* TVRV_Launch_1024x768.png */; };
-		E91EF11C194174CA007829CD /* TVRV_Launch_1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A4194174CA007829CD /* TVRV_Launch_1536x2048.png */; };
-		E91EF11D194174CA007829CD /* TVRV_Launch_2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A5194174CA007829CD /* TVRV_Launch_2048x1536.png */; };
-		E91EF11E194174CA007829CD /* TVRV_Launch_320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A6194174CA007829CD /* TVRV_Launch_320x480.png */; };
-		E91EF11F194174CA007829CD /* TVRV_Launch_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A7194174CA007829CD /* TVRV_Launch_640x1136.png */; };
-		E91EF120194174CA007829CD /* TVRV_Launch_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A8194174CA007829CD /* TVRV_Launch_640x960.png */; };
-		E91EF121194174CA007829CD /* TVRV_Launch_768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0A9194174CA007829CD /* TVRV_Launch_768x1024.png */; };
 		E91EF122194174CA007829CD /* vertical_nu~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0AA194174CA007829CD /* vertical_nu~ipad.png */; };
 		E91EF123194174CA007829CD /* vertical_nu~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0AB194174CA007829CD /* vertical_nu~iphone.png */; };
 		E91EF124194174CA007829CD /* viewUpdatesButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E91EF0AC194174CA007829CD /* viewUpdatesButton.png */; };
@@ -291,29 +268,6 @@
 		E91EF090194174CA007829CD /* TracVisionLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TracVisionLogo@2x.png"; sourceTree = "<group>"; };
 		E91EF091194174CA007829CD /* tracVisionLogoiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tracVisionLogoiPad.png; sourceTree = "<group>"; };
 		E91EF092194174CA007829CD /* tracVisionLogoiPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tracVisionLogoiPad@2x.png"; sourceTree = "<group>"; };
-		E91EF093194174CA007829CD /* TVRV_icons_100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_100x100.png; sourceTree = "<group>"; };
-		E91EF094194174CA007829CD /* TVRV_icons_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_114x114.png; sourceTree = "<group>"; };
-		E91EF095194174CA007829CD /* TVRV_icons_120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_120x120.png; sourceTree = "<group>"; };
-		E91EF096194174CA007829CD /* TVRV_icons_144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_144x144.png; sourceTree = "<group>"; };
-		E91EF097194174CA007829CD /* TVRV_icons_152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_152x152.png; sourceTree = "<group>"; };
-		E91EF098194174CA007829CD /* TVRV_icons_29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_29x29.png; sourceTree = "<group>"; };
-		E91EF099194174CA007829CD /* TVRV_icons_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_40x40.png; sourceTree = "<group>"; };
-		E91EF09A194174CA007829CD /* TVRV_icons_50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_50x50.png; sourceTree = "<group>"; };
-		E91EF09B194174CA007829CD /* TVRV_icons_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_57x57.png; sourceTree = "<group>"; };
-		E91EF09C194174CA007829CD /* TVRV_icons_58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_58x58.png; sourceTree = "<group>"; };
-		E91EF09D194174CA007829CD /* TVRV_icons_60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_60x60.png; sourceTree = "<group>"; };
-		E91EF09E194174CA007829CD /* TVRV_icons_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_72x72.png; sourceTree = "<group>"; };
-		E91EF09F194174CA007829CD /* TVRV_icons_76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_76x76.png; sourceTree = "<group>"; };
-		E91EF0A0194174CA007829CD /* TVRV_icons_80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_80x80.png; sourceTree = "<group>"; };
-		E91EF0A1194174CA007829CD /* TVRV_icons_iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_icons_iTunesArtwork.png; sourceTree = "<group>"; };
-		E91EF0A2194174CA007829CD /* TVRV_icons_iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TVRV_icons_iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		E91EF0A3194174CA007829CD /* TVRV_Launch_1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_1024x768.png; sourceTree = "<group>"; };
-		E91EF0A4194174CA007829CD /* TVRV_Launch_1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_1536x2048.png; sourceTree = "<group>"; };
-		E91EF0A5194174CA007829CD /* TVRV_Launch_2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_2048x1536.png; sourceTree = "<group>"; };
-		E91EF0A6194174CA007829CD /* TVRV_Launch_320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_320x480.png; sourceTree = "<group>"; };
-		E91EF0A7194174CA007829CD /* TVRV_Launch_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_640x1136.png; sourceTree = "<group>"; };
-		E91EF0A8194174CA007829CD /* TVRV_Launch_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_640x960.png; sourceTree = "<group>"; };
-		E91EF0A9194174CA007829CD /* TVRV_Launch_768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVRV_Launch_768x1024.png; sourceTree = "<group>"; };
 		E91EF0AA194174CA007829CD /* vertical_nu~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vertical_nu~ipad.png"; sourceTree = "<group>"; };
 		E91EF0AB194174CA007829CD /* vertical_nu~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vertical_nu~iphone.png"; sourceTree = "<group>"; };
 		E91EF0AC194174CA007829CD /* viewUpdatesButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewUpdatesButton.png; sourceTree = "<group>"; };
@@ -495,29 +449,6 @@
 				E91EF090194174CA007829CD /* TracVisionLogo@2x.png */,
 				E91EF091194174CA007829CD /* tracVisionLogoiPad.png */,
 				E91EF092194174CA007829CD /* tracVisionLogoiPad@2x.png */,
-				E91EF093194174CA007829CD /* TVRV_icons_100x100.png */,
-				E91EF094194174CA007829CD /* TVRV_icons_114x114.png */,
-				E91EF095194174CA007829CD /* TVRV_icons_120x120.png */,
-				E91EF096194174CA007829CD /* TVRV_icons_144x144.png */,
-				E91EF097194174CA007829CD /* TVRV_icons_152x152.png */,
-				E91EF098194174CA007829CD /* TVRV_icons_29x29.png */,
-				E91EF099194174CA007829CD /* TVRV_icons_40x40.png */,
-				E91EF09A194174CA007829CD /* TVRV_icons_50x50.png */,
-				E91EF09B194174CA007829CD /* TVRV_icons_57x57.png */,
-				E91EF09C194174CA007829CD /* TVRV_icons_58x58.png */,
-				E91EF09D194174CA007829CD /* TVRV_icons_60x60.png */,
-				E91EF09E194174CA007829CD /* TVRV_icons_72x72.png */,
-				E91EF09F194174CA007829CD /* TVRV_icons_76x76.png */,
-				E91EF0A0194174CA007829CD /* TVRV_icons_80x80.png */,
-				E91EF0A1194174CA007829CD /* TVRV_icons_iTunesArtwork.png */,
-				E91EF0A2194174CA007829CD /* TVRV_icons_iTunesArtwork@2x.png */,
-				E91EF0A3194174CA007829CD /* TVRV_Launch_1024x768.png */,
-				E91EF0A4194174CA007829CD /* TVRV_Launch_1536x2048.png */,
-				E91EF0A5194174CA007829CD /* TVRV_Launch_2048x1536.png */,
-				E91EF0A6194174CA007829CD /* TVRV_Launch_320x480.png */,
-				E91EF0A7194174CA007829CD /* TVRV_Launch_640x1136.png */,
-				E91EF0A8194174CA007829CD /* TVRV_Launch_640x960.png */,
-				E91EF0A9194174CA007829CD /* TVRV_Launch_768x1024.png */,
 				E91EF0AA194174CA007829CD /* vertical_nu~ipad.png */,
 				E91EF0AB194174CA007829CD /* vertical_nu~iphone.png */,
 				E91EF0AC194174CA007829CD /* viewUpdatesButton.png */,
@@ -636,10 +567,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91EF121194174CA007829CD /* TVRV_Launch_768x1024.png in Resources */,
 				E91EF0F5194174CA007829CD /* sf_sat_purple~ipad.png in Resources */,
 				E91EF0CB194174CA007829CD /* sf_horizontal_axis~ipad.png in Resources */,
-				E91EF11B194174CA007829CD /* TVRV_Launch_1024x768.png in Resources */,
 				E91EF105194174CA007829CD /* tableCellBGSelected.png in Resources */,
 				E91EF10A194174CA007829CD /* tracVisionLogoiPad@2x.png in Resources */,
 				E91EF0D7194174CA007829CD /* sf_label_azimuth~ipad.png in Resources */,
@@ -650,9 +579,7 @@
 				E91EF0BD194174CA007829CD /* iPadKVHLogo@2x.png in Resources */,
 				E91EF0FC194174CA007829CD /* sf_triangle_guide~iphone.png in Resources */,
 				E91EF0B5194174CA007829CD /* gradient.png in Resources */,
-				E91EF118194174CA007829CD /* TVRV_icons_80x80.png in Resources */,
 				E91EF0B6194174CA007829CD /* horizontal2_nu~ipad.png in Resources */,
-				E91EF11A194174CA007829CD /* TVRV_icons_iTunesArtwork@2x.png in Resources */,
 				E91EF0D3194174CA007829CD /* sf_info_ok_button@2x~iphone.png in Resources */,
 				E91EF0DF194174CA007829CD /* sf_pointer_down@2x~iphone.png in Resources */,
 				E91EF0D5194174CA007829CD /* sf_info_ok_button~iphone.png in Resources */,
@@ -661,27 +588,20 @@
 				E91EF0BA194174CA007829CD /* iPadBonjourBG.png in Resources */,
 				E91EF103194174CA007829CD /* tableCellBGLight.png in Resources */,
 				E91EF0F2194174CA007829CD /* sf_sat_name_bg~ipad.png in Resources */,
-				E91EF112194174CA007829CD /* TVRV_icons_50x50.png in Resources */,
-				E91EF10F194174CA007829CD /* TVRV_icons_152x152.png in Resources */,
 				E91EF0DD194174CA007829CD /* sf_line_dot~ipad.png in Resources */,
 				E91EF0BC194174CA007829CD /* iPadKVHLogo.png in Resources */,
 				E91EF0C5194174CA007829CD /* sf_crosshair@2x~iphone.png in Resources */,
 				AAC013E21917F4DA00445E07 /* BonjourTableViewCell~ipad.xib in Resources */,
 				E91EF0FB194174CA007829CD /* sf_triangle_guide~ipad.png in Resources */,
 				E91EF0D0194174CA007829CD /* sf_info_button@2x~iphone.png in Resources */,
-				E91EF117194174CA007829CD /* TVRV_icons_76x76.png in Resources */,
 				E91EF0EF194174CA007829CD /* sf_sat_blue~ipad.png in Resources */,
 				E91EF0F6194174CA007829CD /* sf_sat_purple~iphone.png in Resources */,
-				E91EF114194174CA007829CD /* TVRV_icons_58x58.png in Resources */,
 				AAC013E61917F4DA00445E07 /* BonjourViewiPadLandscape.xib in Resources */,
 				E91EF123194174CA007829CD /* vertical_nu~iphone.png in Resources */,
-				E91EF10E194174CA007829CD /* TVRV_icons_144x144.png in Resources */,
 				E91EF0F3194174CA007829CD /* sf_sat_name_bg~iphone.png in Resources */,
-				E91EF116194174CA007829CD /* TVRV_icons_72x72.png in Resources */,
 				E91EF0D8194174CA007829CD /* sf_label_azimuth~iphone.png in Resources */,
 				EEA235541B41511000D73B44 /* sf_enabled_favorite_selected_bar.png in Resources */,
 				E91915B21947B4AD00BD5F43 /* satellites.xml in Resources */,
-				E91EF113194174CA007829CD /* TVRV_icons_57x57.png in Resources */,
 				E91EF0EC194174CA007829CD /* sf_sat_black~ipad.png in Resources */,
 				E91EF102194174CA007829CD /* tableCellBGDark@2x.png in Resources */,
 				E91EF0F4194174CA007829CD /* sf_sat_purple@2x~iphone.png in Resources */,
@@ -692,17 +612,14 @@
 				E91EF0D4194174CA007829CD /* sf_info_ok_button~ipad.png in Resources */,
 				E91EF0C3194174CA007829CD /* sf_back_button~ipad.png in Resources */,
 				EEA235531B41511000D73B44 /* sf_enabled_favorite_selected_bar_ipad.png in Resources */,
-				E91EF120194174CA007829CD /* TVRV_Launch_640x960.png in Resources */,
 				E91EF0F0194174CA007829CD /* sf_sat_blue~iphone.png in Resources */,
 				E91EF0FF194174CA007829CD /* tableCellArrowSelected.png in Resources */,
 				E91EF106194174CA007829CD /* tableCellBGSelected@2x.png in Resources */,
 				E91EF100194174CA007829CD /* tableCellArrowSelected@2x.png in Resources */,
 				E91EF0F1194174CA007829CD /* sf_sat_name_bg@2x~iphone.png in Resources */,
 				E91EF0BB194174CA007829CD /* iPadBonjourBG@2x.png in Resources */,
-				E91EF11E194174CA007829CD /* TVRV_Launch_320x480.png in Resources */,
 				E91EEF4219414CCD007829CD /* SatelliteFinderViewController~iPad.xib in Resources */,
 				E91EF0B2194174CA007829CD /* close-button.png in Resources */,
-				E91EF11C194174CA007829CD /* TVRV_Launch_1536x2048.png in Resources */,
 				E91EF0E4194174CA007829CD /* sf_pointer_left~iphone.png in Resources */,
 				E91EF0E9194174CA007829CD /* sf_pointer_up~ipad.png in Resources */,
 				E91EF0E2194174CA007829CD /* sf_pointer_left@2x~iphone.png in Resources */,
@@ -722,11 +639,8 @@
 				AAC013E31917F4DA00445E07 /* BonjourTableViewCell~iphone.xib in Resources */,
 				E91EF0CF194174CA007829CD /* sf_info_bg~iphone.png in Resources */,
 				E91EF0B3194174CA007829CD /* connectButton.png in Resources */,
-				E91EF10D194174CA007829CD /* TVRV_icons_120x120.png in Resources */,
 				E91EF0E0194174CA007829CD /* sf_pointer_down~ipad.png in Resources */,
-				E91EF11F194174CA007829CD /* TVRV_Launch_640x1136.png in Resources */,
 				E91915AF19469B3500BD5F43 /* sat-finder-button.png in Resources */,
-				E91EF115194174CA007829CD /* TVRV_icons_60x60.png in Resources */,
 				E91EF0ED194174CA007829CD /* sf_sat_black~iphone.png in Resources */,
 				E91EF0C6194174CA007829CD /* sf_crosshair~ipad.png in Resources */,
 				E91EF0E3194174CA007829CD /* sf_pointer_left~ipad.png in Resources */,
@@ -736,7 +650,6 @@
 				E91EF0AF194174CA007829CD /* bonjourBG@2x.png in Resources */,
 				E91EF0D9194174CA007829CD /* sf_label_elevation@2x~iphone.png in Resources */,
 				AAC013E41917F4DA00445E07 /* BonjourView.xib in Resources */,
-				E91EF10B194174CA007829CD /* TVRV_icons_100x100.png in Resources */,
 				E91EF0C1194174CA007829CD /* refreshButton@2x.png in Resources */,
 				E91EF0B1194174CA007829CD /* bonjourDivider@2x.png in Resources */,
 				E91EEF4319414CCD007829CD /* SatelliteFinderViewController~iPhone.xib in Resources */,
@@ -760,16 +673,11 @@
 				EE94CA761B418190001F6772 /* sf_enabled_favorite_selected_bar@3x.png in Resources */,
 				E91EF0C2194174CA007829CD /* sf_back_button@2x~iphone.png in Resources */,
 				E91EF109194174CA007829CD /* tracVisionLogoiPad.png in Resources */,
-				E91EF119194174CA007829CD /* TVRV_icons_iTunesArtwork.png in Resources */,
 				E91EF0CC194174CA007829CD /* sf_horizontal_axis~iphone.png in Resources */,
 				E91EF0DE194174CA007829CD /* sf_line_dot~iphone.png in Resources */,
 				E91EF101194174CA007829CD /* tableCellBGDark.png in Resources */,
 				E91EF0FD194174CA007829CD /* tableCellArrow.png in Resources */,
 				E91EF0B7194174CA007829CD /* horizontal2_nu~iphone.png in Resources */,
-				E91EF11D194174CA007829CD /* TVRV_Launch_2048x1536.png in Resources */,
-				E91EF111194174CA007829CD /* TVRV_icons_40x40.png in Resources */,
-				E91EF110194174CA007829CD /* TVRV_icons_29x29.png in Resources */,
-				E91EF10C194174CA007829CD /* TVRV_icons_114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,14 +803,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TVRV;
-				PROVISIONING_PROFILE = "58372158-4899-49fb-92ab-6ebc210af32d";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
@@ -915,14 +823,14 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TVRV;
-				PROVISIONING_PROFILE = "58372158-4899-49fb-92ab-6ebc210af32d";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
