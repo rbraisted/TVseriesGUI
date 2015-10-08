@@ -1,6 +1,5 @@
 !function(TVRO) {
   "use strict";
-
   var HeaderView = function(jQ) {
     var self;
 
@@ -104,6 +103,7 @@ $(window).resize(function(){
 
 
 
+
 	    //  show or hide sat finder
     $('.\\#satfinder-btn').toggleClass('$available', TVRO.getSatfinderMode());
 
@@ -112,6 +112,10 @@ $(window).resize(function(){
       //  goes to wizard if wizard has not been completed
       //  goes to home if wizard has been completed
       window.location = '/';
+    });
+    
+    var helpBtn = $('.\\#help-btn', jQ).click(function() {
+    	TVRO.showHelp();
     });
 
     //  contains the nav-btns

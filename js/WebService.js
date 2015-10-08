@@ -51,7 +51,8 @@
     }
     return xml;
   };
-
+  
+  var errorCount;
   var request = _.curry(function() {
     var contentType;
     var requestUrl;
@@ -60,7 +61,8 @@
     var requestXml;
     var successCallback;
     var errorCallback;
-
+    
+    
     var liveUrl = '/webservice.php';
     var demoUrl = '/demo/webservice.php';
 
@@ -91,7 +93,11 @@
       dataType: 'xml',
       url: requestUrl,
       data: requestXml,
+      timeout: 5000,
       success: function(response) {
+    	  //reset error count
+    	  errorCount = 0;
+    	  
         if (TVRO.debug) {
           console.log('~ '+requestName.toUpperCase());
           if ((TVRO.debug > 1 && requestName !== 'antenna_status') || (TVRO.debug > 2)) {
@@ -134,14 +140,17 @@
         // -Paul
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        if (TVRO.debug) {
+       if (TVRO.debug) {
           console.log('\n~ ! ~');
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
           console.log('\n');
-        }
-        
+       }
+
+        // Do not display popup if url is http (updates)
+        if (errorCount > 3 && requestUrl.match(/http/) == null) {
+
         // Pops up the 'flashing' screen to give an alert when connection to
         // the Hub is lost.
         $('.\\#flashing-view')
@@ -155,7 +164,9 @@
         .find('.\\#line-2')
           .text("")
           .end();
-
+        }
+        errorCount++;
+        
         if (requestUrl !== liveUrl || requestUrl !== demoUrl) {
           errorCallback(errorThrown);
         }
@@ -424,7 +435,7 @@
     var url = host + update + '/portalMain.php/' + msg;
     var cacheName = 'update_' + update;
     if (cache[cacheName]) return cache[cacheName];
-    else return cache[cacheName] = get(msg)(url, 1);
+    else return cache[cacheName] = get(msg)(url, 1000);
   };
 
   //  device versions
