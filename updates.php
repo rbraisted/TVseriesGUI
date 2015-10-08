@@ -13,27 +13,17 @@
         <div class="connected-label">CONNECTED</div>
 
         <div class="version-label portal-version-label">
-          Latest Available Version:
+          Latest available version:
           <span class="version #portal-ver">N/A</span>
         </div>
 
-        <div class="version-label device-version-label #device-ver-label">
-          Downloaded Version:
-          <span class="version #device-ver">N/A</span>
-        </div>
-
         <div class="version-label antenna-version-label">
-          Installed Version:
-          <span class="version #system-ver">N/A</span>
+          <span class="version #update-req"></span>
         </div>
         
       </div>
     </div>
   </div>
- <!--<div class="bottom-bar">
-    <div class="prev-btn #prev-btn">Back</div>-->
-    <!--<div class="next-btn #next-btn">Next</div>-->
-  <!--</div>-->
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -50,7 +40,7 @@
     <div class="bg"></div>
     <div class="label">Latest <span class ="#update-type"></span> Available</div>
     <div class="version available-label">
-      <span class ="#download-type"></span> Version
+      <span class ="#download-type"></span>
       <span class="#portal-ver"></span>
       available to download
     </div>
@@ -58,32 +48,24 @@
       Latest <span class ="#update-type"></span> Version not available
     </div>
     <div class="download-btn #download-btn"></div>
-    <div class="cta available-label">Download Update</div>
+    <div class="cta available-label">Download update</div>
     <div class="cta not-available-label">Not available</div>
   </div>
 
   <div class="section device-version">
-    <div class="desktop-version #no-device-ver-label">
-      <div class="bg"></div>
-      <div class="label">My Computer</div>
-    </div>
 
-    <div class="mobile-version #device-ver-label">
       <div class="bg"></div>
-      <div class="label">On Device</div>
+      <div class="label">On User Device</div>
       <div class="version">
-        <span class ="#download-type"></span> Version
-        <span class="#device-ver"></span>
-        ready to install
+        <span class ="#usr-dev-sw"></span>
       </div>
-    </div>
 
     <div class="install-btn #install-btn">
       <input type="file" id="fileToUpload" name="fileToUpload" class="upload-btn #upload-btn" />
     </div>
     <div class="cta connected-label">
       <span class="not-up-to-date-label">Install Update</span>
-      <span class="up-to-date-label">Latest Version installed</span>
+      <span class="up-to-date-label">Latest version installed</span>
     </div>
     <div class="cta not-connected-label">Not connected</div>
   </div>
@@ -96,9 +78,7 @@
     </div>
     <div class="version connected-label">
       <span class ="#download-type"></span>
-      Version
       <span class="#system-ver"></span>
-      installed
 
       <div class="up-to-date-label">
         Your 

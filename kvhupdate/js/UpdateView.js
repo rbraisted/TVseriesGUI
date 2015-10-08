@@ -105,8 +105,13 @@
     return self = {
       setUpdate: function(arg) {
         update = arg;
-        var antUpdate = update !== 'SatLibrary';
-        var updateName = antUpdate ? update : 'Satellite Library';
+        var antUpdate   = update !== 'SatLibrary';
+        var updateName  = antUpdate ? update : 'Satellite Library';
+        var installType = antUpdate ? update + ' System Software' : ' Satellite Library';
+        var updateType  = antUpdate ? 'System Software' : 'Satellite Library';
+
+        $('.\\#download-type', jQ).text(installType + " Version ");
+        $('.\\#update-type', jQ).text(updateType);
         $('.\\#update-name', jQ).text(updateName);
 
         jQ.toggleClass('$tech-mode', TVRO.getTechMode());
@@ -142,7 +147,7 @@
           return portalVersion;
         }, function() {
           jQ.addClass('$not-available');
-          return -1;
+          return "N/A";
         });
 
         Promise.all(
@@ -161,9 +166,16 @@
           var portalVersion = versions[0];
           var deviceVersions = versions[1];
           var downloadedVersionForThisUpdate = deviceVersions[update];
+
+          // Displays if software is detected from cache on the User Device.
+          if (downloadedVersionForThisUpdate === undefined || downloadedVersionForThisUpdate === "") {
+              $('.\\#usr-dev-sw', jQ).text("No software detected");
+          } else {
+              $('.\\#usr-dev-sw', jQ).text(installType + " Version " + downloadedVersionForThisUpdate + " detected");
+          }
+          
           $('.\\#device-ver-label', jQ).show();
           $('.\\#no-device-ver-label', jQ).hide();
-          $('.\\#device-ver', jQ).text(deviceVersions[update] || 'N/A');
           jQ.toggleClass('$has-downloaded-latest', downloadedVersionForThisUpdate === portalVersion);
         });
       }

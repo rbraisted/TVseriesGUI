@@ -805,7 +805,7 @@ a {
     display: block;
     width: 100%;
     min-height: 46px;
-    border-bottom: 1px solid #4f7abd;
+    border-bottom: 5px solid black;
     position: relative;
     vertical-align: middle; }
   .menu-table .table-col {

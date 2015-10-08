@@ -617,9 +617,11 @@
   };
 
   TVRO.getSystemVersion = function() {
-    return TVRO.getAntennaVersions().then(function(xml) {
-      return $('current', xml).text();
-    });
+	  return TVRO.getAntennaVersions().then(function(xml) {
+		  // grab the application version from acu->ver which is in the
+		  // /kvh/conf/manifest.conf on the hub.
+		  return [$('acu ver', xml).text(), $('ver_sync', xml).text()];
+	  });
   };
 
   TVRO.getSatLibraryVersion = function() {
@@ -646,6 +648,8 @@
   TVRO.getPortalVersion = function(arg) {
     return TVRO.getLatestSoftware(arg).then(function(xml) {
       return $('software_version', xml).text() || $('version', xml).text();
+    }, function(){
+    	return "N/A";
     });
   };
 
