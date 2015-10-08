@@ -46,7 +46,6 @@
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "filename" : "TVRO_launch_iOS_052615_1024x768-1.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "1x"
@@ -99,7 +98,6 @@
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "filename" : "TVRO_launch_iOS_052615_1024x768.png",
       "extent" : "full-screen",
       "scale" : "1x"
     },

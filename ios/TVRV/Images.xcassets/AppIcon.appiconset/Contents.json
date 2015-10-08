@@ -31,15 +31,13 @@
       "scale" : "3x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "TVRO_icons_iOS_052615_58x58-1.png",
+      "size" : "57x57",
       "scale" : "1x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "TVRO_icons_iOS_052615_120x120-1.png",
+      "size" : "57x57",
       "scale" : "2x"
     },
     {
@@ -85,21 +83,20 @@
       "scale" : "1x"
     },
     {
-      "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "TVRO_icons_iOS_052615_120x120-3.png",
+      "size" : "50x50",
       "scale" : "2x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "TVRO_icons_iOS_052615_76x76.png",
+      "filename" : "TVRO_icons_Android_052615_72x72.png",
       "scale" : "1x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "TVRO_icons_iOS_052615_152x152.png",
+      "filename" : "TVRO_icons_Android_052615_144x144.png",
       "scale" : "2x"
     },
     {
