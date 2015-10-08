@@ -17,12 +17,13 @@ static UIImage *nameBg = nil;
 {
     if (self == [SatelliteView class])
     {
-        blackDot = [UIImage imageNamed:@"sf_sat_black.png"];
-        //blueDot = [UIImage imageNamed:@"sf_sat_blue.png"];
-        purpleDot = [UIImage imageNamed:@"sf_sat_purple.png"];
-        //redDot = [UIImage imageNamed:@"sf_sat_red.png"];
-        yellowDot = [UIImage imageNamed:@"sf_line_dot.png"];
+        blackDot = [UIImage imageNamed:@"sf_sat_black.png"];   // Use For Enabled
+        yellowDot = [UIImage imageNamed:@"sf_line_dot.png"];   // Use For ClarkBelt
+        purpleDot = [UIImage imageNamed:@"sf_sat_purple.png"]; // Use For Enabled
         nameBg = [UIImage imageNamed:@"sf_sat_name_bg.png"];
+
+        //blueDot = [UIImage imageNamed:@"sf_sat_blue.png"];
+        //redDot = [UIImage imageNamed:@"sf_sat_red.png"];
     }
 }
 

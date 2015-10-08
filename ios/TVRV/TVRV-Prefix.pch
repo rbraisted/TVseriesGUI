@@ -24,6 +24,7 @@
 #define isNaN(x) (x != x)
 
 #define IS_IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+#define IS_IPHONE_4S ([[UIScreen mainScreen] bounds ].size.width == 480)
 #define ApplicationDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 #define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
@@ -45,7 +46,24 @@
 //#define camviewheight 426.0
 
 //TODO this whole file and concept needs to be refactored to account for different new iOS devices
-#define vfov (IS_IPAD ? 44.5 : 53)
-#define hfov (IS_IPAD ? 34.1 : 39.5)
-#define camviewwidth (IS_IPAD ? 768.0 : 320.0)
-#define camviewheight (IS_IPAD ? 1024.0 : 426.0)
+//#define vfov (IS_IPAD ? 44.5 : 53)
+//#define hfov (IS_IPAD ? 34.1 : 39.5) // For 4s
+
+//#define vfov (IS_IPAD ? 44.5 : 58.08) //For above 4s
+//#define hfov (IS_IPAD ? 34.1 : 32.67)
+
+#define vfov (IS_IPAD ? 44.5 : IS_IPHONE_4S ? 53   : 58.08) //For All devices
+#define hfov (IS_IPAD ? 34.1 : IS_IPHONE_4S ? 39.5 : 32.67)
+
+//#define camviewwidth (IS_IPAD ? 768.0 : 320.0)
+//#define camviewheight (IS_IPAD ? 1024.0 : 426.0)
+#define camviewheight (IS_IPAD ? 1024.0 : ApplicationDelegate.screenSize.height - 54)
+
+
+
+
+
+
+
+
+

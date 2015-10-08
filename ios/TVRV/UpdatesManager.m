@@ -135,12 +135,12 @@
 #pragma mark - NSURLConnectionDelegate protocol methods
 
 - (void)connection:(NSURLConnection *)_connection didReceiveResponse:(NSURLResponse *)response {
-	NSLog(@"connection:%@ didReceiveResponse:%@", _connection, response);
+	//NSLog(@"connection:%@ didReceiveResponse:%@", _connection, response);
 	totalFileSize = [[NSNumber numberWithLongLong:[response expectedContentLength]] longLongValue];
 }
 
 - (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)data {
-	NSLog(@"connection:%@ didReceiveData:%lu", _connection, (unsigned long)[data length]);
+	//NSLog(@"connection:%@ didReceiveData:%lu", _connection, (unsigned long)[data length]);
   [fileData appendData:data];
   
   NSNumber* resourceLength = [NSNumber numberWithUnsignedInteger:[fileData length]];
@@ -150,11 +150,12 @@
 }
 
 - (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)error {
-	NSLog(@"connection:%@ didFailWithError:%@", _connection, error);
+	///NSLog(@"connection:%@ didFailWithError:%@", _connection, error);
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
-	NSLog(@"connectionDidFinishLoading:%@", _connection);
+- (void)connectionDidFinishLoading:(NSURLConnection *)_connection
+{
+	//NSLog(@"connectionDidFinishLoading:%@", _connection);
   if (uploading) {
     [uploadAlertView dismissWithClickedButtonIndex:0 animated:YES];
 

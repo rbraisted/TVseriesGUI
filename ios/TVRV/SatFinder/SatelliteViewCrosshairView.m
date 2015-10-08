@@ -13,11 +13,15 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)init
 {
-  if (IS_IPAD)
+    if (IS_IPAD) {
       self = [super initWithFrame:CGRectMake(277.0, 405.0, 214.0, 214.0)];
-  else
-      self = [super initWithFrame:CGRectMake(89.0, 142.0, 143.0, 142.0)];
-
+      //  self = [super initWithFrame:CGRectMake((screenSize.width-143.0)/2, ((screenSize.height-54)-405.0)/2, 214.0, 214.0)];
+    }
+  else {
+      self = [super initWithFrame:CGRectMake((ApplicationDelegate.screenSize.width-143.0)/2, ((ApplicationDelegate.screenSize.height-54)-142.0)/2, 143.0, 142.0)];
+      //self = [super initWithFrame:CGRectMake(89.0, 142.0, 143.0, 142.0)];
+  }
+    
   if (self)
   {
 		state = 0;
@@ -39,23 +43,28 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-      CGContextRef context = UIGraphicsGetCurrentContext();
-      if (IS_IPAD)
-          CGContextClearRect(context, CGRectMake(0.0, 0.0, 214.0, 214.0));
-    else
+	CGContextRef context = UIGraphicsGetCurrentContext();
+  if (IS_IPAD)
+      CGContextClearRect(context, CGRectMake(0.0, 0.0, 214.0, 214.0));
+	else
         CGContextClearRect(context, CGRectMake(0.0, 0.0, 143.0, 142.0));
 
-      CGRect pointerRect;
-      if (IS_IPAD)
-          pointerRect = CGRectMake(0.0, 0.0, 214.0, 214.0);
-      else
-          pointerRect = CGRectMake(0.0, 0.0, 143.0, 142.0);
+  CGRect pointerRect;
+  if (IS_IPAD)
+      pointerRect = CGRectMake(0.0, 0.0, 214.0, 214.0);
+  else
+      pointerRect = CGRectMake(0.0, 0.0, 143.0, 142.0);
 
-        if (!state)          [[UIImage imageNamed:@"sf_crosshair.png"] drawInRect:pointerRect];
-        else if (state == 1) [[UIImage imageNamed:@"sf_pointer_up.png"] drawInRect:pointerRect];
-        else if (state == 2) [[UIImage imageNamed:@"sf_pointer_right.png"] drawInRect:pointerRect];
-        else if (state == 3) [[UIImage imageNamed:@"sf_pointer_left.png"] drawInRect:pointerRect];
-        else if (state == 4) [[UIImage imageNamed:@"sf_pointer_down.png"] drawInRect:pointerRect];
+	if (!state)
+        [[UIImage imageNamed:@"sf_crosshair.png"] drawInRect:pointerRect];
+	else if (state == 1)
+        [[UIImage imageNamed:@"sf_pointer_up.png"] drawInRect:pointerRect];
+	else if (state == 2)
+        [[UIImage imageNamed:@"sf_pointer_right.png"] drawInRect:pointerRect];
+	else if (state == 3)
+        [[UIImage imageNamed:@"sf_pointer_left.png"] drawInRect:pointerRect];
+	else if (state == 4)
+        [[UIImage imageNamed:@"sf_pointer_down.png"] drawInRect:pointerRect];
 }
 //-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 

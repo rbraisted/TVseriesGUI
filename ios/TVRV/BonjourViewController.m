@@ -44,10 +44,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.frame = [[UIScreen mainScreen] bounds];
 	netServiceBrowser = [[NSNetServiceBrowser alloc] init];
 	[netServiceBrowser setDelegate:self];
 	
 	netServices = [[NSMutableArray alloc] init];
+    
 	
 	[self.textField setReturnKeyType:UIReturnKeyDone];
 	[self.textField setDelegate:self];
@@ -74,7 +77,8 @@
     }
     else
     {
-      [self.satFinderView setFrame:CGRectMake(0, 698, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
+      //[self.satFinderView setFrame:CGRectMake(0, 698, self.satFinderView.frame.size.width, self.satFinderView.frame.size.height)];
+        [self.satFinderView setFrame:CGRectMake(0, 698,self.view.frame.size.width, 232)];
 	    [self.scrollView addSubview:self.satFinderView];
       [self.scrollView setContentSize:CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height - 65 + self.satFinderView.frame.size.height)];
     }
@@ -132,7 +136,7 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didFindService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
 {
-  NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
+  //NSLog(@"netServiceBrowser didFindService:%@ moreComing:%d", netService, moreServicesComing);
   [netService setDelegate:self];
   [netService resolveWithTimeout:5];
   [netServices addObject:netService];
@@ -141,14 +145,14 @@
 
 - (void)netServiceBrowser:(NSNetServiceBrowser *)netServiceBrowser didRemoveService:(NSNetService *)netService moreComing:(BOOL)moreServicesComing
 {
-	NSLog(@"netServiceBrowser didRemoveService:%@ moreComing:%d", netService, moreServicesComing);
+	//NSLog(@"netServiceBrowser didRemoveService:%@ moreComing:%d", netService, moreServicesComing);
 	[netServices removeObject:netService];
 	[self.tableView reloadData];
 }
 
 - (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)netServiceBrowser
 {
-	NSLog(@"netServiceBrowserWillSearch");
+	//NSLog(@"netServiceBrowserWillSearch");
 	[netServices removeAllObjects];
 }
 
@@ -156,18 +160,18 @@
 
 - (void)netServiceDidResolveAddress:(NSNetService *)netService
 {
-	NSLog(@"netServiceDidResolveAddress:%@", netService);
+	//NSLog(@"netServiceDidResolveAddress:%@", netService);
 	[self.tableView reloadData];
 }
 
 - (void)netService:(NSNetService *)netService didNotResolve:(NSDictionary *)errorDict
 {
-	NSLog(@"netService:%@ didNotResolve:%@", netService, errorDict);
+	//NSLog(@"netService:%@ didNotResolve:%@", netService, errorDict);
 }
 
 - (void)netServiceDidStop:(NSNetService *)netService
 {
-	NSLog(@"netServiceDidStop:%@", netService);
+	//NSLog(@"netServiceDidStop:%@", netService);
 }
 
 #pragma mark - UITableViewDelegate protocol methods
@@ -215,8 +219,8 @@
   else
       [cell setUnselectedBackgroundImage: cellBGImageDark];
 	
+    
   NSNetService* netService = [netServices objectAtIndex:row];
-	
   NSString* hubName = netService.name;
   NSArray *parseList = [netService.name componentsSeparatedByString:@" "];
   if ([[[parseList objectAtIndex:4] substringToIndex:6] isEqualToString:@"tvhub-"])
@@ -291,8 +295,7 @@
         movementDistance = MovementDistance;
     else
     {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        if (screenSize.height > 480.0f)
+        if (ApplicationDelegate.screenSize.height > 480.0f)
         {
             // Use for Above 4.0 inch
             movementDistance = MovementDistance;

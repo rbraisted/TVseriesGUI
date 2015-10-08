@@ -13,27 +13,24 @@
 //=========================================================================================================================================================
 #pragma mark - UIView Methods
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------    ---
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)init
 {
     if (IS_IPAD)
         self = [super initWithFrame:CGRectMake(0, 0, 768, 1024)];
     else
-        self = [super initWithFrame:[[UIScreen mainScreen] bounds]];
+        self = [super initWithFrame:CGRectMake(0, 0, ApplicationDelegate.screenSize.width, ApplicationDelegate.screenSize.height)];
     if (self)
     {
         crosshairView = [[SatelliteViewCrosshairView alloc] init];
         [self addSubview:crosshairView];
-        
-        NSLog(@"Height : %f",self.frame.size.height);
+
         //------------White Strip---------------//
         UIView* whiteStrip;
         if (IS_IPAD)
             whiteStrip = [[UIView alloc] initWithFrame:CGRectMake(0.0, 918.0, 768.0, 50.0)];
         else
-        {
-                whiteStrip = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.frame.size.height -118 , 320.0, 45.0)];
-        }
+            whiteStrip = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.frame.size.height -118 , self.frame.size.width, 45.0)];
         [whiteStrip setOpaque:NO];
         [whiteStrip setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5]];
         [self addSubview:whiteStrip];
@@ -106,13 +103,13 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)updateAzimuthLabel:(double)azimuth
 {
-    [self updateHorizontalDisplay:azimuth];
+	[self updateHorizontalDisplay:azimuth];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)updateElevationLabel:(double)elevation
 {
-    [self updateVerticalDisplay:elevation];
+	[self updateVerticalDisplay:elevation];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -122,15 +119,14 @@
     if (IS_IPAD)
         scale = (768.0/hfov);
     else
-        scale = (320.0/45.0);
+        scale = (ApplicationDelegate.screenSize.width/45.0);
+    
+    //scale = (320.0/45.0);
     double heading_scaled;// = (heading * scale);
     
-    NSLog(@"hori_heading : %f",heading);
-    NSLog(@"hori_scale: %f",scale);
     if (heading < 180.0)
     {
         heading_scaled = (-heading) * scale;
-        NSLog(@"hori_heading_scaled: %f",heading_scaled);
         if (IS_IPAD)
         {
             [horizontal1 setFrame:CGRectMake(heading_scaled - 1515.0, 923.0, 4044.0, 50.0)];
@@ -138,8 +134,6 @@
         }
         else
         {
-//            [horizontal1 setFrame:CGRectMake(heading_scaled - 480.0, 362.0, 1281.0, 50.0)];
-//            [horizontal2 setFrame:CGRectMake(heading_scaled + 800.0, 362.0, 1281.0, 50.0)];
             [horizontal1 setFrame:CGRectMake(heading_scaled - 480.0, self.frame.size.height -118, 1281.0, 50.0)];
             [horizontal2 setFrame:CGRectMake(heading_scaled + 800.0, self.frame.size.height -118, 1281.0, 50.0)];
         }
@@ -147,8 +141,6 @@
     else
     {
         heading_scaled = (360.0 - heading) * scale;
-        NSLog(@"Else_hori_heading_scaled: %f",heading_scaled);
-
         if (IS_IPAD)
         {
             [horizontal1 setFrame:CGRectMake(heading_scaled - 1515.0, 923.0, 4044.0, 50.0)];
@@ -156,12 +148,10 @@
         }
         else
         {
-//            [horizontal1 setFrame:CGRectMake(heading_scaled - 480.0, 362.0, 1281.0, 50.0)];
-//            [horizontal2 setFrame:CGRectMake(heading_scaled - 1760.0, 362.0, 1281.0, 50.0)];
-            NSLog(@"hori_height %f",self.frame.size.height);
+            //NSLog(@"hori_height %f",self.frame.size.height);
             [horizontal1 setFrame:CGRectMake(heading_scaled - 480.0, self.frame.size.height -118, 1281.0, 50.0)];
             [horizontal2 setFrame:CGRectMake(heading_scaled - 1760.0, self.frame.size.height -118, 1281.0, 50.0)];
-
+            
         }
     }
 }
@@ -169,32 +159,25 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)updateVerticalDisplay:(double)tilt
 {
-    if (IS_IPAD)
-    {
-        //double scale = (1024.0/vfov);
-        //double offset = 512.0 - (tilt * scale);
-        
-        double scale = (350.0/vfov);
-        double offset = 240.0 - (tilt * scale);
-        [vertical setFrame:CGRectMake(20.0, offset - 2073.0, 32.0, 4164.0)];
-    }
-    else
-    {
-        //double scale = (426.0/hfov);
-        //double offset = 240.0 - (tilt * scale);
-        double scale = (150.0/hfov);
-        double offset = 240.0 - (tilt * scale);
-        [vertical setFrame:CGRectMake(15.0, offset - 999.0, 30.0, 2000.0)];
-        
-        NSLog(@"scale : %f   offset : %f",scale,offset);
-    }
+  if (IS_IPAD)
+  {
+      double scale = (1024.0/vfov);
+      double offset = 512.0 - (tilt * scale);
+      [vertical setFrame:CGRectMake(20.0, offset - 2073.0, 32.0, 4164.0)];
+  }
+  else
+  {
+      //double scale = (426.0/hfov);
+      double scale = ((ApplicationDelegate.screenSize.height - 54)/hfov);
+      double offset = (ApplicationDelegate.screenSize.height /2) - (tilt * scale);
+      [vertical setFrame:CGRectMake(15.0, offset - 999.0, 30.0, 2000.0)];
+  }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)updateViewForSatelliteWithName:(NSString*)satelliteName AtX:(double)x andY:(double)y withType:(int)type
 {
-    if (!satelliteName)
-        return;
+    if (!satelliteName) return;
     
     SatelliteView* satelliteView = [satelliteViews objectForKey:satelliteName];
     if (!satelliteView)
@@ -220,6 +203,7 @@
         return;
     
     SatelliteView* satelliteView = [satelliteViews objectForKey:satelliteName];
+    
     if (!satelliteView)
         return;
     else
@@ -229,45 +213,44 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)setClosestSatellite:(NSString*)satelliteName
 {
-    NSEnumerator *enumerator = [satelliteViews keyEnumerator];
-    id key;
-    while ((key = [enumerator nextObject]))
+	NSEnumerator *enumerator = [satelliteViews keyEnumerator];
+	id key;
+	while ((key = [enumerator nextObject]))
     {
-        SatelliteView* satelliteView = [satelliteViews objectForKey:key];
-        [satelliteView setClosest:NO];
-        [satelliteView setNeedsDisplay];
-    }
-    
-    SatelliteView* closestSatelliteView = [satelliteViews objectForKey:satelliteName];
-    if (closestSatelliteView)
+		SatelliteView* satelliteView = [satelliteViews objectForKey:key];
+		[satelliteView setClosest:NO];
+		[satelliteView setNeedsDisplay];
+	}
+
+	SatelliteView* closestSatelliteView = [satelliteViews objectForKey:satelliteName];
+	if (closestSatelliteView)
     {
-        [closestSatelliteView removeFromSuperview];
-        [self insertSubview:closestSatelliteView belowSubview:crosshairView];
-        [closestSatelliteView setClosest:TRUE];
-        [closestSatelliteView setNeedsDisplay];
-    }
+		[closestSatelliteView removeFromSuperview];
+		[self insertSubview:closestSatelliteView belowSubview:crosshairView];
+		[closestSatelliteView setClosest:TRUE];
+		[closestSatelliteView setNeedsDisplay];
+	}
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)setCrosshairState:(int)state
 {
-    [crosshairView setState:state];
-    [crosshairView setNeedsDisplay];
+	[crosshairView setState:state];
+	[crosshairView setNeedsDisplay];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)clearSatelliteViews
 {
-    for(NSString *satelliteName in satelliteViews)
+	for(NSString *satelliteName in satelliteViews)
     {
-        SatelliteView* satelliteView = [satelliteViews objectForKey:satelliteName];
-        if (satelliteView)
+		SatelliteView* satelliteView = [satelliteViews objectForKey:satelliteName];
+		if (satelliteView)
         {
-            if (satelliteView.superview) [satelliteView removeFromSuperview];
-        }
-    }
-    
-    [satelliteViews removeAllObjects];
+			if (satelliteView.superview) [satelliteView removeFromSuperview];
+		}
+	}
+	[satelliteViews removeAllObjects];
 }
 
 @end

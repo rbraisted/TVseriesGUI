@@ -94,7 +94,7 @@
 #pragma mark - UIWebViewDelegate protocol methods
 - (void)webViewDidStartLoad:(UIWebView *)_webView
 {
-    NSLog(@"webViewDidStartLoad");
+    //NSLog(@"webViewDidStartLoad");
     webView.delegate = self;
     NSURLRequest* request = _webView.request;
     if ([request.URL.path isEqualToString:@"/support.php"] && [request.URL.fragment isEqualToString:@"/command-line"]) {
@@ -108,7 +108,7 @@
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError*)error
 {
-    NSLog(@"webView:%@ didFailLoadWithError:%@", _webView == webView ? @"webView" : @"helpWebView", error);
+    //NSLog(@"webView:%@ didFailLoadWithError:%@", _webView == webView ? @"webView" : @"helpWebView", error);
     //  NSURLErrorCancelled (-999)
     //	"Returned when an asynchronous load is canceled. A Web Kit framework delegate will
     //	receive this error when it performs a cancel operation on a loading resource. Note
@@ -145,8 +145,8 @@
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%ld", _webView == webView ? @"webView" : @"helpWebView", request, (long)navigationType);
-    NSLog(@"request.URL.path is %@", request.URL.path);
+    //NSLog(@"webView:%@ shouldStartLoadWithRequest:%@ navigationType:%ld", _webView == webView ? @"webView" : @"helpWebView", request, (long)navigationType);
+    //NSLog(@"request.URL.path is %@", request.URL.path);
     
     NSString* _hostName = [NSString stringWithFormat:@"%@", request.URL.host];
     if (request.URL.port)
@@ -167,13 +167,13 @@
     //	check if it's a javascript to ios/android command
     //	being called with a the scheme "tvro"
     if ([request.URL.scheme isEqualToString:@"tvro"]) {
-        NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
+        //NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
         [self handleCustomURL:request.URL];
         return false;
         
         
     } else if ([request.URL.path isEqualToString:@"/print2screen.php"]) {
-        NSLog(@"    [request.URL.relativeString isEqualToString:@\"/print2screen.php\"]");
+        //NSLog(@"    [request.URL.relativeString isEqualToString:@\"/print2screen.php\"]");
         //	the command line view pulls this file in, and it can take a while.
         //	but this request shouldn't cause you to return to the bonjour view
         //	even if it takes more than a minute to complete
@@ -185,7 +185,7 @@
         
     } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
         //	were trying to go to about:blank for some reason lets negate that
-        NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
+        //NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
         return false;
@@ -195,7 +195,7 @@
         //	if not, it's probably an external link and we
         //	should open it in safari
     } else if (![hostName isEqualToString:_hostName]) {
-        NSLog(@"    ![hostName isEqualToString:_hostName]");
+        //NSLog(@"    ![hostName isEqualToString:_hostName]");
         //		[[UIApplication sharedApplication] openURL:request.URL];
         //		return false;
         return true;
@@ -212,14 +212,14 @@
 
 - (void)webViewURLRequestTimeout
 {
-    NSLog(@"webView URL Request Timeout");
+    //NSLog(@"webView URL Request Timeout");
     //webView.delegate = nil;
     //[self goBackToHostSelect:ConnectionAlert];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView
 {
-    NSLog(@"webViewDidFinishLoad");
+    //NSLog(@"webViewDidFinishLoad");
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -285,12 +285,12 @@
 
 #pragma mark - UpdatesManagerDelgate protocol methods
 - (void)updatesManager:(UpdatesManager *)_updatesManager downloadCompletedForUpdateType:(NSString *)updateType {
-    NSLog(@"updatesManager downloadCompletedForUpdateType:%@", updateType);
+    //NSLog(@"updatesManager downloadCompletedForUpdateType:%@", updateType);
     [webView reload];
 }
 
 - (void)updatesManager:(UpdatesManager *)_updatesManager uploadCompletedForUpdateType:(NSString *)updateType {
-    NSLog(@"updatesManager uploadCompletedForUpdateType:%@", updateType);
+    //NSLog(@"updatesManager uploadCompletedForUpdateType:%@", updateType);
     NSString* fileName = [updatesManager fileNameForUpdateType:updateType];
     NSString* jsString = [NSString stringWithFormat:@"TVRO.installSoftware({ install: 'Y', filename: '%@' }).then(TVRO.reload);", fileName];
     [webView stringByEvaluatingJavaScriptFromString:jsString];
@@ -336,7 +336,9 @@
     } else if ([url.host isEqualToString:@"sat-finder"]) {
         //	tvro://sat-finder
         //    shows the sat finder - desktop has no sat finder
-        if (satFinderViewController == NULL) satFinderViewController = [[SatelliteFinderViewController alloc] init];
+        //if (satFinderViewController == NULL)
+            //satFinderViewController = [[SatelliteFinderViewController alloc] init];
+        SatelliteFinderViewController* satFinderViewController = [[SatelliteFinderViewController alloc] init];
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"])
             [satFinderViewController getSatListFromBundle];
         else
@@ -392,7 +394,7 @@
         NSURL* uploadURL = [NSURL URLWithString:uploadURLString];
         [updatesManager startUploadForUpdateType:updateType uploadUrl:uploadURL];
     } else if ([url.host isEqualToString:@"restart"]) {
-        NSLog(@"user requested restart launch page");
+        //NSLog(@"user requested restart launch page");
         [self goBackToHostSelect:@""];
     }
     
