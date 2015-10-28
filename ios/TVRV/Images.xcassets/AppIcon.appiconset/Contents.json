@@ -31,13 +31,15 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "TVRO_icons_iOS_57x57.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
       "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "TVRO_icons_iOS_114x114.png",
       "scale" : "2x"
     },
     {
@@ -83,8 +85,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "TVRO_icons_iOS_100x100.png",
       "scale" : "2x"
     },
     {
