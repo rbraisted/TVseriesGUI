@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0DB6801EBB60CB0064FE1E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0DB67F1EBB60CB0064FE1E /* UserNotifications.framework */; };
 		8A4E79671B2FE34000E41037 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4E79661B2FE34000E41037 /* CoreMotion.framework */; };
 		AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138F1917F4DA00445E07 /* AppDelegate.m */; };
 		AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013911917F4DA00445E07 /* BonjourTableViewCell.m */; };
@@ -143,6 +144,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0DB67F1EBB60CB0064FE1E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		8A4D3EB61F13A47D00FE1367 /* TVRV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVRV.entitlements; sourceTree = "<group>"; };
 		8A4E79661B2FE34000E41037 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AAC0138F1917F4DA00445E07 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0DB6801EBB60CB0064FE1E /* UserNotifications.framework in Frameworks */,
 				8A4E79671B2FE34000E41037 /* CoreMotion.framework in Frameworks */,
 				E91C2E49184FD9AC003618D1 /* libxml2.dylib in Frameworks */,
 				E91C2E47184FD9A1003618D1 /* libz.dylib in Frameworks */,
@@ -318,6 +322,7 @@
 		AAC0138B1917F4DA00445E07 /* TVRV */ = {
 			isa = PBXGroup;
 			children = (
+				8A4D3EB61F13A47D00FE1367 /* TVRV.entitlements */,
 				E9BE2F081940F6B300ADEAF5 /* SatFinder */,
 				AAC0138E1917F4DA00445E07 /* AppDelegate.h */,
 				AAC0138F1917F4DA00445E07 /* AppDelegate.m */,
@@ -477,6 +482,7 @@
 		E9B97C691829A14A007AA4A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A0DB67F1EBB60CB0064FE1E /* UserNotifications.framework */,
 				8A4E79661B2FE34000E41037 /* CoreMotion.framework */,
 				E91C2E48184FD9AC003618D1 /* libxml2.dylib */,
 				E91C2E46184FD9A1003618D1 /* libz.dylib */,
@@ -542,6 +548,12 @@
 				TargetAttributes = {
 					E9B97C661829A14A007AA4A3 = {
 						DevelopmentTeam = YYEW9VQ5XU;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -804,15 +816,18 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TVRV/TVRV.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
+				DEVELOPMENT_TEAM = YYEW9VQ5XU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvh.mobile.tvrv;
 				PRODUCT_NAME = TVRV;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "415bfe0f-6a65-4d64-81e9-b363b1eb0416";
+				PROVISIONING_PROFILE_SPECIFIER = "TV series iOS Distribution Profile";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;
@@ -825,15 +840,18 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = TVRV/TVRV.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: KVH Industries Inc. (YYEW9VQ5XU)";
+				DEVELOPMENT_TEAM = YYEW9VQ5XU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvh.mobile.tvrv;
 				PRODUCT_NAME = TVRV;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "415bfe0f-6a65-4d64-81e9-b363b1eb0416";
+				PROVISIONING_PROFILE_SPECIFIER = "TV series iOS Distribution Profile";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = app;

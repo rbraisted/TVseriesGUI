@@ -12,6 +12,59 @@
 //#define KVH_BUILD
 // #define VAIN_BUILD
 
+// ------------------------------------------------------------------------------------------------
+// --------------------------- Start Push Notification(APNS) Stuff --------------------------------
+// ------------------------------------------------------------------------------------------------
+
+#define kPOST         @"POST"
+#define kContentType  @"content-type"
+#define kAppJson      @"application/json"
+
+// Replace this URL with live URL
+
+
+// 1. Register device token on server
+#define API_REGISTER_DEVICE_TOKEN @"http://34.226.75.132/adminapi/token/createusertoken"
+/* Parameters use for Register device token on server web service
+ 1. app_platform,
+ 2. user_device_token
+ 3. app_id
+ */
+
+
+// 2. Reset badge
+#define API_RESET_BADGE @"http://34.226.75.132/adminapi/token/resetbadgecnt"
+/* Parameters use for Reset badge web service
+ 1. user_device_token,
+ 2. badgecnt
+ */
+
+#define KBadgeCount  @"badgecnt"
+
+// app_platform - Set 1 for -> Android applications, 2 for -> iOS applications
+#define kAppPlatform     @"app_platform"
+#define currentPlatform  @"2"
+
+#define kDeviceToken  @"user_device_token"
+
+// Set app id for recognize application
+#define kAPP_ID   @"app_id"
+#define TVRV_APP_ID @"4" // Set app_id = 1 for KVH TracVision HD7 app
+
+/*// -------------------------------- app_id --------------------------------------
+ 1 For => KVH TracVision HD7
+ 2 For => KVH TracVision HD-11
+ 3 For => KVH TracPhone Mini-VSAT Broadband
+ 4 For => KVH TracVision® TV/RV-series [iOS APP]
+ 5 For => KVH TracVision HD-11-ipad
+ 6 For => KVH TracVision TV/RV-series [ANDROID APP]
+ // ------------------------------------------------------------------------------*/
+
+// ------------------------------------------------------------------------------------------------
+// --------------------------- Finish Push Notification(APNS) Stuff -------------------------------
+// ------------------------------------------------------------------------------------------------
+
+
 //----------------------------------------------------------
 // SETTINGS FOR APP STORE AND AD HOC BUILDS 
 #ifdef FINAL_BUILD

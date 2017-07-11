@@ -19,6 +19,10 @@
 
 #import "Constants.h"
 
+#define NSUD [NSUserDefaults standardUserDefaults]
+#define SharedApplication   [UIApplication sharedApplication]
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 #define isNaN(x) (x != x)

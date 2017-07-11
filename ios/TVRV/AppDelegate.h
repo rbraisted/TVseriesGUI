@@ -1,8 +1,9 @@
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
 
 @class 	WebViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate, NSURLSessionDelegate> {
 	
 }
 

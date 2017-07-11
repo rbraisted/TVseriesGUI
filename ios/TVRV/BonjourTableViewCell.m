@@ -46,6 +46,7 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     selectedBG       =  [UIImage imageNamed:@"tableCellBGSelected.png"];
     selectedArrow    =  [UIImage imageNamed:@"tableCellArrowSelected.png"];
     unselectedArrow  =  [UIImage imageNamed:@"tableCellArrow.png"];
