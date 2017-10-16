@@ -341,8 +341,7 @@
         [alertError show];
         return;
     }
-    //WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
-    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"199.244.84.221"];
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
     [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8A0DB6801EBB60CB0064FE1E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0DB67F1EBB60CB0064FE1E /* UserNotifications.framework */; };
+		8A28B9CB1F94CEDB000C7BD4 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28B9C61F94CEDB000C7BD4 /* NotificationCell.m */; };
+		8A28B9CC1F94CEDB000C7BD4 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A28B9C71F94CEDB000C7BD4 /* NotificationCell.xib */; };
+		8A28B9CD1F94CEDB000C7BD4 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A28B9C91F94CEDB000C7BD4 /* NotificationViewController.m */; };
+		8A28B9CE1F94CEDB000C7BD4 /* NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A28B9CA1F94CEDB000C7BD4 /* NotificationViewController.xib */; };
 		8A4E79671B2FE34000E41037 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4E79661B2FE34000E41037 /* CoreMotion.framework */; };
 		AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0138F1917F4DA00445E07 /* AppDelegate.m */; };
 		AAC013E11917F4DA00445E07 /* BonjourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC013911917F4DA00445E07 /* BonjourTableViewCell.m */; };
@@ -145,6 +149,12 @@
 
 /* Begin PBXFileReference section */
 		8A0DB67F1EBB60CB0064FE1E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		8A28B9C51F94CEDB000C7BD4 /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
+		8A28B9C61F94CEDB000C7BD4 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
+		8A28B9C71F94CEDB000C7BD4 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		8A28B9C81F94CEDB000C7BD4 /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		8A28B9C91F94CEDB000C7BD4 /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		8A28B9CA1F94CEDB000C7BD4 /* NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationViewController.xib; sourceTree = "<group>"; };
 		8A4D3EB61F13A47D00FE1367 /* TVRV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TVRV.entitlements; sourceTree = "<group>"; };
 		8A4E79661B2FE34000E41037 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AAC0138E1917F4DA00445E07 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -319,9 +329,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A28B9C41F94CEDB000C7BD4 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				8A28B9C51F94CEDB000C7BD4 /* NotificationCell.h */,
+				8A28B9C61F94CEDB000C7BD4 /* NotificationCell.m */,
+				8A28B9C71F94CEDB000C7BD4 /* NotificationCell.xib */,
+				8A28B9C81F94CEDB000C7BD4 /* NotificationViewController.h */,
+				8A28B9C91F94CEDB000C7BD4 /* NotificationViewController.m */,
+				8A28B9CA1F94CEDB000C7BD4 /* NotificationViewController.xib */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		AAC0138B1917F4DA00445E07 /* TVRV */ = {
 			isa = PBXGroup;
 			children = (
+				8A28B9C41F94CEDB000C7BD4 /* Notification */,
 				8A4D3EB61F13A47D00FE1367 /* TVRV.entitlements */,
 				E9BE2F081940F6B300ADEAF5 /* SatFinder */,
 				AAC0138E1917F4DA00445E07 /* AppDelegate.h */,
@@ -544,7 +568,7 @@
 		E9B97C5F1829A14A007AA4A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					E9B97C661829A14A007AA4A3 = {
 						DevelopmentTeam = YYEW9VQ5XU;
@@ -639,6 +663,7 @@
 				E91EF0FA194174CA007829CD /* sf_triangle_guide@2x~iphone.png in Resources */,
 				AAC014211917F4DA00445E07 /* Settings.bundle in Resources */,
 				E91EF0C4194174CA007829CD /* sf_back_button~iphone.png in Resources */,
+				8A28B9CC1F94CEDB000C7BD4 /* NotificationCell.xib in Resources */,
 				E91EF125194174CA007829CD /* viewUpdatesButton@2x.png in Resources */,
 				E91EF0E7194174CA007829CD /* sf_pointer_right~iphone.png in Resources */,
 				E91EF0DA194174CA007829CD /* sf_label_elevation~ipad.png in Resources */,
@@ -685,6 +710,7 @@
 				EE94CA761B418190001F6772 /* sf_enabled_favorite_selected_bar@3x.png in Resources */,
 				E91EF0C2194174CA007829CD /* sf_back_button@2x~iphone.png in Resources */,
 				E91EF109194174CA007829CD /* tracVisionLogoiPad.png in Resources */,
+				8A28B9CE1F94CEDB000C7BD4 /* NotificationViewController.xib in Resources */,
 				E91EF0CC194174CA007829CD /* sf_horizontal_axis~iphone.png in Resources */,
 				E91EF0DE194174CA007829CD /* sf_line_dot~iphone.png in Resources */,
 				E91EF101194174CA007829CD /* tableCellBGDark.png in Resources */,
@@ -701,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAC013E01917F4DA00445E07 /* AppDelegate.m in Sources */,
+				8A28B9CB1F94CEDB000C7BD4 /* NotificationCell.m in Sources */,
 				E9BE2F181940F6B300ADEAF5 /* AccelerometerFilter.m in Sources */,
 				E9BE2F1B1940F6B300ADEAF5 /* SatelliteFinderOverlayView.m in Sources */,
 				E9BE2F1E1940F6B300ADEAF5 /* SatelliteView.m in Sources */,
@@ -712,6 +739,7 @@
 				E9BE2F1A1940F6B300ADEAF5 /* SatelliteFinderInfoView.m in Sources */,
 				E9BE2F191940F6B300ADEAF5 /* Satellite.m in Sources */,
 				AAC0141E1917F4DA00445E07 /* main.m in Sources */,
+				8A28B9CD1F94CEDB000C7BD4 /* NotificationViewController.m in Sources */,
 				E9BE2F1C1940F6B300ADEAF5 /* SatelliteFinderViewController.m in Sources */,
 				AAC0141F1917F4DA00445E07 /* RXMLElement.m in Sources */,
 			);
@@ -739,20 +767,31 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -765,7 +804,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "58372158-4899-49fb-92ab-6ebc210af32d";
 				SDKROOT = iphoneos;
@@ -782,26 +821,37 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ripal Vyas (XP58BH2CZS)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PROVISIONING_PROFILE = "58372158-4899-49fb-92ab-6ebc210af32d";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -823,7 +873,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvh.mobile.tvrv;
 				PRODUCT_NAME = TVRV;
 				PROVISIONING_PROFILE = "415bfe0f-6a65-4d64-81e9-b363b1eb0416";
@@ -847,7 +897,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvh.mobile.tvrv;
 				PRODUCT_NAME = TVRV;
 				PROVISIONING_PROFILE = "415bfe0f-6a65-4d64-81e9-b363b1eb0416";
