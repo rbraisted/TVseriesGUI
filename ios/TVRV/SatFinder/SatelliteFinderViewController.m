@@ -24,7 +24,11 @@
     return NO;
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
 - (NSUInteger)supportedInterfaceOrientations
+#else
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -124,7 +128,8 @@
     RXMLElement* satListXml = [RXMLElement elementFromXMLString:satListXmlString encoding:NSUTF8StringEncoding];
     RXMLElement* satElement = [satListXml child:@"satellite"];
     
-    NSString* selectedAntSatID = [[NSString alloc] init];
+    //NSString* selectedAntSatID = [[NSString alloc] init];
+    NSString* selectedAntSatID = @"";
     selectedAntSatID = [satElement child:@"selected"].text;
     
     NSUInteger k = [satList count];
@@ -592,7 +597,7 @@
              }
          }];
         
-        locationManager = [[CLLocationManager alloc] init];
+        /*locationManager = [[CLLocationManager alloc] init];
         [locationManager setDelegate:self];
         if (IS_OS_8_OR_LATER)
         {
@@ -611,8 +616,25 @@
         [locationManager setPurpose:@"Satellite Finder needs your location to find satellites!"];  //  deprecated, we may still need for older ios versions
         if ([CLLocationManager headingAvailable]) {
             [locationManager startUpdatingHeading];
+        }*/
+
+        
+        if (!locationManager)
+        {
+            locationManager = [[CLLocationManager alloc] init];
+            locationManager.delegate = self;
+            locationManager.distanceFilter = kCLDistanceFilterNone;
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+            [locationManager setHeadingFilter:kCLHeadingFilterNone];
+            
+            if([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]&& IS_IOS8) {
+                [locationManager requestWhenInUseAuthorization];
+            }
+            [locationManager startUpdatingLocation];
+            if([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
         }
 
+        
         //  DEBUGGING
         // deviceLat = 34.043918;
         // deviceLon = -118.252480;
@@ -704,41 +726,41 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)viewWillAppear:(BOOL)animated {  
-  //NSLog(@":: viewWillAppear");
-  [locationManager startUpdatingLocation];
-  if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
-  
-  // [demoButton setHidden:!APPDEL.demoMode];
-
-  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"satFinderInfoShown"]) {
-    [infoView setHidden:YES];
-  } else {
-    [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"satFinderInfoShown"];
-    [infoView setHidden:NO];
-  } 
-
-  //  start the timer
-  if (timer == nil) {
-    timer = [NSTimer timerWithTimeInterval:(1.0 / 5.0) target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-  }
+- (void)viewWillAppear:(BOOL)animated {
+    //NSLog(@":: viewWillAppear");
+    [super viewWillAppear:YES];
+    [locationManager startUpdatingLocation];
+    if ([CLLocationManager headingAvailable]) [locationManager startUpdatingHeading];
+    
+    // [demoButton setHidden:!APPDEL.demoMode];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"satFinderInfoShown"]) {
+        [infoView setHidden:YES];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"satFinderInfoShown"];
+        [infoView setHidden:NO];
+    }
+    
+    //  start the timer
+    if (timer == nil) {
+        timer = [NSTimer timerWithTimeInterval:(1.0 / 5.0) target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
 {
-    //NSLog(@":: viewDidAppear");
-    // show the camera!
-    if (showPicker)
-    {
+    [super viewDidAppear:YES];
+    if (showPicker) {
         if (picker == nil) picker = [[CUIImagePickerController alloc] init];
         [picker setSourceType:UIImagePickerControllerSourceTypeCamera]; // << choose camera
         [picker setShowsCameraControls:NO];
         [picker setNavigationBarHidden:YES];
-        [picker setWantsFullScreenLayout:YES];
-        
-        if (!IS_IPAD) {
+        //[picker setWantsFullScreenLayout:YES];
+        picker.edgesForExtendedLayout = YES;
+
+        if (!(IS_IPAD)) {
             float cameraAspectRatio = 4.0 / 3.0;
             float imageWidth = floorf(ApplicationDelegate.screenSize.width * cameraAspectRatio);
             float scale = ceilf((ApplicationDelegate.screenSize.height / imageWidth) * 1.0) / 1.0;
@@ -758,7 +780,12 @@
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSUInteger)supportedInterfaceOrientations {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
+- (NSUInteger)supportedInterfaceOrientations
+#else
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
+{
   //NSLog(@":: shouldAutorotate");
   return UIInterfaceOrientationMaskPortrait;
 }

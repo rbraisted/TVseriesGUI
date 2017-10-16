@@ -94,19 +94,26 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  //get the default host name (Either tvhub or the last host name that the user connected to)
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  if ([defaults objectForKey:@"default-host"] != nil)
-  {
-    [self.textField setText:[defaults objectForKey:@"default-host"]];
-  }
-	[self resetBonjourHostList];
+    [super viewWillAppear:YES];
+    //get the default host name (Either tvhub or the last host name that the user connected to)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"default-host"] != nil)
+    {
+        [self.textField setText:[defaults objectForKey:@"default-host"]];
+    }
+    [self resetBonjourHostList];
 }
 
 - (BOOL)prefersStatusBarHidden
 {
-	return YES;
+	return 0;
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -118,7 +125,11 @@
   return YES;
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
 - (NSUInteger)supportedInterfaceOrientations
+#else
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
 {
   if (IS_IPAD)
       return UIInterfaceOrientationMaskLandscape;
@@ -330,7 +341,8 @@
         [alertError show];
         return;
     }
-    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
+    //WebViewController* webViewController = [[WebViewController alloc] initWithHostName:self.textField.text];
+    WebViewController* webViewController = [[WebViewController alloc] initWithHostName:@"199.244.84.221"];
     [UIApplication sharedApplication].delegate.window.rootViewController = webViewController;
 }
 
