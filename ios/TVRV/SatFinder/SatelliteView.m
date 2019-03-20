@@ -89,7 +89,14 @@ static UIImage *nameBg = nil;
             [blackDot drawInRect:rect];
         
         [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] set];
-        [satelliteName drawInRect:nameRect withFont:[UIFont fontWithName:@"Helvetica" size:15.0] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
+        /*[satelliteName drawInRect:nameRect withFont:[UIFont fontWithName:@"Helvetica" size:15.0] lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];*/
+        
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [style setLineBreakMode:NSLineBreakByTruncatingTail];
+        [style setAlignment:NSTextAlignmentCenter];
+        
+        NSDictionary *dictAttributes   = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:15.0] , NSParagraphStyleAttributeName: style};
+        [satelliteName drawInRect:nameRect withAttributes:dictAttributes];
     }
 }
 

@@ -1,6 +1,18 @@
 {
   "images" : [
     {
+      "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "Icon-App-20x20@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "Icon-App-20x20@3x.png",
+      "scale" : "3x"
+    },
+    {
       "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "TVRO_icons_iOS_052615_29x29.png",
@@ -33,13 +45,13 @@
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "TVRO_icons_iOS_052615_58x58-1.png",
+      "filename" : "TVRO_icons_iOS_57x57.png",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "TVRO_icons_iOS_052615_120x120-1.png",
+      "filename" : "TVRO_icons_iOS_114x114.png",
       "scale" : "2x"
     },
     {
@@ -53,6 +65,18 @@
       "idiom" : "iphone",
       "filename" : "TVRO_icons_iOS_052615_180x180.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "Icon-App-20x20@1x.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "Icon-App-20x20@2x-1.png",
+      "scale" : "2x"
     },
     {
       "size" : "29x29",
@@ -87,19 +111,19 @@
     {
       "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "TVRO_icons_iOS_052615_120x120-3.png",
+      "filename" : "TVRO_icons_iOS_100x100.png",
       "scale" : "2x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "TVRO_icons_iOS_052615_76x76.png",
+      "filename" : "TVRO_icons_Android_052615_72x72.png",
       "scale" : "1x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "TVRO_icons_iOS_052615_152x152.png",
+      "filename" : "TVRO_icons_Android_052615_144x144.png",
       "scale" : "2x"
     },
     {
@@ -113,6 +137,18 @@
       "idiom" : "ipad",
       "filename" : "TVRO_icons_iOS_052615_152x152-1.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "Icon-App-83.5x83.5@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "iTunesArtwork@2x.png",
+      "scale" : "1x"
     }
   ],
   "info" : {

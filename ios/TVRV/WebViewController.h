@@ -11,7 +11,8 @@
   UIWebView* helpWebView;
   UIView*    loadingView;
   NSTimer*   timeoutTimer;
-
+  float yPosHelpCloseButton;
+    UIButton *btnNotif;
   //SatelliteFinderViewController* satFinderViewController;
   UpdatesManager*          updatesManager;
 }

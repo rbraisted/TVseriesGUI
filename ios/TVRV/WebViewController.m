@@ -13,31 +13,63 @@
 
 #define ConnectionAlert @"Connection to TV-Hub failed."
 #define ConnectionFailureUpdateAlert @"Failure to connect with the updates site."
+#define RGBCOLOR(r, g, b) [UIColor colorWithRed:r/225.0f green:g/225.0f blue:b/225.0f alpha:1]
+
+- (void)viewWillAppear:(BOOL)animated {
+    //    there used to be a very complicated process to pass demo/tech mode
+    //    and mobile shell flags to the web code but now we just open on shell.php
+    //    which handles this for us
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shell.php", hostName]]]];
+}
 
 - (void)viewDidLoad {
+    [self initUpdatesManager];
+    [self addMainWebView];
+    [self addHelpWebView];
+    [self addLoadingView];
+    [self addNotificationIcon];
+    [super viewDidLoad];
+}
+
+- (void)initUpdatesManager {
     updatesManager = [[UpdatesManager alloc] initWithDelegate:self];
-    
-    //	main web view - displays gui, handles custom scheme (tvro://) calls
+}
+
+- (void)addMainWebView {
+    // main web view - displays gui, handles custom scheme (tvro://) calls
     webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
     [webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [webView.scrollView setDelaysContentTouches:NO];
     [webView setDelegate:self];
+    webView.backgroundColor = [UIColor clearColor];
+    webView.opaque = NO;
     webView.scrollView.bounces = NO;
     [self.view addSubview:webView];
-    
-    //	help web view - displays help pages
-    //	no delegate set for helpWebView
+    [self.view setBackgroundColor:RGBCOLOR(13.0f, 18.0f, 49.0f)];
+}
+
+- (void)addHelpWebView {
+    //    help web view - displays help pages
+    //    no delegate set for helpWebView
     helpWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
     [helpWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [helpWebView.scrollView setDelaysContentTouches:NO];
     helpWebView.scrollView.bounces = NO;
+    helpWebView.backgroundColor = RGBCOLOR(13.0f, 18.0f, 49.0f);
+    helpWebView.opaque = NO;
     [helpWebView setHidden:YES];
     [self.view addSubview:helpWebView];
     
-    //	attach a close button and header bar to the help
+    //    attach a close button and header bar to the help
     UIImage* helpCloseButtonImage = [UIImage imageNamed:@"close-button"];
     UIButton* helpCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [helpCloseButton setFrame:CGRectMake(self.view.frame.size.width - 41.0, 9.0, 32.0, 32.0)];
+    yPosHelpCloseButton = 0.0;
+    if (IS_IPHONEX) {
+        yPosHelpCloseButton = 55;
+    } else {
+        yPosHelpCloseButton = 10;
+    }
+    [helpCloseButton setFrame:CGRectMake(self.view.frame.size.width - 40.0, yPosHelpCloseButton, 24.0, 24.0)];
     [helpCloseButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
     [helpCloseButton setBackgroundImage:helpCloseButtonImage forState:UIControlStateNormal];
     [helpCloseButton addTarget:self action:@selector(closeHelpWebView) forControlEvents:UIControlEventTouchUpInside];
@@ -53,11 +85,14 @@
     [helpTopBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [helpTopBar setBackgroundColor:[UIColor blackColor]];
     [helpTopBar addSubview:helpTopBarLabel];
-    
-    [helpWebView addSubview:helpTopBar];
+    if (!IS_IPHONEX) {
+        [helpWebView addSubview:helpTopBar];
+    }
     [helpWebView addSubview:helpCloseButton];
-    
-    //	spinner/loader
+}
+
+- (void)addLoadingView {
+    // spinner/loader
     loadingView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
     [loadingView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [loadingView setBackgroundColor:[UIColor colorWithRed:4.0/255.0 green:18.0/255.0 blue:42.0/255.0 alpha:1]];
@@ -80,28 +115,36 @@
     [spinnerView startAnimating];
     [self.view addSubview:loadingView];
     [loadingView setHidden:TRUE];
-    
-    [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    //	there used to be a very complicated process to pass demo/tech mode
-    //	and mobile shell flags to the web code but now we just open on shell.php
-    //	which handles this for us
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@/shell.php", hostName]]]];
+- (void)addNotificationIcon {
+    UIImage *imgNotif = [UIImage imageNamed:@"notifications"];
+    CGRect frameNotif = CGRectMake(self.view.frame.size.width-(imgNotif.size.width+10), yPosHelpCloseButton, imgNotif.size.width, imgNotif.size.height);
+    btnNotif = [[UIButton alloc] initWithFrame:frameNotif];
+    [btnNotif setBackgroundImage:imgNotif forState:UIControlStateNormal];
+    [btnNotif addTarget:self action:@selector(openNotificationsScreen) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnNotif];
+    btnNotif.hidden = YES;
+}
+
+- (void)openNotificationsScreen {
+    NotificationViewController *objNotificationVC = [[NotificationViewController alloc] initWithNibName:@"NotificationViewController" bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objNotificationVC];
+    [self presentViewController:navigationController animated:YES completion:^{ }];
 }
 
 #pragma mark - UIWebViewDelegate protocol methods
 - (void)webViewDidStartLoad:(UIWebView *)_webView
 {
     //NSLog(@"webViewDidStartLoad");
+    btnNotif.hidden = YES;
     webView.delegate = self;
     NSURLRequest* request = _webView.request;
     if ([request.URL.path isEqualToString:@"/support.php"] && [request.URL.fragment isEqualToString:@"/command-line"]) {
-        //	see comment in webView shouldStartLoadWithRequest about print2screen.php
+        //    see comment in webView shouldStartLoadWithRequest about print2screen.php
         return;
     }
-    //	start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
+    //    start the timeout timer so that if the url doesnt fully load we get kicked back to the host select screen
     timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(webViewURLRequestTimeout) userInfo:nil repeats:NO];
     [loadingView setHidden:FALSE];
 }
@@ -110,14 +153,14 @@
 {
     //NSLog(@"webView:%@ didFailLoadWithError:%@", _webView == webView ? @"webView" : @"helpWebView", error);
     //  NSURLErrorCancelled (-999)
-    //	"Returned when an asynchronous load is canceled. A Web Kit framework delegate will
-    //	receive this error when it performs a cancel operation on a loading resource. Note
-    //	that an NSURLConnection or NSURLDownload delegate will not receive this error
-    //	if the download is canceled."
-    //	k
-    //	i'm not exactly sure what unusual cases might bring this error, but we need to
-    //	check for this case now in order to prevent the timeoutTimer from kicking us
-    //	back to the bonjour view after a redirect (or even if the user has fast fingers)
+    //    "Returned when an asynchronous load is canceled. A Web Kit framework delegate will
+    //    receive this error when it performs a cancel operation on a loading resource. Note
+    //    that an NSURLConnection or NSURLDownload delegate will not receive this error
+    //    if the download is canceled."
+    //    k
+    //    i'm not exactly sure what unusual cases might bring this error, but we need to
+    //    check for this case now in order to prevent the timeoutTimer from kicking us
+    //    back to the bonjour view after a redirect (or even if the user has fast fingers)
     
     
     if ([_webView.request.URL.path isEqualToString:@"/support.php"]) {
@@ -164,47 +207,48 @@
         return NO;
     }
     
-    //	check if it's a javascript to ios/android command
-    //	being called with a the scheme "tvro"
+    //    check if it's a javascript to ios/android command
+    //    being called with a the scheme "tvro"
     if ([request.URL.scheme isEqualToString:@"tvro"]) {
         //NSLog(@"    [request.URL.scheme isEqualToString:@\"tvro\"]");
+        btnNotif.hidden = YES;
         [self handleCustomURL:request.URL];
         return false;
         
         
     } else if ([request.URL.path isEqualToString:@"/print2screen.php"]) {
         //NSLog(@"    [request.URL.relativeString isEqualToString:@\"/print2screen.php\"]");
-        //	the command line view pulls this file in, and it can take a while.
-        //	but this request shouldn't cause you to return to the bonjour view
-        //	even if it takes more than a minute to complete
-        //	there is more to this in webViewDidStartLoad
+        //    the command line view pulls this file in, and it can take a while.
+        //    but this request shouldn't cause you to return to the bonjour view
+        //    even if it takes more than a minute to complete
+        //    there is more to this in webViewDidStartLoad
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
         return true;
         
         
     } else if ([request.URL.relativeString isEqualToString:@"about:blank"]) {
-        //	were trying to go to about:blank for some reason lets negate that
+        //    were trying to go to about:blank for some reason lets negate that
         //NSLog(@"    [request.URL.relativeString isEqualToString:@\"about:blank\"]");
         [timeoutTimer invalidate];
         [loadingView setHidden:TRUE];
         return false;
         
         
-        //	check if it's coming from our bdu hostname
-        //	if not, it's probably an external link and we
-        //	should open it in safari
+        //    check if it's coming from our bdu hostname
+        //    if not, it's probably an external link and we
+        //    should open it in safari
     } else if (![hostName isEqualToString:_hostName]) {
         //NSLog(@"    ![hostName isEqualToString:_hostName]");
-        //		[[UIApplication sharedApplication] openURL:request.URL];
-        //		return false;
+        //        [[UIApplication sharedApplication] openURL:request.URL];
+        //        return false;
         return true;
         
         
-        //	} else if ([request.URL.pathComponents objectAtIndex:1])
+        //    } else if ([request.URL.pathComponents objectAtIndex:1])
         
-        //	at this point it's probably just another path in our app,
-        //	so return true and let the uiwebview continue loading
+        //    at this point it's probably just another path in our app,
+        //    so return true and let the uiwebview continue loading
     } else {
         return true;
     }
@@ -223,9 +267,9 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    //	set tech and demo mode - the device's settings should override the
-    //	cookies set by the gui - we basically brute force this by setting the cookies
-    //	with the device's setting values on every page load
+    //    set tech and demo mode - the device's settings should override the
+    //    cookies set by the gui - we basically brute force this by setting the cookies
+    //    with the device's setting values on every page load
     NSString* demoMode = [defaults boolForKey:@"demo-mode"] ? @"true" : @"false";
     NSString* demoModeString = [NSString stringWithFormat:@"TVRO.setDemoMode(%@);", demoMode];
     
@@ -276,6 +320,17 @@
     
     [timeoutTimer invalidate];
     [loadingView setHidden:TRUE];
+    
+    if ([_webView.request.URL.path isEqualToString:@"/shell.php"] || [_webView.request.URL.path isEqualToString:@"/wizard"] || [_webView.request.URL.path isEqualToString:@"/home.php"] || [_webView.request.URL.path isEqualToString:@"/satellites.php"] || [_webView.request.URL.path isEqualToString:@"/autoswitch.php"] || [_webView.request.URL.path isEqualToString:@"/settings.php"] || [_webView.request.URL.path isEqualToString:@"/updates.php"] || [_webView.request.URL.path isEqualToString:@"/support.php"] ) {
+        btnNotif.hidden = NO;
+        
+        UIImage *imgNotif = [UIImage imageNamed:@"notifications"];
+        CGRect frameNotif = CGRectMake(50, yPosHelpCloseButton, imgNotif.size.width, imgNotif.size.height);
+        btnNotif.frame = frameNotif;
+        
+    } else {
+        btnNotif.hidden = YES;
+    }
 }
 
 - (void)navigateToLaunchPage {
@@ -300,8 +355,8 @@
 
 - (id)initWithHostName:(NSString*)_hostName {
     self = [self init];
-    //	remove / from end of host name
-    //	we're going to add it ourselves in viewWillAppear
+    //    remove / from end of host name
+    //    we're going to add it ourselves in viewWillAppear
     if ([_hostName hasSuffix:@"/"]) hostName = [_hostName substringToIndex:[_hostName length]-1];
     else hostName = _hostName;
     return self;
@@ -316,8 +371,8 @@
 }
 
 - (void)handleCustomURL:(NSURL*)url {
-    //	custom urls all begin with tvro://
-    //	the custom urls are ...
+    //    custom urls all begin with tvro://
+    //    the custom urls are ...
     
     NSArray* pathComponents = [url pathComponents];
     
@@ -329,15 +384,15 @@
         [helpWebView setHidden:NO];
         
     } else if ([url.host isEqualToString:@"change-hostname"]) {
-        //	tvro://change-hostname
+        //    tvro://change-hostname
         //    brings you back to the bonjour list view
         [self goBackToHostSelect:@""];
         
     } else if ([url.host isEqualToString:@"sat-finder"]) {
-        //	tvro://sat-finder
+        //    tvro://sat-finder
         //    shows the sat finder - desktop has no sat finder
         //if (satFinderViewController == NULL)
-            //satFinderViewController = [[SatelliteFinderViewController alloc] init];
+        //satFinderViewController = [[SatelliteFinderViewController alloc] init];
         SatelliteFinderViewController* satFinderViewController = [[SatelliteFinderViewController alloc] init];
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"demo-mode"])
             [satFinderViewController getSatListFromBundle];
@@ -355,8 +410,8 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     } else if ([url.host isEqualToString:@"set-tech-mode"] || [url.host isEqualToString:@"set-demo-mode"]) {
-        //	tvro://set-tech-mode/{ true || false }
-        //	tvro://set-demo-mode/{ true || false }
+        //    tvro://set-tech-mode/{ true || false }
+        //    tvro://set-demo-mode/{ true || false }
         //    setting tech/demo mode - these are done via cookies on desktop
         //    but are done via NSUserDefaults in the mobile shell
         //    the ui buttons in GeneralSettingsView of the web code is hooked up
@@ -367,7 +422,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     } else if ([url.host isEqualToString:@"get-device-versions"]) {
-        //	tvro://get-device-versions
+        //    tvro://get-device-versions
         //    gets versions of the stored update files
         //    makes a javascript call that gives the web code the device versions
         [self setDeviceVersions];
@@ -414,7 +469,7 @@
     NSString* rv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"rv1"];
     NSString* a9DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"a9"];
     
-    //	on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
+    //    on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
     NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', TV8: '%@', RV1: '%@' , A9: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, tv8DeviceVersion, rv1DeviceVersion, a9DeviceVersion];
     
     [webView stringByEvaluatingJavaScriptFromString:jsString];
@@ -425,7 +480,12 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
+- (NSUInteger)supportedInterfaceOrientations
+#else
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
+{
     if (IS_IPAD) {
         return UIInterfaceOrientationMaskLandscape;
     } else {
@@ -434,6 +494,7 @@
 }
 
 - (void)closeHelpWebView {
+    btnNotif.hidden = NO;
     [helpWebView setHidden:YES];
 }
 
@@ -446,3 +507,4 @@
 }
 
 @end
+
