@@ -35,7 +35,7 @@
       //  changes the animation imagery (color of beam)
       //  based on antenna state
       /* Home Page graphics change - Start - UHD7 - STWA-301 */
-      if(antModel == 'UHD7' && satlitename == '101WT')
+      if(antModel == 'UHD7')
       {
         TVRO.getAntState().then(function(state) {
           $('.\\#vessel-animation', jQ)
