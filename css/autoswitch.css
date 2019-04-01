@@ -830,6 +830,11 @@ height:410px;
   .sidebar .block-btn {
     display: block;
     margin: 16px; }
+  /* Autoswitch Tab grey out  - Start - UHD7 - STWA-302 */
+  .sidebar .block-btn.grayout {
+    cursor: default;
+    background-color: #808080; }
+  /* Autoswitch Tab grey out - End - UHD7 - STWA-302 */
 
 .dropdown-btn {
   cursor: pointer;
