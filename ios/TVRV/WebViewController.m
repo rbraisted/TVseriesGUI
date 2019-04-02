@@ -461,16 +461,17 @@
 
 - (void)setDeviceVersions {
     NSString* satLibraryDeviceVersion = [updatesManager deviceVersionForUpdateType:@"satlibrary"];
-    NSString* tv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv1"];
-    NSString* tv3DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv3"];
-    NSString* tv5DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv5"];
-    NSString* tv6DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv6"];
-    NSString* tv8DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"tv8"];
-    NSString* rv1DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"rv1"];
-    NSString* a9DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"a9"];
+    NSString* tv1DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"tv1"];
+    NSString* tv3DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"tv3"];
+    NSString* tv5DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"tv5"];
+    NSString* tv6DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"tv6"];
+    NSString* tv8DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"tv8"];
+    NSString* uhd7DeviceVersion =        [updatesManager deviceVersionForUpdateType:@"uhd7"];
+    NSString* rv1DeviceVersion  =        [updatesManager deviceVersionForUpdateType:@"rv1"];
+    NSString* a9DeviceVersion   =        [updatesManager deviceVersionForUpdateType:@"a9"];
     
     //    on the web app side this should trigger the fulfillment of the TVRO.getDeviceVersions() promise
-    NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', TV8: '%@', RV1: '%@' , A9: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, tv8DeviceVersion, rv1DeviceVersion, a9DeviceVersion];
+    NSString* jsString = [NSString stringWithFormat:@"TVRO.setDeviceVersions({ SatLibrary: '%@', TV1: '%@', TV3: '%@', TV5: '%@', TV6: '%@', TV8: '%@', UHD7: '%@' , RV1: '%@' , A9: '%@' });", satLibraryDeviceVersion, tv1DeviceVersion, tv3DeviceVersion, tv5DeviceVersion, tv6DeviceVersion, tv8DeviceVersion, uhd7DeviceVersion, rv1DeviceVersion, a9DeviceVersion];
     
     [webView stringByEvaluatingJavaScriptFromString:jsString];
 }
