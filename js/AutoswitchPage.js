@@ -62,23 +62,14 @@ $(function() {
         .end()
   );
 
-  /* Autoswitch Tab grey out  - Start - UHD7 - STWA-302 */
-  TVRO.getAntModel().then(function(model) {
-  if(model == 'UHD7') {
-    $( "body" ).find( ".sidebar .block-btn" ).addClass( "grayout" );
-    $( "body" ).find( ".sidebar .block-btn" ).removeClass( "#new-btn" );
-  } else {
-    var createReceiverBtn = $('.\\#new-btn').click(function(argument) {
-    var windowHeight = $(window).height();
-    var variableHeight = ((windowHeight*31)/100);
-    
-    var popupHeight = windowHeight - variableHeight;
-    $('.popup').height(popupHeight);
-      window.location.hash = '/new/edit';
-    });
-  }
+  var createReceiverBtn = $('.\\#new-btn').click(function(argument) {
+  var windowHeight = $(window).height();
+  var variableHeight = ((windowHeight*31)/100);
+  
+  var popupHeight = windowHeight - variableHeight;
+  $('.popup').height(popupHeight);
+    window.location.hash = '/new/edit';
   });
-  /* Autoswitch Tab grey out  - End - UHD7 - STWA-302 */
 
 
   var reload = function() {
