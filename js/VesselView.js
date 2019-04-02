@@ -2,6 +2,16 @@
 !function(TVRO){
   "use strict";
 
+  /* Home Page graphics change - Start - UHD7 - STWA-301 */
+  var antModel = '';
+  var satlitename = '';
+  TVRO.getAntModel().then(function(model) {
+    antModel = model;
+  });
+  TVRO.getInstalledSat().then(function(installedSat) {
+    satlitename = TVRO.formatOrbitalSlot(installedSat.antSatID, installedSat.lon);
+  });
+  /* Home Page graphics change - Start - UHD7 - STWA-301 */
   var VesselView = function(jQ) {
     var self;
 
@@ -24,6 +34,23 @@
 
       //  changes the animation imagery (color of beam)
       //  based on antenna state
+      /* Home Page graphics change - Start - UHD7 - STWA-301 */
+      if(antModel == 'UHD7')
+      {
+        TVRO.getAntState().then(function(state) {
+          $('.\\#vessel-animation', jQ)
+            .removeClass('$warning $error')
+            .addClass({
+              'TRACKING': '$trackuhd7101WT',
+              'INITIALIZING': '$warninguhd7101WT',
+              'SEARCHING': '$warninguhd7101WT',
+              'IDLE': '$warninguhd7101WT',
+              'CABLE UNWRAP': '$warninguhd7101WT',
+              'DISCONNECTED': '$erroruhd7101WT',
+              'ERROR': '$erroruhd7101WT'
+            }[state]);
+        });
+      } else {
       TVRO.getAntState().then(function(state) {
         $('.\\#vessel-animation', jQ)
           .removeClass('$warning $error')
@@ -36,7 +63,10 @@
             'DISCONNECTED': '$error',
             'ERROR': '$error'
           }[state]);
+        $( "body" ).find( ".vessel-animation" ).removeClass( "uhd7101WT" );
       });
+      }
+      /* Home Page graphics change - End - UHD7 - STWA-301 */
 
       TVRO.getAzBow().then(function(azBow) {
         //  antenna animation
