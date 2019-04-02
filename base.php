@@ -47,6 +47,9 @@
   $(document).ready(function() {
       TVRO.getAntModel().then(function(model) {
       document.cookie = "antena = " + model;
+      if(model === 'UHD7') {
+        $( "body" ).find( ".nav .autoswitch-btn" ).remove();
+      }
     });
   });
 </script>
