@@ -15,6 +15,9 @@ $(function() {
                 'TV8',
                 'RV1',
                 'A9',
+                /* In the Updates tab, add UHD7 to the list of satellites on the left side - Start - UHD7 - STWA-304 */
+                'UHD7',
+                /* In the Updates tab, add UHD7 to the list of satellites on the left side - End - UHD7 - STWA-304 */
                 'SatLibrary'
                 ])
     .onBuild(function(row, update) {
