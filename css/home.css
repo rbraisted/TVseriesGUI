@@ -1027,6 +1027,14 @@ a {
       background-image: url(/images/vessel-animation-orange.svg); }
     .vessel-view .vessel-animation.\$error {
       background-image: url(/images/vessel-animation-red.svg); }
+    /* Home Page graphics change - Start - UHD7 - STWA-299 */
+    .vessel-view .vessel-animation.\$warninguhd7101WT {
+      background-image: url(/images/vessel-animation-orange-trisat.svg); }
+    .vessel-view .vessel-animation.\$erroruhd7101WT {
+      background-image: url(/images/vessel-animation-red-trisat.svg); }
+    .vessel-view .vessel-animation.\$trackuhd7101WT {
+      background-image: url(/images/vessel-animation-green-trisat.svg); }
+    /* Home Page graphics change - End - UHD7 - STWA-299 */
 
 @media screen and (max-width: 880px) {
   .sidebar {

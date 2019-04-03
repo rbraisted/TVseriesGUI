@@ -42,6 +42,22 @@
 <!-- header/nav
 - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<!-- Autoswitch Tab grey out  - Start - UHD7 - STWA-302 --> 
+<script type="text/javascript">
+  $(document).ready(function() {
+      TVRO.getAntModel().then(function(model) {
+      document.cookie = "antena = " + model;
+      if(model === 'UHD7') {
+        $( "body" ).find( ".nav .autoswitch-btn" ).remove();
+      }
+    });
+  });
+</script>
+<?php 
+  $antname = $_COOKIE['antena'];
+?>
+<!-- Autoswitch Tab grey out  - End - UHD7 - STWA-302 -->
+
 <div class="header #header-view">
   <div class="status-btn #status-btn">
     <div title="TV-Hub" class="status-light acu-status #status-acu-color"></div><!--
@@ -82,8 +98,13 @@
 
 <div class="nav #nav-view">
   <a href="/home.php" class="home-btn #nav-btn #home-btn">Home</a><!--
---><a href="/satellites.php" class="sat-btn #nav-btn #satellites-btn">Satellites</a><!--
---><a href="/autoswitch.php" class="autoswitch-btn #nav-btn #autoswitch-btn">Autoswitch</a><!--
+--><a href="/satellites.php" class="sat-btn #nav-btn #satellites-btn">Satellites</a><!--  -->
+  <!-- Autoswitch Tab grey out  - Start - UHD7 - STWA-302 -->
+  <?php if($antname !== 'UHD7') { ?>
+    <a href="/autoswitch.php" class="autoswitch-btn #nav-btn #autoswitch-btn">Autoswitch</a>
+  <?php } ?>
+  <!-- Autoswitch Tab grey out  - End - UHD7 - STWA-302 -->
+<!--
 --><a href="/settings.php" class="settings-btn #nav-btn #settings-btn">Settings</a><!--
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
 --><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!--
