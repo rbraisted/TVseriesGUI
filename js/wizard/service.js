@@ -27,7 +27,15 @@
           window.location.hash = '/directv';
 
         } else if (value === 'DISH') {
-          window.location.hash = '/dish-network';
+          /*Changes - Start - UHD7 - STWA-307*/
+          TVRO.getAntModel().then(function(model) {
+            if(model === 'UHD7') {
+              startInstallSatellite();
+            } else {
+              window.location.hash = '/dish-network';
+            }
+          });
+          /*Changes - End - UHD7 - STWA-307*/
 
         } else if (value === 'BELL') {
           TVRO.setAutoswitchService({
@@ -422,6 +430,47 @@
       }
     }); 
   };
+
+  /*In Wizard for UHD7 antenna, if Dish service was selected, just install the 77W satellite and 
+    display the Installing Satellites screen and wait until the antenna enters Tracking state  
+    - Start - UHD7 - STWA-307*/
+  function startInstallSatellite() {
+    TVRO.getAntModel().then(function(model) {
+      if(model === 'UHD7') {
+        //  a promise that we've installed a satellite or a group
+        var isGroup;
+        var installPromise;
+
+        installPromise = TVRO.selectSatellite({
+          antSatID: '77W',
+          install: 'Y'
+        });
+
+        //  whether we installed a group or a single sat
+        //  we want to follow up with the same thing
+        installPromise.then(function() {
+          document.body.className = '/spinner';
+          startCheckswitchMode("DISH", isGroup);
+        }); //end installPromise
+
+        var prevBtn = $('.\\#prev-btn', jQ).click(function() {
+            window.location = '/wizard/service.php';
+        });    
+        
+        // selects the group and satellite installed on the page.
+        // The Sat is done first since if Sat promise is rejected that means there
+        // is no Sat or Group installed for DISH, thus not selecting anything. If
+        // Sat returns but Group is rejected that means a single DISH Sat is
+        // installed so select Other as a group.
+        TVRO.getInstalledSat().then(function(sat) {
+          satsTableView.setValue(sat.antSatID);
+        });
+      } 
+    });
+  };
+  /*In Wizard for UHD7 antenna, if Dish service was selected, just install the 77W satellite and 
+      display the Installing Satellites screen and wait until the antenna enters Tracking state  
+      - End - UHD7 - STWA-307*/
 
   function startCheckswitchMode(service, isGroup){
     var intervalID;
