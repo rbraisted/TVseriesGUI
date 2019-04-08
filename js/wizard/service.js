@@ -444,7 +444,17 @@
                   $('.\\#ant_status').text("The TV-Hub is preparing for Check Switch mode. Status: " + status);
                   if (status === 'IN_PROGRESS') {
                     clearInterval(intervalID);
-                    window.location = '/wizard/system.php#/other-system-config';
+                    /*In Wizard for UHD7, for Dish service, do not display the Choose Your System Configuration UI 
+                    screen - Start - UHD7 - STWA-308*/
+                    TVRO.getAntModel().then(function(model) {
+                      if(model === 'UHD7' && service === "DISH") {
+                        window.location = '/wizard/checkswitch.php#/config-1';
+                      } else {
+                        window.location = '/wizard/system.php#/other-system-config';
+                      }
+                    });
+                    /*In Wizard for UHD7, for Dish service, do not display the Choose Your System Configuration UI 
+                    screen - Start - UHD7 - STWA-308*/
                   } else if (status === 'FAILED') {
                     clearInterval(intervalID);
                     alert("Check Switch mode has failed.");
