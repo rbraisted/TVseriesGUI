@@ -19,7 +19,15 @@ $(function() {
         if (isTriAmericas) {
           window.location = '/wizard/service.php#/tri-am-group';
         } else {
-          window.location = '/wizard/service.php#/directv'; //directv
+          /*Changes Start - UHD7 - STWA-305 and STWA-306*/
+          TVRO.getAntModel().then(function(model) {
+            if(model === 'UHD7') {
+              window.location = '/wizard/service.php';
+            } else {
+              window.location = '/wizard/service.php#/directv'; //directv
+            }
+          });
+          /*Changes End - UHD7 - STWA-305 and STWA-306*/
         }
       } else if ((lnbType === 'circular') && (service === 'OTHER')) {
       	window.location = '/wizard/satellites.php'; //other circular select sat
