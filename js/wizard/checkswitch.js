@@ -7,7 +7,15 @@
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/system.php#/other-system-config';
+      /*Changes Start - UHD7 - STWA-309*/
+      TVRO.getAntModel().then(function(model) {
+        if(model === 'UHD7') {
+          window.location = '/wizard/service.php';
+        } else {
+          window.location = '/wizard/system.php#/other-system-config';
+        }
+      });
+      /*Changes End - UHD7 - STWA-309*/
     });
 
     return {
