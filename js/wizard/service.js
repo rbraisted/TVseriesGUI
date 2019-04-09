@@ -24,7 +24,17 @@
         service: value
       }).then(function() {
         if (value === 'DIRECTV') {
-          window.location.hash = '/directv';
+          /*For UHD7 antennas, in the Wizard, do not display the DIRECTV screen that has 
+          "Success! You're now set up ..."  - Start - UHD7 - STWA-305*/
+          TVRO.getAntModel().then(function(model) {
+            if(model === 'UHD7') {
+              window.location = '/wizard/activation.php';
+            } else {
+              window.location.hash = '/directv';
+            }
+          });
+          /*For UHD7 antennas, in the Wizard, do not display the DIRECTV screen that has 
+          "Success! You're now set up ..."  - End - UHD7 - STWA-305*/
 
         } else if (value === 'DISH') {
           window.location.hash = '/dish-network';
