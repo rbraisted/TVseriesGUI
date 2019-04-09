@@ -3080,7 +3080,14 @@ body[class=""] .\#skew-angle-view,
     .directv-activation .column.first {
       margin-left: 0; }
     .directv-activation .column.first + column + column {
-      margin-left: 0; } }
+      margin-left: 0; }
+    /*In Wizard for UHD7, on Activate the DIRECTV Receiver(s), modify the text  - Start - UHD7 - STWA-306*/
+    .directv-activation .column.first.center {
+      display: block;
+      margin: 0 auto;
+      padding-bottom: 20px; }
+    /*In Wizard for UHD7, on Activate the DIRECTV Receiver(s), modify the text  - End - UHD7 - STWA-306*/
+  }
 .directv-activation .link {
   display: block;
   margin: 30px auto 40px;
