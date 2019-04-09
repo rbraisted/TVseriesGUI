@@ -24,16 +24,7 @@
         service: value
       }).then(function() {
         if (value === 'DIRECTV') {
-           /*Changes - Start - UHD7 - STWA-306*/
-          //window.location.hash = '/directv';
-          TVRO.getAntModel().then(function(model) {
-            if(model === 'UHD7') {
-              window.location = '/wizard/activation.php';
-            } else {
-              window.location.hash = '/directv';
-            }
-          });
-          /*Changes - End - UHD7 - STWA-306*/
+          window.location.hash = '/directv';
 
         } else if (value === 'DISH') {
           window.location.hash = '/dish-network';

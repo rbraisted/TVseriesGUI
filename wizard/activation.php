@@ -21,7 +21,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
   <!-- In Wizard for UHD7, on Activate the DIRECTV Receiver(s), modify the text  - Start - UHD7 - STWA-306 -->
   <?php if($antname === 'UHD7') { ?>
-    <div class="column first">
+    <div class="column first center">
       <div class="headline">DIRECTV SWM Receivers/DVRs</div>
       <div class="copy">
         Set each receiver’s Dish Type to “SL3 LNB” and RB/INTL to “None Selected”. 
