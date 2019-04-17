@@ -9,6 +9,11 @@
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+<!-- Autoswitch Tab grey out  - Start - UHD7 - STWA-302 --> 
+<?php if($antname === 'UHD7') { ?>
+    echo'<script> window.location="home.php"; </script> ';
+<?php } ?>
+<!-- Autoswitch Tab grey out  - Start - UHD7 - STWA-302 --> 
 <div class="sidebar">
   <div class="sidebar-chunk #sat-switching-view">
     <div class="sidebar-chunk-head">Satellite Switching</div>

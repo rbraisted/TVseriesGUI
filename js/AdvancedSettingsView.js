@@ -11,7 +11,11 @@
                            "Linear Universal Quad",
                            "",
                            "",
-                           ""];
+                           "",
+                           /* In Settings/Advanced, add the new LNB "UHD7 Circular" to the drop down list - Start - UHD7 - STWA-303 */
+                           "UHD7 Circular"
+                           /* In Settings/Advanced, add the new LNB "UHD7 Circular" to the drop down list - End - UHD7 - STWA-303 */
+                           ];
 
     function convertToHubLnb(usrLnbText){
         var hubLnbArray = [];
@@ -42,6 +46,11 @@
             case usrLnbTextArray[7]:
                 deferred.resolve(hubLnbArray[7]);
             break;
+            /* In Settings/Advanced, add the new LNB "UHD7 Circular" to the drop down list - Start - UHD7 - STWA-303 */
+            case usrLnbTextArray[11]:
+                deferred.resolve(hubLnbArray[11]);
+            break;
+            /* In Settings/Advanced, add the new LNB "UHD7 Circular" to the drop down list - End - UHD7 - STWA-303 */
             case usrLnbTextArray[0]:
             case usrLnbTextArray[1]:
             case usrLnbTextArray[8]:
@@ -84,6 +93,11 @@
         case "19-0837":
             return "Custom LNB";
             break;
+        /* In Settings/Advanced, add the new LNB "UHD7 Circular" to the drop down list - Start - UHD7 - STWA-303 */
+        case "02-2289":
+            return usrLnbTextArray[11];
+            break;
+        /* In Settings/Advanced, add the new LNB "UHD7 Circular" to the drop down list - End - UHD7 - STWA-303 */
         default:
             return "Unknown LNB";
         break;

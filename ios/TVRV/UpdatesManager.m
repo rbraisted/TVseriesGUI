@@ -24,7 +24,8 @@
 	if (![defaults stringForKey:@"rv1-device-version"]) [defaults setValue:@"" forKey:@"rv1-device-version"];
 	if (![defaults stringForKey:@"a9-device-version"]) [defaults setValue:@"" forKey:@"a9-device-version"];
 	if (![defaults stringForKey:@"tv8-device-version"]) [defaults setValue:@"" forKey:@"tv8-device-version"];
-	
+    if (![defaults stringForKey:@"uhd7-device-version"]) [defaults setValue:@"" forKey:@"uhd7-device-version"];
+
 	fileData = [[NSMutableData alloc] init];
   
 	downloadAlertView = [[UIAlertView alloc] initWithTitle:@"Downloading" message:@"Please wait!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
