@@ -63,8 +63,7 @@
         }
         antLon = TVRO.formatLongitude(lon, prec);
       }
-    /*Add condition && (antSatID.charAt(antSatID.length-1) != "T") on line 66 - UHD7 - STWA-312 */
-    } else if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W") && (antSatID.charAt(antSatID.length-1) != "T")) {
+    } else if ((antSatID.charAt(antSatID.length-1) != "E") && (antSatID.charAt(antSatID.length-1) != "W")) {
       antLon = antSatID.substring(0, antSatID.length-1);
     } else {
       antLon =  antSatID;
