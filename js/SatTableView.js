@@ -58,6 +58,12 @@
         }
       });
 
+      /*In Satellites view, if any satellite in the list has <select> set to false, do not have a radio button that allows the user to select this satellite for installation - Start - UHD7 - STWA-314*/
+      if(sat.select === 'false' || sat.select === 'FALSE') {
+        $('.\\#install-btn', row).remove();
+      }
+      /*In Satellites view, if any satellite in the list has <select> set to false, do not have a radio button that allows the user to select this satellite for installation - End - UHD7 - STWA-314*/
+      
       $('.\\#install-btn', row).click(function() {
         var confirmed = confirm('Are you sure you want to install ' + sat.name + '?');
         if (confirmed) {

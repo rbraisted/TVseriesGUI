@@ -64,6 +64,8 @@
       lon: Number($('lon', xml).text()),
       suffix: $('suffix', xml).text(),
       favorite: $('favorite', xml).text() === 'TRUE',
+      /*Changes for - UHD7 - STWA-314 */
+      select: $('select', xml).text(),
 
       //  these values can only be retrieved with get_satellite_params
       skew: $('skew', xml).text(),
