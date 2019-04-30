@@ -10,20 +10,33 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
     <span class="desktop">Configuration 1 - Run a</span>
     Check Switch Test
   </div>
-   <div class="column">
-    Now you need to run a Check Switch test on your receiver
-    ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
-    Note that if the receiver needs to download a software update,
-    it might take up to 20 minutes. Otherwise, it will take just
-    a few minutes to complete the process. When the test is complete,
-    click Next.
-    <div class="important">
-      Important!
+  <!-- In Wizard for UHD7, for Dish service, change the text in the Configuration 1 - Run a Check Swith Test UI view as described  - Start - UHD7 - STWA-309 -->
+  <?php if($antname === 'UHD7') { ?>
+    <div class="column">
+      Now you need to run a Checkswitch test on all of your receiver(s)
+      ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
+      Note that if a receiver needs to download a software update, 
+      it might take up to 20 minutes. Otherwise, it will take just 
+      a few minutes to complete the process. When the test is complete, 
+      click Next.
     </div>
-    Be sure your vessel/vehicle is stationary while performing this
-    test. The Check Switch test will not pass if the vessel/vehicle
-    is moving.
-  </div>
+  <?php } else { ?>
+    <div class="column">
+      Now you need to run a Check Switch test on your receiver
+      ( <a class="link" href="javascript:TVRO.showHelp(910)">learn how to run a Check Switch test</a> ).
+      Note that if the receiver needs to download a software update,
+      it might take up to 20 minutes. Otherwise, it will take just
+      a few minutes to complete the process. When the test is complete,
+      click Next.
+      <div class="important">
+        Important!
+      </div>
+      Be sure your vessel/vehicle is stationary while performing this
+      test. The Check Switch test will not pass if the vessel/vehicle
+      is moving.
+    </div>
+  <?php }  ?>
+  <!-- In Wizard for UHD7, for Dish service, change the text in the Configuration 1 - Run a Check Swith Test UI view as described  - End - UHD7 - STWA-309 -->
 
   <div class="bottom-bar">
     <div class="prev-btn #prev-btn">Previous</div>

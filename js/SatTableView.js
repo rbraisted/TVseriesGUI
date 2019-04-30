@@ -58,6 +58,12 @@
         }
       });
 
+      /* On the Satellites view, if any satellite in the list has the <triSatID> set to not false, then (removing) the 'i' icon on the right side of the record  - Start - UHD7 - STWA-315*/
+      if(sat.triSatID !== 'false' && sat.triSatID !== 'FALSE') {
+        $('.\\#info-btn', row).remove();
+      }
+      /* On the Satellites view, if any satellite in the list has the <triSatID> set to not false, then (removing) the 'i' icon on the right side of the record  - End - UHD7 - STWA-315*/
+      
       $('.\\#install-btn', row).click(function() {
         var confirmed = confirm('Are you sure you want to install ' + sat.name + '?');
         if (confirmed) {
