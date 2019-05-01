@@ -66,6 +66,8 @@
       favorite: $('favorite', xml).text() === 'TRUE',
       /*Changes for - UHD7 - STWA-314 */
       select: $('select', xml).text(),
+      /*Changes for - UHD7 - STWA-315 */
+      triSatID: $('triSatID', xml).text(),
 
       //  these values can only be retrieved with get_satellite_params
       skew: $('skew', xml).text(),
