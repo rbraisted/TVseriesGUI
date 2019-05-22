@@ -35,6 +35,17 @@
     <script type="text/javascript" src="/js/DropdownView.js"></script>
 
     <script type="text/javascript" src="/js/HeaderView.js"></script>
+    <!-- Home Page graphics change - Start - UHD7 - STWA-301 -->
+    <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', (event) => {
+        setTimeout(function () {
+          //document.body.style.display = "block";  // body...
+          document.getElementById("antenaView").style.display = "block"; 
+          
+        },1000)
+      });
+    </script>
+    <!-- Home Page graphics change - End - UHD7 - STWA-301 -->
   </head>
 
   <body class>

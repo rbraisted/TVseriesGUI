@@ -263,7 +263,16 @@
     return TVRO.getSatelliteParams({antSatID:sat.antSatID}, true).then(Sat);
   };
 
-
+  /*Show 3 satellite graphic on Home page for UHD7 antenna tracking satellite 101WT - Start - UHD7 - STWA-301*/
+  TVRO.getSatParamsData = function() {
+    return Promise.all(
+      TVRO.getSatelliteParams()
+    ).then(function(xmls) {
+      return xmls[0];
+    });
+  };
+  /*Show 3 satellite graphic on Home page for UHD7 antenna tracking satellite 101WT - End - UHD7 - STWA-301*/
+  
   TVRO.setSatParams = function(sat) {
     //  remove empty xponders
     if (sat['xponder']) sat.xponder = _.compact(sat.xponder);

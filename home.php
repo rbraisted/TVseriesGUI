@@ -8,8 +8,10 @@
 <script type="text/javascript" src="/js/HomePage.js"></script>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<div class="view vessel-view #vessel-view">
+<!-- Home Page graphics change - Start - UHD7 - STWA-301 
+  Added id="antenaView" and style="display: none;" in below div
+ Home Page graphics change - End - UHD7 - STWA-301 -->
+<div id="antenaView" class="view vessel-view #vessel-view" style="display: none;" >
   <div class="demo-mode #demo-mode-indicator">DEMO MODE</div>
   <div class="vessel-heading #vessel-heading"></div>
   <div class="vessel-animation #vessel-animation"></div>
