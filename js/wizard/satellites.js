@@ -76,6 +76,7 @@ $(function() {
   //  previous btn on single and group view
   var prevBtnClick = function() {
     if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
+    else if(window.location.hash.indexOf('#/regions') === 0) window.location = '/wizard/service.php';
     else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
   };
 
@@ -94,7 +95,9 @@ $(function() {
           var service = res[0];
           var lnbType = res[1]
           if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
-          else window.location = '/wizard/system.php';
+          else if (service === 'DISH') window.location = '/wizard/checkswitch.php#/config-1';
+          else window.location = '/wizard/activation.php';
+          //else window.location = '/wizard/system.php';
         });
       }
     });

@@ -83,8 +83,18 @@
     } else {
       contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
     }
+    
+    var current_url = window.location.hash;
 
-    requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>';
+    if(window.location.hash.indexOf('#/regions?service') === 0)
+    {
+      var service_name = new RegExp('[\?&]service=([^&#]*)').exec(window.location.hash);
+      requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'<service_filter>'+service_name[1]+'</service_filter></ipacu_request>';
+    }
+    else
+    {
+      requestXml = '<ipacu_request><message name="'+requestName+'" />'+jsonAsXml(requestJson)+'</ipacu_request>';
+    }
 
     $.ajax({
       type: 'post',

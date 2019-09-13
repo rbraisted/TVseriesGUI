@@ -55,7 +55,10 @@ $(function() {
     $('.\\#config-1-view')
       .find('.\\#next-btn')
         .click(function() {
-          window.location.hash = '/complete-1';
+          /*Changed by RR - START */
+          //window.location.hash = '/complete-1';
+          window.location = '/wizard/activation.php';
+          /*Changed by RR - END */
         })
         .end()
   );

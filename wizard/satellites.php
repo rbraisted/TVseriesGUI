@@ -94,21 +94,22 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view single-view #single-view">
   <div class="view-head">Select a Satellite</div>
-  <div class="copy">Select a region. Then choose a satellite in that region.</div>
+  <!-- <div class="copy">Select a region. Then choose a satellite in that region.</div> -->
+  <div class="copy">Select the desired single satellite to install.</div>
 
   <div class="container">
 
-    <div class="left container-head region-table-head">Regions</div>
-    <div class="right container-head sat-table-head">Satellites</div>
+    <!-- <div class="left container-head region-table-head">Regions</div>
+    <div class="right container-head sat-table-head">Satellites</div> -->
 
-    <div class="left region-table #region-table-view">
+    <!-- <div class="left region-table #region-table-view">
       <div class="table-row #table-row">
         <span class="table-col #region-name"></span>
       </div>
-    </div>
+    </div> -->
 
-    <div class="right single-sat-table #single-sat-table-view">
-      <div class="sat-table #table-view">
+    <div class="single-sat-table #single-sat-table-view">
+      <div class="sat-table #table-view" style="width: auto;">
         <div class="table-head #table-head">
           <div class="table-col install-col">Selected</div><!--
          --><div class="table-col name-col sort-btn #sort-btn #name-btn">Name</div><!--
