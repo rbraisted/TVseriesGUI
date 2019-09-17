@@ -35,7 +35,8 @@ $(function() {
           /*Changes End - UHD7 - STWA-305 and STWA-306*/
         }
       } else if ((lnbType === 'circular') && (service === 'OTHER')) {
-      	window.location = '/wizard/satellites.php'; //other circular select sat
+      	//window.location = '/wizard/satellites.php'; //other circular select sat
+      	window.history.go(-2);
       } 
       else if (service === 'DISH') {
         window.history.go(-2);
