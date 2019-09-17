@@ -12,7 +12,11 @@
 <div class="view vessel-view #vessel-view">
   <div class="demo-mode #demo-mode-indicator">DEMO MODE</div>
   <div class="vessel-heading #vessel-heading"></div>
-  <div class="vessel-animation #vessel-animation"></div>
+  <!-- remove default image for vessel animation, it will display after getting responce from SATELLITE 
+   Changes made by HS date 17 sept 2019 -->
+  <!-- <div class="vessel-animation #vessel-animation"></div> -->
+  <div class=" #vessel-animation"></div>
+  <!-- End Changes  -->
   <div class="vessel-name #vessel-name"></div>
 </div>
 

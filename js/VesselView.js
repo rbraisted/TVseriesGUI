@@ -49,6 +49,7 @@
               TVRO.getAntState().then(function(state) {
                 $('.\\#vessel-animation', jQ)
                   .removeClass('$warning $error')
+                  .addClass('vessel-animation')
                   .addClass({
                     'TRACKING': '$trackuhd7101WT',
                     'INITIALIZING': '$warninguhd7101WT',
@@ -63,6 +64,7 @@
               TVRO.getAntState().then(function(state) {
                 $('.\\#vessel-animation', jQ)
                   .removeClass('$warning $error')
+                  .addClass('vessel-animation')
                   .addClass({
                     'TRACKING': '',
                     'INITIALIZING': '$warning',
