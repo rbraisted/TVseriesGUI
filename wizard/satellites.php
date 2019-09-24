@@ -14,6 +14,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view spinner-view #spinner-view">
   <div class="view-head">Installing Satellites</div>
+  <div class="timer"></div>
   <div class="headline">Please wait while your satellites are being installed...</div>
   <br>
   <p class="headline ant_status #ant_status"></p>

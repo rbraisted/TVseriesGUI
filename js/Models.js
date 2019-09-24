@@ -223,6 +223,9 @@
       antSatID: sat.antSatID,
       install: install ? 'Y' : 'N'
     }).then(function(){
+
+      $('.timer').text('');
+
       // If we are not installing reload and skip the spinner jazz.
       if(!install){
         TVRO.reload();
@@ -233,6 +236,12 @@
       var interval;
       var timeout;
 
+      var fiveMinutes = 60 * 10;
+      var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+
       $('.\\#exit-btn').click(function() {
         clearInterval(interval);
         clearTimeout(timeout);
@@ -241,6 +250,21 @@
 
       timeout = setTimeout(function() {
         interval = setInterval(function() {
+          
+          /* STWA-321 START */
+
+          diff = fiveMinutes - (((Date.now() - start) / 1000) | 0);
+
+          // does the same job as parseInt truncates the float
+          minutes = (diff / 60) | 0;
+          seconds = (diff % 60) | 0;
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+          $('.timer').text(minutes + ":" + seconds);
+
+          /* STWA-321 END */
+
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
             $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
