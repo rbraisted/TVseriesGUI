@@ -279,7 +279,7 @@
                     $('#timer').html("");
                     $('#timer1').html("");
                     TVRO.reload();
-                    console.log(123);
+                   // console.log(123);
                     return false;  
                    
                     },3000);                 
