@@ -577,8 +577,13 @@ and also .#group-table-view (group mode)
 <div class="spin-view spinner-view #spinner-view">
   <div class="spin-view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
+  <div id="timer" style="text-align:center;font-size: 60px;padding: 10px 0;"></div>
+  <div id="timer1" style="text-align:center;padding: 10px 0;color: red;font-size: 30px;"></div>
+
   <br>
   <p class="headline ant_status #ant_status"></p>
+
+
   <div class="spinner"></div>
   <div class="bottom-bar">
     <div class="exit-btn #exit-btn">Exit</div>

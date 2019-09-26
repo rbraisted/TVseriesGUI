@@ -223,9 +223,6 @@
       antSatID: sat.antSatID,
       install: install ? 'Y' : 'N'
     }).then(function(){
-
-      $('.timer').text('');
-
       // If we are not installing reload and skip the spinner jazz.
       if(!install){
         TVRO.reload();
@@ -235,12 +232,8 @@
 
       var interval;
       var timeout;
-
-      var fiveMinutes = 60 * 10;
-      var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
+      var intervaltimer;
+      var tm;
 
       $('.\\#exit-btn').click(function() {
         clearInterval(interval);
@@ -248,23 +241,57 @@
         TVRO.reload();
       });
 
+      tm = setTimeout(function() {
+
+        var Minutes = 60 * 1;
+        var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+
+        intervaltimer = setInterval(function() {
+
+
+              diff = Minutes - (((Date.now() - start) / 1000) | 0);
+
+              // does the same job as parseInt truncates the float
+              minutes = (diff / 60) | 0;
+              seconds = (diff % 60) | 0;
+
+              minutes = minutes < 10 ? "0" + minutes : minutes;
+              seconds = seconds < 10 ? "0" + seconds : seconds;
+              if(diff >= 0)
+              {
+              $('#timer').text(minutes + ":" + seconds);
+              }
+        //console.log(minutes + ":" + seconds); 
+        //console.log(diff);
+
+              if (diff < 0) {
+                  $('#timer1').html("There is some issue in satellite installation process! Please Try again.");
+                   // alert("There is some issue in satellite installation process."); 
+                    setTimeout(function(){
+                             
+                    clearInterval(intervaltimer);
+                    clearTimeout(tm);
+                    clearInterval(interval);
+                    clearTimeout(timeout);
+                    $('#timer').html("");
+                    $('#timer1').html("");
+                    TVRO.reload();
+                    return ;  
+                   
+                    },5000);                 
+                 return ;                
+              } 
+
+        },1000);
+      },1000);
+
+
+
       timeout = setTimeout(function() {
         interval = setInterval(function() {
-          
-          /* STWA-321 START */
-
-          diff = fiveMinutes - (((Date.now() - start) / 1000) | 0);
-
-          // does the same job as parseInt truncates the float
-          minutes = (diff / 60) | 0;
-          seconds = (diff % 60) | 0;
-
-          minutes = minutes < 10 ? "0" + minutes : minutes;
-          seconds = seconds < 10 ? "0" + seconds : seconds;
-          $('.timer').text(minutes + ":" + seconds);
-
-          /* STWA-321 END */
-
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
             $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
@@ -279,6 +306,9 @@
           });
         },1000);
       },10000);
+
+
+
     });    
   };
 
