@@ -264,10 +264,10 @@
               {
               $('#timer').text(minutes + ":" + seconds);
               }
-        //console.log(minutes + ":" + seconds); 
-        //console.log(diff);
+              //console.log(minutes + ":" + seconds); 
+              //console.log("add"+diff);
 
-              if (diff < 0) {
+              if (typeof(diff) != "undefined" && diff == 0) {
                   $('#timer1').html("There is some issue in satellite installation process! Please Try again.");
                    // alert("There is some issue in satellite installation process."); 
                     setTimeout(function(){
@@ -279,10 +279,11 @@
                     $('#timer').html("");
                     $('#timer1').html("");
                     TVRO.reload();
-                    return ;  
+                    console.log(123);
+                    return false;  
                    
-                    },5000);                 
-                 return ;                
+                    },3000);                 
+                 return false;                
               } 
 
         },1000);
