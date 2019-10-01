@@ -13,8 +13,11 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 <script type="text/javascript" src="/js/wizard/satellites.js"></script>
 
 <div class="view spinner-view #spinner-view">
+  
   <div class="view-head">Installing Satellites</div>
   <div class="headline">Please wait while your satellites are being installed...</div>
+  <div id="timer" style="text-align:center;font-size: 60px;padding: 10px 0;"></div>
+  <div id="timer1" style="text-align:center;padding: 10px 0;color: red;font-size: 30px;"></div>
   <br>
   <p class="headline ant_status #ant_status"></p>
   <div class="spinner"></div>
@@ -97,7 +100,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
   <!-- <div class="copy">Select a region. Then choose a satellite in that region.</div> -->
   <div class="copy">Select the desired single satellite to install.</div>
 
-  <div class="container">
+  <div class="container" style="height:auto !important;">
 
     <!-- <div class="left container-head region-table-head">Regions</div>
     <div class="right container-head sat-table-head">Satellites</div> -->
