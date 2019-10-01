@@ -243,7 +243,7 @@
 
       tm = setTimeout(function() {
 
-        var Minutes = 60 * 1;
+        var Minutes = 60 * 10;
         var start = Date.now(),
         diff,
         minutes,
