@@ -7,7 +7,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 
 <div class="view config-1 #config-1-view">
   <div class="view-head">
-    <span class="desktop">Configuration 1 - Run a</span>
+    <span class="desktop">Run a</span>
     Check Switch Test
   </div>
   <!-- In Wizard for UHD7, for Dish service, change the text in the Configuration 1 - Run a Check Swith Test UI view as described  - Start - UHD7 - STWA-309 -->
