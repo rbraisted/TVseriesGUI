@@ -186,13 +186,13 @@
                     lnbLabel.text(usrLnbText);
                     lnbDropdownView.setValue(usrLnbText);
                 }
-                // Only show the sidelobe block for a TV6 or TV8.
+                // Only show the sidelobe block for a TV6, TV8, or UHD7.
                 if ('TV8' === model) {
                     $('.\\#sidelobe-info').text("Keep Sidelobe Mode set to " +
                                                 "\"On\" unless directed " +
                                                 "otherwise by KVH Technical " +
                                                 "Support.");
-                } else if ('TV6' === model) {
+                } else if (('TV6' === model) || ('UHD7' === model)) {
                     $('.\\#sidelobe-info').text("Since sidelobes are not strong enough " +
                                                 "to become a problem in most regions, " +
                                                 "keep Sidelobe Mode set to \"Off\" unless " +
