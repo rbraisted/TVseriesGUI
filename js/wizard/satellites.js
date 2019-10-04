@@ -95,7 +95,7 @@ $(function() {
           var service = res[0];
           var lnbType = res[1]
           if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
-          else if (service === 'DISH') window.location = '/wizard/checkswitch.php#/config-1';
+          else if (service === 'DISH') window.location = '/wizard/checkswitch.php#/config-3';
           else window.location = '/wizard/activation.php';
           //else window.location = '/wizard/system.php';
         });

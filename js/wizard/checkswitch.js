@@ -3,18 +3,20 @@
 
   var ConfigView = function(jQ) {
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-      TVRO.setCheckswitchMode(false);
+    // TVRO.setCheckswitchMode(false);
+
+      window.location = '/wizard/activation.php'; 
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       /*Changes Start - UHD7 - STWA-309*/
-      // TVRO.getAntModel().then(function(model) {
-      //   if(model === 'UHD7') {
-      //     window.location = '/wizard/service.php';
-      //   } else {
-      //     window.location = '/wizard/system.php#/other-system-config';
-      //   }
-      // });
+      /*TVRO.getAntModel().then(function(model) {
+        if(model === 'UHD7') {
+          window.location = '/wizard/service.php';
+        } else {
+          window.location = '/wizard/system.php#/other-system-config';
+        }
+      });*/
       window.history.go(-1);
       /*Changes End - UHD7 - STWA-309*/
     });
@@ -77,7 +79,9 @@ $(function() {
     $('.\\#config-3-view')
       .find('.\\#next-btn')
         .click(function() {
-          window.location.hash = '/complete-3';
+         // window.location.hash = '/complete-3';
+
+          window.location.hash = '/config-3';
         })
         .end()
   );
