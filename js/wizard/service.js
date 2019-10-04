@@ -23,23 +23,24 @@
       else TVRO.setSatelliteService({
         service: value
       }).then(function() {
-        if (value === 'DIRECTV' || value === 'DISH' || value === 'BELL') {
+        //if (value === 'DIRECTV' || value === 'DISH' || value === 'BELL') {
           /*For UHD7 antennas, in the Wizard, do not display the DIRECTV screen that has 
           "Success! You're now set up ..."  - Start - UHD7 - STWA-305*/
-          /*TVRO.getAntModel().then(function(model) {
-            if(model === 'UHD7') {
-              window.location = '/wizard/activation.php';
+          TVRO.getAntModel().then(function(model) {
+            //alert(model);
+            if((model === 'UHD7')  &&  (value === 'DIRECTV' || value === 'DISH' || value === 'BELL') ) {
+              window.location = '/wizard/satellites.php#/regions?service='+value;
             } else {
-              window.location.hash = '/directv';
+              window.location = '/wizard/satellites.php#/regions';
            }
-          });*/
-          window.location = '/wizard/satellites.php#/regions?service='+value;
+          });
+          
           /*For UHD7 antennas, in the Wizard, do not display the DIRECTV screen that has 
           "Success! You're now set up ..."  - End - UHD7 - STWA-305*/
 
-        } else {
-          window.location = '/wizard/satellites.php#/regions';
-        }
+  //      } else {
+    //      window.location = '/wizard/satellites.php#/regions';
+   //     }
       });
     });
 
