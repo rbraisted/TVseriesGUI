@@ -270,7 +270,8 @@
       the cable connected directly to it, regardless of the band/polarization
       selected by any IP AutoSwitch-equipped master receiver. Always select
       "TV-Hub" for a linear system equipped with a multiswitch and an IP
-      AutoSwitch.
+      AutoSwitch. Band/Polarization Control does not apply to A9, RV1, TV1, 
+      or UHD7 systems (keep it set to “Master Receiver”).
     </p>
     <div class="toggle-btn #multiswitch-mode-btn">
       <!-- Line-height used to center the text to align with the other toggle
