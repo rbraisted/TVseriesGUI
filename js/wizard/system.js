@@ -25,7 +25,8 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      window.location = '/wizard/satellites.php';
+      //window.location = '/wizard/satellites.php';
+      history.go(-1);
     });
 
     TVRO.getGroupMode().then(function(groupMode) {

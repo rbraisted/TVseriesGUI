@@ -23,43 +23,24 @@
       else TVRO.setSatelliteService({
         service: value
       }).then(function() {
-        if (value === 'DIRECTV') {
+        //if (value === 'DIRECTV' || value === 'DISH' || value === 'BELL') {
           /*For UHD7 antennas, in the Wizard, do not display the DIRECTV screen that has 
           "Success! You're now set up ..."  - Start - UHD7 - STWA-305*/
           TVRO.getAntModel().then(function(model) {
-            if(model === 'UHD7') {
-              window.location = '/wizard/activation.php';
+            //alert(model);
+            if((model === 'UHD7')  &&  (value === 'DIRECTV' || value === 'DISH' || value === 'BELL') ) {
+              window.location = '/wizard/satellites.php#/regions?service='+value;
             } else {
-              window.location.hash = '/directv';
-            }
+              window.location = '/wizard/satellites.php#/regions';
+           }
           });
+          
           /*For UHD7 antennas, in the Wizard, do not display the DIRECTV screen that has 
           "Success! You're now set up ..."  - End - UHD7 - STWA-305*/
 
-        } else if (value === 'DISH') {
-          /*Changes - Start - UHD7 - STWA-307*/
-          TVRO.getAntModel().then(function(model) {
-            if(model === 'UHD7') {
-              startInstallSatellite();
-            } else {
-              window.location.hash = '/dish-network';
-            }
-          });
-          /*Changes - End - UHD7 - STWA-307*/
-
-        } else if (value === 'BELL') {
-          TVRO.setAutoswitchService({
-            enable : 'Y',
-            service: 'BELL',
-            satellite_group: 'BELL TV DUAL'
-          }).then(function() {
-            document.body.className = '/spinner';
-            startCheckswitchMode(value);
-          });
-
-        } else {
-          window.location = '/wizard/satellites.php';
-        }
+  //      } else {
+    //      window.location = '/wizard/satellites.php#/regions';
+   //     }
       });
     });
 

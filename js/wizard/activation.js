@@ -14,24 +14,34 @@ $(function() {
       var lnbType = res[0];
       var isTriAmericas = res[1] === '19-0577';
       var service = res[2];
-
+      
       if ((lnbType === 'circular') && (service === 'DIRECTV')) {
         if (isTriAmericas) {
           window.location = '/wizard/service.php#/tri-am-group';
         } else {
           /*Changes Start - UHD7 - STWA-305 and STWA-306*/
-          TVRO.getAntModel().then(function(model) {
+          /* Code changed by RR -- START */
+          /*TVRO.getAntModel().then(function(model) {
             if(model === 'UHD7') {
               window.location = '/wizard/service.php';
             } else {
               window.location = '/wizard/service.php#/directv'; //directv
             }
-          });
+          });*/
+
+          window.history.go(-2);
+          /* Code changed by RR -- START */
+
           /*Changes End - UHD7 - STWA-305 and STWA-306*/
         }
       } else if ((lnbType === 'circular') && (service === 'OTHER')) {
-      	window.location = '/wizard/satellites.php'; //other circular select sat
-      } else {
+      	//window.location = '/wizard/satellites.php'; //other circular select sat
+      	window.history.go(-2);
+      } 
+      else if (service === 'DISH') {
+        window.history.go(-2);
+      }
+      else {
       	// This handles Linear TV1,TV3,TV5 Manual (Skew);
       	// Linear TV5 & TV6
       	// Circular DISH/Bell
