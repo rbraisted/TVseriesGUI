@@ -149,7 +149,8 @@
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
             $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
-            if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+            // if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+            if ((state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
             } else if (state === 'ERROR') {
@@ -289,23 +290,54 @@
         },1000);
       },1000);
 
+       timeout = setTimeout(function() {
+        TVROgetService(function(service){
+          //console.log("service",service);
+          interval = setInterval(function() {
+         //   console.log("interval started",service);
+            TVRO.getAntennaStatus().then(function(xml) {
+              var state =  $('antenna state', xml).text();
+              $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
+              //if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+                 //console.log("interval service",service);
+                if(service === 'BELL' || service === 'DISH' )
+                {
+                  if ( (state === 'TRACKING') ) {
+                 // console.log("interval service1",service);
+                  clearInterval(interval);
+                  clearInterval(intervaltimer);
+                  clearTimeout(tm);
+                  TVRO.reload();
+                }if (state === 'ERROR') {
+                  clearInterval(interval);
+                  clearInterval(intervaltimer);
+                  clearTimeout(tm);
+                  alert("An error occured installing " + sat.antSatID + ".");
+                  TVRO.reload();
+                }//End if (state === 'ERROR')
 
+               }else {
 
-      timeout = setTimeout(function() {
-        interval = setInterval(function() {
-          TVRO.getAntennaStatus().then(function(xml) {
-            var state =  $('antenna state', xml).text();
-            $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
-            if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-              clearInterval(interval);
-              TVRO.reload();
-            }else if (state === 'ERROR') {
-              clearInterval(interval);
-              alert("An error occured installing " + sat.antSatID + ".");
-              TVRO.reload();
-            }//End if (state === 'ERROR')
-          });
-        },1000);
+               if( (state === 'SEARCHING') || (state === 'TRACKING') ){
+                  //console.log("interval service 2",service);
+                  clearInterval(interval);
+                  clearInterval(intervaltimer);
+                  clearTimeout(tm);
+                  TVRO.reload();
+                }else if (state === 'ERROR') {
+                  clearInterval(interval);
+                  clearInterval(intervaltimer);
+                  clearTimeout(tm);
+                  alert("An error occured installing " + sat.antSatID + ".");
+                  TVRO.reload();
+                }//End if (state === 'ERROR')
+
+              }
+            
+
+            });
+          },1000);
+        })
       },10000);
 
 
@@ -809,5 +841,13 @@
           dt: dt
       });
   };
+
+  /*TVRO get service name call */
+  function TVROgetService(callback){
+    TVRO.getService().then(function(service) {
+      
+      return callback(service)
+    });
+  }
  
 }(window.TVRO);
