@@ -3,22 +3,28 @@
 
   var ConfigView = function(jQ) {
     var nextBtn = $('.\\#next-btn', jQ).click(function() {
-    // TVRO.setCheckswitchMode(false);
-
-      window.location = '/wizard/activation.php'; 
+      TVRO.getAntModel().then(function(model) {
+           if(model === 'UHD7') {
+              window.location = '/wizard/activation.php'; 
+            }else{
+               TVRO.setCheckswitchMode(false);
+           }
+       });
+      
     });
     
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
       /*Changes Start - UHD7 - STWA-309*/
-      /*TVRO.getAntModel().then(function(model) {
+      TVRO.getAntModel().then(function(model) {
         if(model === 'UHD7') {
-          window.location = '/wizard/service.php';
+          // commented old code
+          //window.location = '/wizard/service.php';
+          window.history.go(-1)
         } else {
           window.location = '/wizard/system.php#/other-system-config';
         }
-      });*/
-      window.history.go(-1);
-      /*Changes End - UHD7 - STWA-309*/
+      });
+     /*Changes End - UHD7 - STWA-309*/
     });
 
     return {
@@ -58,10 +64,14 @@ $(function() {
     $('.\\#config-1-view')
       .find('.\\#next-btn')
         .click(function() {
-          /*Changed by RR - START */
-          //window.location.hash = '/complete-1';
-          window.location = '/wizard/activation.php';
-          /*Changed by RR - END */
+          
+           TVRO.getAntModel().then(function(model) {
+           if(model === 'UHD7') {
+            window.location = '/wizard/activation.php';
+           }else{
+            window.location.hash = '/complete-1';
+           }
+          }); 
         })
         .end()
   );
@@ -79,9 +89,13 @@ $(function() {
     $('.\\#config-3-view')
       .find('.\\#next-btn')
         .click(function() {
-         // window.location.hash = '/complete-3';
-
-          window.location.hash = '/config-3';
+           TVRO.getAntModel().then(function(model) {
+           if(model === 'UHD7') {
+            window.location.hash = '/config-3';
+           }else{         
+            window.location.hash = '/complete-3';
+           }
+          });
         })
         .end()
   );

@@ -75,9 +75,11 @@ $(function() {
 
   //  previous btn on single and group view
   var prevBtnClick = function() {
+    TVRO.getAntModel().then(function(model) {
     if (window.location.hash === '/regions' || window.location.hash === '/groups') window.location.hash = '';
-    else if(window.location.hash.indexOf('#/regions') === 0) window.location = '/wizard/service.php';
+    else if(window.location.hash.indexOf('#/regions') === 0 && model === 'UHD7') window.location = '/wizard/service.php';
     else window.location.hash = window.location.hash.substr(0, window.location.hash.lastIndexOf('/'));
+  });
   };
 
   var singleViewPrevBtn = $('.\\#single-view .\\#prev-btn').click(prevBtnClick);
@@ -90,14 +92,23 @@ $(function() {
       } else {
         Promise.all(
             TVRO.getService(),
-            TVRO.getLnbType()
+            TVRO.getLnbType(),
+
         ).then(function(res) {
           var service = res[0];
-          var lnbType = res[1]
+          var lnbType = res[1];
+          TVRO.getAntModel().then(function(model) {
+          if(model === 'UHD7'){
           if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
           else if (service === 'DISH') window.location = '/wizard/checkswitch.php#/config-3';
           else window.location = '/wizard/activation.php';
-          //else window.location = '/wizard/system.php';
+          }else{
+             if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
+          else if (service === 'DISH') window.location = '/wizard/checkswitch.php#/config-3';
+          else window.location = '/wizard/system.php';
+          }
+          
+         });
         });
       }
     });

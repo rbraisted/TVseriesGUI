@@ -19,27 +19,35 @@ $(function() {
         if (isTriAmericas) {
           window.location = '/wizard/service.php#/tri-am-group';
         } else {
-          /*Changes Start - UHD7 - STWA-305 and STWA-306*/
-          /* Code changed by RR -- START */
-          /*TVRO.getAntModel().then(function(model) {
+          TVRO.getAntModel().then(function(model) {
             if(model === 'UHD7') {
-              window.location = '/wizard/service.php';
+             // window.location = '/wizard/service.php';
+             window.history.go(-2);
             } else {
               window.location = '/wizard/service.php#/directv'; //directv
             }
-          });*/
-
-          window.history.go(-2);
-          /* Code changed by RR -- START */
-
+          });
           /*Changes End - UHD7 - STWA-305 and STWA-306*/
         }
       } else if ((lnbType === 'circular') && (service === 'OTHER')) {
-      	//window.location = '/wizard/satellites.php'; //other circular select sat
-      	window.history.go(-2);
+         TVRO.getAntModel().then(function(model) {
+            if(model === 'UHD7') {
+             window.history.go(-2);
+            } else {
+              window.location = '/wizard/satellites.php'; //other circular select sat
+            }
+          });
+      	
+      	
       } 
-      else if (service === 'DISH') {
-        window.history.go(-2);
+      else if (service === 'DISH' || service === 'BELL') {
+        TVRO.getAntModel().then(function(model) {
+            if(model === 'UHD7') {
+             window.history.go(-2);
+            } else {
+              window.location = '/wizard/satellites.php'; //other circular select sat
+            }
+          });        
       }
       else {
       	// This handles Linear TV1,TV3,TV5 Manual (Skew);
