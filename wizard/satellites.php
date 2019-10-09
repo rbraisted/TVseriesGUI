@@ -98,8 +98,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/base.php';
 <div class="view single-view #single-view">
   <div class="view-head">Select a Satellite</div>
   <!-- <div class="copy">Select a region. Then choose a satellite in that region.</div> -->
-  <div class="copy">Select the desired single satellite to install.</div>
-
+  <div class="copy #DIRECTVUHDTEXT">Select the desired single satellite to install.</div>
   <div class="container" style="height:auto !important;">
 
     <!-- <div class="left container-head region-table-head">Regions</div>
