@@ -69,6 +69,15 @@
 
 $(function() {
 
+  TVRO.getService().then(function(res) {
+    TVRO.getAntModel().then(function(model) {
+    var service = res; 
+        if((model === 'UHD7')  &&  (service === 'DIRECTV' ) ){
+           $('.\\#DIRECTVUHDTEXT').text("Select DIRECTV TRI-SAT for DIRECTV HD in North America, or select a single satellite (not common).");        
+        }
+    });
+  });
+
   var optionsView = TVRO.OptionsView($('.\\#options-view'));
   var circularOptionsView = TVRO.OptionsView($('.\\#circular-options-view'));
   var tv5ManualOptionsView = TVRO.OptionsView($('.\\#tv5-manual-options-view'));
