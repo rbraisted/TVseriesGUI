@@ -25,9 +25,13 @@
     });
 
     var prevBtn = $('.\\#prev-btn', jQ).click(function() {
-      //window.location = '/wizard/satellites.php';
-      history.go(-1);
-    });
+      TVRO.getAntModel().then(function(model) {
+            if(model === 'UHD7') {
+                history.go(-1);
+            }else{
+              window.location = '/wizard/satellites.php';
+            }
+          });
 
     TVRO.getGroupMode().then(function(groupMode) {
       $('.\\#single', jQ).toggle(!groupMode);
