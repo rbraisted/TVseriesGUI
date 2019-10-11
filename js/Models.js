@@ -233,8 +233,8 @@
 
       var interval;
       var timeout;
-      var intervaltimer;
-      var tm;
+      // var intervaltimer;
+      // var tm;
 
       $('.\\#exit-btn').click(function() {
         clearInterval(interval);
@@ -242,7 +242,7 @@
         TVRO.reload();
       });
 
-      tm = setTimeout(function() {
+      /*tm = setTimeout(function() {
 
         var Minutes = 60 * 10;
         var start = Date.now(),
@@ -288,7 +288,7 @@
               } 
 
         },1000);
-      },1000);
+      },1000);*/
 
        timeout = setTimeout(function() {
         TVROgetService(function(service){
@@ -305,13 +305,13 @@
                   if ( (state === 'TRACKING') ) {
                  // console.log("interval service1",service);
                   clearInterval(interval);
-                  clearInterval(intervaltimer);
-                  clearTimeout(tm);
+                  //clearInterval(intervaltimer);
+                  //clearTimeout(tm);
                   TVRO.reload();
                 }if (state === 'ERROR') {
                   clearInterval(interval);
-                  clearInterval(intervaltimer);
-                  clearTimeout(tm);
+                  //clearInterval(intervaltimer);
+                  //clearTimeout(tm);
                   alert("An error occured installing " + sat.antSatID + ".");
                   TVRO.reload();
                 }//End if (state === 'ERROR')
@@ -321,13 +321,13 @@
                if( (state === 'SEARCHING') || (state === 'TRACKING') ){
                   //console.log("interval service 2",service);
                   clearInterval(interval);
-                  clearInterval(intervaltimer);
-                  clearTimeout(tm);
+                  //clearInterval(intervaltimer);
+                  //clearTimeout(tm);
                   TVRO.reload();
                 }else if (state === 'ERROR') {
                   clearInterval(interval);
-                  clearInterval(intervaltimer);
-                  clearTimeout(tm);
+                  //clearInterval(intervaltimer);
+                  //clearTimeout(tm);
                   alert("An error occured installing " + sat.antSatID + ".");
                   TVRO.reload();
                 }//End if (state === 'ERROR')
