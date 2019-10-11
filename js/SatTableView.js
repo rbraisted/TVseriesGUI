@@ -73,7 +73,7 @@
       var split = _.rest(hash.split('/'));
       if(split.length > 0 && split[0] === 'groups' )
       {
-        if((sat.triSatID !== 'false' && sat.triSatID !== 'FALSE') || (sat.antSatID === '99W' || sat.antSatID === '103W'))
+        if((sat.triSatID !== 'false' && sat.triSatID !== 'FALSE') || (sat.select !== 'true' || sat.select !== 'TRUE'))
         {
           $(row).addClass('removeElement');  
         }
