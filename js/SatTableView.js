@@ -69,6 +69,16 @@
       }
       /* On the Satellites view, if any satellite in the list has the <triSatID> set to not false, then (removing) the 'i' icon on the right side of the record  - End - UHD7 - STWA-315*/
       
+      var hash = window.location.hash;
+      var split = _.rest(hash.split('/'));
+      if(split.length > 0 && split[0] === 'groups' )
+      {
+        if((sat.triSatID !== 'false' && sat.triSatID !== 'FALSE') || (sat.antSatID === '99W' || sat.antSatID === '103W'))
+        {
+          $(row).addClass('removeElement');  
+        }
+      }
+
       $('.\\#install-btn', row).click(function() {
         var confirmed = confirm('Are you sure you want to install ' + sat.name + '?');
         if (confirmed) {
@@ -101,6 +111,9 @@
         }
 
         tableView.setValues(sats).build();
+        //$(window).load(function () {
+            $('.removeElement').remove();
+        //});
       });
     };
 
