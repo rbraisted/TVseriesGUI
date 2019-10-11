@@ -1129,7 +1129,8 @@ html {
   @media screen and (max-width: 880px) {
     .headline {
       font-size: 16px;
-      margin-top: 30px;
+      /*margin-top: 30px;*/
+      margin-top: 45px;
       padding: 0 20px; } }
 
 .link {
@@ -3174,7 +3175,7 @@ body .gpspage .manual-view{ padding-bottom:45px; margin-bottom:0px; }
 
 @media screen and (min-width:801px) and (max-width:1100px){
 .vessel-location {top:55px; }
-.manual-view .headline{ margin-top:10px; margin-bottom:0px;}
+/*.manual-view .headline{ margin-top:10px; margin-bottom:0px;}*/
 .vessel-location div.view-head:first-child{margin-bottom:10px; }  
 .vessel-location .block-btn{margin-top:15px; }
 }
