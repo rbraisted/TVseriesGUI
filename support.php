@@ -146,15 +146,6 @@
     Choose this option to view the current Operational Log.
   </p>
 
-	<div class="block-btn start-new-log-btn #start-btn">
-		Start New Log
-	</div>
-
-	<p>
-    Choose this option to delete the current Operational Log and begin
-    recording a new one.
-  </p>
-
 	<div class="block-btn restart-btn #restart-btn">
 		Restart System and Start New Log
 	</div>
@@ -163,6 +154,15 @@
     Choose this option to delete the current Operational Log, restart the
     antenna, and begin recording a new Operational Log that includes startup
     self-test results. This information is very useful for diagnostics.
+  </p>
+
+  <div class="block-btn start-new-log-btn #start-btn">
+    Start New Log
+  </div>
+
+  <p>
+    Choose this option to delete the current Operational Log and begin
+    recording a new one.
   </p>
 
 </div>
