@@ -110,7 +110,7 @@
 --><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!--
 --><a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Satellite Finder</a>
   <?php if($antname == 'UHD7') { ?>
-    <a href="/support.php" class="empty-btn #nav-btn #empty-btn">&nbsp;</a>
+    <a href="#" class="empty-btn #nav-btn #empty-btn">&nbsp;</a>
   <?php } ?>
 </div>
 <style type="text/css">
