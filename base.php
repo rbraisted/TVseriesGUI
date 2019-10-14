@@ -109,4 +109,25 @@
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
 --><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!--
 --><a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Satellite Finder</a>
+  <?php if($antname == 'UHD7') { ?>
+    <a href="/support.php" class="empty-btn #nav-btn #empty-btn">&nbsp;</a>
+  <?php } ?>
 </div>
+<style type="text/css">
+  @media screen and (max-width: 880px) {
+    .nav .empty-btn {
+      background-color: #000;
+      /*background-image: url(/images/settings-icon-white.svg);*/
+      background-repeat: no-repeat;
+      background-position: 50% 35%;
+      background-size: 40.47619% auto;
+      cursor: pointer;
+      display: block;
+      float: left;
+      padding: 22% 0 5%;
+      text-align: center;
+      width: 33%; }
+      .nav .empty-btn:nth-child(3n + 2) {
+        width: 34%; }
+  }
+</style>
