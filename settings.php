@@ -260,7 +260,7 @@
   </div>
   <?php 
     $antname = $_COOKIE['antena'];
-    if($antname !== 'UHD7' || $antname !== 'A9' || $antname !== 'RV1' || $antname !== 'TV1') { ?>
+    if($antname !== 'UHD7' && $antname !== 'A9' && $antname !== 'RV1' && $antname !== 'TV1') { ?>
   <div class="multiswitch-mode">
     <div class="heading">Band/Polarization Control</div>
     <p>
