@@ -515,6 +515,10 @@ and also .#group-table-view (group mode)
       <div class="back-btn #back-btn"></div>
     </div>
     <div class="name-block">
+      <?php 
+      if($antname === 'UHD7') { ?>
+        <div style="text-align: center;padding: 0 0 10px 0; font-size: 14px;"> <b style="font-weight: 600">NOTE:</b> DIRECTV TRI-SAT cannot be added to a group.</div>
+      <?php } ?>
       <div class="name-label">Satellite Group Name</div>
       <input type="text" class="input group-name #group-name" />
     </div>
