@@ -2232,7 +2232,7 @@ body[class=''] .\#service-provider-view,
   .single-sat-table,
   .group-table,
   .group-info {
-    display: none; }
+    display: block; }
 
   .\/regions .\#single-view,
   .\/regions\/region .\#single-view {
