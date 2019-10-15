@@ -259,7 +259,7 @@
     </div>
   </div>
 
-  <div class="multiswitch-mode">
+  <!--<div class="multiswitch-mode">
     <div class="heading">Band/Polarization Control</div>
     <p>
       With the master receiver in control (default setting), the
@@ -275,10 +275,10 @@
     <div class="toggle-btn #multiswitch-mode-btn">
       <!-- Line-height used to center the text to align with the other toggle
            48px - 16px(top-margin)-->
-      <div class="on" style=" line-height: 32px">TV-Hub</div>
+      <!--<div class="on" style=" line-height: 32px">TV-Hub</div>
       <div class="off">Master<br>Receiver</div>
     </div>
-  </div>
+  </div>-->
 
     <div class="heading">Technician Mode</div>
   <p>
