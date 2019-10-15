@@ -516,6 +516,7 @@ and also .#group-table-view (group mode)
     </div>
     <div class="name-block">
       <?php 
+      $antname = $_COOKIE['antena'];
       if($antname === 'UHD7') { ?>
         <div style="text-align: center;padding: 0 0 10px 0; font-size: 14px;"> <b style="font-weight: 600">NOTE:</b> DIRECTV TRI-SAT cannot be added to a group.</div>
       <?php } ?>
