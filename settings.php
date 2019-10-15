@@ -258,7 +258,9 @@
       <div class="off">Off</div>
     </div>
   </div>
-
+  <?php 
+    $antname = $_COOKIE['antena'];
+    if($antname !== 'UHD7' && $antname !== 'A9' && $antname !== 'RV1' && $antname !== 'TV1') { ?>
   <div class="multiswitch-mode">
     <div class="heading">Band/Polarization Control</div>
     <p>
@@ -270,7 +272,7 @@
       the cable connected directly to it, regardless of the band/polarization
       selected by any IP AutoSwitch-equipped master receiver. Always select
       "TV-Hub" for a linear system equipped with a multiswitch and an IP
-      AutoSwitch. Band/Polarization Control does not apply to A9, RV1, TV1, 
+      AutoSwitch. Band/Polarization Control does not apply to A9, RV1, TV1,
       or UHD7 systems (keep it set to “Master Receiver”).
     </p>
     <div class="toggle-btn #multiswitch-mode-btn">
@@ -280,6 +282,7 @@
       <div class="off">Master<br>Receiver</div>
     </div>
   </div>
+  <?php } ?>
 
     <div class="heading">Technician Mode</div>
   <p>
