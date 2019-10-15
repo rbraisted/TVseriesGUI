@@ -434,6 +434,9 @@ and also .#group-table-view (group mode)
     <span class="sat-icon"></span>
     <span>Satellites</span>
     <div class="back-btn #back-btn"></div>
+    <div class="note">
+      <span style="font-size: 14px;">Please Note: To change your satellite TV service, please use the <a href="/wizard" style="border-bottom: dashed 1px;border-top: dashed 1px;">Setup Wizard</a></span>
+    </div>
   </div>
   <div class="sat-table single-sat-table #table-view">
     <div class="table-head #table-head">
