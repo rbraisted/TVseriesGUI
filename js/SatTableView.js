@@ -80,8 +80,10 @@
       }
 
       $('.\\#install-btn', row).click(function() {
-        var confirmed = confirm('Are you sure you want to install ' + sat.name + '?');
+        var confirmed = confirm('Are you sure you want to install: \n' + sat.name + '; '+ TVRO.formatOrbitalSlot(sat.antSatID, sat.lon));
         if (confirmed) {
+          $('.\\$installed').removeClass('$installed');
+          row.toggleClass('$installed');
           TVRO.setInstalledSat(sat, true);
         }
       });
