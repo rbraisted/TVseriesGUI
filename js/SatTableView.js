@@ -84,12 +84,19 @@
       }
 
       $('.\\#install-btn', row).click(function() {
-        var confirmed = confirm('Are you sure you want to install: \n' + sat.name + '; '+ TVRO.formatOrbitalSlot(sat.antSatID, sat.lon));
-        if (confirmed) {
-          $('.\\$installed').removeClass('$installed');
-          row.toggleClass('$installed');
-          TVRO.setInstalledSat(sat, true);
-        }
+        $('.\\$installed').addClass('$prevSelected').removeClass('$installed');
+        row.toggleClass('$installed');
+        setTimeout(function() {
+	      var confirmed = confirm('Are you sure you want to install: \n' + sat.name + '; '+ TVRO.formatOrbitalSlot(sat.antSatID, sat.lon));
+              
+          if (confirmed) {
+		    TVRO.setInstalledSat(sat, true);
+          }
+          else {
+            row.removeClass('$installed');
+            $('.\\$prevSelected').addClass('$installed').removeClass('$prevSelected');
+          }
+        },200);
       });
 
       $('.\\#fav-btn', row).click(function() {
