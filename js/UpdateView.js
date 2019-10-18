@@ -41,7 +41,7 @@
             //  ran into a strange error here where confirmation alerts would stack up
             //  if you selected "Cancel" on the 2nd confirmation
             //  not sure why, but this seemed to fix it
-            if (confirmed && jQ.hasClass('$antenna')) return confirmed = confirm('Please Note:\nTV-Hub loses network connection during software updates. If using Wi-Fi, you must reconnect to your TV-Hub network when it becomes available.');
+            if (confirmed && jQ.hasClass('$antenna')) return confirmed = confirm('Note:\nTV-Hub loses network connection during software updates. If using Wi-Fi, you must reconnect to your TV-Hub network when it becomes available.');
             else return confirmed;
         };
 
