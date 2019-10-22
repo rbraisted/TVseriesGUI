@@ -32,7 +32,7 @@
               window.location = '/wizard/satellites.php';
             }
           });
-
+     });
     TVRO.getGroupMode().then(function(groupMode) {
       $('.\\#single', jQ).toggle(!groupMode);
       $('.\\#group', jQ).toggle(groupMode);
