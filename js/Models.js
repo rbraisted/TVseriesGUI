@@ -149,8 +149,8 @@
           TVRO.getAntennaStatus().then(function(xml) {
             var state =  $('antenna state', xml).text();
             $('.\\#ant_status').text("The TV-Hub is installing the group. Status: " + state);
-            // if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-            if ((state === 'TRACKING')) {
+           if ((state === 'SEARCHING') || (state === 'TRACKING')) {
+          //  if ((state === 'TRACKING')) {
               clearInterval(interval);
               TVRO.reload();
             } else if (state === 'ERROR') {
