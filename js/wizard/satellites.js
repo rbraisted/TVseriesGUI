@@ -101,7 +101,7 @@ $(function() {
       } else {
         Promise.all(
             TVRO.getService(),
-            TVRO.getLnbType(),
+            TVRO.getLnbType()
 
         ).then(function(res) {
           var service = res[0];
