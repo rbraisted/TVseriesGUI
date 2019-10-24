@@ -30,17 +30,14 @@ $(function() {
           /*Changes End - UHD7 - STWA-305 and STWA-306*/
         }
       } else if ((lnbType === 'circular') && (service === 'OTHER')) {
-         TVRO.getAntModel().then(function(model) {
-            if(model === 'UHD7') {
-             window.history.go(-2);
-            } else {
-              window.location = '/wizard/satellites.php'; //other circular select sat
-            }
-          });
-      	
-      	
-      } 
-      else if (service === 'DISH' || service === 'BELL') {
+        TVRO.getAntModel().then(function(model) {
+          if(model === 'UHD7') {
+            window.history.go(-2);
+          } else {
+            window.location = '/wizard/satellites.php'; //other circular select sat
+          }
+        });
+      } else if (service === 'DISH' || service === 'BELL') {
         TVRO.getAntModel().then(function(model) {
             if(model === 'UHD7') {
              window.history.go(-2);
@@ -48,8 +45,7 @@ $(function() {
               window.location = '/wizard/satellites.php'; //other circular select sat
             }
           });        
-      }
-      else {
+      } else {
       	// This handles Linear TV1,TV3,TV5 Manual (Skew);
       	// Linear TV5 & TV6
       	// Circular DISH/Bell

@@ -233,8 +233,6 @@
 
       var interval;
       var timeout;
-      // var intervaltimer;
-      // var tm;
 
       $('.\\#exit-btn').click(function() {
         clearInterval(interval);
@@ -242,106 +240,36 @@
         TVRO.reload();
       });
 
-      /*tm = setTimeout(function() {
-
-        var Minutes = 60 * 10;
-        var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-
-        intervaltimer = setInterval(function() {
-
-
-              diff = Minutes - (((Date.now() - start) / 1000) | 0);
-
-              // does the same job as parseInt truncates the float
-              minutes = (diff / 60) | 0;
-              seconds = (diff % 60) | 0;
-
-              minutes = minutes < 10 ? "0" + minutes : minutes;
-              seconds = seconds < 10 ? "0" + seconds : seconds;
-              if(diff >= 0)
-              {
-              $('#timer').text(minutes + ":" + seconds);
-              }
-              //console.log(minutes + ":" + seconds); 
-              //console.log("add"+diff);
-
-              if (typeof(diff) != "undefined" && diff == 0) {
-                  $('#timer1').html("There is some issue in satellite installation process! Please Try again.");
-                   // alert("There is some issue in satellite installation process."); 
-                    setTimeout(function(){
-                             
-                    clearInterval(intervaltimer);
-                    clearTimeout(tm);
-                    clearInterval(interval);
-                    clearTimeout(timeout);
-                    $('#timer').html("");
-                    $('#timer1').html("");
-                    TVRO.reload();
-                   // console.log(123);
-                    return false;  
-                   
-                    },3000);                 
-                 return false;                
-              } 
-
-        },1000);
-      },1000);*/
-
-       timeout = setTimeout(function() {
+      timeout = setTimeout(function() {
         TVROgetService(function(service){
-          //console.log("service",service);
           interval = setInterval(function() {
-         //   console.log("interval started",service);
             TVRO.getAntennaStatus().then(function(xml) {
               var state =  $('antenna state', xml).text();
               $('.\\#ant_status').text("The TV-Hub is installing the satellite. Status: " + state);
-              //if ((state === 'SEARCHING') || (state === 'TRACKING')) {
-                 //console.log("interval service",service);
-                if(service === 'BELL' || service === 'DISH' )
-                {
-                  if ( (state === 'TRACKING') ) {
-                 // console.log("interval service1",service);
+              if(service === 'BELL' || service === 'DISH' ) {
+                if ( (state === 'TRACKING') ) {
                   clearInterval(interval);
-                  //clearInterval(intervaltimer);
-                  //clearTimeout(tm);
                   TVRO.reload();
-                }if (state === 'ERROR') {
+                }
+                if (state === 'ERROR') {
                   clearInterval(interval);
-                  //clearInterval(intervaltimer);
-                  //clearTimeout(tm);
                   alert("An error occured installing " + sat.antSatID + ".");
                   TVRO.reload();
                 }//End if (state === 'ERROR')
-
-               }else {
-
-               if( (state === 'SEARCHING') || (state === 'TRACKING') ){
-                  //console.log("interval service 2",service);
+              }else {
+                if ((state === 'SEARCHING') || (state === 'TRACKING')) {
                   clearInterval(interval);
-                  //clearInterval(intervaltimer);
-                  //clearTimeout(tm);
                   TVRO.reload();
                 }else if (state === 'ERROR') {
                   clearInterval(interval);
-                  //clearInterval(intervaltimer);
-                  //clearTimeout(tm);
                   alert("An error occured installing " + sat.antSatID + ".");
                   TVRO.reload();
                 }//End if (state === 'ERROR')
-
               }
-            
-
             });
           },1000);
         })
       },10000);
-
-
-
     });    
   };
 
