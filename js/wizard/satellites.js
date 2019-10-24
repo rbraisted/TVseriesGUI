@@ -109,7 +109,7 @@ $(function() {
           TVRO.getAntModel().then(function(model) {
          if(model === 'UHD7'){
           if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
-          else if (service === 'DISH') window.location = '/wizard/checkswitch.php#/config-1';
+          else if (service === 'DISH' || service === 'BELL') window.location = '/wizard/checkswitch.php#/config-1';
           else window.location = '/wizard/activation.php';
           }else{
              if (service === 'OTHER' && lnbType === 'circular') window.location = '/wizard/activation.php';
