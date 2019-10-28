@@ -178,7 +178,7 @@
                 var model   = res[0];
                 var lnbPart = $('installed_lnb part', res[1]).text();
 
-                if ('A9' === model) {
+                if (('A9' === model) || ('UHD7' === model)) {
                     lnbView.addClass('$hide-view');
                 } else {
                     var usrLnbText;
