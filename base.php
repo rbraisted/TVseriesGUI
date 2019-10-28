@@ -107,11 +107,11 @@
 <!--
 --><a href="/settings.php" class="settings-btn #nav-btn #settings-btn">Settings</a><!--
 --><a href="/updates.php" class="updates-btn #nav-btn #updates-btn">Updates</a><!--
---><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!--
---><a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Satellite Finder</a>
+--><a href="/support.php" class="support-btn #nav-btn #support-btn">Support</a><!-- -->
   <?php if($antname == 'UHD7') { ?>
     <a href="#" class="empty-btn #nav-btn #empty-btn">&nbsp;</a>
   <?php } ?>
+  <a href="tvro://sat-finder" class="satfinder-btn #nav-btn #satfinder-btn">Satellite Finder</a>
 </div>
 <style type="text/css">
   @media screen and (max-width: 880px) {
