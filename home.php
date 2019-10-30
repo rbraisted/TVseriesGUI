@@ -24,6 +24,7 @@
 
 <div class="sidebar">
 
+<?php if($antname !== 'UHD7') { ?>
   <div class="sidebar-chunk #sat-switching-view">
     <div class="sidebar-chunk-head">Satellite Switching</div>
     <div class="toggle-btn #sat-switching-btn">
@@ -31,6 +32,7 @@
       <span class="off">Automatic</span>
     </div>
   </div>
+<?php } ?>
 
   <div class="sidebar-chunk #installed-sat-view">
     <div class="sidebar-chunk-head">
