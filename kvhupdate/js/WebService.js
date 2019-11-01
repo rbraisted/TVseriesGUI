@@ -402,6 +402,7 @@
           TV5: TVRO.getDownloadedTV5UpdateVersion(),
           TV6: TVRO.getDownloadedTV6UpdateVersion(),
           TV8: TVRO.getDownloadedTV8UpdateVersion(),
+          UHD7: TVRO.getDownloadedUHD7UpdateVersion(),
           RV1: TVRO.getDownloadedRV1UpdateVersion(),
           A9: TVRO.getDownloadedA9UpdateVersion()
       });
