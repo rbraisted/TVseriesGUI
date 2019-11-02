@@ -583,10 +583,11 @@
 			};
 			buildConfigurationList = E9B97C621829A14A007AA4A3 /* Build configuration list for PBXProject "TVRV" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E9B97C5E1829A14A007AA4A3;
 			productRefGroup = E9B97C681829A14A007AA4A3 /* Products */;
@@ -874,11 +875,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.4.4;
 				DEVELOPMENT_TEAM = YYEW9VQ5XU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MARKETING_VERSION = 1.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvh.mobile.tvrv;
 				PRODUCT_NAME = TVRV;
 				PROVISIONING_PROFILE = "";
@@ -899,11 +902,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.4.4;
 				DEVELOPMENT_TEAM = YYEW9VQ5XU;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TVRV/TVRV-Prefix.pch";
 				INFOPLIST_FILE = "TVRV/TVRV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MARKETING_VERSION = 1.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvh.mobile.tvrv;
 				PRODUCT_NAME = TVRV;
 				PROVISIONING_PROFILE = "";

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>App would like to access the camera</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -19,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.2</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.4.2</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,12 +41,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>App would like to access the camera</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>KVH TV antenna system uses mobile device&apos;s GPS location to allow faster acquisition of TV satellite</string>
+	<string>KVH TV antenna system uses mobile device's GPS location to allow faster acquisition of TV satellite</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>KVH TV antenna system uses mobile device&apos;s GPS location to allow faster acquisition of TV satellite</string>
-	<key>UIApplicationExitsOnSuspend</key>
-	<true/>
+	<string>KVH TV antenna system uses mobile device's GPS location to allow faster acquisition of TV satellite</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App does not use the microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App does not access the photo library</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
